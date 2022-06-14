@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/test/test.dart';
 

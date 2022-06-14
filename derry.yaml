@@ -52,5 +52,4 @@ purge_all:
   - flutter run
 
 coverage:
-  - very_good test --coverage --min-coverage 100
-  - genhtml coverage/lcov.info -o coverage/
+  - very_good test --coverage --exclude-coverage '**/{*.{g,freezed},*_{page,providers}}.dart' --min-coverage 100 || true

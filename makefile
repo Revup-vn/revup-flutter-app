@@ -18,9 +18,23 @@ run_unit: ## Runs unit tests
 	@echo "╠ Running the tests"
 	@flutter test || (echo "Error while running tests"; exit 1)
 
-coverage: ##run test and gen coverage report
-	@very_good test --coverage --min-coverage 100
-	@genhtml coverage/lcov.info -o coverage/
+
+analyze:
+	@flutter pub run dart_code_metrics:metrics analyze lib
+	@flutter pub run dart_code_metrics:metrics check-unused-files lib
+	@flutter pub run dart_code_metrics:metrics check-unused-code lib
+	@flutter analyze lib test
+
+coverage:  ##run test and gen coverage report
+	@very_good test --coverage --exclude-coverage '**/{*.{g,freezed},*_{page,providers}}.dart' --min-coverage 100 || true
+	@lcov --remove coverage/lcov.info -o coverage/exclude.info \
+    '**/*.g.dart' \
+	'**/*.freezed.dart' \
+    '**/*.gr.dart' \
+	'**/*_page.dart' \
+	'**/*_providers.dart'
+	@genhtml coverage/exclude.info -o coverage
+
 
 clean: ## Cleans the environment
 	@echo "╠ Cleaning the project..."
@@ -35,7 +49,7 @@ watch: ## Watches the files for changes
 gen: ## Generates the assets
 	@echo "╠ Generating the assets..."
 	@flutter pub get
-	@flutter packages pub run build_runner build
+	@flutter packages pub run build_runner build --delete-conflicting-outputs
 
 format: ## Formats the code
 	@echo "╠ Formatting the code"
