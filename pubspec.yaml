@@ -20,6 +20,7 @@ dependencies:
   flutter_form_field_validator: ^1.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^1.1.0
   freezed_annotation: ^2.0.3
   hive: ^2.2.1
   intl: ^0.17.0
@@ -42,14 +43,10 @@ dev_dependencies:
 
 flutter_gen:
   output: lib/gen/
+  integrations:
+    flutter_svg: true
   assets:
     enabled: true
-  fonts:
-    enabled: true
-  colors:
-    enabled: true
-    inputs:
-      - assets/color/colors.xml
 import_sorter:
   comments: false
 
@@ -57,4 +54,4 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/
+    - assets/screens/

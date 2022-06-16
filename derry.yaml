@@ -52,4 +52,4 @@ purge_all:
   - flutter run
 
 coverage:
-  - very_good test --coverage --exclude-coverage '**/{*.{g,freezed},*_{page,providers}}.dart' --min-coverage 100 || true
+  - very_good test --coverage --exclude-coverage '{**/{*.{g,freezed,gen},*_{page,providers}}.dart,lib/l10n/l10n.dart}' --min-coverage 100 || true
