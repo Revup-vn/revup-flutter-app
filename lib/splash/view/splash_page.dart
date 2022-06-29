@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:revup/gen/assets.gen.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,6 +14,7 @@ class SplashPage extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
+
     return Scaffold(
       body: SafeArea(
         child: Column(
