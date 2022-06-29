@@ -3,5 +3,15 @@
     "revupAppBarTitle": "Revup",
     "@revupAppBarTitle": {
         "description": "Text se xuat hien o appbar khi vao trang dau tien"
-    }
+    },
+    "buttonLabelContinue": "Tiếp Tục",
+    "labelEnterPassword" : "Nhập Mật Khẩu",
+    "labelLoginPhoneNumber" : "Số điện thoại đăng nhập: ",
+    "labelForgotPassword" : "Quên mật khẩu",
+    "labelResendOTP" : "Gửi lại mã OTP",
+    "labelEnterOTPCode" : "Nhập mã OTP",
+    "labelOTPSendTo" : "Mã OTP sẽ được gửi đến số : ",
+    "labelEnterNewPasswordForgot" : "Cài đặt mật khẩu mới của bạn",
+    "labelShowPassWord" : "Hiện mật khẩu",
+    "labelHidePassword" : "Ẩn mật khẩu"
 }

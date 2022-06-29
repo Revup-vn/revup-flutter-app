@@ -23,13 +23,17 @@ class _$AppRouter extends RootStackRouter {
     },
     TestRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const TestPage());
+    },
+    LoginRoute.name: (routeData) {
+      return AdaptivePage<void>(routeData: routeData, child: const LoginPage());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(TestRoute.name, path: '/test-page')
+        RouteConfig(TestRoute.name, path: '/test-page'),
+        RouteConfig(LoginRoute.name, path: '/login-page')
       ];
 }
 
@@ -47,4 +51,12 @@ class TestRoute extends PageRouteInfo<void> {
   const TestRoute() : super(TestRoute.name, path: '/test-page');
 
   static const String name = 'TestRoute';
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/login-page');
+
+  static const String name = 'LoginRoute';
 }
