@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     Future<void>.delayed(
       const Duration(seconds: 5),
       () => appRouter.pushAndPopUntil(
-        const TestRoute(),
+        const OnboardingRoute(),
         predicate: (_) => false,
       ),
     );

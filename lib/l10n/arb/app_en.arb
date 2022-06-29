@@ -1,7 +1,13 @@
 {
-    "@@locale": "en",
-    "revupAppBarTitle": "Revup",
-    "@revupAppBarTitle": {
-        "description": "Text shown in the AppBar of the first page"
-    }
+  "@@locale": "en",
+  "revupAppBarTitle": "Revup",
+  "@revupAppBarTitle": {
+    "description": "Text shown in the AppBar of the first page"
+  },
+  "introPageFirstTitle": "Professional car repair service",
+  "introPageSecondTitle": "Always on duty on all roads",
+  "introPageThirdTitle": "Transparent price, rest assured repair",
+  "txtBtnSkip": "Skip",
+  "txtBtnNext": "Next",
+  "txtBtnDone": "Done"
 }
