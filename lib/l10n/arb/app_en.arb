@@ -3,5 +3,28 @@
     "revupAppBarTitle": "Revup",
     "@revupAppBarTitle": {
         "description": "Text shown in the AppBar of the first page"
-    }
+    },
+    "titleAccountTxt":"Account",
+    "nameAccountTxt":"Quang Nghĩa",
+    "phoneTxt":"+84989666888",
+    "accountLb":"My account",
+    "serviceAccountTxt":"My service",
+    "editProfileTxt":"Edit Profile",
+    "paymentTxt":"Payment",
+    "organizationTxt":"Organization account",
+    "changePassWordTxt":"Change PassWord",
+    "changeLanguageTxt":"Change Language",
+    "guideAndSuportLb":"Guide & Suport",
+    "faqsTxt":"FAQs",
+    "termsOfServiceTxt":"Terms of Service",
+    "aboutUsTxt":"About Us",
+    "suportsTxt":"Suports",
+    "logoutTxt":"Logout",
+    "signup6":"Đăng ký 6",
+    "fullNameTxt":"Full Name",
+    "emailTxt":"Email",
+    "dateTxt":"Date",
+    "addressTxt":"Address",
+    "completeRegistrationTxt":"Complete registration"
+
 }
