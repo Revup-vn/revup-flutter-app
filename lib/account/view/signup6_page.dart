@@ -7,7 +7,6 @@ class Signup6Page extends StatelessWidget {
   const Signup6Page({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return MaterialApp(
       home: Scaffold(
         body: _buildListView(context),
@@ -23,7 +22,7 @@ class Signup6Page extends StatelessWidget {
         Container(
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 0),
             child: Text(
-              l10n.completeRegistrationTxt,
+              l10n.completeRegistrationText,
               style: TextStyle(fontSize: 30),
             )),
         Container(
@@ -45,28 +44,30 @@ class Signup6Page extends StatelessWidget {
               children: [
                 TextFormField(
                   style: TextStyle(fontSize: 22),
-                  decoration: const InputDecoration(
-                      labelText: 'FULL NAME',
+                  decoration: InputDecoration(
+                      labelText: l10n.fullNameText,
                       labelStyle: TextStyle(fontSize: 18)),
                 ),
                 TextFormField(
                   style: TextStyle(fontSize: 22),
-                  decoration: const InputDecoration(
-                      labelText: 'EMAIL', labelStyle: TextStyle(fontSize: 18)),
+                  decoration: InputDecoration(
+                      labelText: l10n.emailText,
+                      labelStyle: TextStyle(fontSize: 18)),
                 ),
                 TextFormField(
                   style: TextStyle(fontSize: 22),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Enter date',
-                    labelText: 'Date',
+                    labelText: l10n.dateText,
                     labelStyle: TextStyle(fontSize: 18),
                   ),
                   keyboardType: TextInputType.datetime,
                 ),
                 TextFormField(
                   style: TextStyle(fontSize: 22),
-                  decoration: const InputDecoration(
-                      labelText: 'ADRESS', labelStyle: TextStyle(fontSize: 18)),
+                  decoration: InputDecoration(
+                      labelText: l10n.addressText,
+                      labelStyle: TextStyle(fontSize: 18)),
                 ),
                 Container(
                   child: Padding(

@@ -61,60 +61,60 @@ class AccountPage extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(10),
             child: Text(
-              l10n.nameAccountTxt,
+              l10n.nameAccountText,
               style: TextStyle(fontSize: 30),
             )),
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(10),
             child: Text(
-              l10n.phoneTxt,
+              l10n.phoneText,
               style: TextStyle(fontSize: 18),
             )),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            l10n.accountLb,
+            l10n.accountLabel,
           ),
         ),
         ListTile(
-          title: Text(l10n.serviceAccountTxt),
+          title: Text(l10n.serviceAccountText),
           leading: Icon(Icons.home_repair_service),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.editProfileTxt),
+          title: Text(l10n.editProfileText),
           leading: Icon(Icons.portrait),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.paymentTxt),
+          title: Text(l10n.paymentText),
           leading: Icon(Icons.payment),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.organizationTxt),
+          title: Text(l10n.organizationText),
           leading: Icon(Icons.business),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.changePassWordTxt),
+          title: Text(l10n.changePassWordText),
           leading: Icon(Icons.key),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.changeLanguageTxt),
-          leading: Icon(Icons.change_history),
+          title: Text(l10n.changeLanguageText),
+          leading: Icon(IconData(0xe366, fontFamily: 'MaterialIcons')),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
@@ -126,39 +126,39 @@ class AccountPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            l10n.guideAndSuportLb,
+            l10n.guideAndSuportLabel,
           ),
         ),
         ListTile(
-          title: Text(l10n.faqsTxt),
+          title: Text(l10n.faqsText),
           leading: Icon(Icons.quiz),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.termsOfServiceTxt),
+          title: Text(l10n.termsOfServiceText),
           leading: Icon(Icons.fact_check),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.aboutUsTxt),
+          title: Text(l10n.aboutUsText),
           leading: Icon(Icons.people),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.suportsTxt),
+          title: Text(l10n.suportsText),
           leading: Icon(Icons.help),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
           onTap: () {},
         ),
         ListTile(
-          title: Text(l10n.logoutTxt),
+          title: Text(l10n.logoutText),
           leading: Icon(Icons.logout),
           trailing:
               IconButton(icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
