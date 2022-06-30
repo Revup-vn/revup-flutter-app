@@ -140,3 +140,4 @@ lib/generated/intl/messages_all.dart
 packages/injected/**
 lib/firebase_options.dart
 android/app/google-services.json
+ios/GoogleService-Info.plist
