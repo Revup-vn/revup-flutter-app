@@ -4,14 +4,18 @@
     "@revupAppBarTitle": {
         "description": "Text se xuat hien o appbar khi vao trang dau tien"
     },
-    "buttonLabelContinue": "Tiếp Tục",
-    "labelEnterPassword" : "Nhập Mật Khẩu",
-    "labelLoginPhoneNumber" : "Số điện thoại đăng nhập: ",
-    "labelForgotPassword" : "Quên mật khẩu",
-    "labelResendOTP" : "Gửi lại mã OTP",
-    "labelEnterOTPCode" : "Nhập mã OTP",
-    "labelOTPSendTo" : "Mã OTP sẽ được gửi đến số : ",
-    "labelEnterNewPasswordForgot" : "Cài đặt mật khẩu mới của bạn",
-    "labelShowPassWord" : "Hiện mật khẩu",
-    "labelHidePassword" : "Ẩn mật khẩu"
+    "continueLabel": "Tiếp Tục",
+    "enterPasswordLabel" : "Nhập Mật Khẩu",
+    "loginPhoneNumberLabel" :  "Số điện thoại đăng nhập: ",
+    "forgotPasswordLabel" : "Quên mật khẩu",
+    "resendOTPLabel" : "Gửi lại mã OTP",
+    "enterOTPCodeLabel" : "Nhập mã OTP",
+    "sendOTPCodeToLabel" : "Mã OTP sẽ được gửi đến số : ",
+    "enterNewPassWordForgotLabel" : "Cài đặt mật khẩu mới của bạn",
+    "showPasswordLabel" : "Hiện mật khẩu",
+    "hidePasswordLabel" : "Ẩn mật khẩu",
+    "currentPasswordLabel" : "Nhập mật khẩu hiện tại",
+    "confirmPasswordLabel" : "Xác nhận mật khẩu",
+    "setupPasswordLabel" : "Cài đặt mật khẩu",
+    "enterNewPasswordDescriptionLabel" : "Vì lý do bảo mật, vui lòng cài đặt mật khẩu"
 }

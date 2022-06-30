@@ -4,14 +4,18 @@
     "@revupAppBarTitle": {
         "description": "Text shown in the AppBar of the first page"
     },
-    "buttonLabelContinue": "Continue",
-    "labelEnterPassword" : "Enter your password",
-    "labelLoginPhoneNumber" : "Phone number : ",
-    "labelForgotPassword" : "Forgot your password",
-    "labelResendOTP" : "Resend OTP code",
-    "labelEnterOTPCode" : "Enter your OTP",
-    "labelOTPSendTo" : "OTP code has been sent to : ",
-    "labelEnterNewPasswordForgot" : "Enter your new password",
-    "labelShowPassWord" : "Show password",
-    "labelHidePassword" : "Hide password"
+    "continueLabel": "Continue",
+    "enterPasswordLabel" : "Enter your password",
+    "loginPhoneNumberLabel" : "Phone number : ",
+    "forgotPasswordLabel" : "Forgot your password",
+    "resendOTPLabel" : "Resend OTP code",
+    "enterOTPCodeLabel" : "Enter your OTP",
+    "sendOTPCodeToLabel" : "OTP code has been sent to : ",
+    "enterNewPassWordForgotLabel" : "Enter your new password",
+    "showPasswordLabel" : "Show password",
+    "hidePasswordLabel" : "Hide password",
+    "currentPasswordLabel" : "Enter your current password",
+    "confirmPasswordLabel" : "Confirm your password",
+    "setupPasswordLabel" : "Setup your password",
+    "enterNewPasswordDescriptionLabel" : "Because of security reason, please setup your password"
 }
