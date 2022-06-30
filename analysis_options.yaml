@@ -33,6 +33,8 @@ dart_code_metrics:
     maximum-nesting-level: 5
     number-of-parameters: 4
     source-lines-of-code: 50
+  metrics-exclude:
+    - lib/gen/**
   rules:
     - newline-before-return
     - no-boolean-literal-compare
