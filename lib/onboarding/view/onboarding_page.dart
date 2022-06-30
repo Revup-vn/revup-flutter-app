@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:revup/app/router/router.dart';
 import 'package:revup/l10n/l10n.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../router/router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
