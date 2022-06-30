@@ -4,10 +4,10 @@
   "@revupAppBarTitle": {
     "description": "Text shown in the AppBar of the first page"
   },
-  "introPageFirstTitle": "Professional car repair service",
-  "introPageSecondTitle": "Always on duty on all roads",
-  "introPageThirdTitle": "Transparent price, rest assured repair",
-  "txtBtnSkip": "Skip",
-  "txtBtnNext": "Next",
-  "txtBtnDone": "Done"
+  "onboardPageFirstTitle": "Professional car repair service",
+  "onboardPageSecondTitle": "Always on duty on all roads",
+  "onboardPageThirdTitle": "Transparent price, rest assured repair",
+  "btnSkipText": "Skip",
+  "btnNextText": "Next",
+  "btnDoneText": "Done"
 }

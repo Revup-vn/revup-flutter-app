@@ -4,10 +4,10 @@
   "@revupAppBarTitle": {
     "description": "Text se xuat hien o appbar khi vao trang dau tien"
   },
-  "introPageFirstTitle": "Dịch vụ đặt sửa chữa xe chuyên nghiệp",
-  "introPageSecondTitle": "Luôn túc trực mọi cung đường",
-  "introPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
-  "txtBtnSkip": "Bỏ qua",
-  "txtBtnNext": "Tiếp theo",
-  "txtBtnDone": "Xong"
+  "onboardPageFirstTitle": "Dịch vụ đặt sửa chữa xe chuyên nghiệp",
+  "onboardPageSecondTitle": "Luôn túc trực mọi cung đường",
+  "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
+  "btnSkipText": "Bỏ qua",
+  "btnNextText": "Tiếp theo",
+  "btnDoneText": "Xong"
 }
