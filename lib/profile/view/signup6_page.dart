@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:revup/l10n/l10n.dart';
 
+import '../widgets/update_profile_item.dart';
+
 void main() => runApp(const Signup6Page());
 
 class Signup6Page extends StatelessWidget {
@@ -34,9 +36,17 @@ class Signup6Page extends StatelessWidget {
           child: const CircleAvatar(
             radius: 80,
             backgroundColor: Color.fromARGB(255, 242, 226, 80),
-            child: Text(
-              'N',
-              style: TextStyle(fontSize: 90, color: Colors.white),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 18,
+                child: Icon(
+                  Icons.camera_alt,
+                  size: 22,
+                  color: Color(0xFF404040),
+                ),
+              ),
             ),
           ),
         ),
@@ -45,35 +55,21 @@ class Signup6Page extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                TextFormField(
-                  style: const TextStyle(fontSize: 22),
-                  decoration: InputDecoration(
-                    labelText: l10n.fullNameText,
-                    labelStyle: const TextStyle(fontSize: 18),
-                  ),
+                UpdateProfileItem(
+                  profileName: l10n.fullNameLabel,
+                  textType: TextInputType.text,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 22),
-                  decoration: InputDecoration(
-                    labelText: l10n.emailText,
-                    labelStyle: const TextStyle(fontSize: 18),
-                  ),
+                UpdateProfileItem(
+                  profileName: l10n.emailLabel,
+                  textType: TextInputType.text,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 22),
-                  decoration: InputDecoration(
-                    hintText: 'Enter date',
-                    labelText: l10n.dateText,
-                    labelStyle: const TextStyle(fontSize: 18),
-                  ),
-                  keyboardType: TextInputType.datetime,
+                UpdateProfileItem(
+                  profileName: l10n.dateLabel,
+                  textType: TextInputType.datetime,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 22),
-                  decoration: InputDecoration(
-                    labelText: l10n.addressText,
-                    labelStyle: const TextStyle(fontSize: 18),
-                  ),
+                UpdateProfileItem(
+                  profileName: l10n.addressLabel,
+                  textType: TextInputType.text,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 100, 16, 10),
