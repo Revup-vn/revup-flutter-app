@@ -20,11 +20,22 @@
     "aboutUsText":"Về chúng tôi",
     "suportsText":"Hỗ trợ",
     "logoutText":"Đăng xuất",
+    "homeLabel":"Trang chủ",
+    "activateLabel":"Hoạt động",
+    "notificationLabel":"Thông báo",
+    "accountLabel":"Tài khoản",
     "signup6":"Đăng ký 6",
     "fullNameText":"Họ và tên",
     "emailText":"Email",
     "dateText":"Date",
     "addressText":"Địa chỉ",
-    "completeRegistrationText":"Hoàn tất đăng kí"
+    "completeRegistrationText":"Hoàn tất đăng kí",
+    "doneText":"Xong",
+    "paymentText":"Thanh toán",
+    "morePaymentMethods":"THÊM HÌNH THỨC THANH TOÁN",
+    "zaloPayText":"ZaloPay",
+    "viettelMoneyText":"ViettelMoney",
+    "momoText":"MoMo",
+    "cashText":"Tiền mặt"
 
 }

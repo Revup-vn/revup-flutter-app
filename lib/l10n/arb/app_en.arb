@@ -20,11 +20,22 @@
     "aboutUsText":"About Us",
     "suportsText":"Suports",
     "logoutText":"Logout",
+    "homeLabel":"Home",
+    "activateLabel":"Activate",
+    "notificationLabel":"Notification",
+    "accountLabel":"Account",
     "signup6":"Đăng ký 6",
     "fullNameText":"Full Name",
     "emailText":"Email",
     "dateText":"Date",
     "addressText":"Address",
-    "completeRegistrationText":"Complete registration"
+    "completeRegistrationText":"Complete registration",
+    "doneText":"Done",
+    "paymentText":"Payment",
+    "morePaymentMethods":"MORE PAYMENT METHODS",
+    "zaloPayText":"ZaloPay",
+    "viettelMoneyText":"ViettelMoney",
+    "momoText":"MoMo",
+    "cashText":"Cash"
 
 }
