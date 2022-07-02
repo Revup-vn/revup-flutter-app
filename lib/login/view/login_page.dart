@@ -1,7 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:revup/gen/assets.gen.dart';
-import 'package:revup/l10n/l10n.dart';
+import 'package:revup/login/view/login_sso_item.dart';
+import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -20,19 +23,13 @@ class LoginPage extends StatelessWidget {
               width: 350,
               child: Assets.screens.logoTrans.svg(),
             ),
-            Text(
+            AutoSizeText(
               l10n.loginPageTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 22,
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            Text(
+            AutoSizeText(
               l10n.loginPageLabel,
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                fontSize: 16,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
             FormBuilderTextField(
@@ -44,26 +41,31 @@ class LoginPage extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 90),
-            RichText(
-              text: TextSpan(
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
+            AutoSizeText.rich(
+              TextSpan(
+                style: Theme.of(context).textTheme.caption,
                 children: [
                   TextSpan(
                     text: l10n.acceptPolicyLabel,
                   ),
                   TextSpan(
                     text: l10n.privacyLabel,
-                    style: const TextStyle(color: Colors.orange),
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => print('Tap Here'),
                   ),
                   TextSpan(
                     text: l10n.andLabel,
                   ),
                   TextSpan(
                     text: l10n.termLabel,
-                    style: const TextStyle(color: Colors.orange),
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => print('Tap Here'),
                   ),
                 ],
               ),
@@ -85,7 +87,7 @@ class LoginPage extends StatelessWidget {
                 const Expanded(
                   child: Divider(),
                 ),
-                Text(l10n.loginBySSOLabel),
+                AutoSizeText(l10n.loginBySSOLabel),
                 const Expanded(
                   child: Divider(),
                 ),
@@ -95,39 +97,12 @@ class LoginPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Material(
-                  child: Center(
-                    child: Ink(
-                      decoration: const ShapeDecoration(
-                        shape: CircleBorder(),
-                        color: Color(0x1F49454F),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.facebook,
-                          color: Color(0xFF4267B2),
-                          size: 32,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
+                LoginSsoItem(
+                  ssoIcon: Assets.screens.facebookOriginal.svg(),
                 ),
                 const SizedBox(width: 56),
-                Material(
-                  child: Center(
-                    child: Ink(
-                      decoration: const ShapeDecoration(
-                        shape: CircleBorder(),
-                        color: Color(0x1F49454F),
-                      ),
-                      child: IconButton(
-                        icon: Assets.screens.googleOriginal
-                            .svg(width: 24, height: 24),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
+                LoginSsoItem(
+                  ssoIcon: Assets.screens.googleOriginal.svg(),
                 ),
               ],
             ),
@@ -146,15 +121,9 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Assets.screens.flagVietNam.svg(),
-            const SizedBox(
-              width: 8,
-            ),
-            const FittedBox(
-              child: Text('+84'),
-            ),
-            const SizedBox(
-              width: 8,
-            )
+            const SizedBox(width: 8),
+            const FittedBox(child: Text('+84')),
+            const SizedBox(width: 8)
           ],
         ),
       ),
