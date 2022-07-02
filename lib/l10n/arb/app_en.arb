@@ -1,7 +1,16 @@
 {
-    "@@locale": "en",
-    "revupAppBarTitle": "Revup",
-    "@revupAppBarTitle": {
-        "description": "Text shown in the AppBar of the first page"
-    }
+  "@@locale": "en",
+  "revupAppBarTitle": "Revup",
+  "@revupAppBarTitle": {
+    "description": "Text shown in the AppBar of the first page"
+  },
+  "loginPageTitle": "Welcome to revup!",
+  "loginPageLabel": "Login / Register revup account now",
+  "phoneFieldLabel": "Your phone number",
+  "acceptPolicyLabel": "By registering or logging in, you agree to the ",
+  "andLabel": " and ",
+  "termLabel": "Terms of Service",
+  "privacyLabel": "Privacy Policy",
+  "continueButtonLabel": "Continue",
+  "loginBySSOLabel": "Or login with"
 }

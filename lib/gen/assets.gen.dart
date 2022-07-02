@@ -14,6 +14,18 @@ import 'package:flutter/services.dart';
 class $AssetsScreensGen {
   const $AssetsScreensGen();
 
+  /// File path: assets/screens/Google_Original.svg
+  SvgGenImage get googleOriginal =>
+      const SvgGenImage('assets/screens/Google_Original.svg');
+
+  /// File path: assets/screens/flag_VietNam.svg
+  SvgGenImage get flagVietNam =>
+      const SvgGenImage('assets/screens/flag_VietNam.svg');
+
+  /// File path: assets/screens/logo_trans.svg
+  SvgGenImage get logoTrans =>
+      const SvgGenImage('assets/screens/logo_trans.svg');
+
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');
 }
