@@ -7,7 +7,7 @@
   "onboardPageFirstTitle": "Professional car repair service",
   "onboardPageSecondTitle": "Always on duty on all roads",
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
-  "btnSkipText": "Skip",
-  "btnNextText": "Next",
-  "btnDoneText": "Done"
+  "skipButtonLabel": "Skip",
+  "nextButtonLabel": "Next",
+  "doneButtonLabel": "Done"
 }

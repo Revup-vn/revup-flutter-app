@@ -32,16 +32,16 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
-        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
+        RouteConfig(OnboardingRoute.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -57,8 +57,7 @@ class TestRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
-  const OnboardingRoute()
-      : super(OnboardingRoute.name, path: '/onboarding-page');
+  const OnboardingRoute() : super(OnboardingRoute.name, path: '/');
 
   static const String name = 'OnboardingRoute';
 }
