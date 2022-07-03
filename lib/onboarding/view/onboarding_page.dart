@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import '../../l10n/l10n.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class OnboardingPage extends StatelessWidget {
