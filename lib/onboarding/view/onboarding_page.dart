@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -35,9 +36,9 @@ class OnboardingPage extends StatelessWidget {
         showSkipButton: true,
         onDone: () => context.router.push(const TestRoute()),
         onSkip: () => context.router.push(const TestRoute()),
-        skip: Text(l10n.btnSkipText),
-        done: Text(l10n.btnNextText),
-        next: Text(l10n.btnDoneText),
+        skip: AutoSizeText(l10n.skipButtonLabel),
+        done: AutoSizeText(l10n.nextButtonLabel),
+        next: AutoSizeText(l10n.doneButtonLabel),
         controlsPadding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).colorScheme.primary,
