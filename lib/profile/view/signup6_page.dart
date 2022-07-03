@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:revup/l10n/l10n.dart';
-
+import '../../account/widgets/circle_avatar.dart';
 import '../widgets/update_profile_item.dart';
 
 void main() => runApp(const Signup6Page());
@@ -33,21 +33,11 @@ class Signup6Page extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.fromLTRB(16, 60, 10, 16),
-          child: const CircleAvatar(
-            radius: 80,
-            backgroundColor: Color.fromARGB(255, 242, 226, 80),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 18,
-                child: Icon(
-                  Icons.camera_alt,
-                  size: 22,
-                  color: Color(0xFF404040),
-                ),
-              ),
-            ),
+          child: const CircleAvatarAccount(
+            radiusCircleAvatar: 80,
+            radiusCircleAvatarIcon: 18,
+            sizeIcon: 22,
+            sizeText: 120,
           ),
         ),
         Container(

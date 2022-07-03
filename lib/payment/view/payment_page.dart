@@ -51,7 +51,7 @@ class PaymentPage extends StatelessWidget {
               paymentName: l10n.zaloPayText,
             ),
             PaymentItem(
-              paymentIcon: Assets.screens.iconsZalo.svg(),
+              paymentIcon: Assets.screens.iconViettelmoney.svg(),
               paymentName: l10n.viettelMoneyText,
             ),
           ],
@@ -60,11 +60,11 @@ class PaymentPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             PaymentItem(
-              paymentIcon: Assets.screens.iconsZalo.svg(),
+              paymentIcon: Assets.screens.iconMomo.svg(),
               paymentName: l10n.momoText,
             ),
             PaymentItem(
-              paymentIcon: Assets.screens.iconsZalo.svg(),
+              paymentIcon: Assets.screens.iconCash.svg(),
               paymentName: l10n.cashText,
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revup/account/widgets/account_item.dart';
 import 'package:revup/l10n/l10n.dart';
+import '../widgets/circle_avatar.dart';
 
 void main() => runApp(const AccountPage());
 
@@ -46,29 +47,11 @@ class AccountPage extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-          // child: const CircleAvatar(
-          //   radius: 80,
-          //   backgroundColor: Color.fromARGB(255, 242, 226, 80),
-          //   child: Text(
-          //     'N',
-          //     style: TextStyle(fontSize: 90, color: Colors.white),
-          //   ),
-          // ),
-          child: const CircleAvatar(
-            radius: 60,
-            backgroundColor: Color.fromARGB(255, 242, 226, 80),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 13,
-                child: Icon(
-                  Icons.camera_alt,
-                  size: 20,
-                  color: Color(0xFF404040),
-                ),
-              ),
-            ),
+          child: const CircleAvatarAccount(
+            radiusCircleAvatar: 60,
+            radiusCircleAvatarIcon: 13,
+            sizeIcon: 20,
+            sizeText: 70,
           ),
         ),
         Container(

@@ -26,8 +26,8 @@ class PaymentItem extends StatelessWidget {
         ),
         onPressed: () {},
         icon: SizedBox(
+          width: 50,
           child: paymentIcon,
-          //width: ,
         ),
         label: Text(
           paymentName,
