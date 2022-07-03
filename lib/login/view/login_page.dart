@@ -1,10 +1,11 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:revup/login/view/login_sso_item.dart';
+
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import 'login_sso_item.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -12,6 +13,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -53,8 +55,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => print('Tap Here'),
+                    //recognizer: TapGestureRecognizer()..onTap = () => ,
                   ),
                   TextSpan(
                     text: l10n.andLabel,
@@ -64,8 +65,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => print('Tap Here'),
+                    //recognizer: TapGestureRecognizer()..onTap = () => ,
                   ),
                 ],
               ),
@@ -84,13 +84,9 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 132),
             Row(
               children: [
-                const Expanded(
-                  child: Divider(),
-                ),
+                const Expanded(child: Divider()),
                 AutoSizeText(l10n.loginBySSOLabel),
-                const Expanded(
-                  child: Divider(),
-                ),
+                const Expanded(child: Divider()),
               ],
             ),
             const SizedBox(height: 8),
@@ -122,8 +118,10 @@ class LoginPage extends StatelessWidget {
           children: <Widget>[
             Assets.screens.flagVietNam.svg(),
             const SizedBox(width: 8),
-            const FittedBox(child: Text('+84')),
-            const SizedBox(width: 8)
+            const FittedBox(
+              child: Text('+84'),
+            ),
+            const SizedBox(width: 8),
           ],
         ),
       ),
