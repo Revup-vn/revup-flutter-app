@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+
 import 'package:revup/gen/assets.gen.dart';
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/payment/widgets/payment_item.dart';
@@ -21,6 +22,7 @@ class PaymentPage extends StatelessWidget {
 
   ListView _buildListView(BuildContext context) {
     final l10n = context.l10n;
+
     return ListView(
       children: <Widget>[
         Container(
@@ -53,19 +55,6 @@ class PaymentPage extends StatelessWidget {
             PaymentItem(
               paymentIcon: Assets.screens.iconViettelmoney.svg(),
               paymentName: l10n.viettelMoneyText,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PaymentItem(
-              paymentIcon: Assets.screens.iconMomo.svg(),
-              paymentName: l10n.momoText,
-            ),
-            PaymentItem(
-              paymentIcon: Assets.screens.iconCash.svg(),
-              paymentName: l10n.cashText,
             ),
           ],
         ),

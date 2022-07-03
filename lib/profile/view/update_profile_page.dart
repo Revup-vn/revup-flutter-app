@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/profile/widgets/update_profile_item.dart';
 import '../../account/widgets/circle_avatar.dart';

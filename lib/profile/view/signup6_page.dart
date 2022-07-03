@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+
 import 'package:revup/l10n/l10n.dart';
 import '../../account/widgets/circle_avatar.dart';
 import '../widgets/update_profile_item.dart';
@@ -21,6 +22,7 @@ class Signup6Page extends StatelessWidget {
 
   ListView _buildListView(BuildContext context) {
     final l10n = context.l10n;
+
     return ListView(
       children: <Widget>[
         Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:revup/account/widgets/account_item.dart';
 import 'package:revup/l10n/l10n.dart';
 import '../widgets/circle_avatar.dart';
@@ -10,6 +11,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return MaterialApp(
       home: Scaffold(
         body: _buildListView(context),
@@ -31,9 +33,8 @@ class AccountPage extends StatelessWidget {
             BottomNavigationBarItem(
               icon: const Icon(Icons.account_circle),
               label: l10n.accountLabel,
-            )
+            ),
           ],
-          onTap: (int index) {},
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -42,6 +43,7 @@ class AccountPage extends StatelessWidget {
 
   ListView _buildListView(BuildContext context) {
     final l10n = context.l10n;
+
     return ListView(
       children: <Widget>[
         Container(

@@ -19,7 +19,6 @@ class AccountItem extends StatelessWidget {
         icon: const Icon(Icons.arrow_forward_ios),
         onPressed: () {},
       ),
-      onTap: () {},
     );
   }
 }
