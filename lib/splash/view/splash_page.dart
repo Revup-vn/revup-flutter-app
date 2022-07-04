@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
-import 'package:revup/gen/assets.gen.dart';
+import 'package:flutter/material.dart';
 import '../../router/router.dart';
+
+import '../../gen/assets.gen.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

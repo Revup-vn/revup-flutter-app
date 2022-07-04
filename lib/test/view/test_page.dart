@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:revup/l10n/l10n.dart';
+import '../../l10n/l10n.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({super.key});
