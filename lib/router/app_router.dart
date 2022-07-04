@@ -13,9 +13,9 @@ part 'app_router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: TestPage),
-    AdaptiveRoute<void>(page: OnboardingPage, initial: true),
+    AdaptiveRoute<void>(page: OnboardingPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

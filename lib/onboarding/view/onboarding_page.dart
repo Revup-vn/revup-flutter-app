@@ -18,17 +18,17 @@ class OnboardingPage extends StatelessWidget {
     return SafeArea(
       child: IntroductionScreen(
         pages: [
-          _buildOnboardItem(
+          _toOnboardModel(
             l10n.onboardPageFirstTitle,
             Assets.screens.orderConfirm.svg(),
             Theme.of(context).textTheme.displaySmall,
           ),
-          _buildOnboardItem(
+          _toOnboardModel(
             l10n.onboardPageSecondTitle,
             Assets.screens.destination.svg(),
             Theme.of(context).textTheme.displaySmall,
           ),
-          _buildOnboardItem(
+          _toOnboardModel(
             l10n.onboardPageThirdTitle,
             Assets.screens.mobilePay.svg(),
             Theme.of(context).textTheme.displaySmall,
@@ -53,7 +53,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  PageViewModel _buildOnboardItem(
+  PageViewModel _toOnboardModel(
     String pageTitle,
     SvgPicture pageSvgImage,
     TextStyle? textStyle,
