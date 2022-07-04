@@ -37,9 +37,9 @@ class OnboardingPage extends StatelessWidget {
         showSkipButton: true,
         onDone: () => context.router.push(const TestRoute()),
         onSkip: () => context.router.push(const TestRoute()),
-        skip: AutoSizeText(l10n.skipButtonLabel),
-        done: AutoSizeText(l10n.nextButtonLabel),
-        next: AutoSizeText(l10n.doneButtonLabel),
+        skip: AutoSizeText(l10n.skipLabel),
+        done: AutoSizeText(l10n.nextLabel),
+        next: AutoSizeText(l10n.doneLabel),
         controlsPadding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).colorScheme.primary,
