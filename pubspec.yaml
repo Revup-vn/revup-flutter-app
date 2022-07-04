@@ -13,6 +13,7 @@ dependencies:
   build_runner: ^2.1.11
   connectivity_plus: ^2.3.5
   dartz: ^0.10.1
+  derry: ^1.4.3
   dio: ^4.0.1
   firebase_core: ^1.18.0
   flutter:
