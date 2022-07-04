@@ -1,7 +1,13 @@
 {
-    "@@locale": "vi",
-    "revupAppBarTitle": "Revup",
-    "@revupAppBarTitle": {
-        "description": "Text se xuat hien o appbar khi vao trang dau tien"
-    }
+  "@@locale": "vi",
+  "revupAppBarTitle": "Revup",
+  "@revupAppBarTitle": {
+    "description": "Text se xuat hien o appbar khi vao trang dau tien"
+  },
+  "onboardPageFirstTitle": "Dịch vụ đặt sửa chữa xe chuyên nghiệp",
+  "onboardPageSecondTitle": "Luôn túc trực mọi cung đường",
+  "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
+  "skipLabel": "Bỏ qua",
+  "nextLabel": "Tiếp theo",
+  "doneLabel": "Xong"
 }
