@@ -15,7 +15,7 @@ dependencies:
   dartz: ^0.10.1
   derry: ^1.4.3
   dio: ^4.0.1
-  firebase_core: ^1.18.0
+  firebase_core: ^1.19.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
@@ -25,8 +25,9 @@ dependencies:
     sdk: flutter
   flutter_svg: ^1.1.0
   freezed_annotation: ^2.0.3
-  hive: ^2.2.2
+  hive: ^2.2.3
   intl: ^0.17.0
+  introduction_screen: ^3.0.1
   json_annotation: ^4.5.0
   mocktail: ^0.3.0
   pin_code_fields: ^7.4.0

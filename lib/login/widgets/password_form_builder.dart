@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import 'package:revup/l10n/l10n.dart';
+import '../../l10n/l10n.dart';
 
 class PasswordFormBuidler extends StatefulWidget {
   const PasswordFormBuidler({super.key});
@@ -36,7 +36,6 @@ class _PasswordFormBuidler extends State<PasswordFormBuidler> {
             length: 6,
             obscureText: true,
             animationType: AnimationType.scale,
-            validator: (v) {},
             pinTheme: PinTheme(
               shape: PinCodeFieldShape.underline,
               inactiveColor: const Color.fromRGBO(128, 118, 103, 100),

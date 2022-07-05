@@ -18,6 +18,17 @@ class $AssetsScreensGen {
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');
+  /// File path: assets/screens/destination.svg
+  SvgGenImage get destination =>
+      const SvgGenImage('assets/screens/destination.svg');
+
+  /// File path: assets/screens/mobile_pay.svg
+  SvgGenImage get mobilePay =>
+      const SvgGenImage('assets/screens/mobile_pay.svg');
+
+  /// File path: assets/screens/order_confirm.svg
+  SvgGenImage get orderConfirm =>
+      const SvgGenImage('assets/screens/order_confirm.svg');
 
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');

@@ -18,4 +18,10 @@
     "confirmPasswordLabel" : "Xác nhận mật khẩu",
     "setupPasswordLabel" : "Cài đặt mật khẩu",
     "enterNewPasswordDescriptionLabel" : "Vì lý do bảo mật, vui lòng cài đặt mật khẩu"
+    "onboardPageFirstTitle": "Dịch vụ đặt sửa chữa xe chuyên nghiệp",
+    "onboardPageSecondTitle": "Luôn túc trực mọi cung đường",
+    "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
+    "skipLabel": "Bỏ qua",
+    "nextLabel": "Tiếp theo",
+    "doneLabel": "Xong"
 }
