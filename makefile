@@ -22,7 +22,7 @@ run_unit: ## Runs unit tests
 analyze:
 	@flutter pub run dart_code_metrics:metrics analyze lib
 	@flutter pub run dart_code_metrics:metrics check-unused-files lib
-	@flutter pub run dart_code_metrics:metrics check-unused-code lib
+	@flutter pub run dart_code_metrics:metrics check-unused-code lib --exclude="lib/gen/assets.gen.dart"
 	@flutter analyze lib test
 
 coverage:  ##run test and gen coverage report
