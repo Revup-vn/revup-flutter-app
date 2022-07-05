@@ -7,12 +7,14 @@ part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState.initial()) {
-    on<PhoneNumberChanged>((event, emit) {
-      if (event.phoneNumber.isEmpty) {
-        emit(LoginState.initial());
-      }
-      emit(LoginState.ready(event.phoneNumber));
+    on<PhoneNumberChangedIsValid>((event, emit) {
+      emit(LoginState.readyForSubmit(event.phoneNumber));
     });
-    on<SignInWithPhoneNumberPressed>((event, emit) {});
+    on<PhoneNumberChangedIsInvalid>((event, emit) {
+      emit(LoginState.initial());
+    });
+    on<SignInWithPhoneNumberPressed>(
+      (event, emit) {},
+    ); // TODO(cantgim): implement logic
   }
 }

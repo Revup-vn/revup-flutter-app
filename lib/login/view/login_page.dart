@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:revup/login/bloc/login_bloc.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
+import 'package:revup/login/bloc/login_bloc.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import 'login_sso_item.dart';
@@ -28,6 +29,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -58,46 +60,52 @@ class LoginView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       FormBuilderTextField(
-                        maxLength: 9,
                         name: 'phone',
                         decoration: InputDecoration(
                           prefixIcon: _buildFlagLabel(),
                           hintText: l10n.phoneFieldLabel,
                         ),
-                        //autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (state.isInitial) return null;
-                          if (value == null || value.trim().isEmpty) {
-                            return l10n.phoneRequiredErrorLabel;
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: '',
+                          ),
+                          FormBuilderValidators.maxLength(12),
+                          FormBuilderValidators.match(
+                            r'(((\+|)84)|0)?(3|5|7|8|9)+([0-9]{8})\b',
+                            errorText: '',
+                          ),
+                        ]),
+                        onChanged: (phoneNumber) {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            context.read<LoginBloc>().add(
+                                  LoginEvent.phoneNumberChangedIsValid(
+                                    phoneNumber ?? '',
+                                  ),
+                                );
+                          } else {
+                            context.read<LoginBloc>().add(
+                                  const LoginEvent
+                                      .phoneNumberChangedIsInvalid(),
+                                );
                           }
-                          if (!RegExp(r'^0?[0-9]{9}$').hasMatch(value)) {
-                            return l10n.invalidPhoneNumberLabel;
-                          }
-                          return null;
                         },
-                        onChanged: (phoneNumber) => context
-                            .read<LoginBloc>()
-                            .add(
-                              LoginEvent.phoneNumberChanged(phoneNumber ?? ''),
-                            ),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(
+                        height: 32,
+                      ),
                       ElevatedButton(
                         onPressed: state.isLoginButtonEnabled
                             ? () {
-                                if (_formKey.currentState?.saveAndValidate() ??
-                                    false) {
-                                  context.read<LoginBloc>().add(
-                                        const LoginEvent
-                                            .signInWithPhoneNumberPressed(),
-                                      );
-                                }
+                                context.read<LoginBloc>().add(
+                                      const LoginEvent
+                                          .signInWithPhoneNumberPressed(),
+                                    );
                               }
                             : null,
                         style: Theme.of(context).elevatedButtonTheme.style,
-                        child: Text(l10n.continueLabel),
-                      )
+                        child: AutoSizeText(l10n.continueLabel),
+                      ),
                     ],
                   ),
                 );
@@ -169,7 +177,7 @@ class LoginView extends StatelessWidget {
             Assets.screens.flagVietNam.svg(),
             const SizedBox(width: 8),
             const FittedBox(
-              child: Text('+84'),
+              child: AutoSizeText('+84'),
             ),
             const SizedBox(width: 8),
           ],

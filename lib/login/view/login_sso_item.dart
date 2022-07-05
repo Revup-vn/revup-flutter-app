@@ -17,7 +17,7 @@ class LoginSsoItem extends StatelessWidget {
           ),
           child: IconButton(
             icon: ssoIcon,
-            onPressed: () {},
+            onPressed: () {}, // TODO(cantgim): emit login with sso event
           ),
         ),
       ),

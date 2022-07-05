@@ -18,40 +18,52 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
+    required TResult Function() phoneNumberChangedIsInvalid,
     required TResult Function() signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(PhoneNumberChangedIsValid value)
+        phoneNumberChangedIsValid,
+    required TResult Function(PhoneNumberChangedIsInvalid value)
+        phoneNumberChangedIsInvalid,
     required TResult Function(SignInWithPhoneNumberPressed value)
         signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
     required TResult orElse(),
@@ -76,29 +88,31 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$PhoneNumberChangedCopyWith<$Res> {
-  factory _$$PhoneNumberChangedCopyWith(_$PhoneNumberChanged value,
-          $Res Function(_$PhoneNumberChanged) then) =
-      __$$PhoneNumberChangedCopyWithImpl<$Res>;
+abstract class _$$PhoneNumberChangedIsValidCopyWith<$Res> {
+  factory _$$PhoneNumberChangedIsValidCopyWith(
+          _$PhoneNumberChangedIsValid value,
+          $Res Function(_$PhoneNumberChangedIsValid) then) =
+      __$$PhoneNumberChangedIsValidCopyWithImpl<$Res>;
   $Res call({String phoneNumber});
 }
 
 /// @nodoc
-class __$$PhoneNumberChangedCopyWithImpl<$Res>
+class __$$PhoneNumberChangedIsValidCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$PhoneNumberChangedCopyWith<$Res> {
-  __$$PhoneNumberChangedCopyWithImpl(
-      _$PhoneNumberChanged _value, $Res Function(_$PhoneNumberChanged) _then)
-      : super(_value, (v) => _then(v as _$PhoneNumberChanged));
+    implements _$$PhoneNumberChangedIsValidCopyWith<$Res> {
+  __$$PhoneNumberChangedIsValidCopyWithImpl(_$PhoneNumberChangedIsValid _value,
+      $Res Function(_$PhoneNumberChangedIsValid) _then)
+      : super(_value, (v) => _then(v as _$PhoneNumberChangedIsValid));
 
   @override
-  _$PhoneNumberChanged get _value => super._value as _$PhoneNumberChanged;
+  _$PhoneNumberChangedIsValid get _value =>
+      super._value as _$PhoneNumberChangedIsValid;
 
   @override
   $Res call({
     Object? phoneNumber = freezed,
   }) {
-    return _then(_$PhoneNumberChanged(
+    return _then(_$PhoneNumberChangedIsValid(
       phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -109,22 +123,22 @@ class __$$PhoneNumberChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PhoneNumberChanged implements PhoneNumberChanged {
-  const _$PhoneNumberChanged(this.phoneNumber);
+class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
+  const _$PhoneNumberChangedIsValid(this.phoneNumber);
 
   @override
   final String phoneNumber;
 
   @override
   String toString() {
-    return 'LoginEvent.phoneNumberChanged(phoneNumber: $phoneNumber)';
+    return 'LoginEvent.phoneNumberChangedIsValid(phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PhoneNumberChanged &&
+            other is _$PhoneNumberChangedIsValid &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber));
   }
@@ -135,37 +149,40 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$$PhoneNumberChangedCopyWith<_$PhoneNumberChanged> get copyWith =>
-      __$$PhoneNumberChangedCopyWithImpl<_$PhoneNumberChanged>(
-          this, _$identity);
+  _$$PhoneNumberChangedIsValidCopyWith<_$PhoneNumberChangedIsValid>
+      get copyWith => __$$PhoneNumberChangedIsValidCopyWithImpl<
+          _$PhoneNumberChangedIsValid>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
+    required TResult Function() phoneNumberChangedIsInvalid,
     required TResult Function() signInWithPhoneNumberPressed,
   }) {
-    return phoneNumberChanged(phoneNumber);
+    return phoneNumberChangedIsValid(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
   }) {
-    return phoneNumberChanged?.call(phoneNumber);
+    return phoneNumberChangedIsValid?.call(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
-    if (phoneNumberChanged != null) {
-      return phoneNumberChanged(phoneNumber);
+    if (phoneNumberChangedIsValid != null) {
+      return phoneNumberChangedIsValid(phoneNumber);
     }
     return orElse();
   }
@@ -173,46 +190,179 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(PhoneNumberChangedIsValid value)
+        phoneNumberChangedIsValid,
+    required TResult Function(PhoneNumberChangedIsInvalid value)
+        phoneNumberChangedIsInvalid,
     required TResult Function(SignInWithPhoneNumberPressed value)
         signInWithPhoneNumberPressed,
   }) {
-    return phoneNumberChanged(this);
+    return phoneNumberChangedIsValid(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
   }) {
-    return phoneNumberChanged?.call(this);
+    return phoneNumberChangedIsValid?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
-    if (phoneNumberChanged != null) {
-      return phoneNumberChanged(this);
+    if (phoneNumberChangedIsValid != null) {
+      return phoneNumberChangedIsValid(this);
     }
     return orElse();
   }
 }
 
-abstract class PhoneNumberChanged implements LoginEvent {
-  const factory PhoneNumberChanged(final String phoneNumber) =
-      _$PhoneNumberChanged;
+abstract class PhoneNumberChangedIsValid implements LoginEvent {
+  const factory PhoneNumberChangedIsValid(final String phoneNumber) =
+      _$PhoneNumberChangedIsValid;
 
   String get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$$PhoneNumberChangedCopyWith<_$PhoneNumberChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PhoneNumberChangedIsValidCopyWith<_$PhoneNumberChangedIsValid>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PhoneNumberChangedIsInvalidCopyWith<$Res> {
+  factory _$$PhoneNumberChangedIsInvalidCopyWith(
+          _$PhoneNumberChangedIsInvalid value,
+          $Res Function(_$PhoneNumberChangedIsInvalid) then) =
+      __$$PhoneNumberChangedIsInvalidCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PhoneNumberChangedIsInvalidCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements _$$PhoneNumberChangedIsInvalidCopyWith<$Res> {
+  __$$PhoneNumberChangedIsInvalidCopyWithImpl(
+      _$PhoneNumberChangedIsInvalid _value,
+      $Res Function(_$PhoneNumberChangedIsInvalid) _then)
+      : super(_value, (v) => _then(v as _$PhoneNumberChangedIsInvalid));
+
+  @override
+  _$PhoneNumberChangedIsInvalid get _value =>
+      super._value as _$PhoneNumberChangedIsInvalid;
+}
+
+/// @nodoc
+
+class _$PhoneNumberChangedIsInvalid implements PhoneNumberChangedIsInvalid {
+  const _$PhoneNumberChangedIsInvalid();
+
+  @override
+  String toString() {
+    return 'LoginEvent.phoneNumberChangedIsInvalid()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PhoneNumberChangedIsInvalid);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
+    required TResult Function() phoneNumberChangedIsInvalid,
+    required TResult Function() signInWithPhoneNumberPressed,
+  }) {
+    return phoneNumberChangedIsInvalid();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
+    TResult Function()? signInWithPhoneNumberPressed,
+  }) {
+    return phoneNumberChangedIsInvalid?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
+    TResult Function()? signInWithPhoneNumberPressed,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChangedIsInvalid != null) {
+      return phoneNumberChangedIsInvalid();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PhoneNumberChangedIsValid value)
+        phoneNumberChangedIsValid,
+    required TResult Function(PhoneNumberChangedIsInvalid value)
+        phoneNumberChangedIsInvalid,
+    required TResult Function(SignInWithPhoneNumberPressed value)
+        signInWithPhoneNumberPressed,
+  }) {
+    return phoneNumberChangedIsInvalid(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
+    TResult Function(SignInWithPhoneNumberPressed value)?
+        signInWithPhoneNumberPressed,
+  }) {
+    return phoneNumberChangedIsInvalid?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
+    TResult Function(SignInWithPhoneNumberPressed value)?
+        signInWithPhoneNumberPressed,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChangedIsInvalid != null) {
+      return phoneNumberChangedIsInvalid(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PhoneNumberChangedIsInvalid implements LoginEvent {
+  const factory PhoneNumberChangedIsInvalid() = _$PhoneNumberChangedIsInvalid;
 }
 
 /// @nodoc
@@ -260,7 +410,8 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
+    required TResult Function() phoneNumberChangedIsInvalid,
     required TResult Function() signInWithPhoneNumberPressed,
   }) {
     return signInWithPhoneNumberPressed();
@@ -269,7 +420,8 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
   }) {
     return signInWithPhoneNumberPressed?.call();
@@ -278,7 +430,8 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
+    TResult Function()? phoneNumberChangedIsInvalid,
     TResult Function()? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
@@ -291,7 +444,10 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(PhoneNumberChangedIsValid value)
+        phoneNumberChangedIsValid,
+    required TResult Function(PhoneNumberChangedIsInvalid value)
+        phoneNumberChangedIsInvalid,
     required TResult Function(SignInWithPhoneNumberPressed value)
         signInWithPhoneNumberPressed,
   }) {
@@ -301,7 +457,10 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
   }) {
@@ -311,7 +470,10 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PhoneNumberChangedIsValid value)?
+        phoneNumberChangedIsValid,
+    TResult Function(PhoneNumberChangedIsInvalid value)?
+        phoneNumberChangedIsInvalid,
     TResult Function(SignInWithPhoneNumberPressed value)?
         signInWithPhoneNumberPressed,
     required TResult orElse(),
@@ -330,7 +492,6 @@ abstract class SignInWithPhoneNumberPressed implements LoginEvent {
 /// @nodoc
 mixin _$LoginState {
   String get phoneNumber => throw _privateConstructorUsedError;
-  bool get isInitial => throw _privateConstructorUsedError;
   bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -345,10 +506,7 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
   $Res call(
-      {String phoneNumber,
-      bool isInitial,
-      bool isLoginButtonEnabled,
-      String errorMessage});
+      {String phoneNumber, bool isLoginButtonEnabled, String errorMessage});
 }
 
 /// @nodoc
@@ -362,7 +520,6 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   @override
   $Res call({
     Object? phoneNumber = freezed,
-    Object? isInitial = freezed,
     Object? isLoginButtonEnabled = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -371,10 +528,6 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      isInitial: isInitial == freezed
-          ? _value.isInitial
-          : isInitial // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoginButtonEnabled: isLoginButtonEnabled == freezed
           ? _value.isLoginButtonEnabled
           : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
@@ -395,10 +548,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String phoneNumber,
-      bool isInitial,
-      bool isLoginButtonEnabled,
-      String errorMessage});
+      {String phoneNumber, bool isLoginButtonEnabled, String errorMessage});
 }
 
 /// @nodoc
@@ -414,7 +564,6 @@ class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneNumber = freezed,
-    Object? isInitial = freezed,
     Object? isLoginButtonEnabled = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -423,10 +572,6 @@ class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      isInitial: isInitial == freezed
-          ? _value.isInitial
-          : isInitial // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoginButtonEnabled: isLoginButtonEnabled == freezed
           ? _value.isLoginButtonEnabled
           : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
@@ -444,14 +589,11 @@ class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {required this.phoneNumber,
-      required this.isInitial,
       required this.isLoginButtonEnabled,
       required this.errorMessage});
 
   @override
   final String phoneNumber;
-  @override
-  final bool isInitial;
   @override
   final bool isLoginButtonEnabled;
   @override
@@ -459,7 +601,7 @@ class _$_LoginState implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(phoneNumber: $phoneNumber, isInitial: $isInitial, isLoginButtonEnabled: $isLoginButtonEnabled, errorMessage: $errorMessage)';
+    return 'LoginState(phoneNumber: $phoneNumber, isLoginButtonEnabled: $isLoginButtonEnabled, errorMessage: $errorMessage)';
   }
 
   @override
@@ -469,7 +611,6 @@ class _$_LoginState implements _LoginState {
             other is _$_LoginState &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.isInitial, isInitial) &&
             const DeepCollectionEquality()
                 .equals(other.isLoginButtonEnabled, isLoginButtonEnabled) &&
             const DeepCollectionEquality()
@@ -480,7 +621,6 @@ class _$_LoginState implements _LoginState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(isInitial),
       const DeepCollectionEquality().hash(isLoginButtonEnabled),
       const DeepCollectionEquality().hash(errorMessage));
 
@@ -493,14 +633,11 @@ class _$_LoginState implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {required final String phoneNumber,
-      required final bool isInitial,
       required final bool isLoginButtonEnabled,
       required final String errorMessage}) = _$_LoginState;
 
   @override
   String get phoneNumber => throw _privateConstructorUsedError;
-  @override
-  bool get isInitial => throw _privateConstructorUsedError;
   @override
   bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
   @override
