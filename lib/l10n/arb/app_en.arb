@@ -11,6 +11,8 @@
   "andLabel": " and ",
   "termLabel": "Terms of Service",
   "privacyLabel": "Privacy Policy",
-  "continueButtonLabel": "Continue",
-  "loginBySSOLabel": "Or login with"
+  "continueLabel": "Continue",
+  "loginBySSOLabel": "Or login with",
+  "phoneRequiredErrorLabel": "Please enter your phone number",
+  "invalidPhoneNumberLabel": "Please enter a valid phone number"
 }

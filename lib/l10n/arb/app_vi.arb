@@ -11,6 +11,8 @@
   "andLabel": " và ",
   "termLabel": "Điều khoản dịch vụ",
   "privacyLabel": "Chính sách bảo mật",
-  "continueButtonLabel": "Tiếp tục",
-  "loginBySSOLabel": "Hoặc đăng nhập bằng"
+  "continueLabel": "Tiếp tục",
+  "loginBySSOLabel": "Hoặc đăng nhập bằng",
+  "phoneRequiredErrorLabel": "Nhập số điện thoại của bạn",
+  "invalidPhoneNumberLabel": "Số điện thoại không hợp lệ"
 }

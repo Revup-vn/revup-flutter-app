@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:revup/login/bloc/login_bloc.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
@@ -12,8 +16,20 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    return BlocProvider(
+      create: (context) => LoginBloc(),
+      child: LoginView(),
+    );
+  }
+}
 
+class LoginView extends StatelessWidget {
+  LoginView({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -34,13 +50,57 @@ class LoginPage extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
-            FormBuilderTextField(
-              name: 'phone',
-              decoration: InputDecoration(
-                prefixIcon: _buildFlagLabel(),
-                hintText: l10n.phoneFieldLabel,
-              ),
-              keyboardType: TextInputType.number,
+            BlocBuilder<LoginBloc, LoginState>(
+              buildWhen: (previous, current) =>
+                  previous.phoneNumber != current.phoneNumber,
+              builder: (context, state) {
+                return FormBuilder(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      FormBuilderTextField(
+                        name: 'phone',
+                        decoration: InputDecoration(
+                          prefixIcon: _buildFlagLabel(),
+                          hintText: l10n.phoneFieldLabel,
+                        ),
+                        //autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (state.isInitial) return null;
+                          if (value == null || value.trim().isEmpty) {
+                            return l10n.phoneRequiredErrorLabel;
+                          }
+                          if (!RegExp(r'^0?[0-9]{9}$').hasMatch(value)) {
+                            return l10n.invalidPhoneNumberLabel;
+                          }
+                          return null;
+                        },
+                        onChanged: (phoneNumber) => context
+                            .read<LoginBloc>()
+                            .add(
+                              LoginEvent.phoneNumberChanged(phoneNumber ?? ''),
+                            ),
+                      ),
+                      const SizedBox(height: 32),
+                      ElevatedButton(
+                        onPressed: state.isLoginButtonEnabled
+                            ? () {
+                                log(_formKey.toString());
+                                return context.read<LoginBloc>().add(
+                                      const LoginEvent
+                                          .signInWithPhoneNumberPressed(),
+                                    );
+                              }
+                            : null,
+                        style: Theme.of(context).elevatedButtonTheme.style,
+                        child: Text(l10n.continueLabel),
+                      )
+                    ],
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 90),
             AutoSizeText.rich(
@@ -69,17 +129,6 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 32),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(l10n.continueButtonLabel),
-                  ),
-                ),
-              ],
             ),
             const SizedBox(height: 132),
             Row(
