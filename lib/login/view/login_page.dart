@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -26,7 +24,7 @@ class LoginPage extends StatelessWidget {
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -60,6 +58,7 @@ class LoginView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       FormBuilderTextField(
+                        maxLength: 9,
                         name: 'phone',
                         decoration: InputDecoration(
                           prefixIcon: _buildFlagLabel(),
@@ -87,11 +86,13 @@ class LoginView extends StatelessWidget {
                       ElevatedButton(
                         onPressed: state.isLoginButtonEnabled
                             ? () {
-                                log(_formKey.toString());
-                                return context.read<LoginBloc>().add(
-                                      const LoginEvent
-                                          .signInWithPhoneNumberPressed(),
-                                    );
+                                if (_formKey.currentState?.saveAndValidate() ??
+                                    false) {
+                                  context.read<LoginBloc>().add(
+                                        const LoginEvent
+                                            .signInWithPhoneNumberPressed(),
+                                      );
+                                }
                               }
                             : null,
                         style: Theme.of(context).elevatedButtonTheme.style,
