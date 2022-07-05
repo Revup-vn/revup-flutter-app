@@ -1,9 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 
 class PaymentItem extends StatelessWidget {
-  // ignore: lines_longer_than_80_chars
   const PaymentItem({
     super.key,
     required this.paymentIcon,
@@ -19,8 +19,8 @@ class PaymentItem extends StatelessWidget {
       child: TextButton.icon(
         style: TextButton.styleFrom(
           fixedSize: const Size(160, 60),
-          textStyle: const TextStyle(color: Color.fromARGB(255, 41, 44, 46)),
-          backgroundColor: const Color.fromARGB(255, 214, 211, 211),
+          textStyle: Theme.of(context).textTheme.labelLarge,
+          backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -30,12 +30,9 @@ class PaymentItem extends StatelessWidget {
           width: 50,
           child: paymentIcon,
         ),
-        label: Text(
+        label: AutoSizeText(
           paymentName,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Color.fromARGB(255, 24, 23, 23),
-          ),
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );

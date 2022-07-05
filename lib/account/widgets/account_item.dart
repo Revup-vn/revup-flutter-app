@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class AccountItem extends StatelessWidget {
@@ -13,7 +14,10 @@ class AccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(accountName),
+      title: AutoSizeText(
+        accountName,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
       leading: accountIcon,
       trailing: IconButton(
         icon: const Icon(Icons.arrow_forward_ios),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CircleAvatarAccount extends StatelessWidget {
@@ -17,25 +18,28 @@ class CircleAvatarAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radiusCircleAvatar,
-      backgroundColor: const Color.fromARGB(255, 242, 226, 80),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       child: Stack(
         children: [
           Align(
             alignment: Alignment.bottomRight,
             child: CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.onPrimary,
               radius: radiusCircleAvatarIcon,
               child: Icon(
                 Icons.camera_alt,
                 size: sizeIcon,
-                color: const Color(0xFF404040),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ),
           Align(
-            child: Text(
+            child: AutoSizeText(
               'N',
-              style: TextStyle(fontSize: sizeText, color: Colors.white),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
         ],

@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+
 class UpdateProfileItem extends StatelessWidget {
-  // ignore: lines_longer_than_80_chars
   const UpdateProfileItem({
     super.key,
     required this.profileName,
     required this.textType,
+    required this.keyName,
   });
   final String profileName;
   final TextInputType textType;
+  final String keyName;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      style: const TextStyle(fontSize: 22),
+    return FormBuilderTextField(
+      style: Theme.of(context).textTheme.labelLarge,
       decoration: InputDecoration(
         labelText: profileName,
-        labelStyle: const TextStyle(fontSize: 18),
+        labelStyle: Theme.of(context).textTheme.labelLarge,
       ),
       keyboardType: textType,
+      name: 'profileName',
     );
   }
 }

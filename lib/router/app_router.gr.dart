@@ -23,20 +23,25 @@ class _$AppRouter extends RootStackRouter {
     },
     TestRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const TestPage());
+    },
+    Signup6Route.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const Signup6Page());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(TestRoute.name, path: '/test-page')
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
+        RouteConfig(TestRoute.name, path: '/test-page'),
+        RouteConfig(Signup6Route.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -47,4 +52,12 @@ class TestRoute extends PageRouteInfo<void> {
   const TestRoute() : super(TestRoute.name, path: '/test-page');
 
   static const String name = 'TestRoute';
+}
+
+/// generated route for
+/// [Signup6Page]
+class Signup6Route extends PageRouteInfo<void> {
+  const Signup6Route() : super(Signup6Route.name, path: '/');
+
+  static const String name = 'Signup6Route';
 }
