@@ -27,6 +27,10 @@ class _$AppRouter extends RootStackRouter {
     Signup6Route.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const Signup6Page());
+    },
+    OnboardingRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const OnboardingPage());
     }
   };
 
@@ -34,7 +38,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
-        RouteConfig(Signup6Route.name, path: '/')
+        RouteConfig(Signup6Route.name, path: '/'),
+        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
       ];
 }
 
@@ -60,4 +65,13 @@ class Signup6Route extends PageRouteInfo<void> {
   const Signup6Route() : super(Signup6Route.name, path: '/');
 
   static const String name = 'Signup6Route';
+}
+
+/// generated route for
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute()
+      : super(OnboardingRoute.name, path: '/onboarding-page');
+
+  static const String name = 'OnboardingRoute';
 }

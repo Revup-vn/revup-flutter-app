@@ -1,9 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
-import 'package:revup/gen/assets.gen.dart';
-import 'package:revup/l10n/l10n.dart';
-import 'package:revup/payment/widgets/payment_item.dart';
+import '../widgets/payment_item.dart';
+import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});

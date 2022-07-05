@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:revup/account/widgets/account_item.dart';
-import 'package:revup/l10n/l10n.dart';
+import 'package:flutter/material.dart';
+import '../../l10n/l10n.dart';
+import '../widgets/account_item.dart';
 import '../widgets/circle_avatar.dart';
 
 class AccountPage extends StatelessWidget {

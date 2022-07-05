@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:revup/l10n/l10n.dart';
+import '../../l10n/l10n.dart';
 import '../../account/widgets/circle_avatar.dart';
 
 class HomePage extends StatelessWidget {
