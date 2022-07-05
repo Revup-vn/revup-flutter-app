@@ -38,8 +38,8 @@ class _PasswordFormBuidler extends State<PasswordFormBuidler> {
             animationType: AnimationType.scale,
             pinTheme: PinTheme(
               shape: PinCodeFieldShape.underline,
-              inactiveColor: const Color.fromRGBO(128, 118, 103, 100),
-              selectedColor: const Color.fromRGBO(128, 118, 103, 100),
+              inactiveColor: Theme.of(context).colorScheme.onSurfaceVariant,
+              selectedColor: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             cursorColor: Theme.of(context).shadowColor,
             controller: _textEditingController,
