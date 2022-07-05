@@ -17,7 +17,7 @@
     "currentPasswordLabel" : "Enter your current password",
     "confirmPasswordLabel" : "Confirm your password",
     "setupPasswordLabel" : "Setup your password",
-    "enterNewPasswordDescriptionLabel" : "Because of security reason, please setup your password"
+    "enterNewPasswordDescriptionLabel" : "Because of security reason, please setup your password",
     "onboardPageFirstTitle": "Professional car repair service",
     "onboardPageSecondTitle": "Always on duty on all roads",
     "onboardPageThirdTitle": "Transparent price, rest assured repair",
