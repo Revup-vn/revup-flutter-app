@@ -3,5 +3,9 @@
     "revupAppBarTitle": "Revup",
     "@revupAppBarTitle": {
         "description": "Text shown in the AppBar of the first page"
-    }
+    },
+    "repairerAroundLabel" : "Repairer around here",
+    "sortAsLabel" : "Sort as",
+    "sortAsDistanceLabel" : "Distance",
+    "sortAsRatingLabel" : "Rating"
 }

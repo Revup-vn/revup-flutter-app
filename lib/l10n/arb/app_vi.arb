@@ -3,5 +3,9 @@
     "revupAppBarTitle": "Revup",
     "@revupAppBarTitle": {
         "description": "Text se xuat hien o appbar khi vao trang dau tien"
-    }
+    },
+    "repairerAroundLabel" : "Thợ sửa quanh đây",
+    "sortAsLabel" : "Sắp xếp theo",
+    "sortAsDistanceLabel" : "Khoảng cách",
+    "sortAsRatingLabel" : "Đánh giá"
 }
