@@ -13,7 +13,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<PhoneNumberChangedIsInvalid>((event, emit) {
       emit(LoginState.initial());
     });
-    on<SignInWithPhoneNumberPressed>(
+    on<_PhoneNumberSignIn>(
       (event, emit) {},
     ); // TODO(cantgim): implement logic
   }

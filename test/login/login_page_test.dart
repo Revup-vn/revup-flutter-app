@@ -4,10 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/login/login.dart';
+import 'package:revup/login/view/login_view.dart';
 
 void main() {
-  setUp(() {});
-
   group('LoginPage', () {
     testWidgets(
       'renders LoginView',

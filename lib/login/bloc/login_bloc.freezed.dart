@@ -44,7 +44,7 @@ mixin _$LoginEvent {
         phoneNumberChangedIsValid,
     required TResult Function(PhoneNumberChangedIsInvalid value)
         phoneNumberChangedIsInvalid,
-    required TResult Function(SignInWithPhoneNumberPressed value)
+    required TResult Function(_PhoneNumberSignIn value)
         signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,8 +54,7 @@ mixin _$LoginEvent {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,8 +63,7 @@ mixin _$LoginEvent {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,7 +192,7 @@ class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
         phoneNumberChangedIsValid,
     required TResult Function(PhoneNumberChangedIsInvalid value)
         phoneNumberChangedIsInvalid,
-    required TResult Function(SignInWithPhoneNumberPressed value)
+    required TResult Function(_PhoneNumberSignIn value)
         signInWithPhoneNumberPressed,
   }) {
     return phoneNumberChangedIsValid(this);
@@ -207,8 +205,7 @@ class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
   }) {
     return phoneNumberChangedIsValid?.call(this);
   }
@@ -220,8 +217,7 @@ class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
     if (phoneNumberChangedIsValid != null) {
@@ -324,7 +320,7 @@ class _$PhoneNumberChangedIsInvalid implements PhoneNumberChangedIsInvalid {
         phoneNumberChangedIsValid,
     required TResult Function(PhoneNumberChangedIsInvalid value)
         phoneNumberChangedIsInvalid,
-    required TResult Function(SignInWithPhoneNumberPressed value)
+    required TResult Function(_PhoneNumberSignIn value)
         signInWithPhoneNumberPressed,
   }) {
     return phoneNumberChangedIsInvalid(this);
@@ -337,8 +333,7 @@ class _$PhoneNumberChangedIsInvalid implements PhoneNumberChangedIsInvalid {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
   }) {
     return phoneNumberChangedIsInvalid?.call(this);
   }
@@ -350,8 +345,7 @@ class _$PhoneNumberChangedIsInvalid implements PhoneNumberChangedIsInvalid {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
     if (phoneNumberChangedIsInvalid != null) {
@@ -366,31 +360,28 @@ abstract class PhoneNumberChangedIsInvalid implements LoginEvent {
 }
 
 /// @nodoc
-abstract class _$$SignInWithPhoneNumberPressedCopyWith<$Res> {
-  factory _$$SignInWithPhoneNumberPressedCopyWith(
-          _$SignInWithPhoneNumberPressed value,
-          $Res Function(_$SignInWithPhoneNumberPressed) then) =
-      __$$SignInWithPhoneNumberPressedCopyWithImpl<$Res>;
+abstract class _$$_PhoneNumberSignInCopyWith<$Res> {
+  factory _$$_PhoneNumberSignInCopyWith(_$_PhoneNumberSignIn value,
+          $Res Function(_$_PhoneNumberSignIn) then) =
+      __$$_PhoneNumberSignInCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SignInWithPhoneNumberPressedCopyWithImpl<$Res>
+class __$$_PhoneNumberSignInCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$SignInWithPhoneNumberPressedCopyWith<$Res> {
-  __$$SignInWithPhoneNumberPressedCopyWithImpl(
-      _$SignInWithPhoneNumberPressed _value,
-      $Res Function(_$SignInWithPhoneNumberPressed) _then)
-      : super(_value, (v) => _then(v as _$SignInWithPhoneNumberPressed));
+    implements _$$_PhoneNumberSignInCopyWith<$Res> {
+  __$$_PhoneNumberSignInCopyWithImpl(
+      _$_PhoneNumberSignIn _value, $Res Function(_$_PhoneNumberSignIn) _then)
+      : super(_value, (v) => _then(v as _$_PhoneNumberSignIn));
 
   @override
-  _$SignInWithPhoneNumberPressed get _value =>
-      super._value as _$SignInWithPhoneNumberPressed;
+  _$_PhoneNumberSignIn get _value => super._value as _$_PhoneNumberSignIn;
 }
 
 /// @nodoc
 
-class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
-  const _$SignInWithPhoneNumberPressed();
+class _$_PhoneNumberSignIn implements _PhoneNumberSignIn {
+  const _$_PhoneNumberSignIn();
 
   @override
   String toString() {
@@ -400,8 +391,7 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SignInWithPhoneNumberPressed);
+        (other.runtimeType == runtimeType && other is _$_PhoneNumberSignIn);
   }
 
   @override
@@ -448,7 +438,7 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
         phoneNumberChangedIsValid,
     required TResult Function(PhoneNumberChangedIsInvalid value)
         phoneNumberChangedIsInvalid,
-    required TResult Function(SignInWithPhoneNumberPressed value)
+    required TResult Function(_PhoneNumberSignIn value)
         signInWithPhoneNumberPressed,
   }) {
     return signInWithPhoneNumberPressed(this);
@@ -461,8 +451,7 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
   }) {
     return signInWithPhoneNumberPressed?.call(this);
   }
@@ -474,8 +463,7 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
         phoneNumberChangedIsValid,
     TResult Function(PhoneNumberChangedIsInvalid value)?
         phoneNumberChangedIsInvalid,
-    TResult Function(SignInWithPhoneNumberPressed value)?
-        signInWithPhoneNumberPressed,
+    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
     required TResult orElse(),
   }) {
     if (signInWithPhoneNumberPressed != null) {
@@ -485,8 +473,8 @@ class _$SignInWithPhoneNumberPressed implements SignInWithPhoneNumberPressed {
   }
 }
 
-abstract class SignInWithPhoneNumberPressed implements LoginEvent {
-  const factory SignInWithPhoneNumberPressed() = _$SignInWithPhoneNumberPressed;
+abstract class _PhoneNumberSignIn implements LoginEvent {
+  const factory _PhoneNumberSignIn() = _$_PhoneNumberSignIn;
 }
 
 /// @nodoc

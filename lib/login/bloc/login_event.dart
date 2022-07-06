@@ -6,6 +6,5 @@ class LoginEvent with _$LoginEvent {
       PhoneNumberChangedIsValid;
   const factory LoginEvent.phoneNumberChangedIsInvalid() =
       PhoneNumberChangedIsInvalid;
-  const factory LoginEvent.signInWithPhoneNumberPressed() =
-      SignInWithPhoneNumberPressed;
+  const factory LoginEvent.signInWithPhoneNumberPressed() = _PhoneNumberSignIn;
 }
