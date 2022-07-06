@@ -12,7 +12,7 @@ class CircleAvatarAccount extends StatelessWidget {
   final double radiusCircleAvatar;
   final double radiusCircleAvatarIcon;
   final double sizeIcon;
-  final double sizeText;
+  final TextStyle? sizeText;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,11 @@ class CircleAvatarAccount extends StatelessWidget {
           Align(
             child: AutoSizeText(
               'N',
-              style: Theme.of(context)
-                  .textTheme
-                  .displayLarge!
+              // style: Theme.of(context)
+              //     .textTheme
+              //     .displayLarge!
+              //     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              style: sizeText!
                   .copyWith(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),

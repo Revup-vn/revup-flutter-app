@@ -25,7 +25,7 @@ class PaymentItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {}, // TODO(namngoc231): implement payments
         icon: SizedBox(
           width: 50,
           child: paymentIcon,

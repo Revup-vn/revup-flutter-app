@@ -21,7 +21,7 @@ class AccountItem extends StatelessWidget {
       leading: accountIcon,
       trailing: IconButton(
         icon: const Icon(Icons.arrow_forward_ios),
-        onPressed: () {},
+        onPressed: () {}, // TODO(namngoc231): implement on press
       ),
     );
   }

@@ -19,12 +19,12 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(page: SplashPage),
     AdaptiveRoute<void>(page: TestPage),
-    //AdaptiveRoute<void>(page: AccountPage, initial: true),
+    AdaptiveRoute<void>(page: AccountPage, initial: true),
     //AdaptiveRoute<void>(page: PaymentPage, initial: true),
-    AdaptiveRoute<void>(page: Signup6Page, initial: true),
+    //AdaptiveRoute<void>(page: Signup6Page, initial: true),
     //AdaptiveRoute<void>(page: UpdateProfilePage, initial: true),
-    // AdaptiveRoute<void>(page: HomePage, initial: true),
-    AdaptiveRoute<void>(page: OnboardingPage),
+    //AdaptiveRoute<void>(page: HomePage, initial: true),
+    //AdaptiveRoute<void>(page: OnboardingPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

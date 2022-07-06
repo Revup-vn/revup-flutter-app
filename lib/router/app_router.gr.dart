@@ -24,13 +24,9 @@ class _$AppRouter extends RootStackRouter {
     TestRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const TestPage());
     },
-    Signup6Route.name: (routeData) {
+    AccountRoute.name: (routeData) {
       return AdaptivePage<void>(
-          routeData: routeData, child: const Signup6Page());
-    },
-    OnboardingRoute.name: (routeData) {
-      return AdaptivePage<void>(
-          routeData: routeData, child: const OnboardingPage());
+          routeData: routeData, child: const AccountPage());
     }
   };
 
@@ -38,8 +34,7 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
-        RouteConfig(Signup6Route.name, path: '/'),
-        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
+        RouteConfig(AccountRoute.name, path: '/')
       ];
 }
 
@@ -60,18 +55,9 @@ class TestRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [Signup6Page]
-class Signup6Route extends PageRouteInfo<void> {
-  const Signup6Route() : super(Signup6Route.name, path: '/');
+/// [AccountPage]
+class AccountRoute extends PageRouteInfo<void> {
+  const AccountRoute() : super(AccountRoute.name, path: '/');
 
-  static const String name = 'Signup6Route';
-}
-
-/// generated route for
-/// [OnboardingPage]
-class OnboardingRoute extends PageRouteInfo<void> {
-  const OnboardingRoute()
-      : super(OnboardingRoute.name, path: '/onboarding-page');
-
-  static const String name = 'OnboardingRoute';
+  static const String name = 'AccountRoute';
 }

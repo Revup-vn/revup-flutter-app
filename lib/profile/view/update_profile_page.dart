@@ -1,11 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../widgets/update_profile_item.dart';
 
-import 'package:revup/l10n/l10n.dart';
-import 'package:revup/profile/widgets/update_profile_item.dart';
 import '../../account/widgets/circle_avatar.dart';
+import '../../l10n/l10n.dart';
 
 class UpdateProfilePage extends StatelessWidget {
   const UpdateProfilePage({super.key});
@@ -25,11 +24,11 @@ class UpdateProfilePage extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 60, 10, 16),
-            child: const CircleAvatarAccount(
+            child: CircleAvatarAccount(
               radiusCircleAvatar: 80,
               radiusCircleAvatarIcon: 18,
               sizeIcon: 22,
-              sizeText: 100,
+              sizeText: Theme.of(context).textTheme.headline1,
             ),
           ),
           Padding(
@@ -87,12 +86,13 @@ class UpdateProfilePage extends StatelessWidget {
                     //   //style: Theme.of(context).elevatedButtonTheme.style,
                     //   child: Text(
                     //     l10n.updateText,
-                    //     style: const TextStyle(fontSize: 18, color: Colors.white),
+                    //style: const TextStyle(fontSize: 18, color: Colors.white),
                     //   ),
                     // ),
                     child: ElevatedButton(
                       // ignore: todo
-                      onPressed: () {}, // TODO(namngoc231): implement on press
+                      onPressed:
+                          () {}, // TODO(namngoc231): complete update profile
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.updateLabel,

@@ -19,11 +19,11 @@ class AccountPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-              child: const CircleAvatarAccount(
+              child: CircleAvatarAccount(
                 radiusCircleAvatar: 60,
                 radiusCircleAvatarIcon: 13,
                 sizeIcon: 20,
-                sizeText: 70,
+                sizeText: Theme.of(context).textTheme.headline1,
               ),
             ),
             Container(
