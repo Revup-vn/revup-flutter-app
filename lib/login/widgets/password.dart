@@ -1,8 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'password_form_builder.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../l10n/l10n.dart';
+import 'password_form_builder.dart';
 
 class PinCodePasswordVerification extends StatefulWidget {
   const PinCodePasswordVerification(this.phoneNumber, {super.key});

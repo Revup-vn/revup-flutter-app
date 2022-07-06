@@ -10,10 +10,6 @@ dependencies:
   auto_route: ^4.0.1
   auto_size_text: ^3.0.0
   bloc: ^8.0.3
-  build_runner: ^2.1.11
-  connectivity_plus: ^2.3.5
-  dartz: ^0.10.1
-  derry: ^1.4.3
   dio: ^4.0.1
   firebase_core: ^1.19.1
   flutter:
@@ -29,7 +25,6 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.5.0
-  mocktail: ^0.3.0
   pin_code_fields: ^7.4.0
   revup_core:
     git:
@@ -49,7 +44,9 @@ dev_dependencies:
   freezed: ^2.0.3+1
   import_sorter: ^4.6.0
   json_serializable: ^6.2.0
+  mocktail: ^0.3.0
   very_good_analysis: ^3.0.1
+  
 
 flutter_gen:
   output: lib/gen/

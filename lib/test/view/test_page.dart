@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:revup/l10n/l10n.dart';
-import 'package:revup/login/widgets/password.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({super.key});
@@ -10,8 +9,9 @@ class TestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return const Scaffold(
-      body: PasswordForm(),
+    return Scaffold(
+      appBar: AppBar(title: Text(l10n.revupAppBarTitle)),
+      body: const Center(child: Text('REVUP APP')),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:revup/l10n/l10n.dart';
@@ -11,26 +10,18 @@ void main() {
     'PasswordForm',
     () {
       testWidgets(
-        'render icon and text button of login form',
+        'render enter password view',
         (WidgetTester tester) async {
           await tester.pumpWidget(
             const MaterialApp(
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-              ],
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: PasswordForm(),
+              home: Scaffold(
+                body: PinCodePasswordVerification('+84 163999999'),
+              ),
             ),
           );
-          expect(find.text('Nhập mã OTP'), findsOneWidget);
-          expect(
-            find.text(
-              'Mã OTP sẽ được gửi đến số : +84 163999999',
-            ),
-            findsOneWidget,
-          );
-          expect(find.text('Gửi lại mã OTP'), findsOneWidget);
+          expect(find.byType(PinCodePasswordVerification), findsOneWidget);
         },
       );
     },
