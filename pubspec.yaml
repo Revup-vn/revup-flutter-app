@@ -10,6 +10,8 @@ dependencies:
   auto_route: ^4.0.1
   auto_size_text: ^3.0.0
   bloc: ^8.0.3
+  connectivity_plus: ^2.3.5
+  dartz: ^0.10.1
   dio: ^4.0.1
   firebase_core: ^1.19.1
   flutter:
