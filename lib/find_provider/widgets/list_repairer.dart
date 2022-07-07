@@ -57,7 +57,6 @@ class _ListRepairer extends State<ListRepairer> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      // color: Theme.of(context).colorScheme.onInverseSurface,
                       color: Theme.of(context).colorScheme.onSurface,
                       width: 0.8,
                     ),
