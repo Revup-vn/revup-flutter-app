@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../bloc/login_bloc.dart';
@@ -36,78 +38,80 @@ class LoginView extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
-            BlocConsumer<LoginBloc, LoginState>(
-              buildWhen: (previous, current) =>
-                  previous.phoneNumber != current.phoneNumber,
-              listener: (context, state) {},
-              builder: (context, state) {
-                return FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      FormBuilderTextField(
-                        name: 'phone',
-                        decoration: InputDecoration(
-                          prefixIcon: Ink(
-                            child: Padding(
-                              padding: EdgeInsets.zero,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Assets.screens.flagVietNam.svg(),
-                                  const SizedBox(width: 8),
-                                  const FittedBox(
-                                    child: AutoSizeText('+84'),
-                                  ),
-                                  const SizedBox(width: 8),
-                                ],
+            FormBuilder(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FormBuilderTextField(
+                    name: 'phone',
+                    decoration: InputDecoration(
+                      prefixIcon: Ink(
+                        child: Padding(
+                          padding: EdgeInsets.zero,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Assets.screens.flagVietNam.svg(),
+                              const SizedBox(width: 8),
+                              const FittedBox(
+                                child: AutoSizeText('+84'),
                               ),
-                            ),
+                              const SizedBox(width: 8),
+                            ],
                           ),
-                          hintText: l10n.phoneFieldLabel,
                         ),
-                        keyboardType: TextInputType.number,
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: l10n.phoneRequiredErrorLabel,
-                          ),
-                          FormBuilderValidators.match(
-                            r'(((\+|)84)|0)?(3|5|7|8|9)+([0-9]{8})\b',
-                            errorText: l10n.invalidPhoneNumberLabel,
-                          ),
-                        ]),
-                        onChanged: (phoneNumber) {
-                          _formKey.currentState?.validate() ?? false
-                              ? context.read<LoginBloc>().add(
-                                    LoginEvent.phoneNumberChangedIsValid(
-                                      phoneNumber ?? '',
-                                    ),
-                                  )
-                              : context.read<LoginBloc>().add(
-                                    const LoginEvent
-                                        .phoneNumberChangedIsInvalid(),
-                                  );
-                        },
                       ),
-                      const SizedBox(
-                        height: 32,
+                      hintText: l10n.phoneFieldLabel,
+                    ),
+                    keyboardType: TextInputType.number,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: l10n.phoneRequiredErrorLabel,
                       ),
-                      ElevatedButton(
-                        onPressed: state.isLoginButtonEnabled
-                            ? () => context.read<LoginBloc>().add(
-                                  const LoginEvent
-                                      .signInWithPhoneNumberPressed(),
-                                )
-                            : null,
-                        style: Theme.of(context).elevatedButtonTheme.style,
-                        child: AutoSizeText(l10n.continueLabel),
+                      FormBuilderValidators.match(
+                        r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                        errorText: l10n.invalidPhoneNumberLabel,
                       ),
-                    ],
+                    ]),
+                    onChanged: (phoneNumber) {
+                      final isValid =
+                          _formKey.currentState?.validate() ?? false;
+                      context.read<LoginBloc>().add(
+                            LoginEvent.start(
+                              isLoginButtonEnabled: isValid,
+                            ),
+                          );
+                    },
                   ),
-                );
-              },
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        initial: (isLoginButtonEnabled) => ElevatedButton(
+                          onPressed: isLoginButtonEnabled
+                              ? () {
+                                  context.read<LoginBloc>().add(
+                                        const LoginEvent.submit(),
+                                      ); // TODO(cantgim): implement submit
+                                }
+                              : null,
+                          style: Theme.of(context).elevatedButtonTheme.style,
+                          child: AutoSizeText(l10n.continueLabel),
+                        ),
+                        orElse: () => ElevatedButton(
+                          onPressed: null,
+                          style: Theme.of(context).elevatedButtonTheme.style,
+                          child: AutoSizeText(l10n.continueLabel),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 90),
             AutoSizeText.rich(

@@ -18,52 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
-    required TResult Function() phoneNumberChangedIsInvalid,
-    required TResult Function() signInWithPhoneNumberPressed,
+    required TResult Function(bool isLoginButtonEnabled) start,
+    required TResult Function() submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChangedIsValid value)
-        phoneNumberChangedIsValid,
-    required TResult Function(PhoneNumberChangedIsInvalid value)
-        phoneNumberChangedIsInvalid,
-    required TResult Function(_PhoneNumberSignIn value)
-        signInWithPhoneNumberPressed,
+    required TResult Function(_Start value) start,
+    required TResult Function(_Submit value) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,32 +73,738 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$PhoneNumberChangedIsValidCopyWith<$Res> {
-  factory _$$PhoneNumberChangedIsValidCopyWith(
-          _$PhoneNumberChangedIsValid value,
-          $Res Function(_$PhoneNumberChangedIsValid) then) =
-      __$$PhoneNumberChangedIsValidCopyWithImpl<$Res>;
+abstract class _$$_StartCopyWith<$Res> {
+  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
+      __$$_StartCopyWithImpl<$Res>;
+  $Res call({bool isLoginButtonEnabled});
+}
+
+/// @nodoc
+class __$$_StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$$_StartCopyWith<$Res> {
+  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
+      : super(_value, (v) => _then(v as _$_Start));
+
+  @override
+  _$_Start get _value => super._value as _$_Start;
+
+  @override
+  $Res call({
+    Object? isLoginButtonEnabled = freezed,
+  }) {
+    return _then(_$_Start(
+      isLoginButtonEnabled: isLoginButtonEnabled == freezed
+          ? _value.isLoginButtonEnabled
+          : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Start implements _Start {
+  const _$_Start({required this.isLoginButtonEnabled});
+
+  @override
+  final bool isLoginButtonEnabled;
+
+  @override
+  String toString() {
+    return 'LoginEvent.start(isLoginButtonEnabled: $isLoginButtonEnabled)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Start &&
+            const DeepCollectionEquality()
+                .equals(other.isLoginButtonEnabled, isLoginButtonEnabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(isLoginButtonEnabled));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartCopyWith<_$_Start> get copyWith =>
+      __$$_StartCopyWithImpl<_$_Start>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) start,
+    required TResult Function() submit,
+  }) {
+    return start(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
+  }) {
+    return start?.call(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(isLoginButtonEnabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Start implements LoginEvent {
+  const factory _Start({required final bool isLoginButtonEnabled}) = _$_Start;
+
+  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_StartCopyWith<_$_Start> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SubmitCopyWith<$Res> {
+  factory _$$_SubmitCopyWith(_$_Submit value, $Res Function(_$_Submit) then) =
+      __$$_SubmitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$$_SubmitCopyWith<$Res> {
+  __$$_SubmitCopyWithImpl(_$_Submit _value, $Res Function(_$_Submit) _then)
+      : super(_value, (v) => _then(v as _$_Submit));
+
+  @override
+  _$_Submit get _value => super._value as _$_Submit;
+}
+
+/// @nodoc
+
+class _$_Submit implements _Submit {
+  const _$_Submit();
+
+  @override
+  String toString() {
+    return 'LoginEvent.submit()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Submit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) start,
+    required TResult Function() submit,
+  }) {
+    return submit();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
+  }) {
+    return submit?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? start,
+    TResult Function()? submit,
+    required TResult orElse(),
+  }) {
+    if (submit != null) {
+      return submit();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return submit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
+  }) {
+    return submit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (submit != null) {
+      return submit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submit implements LoginEvent {
+  const factory _Submit() = _$_Submit;
+}
+
+/// @nodoc
+mixin _$LoginState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
+
+  final LoginState _value;
+  // ignore: unused_field
+  final $Res Function(LoginState) _then;
+}
+
+/// @nodoc
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
+  $Res call({bool isLoginButtonEnabled});
+}
+
+/// @nodoc
+class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
+
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
+
+  @override
+  $Res call({
+    Object? isLoginButtonEnabled = freezed,
+  }) {
+    return _then(_$_Initial(
+      isLoginButtonEnabled: isLoginButtonEnabled == freezed
+          ? _value.isLoginButtonEnabled
+          : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Initial implements _Initial {
+  const _$_Initial({required this.isLoginButtonEnabled});
+
+  @override
+  final bool isLoginButtonEnabled;
+
+  @override
+  String toString() {
+    return 'LoginState.initial(isLoginButtonEnabled: $isLoginButtonEnabled)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            const DeepCollectionEquality()
+                .equals(other.isLoginButtonEnabled, isLoginButtonEnabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(isLoginButtonEnabled));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
+  }) {
+    return initial(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+  }) {
+    return initial?.call(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(isLoginButtonEnabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements LoginState {
+  const factory _Initial({required final bool isLoginButtonEnabled}) =
+      _$_Initial;
+
+  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'LoginState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements LoginState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
+}
+
+/// @nodoc
+class __$$_FailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, (v) => _then(v as _$_Failure));
+
+  @override
+  _$_Failure get _value => super._value as _$_Failure;
+
+  @override
+  $Res call({
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_$_Failure(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Failure implements _Failure {
+  const _$_Failure({required this.errorMessage});
+
+  @override
+  final String errorMessage;
+
+  @override
+  String toString() {
+    return 'LoginState.failure(errorMessage: $errorMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(errorMessage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
+  }) {
+    return failure(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+  }) {
+    return failure?.call(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(errorMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements LoginState {
+  const factory _Failure({required final String errorMessage}) = _$_Failure;
+
+  String get errorMessage => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
   $Res call({String phoneNumber});
 }
 
 /// @nodoc
-class __$$PhoneNumberChangedIsValidCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$PhoneNumberChangedIsValidCopyWith<$Res> {
-  __$$PhoneNumberChangedIsValidCopyWithImpl(_$PhoneNumberChangedIsValid _value,
-      $Res Function(_$PhoneNumberChangedIsValid) _then)
-      : super(_value, (v) => _then(v as _$PhoneNumberChangedIsValid));
+class __$$_SuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+      : super(_value, (v) => _then(v as _$_Success));
 
   @override
-  _$PhoneNumberChangedIsValid get _value =>
-      super._value as _$PhoneNumberChangedIsValid;
+  _$_Success get _value => super._value as _$_Success;
 
   @override
   $Res call({
     Object? phoneNumber = freezed,
   }) {
-    return _then(_$PhoneNumberChangedIsValid(
-      phoneNumber == freezed
+    return _then(_$_Success(
+      phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
@@ -121,22 +814,22 @@ class __$$PhoneNumberChangedIsValidCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
-  const _$PhoneNumberChangedIsValid(this.phoneNumber);
+class _$_Success implements _Success {
+  const _$_Success({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
   String toString() {
-    return 'LoginEvent.phoneNumberChangedIsValid(phoneNumber: $phoneNumber)';
+    return 'LoginState.success(phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PhoneNumberChangedIsValid &&
+            other is _$_Success &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber));
   }
@@ -147,40 +840,42 @@ class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
 
   @JsonKey(ignore: true)
   @override
-  _$$PhoneNumberChangedIsValidCopyWith<_$PhoneNumberChangedIsValid>
-      get copyWith => __$$PhoneNumberChangedIsValidCopyWithImpl<
-          _$PhoneNumberChangedIsValid>(this, _$identity);
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
-    required TResult Function() phoneNumberChangedIsInvalid,
-    required TResult Function() signInWithPhoneNumberPressed,
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
   }) {
-    return phoneNumberChangedIsValid(phoneNumber);
+    return success(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
   }) {
-    return phoneNumberChangedIsValid?.call(phoneNumber);
+    return success?.call(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
     required TResult orElse(),
   }) {
-    if (phoneNumberChangedIsValid != null) {
-      return phoneNumberChangedIsValid(phoneNumber);
+    if (success != null) {
+      return success(phoneNumber);
     }
     return orElse();
   }
@@ -188,450 +883,46 @@ class _$PhoneNumberChangedIsValid implements PhoneNumberChangedIsValid {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChangedIsValid value)
-        phoneNumberChangedIsValid,
-    required TResult Function(PhoneNumberChangedIsInvalid value)
-        phoneNumberChangedIsInvalid,
-    required TResult Function(_PhoneNumberSignIn value)
-        signInWithPhoneNumberPressed,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
   }) {
-    return phoneNumberChangedIsValid(this);
+    return success(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
   }) {
-    return phoneNumberChangedIsValid?.call(this);
+    return success?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
-    if (phoneNumberChangedIsValid != null) {
-      return phoneNumberChangedIsValid(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class PhoneNumberChangedIsValid implements LoginEvent {
-  const factory PhoneNumberChangedIsValid(final String phoneNumber) =
-      _$PhoneNumberChangedIsValid;
+abstract class _Success implements LoginState {
+  const factory _Success({required final String phoneNumber}) = _$_Success;
 
   String get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$$PhoneNumberChangedIsValidCopyWith<_$PhoneNumberChangedIsValid>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PhoneNumberChangedIsInvalidCopyWith<$Res> {
-  factory _$$PhoneNumberChangedIsInvalidCopyWith(
-          _$PhoneNumberChangedIsInvalid value,
-          $Res Function(_$PhoneNumberChangedIsInvalid) then) =
-      __$$PhoneNumberChangedIsInvalidCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PhoneNumberChangedIsInvalidCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$PhoneNumberChangedIsInvalidCopyWith<$Res> {
-  __$$PhoneNumberChangedIsInvalidCopyWithImpl(
-      _$PhoneNumberChangedIsInvalid _value,
-      $Res Function(_$PhoneNumberChangedIsInvalid) _then)
-      : super(_value, (v) => _then(v as _$PhoneNumberChangedIsInvalid));
-
-  @override
-  _$PhoneNumberChangedIsInvalid get _value =>
-      super._value as _$PhoneNumberChangedIsInvalid;
-}
-
-/// @nodoc
-
-class _$PhoneNumberChangedIsInvalid implements PhoneNumberChangedIsInvalid {
-  const _$PhoneNumberChangedIsInvalid();
-
-  @override
-  String toString() {
-    return 'LoginEvent.phoneNumberChangedIsInvalid()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PhoneNumberChangedIsInvalid);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
-    required TResult Function() phoneNumberChangedIsInvalid,
-    required TResult Function() signInWithPhoneNumberPressed,
-  }) {
-    return phoneNumberChangedIsInvalid();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
-  }) {
-    return phoneNumberChangedIsInvalid?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
-    required TResult orElse(),
-  }) {
-    if (phoneNumberChangedIsInvalid != null) {
-      return phoneNumberChangedIsInvalid();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChangedIsValid value)
-        phoneNumberChangedIsValid,
-    required TResult Function(PhoneNumberChangedIsInvalid value)
-        phoneNumberChangedIsInvalid,
-    required TResult Function(_PhoneNumberSignIn value)
-        signInWithPhoneNumberPressed,
-  }) {
-    return phoneNumberChangedIsInvalid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
-  }) {
-    return phoneNumberChangedIsInvalid?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
-    required TResult orElse(),
-  }) {
-    if (phoneNumberChangedIsInvalid != null) {
-      return phoneNumberChangedIsInvalid(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PhoneNumberChangedIsInvalid implements LoginEvent {
-  const factory PhoneNumberChangedIsInvalid() = _$PhoneNumberChangedIsInvalid;
-}
-
-/// @nodoc
-abstract class _$$_PhoneNumberSignInCopyWith<$Res> {
-  factory _$$_PhoneNumberSignInCopyWith(_$_PhoneNumberSignIn value,
-          $Res Function(_$_PhoneNumberSignIn) then) =
-      __$$_PhoneNumberSignInCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_PhoneNumberSignInCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$_PhoneNumberSignInCopyWith<$Res> {
-  __$$_PhoneNumberSignInCopyWithImpl(
-      _$_PhoneNumberSignIn _value, $Res Function(_$_PhoneNumberSignIn) _then)
-      : super(_value, (v) => _then(v as _$_PhoneNumberSignIn));
-
-  @override
-  _$_PhoneNumberSignIn get _value => super._value as _$_PhoneNumberSignIn;
-}
-
-/// @nodoc
-
-class _$_PhoneNumberSignIn implements _PhoneNumberSignIn {
-  const _$_PhoneNumberSignIn();
-
-  @override
-  String toString() {
-    return 'LoginEvent.signInWithPhoneNumberPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PhoneNumberSignIn);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChangedIsValid,
-    required TResult Function() phoneNumberChangedIsInvalid,
-    required TResult Function() signInWithPhoneNumberPressed,
-  }) {
-    return signInWithPhoneNumberPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
-  }) {
-    return signInWithPhoneNumberPressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChangedIsValid,
-    TResult Function()? phoneNumberChangedIsInvalid,
-    TResult Function()? signInWithPhoneNumberPressed,
-    required TResult orElse(),
-  }) {
-    if (signInWithPhoneNumberPressed != null) {
-      return signInWithPhoneNumberPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PhoneNumberChangedIsValid value)
-        phoneNumberChangedIsValid,
-    required TResult Function(PhoneNumberChangedIsInvalid value)
-        phoneNumberChangedIsInvalid,
-    required TResult Function(_PhoneNumberSignIn value)
-        signInWithPhoneNumberPressed,
-  }) {
-    return signInWithPhoneNumberPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
-  }) {
-    return signInWithPhoneNumberPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PhoneNumberChangedIsValid value)?
-        phoneNumberChangedIsValid,
-    TResult Function(PhoneNumberChangedIsInvalid value)?
-        phoneNumberChangedIsInvalid,
-    TResult Function(_PhoneNumberSignIn value)? signInWithPhoneNumberPressed,
-    required TResult orElse(),
-  }) {
-    if (signInWithPhoneNumberPressed != null) {
-      return signInWithPhoneNumberPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _PhoneNumberSignIn implements LoginEvent {
-  const factory _PhoneNumberSignIn() = _$_PhoneNumberSignIn;
-}
-
-/// @nodoc
-mixin _$LoginState {
-  String get phoneNumber => throw _privateConstructorUsedError;
-  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LoginStateCopyWith<LoginState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res>;
-  $Res call(
-      {String phoneNumber, bool isLoginButtonEnabled, String errorMessage});
-}
-
-/// @nodoc
-class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
-
-  final LoginState _value;
-  // ignore: unused_field
-  final $Res Function(LoginState) _then;
-
-  @override
-  $Res call({
-    Object? phoneNumber = freezed,
-    Object? isLoginButtonEnabled = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      isLoginButtonEnabled: isLoginButtonEnabled == freezed
-          ? _value.isLoginButtonEnabled
-          : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$$_LoginStateCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
-  factory _$$_LoginStateCopyWith(
-          _$_LoginState value, $Res Function(_$_LoginState) then) =
-      __$$_LoginStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String phoneNumber, bool isLoginButtonEnabled, String errorMessage});
-}
-
-/// @nodoc
-class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements _$$_LoginStateCopyWith<$Res> {
-  __$$_LoginStateCopyWithImpl(
-      _$_LoginState _value, $Res Function(_$_LoginState) _then)
-      : super(_value, (v) => _then(v as _$_LoginState));
-
-  @override
-  _$_LoginState get _value => super._value as _$_LoginState;
-
-  @override
-  $Res call({
-    Object? phoneNumber = freezed,
-    Object? isLoginButtonEnabled = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$_LoginState(
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      isLoginButtonEnabled: isLoginButtonEnabled == freezed
-          ? _value.isLoginButtonEnabled
-          : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_LoginState implements _LoginState {
-  const _$_LoginState(
-      {required this.phoneNumber,
-      required this.isLoginButtonEnabled,
-      required this.errorMessage});
-
-  @override
-  final String phoneNumber;
-  @override
-  final bool isLoginButtonEnabled;
-  @override
-  final String errorMessage;
-
-  @override
-  String toString() {
-    return 'LoginState(phoneNumber: $phoneNumber, isLoginButtonEnabled: $isLoginButtonEnabled, errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LoginState &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.isLoginButtonEnabled, isLoginButtonEnabled) &&
-            const DeepCollectionEquality()
-                .equals(other.errorMessage, errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(isLoginButtonEnabled),
-      const DeepCollectionEquality().hash(errorMessage));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
-      __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
-}
-
-abstract class _LoginState implements LoginState {
-  const factory _LoginState(
-      {required final String phoneNumber,
-      required final bool isLoginButtonEnabled,
-      required final String errorMessage}) = _$_LoginState;
-
-  @override
-  String get phoneNumber => throw _privateConstructorUsedError;
-  @override
-  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
-  @override
-  String get errorMessage => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }

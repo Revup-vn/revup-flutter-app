@@ -2,9 +2,6 @@ part of 'login_bloc.dart';
 
 @freezed
 class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.phoneNumberChangedIsValid(String phoneNumber) =
-      PhoneNumberChangedIsValid;
-  const factory LoginEvent.phoneNumberChangedIsInvalid() =
-      PhoneNumberChangedIsInvalid;
-  const factory LoginEvent.signInWithPhoneNumberPressed() = _PhoneNumberSignIn;
+  const factory LoginEvent.start({required bool isLoginButtonEnabled}) = _Start;
+  const factory LoginEvent.submit() = _Submit;
 }
