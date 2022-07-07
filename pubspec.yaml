@@ -52,8 +52,6 @@ flutter_gen:
   output: lib/gen/
   integrations:
     flutter_svg: true
-  assets:
-    enabled: true
 import_sorter:
   comments: false
 
