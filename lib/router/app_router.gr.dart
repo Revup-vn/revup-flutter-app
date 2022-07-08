@@ -27,6 +27,10 @@ class _$AppRouter extends RootStackRouter {
     OnboardingRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const OnboardingPage());
+    },
+    LoginPasswordRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const LoginPasswordPage());
     }
   };
 
@@ -34,7 +38,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(TestRoute.name, path: '/test-page'),
-        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
+        RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
+        RouteConfig(LoginPasswordRoute.name, path: '/login-password-page')
       ];
 }
 
@@ -61,4 +66,13 @@ class OnboardingRoute extends PageRouteInfo<void> {
       : super(OnboardingRoute.name, path: '/onboarding-page');
 
   static const String name = 'OnboardingRoute';
+}
+
+/// generated route for
+/// [LoginPasswordPage]
+class LoginPasswordRoute extends PageRouteInfo<void> {
+  const LoginPasswordRoute()
+      : super(LoginPasswordRoute.name, path: '/login-password-page');
+
+  static const String name = 'LoginPasswordRoute';
 }

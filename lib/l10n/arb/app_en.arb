@@ -23,5 +23,7 @@
     "onboardPageThirdTitle": "Transparent price, rest assured repair",
     "skipLabel": "Skip",
     "nextLabel": "Next",
-    "doneLabel": "Done"
+    "doneLabel": "Done",
+    "invalidPasswordLabel": "Invalid password. Please enter again!",
+    "invalidOTPLabel" : "Invalid OTP code. Please enter again!"
 }

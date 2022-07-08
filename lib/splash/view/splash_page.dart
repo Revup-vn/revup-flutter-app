@@ -15,7 +15,7 @@ class SplashPage extends StatelessWidget {
     Future<void>.delayed(
       const Duration(seconds: 5),
       () => context.router.pushAndPopUntil(
-        const TestRoute(),
+        const LoginPasswordRoute(),
         predicate: (dynamic _) => false,
       ),
     );

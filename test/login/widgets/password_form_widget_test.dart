@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:revup/core/components/pincode.dart';
 import 'package:revup/l10n/l10n.dart';
-import 'package:revup/login/widgets/password.dart';
 
 void main() {
   group(
@@ -17,11 +17,19 @@ void main() {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               home: Scaffold(
-                body: PinCodePasswordVerification('+84 163999999'),
+                body: PinCode(
+                  phoneNumber: '+84 163999999',
+                  bodyLabel: 'l10n.loginPhoneNumberLabel',
+                  headLineLabel: 'l10n.enterPasswordLabel',
+                  footerLabel: 'l10n.forgotPasswordLabel',
+                  buttonLabel: 'l10n.forgotPasswordLabel',
+                  hasButton: false,
+                  'errorMessage',
+                ),
               ),
             ),
           );
-          expect(find.byType(PinCodePasswordVerification), findsOneWidget);
+          expect(find.byType(PinCode), findsOneWidget);
         },
       );
     },

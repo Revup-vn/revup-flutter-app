@@ -23,5 +23,7 @@
     "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
     "skipLabel": "Bỏ qua",
     "nextLabel": "Tiếp theo",
-    "doneLabel": "Xong"
+    "doneLabel": "Xong",
+    "invalidPasswordLabel": "Invalid password. Please enter again!",
+    "invalidOTPLabel" : "Invalid OTP code. Please enter again!"
 }
