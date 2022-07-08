@@ -22,4 +22,11 @@ void main() {
       },
     );
   });
+
+  group('LoginView', () {
+    testWidgets(
+      'renders logo, title and subtitle',
+      (WidgetTester tester) async {},
+    );
+  });
 }

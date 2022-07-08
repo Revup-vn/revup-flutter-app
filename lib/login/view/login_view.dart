@@ -88,28 +88,44 @@ class LoginView extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
-                  BlocBuilder<LoginBloc, LoginState>(
-                    builder: (context, state) {
-                      return state.maybeWhen(
-                        initial: (isLoginButtonEnabled) => ElevatedButton(
-                          onPressed: isLoginButtonEnabled
-                              ? () {
-                                  context.read<LoginBloc>().add(
-                                        const LoginEvent.submit(),
-                                      ); // TODO(cantgim): implement submit
-                                }
-                              : null,
-                          style: Theme.of(context).elevatedButtonTheme.style,
-                          child: AutoSizeText(l10n.continueLabel),
-                        ),
-                        orElse: () => ElevatedButton(
-                          onPressed: null,
-                          style: Theme.of(context).elevatedButtonTheme.style,
-                          child: AutoSizeText(l10n.continueLabel),
-                        ),
-                      );
-                    },
+                  BlocSelector<LoginBloc, LoginState, bool>(
+                    selector: (state) => state.maybeMap(
+                        initial: (value) => value.isLoginButtonEnabled,
+                        orElse: () => false),
+                    builder: (context, state) => ElevatedButton(
+                      onPressed: state
+                          ? () {
+                              context.read<LoginBloc>().add(
+                                    const LoginEvent.submit(),
+                                  ); // TODO(cantgim): implement submit
+                            }
+                          : null,
+                      style: Theme.of(context).elevatedButtonTheme.style,
+                      child: AutoSizeText(l10n.continueLabel),
+                    ),
                   ),
+                  // BlocBuilder<LoginBloc, LoginState>(
+                  //   builder: (context, state) {
+                  //     return state.maybeWhen(
+                  //       initial: (isLoginButtonEnabled) => ElevatedButton(
+                  //         onPressed: isLoginButtonEnabled
+                  //             ? () {
+                  //                 context.read<LoginBloc>().add(
+                  //                       const LoginEvent.submit(),
+                  //                     ); // TODO(cantgim): implement submit
+                  //               }
+                  //             : null,
+                  //         style: Theme.of(context).elevatedButtonTheme.style,
+                  //         child: AutoSizeText(l10n.continueLabel),
+                  //       ),
+                  //       orElse: () => ElevatedButton(
+                  //         onPressed: null,
+                  //         style: Theme.of(context).elevatedButtonTheme.style,
+                  //         child: AutoSizeText(l10n.continueLabel),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                 ],
               ),
             ),
