@@ -37,20 +37,20 @@ mixin _$LoginEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_Submit value) submit,
+    required TResult Function(Start value) start,
+    required TResult Function(Submit value) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,26 +73,26 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_StartCopyWith<$Res> {
-  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
-      __$$_StartCopyWithImpl<$Res>;
+abstract class _$$StartCopyWith<$Res> {
+  factory _$$StartCopyWith(_$Start value, $Res Function(_$Start) then) =
+      __$$StartCopyWithImpl<$Res>;
   $Res call({bool isLoginButtonEnabled});
 }
 
 /// @nodoc
-class __$$_StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$_StartCopyWith<$Res> {
-  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
-      : super(_value, (v) => _then(v as _$_Start));
+class __$$StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$$StartCopyWith<$Res> {
+  __$$StartCopyWithImpl(_$Start _value, $Res Function(_$Start) _then)
+      : super(_value, (v) => _then(v as _$Start));
 
   @override
-  _$_Start get _value => super._value as _$_Start;
+  _$Start get _value => super._value as _$Start;
 
   @override
   $Res call({
     Object? isLoginButtonEnabled = freezed,
   }) {
-    return _then(_$_Start(
+    return _then(_$Start(
       isLoginButtonEnabled: isLoginButtonEnabled == freezed
           ? _value.isLoginButtonEnabled
           : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
@@ -103,22 +103,30 @@ class __$$_StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Start implements _Start {
-  const _$_Start({required this.isLoginButtonEnabled});
+class _$Start with DiagnosticableTreeMixin implements Start {
+  const _$Start({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.start(isLoginButtonEnabled: $isLoginButtonEnabled)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.start'))
+      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Start &&
+            other is _$Start &&
             const DeepCollectionEquality()
                 .equals(other.isLoginButtonEnabled, isLoginButtonEnabled));
   }
@@ -129,8 +137,8 @@ class _$_Start implements _Start {
 
   @JsonKey(ignore: true)
   @override
-  _$$_StartCopyWith<_$_Start> get copyWith =>
-      __$$_StartCopyWithImpl<_$_Start>(this, _$identity);
+  _$$StartCopyWith<_$Start> get copyWith =>
+      __$$StartCopyWithImpl<_$Start>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -166,8 +174,8 @@ class _$_Start implements _Start {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_Submit value) submit,
+    required TResult Function(Start value) start,
+    required TResult Function(Submit value) submit,
   }) {
     return start(this);
   }
@@ -175,8 +183,8 @@ class _$_Start implements _Start {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
   }) {
     return start?.call(this);
   }
@@ -184,8 +192,8 @@ class _$_Start implements _Start {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -195,45 +203,50 @@ class _$_Start implements _Start {
   }
 }
 
-abstract class _Start implements LoginEvent {
-  const factory _Start({required final bool isLoginButtonEnabled}) = _$_Start;
+abstract class Start implements LoginEvent {
+  const factory Start({required final bool isLoginButtonEnabled}) = _$Start;
 
   bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$$_StartCopyWith<_$_Start> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$StartCopyWith<_$Start> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SubmitCopyWith<$Res> {
-  factory _$$_SubmitCopyWith(_$_Submit value, $Res Function(_$_Submit) then) =
-      __$$_SubmitCopyWithImpl<$Res>;
+abstract class _$$SubmitCopyWith<$Res> {
+  factory _$$SubmitCopyWith(_$Submit value, $Res Function(_$Submit) then) =
+      __$$SubmitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements _$$_SubmitCopyWith<$Res> {
-  __$$_SubmitCopyWithImpl(_$_Submit _value, $Res Function(_$_Submit) _then)
-      : super(_value, (v) => _then(v as _$_Submit));
+class __$$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements _$$SubmitCopyWith<$Res> {
+  __$$SubmitCopyWithImpl(_$Submit _value, $Res Function(_$Submit) _then)
+      : super(_value, (v) => _then(v as _$Submit));
 
   @override
-  _$_Submit get _value => super._value as _$_Submit;
+  _$Submit get _value => super._value as _$Submit;
 }
 
 /// @nodoc
 
-class _$_Submit implements _Submit {
-  const _$_Submit();
+class _$Submit with DiagnosticableTreeMixin implements Submit {
+  const _$Submit();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginEvent.submit()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LoginEvent.submit'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Submit);
+        (other.runtimeType == runtimeType && other is _$Submit);
   }
 
   @override
@@ -273,8 +286,8 @@ class _$_Submit implements _Submit {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_Submit value) submit,
+    required TResult Function(Start value) start,
+    required TResult Function(Submit value) submit,
   }) {
     return submit(this);
   }
@@ -282,8 +295,8 @@ class _$_Submit implements _Submit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
   }) {
     return submit?.call(this);
   }
@@ -291,8 +304,8 @@ class _$_Submit implements _Submit {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_Submit value)? submit,
+    TResult Function(Start value)? start,
+    TResult Function(Submit value)? submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -302,8 +315,8 @@ class _$_Submit implements _Submit {
   }
 }
 
-abstract class _Submit implements LoginEvent {
-  const factory _Submit() = _$_Submit;
+abstract class Submit implements LoginEvent {
+  const factory Submit() = _$Submit;
 }
 
 /// @nodoc
@@ -311,6 +324,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
     required TResult Function() loading,
     required TResult Function(String errorMessage) failure,
     required TResult Function(String phoneNumber) success,
@@ -319,6 +333,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -327,6 +342,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -336,6 +352,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -344,6 +361,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -352,6 +370,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -408,15 +427,23 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginState.initial(isLoginButtonEnabled: $isLoginButtonEnabled)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.initial'))
+      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -441,6 +468,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
     required TResult Function() loading,
     required TResult Function(String errorMessage) failure,
     required TResult Function(String phoneNumber) success,
@@ -452,6 +480,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -463,6 +492,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -478,6 +508,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -489,6 +520,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -500,6 +532,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -523,6 +556,164 @@ abstract class _Initial implements LoginState {
 }
 
 /// @nodoc
+abstract class _$$_ReadyCopyWith<$Res> {
+  factory _$$_ReadyCopyWith(_$_Ready value, $Res Function(_$_Ready) then) =
+      __$$_ReadyCopyWithImpl<$Res>;
+  $Res call({bool isLoginButtonEnabled});
+}
+
+/// @nodoc
+class __$$_ReadyCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_ReadyCopyWith<$Res> {
+  __$$_ReadyCopyWithImpl(_$_Ready _value, $Res Function(_$_Ready) _then)
+      : super(_value, (v) => _then(v as _$_Ready));
+
+  @override
+  _$_Ready get _value => super._value as _$_Ready;
+
+  @override
+  $Res call({
+    Object? isLoginButtonEnabled = freezed,
+  }) {
+    return _then(_$_Ready(
+      isLoginButtonEnabled: isLoginButtonEnabled == freezed
+          ? _value.isLoginButtonEnabled
+          : isLoginButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Ready with DiagnosticableTreeMixin implements _Ready {
+  const _$_Ready({required this.isLoginButtonEnabled});
+
+  @override
+  final bool isLoginButtonEnabled;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginState.ready(isLoginButtonEnabled: $isLoginButtonEnabled)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.ready'))
+      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Ready &&
+            const DeepCollectionEquality()
+                .equals(other.isLoginButtonEnabled, isLoginButtonEnabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(isLoginButtonEnabled));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ReadyCopyWith<_$_Ready> get copyWith =>
+      __$$_ReadyCopyWithImpl<_$_Ready>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
+    required TResult Function() loading,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String phoneNumber) success,
+  }) {
+    return ready(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+  }) {
+    return ready?.call(isLoginButtonEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
+    TResult Function()? loading,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String phoneNumber)? success,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(isLoginButtonEnabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return ready(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return ready?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Ready implements LoginState {
+  const factory _Ready({required final bool isLoginButtonEnabled}) = _$_Ready;
+
+  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_ReadyCopyWith<_$_Ready> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
@@ -541,12 +732,18 @@ class __$$_LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LoginState.loading'));
   }
 
   @override
@@ -562,6 +759,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
     required TResult Function() loading,
     required TResult Function(String errorMessage) failure,
     required TResult Function(String phoneNumber) success,
@@ -573,6 +771,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -584,6 +783,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -599,6 +799,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -610,6 +811,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -621,6 +823,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -669,15 +872,23 @@ class __$$_FailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
+class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   const _$_Failure({required this.errorMessage});
 
   @override
   final String errorMessage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginState.failure(errorMessage: $errorMessage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.failure'))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override
@@ -702,6 +913,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
     required TResult Function() loading,
     required TResult Function(String errorMessage) failure,
     required TResult Function(String phoneNumber) success,
@@ -713,6 +925,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -724,6 +937,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -739,6 +953,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -750,6 +965,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -761,6 +977,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -814,15 +1031,23 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success implements _Success {
+class _$_Success with DiagnosticableTreeMixin implements _Success {
   const _$_Success({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LoginState.success(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.success'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
@@ -847,6 +1072,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) initial,
+    required TResult Function(bool isLoginButtonEnabled) ready,
     required TResult Function() loading,
     required TResult Function(String errorMessage) failure,
     required TResult Function(String phoneNumber) success,
@@ -858,6 +1084,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -869,6 +1096,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? initial,
+    TResult Function(bool isLoginButtonEnabled)? ready,
     TResult Function()? loading,
     TResult Function(String errorMessage)? failure,
     TResult Function(String phoneNumber)? success,
@@ -884,6 +1112,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ready value) ready,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
@@ -895,6 +1124,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
@@ -906,6 +1136,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ready value)? ready,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,

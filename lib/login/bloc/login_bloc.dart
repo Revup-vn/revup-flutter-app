@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_event.dart';
@@ -7,12 +10,12 @@ part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(const LoginState.initial(isLoginButtonEnabled: false)) {
-    on<_Start>((event, emit) {
+    on<Start>((event, emit) {
       emit(
-        LoginState.initial(isLoginButtonEnabled: event.isLoginButtonEnabled),
+        LoginState.ready(isLoginButtonEnabled: event.isLoginButtonEnabled),
       );
     });
 
-    on<_Submit>((event, emit) {}); // TODO(cantgim): implement submit event
+    on<Submit>((event, emit) {}); // TODO(cantgim): implement submit event
   }
 }

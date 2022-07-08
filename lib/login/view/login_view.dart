@@ -20,144 +20,148 @@ class LoginView extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 56, 16, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 350,
-              child: Assets.screens.logoTrans.svg(),
-            ),
-            AutoSizeText(
-              l10n.loginPageTitle,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            AutoSizeText(
-              l10n.loginPageLabel,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(height: 32),
-            FormBuilder(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  FormBuilderTextField(
-                    name: 'phone',
-                    decoration: InputDecoration(
-                      prefixIcon: Ink(
-                        child: Padding(
-                          padding: EdgeInsets.zero,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Assets.screens.flagVietNam.svg(),
-                              const SizedBox(width: 8),
-                              const FittedBox(
-                                child: AutoSizeText('+84'),
-                              ),
-                              const SizedBox(width: 8),
-                            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 56, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 350,
+                child: Assets.screens.logoTrans.svg(),
+              ),
+              AutoSizeText(
+                l10n.loginPageTitle,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              AutoSizeText(
+                l10n.loginPageLabel,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 24),
+              FormBuilder(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    FormBuilderTextField(
+                      name: 'phone',
+                      decoration: InputDecoration(
+                        prefixIcon: Ink(
+                          child: Padding(
+                            padding: EdgeInsets.zero,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Assets.screens.flagVietNam.svg(),
+                                const SizedBox(width: 8),
+                                const FittedBox(
+                                  child: AutoSizeText('+84'),
+                                ),
+                                const SizedBox(width: 8),
+                              ],
+                            ),
                           ),
                         ),
+                        hintText: l10n.phoneFieldLabel,
                       ),
-                      hintText: l10n.phoneFieldLabel,
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.phoneRequiredErrorLabel,
+                        ),
+                        FormBuilderValidators.match(
+                          r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                          errorText: l10n.invalidPhoneNumberLabel,
+                        ),
+                      ]),
+                      onChanged: (phoneNumber) {
+                        if (phoneNumber!.isEmpty) return;
+                        final isValid =
+                            _formKey.currentState?.validate() ?? false;
+                        context.read<LoginBloc>().add(
+                              LoginEvent.start(
+                                isLoginButtonEnabled: isValid,
+                              ),
+                            );
+                      },
                     ),
-                    keyboardType: TextInputType.number,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.phoneRequiredErrorLabel,
-                      ),
-                      FormBuilderValidators.match(
-                        r'^0?(3|5|7|8|9){1}([0-9]{8})$',
-                        errorText: l10n.invalidPhoneNumberLabel,
-                      ),
-                    ]),
-                    onChanged: (phoneNumber) {
-                      final isValid =
-                          _formKey.currentState?.validate() ?? false;
-                      context.read<LoginBloc>().add(
-                            LoginEvent.start(
-                              isLoginButtonEnabled: isValid,
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    AutoSizeText.rich(
+                      TextSpan(
+                        style: Theme.of(context).textTheme.caption,
+                        children: [
+                          TextSpan(
+                            text: l10n.acceptPolicyLabel,
+                          ),
+                          TextSpan(
+                            text: l10n.privacyLabel,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
                             ),
-                          );
-                    },
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  BlocSelector<LoginBloc, LoginState, bool>(
-                    selector: (state) => state.maybeMap(
-                      initial: (value) => value.isLoginButtonEnabled,
-                      orElse: () => false,
+                            // TODO(cantgim): implement regconizer
+                          ),
+                          TextSpan(
+                            text: l10n.andLabel,
+                          ),
+                          TextSpan(
+                            text: l10n.termLabel,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            // TODO(cantgim): implement regconizer
+                          ),
+                        ],
+                      ),
                     ),
-                    builder: (context, state) => ElevatedButton(
-                      onPressed: state
-                          ? () {
-                              context.read<LoginBloc>().add(
-                                    const LoginEvent.submit(),
-                                  ); // TODO(cantgim): implement submit
-                            }
-                          : null,
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(l10n.continueLabel),
+                    const SizedBox(height: 24),
+                    BlocSelector<LoginBloc, LoginState, bool>(
+                      selector: (state) => state.maybeMap(
+                        initial: (value) => value.isLoginButtonEnabled,
+                        ready: (value) => value.isLoginButtonEnabled,
+                        orElse: () => false,
+                      ),
+                      builder: (context, state) => ElevatedButton(
+                        onPressed: state
+                            ? () {
+                                context.read<LoginBloc>().add(
+                                      const LoginEvent.submit(),
+                                    ); // TODO(cantgim): implement submit
+                              }
+                            : null,
+                        style: Theme.of(context).elevatedButtonTheme.style,
+                        child: AutoSizeText(l10n.continueLabel),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 90),
-            AutoSizeText.rich(
-              TextSpan(
-                style: Theme.of(context).textTheme.caption,
+              const SizedBox(height: 132),
+              Row(
                 children: [
-                  TextSpan(
-                    text: l10n.acceptPolicyLabel,
+                  const Expanded(child: Divider()),
+                  AutoSizeText(l10n.loginBySSOLabel),
+                  const Expanded(child: Divider()),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoginSsoItem(
+                    ssoIcon: Assets.screens.facebookOriginal.svg(),
                   ),
-                  TextSpan(
-                    text: l10n.privacyLabel,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    // TODO(cantgim): implement regconizer
-                  ),
-                  TextSpan(
-                    text: l10n.andLabel,
-                  ),
-                  TextSpan(
-                    text: l10n.termLabel,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    // TODO(cantgim): implement regconizer
+                  const SizedBox(width: 56),
+                  LoginSsoItem(
+                    ssoIcon: Assets.screens.googleOriginal.svg(),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 132),
-            Row(
-              children: [
-                const Expanded(child: Divider()),
-                AutoSizeText(l10n.loginBySSOLabel),
-                const Expanded(child: Divider()),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LoginSsoItem(
-                  ssoIcon: Assets.screens.facebookOriginal.svg(),
-                ),
-                const SizedBox(width: 56),
-                LoginSsoItem(
-                  ssoIcon: Assets.screens.googleOriginal.svg(),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
