@@ -1,15 +1,16 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/login/bloc/login_bloc.dart';
 import 'package:revup/login/login.dart';
+import 'package:revup/login/view/login_sso_item.dart';
 import 'package:revup/login/view/login_view.dart';
 
 class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
@@ -45,7 +46,8 @@ void main() {
         'renders logo, icons, title and subtitle',
         (WidgetTester tester) async {
           when(() => loginBloc.state).thenReturn(
-              const LoginState.initial(isLoginButtonEnabled: false));
+            const LoginState.initial(isLoginButtonEnabled: false),
+          );
 
           await tester.pumpWidget(
             BlocProvider<LoginBloc>(
@@ -72,7 +74,8 @@ void main() {
         'add events Start to LoginBloc when phone updated',
         (WidgetTester tester) async {
           when(() => loginBloc.state).thenReturn(
-              const LoginState.initial(isLoginButtonEnabled: false));
+            const LoginState.initial(isLoginButtonEnabled: false),
+          );
 
           await tester.pumpWidget(
             BlocProvider<LoginBloc>(
@@ -140,6 +143,48 @@ void main() {
         final button =
             tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.enabled, isTrue);
+      });
+
+      testWidgets('continue button is disabled when status is invalidated',
+          (tester) async {
+        when(() => loginBloc.state).thenReturn(
+          const LoginState.loading(),
+        );
+        await tester.pumpWidget(
+          BlocProvider<LoginBloc>(
+            create: (context) => loginBloc,
+            child: MaterialApp(
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              locale: const Locale('vi'),
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: LoginView(),
+            ),
+          ),
+        );
+
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        expect(button.enabled, isFalse);
+      });
+
+      testWidgets('onPressed is called when tap on sso item', (tester) async {
+        var called = 0;
+        void handler() {
+          called++;
+        }
+
+        await tester.pumpWidget(
+          MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: LoginSsoItem(
+              onPressedCb: handler,
+            ),
+          ),
+        );
+
+        await tester.tap(find.byType(IconButton));
+        expect(called, 1);
       });
     },
   );
