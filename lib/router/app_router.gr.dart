@@ -43,23 +43,23 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(HomeRoute.name, path: '/home-page', children: [
           RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
-          RouteConfig(TestRoute.name,
-              path: 'test-page', parent: HomeRoute.name),
           RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
         RouteConfig(UpdateProfileRoute.name, path: '/')
+        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(TestRoute.name, path: '/test-page'),
+        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -101,6 +101,12 @@ class TestRoute extends PageRouteInfo<void> {
 /// [AccountPage]
 class AccountRoute extends PageRouteInfo<void> {
   const AccountRoute() : super(AccountRoute.name, path: 'account-page');
+    static const String name = 'AccountRoute';
+}
 
-  static const String name = 'AccountRoute';
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute()
+      : super(OnboardingRoute.name, path: '/onboarding-page');
+      static const String name = 'OnboardingRoute';
 }

@@ -31,7 +31,7 @@ part 'app_router.gr.dart';
     //AdaptiveRoute<void>(page: PaymentPage, initial: true),
     //AdaptiveRoute<void>(page: Signup6Page, initial: true),
     AdaptiveRoute<void>(page: UpdateProfilePage, initial: true),
-    //AdaptiveRoute<void>(page: OnboardingPage),
+    AdaptiveRoute<void>(page: OnboardingPage),
   ],
 )
 class AppRouter extends _$AppRouter {}
