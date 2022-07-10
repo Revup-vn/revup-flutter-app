@@ -22,7 +22,7 @@ class UpdateProfileItem extends StatelessWidget {
         labelStyle: Theme.of(context).textTheme.labelLarge,
       ),
       keyboardType: textType,
-      name: 'profileName',
+      name: keyName,
     );
   }
 }

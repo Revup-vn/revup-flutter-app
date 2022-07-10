@@ -1,16 +1,22 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import '../widgets/update_profile_item.dart';
 
-import '../../account/widgets/circle_avatar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../account/widgets/use_avatar.dart';
 import '../../l10n/l10n.dart';
+import '../widgets/update_profile_item.dart';
 
 class UpdateProfilePage extends StatelessWidget {
   const UpdateProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final userName = 'Nam Anh';
+    const urlImage =
+        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -24,17 +30,20 @@ class UpdateProfilePage extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 60, 10, 16),
-            child: CircleAvatarAccount(
-              radiusCircleAvatar: 80,
-              radiusCircleAvatarIcon: 18,
-              sizeIcon: 22,
-              sizeText: Theme.of(context).textTheme.headline1,
+            child: UserAvatar(
+              avatarSize: 80,
+              cameraContainerSize: 18,
+              cameraSize: 22,
+              textSize: Theme.of(context).textTheme.headline1,
+              userName: userName,
+              urlImage: urlImage,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: FormBuilder(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   UpdateProfileItem(
                     profileName: l10n.fullNameLabel,
@@ -51,19 +60,15 @@ class UpdateProfilePage extends StatelessWidget {
                     textType: TextInputType.number,
                     keyName: 'phone',
                   ),
-                  UpdateProfileItem(
-                    profileName: l10n.dateLabel,
-                    textType: TextInputType.datetime,
-                    keyName: 'date',
-                  ),
                   FormBuilderDateTimePicker(
+                    style: Theme.of(context).textTheme.labelLarge,
                     name: 'date',
-                    // onChanged: _onChanged,
-                    inputType: InputType.time,
-                    decoration: const InputDecoration(
-                      labelText: 'Appointment Time',
+                    inputType: InputType.date,
+                    format: DateFormat('dd-MM-yyyy'),
+                    decoration: InputDecoration(
+                      labelText: l10n.dateLabel,
+                      labelStyle: Theme.of(context).textTheme.labelLarge,
                     ),
-                    initialTime: const TimeOfDay(hour: 8, minute: 0),
                     initialValue: DateTime.now(),
                   ),
                   UpdateProfileItem(
@@ -71,33 +76,16 @@ class UpdateProfilePage extends StatelessWidget {
                     textType: TextInputType.text,
                     keyName: 'address',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 50, 16, 10),
-                    // child: ElevatedButton(
-                    //   // ignore: todo
-                    //   onPressed: () {}, // TODO(namngoc231): implement on press
-                    //   style: ElevatedButton.styleFrom(
-                    //     fixedSize: const Size(850, 50),
-                    //     primary: const Color.fromARGB(255, 87, 68, 16),
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(30),
-                    //     ),
-                    //   ),
-                    //   //style: Theme.of(context).elevatedButtonTheme.style,
-                    //   child: Text(
-                    //     l10n.updateText,
-                    //style: const TextStyle(fontSize: 18, color: Colors.white),
-                    //   ),
-                    // ),
-                    child: ElevatedButton(
-                      // ignore: todo
-                      onPressed:
-                          () {}, // TODO(namngoc231): complete update profile
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(
-                        l10n.updateLabel,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton(
+                    onPressed:
+                        () {}, // TODO(namngoc231): complete update profile
+                    style: Theme.of(context).elevatedButtonTheme.style,
+                    child: AutoSizeText(
+                      l10n.updateLabel,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ],

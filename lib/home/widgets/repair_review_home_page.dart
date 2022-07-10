@@ -1,6 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import '../../account/widgets/circle_avatar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import '../../account/widgets/use_avatar.dart';
 import '../../l10n/l10n.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
@@ -11,6 +11,11 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    const userName = 'Nam Anh';
+    const timeRepair = '16:10 - 17:00';
+    const dayRepair = '17/10/2022';
+    const urlImage =
+        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -19,16 +24,18 @@ class RepairReviewHomePage extends StatelessWidget {
           children: [
             Column(
               children: [
-                CircleAvatarAccount(
-                  radiusCircleAvatar: 30,
-                  radiusCircleAvatarIcon: 0,
-                  sizeIcon: 0,
-                  sizeText: Theme.of(context).textTheme.titleLarge,
+                UserAvatar(
+                  avatarSize: 30,
+                  cameraContainerSize: 0,
+                  cameraSize: 0,
+                  textSize: Theme.of(context).textTheme.titleLarge,
+                  userName: userName,
+                  urlImage: urlImage,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: AutoSizeText(
-                    'Quang Nghĩa',
+                    userName,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),
@@ -41,11 +48,11 @@ class RepairReviewHomePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 AutoSizeText(
-                  '${l10n.timeLabel}: 16:10 - 17:00',
+                  '${l10n.timeLabel}: $timeRepair',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 AutoSizeText(
-                  '${l10n.dayLabel}: 17/ 10/2022',
+                  '${l10n.dayLabel}: $dayRepair',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ],

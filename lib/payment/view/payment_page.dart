@@ -1,8 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import '../widgets/payment_item.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../widgets/payment_item.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -38,10 +40,12 @@ class PaymentPage extends StatelessWidget {
               PaymentItem(
                 paymentIcon: Assets.screens.iconsZalo.svg(),
                 paymentName: l10n.zaloPayLabel,
+                clickCallback: () {},
               ),
               PaymentItem(
-                paymentIcon: Assets.screens.iconCash.svg(),
-                paymentName: l10n.cashLabel,
+                paymentIcon: Assets.screens.iconMomo.svg(),
+                paymentName: l10n.momoLabel,
+                clickCallback: () {},
               ),
             ],
           ),

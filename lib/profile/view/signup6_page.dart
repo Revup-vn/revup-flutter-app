@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
-import '../../l10n/l10n.dart';
-import '../../account/widgets/circle_avatar.dart';
-import '../widgets/update_profile_item.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+
+import '../../account/widgets/use_avatar.dart';
+import '../../l10n/l10n.dart';
+import '../widgets/update_profile_item.dart';
 
 class Signup6Page extends StatelessWidget {
   const Signup6Page({super.key});
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final userName = 'Nam Anh';
+    const urlImage =
+        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -23,11 +28,13 @@ class Signup6Page extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 60, 10, 16),
-            child: CircleAvatarAccount(
-              radiusCircleAvatar: 80,
-              radiusCircleAvatarIcon: 18,
-              sizeIcon: 22,
-              sizeText: Theme.of(context).textTheme.headline1,
+            child: UserAvatar(
+              avatarSize: 80,
+              cameraContainerSize: 18,
+              cameraSize: 22,
+              textSize: Theme.of(context).textTheme.headline1,
+              userName: userName,
+              urlImage: urlImage,
             ),
           ),
           Padding(

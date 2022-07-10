@@ -1,6 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PaymentItem extends StatelessWidget {
@@ -8,10 +8,11 @@ class PaymentItem extends StatelessWidget {
     super.key,
     required this.paymentIcon,
     required this.paymentName,
+    required this.clickCallback,
   });
   final SvgPicture paymentIcon;
   final String paymentName;
-
+  final VoidCallback clickCallback;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +26,7 @@ class PaymentItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        onPressed: () {}, // TODO(namngoc231): implement payments
+        onPressed: clickCallback, // TODO(namngoc231): implement payments
         icon: SizedBox(
           width: 50,
           child: paymentIcon,

@@ -2,14 +2,18 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/account_item.dart';
-import '../widgets/circle_avatar.dart';
+import '../widgets/use_avatar.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final userName = 'Nam Anh';
+    final userPhone = '+84989666888';
+    const urlImage =
+        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -19,18 +23,20 @@ class AccountPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-              child: CircleAvatarAccount(
-                radiusCircleAvatar: 60,
-                radiusCircleAvatarIcon: 13,
-                sizeIcon: 20,
-                sizeText: Theme.of(context).textTheme.headline1,
+              child: UserAvatar(
+                avatarSize: 60,
+                cameraContainerSize: 13,
+                cameraSize: 20,
+                textSize: Theme.of(context).textTheme.headline1,
+                userName: userName,
+                urlImage: urlImage,
               ),
             ),
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
               child: AutoSizeText(
-                'Quang Nghĩa',
+                userName,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
@@ -38,7 +44,7 @@ class AccountPage extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
               child: AutoSizeText(
-                '+84989666888',
+                userPhone,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -52,27 +58,33 @@ class AccountPage extends StatelessWidget {
             AccountItem(
               accountName: l10n.serviceAccountLabel,
               accountIcon: const Icon(Icons.home_repair_service),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.editProfileLabel,
               accountIcon: const Icon(Icons.portrait),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.paymentLabel,
               accountIcon: const Icon(Icons.payment),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.organizationLabel,
               accountIcon: const Icon(Icons.business),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.changePassWordLabel,
               accountIcon: const Icon(Icons.key),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.changeLanguageLabel,
               accountIcon:
                   const Icon(IconData(0xe366, fontFamily: 'MaterialIcons')),
+              clickCallback: () {},
             ),
             const Divider(
               height: 1,
@@ -88,46 +100,30 @@ class AccountPage extends StatelessWidget {
             AccountItem(
               accountName: l10n.faqsLabel,
               accountIcon: const Icon(Icons.quiz),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.termsOfServiceLabel,
               accountIcon: const Icon(Icons.fact_check),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.aboutUsLabel,
               accountIcon: const Icon(Icons.people),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.suportsLabel,
               accountIcon: const Icon(Icons.help),
+              clickCallback: () {},
             ),
             AccountItem(
               accountName: l10n.logoutLabel,
               accountIcon: const Icon(Icons.logout),
+              clickCallback: () {},
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: l10n.homeLabel,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.restore),
-            label: l10n.activateLabel,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.notifications),
-            label: l10n.notificationLabel,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.account_circle),
-            label: l10n.accountLabel,
-          ),
-        ],
       ),
     );
   }

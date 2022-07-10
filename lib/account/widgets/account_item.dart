@@ -1,5 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 
 class AccountItem extends StatelessWidget {
   // ignore: lines_longer_than_80_chars
@@ -7,9 +8,11 @@ class AccountItem extends StatelessWidget {
     super.key,
     required this.accountName,
     required this.accountIcon,
+    required this.clickCallback,
   });
   final String accountName;
   final Icon accountIcon;
+  final VoidCallback clickCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class AccountItem extends StatelessWidget {
       leading: accountIcon,
       trailing: IconButton(
         icon: const Icon(Icons.arrow_forward_ios),
-        onPressed: () {}, // TODO(namngoc231): implement on press
+        onPressed: clickCallback, // TODO(namngoc231): implement on press
       ),
     );
   }
