@@ -32,6 +32,7 @@ dependencies:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
+    version: ^1.0.0+3
   shared_preferences: ^2.0.15
 
 dev_dependencies:
