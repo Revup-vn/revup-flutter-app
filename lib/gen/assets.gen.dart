@@ -18,6 +18,10 @@ class $AssetsScreensGen {
   SvgGenImage get destination =>
       const SvgGenImage('assets/screens/destination.svg');
 
+  /// File path: assets/screens/df_avatar.png
+  AssetGenImage get dfAvatar =>
+      const AssetGenImage('assets/screens/df_avatar.png');
+
   /// File path: assets/screens/mobile_pay.svg
   SvgGenImage get mobilePay =>
       const SvgGenImage('assets/screens/mobile_pay.svg');

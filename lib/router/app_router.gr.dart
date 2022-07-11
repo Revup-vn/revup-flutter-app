@@ -28,25 +28,25 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const OnboardingPage());
     },
-    AddServiceRoute.name: (routeData) {
+    ChooseServiceRoute.name: (routeData) {
       return AdaptivePage<void>(
-          routeData: routeData, child: const AddServicePage());
+          routeData: routeData, child: const ChooseServicePage());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
-        RouteConfig(AddServiceRoute.name, path: '/add-service-page')
+        RouteConfig(ChooseServiceRoute.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -69,10 +69,9 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AddServicePage]
-class AddServiceRoute extends PageRouteInfo<void> {
-  const AddServiceRoute()
-      : super(AddServiceRoute.name, path: '/add-service-page');
+/// [ChooseServicePage]
+class ChooseServiceRoute extends PageRouteInfo<void> {
+  const ChooseServiceRoute() : super(ChooseServiceRoute.name, path: '/');
 
-  static const String name = 'AddServiceRoute';
+  static const String name = 'ChooseServiceRoute';
 }
