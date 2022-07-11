@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/account_item.dart';
+import '../widgets/default_avatar.dart';
 import '../widgets/use_avatar.dart';
 
 class AccountPage extends StatelessWidget {
@@ -23,13 +25,54 @@ class AccountPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-              child: UserAvatar(
-                avatarSize: 60,
-                cameraContainerSize: 13,
-                cameraSize: 20,
-                textSize: Theme.of(context).textTheme.headline1,
-                userName: userName,
-                urlImage: urlImage,
+              // child: UserAvatar(
+              //   avatarSize: 60,
+              //   cameraContainerSize: 13,
+              //   cameraSize: 20,
+              //   textSize: Theme.of(context).textTheme.headline1,
+              //   userName: userName,
+              //   urlImage: urlImage,
+              // ),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: 130,
+                    width: 130,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(70),
+                      child: CachedNetworkImage(
+                        fadeInDuration: const Duration(milliseconds: 50),
+                        fadeOutDuration: const Duration(milliseconds: 50),
+                        imageUrl: urlImage,
+                        // ignore: implicit_dynamic_parameter
+                        errorWidget: (context, url, error) {
+                          return DefaultAvatar(
+                            avatarSize: 60,
+                            cameraContainerSize: 25,
+                            cameraSize: 22,
+                            textSize: Theme.of(context).textTheme.headline1,
+                            userName: userName,
+                          );
+                        },
+                        height: 64,
+                        width: 64,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: -10,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.camera_alt,
+                        size: 25,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(

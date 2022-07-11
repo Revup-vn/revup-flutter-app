@@ -34,28 +34,91 @@ class SupportHomePage extends StatelessWidget {
           children: [
             Column(
               children: [
-                Assets.screens.sos.svg(width: 70),
-                AutoSizeText(
-                  l10n.sosLabel,
-                  style: Theme.of(context).textTheme.labelLarge,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.sos),
+                      iconSize: 35,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  child: AutoSizeText(
+                    l10n.sosLabel,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
             Column(
               children: [
-                Assets.screens.vehicleMaintenance.svg(width: 70),
-                AutoSizeText(
-                  l10n.vehicleMaintenanceLabel,
-                  style: Theme.of(context).textTheme.labelLarge,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.build),
+                      iconSize: 35,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  child: AutoSizeText(
+                    l10n.vehicleMaintenanceLabel,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
             Column(
               children: [
-                Assets.screens.gasStation.svg(width: 70),
-                AutoSizeText(
-                  l10n.gasStationLabel,
-                  style: Theme.of(context).textTheme.labelLarge,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.local_gas_station),
+                      iconSize: 35,
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  child: AutoSizeText(
+                    l10n.gasStationLabel,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),

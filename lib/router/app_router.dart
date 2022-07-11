@@ -21,7 +21,7 @@ part 'app_router.gr.dart';
     AdaptiveRoute<void>(page: SplashPage),
     AdaptiveRoute<void>(
       page: HomePage,
-      //initial: true,
+      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: TestPage),
@@ -30,7 +30,7 @@ part 'app_router.gr.dart';
     ),
     //AdaptiveRoute<void>(page: PaymentPage, initial: true),
     //AdaptiveRoute<void>(page: Signup6Page, initial: true),
-    AdaptiveRoute<void>(page: UpdateProfilePage, initial: true),
+    //AdaptiveRoute<void>(page: UpdateProfilePage, initial: true),
     AdaptiveRoute<void>(page: OnboardingPage),
   ],
 )

@@ -41,6 +41,7 @@ class Signup6Page extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: FormBuilder(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   UpdateProfileItem(
                     profileName: l10n.fullNameLabel,
@@ -62,17 +63,13 @@ class Signup6Page extends StatelessWidget {
                     textType: TextInputType.text,
                     keyName: 'address',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 50, 16, 10),
-                    child: ElevatedButton(
-                      // ignore: todo
-                      onPressed:
-                          () {}, // TODO(namngoc231): complete registration
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(
-                        l10n.updateLabel,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                  ElevatedButton(
+                    onPressed:
+                        () {}, // TODO(namngoc231): complete update profile
+                    style: Theme.of(context).elevatedButtonTheme.style,
+                    child: AutoSizeText(
+                      l10n.doneLabel,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ],

@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import '../../account/widgets/default_avatar.dart';
 import '../../account/widgets/use_avatar.dart';
 import '../../l10n/l10n.dart';
 
@@ -24,13 +26,30 @@ class RepairReviewHomePage extends StatelessWidget {
           children: [
             Column(
               children: [
-                UserAvatar(
-                  avatarSize: 30,
-                  cameraContainerSize: 0,
-                  cameraSize: 0,
-                  textSize: Theme.of(context).textTheme.titleLarge,
-                  userName: userName,
-                  urlImage: urlImage,
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(48),
+                    child: CachedNetworkImage(
+                      fadeInDuration: const Duration(milliseconds: 50),
+                      fadeOutDuration: const Duration(milliseconds: 50),
+                      imageUrl: urlImage,
+                      // ignore: implicit_dynamic_parameter
+                      errorWidget: (context, url, error) {
+                        return DefaultAvatar(
+                          avatarSize: 80,
+                          cameraContainerSize: 0,
+                          cameraSize: 0,
+                          textSize: Theme.of(context).textTheme.labelLarge,
+                          userName: userName,
+                        );
+                      },
+                      height: 64,
+                      width: 64,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),

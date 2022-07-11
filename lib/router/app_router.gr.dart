@@ -24,9 +24,9 @@ class _$AppRouter extends RootStackRouter {
     HomeRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const HomePage());
     },
-    UpdateProfileRoute.name: (routeData) {
+    OnboardingRoute.name: (routeData) {
       return AdaptivePage<void>(
-          routeData: routeData, child: const UpdateProfilePage());
+          routeData: routeData, child: const OnboardingPage());
     },
     HomeBodyRoute.name: (routeData) {
       return AdaptivePage<void>(
@@ -43,15 +43,15 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(HomeRoute.name, path: '/home-page', children: [
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
+        RouteConfig(HomeRoute.name, path: '/', children: [
           RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
+          RouteConfig(TestRoute.name,
+              path: 'test-page', parent: HomeRoute.name),
           RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
-        RouteConfig(UpdateProfileRoute.name, path: '/')
-        RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
       ];
 }
@@ -59,7 +59,7 @@ class _$AppRouter extends RootStackRouter {
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -68,17 +68,18 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
 /// generated route for
-/// [UpdateProfilePage]
-class UpdateProfileRoute extends PageRouteInfo<void> {
-  const UpdateProfileRoute() : super(UpdateProfileRoute.name, path: '/');
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute()
+      : super(OnboardingRoute.name, path: '/onboarding-page');
 
-  static const String name = 'UpdateProfileRoute';
+  static const String name = 'OnboardingRoute';
 }
 
 /// generated route for
@@ -101,12 +102,6 @@ class TestRoute extends PageRouteInfo<void> {
 /// [AccountPage]
 class AccountRoute extends PageRouteInfo<void> {
   const AccountRoute() : super(AccountRoute.name, path: 'account-page');
-    static const String name = 'AccountRoute';
-}
 
-/// [OnboardingPage]
-class OnboardingRoute extends PageRouteInfo<void> {
-  const OnboardingRoute()
-      : super(OnboardingRoute.name, path: '/onboarding-page');
-      static const String name = 'OnboardingRoute';
+  static const String name = 'AccountRoute';
 }
