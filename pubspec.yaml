@@ -27,7 +27,7 @@ dependencies:
   hive: ^2.2.3
   intl: ^0.17.0
   introduction_screen: ^3.0.1
-  json_annotation: ^4.5.0
+  json_annotation: ^4.6.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
