@@ -22,9 +22,9 @@ class ChooseServiceView extends StatelessWidget {
           onPressed: () {},
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {},
-            icon: const Icon(Icons.add),
+            child: Text(l10n.addLabel),
           ),
         ],
       ),

@@ -11,5 +11,7 @@
   "nextLabel": "Next",
   "doneLabel": "Done",
   "addServiceAppBarTitle": "Choose the services",
-  "confirmLabel": "Confirm"
+  "confirmLabel": "Confirm",
+  "addLabel": "Add new",
+  "serviceDetailsAppBarTitle": "Service Details"
 }

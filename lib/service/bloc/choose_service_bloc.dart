@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'choose_service_event.dart';
@@ -8,11 +9,11 @@ part 'choose_service_bloc.freezed.dart';
 class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   ChooseServiceBloc() : super(const _Initial()) {
     on<ServiceSelected>((event, emit) {
-      selectedServices.add(event.serviceId);
+      selectedServices.appendElement(event.serviceId);
     });
     on<ServiceUnselected>(
       (event, emit) {
-        selectedServices.remove(event.serviceId);
+        selectedServices.filter((a) => a != event.serviceId);
       },
     );
     on<ServiceListSubmitted>(
@@ -22,5 +23,5 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
       },
     );
   }
-  List<String> selectedServices = <String>[];
+  final selectedServices = ilist(<String>[]);
 }

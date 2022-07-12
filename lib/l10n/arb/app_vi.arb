@@ -11,5 +11,7 @@
   "nextLabel": "Tiếp theo",
   "doneLabel": "Xong",
   "addServiceAppBarTitle": "Lựa chọn dịch vụ",
-  "confirmLabel": "Xác nhận"
+  "confirmLabel": "Xác nhận",
+  "addLabel": "Thêm mới",
+  "serviceDetailsAppBarTitle": "Chi tiết dịch vụ"
 }
