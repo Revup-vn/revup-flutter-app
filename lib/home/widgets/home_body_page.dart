@@ -18,8 +18,6 @@ class HomeBodyPage extends StatelessWidget {
       'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
       'https://e-magazine.asiamedia.vn/wp-content/uploads/2021/07/top-10-hang-dau-nhot-noi-tieng-nhat-tai-viet-nam-21.jpg',
     ];
-    const urlImage =
-        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Scaffold(
       body: ListView(
         children: <Widget>[

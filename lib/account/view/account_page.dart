@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/account_item.dart';
 import '../widgets/default_avatar.dart';
-import '../widgets/use_avatar.dart';
+import '../widgets/user_data.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -12,28 +12,16 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final userName = 'Nam Anh';
-    final userPhone = '+84989666888';
-    const urlImage =
-        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
+    final users = UserData.fetchAll();
+    final user = users.first;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-              // child: UserAvatar(
-              //   avatarSize: 60,
-              //   cameraContainerSize: 13,
-              //   cameraSize: 20,
-              //   textSize: Theme.of(context).textTheme.headline1,
-              //   userName: userName,
-              //   urlImage: urlImage,
-              // ),
-              child: Stack(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 60, 16, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Stack(
                 children: [
                   SizedBox(
                     height: 130,
@@ -43,15 +31,12 @@ class AccountPage extends StatelessWidget {
                       child: CachedNetworkImage(
                         fadeInDuration: const Duration(milliseconds: 50),
                         fadeOutDuration: const Duration(milliseconds: 50),
-                        imageUrl: urlImage,
+                        imageUrl: user.urlImage,
                         // ignore: implicit_dynamic_parameter
                         errorWidget: (context, url, error) {
                           return DefaultAvatar(
-                            avatarSize: 60,
-                            cameraContainerSize: 25,
-                            cameraSize: 22,
                             textSize: Theme.of(context).textTheme.headline1,
-                            userName: userName,
+                            userName: user.name,
                           );
                         },
                         height: 64,
@@ -61,111 +46,137 @@ class AccountPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 0,
-                    right: -10,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.camera_alt,
-                        size: 25,
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    bottom: 1,
+                    right: 1,
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(blurRadius: 5, spreadRadius: 0.1)
+                        ],
+                      ),
+                      child: CircleAvatar(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
+                        radius: 17,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.camera_alt,
+                            size: 20,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: AutoSizeText(
-                userName,
+              const SizedBox(
+                height: 16,
+              ),
+              AutoSizeText(
+                user.name,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: AutoSizeText(
-                userPhone,
+              const SizedBox(
+                height: 16,
+              ),
+              AutoSizeText(
+                user.phone,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: AutoSizeText(
-                l10n.accountLabel,
-                style: Theme.of(context).textTheme.labelLarge,
+              const SizedBox(
+                height: 32,
               ),
-            ),
-            AccountItem(
-              accountName: l10n.serviceAccountLabel,
-              accountIcon: const Icon(Icons.home_repair_service),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.editProfileLabel,
-              accountIcon: const Icon(Icons.portrait),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.paymentLabel,
-              accountIcon: const Icon(Icons.payment),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.organizationLabel,
-              accountIcon: const Icon(Icons.business),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.changePassWordLabel,
-              accountIcon: const Icon(Icons.key),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.changeLanguageLabel,
-              accountIcon:
-                  const Icon(IconData(0xe366, fontFamily: 'MaterialIcons')),
-              clickCallback: () {},
-            ),
-            const Divider(
-              height: 1,
-              thickness: 1,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: AutoSizeText(
-                l10n.guideAndSuportLabel,
-                style: Theme.of(context).textTheme.labelLarge,
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  AutoSizeText(
+                    l10n.accountLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
               ),
-            ),
-            AccountItem(
-              accountName: l10n.faqsLabel,
-              accountIcon: const Icon(Icons.quiz),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.termsOfServiceLabel,
-              accountIcon: const Icon(Icons.fact_check),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.aboutUsLabel,
-              accountIcon: const Icon(Icons.people),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.suportsLabel,
-              accountIcon: const Icon(Icons.help),
-              clickCallback: () {},
-            ),
-            AccountItem(
-              accountName: l10n.logoutLabel,
-              accountIcon: const Icon(Icons.logout),
-              clickCallback: () {},
-            ),
-          ],
+              AccountItem(
+                accountName: l10n.serviceAccountLabel,
+                accountIcon: const Icon(Icons.home_repair_service),
+                callback: () {}, // TODO(namngoc231): Go to Service
+              ),
+              AccountItem(
+                accountName: l10n.editProfileLabel,
+                accountIcon: const Icon(Icons.portrait),
+                callback: () {}, // TODO(namngoc231): Go to Edit Profile
+              ),
+              AccountItem(
+                accountName: l10n.paymentLabel,
+                accountIcon: const Icon(Icons.payment),
+                callback: () {}, // TODO(namngoc231): Go to Payment
+              ),
+              AccountItem(
+                accountName: l10n.organizationLabel,
+                accountIcon: const Icon(Icons.business),
+                callback: () {}, // TODO(namngoc231): Go to Organization account
+              ),
+              AccountItem(
+                accountName: l10n.changePassWordLabel,
+                accountIcon: const Icon(Icons.key),
+                callback: () {}, // TODO(namngoc231): Go to Change PassWord
+              ),
+              AccountItem(
+                accountName: l10n.changeLanguageLabel,
+                accountIcon:
+                    const Icon(IconData(0xe366, fontFamily: 'MaterialIcons')),
+                callback: () {}, // TODO(namngoc231): Go to Change Language
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  AutoSizeText(
+                    l10n.guideAndSuportLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
+              ),
+              AccountItem(
+                accountName: l10n.faqsLabel,
+                accountIcon: const Icon(Icons.quiz),
+                callback: () {}, // TODO(namngoc231): Go to FAQs
+              ),
+              AccountItem(
+                accountName: l10n.termsOfServiceLabel,
+                accountIcon: const Icon(Icons.fact_check),
+                callback: () {}, // TODO(namngoc231): Go to Terms of Service
+              ),
+              AccountItem(
+                accountName: l10n.aboutUsLabel,
+                accountIcon: const Icon(Icons.people),
+                callback: () {}, // TODO(namngoc231): Go to About Us
+              ),
+              AccountItem(
+                accountName: l10n.suportsLabel,
+                accountIcon: const Icon(Icons.help),
+                callback: () {}, // TODO(namngoc231): Go to Suports
+              ),
+              AccountItem(
+                accountName: l10n.logoutLabel,
+                accountIcon: const Icon(Icons.logout),
+                callback: () {}, // TODO(namngoc231): Go to Logout
+              ),
+            ],
+          ),
         ),
       ),
     );

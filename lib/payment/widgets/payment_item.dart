@@ -28,12 +28,15 @@ class PaymentItem extends StatelessWidget {
         ),
         onPressed: clickCallback, // TODO(namngoc231): implement payments
         icon: SizedBox(
-          width: 50,
+          width: 40,
           child: paymentIcon,
         ),
         label: AutoSizeText(
           paymentName,
-          style: Theme.of(context).textTheme.labelLarge,
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
     );

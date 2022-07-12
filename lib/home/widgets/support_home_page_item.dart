@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 
 class SupportHomePage extends StatelessWidget {

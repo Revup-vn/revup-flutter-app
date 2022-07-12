@@ -30,8 +30,8 @@ class PaymentPage extends StatelessWidget {
               l10n.morePaymentMethodsLabel,
               style: Theme.of(context)
                   .textTheme
-                  .labelLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
+                  .labelLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           Row(

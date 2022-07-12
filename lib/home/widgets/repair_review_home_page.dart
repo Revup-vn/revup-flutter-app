@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import '../../account/widgets/default_avatar.dart';
-import '../../account/widgets/use_avatar.dart';
+import '../../account/widgets/user_data.dart';
 import '../../l10n/l10n.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
@@ -13,11 +13,10 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    const userName = 'Nam Anh';
+    final users = UserData.fetchAll();
+    final user = users.first;
     const timeRepair = '16:10 - 17:00';
     const dayRepair = '17/10/2022';
-    const urlImage =
-        'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg';
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -34,15 +33,12 @@ class RepairReviewHomePage extends StatelessWidget {
                     child: CachedNetworkImage(
                       fadeInDuration: const Duration(milliseconds: 50),
                       fadeOutDuration: const Duration(milliseconds: 50),
-                      imageUrl: urlImage,
+                      imageUrl: user.urlImage,
                       // ignore: implicit_dynamic_parameter
                       errorWidget: (context, url, error) {
                         return DefaultAvatar(
-                          avatarSize: 80,
-                          cameraContainerSize: 0,
-                          cameraSize: 0,
-                          textSize: Theme.of(context).textTheme.labelLarge,
-                          userName: userName,
+                          textSize: Theme.of(context).textTheme.titleLarge,
+                          userName: user.name,
                         );
                       },
                       height: 64,
@@ -54,7 +50,7 @@ class RepairReviewHomePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: AutoSizeText(
-                    userName,
+                    user.name,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),
