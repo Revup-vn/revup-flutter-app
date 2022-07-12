@@ -18,20 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChooseServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ServiceData serviceData) serviceListSubmitted,
+    required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$ChooseServiceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,9 +90,6 @@ abstract class _$$ServiceListSubmittedCopyWith<$Res> {
   factory _$$ServiceListSubmittedCopyWith(_$ServiceListSubmitted value,
           $Res Function(_$ServiceListSubmitted) then) =
       __$$ServiceListSubmittedCopyWithImpl<$Res>;
-  $Res call({ServiceData serviceData});
-
-  $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
@@ -93,86 +102,60 @@ class __$$ServiceListSubmittedCopyWithImpl<$Res>
 
   @override
   _$ServiceListSubmitted get _value => super._value as _$ServiceListSubmitted;
-
-  @override
-  $Res call({
-    Object? serviceData = freezed,
-  }) {
-    return _then(_$ServiceListSubmitted(
-      serviceData: serviceData == freezed
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as ServiceData,
-    ));
-  }
-
-  @override
-  $ServiceDataCopyWith<$Res> get serviceData {
-    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
-      return _then(_value.copyWith(serviceData: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$ServiceListSubmitted implements ServiceListSubmitted {
-  const _$ServiceListSubmitted({required this.serviceData});
-
-  @override
-  final ServiceData serviceData;
+  const _$ServiceListSubmitted();
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceListSubmitted(serviceData: $serviceData)';
+    return 'ChooseServiceEvent.serviceListSubmitted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServiceListSubmitted &&
-            const DeepCollectionEquality()
-                .equals(other.serviceData, serviceData));
+        (other.runtimeType == runtimeType && other is _$ServiceListSubmitted);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(serviceData));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$ServiceListSubmittedCopyWith<_$ServiceListSubmitted> get copyWith =>
-      __$$ServiceListSubmittedCopyWithImpl<_$ServiceListSubmitted>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ServiceData serviceData) serviceListSubmitted,
+    required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
   }) {
-    return serviceListSubmitted(serviceData);
+    return serviceListSubmitted();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
   }) {
-    return serviceListSubmitted?.call(serviceData);
+    return serviceListSubmitted?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
-      return serviceListSubmitted(serviceData);
+      return serviceListSubmitted();
     }
     return orElse();
   }
@@ -182,6 +165,8 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult map<TResult extends Object?>({
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
   }) {
     return serviceListSubmitted(this);
   }
@@ -191,6 +176,8 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
   }) {
     return serviceListSubmitted?.call(this);
   }
@@ -200,6 +187,8 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -210,13 +199,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
 }
 
 abstract class ServiceListSubmitted implements ChooseServiceEvent {
-  const factory ServiceListSubmitted({required final ServiceData serviceData}) =
-      _$ServiceListSubmitted;
-
-  ServiceData get serviceData => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$ServiceListSubmittedCopyWith<_$ServiceListSubmitted> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory ServiceListSubmitted() = _$ServiceListSubmitted;
 }
 
 /// @nodoc
@@ -260,8 +243,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ServiceData serviceData) serviceListSubmitted,
+    required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
   }) {
     return newServiceRequested();
   }
@@ -269,8 +254,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
   }) {
     return newServiceRequested?.call();
   }
@@ -278,8 +265,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ServiceData serviceData)? serviceListSubmitted,
+    TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
@@ -293,6 +282,8 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
   }) {
     return newServiceRequested(this);
   }
@@ -302,6 +293,8 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
   }) {
     return newServiceRequested?.call(this);
   }
@@ -311,6 +304,8 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
@@ -322,6 +317,298 @@ class _$NewServiceRequested implements NewServiceRequested {
 
 abstract class NewServiceRequested implements ChooseServiceEvent {
   const factory NewServiceRequested() = _$NewServiceRequested;
+}
+
+/// @nodoc
+abstract class _$$ServiceSelectedCopyWith<$Res> {
+  factory _$$ServiceSelectedCopyWith(
+          _$ServiceSelected value, $Res Function(_$ServiceSelected) then) =
+      __$$ServiceSelectedCopyWithImpl<$Res>;
+  $Res call({String serviceId});
+}
+
+/// @nodoc
+class __$$ServiceSelectedCopyWithImpl<$Res>
+    extends _$ChooseServiceEventCopyWithImpl<$Res>
+    implements _$$ServiceSelectedCopyWith<$Res> {
+  __$$ServiceSelectedCopyWithImpl(
+      _$ServiceSelected _value, $Res Function(_$ServiceSelected) _then)
+      : super(_value, (v) => _then(v as _$ServiceSelected));
+
+  @override
+  _$ServiceSelected get _value => super._value as _$ServiceSelected;
+
+  @override
+  $Res call({
+    Object? serviceId = freezed,
+  }) {
+    return _then(_$ServiceSelected(
+      serviceId == freezed
+          ? _value.serviceId
+          : serviceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ServiceSelected implements ServiceSelected {
+  const _$ServiceSelected(this.serviceId);
+
+  @override
+  final String serviceId;
+
+  @override
+  String toString() {
+    return 'ChooseServiceEvent.serviceSelected(serviceId: $serviceId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServiceSelected &&
+            const DeepCollectionEquality().equals(other.serviceId, serviceId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(serviceId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ServiceSelectedCopyWith<_$ServiceSelected> get copyWith =>
+      __$$ServiceSelectedCopyWithImpl<_$ServiceSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serviceListSubmitted,
+    required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
+  }) {
+    return serviceSelected(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+  }) {
+    return serviceSelected?.call(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (serviceSelected != null) {
+      return serviceSelected(serviceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
+  }) {
+    return serviceSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+  }) {
+    return serviceSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (serviceSelected != null) {
+      return serviceSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ServiceSelected implements ChooseServiceEvent {
+  const factory ServiceSelected(final String serviceId) = _$ServiceSelected;
+
+  String get serviceId;
+  @JsonKey(ignore: true)
+  _$$ServiceSelectedCopyWith<_$ServiceSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ServiceUnselectedCopyWith<$Res> {
+  factory _$$ServiceUnselectedCopyWith(
+          _$ServiceUnselected value, $Res Function(_$ServiceUnselected) then) =
+      __$$ServiceUnselectedCopyWithImpl<$Res>;
+  $Res call({String serviceId});
+}
+
+/// @nodoc
+class __$$ServiceUnselectedCopyWithImpl<$Res>
+    extends _$ChooseServiceEventCopyWithImpl<$Res>
+    implements _$$ServiceUnselectedCopyWith<$Res> {
+  __$$ServiceUnselectedCopyWithImpl(
+      _$ServiceUnselected _value, $Res Function(_$ServiceUnselected) _then)
+      : super(_value, (v) => _then(v as _$ServiceUnselected));
+
+  @override
+  _$ServiceUnselected get _value => super._value as _$ServiceUnselected;
+
+  @override
+  $Res call({
+    Object? serviceId = freezed,
+  }) {
+    return _then(_$ServiceUnselected(
+      serviceId == freezed
+          ? _value.serviceId
+          : serviceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ServiceUnselected implements ServiceUnselected {
+  const _$ServiceUnselected(this.serviceId);
+
+  @override
+  final String serviceId;
+
+  @override
+  String toString() {
+    return 'ChooseServiceEvent.serviceUnselected(serviceId: $serviceId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServiceUnselected &&
+            const DeepCollectionEquality().equals(other.serviceId, serviceId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(serviceId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ServiceUnselectedCopyWith<_$ServiceUnselected> get copyWith =>
+      __$$ServiceUnselectedCopyWithImpl<_$ServiceUnselected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serviceListSubmitted,
+    required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
+  }) {
+    return serviceUnselected(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+  }) {
+    return serviceUnselected?.call(serviceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (serviceUnselected != null) {
+      return serviceUnselected(serviceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
+  }) {
+    return serviceUnselected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+  }) {
+    return serviceUnselected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (serviceUnselected != null) {
+      return serviceUnselected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ServiceUnselected implements ChooseServiceEvent {
+  const factory ServiceUnselected(final String serviceId) = _$ServiceUnselected;
+
+  String get serviceId;
+  @JsonKey(ignore: true)
+  _$$ServiceUnselectedCopyWith<_$ServiceUnselected> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

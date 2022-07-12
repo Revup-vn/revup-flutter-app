@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../gen/assets.gen.dart';
+import '../bloc/choose_service_bloc.dart';
 import '../models/service_data.dart';
-import 'cubit/service_list_tile_cubit.dart';
 
 class ServiceListTile extends StatefulWidget {
   const ServiceListTile({
@@ -67,12 +67,16 @@ class _ServiceListTileState extends State<ServiceListTile> {
               isChecked = value!;
             });
             isChecked
-                ? context
-                    .read<ServiceListTileCubit>()
-                    .addService(widget.serviceData.id!)
-                : context
-                    .read<ServiceListTileCubit>()
-                    .removeService(widget.serviceData.id!);
+                ? context.read<ChooseServiceBloc>().add(
+                      ChooseServiceEvent.serviceSelected(
+                        widget.serviceData.id ?? '',
+                      ),
+                    )
+                : context.read<ChooseServiceBloc>().add(
+                      ChooseServiceEvent.serviceUnselected(
+                        widget.serviceData.id ?? '',
+                      ),
+                    );
           },
         ),
       ),

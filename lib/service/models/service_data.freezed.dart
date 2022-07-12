@@ -249,19 +249,19 @@ abstract class _ServiceData implements ServiceData {
       final List<ProductData>? products}) = _$_ServiceData;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get categoryId => throw _privateConstructorUsedError;
+  String? get categoryId;
   @override
-  String? get providerId => throw _privateConstructorUsedError;
+  String? get providerId;
   @override
-  num? get serviceFee => throw _privateConstructorUsedError;
+  num? get serviceFee;
   @override
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl;
   @override
-  List<ProductData>? get products => throw _privateConstructorUsedError;
+  List<ProductData>? get products;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceDataCopyWith<_$_ServiceData> get copyWith =>

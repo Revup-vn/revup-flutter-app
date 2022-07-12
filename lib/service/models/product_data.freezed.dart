@@ -222,17 +222,17 @@ abstract class _ProductData implements ProductData {
       final String? productImage}) = _$_ProductData;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get serviceId => throw _privateConstructorUsedError;
+  String? get serviceId;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  num? get price => throw _privateConstructorUsedError;
+  num? get price;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  String? get productImage => throw _privateConstructorUsedError;
+  String? get productImage;
   @override
   @JsonKey(ignore: true)
   _$$_ProductDataCopyWith<_$_ProductData> get copyWith =>
