@@ -7,15 +7,24 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
 
   /// File path: assets/screens/castrol.svg
   SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
+
+  /// File path: assets/screens/Facebook - Original.svg
+  SvgGenImage get facebookOriginal =>
+      const SvgGenImage('assets/screens/Facebook - Original.svg');
+
+  /// File path: assets/screens/Google_Original.svg
+  SvgGenImage get googleOriginal =>
+      const SvgGenImage('assets/screens/Google_Original.svg');
 
   /// File path: assets/screens/destination.svg
   SvgGenImage get destination =>
@@ -38,6 +47,10 @@ class $AssetsScreensGen {
   SvgGenImage get iconsZalo =>
       const SvgGenImage('assets/screens/icons-zalo.svg');
 
+  /// File path: assets/screens/flag_VietNam.svg
+  SvgGenImage get flagVietNam =>
+      const SvgGenImage('assets/screens/flag_VietNam.svg');
+
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');
@@ -56,6 +69,10 @@ class $AssetsScreensGen {
   /// File path: assets/screens/vehicle_maintenance.svg
   SvgGenImage get vehicleMaintenance =>
       const SvgGenImage('assets/screens/vehicle_maintenance.svg');
+
+  /// File path: assets/screens/vietnam_flag.png
+  AssetGenImage get vietnamFlag =>
+      const AssetGenImage('assets/screens/vietnam_flag.png');
 
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');

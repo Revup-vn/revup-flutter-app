@@ -7,6 +7,7 @@ import '../../splash/splash.dart';
 import '../account/view/account_page.dart';
 import '../home/view/home_page.dart';
 import '../home/widgets/home_body_page.dart';
+import '../login/view/login_page.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../payment/view/payment_page.dart';
 import '../profile/view/signup6_page.dart';
@@ -20,7 +21,7 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
-      initial: true,
+      //initial: true,
     ),
     AdaptiveRoute<void>(
       page: HomePage,
@@ -37,6 +38,9 @@ part 'app_router.gr.dart';
     AdaptiveRoute<void>(
       page: UpdateProfilePage,
     ),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
+    AdaptiveRoute<void>(page: TestPage),
+    AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
   ],
 )

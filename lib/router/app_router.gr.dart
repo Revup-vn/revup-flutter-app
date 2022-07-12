@@ -36,6 +36,9 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const UpdateProfilePage());
     },
+    LoginRoute.name: (routeData) {
+      return AdaptivePage<void>(routeData: routeData, child: const LoginPage());
+    },
     OnboardingRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const OnboardingPage());
@@ -56,6 +59,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
+<<<<<<< HEAD
         RouteConfig(HomeRoute.name, path: '/home-page', children: [
           RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
@@ -67,6 +71,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(PaymentRoute.name, path: '/payment-page'),
         RouteConfig(Signup6Route.name, path: '/signup6-page'),
         RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
+=======
+        RouteConfig(TestRoute.name, path: '/test-page'),
+        RouteConfig(LoginRoute.name, path: '/login-page'),
+>>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
       ];
 }
@@ -111,6 +119,14 @@ class UpdateProfileRoute extends PageRouteInfo<void> {
       : super(UpdateProfileRoute.name, path: '/update-profile-page');
 
   static const String name = 'UpdateProfileRoute';
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/login-page');
+
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for

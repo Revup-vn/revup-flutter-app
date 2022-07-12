@@ -49,7 +49,7 @@ packages:
       name: auto_route
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.1"
   auto_route_generator:
     dependency: "direct dev"
     description:
@@ -329,7 +329,7 @@ packages:
       name: dependency_validator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.0"
+    version: "3.2.2"
   diff_match_patch:
     dependency: transitive
     description:
@@ -400,6 +400,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  flash:
+    dependency: transitive
+    description:
+      name: flash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3+2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -482,7 +489,11 @@ packages:
       name: form_builder_validators
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "8.2.0"
+=======
+    version: "8.1.1"
+>>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
   freezed:
     dependency: "direct dev"
     description:
@@ -601,14 +612,14 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.2.0"
+    version: "6.3.1"
   logging:
     dependency: transitive
     description:
@@ -824,9 +835,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "505549e0767d41796d8505e7cfea9ad8d524c103"
+      resolved-ref: "44fa5ca8e0b7b5aaeaf47c434007d3452f5340cd"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
+<<<<<<< HEAD
     version: "1.0.0+2"
   rxdart:
     dependency: transitive
@@ -835,6 +847,9 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.4"
+=======
+    version: "1.0.0+3"
+>>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
   shared_preferences:
     dependency: "direct main"
     description:
