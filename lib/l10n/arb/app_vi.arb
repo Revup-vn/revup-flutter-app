@@ -13,5 +13,7 @@
   "addServiceAppBarTitle": "Lựa chọn dịch vụ",
   "confirmLabel": "Xác nhận",
   "addLabel": "Thêm mới",
-  "serviceDetailsAppBarTitle": "Chi tiết dịch vụ"
+  "serviceDetailsAppBarTitle": "Chi tiết dịch vụ",
+  "serviceInforLabel": "Thông tin dịch vụ",
+  "productListLabel": "Danh sách sản phẩm"
 }

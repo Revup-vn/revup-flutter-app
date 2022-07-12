@@ -13,5 +13,7 @@
   "addServiceAppBarTitle": "Choose the services",
   "confirmLabel": "Confirm",
   "addLabel": "Add new",
-  "serviceDetailsAppBarTitle": "Service Details"
+  "serviceDetailsAppBarTitle": "Service details",
+  "serviceInforLabel": "Service information",
+  "productListLabel": "List of products"
 }
