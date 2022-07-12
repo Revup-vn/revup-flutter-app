@@ -178,7 +178,7 @@ void main() {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: LoginSsoItem(
-              onPressedCb: handler,
+              onPressed: handler,
             ),
           ),
         );
