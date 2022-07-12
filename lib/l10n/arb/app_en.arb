@@ -4,17 +4,6 @@
   "@revupAppBarTitle": {
     "description": "Text shown in the AppBar of the first page"
   },
-  "loginPageTitle": "Welcome to revup!",
-  "loginPageLabel": "Login / Register revup account now",
-  "phoneFieldLabel": "Your phone number",
-  "acceptPolicyLabel": "By registering or logging in, you agree to the ",
-  "andLabel": " and ",
-  "termLabel": "Terms of Service",
-  "privacyLabel": "Privacy Policy",
-  "continueLabel": "Continue",
-  "loginBySSOLabel": "Or login with",
-  "phoneRequiredErrorLabel": "Please enter your phone number",
-  "invalidPhoneNumberLabel": "Please enter a valid phone number",
   "onboardPageFirstTitle": "Professional car repair service",
   "onboardPageSecondTitle": "Always on duty on all roads",
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
