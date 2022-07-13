@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
-
-import '../../gen/assets.gen.dart';
-import '../../router/router.dart';
+import 'package:flutter/services.dart';
+import 'package:revup/gen/assets.gen.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
-  // TODO(tcmhoang): Authentication
-
   @override
   Widget build(BuildContext context) {
-    Future<void>.delayed(
-      const Duration(seconds: 5),
-      () => context.router.pushAndPopUntil(
-        LoginPasswordRoute(phoneNumber: '+84 163999999'),
-        predicate: (dynamic _) => false,
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
-
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -27,7 +20,10 @@ class SplashPage extends StatelessWidget {
             Expanded(flex: 3, child: Assets.screens.welcome.svg()),
             const Flexible(
               child: Center(
-                child: CircularProgressIndicator.adaptive(),
+                child: CircularProgressIndicator.adaptive(
+                  backgroundColor: Colors.amber,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
+                ),
               ),
             ),
           ],
