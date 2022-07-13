@@ -399,6 +399,8 @@ LoginPasswordState _$LoginPasswordStateFromJson(Map<String, dynamic> json) {
       return _Initial.fromJson(json);
     case 'failure':
       return _Failure.fromJson(json);
+    case 'success':
+      return _Success.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'LoginPasswordState',
@@ -411,19 +413,22 @@ mixin _$LoginPasswordState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber) initial,
-    required TResult Function(String errorMessage, String phoneNumber) failure,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String user) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -431,18 +436,21 @@ mixin _$LoginPasswordState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -548,7 +556,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber) initial,
-    required TResult Function(String errorMessage, String phoneNumber) failure,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String user) success,
   }) {
     return initial(phoneNumber);
   }
@@ -557,7 +566,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
   }) {
     return initial?.call(phoneNumber);
   }
@@ -566,7 +576,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -580,6 +591,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -589,6 +601,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -598,6 +611,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -628,7 +642,7 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
-  $Res call({String errorMessage, String phoneNumber});
+  $Res call({String errorMessage});
 }
 
 /// @nodoc
@@ -644,16 +658,11 @@ class __$$_FailureCopyWithImpl<$Res>
   @override
   $Res call({
     Object? errorMessage = freezed,
-    Object? phoneNumber = freezed,
   }) {
     return _then(_$_Failure(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -662,10 +671,7 @@ class __$$_FailureCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Failure with DiagnosticableTreeMixin implements _Failure {
-  const _$_Failure(
-      {required this.errorMessage,
-      required this.phoneNumber,
-      final String? $type})
+  const _$_Failure({required this.errorMessage, final String? $type})
       : $type = $type ?? 'failure';
 
   factory _$_Failure.fromJson(Map<String, dynamic> json) =>
@@ -673,15 +679,13 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
 
   @override
   final String errorMessage;
-  @override
-  final String phoneNumber;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginPasswordState.failure(errorMessage: $errorMessage, phoneNumber: $phoneNumber)';
+    return 'LoginPasswordState.failure(errorMessage: $errorMessage)';
   }
 
   @override
@@ -689,8 +693,7 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'LoginPasswordState.failure'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
+      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override
@@ -699,17 +702,13 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
         (other.runtimeType == runtimeType &&
             other is _$_Failure &&
             const DeepCollectionEquality()
-                .equals(other.errorMessage, errorMessage) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber));
+                .equals(other.errorMessage, errorMessage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(errorMessage),
-      const DeepCollectionEquality().hash(phoneNumber));
+      runtimeType, const DeepCollectionEquality().hash(errorMessage));
 
   @JsonKey(ignore: true)
   @override
@@ -720,29 +719,32 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber) initial,
-    required TResult Function(String errorMessage, String phoneNumber) failure,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String user) success,
   }) {
-    return failure(errorMessage, phoneNumber);
+    return failure(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
   }) {
-    return failure?.call(errorMessage, phoneNumber);
+    return failure?.call(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber)? initial,
-    TResult Function(String errorMessage, String phoneNumber)? failure,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(errorMessage, phoneNumber);
+      return failure(errorMessage);
     }
     return orElse();
   }
@@ -752,6 +754,7 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
   }) {
     return failure(this);
   }
@@ -761,6 +764,7 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
   }) {
     return failure?.call(this);
   }
@@ -770,6 +774,7 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -785,15 +790,174 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
 }
 
 abstract class _Failure implements LoginPasswordState {
-  const factory _Failure(
-      {required final String errorMessage,
-      required final String phoneNumber}) = _$_Failure;
+  const factory _Failure({required final String errorMessage}) = _$_Failure;
 
   factory _Failure.fromJson(Map<String, dynamic> json) = _$_Failure.fromJson;
 
   String get errorMessage;
-  String get phoneNumber;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({String user});
+}
+
+/// @nodoc
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$LoginPasswordStateCopyWithImpl<$Res>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+      : super(_value, (v) => _then(v as _$_Success));
+
+  @override
+  _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$_Success(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Success with DiagnosticableTreeMixin implements _Success {
+  const _$_Success({required this.user, final String? $type})
+      : $type = $type ?? 'success';
+
+  factory _$_Success.fromJson(Map<String, dynamic> json) =>
+      _$$_SuccessFromJson(json);
+
+  @override
+  final String user;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginPasswordState.success(user: $user)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginPasswordState.success'))
+      ..add(DiagnosticsProperty('user', user));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other.user, user));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? phoneNumber) initial,
+    required TResult Function(String errorMessage) failure,
+    required TResult Function(String user) success,
+  }) {
+    return success(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? phoneNumber)? initial,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
+  }) {
+    return success?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? phoneNumber)? initial,
+    TResult Function(String errorMessage)? failure,
+    TResult Function(String user)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SuccessToJson(this);
+  }
+}
+
+abstract class _Success implements LoginPasswordState {
+  const factory _Success({required final String user}) = _$_Success;
+
+  factory _Success.fromJson(Map<String, dynamic> json) = _$_Success.fromJson;
+
+  String get user;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }

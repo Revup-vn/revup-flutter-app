@@ -25,5 +25,6 @@
     "nextLabel": "Next",
     "doneLabel": "Done",
     "invalidPasswordLabel": "Invalid password. Please enter again!",
-    "invalidOTPLabel" : "Invalid OTP code. Please enter again!"
+    "invalidOTPLabel" : "Invalid OTP code. Please enter again!",
+    "passwordNotMatchLabel" : "Password don't match!"
 }

@@ -34,15 +34,14 @@ class LoginPasswordBloc extends Bloc<LoginPasswordEvent, LoginPasswordState> {
     Submit event,
     Emitter<LoginPasswordState> emit,
   ) async {
-    if(event.phoneNumber == _phoneNumber && event.pinCode == _pinCode){
-
-    }else{
+    if (event.phoneNumber == _phoneNumber && event.pinCode == _pinCode) {
+      emit(const LoginPasswordState.success(user: 'user test'));
+    } else {
       emit(
-            LoginPasswordState.failure(
-              errorMessage: errorMessageLabel,
-              phoneNumber: event.phoneNumber,
-            ),
-          );
+        LoginPasswordState.failure(
+          errorMessage: errorMessageLabel,
+        ),
+      );
     }
   }
 }

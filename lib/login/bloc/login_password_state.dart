@@ -7,9 +7,11 @@ class LoginPasswordState with _$LoginPasswordState {
   // = _Success;
   const factory LoginPasswordState.failure({
     required String errorMessage,
-    required String phoneNumber,
   }) = _Failure;
   // const factory LoginPasswordState.loading() = _Loading;
+  const factory LoginPasswordState.success({
+    required String user,
+  }) = _Success;
 
   factory LoginPasswordState.fromJson(Map<String, dynamic> json) =>
       _$LoginPasswordStateFromJson(json);
