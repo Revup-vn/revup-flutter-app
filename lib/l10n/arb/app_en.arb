@@ -26,5 +26,16 @@
     "doneLabel": "Done",
     "invalidPasswordLabel": "Invalid password. Please enter again!",
     "invalidOTPLabel" : "Invalid OTP code. Please enter again!",
-    "passwordNotMatchLabel" : "Password don't match!"
+    "passwordNotMatchLabel" : "Password don't match!",
+    "loginPageTitle": "Welcome to revup!",
+    "loginPageLabel": "Login / Register revup account now",
+    "phoneFieldLabel": "Your phone number",
+    "acceptPolicyLabel": "By registering or logging in, you agree to the ",
+    "andLabel": " and ",
+    "termLabel": "Terms of Service",
+    "privacyLabel": "Privacy Policy",
+    "continueLabel": "Continue",
+    "loginBySSOLabel": "Or login with",
+    "phoneRequiredErrorLabel": "Please enter your phone number",
+    "invalidPhoneNumberLabel": "Please enter a valid phone number"
 }

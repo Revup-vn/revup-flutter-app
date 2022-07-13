@@ -26,5 +26,16 @@
     "doneLabel": "Xong",
     "invalidPasswordLabel": "Invalid password. Please enter again!",
     "invalidOTPLabel" : "Invalid OTP code. Please enter again!",
-    "passwordNotMatchLabel" : "Password don't match!"
+    "passwordNotMatchLabel" : "Password don't match!",
+    "loginPageTitle": "Chào mừng bạn đến với revup!",
+    "loginPageLabel": "Đăng nhập / Đăng ký tài khoản revup ngay bây giờ",
+    "phoneFieldLabel": "Số điện thoại của bạn",
+    "acceptPolicyLabel": "Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các ",
+    "andLabel": " và ",
+    "termLabel": "Điều khoản dịch vụ",
+    "privacyLabel": "Chính sách bảo mật",
+    "continueLabel": "Tiếp tục",
+    "loginBySSOLabel": "Hoặc đăng nhập bằng",
+    "phoneRequiredErrorLabel": "Nhập số điện thoại của bạn",
+    "invalidPhoneNumberLabel": "Số điện thoại không hợp lệ"
 }
