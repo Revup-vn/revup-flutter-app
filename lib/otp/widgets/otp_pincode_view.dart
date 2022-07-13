@@ -1,13 +1,14 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import '../enum/otp_enums.dart';
-import 'time_label.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
 import '../../l10n/l10n.dart';
 import '../bloc/otp_bloc.dart';
+import '../enum/otp_enums.dart';
+import 'time_label.dart';
 
 class PincodeMainContent extends StatelessWidget {
   PincodeMainContent(this.phoneNumber, this.type, {super.key});
