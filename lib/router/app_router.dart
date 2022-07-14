@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import '../../splash/splash.dart';
 import '../login/view/login_page.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../otp/enum/otp_enums.dart';
 import '../otp/view/otp_page.dart';
 import '../test/test.dart';
 

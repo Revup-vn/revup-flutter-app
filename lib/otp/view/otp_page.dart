@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../l10n/l10n.dart';
+import '../../router/app_router.dart';
 import '../bloc/otp_bloc.dart';
 import '../enum/otp_enums.dart';
-import 'otp_view.dart';
+import '../widgets/otp_main_content.dart';
 
 class OTPPage extends StatelessWidget {
   const OTPPage(this.phoneNumber, this.type, {super.key});
@@ -15,7 +17,18 @@ class OTPPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => OTPBloc(),
-      child: OTPView(phoneNumber, type),
+      child: BlocListener<OTPBloc, OTPState>(
+        child: OTPMainContent(phoneNumber, type),
+        listener: (context, state) => state.maybeWhen(
+          successToLogin: (phoneNumber, credential) => context.router.push(
+            const TestRoute(),
+          ),
+          successToSignup: (phoneNumber, credential) => context.router.push(
+            const TestRoute(),
+          ),
+          orElse: () => unit,
+        ),
+      ),
     );
   }
 }

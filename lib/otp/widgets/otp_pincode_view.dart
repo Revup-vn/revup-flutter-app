@@ -16,12 +16,14 @@ class PincodeMainContent extends StatelessWidget {
   final OTPType type;
   final CountdownController _countdownController =
       CountdownController(autoStart: true);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PinCodeTextField(
+          key: const Key('pincodeTextField'),
           appContext: context,
           length: 6,
           obscureText: true,

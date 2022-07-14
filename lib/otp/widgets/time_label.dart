@@ -8,8 +8,13 @@ import 'package:timer_count_down/timer_count_down.dart';
 import '../bloc/otp_bloc.dart';
 
 class CountDownLabel extends StatelessWidget {
-  const CountDownLabel(this._countdownController, {super.key});
-  final CountdownController _countdownController;
+  const CountDownLabel(
+    this._countdownController, {
+    super.key,
+    this.onFinished,
+  });
+  final CountdownController? _countdownController;
+  final VoidCallback? onFinished;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,11 +37,12 @@ class CountDownLabel extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
           onFinished: () {
-            context.read<OTPBloc>().add(
-                  const OTPEvent.countDownFinish(
-                    isTapable: true,
-                  ),
-                );
+            onFinished ??
+                context.read<OTPBloc>().add(
+                      const OTPEvent.countDownFinish(
+                        isTapable: true,
+                      ),
+                    );
           },
         ),
         AutoSizeText(
