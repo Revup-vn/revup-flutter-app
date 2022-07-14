@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../splash/splash.dart';
+import '../login/view/login_page.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../service/view/choose_service_page.dart';
 import '../service/view/service_details_page.dart';
@@ -16,6 +17,7 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: TestPage),
+    AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
     AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),
