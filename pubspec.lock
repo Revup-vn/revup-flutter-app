@@ -105,7 +105,7 @@ packages:
       name: build_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   build_daemon:
     dependency: transitive
     description:
@@ -126,7 +126,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.11"
+    version: "2.2.0"
   build_runner_core:
     dependency: transitive
     description:
@@ -147,7 +147,7 @@ packages:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.3.3"
+    version: "8.4.0"
   characters:
     dependency: transitive
     description:
@@ -182,7 +182,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.3.0"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -196,7 +196,7 @@ packages:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.19"
+    version: "2.7.0"
   code_builder:
     dependency: transitive
     description:
@@ -378,7 +378,7 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.1"
+    version: "3.4.2"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
@@ -392,14 +392,14 @@ packages:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.19"
+    version: "4.0.0"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.19.1"
+    version: "1.19.2"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -413,7 +413,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.6"
+    version: "1.7.0"
   fixnum:
     dependency: transitive
     description:
@@ -446,7 +446,7 @@ packages:
       name: flutter_form_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.1"
+    version: "7.4.0"
   flutter_form_field_validator:
     dependency: "direct main"
     description:
@@ -496,7 +496,7 @@ packages:
       name: form_builder_validators
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.1"
+    version: "8.2.0"
   freezed:
     dependency: "direct dev"
     description:
@@ -866,10 +866,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2e95bb11d1c678163fe3555d371e3db3024f485c"
+      resolved-ref: "5c83158648a5d074a184fcbff4ce874d701ad6ea"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "1.1.0+0"
+    version: "1.1.1+0"
   shared_preferences:
     dependency: "direct main"
     description:
