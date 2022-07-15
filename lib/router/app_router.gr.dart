@@ -35,7 +35,15 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<OTPRouteArgs>();
       return AdaptivePage<void>(
           routeData: routeData,
-          child: OTPPage(args.phoneNumber, args.type, key: args.key));
+          child: OTPPage(args.phoneNumber, args.completer, key: args.key));
+    },
+    Signup6Route.name: (routeData) {
+      final args = routeData.argsAs<Signup6RouteArgs>();
+      return AdaptivePage<void>(
+          routeData: routeData,
+          child: Signup6Page(
+              args.completer, args.phoneNumber, args.photoURL, args.uid,
+              key: args.key));
     }
   };
 
@@ -45,7 +53,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
-        RouteConfig(OTPRoute.name, path: '/o-tp-page')
+        RouteConfig(OTPRoute.name, path: '/o-tp-page'),
+        RouteConfig(Signup6Route.name, path: '/signup6-page')
       ];
 }
 
@@ -85,25 +94,75 @@ class OnboardingRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [OTPPage]
 class OTPRoute extends PageRouteInfo<OTPRouteArgs> {
-  OTPRoute({required String phoneNumber, required OTPType type, Key? key})
+  OTPRoute(
+      {required String phoneNumber,
+      required Completer<dynamic> completer,
+      Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
-            args: OTPRouteArgs(phoneNumber: phoneNumber, type: type, key: key));
+            args: OTPRouteArgs(
+                phoneNumber: phoneNumber, completer: completer, key: key));
 
   static const String name = 'OTPRoute';
 }
 
 class OTPRouteArgs {
-  const OTPRouteArgs({required this.phoneNumber, required this.type, this.key});
+  const OTPRouteArgs(
+      {required this.phoneNumber, required this.completer, this.key});
 
   final String phoneNumber;
 
-  final OTPType type;
+  final Completer<dynamic> completer;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'OTPRouteArgs{phoneNumber: $phoneNumber, type: $type, key: $key}';
+    return 'OTPRouteArgs{phoneNumber: $phoneNumber, completer: $completer, key: $key}';
+  }
+}
+
+/// generated route for
+/// [Signup6Page]
+class Signup6Route extends PageRouteInfo<Signup6RouteArgs> {
+  Signup6Route(
+      {required Completer<dynamic> completer,
+      required String phoneNumber,
+      required String photoURL,
+      required String uid,
+      Key? key})
+      : super(Signup6Route.name,
+            path: '/signup6-page',
+            args: Signup6RouteArgs(
+                completer: completer,
+                phoneNumber: phoneNumber,
+                photoURL: photoURL,
+                uid: uid,
+                key: key));
+
+  static const String name = 'Signup6Route';
+}
+
+class Signup6RouteArgs {
+  const Signup6RouteArgs(
+      {required this.completer,
+      required this.phoneNumber,
+      required this.photoURL,
+      required this.uid,
+      this.key});
+
+  final Completer<dynamic> completer;
+
+  final String phoneNumber;
+
+  final String photoURL;
+
+  final String uid;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'Signup6RouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, key: $key}';
   }
 }

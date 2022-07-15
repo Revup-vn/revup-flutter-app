@@ -15,6 +15,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     });
 
-    on<Submit>((event, emit) {}); // TODO(cantgim): implement submit event
+    on<Submit>((event, emit) {
+      emit(
+        LoginState.success(phoneNumber: event.phoneNumber),
+      );
+    }); // TODO(cantgim): implement submit event
   }
 }

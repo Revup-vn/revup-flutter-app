@@ -8,9 +8,9 @@ import 'package:mocktail/mocktail.dart';
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/otp/bloc/otp_bloc.dart';
 import 'package:revup/otp/enum/otp_enums.dart';
-import 'package:revup/otp/view/otp_page.dart';
+import 'package:revup/otp/view/otp_page.u.dart';
 import 'package:revup/otp/widgets/otp_main_content.dart';
-import 'package:revup/otp/widgets/otp_pincode_view.dart';
+import 'package:revup/otp/widgets/otp_pincode_main_content.dart';
 import 'package:revup/otp/widgets/time_label.dart';
 
 class MockOTPBloc extends MockBloc<OTPEvent, OTPState> implements OTPBloc {}

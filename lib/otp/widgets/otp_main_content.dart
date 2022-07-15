@@ -1,15 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../l10n/l10n.dart';
-import '../enum/otp_enums.dart';
-import 'otp_pincode_view.dart';
+import 'otp_pincode_main_content.dart';
 
 class OTPMainContent extends StatelessWidget {
-  const OTPMainContent(this.phoneNumber, this.type, {super.key});
+  const OTPMainContent(this.phoneNumber, this.completer, {super.key});
+  final Completer completer;
   final String phoneNumber;
-  final OTPType type;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -53,7 +54,7 @@ class OTPMainContent extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              PincodeMainContent(phoneNumber, type),
+              PincodeMainContent(phoneNumber, completer),
             ],
           ),
         ),

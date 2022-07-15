@@ -31,5 +31,11 @@
     "onboardPageThirdTitle": "Transparent price, rest assured repair",
     "skipLabel": "Skip",
     "nextLabel": "Next",
-    "doneLabel": "Done"
+    "doneLabel": "Done",
+    "completeRegistrationLabel":"Complete registration",
+    "fullNameLabel":"FULL NAME",
+    "emailLabel":"EMAIL",
+    "phoneLabel":"PHONE",
+    "dateLabel":"DATE",
+    "addressLabel":"ADDRESS"
 }

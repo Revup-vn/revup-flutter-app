@@ -1,12 +1,19 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../../otp/bloc/otp_bloc.dart';
+import '../../router/router.dart';
 import '../bloc/login_bloc.dart';
 import 'login_sso_item.dart';
 
@@ -126,9 +133,45 @@ class LoginView extends StatelessWidget {
                     builder: (context, state) => ElevatedButton(
                       onPressed: state
                           ? () {
-                              context.read<LoginBloc>().add(
-                                    const LoginEvent.submit(),
-                                  ); // TODO(cantgim): implement submit
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.saveAndValidate();
+                                context.read<AuthenticateBloc>().add(
+                                      AuthenticateEvent.loginWithPhone(
+                                        phoneNumber: _formKey
+                                            .currentState!.value['phone']
+                                            .toString(),
+                                        onSubmitOTP: () {
+                                          final completer = Completer<String>();
+                                          context.router.push(
+                                            OTPRoute(
+                                                phoneNumber: _formKey
+                                                    .currentState!
+                                                    .value['phone']
+                                                    .toString(),
+                                                completer: completer),
+                                          );
+                                          return completer.future;
+                                        },
+                                        onSignUpSubmit: (user) {
+                                          final completer =
+                                              Completer<AppUser>();
+                                          context.read<OTPBloc>().add(
+                                                OTPEvent.submit(
+                                                  phoneNumber:
+                                                      user.phoneNumber!,
+                                                  photoURL: user.photoURL!,
+                                                  uid: user.uid,
+                                                  completer: completer,
+                                                ),
+                                              );
+                                          return completer.future;
+                                        },
+                                        onSignUpSuccess: () {
+                                          throw NullThrownError();
+                                        },
+                                      ),
+                                    );
+                              }
                             }
                           : null,
                       style: Theme.of(context).elevatedButtonTheme.style,

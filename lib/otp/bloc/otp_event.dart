@@ -5,10 +5,12 @@ class OTPEvent with _$OTPEvent {
   const factory OTPEvent.started({
     required bool isTapable,
   }) = Started;
-  const factory OTPEvent.submitToLogin({
+  const factory OTPEvent.submit({
+    required String uid,
     required String phoneNumber,
-    required String otpCode,
-  }) = SubmitToLogin;
+    required String photoURL,
+    required Completer completer,
+  }) = Submit;
   const factory OTPEvent.submitToSignup({
     required String phoneNumber,
     required String otpCode,

@@ -19,19 +19,19 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,7 +144,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) {
     return start(isLoginButtonEnabled);
   }
@@ -153,7 +153,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) {
     return start?.call(isLoginButtonEnabled);
   }
@@ -162,7 +162,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -215,6 +215,7 @@ abstract class Start implements LoginEvent {
 abstract class _$$SubmitCopyWith<$Res> {
   factory _$$SubmitCopyWith(_$Submit value, $Res Function(_$Submit) then) =
       __$$SubmitCopyWithImpl<$Res>;
+  $Res call({String phoneNumber});
 }
 
 /// @nodoc
@@ -225,60 +226,86 @@ class __$$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
   @override
   _$Submit get _value => super._value as _$Submit;
+
+  @override
+  $Res call({
+    Object? phoneNumber = freezed,
+  }) {
+    return _then(_$Submit(
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Submit with DiagnosticableTreeMixin implements Submit {
-  const _$Submit();
+  const _$Submit({required this.phoneNumber});
+
+  @override
+  final String phoneNumber;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginEvent.submit()';
+    return 'LoginEvent.submit(phoneNumber: $phoneNumber)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LoginEvent.submit'));
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.submit'))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Submit);
+        (other.runtimeType == runtimeType &&
+            other is _$Submit &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(phoneNumber));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SubmitCopyWith<_$Submit> get copyWith =>
+      __$$SubmitCopyWithImpl<_$Submit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) {
-    return submit();
+    return submit(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) {
-    return submit?.call();
+    return submit?.call(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit();
+      return submit(phoneNumber);
     }
     return orElse();
   }
@@ -316,7 +343,12 @@ class _$Submit with DiagnosticableTreeMixin implements Submit {
 }
 
 abstract class Submit implements LoginEvent {
-  const factory Submit() = _$Submit;
+  const factory Submit({required final String phoneNumber}) = _$Submit;
+
+  String get phoneNumber;
+  @JsonKey(ignore: true)
+  _$$SubmitCopyWith<_$Submit> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

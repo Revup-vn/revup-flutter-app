@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,21 +16,16 @@ class OTPBloc extends Bloc<OTPEvent, OTPState> {
         );
       },
     );
-    on<SubmitToLogin>(
+    on<Submit>(
       (event, emit) {
-        final credential = getCredential(event.phoneNumber, event.otpCode);
-        if (credential != '') {
-          emit(
-            OTPState.successToLogin(
-              phoneNumber: event.phoneNumber,
-              credentials: credential,
-            ),
-          );
-        } else {
-          emit(
-            const OTPState.failure(hasError: true),
-          );
-        }
+        emit(
+          OTPState.successToLogin(
+            completer: event.completer,
+            phoneNumber: event.phoneNumber,
+            photoURL: event.photoURL,
+            uid: event.uid,
+          ),
+        );
       },
     );
     on<PressResendOTP>(

@@ -119,7 +119,9 @@ void main() {
           );
 
           await tester.tap(find.byType(ElevatedButton));
-          verify(() => loginBloc.add(const LoginEvent.submit())).called(1);
+          verify(
+            () => loginBloc.add(const LoginEvent.submit(phoneNumber: '12345')),
+          ).called(1);
         },
       );
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 import '../../router/app_router.dart';
 import '../bloc/otp_bloc.dart';
-import '../enum/otp_enums.dart';
 import '../widgets/otp_main_content.dart';
 
 class OTPPage extends StatelessWidget {
-  const OTPPage(this.phoneNumber, this.type, {super.key});
+  const OTPPage(this.phoneNumber, this.completer, {super.key});
+  final Completer completer;
   final String phoneNumber;
-  final OTPType type;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -22,10 +23,16 @@ class OTPPage extends StatelessWidget {
         ),
       ],
       child: BlocListener<OTPBloc, OTPState>(
-        child: OTPMainContent(phoneNumber, type),
+        child: OTPMainContent(phoneNumber, completer),
         listener: (context, state) => state.maybeWhen(
-          successToLogin: (phoneNumber, credential) => context.router.push(
-            const TestRoute(),
+          successToLogin: (uid, phoneNumber, photoURL, completer) =>
+              context.router.push(
+            Signup6Route(
+              completer: completer,
+              phoneNumber: phoneNumber,
+              photoURL: photoURL,
+              uid: uid,
+            ),
           ),
           successToSignup: (phoneNumber, credential) => context.router.push(
             const TestRoute(),

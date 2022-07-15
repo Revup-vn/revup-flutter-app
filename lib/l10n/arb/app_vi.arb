@@ -31,5 +31,11 @@
   "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
   "skipLabel": "Bỏ qua",
   "nextLabel": "Tiếp theo",
-  "doneLabel": "Xong"
+  "doneLabel": "Xong",
+  "fullNameLabel":"HỌ VÀ TÊN",
+    "emailLabel":"EMAIL",
+    "phoneLabel":"SỐ ĐIỆN THOẠI",
+    "dateLabel":"NGÀY SINH",
+    "addressLabel":"ĐỊA CHỈ",
+    "completeRegistrationLabel":"Hoàn tất đăng ký"
 }

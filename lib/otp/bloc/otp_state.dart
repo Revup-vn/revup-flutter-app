@@ -8,8 +8,10 @@ class OTPState with _$OTPState {
   }) = _Initial;
 
   const factory OTPState.successToLogin({
+    required String uid,
     required String phoneNumber,
-    required String credentials,
+    required String photoURL,
+    required Completer completer,
   }) = _SuccessToLogin;
   const factory OTPState.successToSignup({
     required String phoneNumber,
