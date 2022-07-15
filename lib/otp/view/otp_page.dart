@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 import '../../router/app_router.dart';
 import '../bloc/otp_bloc.dart';
 import '../enum/otp_enums.dart';
@@ -15,8 +15,12 @@ class OTPPage extends StatelessWidget {
   final OTPType type;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => OTPBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<OTPBloc>(
+          create: (BuildContext context) => OTPBloc(),
+        ),
+      ],
       child: BlocListener<OTPBloc, OTPState>(
         child: OTPMainContent(phoneNumber, type),
         listener: (context, state) => state.maybeWhen(
