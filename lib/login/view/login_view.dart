@@ -137,18 +137,17 @@ class LoginView extends StatelessWidget {
                                 _formKey.currentState!.saveAndValidate();
                                 context.read<AuthenticateBloc>().add(
                                       AuthenticateEvent.loginWithPhone(
-                                        phoneNumber: _formKey
-                                            .currentState!.value['phone']
-                                            .toString(),
-                                        onSubmitOTP: () {
+                                        phoneNumber:
+                                            '+84${_formKey.currentState!.value['phone']}',
+                                        onSubmitOTP: () async {
                                           final completer = Completer<String>();
-                                          context.router.push(
+                                          await context.router.push(
                                             OTPRoute(
-                                                phoneNumber: _formKey
-                                                    .currentState!
-                                                    .value['phone']
-                                                    .toString(),
-                                                completer: completer),
+                                              phoneNumber: _formKey
+                                                  .currentState!.value['phone']
+                                                  .toString(),
+                                              completer: completer,
+                                            ),
                                           );
                                           return completer.future;
                                         },
@@ -199,6 +198,38 @@ class LoginView extends StatelessWidget {
                 const SizedBox(width: 56),
                 LoginSsoItem(
                   ssoIcon: Assets.screens.googleOriginal.svg(),
+                  onPressed: () {
+                    context.read<AuthenticateBloc>().add(
+                      AuthenticateEvent.loginWithGoogle(
+                        onCompleteSignUp: (user) async {
+                          // final completer = Completer<AppUser>();
+                          // await context.router.push(
+                          //   Signup6Route(
+                          //     completer: completer,
+                          //     phoneNumber: user.phoneNumber!,
+                          //     photoURL: user.photoURL!,
+                          //     uid: user.uid,
+                          //   ),
+                          // );
+                          // await Future.delayed(Duration(seconds: 30), () {});
+                          // return completer.future;
+                          return AppUser.consumer(
+                            uuid: user.uid,
+                            firstName: 'firstName',
+                            lastName: 'lastName',
+                            phone: user.phoneNumber!,
+                            dob: DateTime.parse('2012-02-27'),
+                            addr: 'addr',
+                            email: 'email',
+                            active: true,
+                            avatarUrl: user.photoURL!,
+                            createdTime: DateTime.now(),
+                            lastUpdatedTime: DateTime.now(),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

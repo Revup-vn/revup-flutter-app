@@ -25,7 +25,7 @@ class OTPPage extends StatelessWidget {
       child: BlocListener<OTPBloc, OTPState>(
         child: OTPMainContent(phoneNumber, completer),
         listener: (context, state) => state.maybeWhen(
-          successToLogin: (uid, phoneNumber, photoURL, completer) =>
+          successToLogin: (uid, phoneNumber, photoURL, completer) async =>
               context.router.push(
             Signup6Route(
               completer: completer,
