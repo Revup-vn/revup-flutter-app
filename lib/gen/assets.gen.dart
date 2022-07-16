@@ -14,9 +14,25 @@ import 'package:flutter/services.dart';
 class $AssetsScreensGen {
   const $AssetsScreensGen();
 
+  /// File path: assets/screens/Facebook - Original.svg
+  SvgGenImage get facebookOriginal =>
+      const SvgGenImage('assets/screens/Facebook - Original.svg');
+
+  /// File path: assets/screens/Google_Original.svg
+  SvgGenImage get googleOriginal =>
+      const SvgGenImage('assets/screens/Google_Original.svg');
+
   /// File path: assets/screens/destination.svg
   SvgGenImage get destination =>
       const SvgGenImage('assets/screens/destination.svg');
+
+  /// File path: assets/screens/flag_VietNam.svg
+  SvgGenImage get flagVietNam =>
+      const SvgGenImage('assets/screens/flag_VietNam.svg');
+
+  /// File path: assets/screens/logo_trans.svg
+  SvgGenImage get logoTrans =>
+      const SvgGenImage('assets/screens/logo_trans.svg');
 
   /// File path: assets/screens/mobile_pay.svg
   SvgGenImage get mobilePay =>
@@ -25,6 +41,10 @@ class $AssetsScreensGen {
   /// File path: assets/screens/order_confirm.svg
   SvgGenImage get orderConfirm =>
       const SvgGenImage('assets/screens/order_confirm.svg');
+
+  /// File path: assets/screens/vietnam_flag.png
+  AssetGenImage get vietnamFlag =>
+      const AssetGenImage('assets/screens/vietnam_flag.png');
 
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');

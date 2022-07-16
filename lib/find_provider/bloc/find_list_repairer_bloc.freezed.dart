@@ -231,7 +231,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
 abstract class Started implements FindListRepairerEvent {
   const factory Started({required final bool hasValue}) = _$Started;
 
-  bool get hasValue => throw _privateConstructorUsedError;
+  bool get hasValue;
   @JsonKey(ignore: true)
   _$$StartedCopyWith<_$Started> get copyWith =>
       throw _privateConstructorUsedError;
@@ -507,7 +507,7 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
 abstract class OnChanged implements FindListRepairerEvent {
   const factory OnChanged({required final String value}) = _$OnChanged;
 
-  String get value => throw _privateConstructorUsedError;
+  String get value;
   @JsonKey(ignore: true)
   _$$OnChangedCopyWith<_$OnChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -639,7 +639,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) reload,
+    required TResult Function(List<List<String>> listItems) refreshCompleted,
     required TResult Function(String value) valueChanged,
     required TResult Function() pickARepairer,
   }) =>
@@ -647,7 +647,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
   }) =>
@@ -655,7 +655,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
     required TResult orElse(),
@@ -664,7 +664,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) reload,
+    required TResult Function(_Reload value) refreshCompleted,
     required TResult Function(_ValueChanged value) valueChanged,
     required TResult Function(_PickARepairer value) pickARepairer,
   }) =>
@@ -672,7 +672,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
   }) =>
@@ -680,7 +680,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
     required TResult orElse(),
@@ -778,7 +778,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) reload,
+    required TResult Function(List<List<String>> listItems) refreshCompleted,
     required TResult Function(String value) valueChanged,
     required TResult Function() pickARepairer,
   }) {
@@ -789,7 +789,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
   }) {
@@ -800,7 +800,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
     required TResult orElse(),
@@ -815,7 +815,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) reload,
+    required TResult Function(_Reload value) refreshCompleted,
     required TResult Function(_ValueChanged value) valueChanged,
     required TResult Function(_PickARepairer value) pickARepairer,
   }) {
@@ -826,7 +826,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
   }) {
@@ -837,7 +837,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
     required TResult orElse(),
@@ -852,7 +852,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
 abstract class _Initial implements FindListRepairerState {
   const factory _Initial({required final bool hasValue}) = _$_Initial;
 
-  bool get hasValue => throw _privateConstructorUsedError;
+  bool get hasValue;
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -903,14 +903,15 @@ class _$_Reload with DiagnosticableTreeMixin implements _Reload {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerState.reload(listItems: $listItems)';
+    return 'FindListRepairerState.refreshCompleted(listItems: $listItems)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerState.reload'))
+      ..add(
+          DiagnosticsProperty('type', 'FindListRepairerState.refreshCompleted'))
       ..add(DiagnosticsProperty('listItems', listItems));
   }
 
@@ -936,35 +937,35 @@ class _$_Reload with DiagnosticableTreeMixin implements _Reload {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) reload,
+    required TResult Function(List<List<String>> listItems) refreshCompleted,
     required TResult Function(String value) valueChanged,
     required TResult Function() pickARepairer,
   }) {
-    return reload(listItems);
+    return refreshCompleted(listItems);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
   }) {
-    return reload?.call(listItems);
+    return refreshCompleted?.call(listItems);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
     required TResult orElse(),
   }) {
-    if (reload != null) {
-      return reload(listItems);
+    if (refreshCompleted != null) {
+      return refreshCompleted(listItems);
     }
     return orElse();
   }
@@ -973,35 +974,35 @@ class _$_Reload with DiagnosticableTreeMixin implements _Reload {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) reload,
+    required TResult Function(_Reload value) refreshCompleted,
     required TResult Function(_ValueChanged value) valueChanged,
     required TResult Function(_PickARepairer value) pickARepairer,
   }) {
-    return reload(this);
+    return refreshCompleted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
   }) {
-    return reload?.call(this);
+    return refreshCompleted?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
     required TResult orElse(),
   }) {
-    if (reload != null) {
-      return reload(this);
+    if (refreshCompleted != null) {
+      return refreshCompleted(this);
     }
     return orElse();
   }
@@ -1011,7 +1012,7 @@ abstract class _Reload implements FindListRepairerState {
   const factory _Reload({required final List<List<String>> listItems}) =
       _$_Reload;
 
-  List<List<String>> get listItems => throw _privateConstructorUsedError;
+  List<List<String>> get listItems;
   @JsonKey(ignore: true)
   _$$_ReloadCopyWith<_$_Reload> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1091,7 +1092,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) reload,
+    required TResult Function(List<List<String>> listItems) refreshCompleted,
     required TResult Function(String value) valueChanged,
     required TResult Function() pickARepairer,
   }) {
@@ -1102,7 +1103,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
   }) {
@@ -1113,7 +1114,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
     required TResult orElse(),
@@ -1128,7 +1129,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) reload,
+    required TResult Function(_Reload value) refreshCompleted,
     required TResult Function(_ValueChanged value) valueChanged,
     required TResult Function(_PickARepairer value) pickARepairer,
   }) {
@@ -1139,7 +1140,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
   }) {
@@ -1150,7 +1151,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
     required TResult orElse(),
@@ -1165,7 +1166,7 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
 abstract class _ValueChanged implements FindListRepairerState {
   const factory _ValueChanged({required final String value}) = _$_ValueChanged;
 
-  String get value => throw _privateConstructorUsedError;
+  String get value;
   @JsonKey(ignore: true)
   _$$_ValueChangedCopyWith<_$_ValueChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1220,7 +1221,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) reload,
+    required TResult Function(List<List<String>> listItems) refreshCompleted,
     required TResult Function(String value) valueChanged,
     required TResult Function() pickARepairer,
   }) {
@@ -1231,7 +1232,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
   }) {
@@ -1242,7 +1243,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? reload,
+    TResult Function(List<List<String>> listItems)? refreshCompleted,
     TResult Function(String value)? valueChanged,
     TResult Function()? pickARepairer,
     required TResult orElse(),
@@ -1257,7 +1258,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) reload,
+    required TResult Function(_Reload value) refreshCompleted,
     required TResult Function(_ValueChanged value) valueChanged,
     required TResult Function(_PickARepairer value) pickARepairer,
   }) {
@@ -1268,7 +1269,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
   }) {
@@ -1279,7 +1280,7 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? reload,
+    TResult Function(_Reload value)? refreshCompleted,
     TResult Function(_ValueChanged value)? valueChanged,
     TResult Function(_PickARepairer value)? pickARepairer,
     required TResult orElse(),
