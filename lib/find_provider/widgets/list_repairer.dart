@@ -106,7 +106,7 @@ class _ListRepairer extends State<ListRepairer> {
             const SizedBox(
               height: 10,
             ),
-            const Expanded(
+            Expanded(
               child: ListRepairerContent(),
             ),
           ],
