@@ -26,5 +26,8 @@
   "addLabel": "Add new",
   "serviceDetailsAppBarTitle": "Service details",
   "serviceInforLabel": "Service information",
-  "productListLabel": "List of products"
+  "productListLabel": "List of products",
+  "newRequestServiceAppBarTitle": "Other service request",
+  "serviceNameLabel": "Service name",
+  "serviceDescriptionLabel": "Description (100 characters max)"
 }

@@ -21,7 +21,7 @@ mixin _$ProductData {
   String? get name => throw _privateConstructorUsedError;
   num? get price => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  String? get productImage => throw _privateConstructorUsedError;
+  String? get productImageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductDataCopyWith<ProductData> get copyWith =>
@@ -39,7 +39,7 @@ abstract class $ProductDataCopyWith<$Res> {
       String? name,
       num? price,
       String? description,
-      String? productImage});
+      String? productImageUrl});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
     Object? name = freezed,
     Object? price = freezed,
     Object? description = freezed,
-    Object? productImage = freezed,
+    Object? productImageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -80,9 +80,9 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      productImage: productImage == freezed
-          ? _value.productImage
-          : productImage // ignore: cast_nullable_to_non_nullable
+      productImageUrl: productImageUrl == freezed
+          ? _value.productImageUrl
+          : productImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -101,7 +101,7 @@ abstract class _$$_ProductDataCopyWith<$Res>
       String? name,
       num? price,
       String? description,
-      String? productImage});
+      String? productImageUrl});
 }
 
 /// @nodoc
@@ -121,7 +121,7 @@ class __$$_ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? price = freezed,
     Object? description = freezed,
-    Object? productImage = freezed,
+    Object? productImageUrl = freezed,
   }) {
     return _then(_$_ProductData(
       id: id == freezed
@@ -144,9 +144,9 @@ class __$$_ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      productImage: productImage == freezed
-          ? _value.productImage
-          : productImage // ignore: cast_nullable_to_non_nullable
+      productImageUrl: productImageUrl == freezed
+          ? _value.productImageUrl
+          : productImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -161,7 +161,7 @@ class _$_ProductData implements _ProductData {
       this.name,
       this.price,
       this.description,
-      this.productImage});
+      this.productImageUrl});
 
   @override
   final String? id;
@@ -174,11 +174,11 @@ class _$_ProductData implements _ProductData {
   @override
   final String? description;
   @override
-  final String? productImage;
+  final String? productImageUrl;
 
   @override
   String toString() {
-    return 'ProductData(id: $id, serviceId: $serviceId, name: $name, price: $price, description: $description, productImage: $productImage)';
+    return 'ProductData(id: $id, serviceId: $serviceId, name: $name, price: $price, description: $description, productImageUrl: $productImageUrl)';
   }
 
   @override
@@ -193,7 +193,7 @@ class _$_ProductData implements _ProductData {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
-                .equals(other.productImage, productImage));
+                .equals(other.productImageUrl, productImageUrl));
   }
 
   @override
@@ -204,7 +204,7 @@ class _$_ProductData implements _ProductData {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(productImage));
+      const DeepCollectionEquality().hash(productImageUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +219,7 @@ abstract class _ProductData implements ProductData {
       final String? name,
       final num? price,
       final String? description,
-      final String? productImage}) = _$_ProductData;
+      final String? productImageUrl}) = _$_ProductData;
 
   @override
   String? get id;
@@ -232,7 +232,7 @@ abstract class _ProductData implements ProductData {
   @override
   String? get description;
   @override
-  String? get productImage;
+  String? get productImageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_ProductDataCopyWith<_$_ProductData> get copyWith =>

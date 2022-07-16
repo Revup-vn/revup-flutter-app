@@ -11,6 +11,7 @@ class ServiceData with _$ServiceData {
     String? providerId,
     num? serviceFee,
     String? imageUrl,
+    String? productPriceRange,
     List<ProductData>? products,
   }) = _ServiceData;
 }

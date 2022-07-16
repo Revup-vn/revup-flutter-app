@@ -9,7 +9,10 @@ class ChooseServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChooseServiceBloc(),
+      create: (context) => ChooseServiceBloc()
+        ..add(
+          const ChooseServiceEvent.started(),
+        ),
       child: const ChooseServiceView(),
     );
   }

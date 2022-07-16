@@ -26,5 +26,8 @@
   "addLabel": "Thêm mới",
   "serviceDetailsAppBarTitle": "Chi tiết dịch vụ",
   "serviceInforLabel": "Thông tin dịch vụ",
-  "productListLabel": "Danh sách sản phẩm"
+  "productListLabel": "Danh sách sản phẩm",
+  "newRequestServiceAppBarTitle": "Yêu cầu dịch vụ khác",
+  "serviceNameLabel": "Tên dịch vụ",
+  "serviceDescriptionLabel": "Mô tả (tối đa 100 kí tự)"
 }

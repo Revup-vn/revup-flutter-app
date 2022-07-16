@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../gen/assets.gen.dart';
-import '../models/service_data.dart';
 
 class ServiceListTile extends StatelessWidget {
   const ServiceListTile({
@@ -48,8 +47,14 @@ class ServiceListTile extends StatelessWidget {
           ),
         ),
       ),
-      title: AutoSizeText(title),
-      subtitle: AutoSizeText(subtitle),
+      title: AutoSizeText(
+        title,
+        maxLines: 1,
+      ),
+      subtitle: AutoSizeText(
+        subtitle,
+        maxLines: 1,
+      ),
     );
   }
 }

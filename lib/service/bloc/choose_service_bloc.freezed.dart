@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChooseServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
@@ -26,6 +27,7 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -34,6 +36,7 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -43,6 +46,7 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
     required TResult Function(ServiceSelected value) serviceSelected,
@@ -51,6 +55,7 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -59,6 +64,7 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -83,6 +89,127 @@ class _$ChooseServiceEventCopyWithImpl<$Res>
   final ChooseServiceEvent _value;
   // ignore: unused_field
   final $Res Function(ChooseServiceEvent) _then;
+}
+
+/// @nodoc
+abstract class _$$StartedCopyWith<$Res> {
+  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
+      __$$StartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartedCopyWithImpl<$Res>
+    extends _$ChooseServiceEventCopyWithImpl<$Res>
+    implements _$$StartedCopyWith<$Res> {
+  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
+      : super(_value, (v) => _then(v as _$Started));
+
+  @override
+  _$Started get _value => super._value as _$Started;
+}
+
+/// @nodoc
+
+class _$Started implements Started {
+  const _$Started();
+
+  @override
+  String toString() {
+    return 'ChooseServiceEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Started);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() serviceListSubmitted,
+    required TResult Function() newServiceRequested,
+    required TResult Function(String serviceId) serviceSelected,
+    required TResult Function(String serviceId) serviceUnselected,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? serviceListSubmitted,
+    TResult Function()? newServiceRequested,
+    TResult Function(String serviceId)? serviceSelected,
+    TResult Function(String serviceId)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(NewServiceRequested value) newServiceRequested,
+    required TResult Function(ServiceSelected value) serviceSelected,
+    required TResult Function(ServiceUnselected value) serviceUnselected,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(NewServiceRequested value)? newServiceRequested,
+    TResult Function(ServiceSelected value)? serviceSelected,
+    TResult Function(ServiceUnselected value)? serviceUnselected,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Started implements ChooseServiceEvent {
+  const factory Started() = _$Started;
 }
 
 /// @nodoc
@@ -126,6 +253,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
@@ -137,6 +265,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -148,6 +277,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -163,6 +293,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
     required TResult Function(ServiceSelected value) serviceSelected,
@@ -174,6 +305,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -185,6 +317,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -243,6 +376,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
@@ -254,6 +388,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -265,6 +400,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -280,6 +416,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
     required TResult Function(ServiceSelected value) serviceSelected,
@@ -291,6 +428,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -302,6 +440,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -384,6 +523,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
@@ -395,6 +535,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -406,6 +547,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -421,6 +563,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
     required TResult Function(ServiceSelected value) serviceSelected,
@@ -432,6 +575,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -443,6 +587,7 @@ class _$ServiceSelected implements ServiceSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -530,6 +675,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function() serviceListSubmitted,
     required TResult Function() newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
@@ -541,6 +687,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -552,6 +699,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function()? serviceListSubmitted,
     TResult Function()? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
@@ -567,6 +715,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
     required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
     required TResult Function(NewServiceRequested value) newServiceRequested,
     required TResult Function(ServiceSelected value) serviceSelected,
@@ -578,6 +727,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -589,6 +739,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
     TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
     TResult Function(NewServiceRequested value)? newServiceRequested,
     TResult Function(ServiceSelected value)? serviceSelected,
@@ -618,7 +769,7 @@ mixin _$ChooseServiceState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceData> services) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -626,7 +777,7 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -634,7 +785,7 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -725,7 +876,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceData> services) success,
   }) {
     return initial();
   }
@@ -736,7 +887,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
   }) {
     return initial?.call();
   }
@@ -747,7 +898,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -841,7 +992,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceData> services) success,
   }) {
     return loading();
   }
@@ -852,7 +1003,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
   }) {
     return loading?.call();
   }
@@ -863,7 +1014,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -957,7 +1108,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceData> services) success,
   }) {
     return failure();
   }
@@ -968,7 +1119,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
   }) {
     return failure?.call();
   }
@@ -979,7 +1130,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1035,6 +1186,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({List<ServiceData> services});
 }
 
 /// @nodoc
@@ -1046,26 +1198,53 @@ class __$$_SuccessCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? services = freezed,
+  }) {
+    return _then(_$_Success(
+      services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceData>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success(final List<ServiceData> services) : _services = services;
+
+  final List<ServiceData> _services;
+  @override
+  List<ServiceData> get services {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
 
   @override
   String toString() {
-    return 'ChooseServiceState.success()';
+    return 'ChooseServiceState.success(services: $services)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_services));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1073,9 +1252,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceData> services) success,
   }) {
-    return success();
+    return success(services);
   }
 
   @override
@@ -1084,9 +1263,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
   }) {
-    return success?.call();
+    return success?.call(services);
   }
 
   @override
@@ -1095,11 +1274,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(services);
     }
     return orElse();
   }
@@ -1143,5 +1322,10 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements ChooseServiceState {
-  const factory _Success() = _$_Success;
+  const factory _Success(final List<ServiceData> services) = _$_Success;
+
+  List<ServiceData> get services;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }

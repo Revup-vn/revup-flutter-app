@@ -6,24 +6,40 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../l10n/l10n.dart';
 
-class NewServiceView extends StatelessWidget {
-  const NewServiceView({super.key});
+class NewServiceRequestView extends StatelessWidget {
+  const NewServiceRequestView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        title: AutoSizeText(''),
+        title: AutoSizeText(l10n.newRequestServiceAppBarTitle),
         centerTitle: false,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AutoSizeText('Thông tin dịch vụ'),
-          AutoSizeText('Tên dịch vụ'),
-          FormBuilderTextField(name: 'name'),
-          AutoSizeText('Mô tả (tối đa 100 kí tự)'),
-          FormBuilderTextField(name: 'description'),
+          FormBuilder(
+            child: Column(
+              children: [
+                FormBuilderTextField(
+                  name: 'name',
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: l10n.serviceNameLabel,
+                  ),
+                ),
+                FormBuilderTextField(
+                  name: 'description',
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: l10n.serviceDescriptionLabel,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

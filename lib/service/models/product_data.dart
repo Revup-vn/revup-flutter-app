@@ -10,6 +10,6 @@ class ProductData with _$ProductData {
     String? name,
     num? price,
     String? description,
-    String? productImage,
+    String? productImageUrl,
   }) = _ProductData;
 }
