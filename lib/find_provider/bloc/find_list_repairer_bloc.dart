@@ -16,7 +16,7 @@ class FindListRepairerBloc
     });
     on<Refresh>((event, emit) {
       emit(
-        const FindListRepairerState.reload(
+        const FindListRepairerState.refreshCompleted(
           listItems: [
             [
               'https://fandom.vn/wp-content/uploads/2019/04/naruto-uchiha-itachi-1.jpg',
