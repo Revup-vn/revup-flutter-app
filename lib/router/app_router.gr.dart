@@ -27,21 +27,26 @@ class _$AppRouter extends RootStackRouter {
     OnboardingRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const OnboardingPage());
+    },
+    ListRepairerRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ListRepairerPage());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
-        RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
+        RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
+        RouteConfig(ListRepairerRoute.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -61,4 +66,12 @@ class OnboardingRoute extends PageRouteInfo<void> {
       : super(OnboardingRoute.name, path: '/onboarding-page');
 
   static const String name = 'OnboardingRoute';
+}
+
+/// generated route for
+/// [ListRepairerPage]
+class ListRepairerRoute extends PageRouteInfo<void> {
+  const ListRepairerRoute() : super(ListRepairerRoute.name, path: '/');
+
+  static const String name = 'ListRepairerRoute';
 }

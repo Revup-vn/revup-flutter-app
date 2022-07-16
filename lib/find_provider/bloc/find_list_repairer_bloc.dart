@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'find_list_repairer_event.dart';
@@ -7,10 +8,10 @@ part 'find_list_repairer_bloc.freezed.dart';
 
 class FindListRepairerBloc
     extends Bloc<FindListRepairerEvent, FindListRepairerState> {
-  FindListRepairerBloc() : super(_Initial()) {
+  FindListRepairerBloc() : super(const _Initial(hasValue: false)) {
     on<Started>((event, emit) {
       emit(
-        const FindListRepairerState.initial(),
+        FindListRepairerState.initial(hasValue: event.hasValue),
       );
     });
     on<Refresh>((event, emit) {
@@ -38,6 +39,12 @@ class FindListRepairerBloc
           ],
         ),
       );
+    });
+    on<OnChanged>((event, emit) {
+      emit(FindListRepairerState.valueChanged(value: event.value));
+    });
+    on<OnTap>((event, emit) {
+      emit(const FindListRepairerState.pickARepairer());
     });
   }
 }

@@ -118,7 +118,7 @@ class ListRepairerContent extends StatelessWidget {
           ),
         );
       },
-      itemCount: 10,
+      itemCount: 2,
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),
