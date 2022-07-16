@@ -19,7 +19,7 @@ class FindListRepairerBloc
         const FindListRepairerState.refreshCompleted(
           listItems: [
             [
-              'https://fandom.vn/wp-content/uploads/2019/04/naruto-uchiha-itachi-1.jpg',
+              'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
               'Nguyen Van C',
               'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
               '4.9',
@@ -28,7 +28,7 @@ class FindListRepairerBloc
               '10',
             ],
             [
-              'https://fandom.vn/wp-content/uploads/2019/04/naruto-uchiha-itachi-1.jpg',
+              'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
               'Nguyen Van D',
               'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
               '4.9',

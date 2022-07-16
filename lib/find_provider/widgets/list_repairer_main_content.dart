@@ -6,7 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 class ListRepairerContent extends StatelessWidget {
   ListRepairerContent({super.key});
   final List<String> item1 = [
-    'https://fandom.vn/wp-content/uploads/2019/04/naruto-uchiha-itachi-1.jpg',
+    'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
     'Nguyen Van A',
     'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
     '4.9',
@@ -15,7 +15,7 @@ class ListRepairerContent extends StatelessWidget {
     '10',
   ];
   final List<String> item2 = [
-    'https://fandom.vn/wp-content/uploads/2019/04/naruto-uchiha-itachi-1.jpg',
+    'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
     'Nguyen Van B',
     'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
     '4.9',
@@ -42,9 +42,15 @@ class ListRepairerContent extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
-                          leading: CircleAvatar(
-                            child: CachedNetworkImage(
-                              imageUrl: iListItems[index][0],
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(48),
+                            child: CircleAvatar(
+                              child: CachedNetworkImage(
+                                height: 64,
+                                width: 64,
+                                fit: BoxFit.fitWidth,
+                                imageUrl: iListItems[index][0],
+                              ),
                             ),
                           ),
                           title: AutoSizeText(
@@ -118,7 +124,7 @@ class ListRepairerContent extends StatelessWidget {
           ),
         );
       },
-      itemCount: 2,
+      itemCount: iListItems.length,
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),
