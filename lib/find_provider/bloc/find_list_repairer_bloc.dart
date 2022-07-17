@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:bloc/bloc.dart';
@@ -45,6 +47,7 @@ class FindListRepairerBloc
       emit(FindListRepairerState.valueChanged(value: event.value));
     });
     on<OnTap>((event, emit) {
+      log('message');
       emit(const FindListRepairerState.pickARepairer());
     });
   }

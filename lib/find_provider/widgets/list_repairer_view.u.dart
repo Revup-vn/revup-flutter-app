@@ -17,7 +17,7 @@ class ListRepairerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<FindListRepairerBloc, FindListRepairerState>(
       listener: (context, state) => state.maybeWhen(
-        pickARepairer: () => context.router.push(const TestRoute()),
+        pickARepairer: () => context.router.push(const RepairerProfileRoute()),
         orElse: () => unit,
       ),
       child: SafeArea(

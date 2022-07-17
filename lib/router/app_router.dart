@@ -7,6 +7,7 @@ import '../../splash/splash.dart';
 import '../find_provider/view/list_repairer_page.u.dart';
 import '../login/view/login_page.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../repairer_profile/view/repairer_profile_page.dart';
 import '../test/test.dart';
 
 part 'app_router.gr.dart';
@@ -19,6 +20,7 @@ part 'app_router.gr.dart';
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
     AdaptiveRoute<void>(page: ListRepairerPage, initial: true),
+    AdaptiveRoute<void>(page: RepairerProfilePage),
   ],
 )
 class AppRouter extends _$AppRouter {}

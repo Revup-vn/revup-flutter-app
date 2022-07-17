@@ -34,6 +34,10 @@ class _$AppRouter extends RootStackRouter {
     ListRepairerRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const ListRepairerPage());
+    },
+    RepairerProfileRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const RepairerProfilePage());
     }
   };
 
@@ -43,7 +47,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
-        RouteConfig(ListRepairerRoute.name, path: '/')
+        RouteConfig(ListRepairerRoute.name, path: '/'),
+        RouteConfig(RepairerProfileRoute.name, path: '/repairer-profile-page')
       ];
 }
 
@@ -86,4 +91,13 @@ class ListRepairerRoute extends PageRouteInfo<void> {
   const ListRepairerRoute() : super(ListRepairerRoute.name, path: '/');
 
   static const String name = 'ListRepairerRoute';
+}
+
+/// generated route for
+/// [RepairerProfilePage]
+class RepairerProfileRoute extends PageRouteInfo<void> {
+  const RepairerProfileRoute()
+      : super(RepairerProfileRoute.name, path: '/repairer-profile-page');
+
+  static const String name = 'RepairerProfileRoute';
 }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/find_list_repairer_bloc.dart';
 
 class ListRepairerContent extends StatelessWidget {
   ListRepairerContent({super.key});
   final List<String> item1 = [
-    'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
+    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
     'Nguyen Van A',
     'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
     '4.9',
@@ -15,7 +18,7 @@ class ListRepairerContent extends StatelessWidget {
     '10',
   ];
   final List<String> item2 = [
-    'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
+    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
     'Nguyen Van B',
     'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
     '4.9',
@@ -42,6 +45,11 @@ class ListRepairerContent extends StatelessWidget {
                     child: Column(
                       children: [
                         ListTile(
+                          onTap: () {
+                            context
+                                .read<FindListRepairerBloc>()
+                                .add(const FindListRepairerEvent.onTap());
+                          },
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(48),
                             child: CircleAvatar(
