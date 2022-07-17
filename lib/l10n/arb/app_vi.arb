@@ -29,5 +29,7 @@
   "productListLabel": "Danh sách sản phẩm",
   "newRequestServiceAppBarTitle": "Yêu cầu dịch vụ khác",
   "serviceNameLabel": "Tên dịch vụ",
-  "serviceDescriptionLabel": "Mô tả (tối đa 100 kí tự)"
+  "serviceDescriptionLabel": "Mô tả (tối đa 100 kí tự)",
+  "chooseImageLabel": "Chọn hình ảnh",
+  "chooseImageNoteLabel": "Thêm ảnh để thợ sửa hình dung rõ hơn về yêu cầu của bạn nhé"
 }

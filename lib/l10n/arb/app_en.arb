@@ -29,5 +29,7 @@
   "productListLabel": "List of products",
   "newRequestServiceAppBarTitle": "Other service request",
   "serviceNameLabel": "Service name",
-  "serviceDescriptionLabel": "Description (100 characters max)"
+  "serviceDescriptionLabel": "Description (100 characters max)",
+  "chooseImageLabel": "Choose image",
+  "chooseImageNoteLabel": "Add a photo for the repairman to better visualize your request"
 }
