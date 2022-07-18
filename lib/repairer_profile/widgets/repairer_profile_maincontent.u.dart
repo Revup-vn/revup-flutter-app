@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'repairer_profile_avatar_image.dart';
-import 'repairer_profile_cover_image.dart';
+import '../../l10n/l10n.dart';
+import 'repairer_profile_avatar_image.u.dart';
+import 'repairer_profile_cover_image.u.dart';
+import 'repairer_profile_tabbar.u.dart';
 
 class RepairerProfileMainContent extends StatelessWidget {
   const RepairerProfileMainContent({super.key});
@@ -71,8 +73,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.home_outlined,
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: Theme.of(context).colorScheme.shadow,
                                   ),
                                   AutoSizeText(
                                     '77 Khuất Duy Tiến, p.Nhân Chính, q.Thanh Xuân, Hà Nội',
@@ -86,8 +87,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.format_quote_outlined,
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: Theme.of(context).colorScheme.shadow,
                                   ),
                                   AutoSizeText(
                                     'Đến với chúng tôi khách hàng luôn là thượng đế',
@@ -105,9 +105,23 @@ class RepairerProfileMainContent extends StatelessWidget {
                   ],
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {},
+                style: Theme.of(context).elevatedButtonTheme.style,
+                child: Text(
+                  context.l10n.callHelpLabel,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
               const Expanded(
                 flex: 2,
-                child: SizedBox(),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 56),
+                  child: RepairerProfileTabBar(),
+                ),
               ),
             ],
           ),

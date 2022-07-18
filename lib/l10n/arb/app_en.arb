@@ -30,5 +30,7 @@
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
   "skipLabel": "Skip",
   "nextLabel": "Next",
-  "doneLabel": "Done"
+  "doneLabel": "Done",
+  "callHelpLabel" : "Call Help",
+  "serviceLabel" : "Service"
 }
