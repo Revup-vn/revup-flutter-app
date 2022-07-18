@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../splash/splash.dart';
-import '../account/view/account_page.dart';
-import '../home/view/home_page.dart';
-import '../home/widgets/home_body_page.dart';
+import '../account/view/account_page.u.dart';
+import '../home/view/home_page.u.dart';
+import '../home/widgets/home_body_page.u.dart';
 import '../login/view/login_page.dart';
 import '../onboarding/view/onboarding_page.dart';
-import '../payment/view/payment_page.dart';
-import '../profile/view/signup6_page.dart';
-import '../profile/view/update_profile_page.dart';
+import '../payment/view/payment_page.u.dart';
+import '../profile/view/signup6_page.u.dart';
+import '../profile/view/update_profile_page.u.dart';
 import '../test/test.dart';
 
 part 'app_router.gr.dart';

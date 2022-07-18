@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../account/widgets/default_avatar.dart';
 import '../../account/model/user_data.dart';
 import '../../l10n/l10n.dart';
+import '../model/provider_data.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
   const RepairReviewHomePage({
@@ -17,6 +18,8 @@ class RepairReviewHomePage extends StatelessWidget {
     final l10n = context.l10n;
     final users = UserData.fetchAll();
     final user = users.first;
+    final providers = ProviderData.fetchAll();
+    final provider = providers.first;
     const timeRepair = '16:10 - 17:00';
     const dayRepair = '17/10/2022';
     return Column(
@@ -89,7 +92,7 @@ class RepairReviewHomePage extends StatelessWidget {
               children: [
                 RatingBar.builder(
                   ignoreGestures: true,
-                  initialRating: 4.5,
+                  initialRating: provider.rating,
                   itemSize: 30,
                   allowHalfRating: true,
                   itemBuilder: (context, _) => Icon(

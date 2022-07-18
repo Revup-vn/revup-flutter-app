@@ -4,8 +4,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:card_swiper/card_swiper.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
-import '../widgets/repair_review_home_page.dart';
-import '../widgets/support_home_page_item.dart';
+import 'repair_review_home_page.u.dart';
+import 'support_home_page_item.u.dart';
 
 class HomeBodyPage extends StatelessWidget {
   const HomeBodyPage({super.key});
