@@ -36,6 +36,9 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const UpdateProfilePage());
     },
+    TestRoute.name: (routeData) {
+      return AdaptivePage<void>(routeData: routeData, child: const TestPage());
+    },
     LoginRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const LoginPage());
     },
@@ -47,9 +50,6 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const HomeBodyPage());
     },
-    TestRoute.name: (routeData) {
-      return AdaptivePage<void>(routeData: routeData, child: const TestPage());
-    },
     AccountRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const AccountPage());
@@ -58,23 +58,18 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
-<<<<<<< HEAD
-        RouteConfig(HomeRoute.name, path: '/home-page', children: [
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
+        RouteConfig(HomeRoute.name, path: '/', children: [
           RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
-          RouteConfig(TestRoute.name,
-              path: 'test-page', parent: HomeRoute.name),
           RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
         RouteConfig(PaymentRoute.name, path: '/payment-page'),
         RouteConfig(Signup6Route.name, path: '/signup6-page'),
         RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
-=======
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
->>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
       ];
 }
@@ -82,7 +77,7 @@ class _$AppRouter extends RootStackRouter {
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -91,7 +86,7 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
@@ -122,6 +117,14 @@ class UpdateProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TestPage]
+class TestRoute extends PageRouteInfo<void> {
+  const TestRoute() : super(TestRoute.name, path: '/test-page');
+
+  static const String name = 'TestRoute';
+}
+
+/// generated route for
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/login-page');
@@ -144,14 +147,6 @@ class HomeBodyRoute extends PageRouteInfo<void> {
   const HomeBodyRoute() : super(HomeBodyRoute.name, path: 'home-body-page');
 
   static const String name = 'HomeBodyRoute';
-}
-
-/// generated route for
-/// [TestPage]
-class TestRoute extends PageRouteInfo<void> {
-  const TestRoute() : super(TestRoute.name, path: 'test-page');
-
-  static const String name = 'TestRoute';
 }
 
 /// generated route for

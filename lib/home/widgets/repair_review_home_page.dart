@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../account/widgets/default_avatar.dart';
-import '../../account/widgets/user_data.dart';
+import '../../account/model/user_data.dart';
 import '../../l10n/l10n.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
@@ -34,6 +36,12 @@ class RepairReviewHomePage extends StatelessWidget {
                       fadeInDuration: const Duration(milliseconds: 50),
                       fadeOutDuration: const Duration(milliseconds: 50),
                       imageUrl: user.urlImage,
+                      placeholder: (context, url) {
+                        return DefaultAvatar(
+                          textSize: Theme.of(context).textTheme.titleLarge,
+                          userName: user.name,
+                        );
+                      },
                       // ignore: implicit_dynamic_parameter
                       errorWidget: (context, url, error) {
                         return DefaultAvatar(
@@ -76,40 +84,22 @@ class RepairReviewHomePage extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
+          child: Center(
+            child: Column(
+              children: [
+                RatingBar.builder(
+                  ignoreGestures: true,
+                  initialRating: 4.5,
+                  itemSize: 30,
+                  allowHalfRating: true,
+                  itemBuilder: (context, _) => Icon(
                     Icons.star,
                     color: Theme.of(context).colorScheme.inversePrimary,
-                    size: 30,
                   ),
-                  Icon(
-                    Icons.star,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    size: 30,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    size: 30,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    size: 30,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Theme.of(context).disabledColor,
-                    size: 30,
-                  ),
-                ],
-              ),
-            ],
+                  onRatingUpdate: (double value) {},
+                ),
+              ],
+            ),
           ),
         ),
       ],

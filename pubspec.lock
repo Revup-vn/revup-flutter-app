@@ -466,6 +466,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -489,11 +496,7 @@ packages:
       name: form_builder_validators
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "8.2.0"
-=======
-    version: "8.1.1"
->>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
   freezed:
     dependency: "direct dev"
     description:
@@ -838,8 +841,7 @@ packages:
       resolved-ref: "44fa5ca8e0b7b5aaeaf47c434007d3452f5340cd"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-<<<<<<< HEAD
-    version: "1.0.0+2"
+    version: "1.0.0+3"
   rxdart:
     dependency: transitive
     description:
@@ -847,9 +849,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.4"
-=======
-    version: "1.0.0+3"
->>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
   shared_preferences:
     dependency: "direct main"
     description:

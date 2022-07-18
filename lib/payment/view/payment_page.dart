@@ -12,18 +12,17 @@ class PaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
+      appBar: AppBar(
+        title: AutoSizeText(
+          l10n.paymentLabel,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: ListView(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(32, 50, 16, 0),
-            child: AutoSizeText(
-              l10n.paymentLabel,
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 50, 16, 0),
             child: AutoSizeText(

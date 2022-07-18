@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -10,8 +11,8 @@ import '../../account/model/user_data.dart';
 import '../../l10n/l10n.dart';
 import '../cubit/update_profile_cubit.dart';
 
-class Signup6Page extends StatelessWidget {
-  const Signup6Page({super.key});
+class UpdateProfileView extends StatelessWidget {
+  const UpdateProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class Signup6Page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          l10n.completeRegistrationLabel,
+          l10n.editProfileLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -116,6 +117,7 @@ class Signup6Page extends StatelessWidget {
                         errorText: l10n.invalidFormatLabel,
                       ),
                     ]),
+                    initialValue: user.name,
                     onChanged: (fullname) {
                       _formKey.currentState?.fields['fullName']!.validate();
                     },
@@ -139,8 +141,35 @@ class Signup6Page extends StatelessWidget {
                         errorText: l10n.invalidFormatLabel,
                       ),
                     ]),
+                    initialValue: user.email,
                     onChanged: (email) {
                       _formKey.currentState?.fields['email']!.validate();
+                    },
+                  ),
+                  FormBuilderTextField(
+                    style: Theme.of(context).textTheme.labelLarge,
+                    decoration: InputDecoration(
+                      labelText: l10n.phoneLabel,
+                      labelStyle: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    keyboardType: TextInputType.number,
+                    name: 'phone',
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: l10n.emptyLabel,
+                      ),
+                      FormBuilderValidators.match(
+                        r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                        errorText: l10n.invalidFormatLabel,
+                      ),
+                    ]),
+                    initialValue: user.phone,
+                    enabled: false,
+                    onChanged: (phoneNumber) {
+                      _formKey.currentState?.fields['phone']!.validate();
                     },
                   ),
                   FormBuilderDateTimePicker(
@@ -155,7 +184,7 @@ class Signup6Page extends StatelessWidget {
                           .labelLarge!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    initialValue: DateTime.now(),
+                    initialValue: user.date,
                   ),
                   FormBuilderTextField(
                     style: Theme.of(context).textTheme.labelLarge,
@@ -173,6 +202,7 @@ class Signup6Page extends StatelessWidget {
                         errorText: l10n.emptyLabel,
                       ),
                     ]),
+                    initialValue: user.address,
                     onChanged: (address) {
                       _formKey.currentState?.fields['address']!.validate();
                     },
@@ -194,7 +224,7 @@ class Signup6Page extends StatelessWidget {
                           String address,
                         ) {
                           return Text(
-                            '$fullName   $email   $date   $address',
+                            '$fullName   $email   $phone   $date   $address',
                           );
                         },
                       );
@@ -226,7 +256,7 @@ class Signup6Page extends StatelessWidget {
                     }, // TODO(namngoc231): complete update profile
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(
-                      l10n.doneLabel,
+                      l10n.updateLabel,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),

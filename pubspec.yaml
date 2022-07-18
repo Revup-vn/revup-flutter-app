@@ -24,12 +24,9 @@ dependencies:
   flutter_form_field_validator: ^1.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.0
-<<<<<<< HEAD
   form_builder_validators: ^8.2.0
-=======
-  form_builder_validators: ^8.1.1
->>>>>>> 8ab589a31d6d6ad861519cfeb324a50e32853ea2
   freezed_annotation: ^2.0.3
   hive: ^2.2.3
   intl: ^0.17.0

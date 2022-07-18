@@ -7,16 +7,12 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
-
-  /// File path: assets/screens/castrol.svg
-  SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
 
   /// File path: assets/screens/Facebook - Original.svg
   SvgGenImage get facebookOriginal =>
@@ -26,9 +22,16 @@ class $AssetsScreensGen {
   SvgGenImage get googleOriginal =>
       const SvgGenImage('assets/screens/Google_Original.svg');
 
+  /// File path: assets/screens/castrol.svg
+  SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
+
   /// File path: assets/screens/destination.svg
   SvgGenImage get destination =>
       const SvgGenImage('assets/screens/destination.svg');
+
+  /// File path: assets/screens/flag_VietNam.svg
+  SvgGenImage get flagVietNam =>
+      const SvgGenImage('assets/screens/flag_VietNam.svg');
 
   /// File path: assets/screens/free_ship.svg
   SvgGenImage get freeShip => const SvgGenImage('assets/screens/free_ship.svg');
@@ -46,10 +49,6 @@ class $AssetsScreensGen {
   /// File path: assets/screens/icons-zalo.svg
   SvgGenImage get iconsZalo =>
       const SvgGenImage('assets/screens/icons-zalo.svg');
-
-  /// File path: assets/screens/flag_VietNam.svg
-  SvgGenImage get flagVietNam =>
-      const SvgGenImage('assets/screens/flag_VietNam.svg');
 
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>

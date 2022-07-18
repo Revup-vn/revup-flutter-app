@@ -69,5 +69,8 @@
   "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
   "skipLabel": "Bỏ qua",
   "nextLabel": "Tiếp theo",
-  "doneLabel": "Xong"
+  "doneLabel": "Xong",
+  "emptyLabel": "Xin đừng để trống",
+  "invalidFormatLabel": "Định dạng không hợp lệ"
+  
 }

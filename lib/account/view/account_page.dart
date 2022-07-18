@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
+import '../../router/app_router.dart';
 import '../widgets/account_item.dart';
 import '../widgets/default_avatar.dart';
-import '../widgets/user_data.dart';
+import '../model/user_data.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -32,6 +34,12 @@ class AccountPage extends StatelessWidget {
                         fadeInDuration: const Duration(milliseconds: 50),
                         fadeOutDuration: const Duration(milliseconds: 50),
                         imageUrl: user.urlImage,
+                        placeholder: (context, url) {
+                          return DefaultAvatar(
+                            textSize: Theme.of(context).textTheme.headline1,
+                            userName: user.name,
+                          );
+                        },
                         // ignore: implicit_dynamic_parameter
                         errorWidget: (context, url, error) {
                           return DefaultAvatar(
@@ -109,12 +117,20 @@ class AccountPage extends StatelessWidget {
               AccountItem(
                 accountName: l10n.editProfileLabel,
                 accountIcon: const Icon(Icons.portrait),
-                callback: () {}, // TODO(namngoc231): Go to Edit Profile
+                callback: () {
+                  context.router.push(
+                    const UpdateProfileRoute(),
+                  );
+                }, // TODO(namngoc231): Go to Edit Profile
               ),
               AccountItem(
                 accountName: l10n.paymentLabel,
                 accountIcon: const Icon(Icons.payment),
-                callback: () {}, // TODO(namngoc231): Go to Payment
+                callback: () {
+                  context.router.push(
+                    const PaymentRoute(),
+                  );
+                }, // TODO(namngoc231): Go to Payment
               ),
               AccountItem(
                 accountName: l10n.organizationLabel,

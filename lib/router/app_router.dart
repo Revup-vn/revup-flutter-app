@@ -21,24 +21,18 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
-      //initial: true,
     ),
     AdaptiveRoute<void>(
       page: HomePage,
+      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
-        AdaptiveRoute<void>(page: TestPage),
         AdaptiveRoute<void>(page: AccountPage),
       ],
     ),
     AdaptiveRoute<void>(page: PaymentPage),
-    AdaptiveRoute<void>(
-      page: Signup6Page,
-    ),
-    AdaptiveRoute<void>(
-      page: UpdateProfilePage,
-    ),
-    AdaptiveRoute<void>(page: SplashPage, initial: true),
+    AdaptiveRoute<void>(page: Signup6Page),
+    AdaptiveRoute<void>(page: UpdateProfilePage),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),

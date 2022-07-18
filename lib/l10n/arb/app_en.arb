@@ -69,5 +69,7 @@
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
   "skipLabel": "Skip",
   "nextLabel": "Next",
-  "doneLabel": "Done"
+  "doneLabel": "Done",
+  "emptyLabel": "Please do not leave it blank",
+  "invalidFormatLabel": "Invalid format"
 }

@@ -12,8 +12,10 @@ class HomePage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const [
         HomeBodyRoute(),
-        TestRoute(),
-        TestRoute(),
+        // TestRoute(),
+        // TestRoute(),
+        HomeBodyRoute(),
+        HomeBodyRoute(),
         AccountRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
