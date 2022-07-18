@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -9,6 +11,8 @@ import 'package:revup_core/core.dart';
 // import '../../../account/widgets/default_avatar.dart';
 // import '../../../account/model/user_data.dart';
 import '../../../l10n/l10n.dart';
+import '../../router/app_router.dart';
+import '../../test/test.dart';
 
 class Signup6Page extends StatelessWidget {
   const Signup6Page(
@@ -143,7 +147,7 @@ class Signup6Page extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelLarge,
                     name: 'dateUpdate',
                     inputType: InputType.date,
-                    format: DateFormat('dd-MM-yyyy'),
+                    format: DateFormat('yyyy-MM-dd'),
                     decoration: InputDecoration(
                       labelText: l10n.dateLabel,
                       labelStyle: Theme.of(context).textTheme.labelLarge,
@@ -178,22 +182,27 @@ class Signup6Page extends StatelessWidget {
                         final fName = data['fullName'].toString().split(' ')[0];
                         final lName =
                             data['fullName'].toString().split(fName)[1];
+                        log(data['dateUpdate'].toString().split(' ')[0]);
                         completer.complete(
                           AppUser.consumer(
                             uuid: uid,
                             firstName: fName,
                             lastName: lName,
                             phone: phoneNumber,
-                            dob: DateTime.parse(data['updateDate'].toString()),
+                            dob: DateTime.parse(
+                              data['dateUpdate'].toString().split(' ')[0],
+                            ),
                             addr: data['address'].toString(),
                             email: data['email'].toString(),
                             active: true,
-                            avatarUrl: photoURL,
+                            avatarUrl:
+                                photoURL == '' ? 'default/avatar' : photoURL,
                             createdTime: DateTime.now(),
                             lastUpdatedTime: DateTime.now(),
                           ),
                         );
                       }
+                      context.router.pop();
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(

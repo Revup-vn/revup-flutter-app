@@ -9,7 +9,7 @@ import 'package:timer_count_down/timer_controller.dart';
 
 import '../../l10n/l10n.dart';
 import '../bloc/otp_bloc.dart';
-import 'time_label.dart';
+import 'time_label.u.dart';
 
 class PincodeMainContent extends StatelessWidget {
   PincodeMainContent(this.phoneNumber, this.completer, {super.key});

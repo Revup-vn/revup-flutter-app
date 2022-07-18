@@ -5,10 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revup_core/core.dart';
 import '../../router/app_router.dart';
 import '../bloc/otp_bloc.dart';
-import '../widgets/otp_main_content.dart';
+import '../widgets/otp_main_content.u.dart';
 
 class OTPPage extends StatelessWidget {
   const OTPPage(this.phoneNumber, this.completer, {super.key});

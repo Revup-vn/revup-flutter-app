@@ -1,7 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
+import '../../onboarding/onboarding.dart';
+import '../../router/app_router.dart';
 import '../bloc/login_bloc.dart';
+import '../widgets/login_success.dart';
 import 'login_view.dart';
 
 class LoginPage extends StatelessWidget {
@@ -13,7 +18,12 @@ class LoginPage extends StatelessWidget {
       providers: [
         BlocProvider<LoginBloc>(create: (BuildContext context) => LoginBloc()),
       ],
-      child: LoginView(),
+      child: BlocBuilder<AuthenticateBloc, AuthenticateState>(
+        builder: (context, state) => state.maybeWhen(
+          authenticated: (a) => const LoginSucess(),
+          orElse: LoginView.new,
+        ),
+      ),
     );
   }
 }

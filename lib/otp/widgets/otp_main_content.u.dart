@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../l10n/l10n.dart';
-import 'otp_pincode_main_content.dart';
+import 'otp_pincode_main_content.u.dart';
 
 class OTPMainContent extends StatelessWidget {
   const OTPMainContent(this.phoneNumber, this.completer, {super.key});

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -139,9 +138,9 @@ class LoginView extends StatelessWidget {
                                       AuthenticateEvent.loginWithPhone(
                                         phoneNumber:
                                             '+84${_formKey.currentState!.value['phone']}',
-                                        onSubmitOTP: () async {
+                                        onSubmitOTP: () {
                                           final completer = Completer<String>();
-                                          await context.router.push(
+                                          context.router.push(
                                             OTPRoute(
                                               phoneNumber: _formKey
                                                   .currentState!.value['phone']
@@ -202,30 +201,18 @@ class LoginView extends StatelessWidget {
                     context.read<AuthenticateBloc>().add(
                       AuthenticateEvent.loginWithGoogle(
                         onCompleteSignUp: (user) async {
-                          // final completer = Completer<AppUser>();
-                          // await context.router.push(
-                          //   Signup6Route(
-                          //     completer: completer,
-                          //     phoneNumber: user.phoneNumber!,
-                          //     photoURL: user.photoURL!,
-                          //     uid: user.uid,
-                          //   ),
-                          // );
-                          // await Future.delayed(Duration(seconds: 30), () {});
-                          // return completer.future;
-                          return AppUser.consumer(
-                            uuid: user.uid,
-                            firstName: 'firstName',
-                            lastName: 'lastName',
-                            phone: user.phoneNumber!,
-                            dob: DateTime.parse('2012-02-27'),
-                            addr: 'addr',
-                            email: 'email',
-                            active: true,
-                            avatarUrl: user.photoURL!,
-                            createdTime: DateTime.now(),
-                            lastUpdatedTime: DateTime.now(),
+                          final completer = Completer<AppUser>();
+                          _formKey.currentState!.saveAndValidate();
+                          await context.router.push(
+                            Signup6Route(
+                              completer: completer,
+                              phoneNumber: user.phoneNumber ??
+                                  '+84${_formKey.currentState!.value['phone']}',
+                              photoURL: user.photoURL ?? '',
+                              uid: user.uid,
+                            ),
                           );
+                          return completer.future;
                         },
                       ),
                     );
