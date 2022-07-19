@@ -19,36 +19,18 @@ class FindListRepairerBloc
     });
     on<Refresh>((event, emit) {
       emit(
-        const FindListRepairerState.refreshCompleted(
-          listItems: [
-            [
-              'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
-              'Nguyen Van C',
-              'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
-              '4.9',
-              '109',
-              '500',
-              '10',
-            ],
-            [
-              'https://this-person-does-not-exist.com/img/avatar-f23a11a46d5096129b42a5254d3134cc.jpg',
-              'Nguyen Van D',
-              'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
-              '4.9',
-              '109',
-              '500',
-              '10',
-            ],
-          ],
+        const FindListRepairerState.refreshSuccess(
+          listProvider: [],
         ),
       );
     });
-    on<OnChanged>((event, emit) {
-      emit(FindListRepairerState.valueChanged(value: event.value));
-    });
-    on<OnTap>((event, emit) {
-      log('message');
-      emit(const FindListRepairerState.pickARepairer());
+    on<DropdownListChanged>((event, emit) {
+      emit(
+        FindListRepairerState.dropdownListChangedSuccess(
+          listProvider: [],
+          sortType: event.sortType,
+        ),
+      );
     });
   }
 }

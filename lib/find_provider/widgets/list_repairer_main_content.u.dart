@@ -1,13 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../router/router.dart';
 import '../bloc/find_list_repairer_bloc.dart';
 
 class ListRepairerContent extends StatelessWidget {
-  ListRepairerContent({super.key});
+  ListRepairerContent({
+    super.key,
+    this.listProvider,
+  });
+  final List<List<String>>? listProvider;
   final List<String> item1 = [
     'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
     'Nguyen Van A',
@@ -46,9 +52,11 @@ class ListRepairerContent extends StatelessWidget {
                       children: [
                         ListTile(
                           onTap: () {
-                            context
-                                .read<FindListRepairerBloc>()
-                                .add(const FindListRepairerEvent.onTap());
+                            context.router.push(
+                              RepairerProfileRoute(
+                                providerID: 'ID',
+                              ),
+                            );
                           },
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(48),

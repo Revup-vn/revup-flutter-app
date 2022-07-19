@@ -20,24 +20,21 @@ mixin _$FindListRepairerEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) started,
     required TResult Function() refresh,
-    required TResult Function(String value) onChanged,
-    required TResult Function() onTap,
+    required TResult Function(String sortType) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,24 +42,21 @@ mixin _$FindListRepairerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Refresh value) refresh,
-    required TResult Function(OnChanged value) onChanged,
-    required TResult Function(OnTap value) onTap,
+    required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,8 +152,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) started,
     required TResult Function() refresh,
-    required TResult Function(String value) onChanged,
-    required TResult Function() onTap,
+    required TResult Function(String sortType) dropdownListChanged,
   }) {
     return started(hasValue);
   }
@@ -169,8 +162,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
   }) {
     return started?.call(hasValue);
   }
@@ -180,8 +172,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -195,8 +186,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Refresh value) refresh,
-    required TResult Function(OnChanged value) onChanged,
-    required TResult Function(OnTap value) onTap,
+    required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return started(this);
   }
@@ -206,8 +196,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return started?.call(this);
   }
@@ -217,8 +206,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -285,8 +273,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) started,
     required TResult Function() refresh,
-    required TResult Function(String value) onChanged,
-    required TResult Function() onTap,
+    required TResult Function(String sortType) dropdownListChanged,
   }) {
     return refresh();
   }
@@ -296,8 +283,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
   }) {
     return refresh?.call();
   }
@@ -307,8 +293,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -322,8 +307,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Refresh value) refresh,
-    required TResult Function(OnChanged value) onChanged,
-    required TResult Function(OnTap value) onTap,
+    required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return refresh(this);
   }
@@ -333,8 +317,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return refresh?.call(this);
   }
@@ -344,8 +327,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -360,32 +342,32 @@ abstract class Refresh implements FindListRepairerEvent {
 }
 
 /// @nodoc
-abstract class _$$OnChangedCopyWith<$Res> {
-  factory _$$OnChangedCopyWith(
-          _$OnChanged value, $Res Function(_$OnChanged) then) =
-      __$$OnChangedCopyWithImpl<$Res>;
-  $Res call({String value});
+abstract class _$$DropdownListChangedCopyWith<$Res> {
+  factory _$$DropdownListChangedCopyWith(_$DropdownListChanged value,
+          $Res Function(_$DropdownListChanged) then) =
+      __$$DropdownListChangedCopyWithImpl<$Res>;
+  $Res call({String sortType});
 }
 
 /// @nodoc
-class __$$OnChangedCopyWithImpl<$Res>
+class __$$DropdownListChangedCopyWithImpl<$Res>
     extends _$FindListRepairerEventCopyWithImpl<$Res>
-    implements _$$OnChangedCopyWith<$Res> {
-  __$$OnChangedCopyWithImpl(
-      _$OnChanged _value, $Res Function(_$OnChanged) _then)
-      : super(_value, (v) => _then(v as _$OnChanged));
+    implements _$$DropdownListChangedCopyWith<$Res> {
+  __$$DropdownListChangedCopyWithImpl(
+      _$DropdownListChanged _value, $Res Function(_$DropdownListChanged) _then)
+      : super(_value, (v) => _then(v as _$DropdownListChanged));
 
   @override
-  _$OnChanged get _value => super._value as _$OnChanged;
+  _$DropdownListChanged get _value => super._value as _$DropdownListChanged;
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? sortType = freezed,
   }) {
-    return _then(_$OnChanged(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+    return _then(_$DropdownListChanged(
+      sortType: sortType == freezed
+          ? _value.sortType
+          : sortType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -393,51 +375,54 @@ class __$$OnChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
-  const _$OnChanged({required this.value});
+class _$DropdownListChanged
+    with DiagnosticableTreeMixin
+    implements DropdownListChanged {
+  const _$DropdownListChanged({required this.sortType});
 
   @override
-  final String value;
+  final String sortType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerEvent.onChanged(value: $value)';
+    return 'FindListRepairerEvent.dropdownListChanged(sortType: $sortType)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerEvent.onChanged'))
-      ..add(DiagnosticsProperty('value', value));
+      ..add(DiagnosticsProperty(
+          'type', 'FindListRepairerEvent.dropdownListChanged'))
+      ..add(DiagnosticsProperty('sortType', sortType));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OnChanged &&
-            const DeepCollectionEquality().equals(other.value, value));
+            other is _$DropdownListChanged &&
+            const DeepCollectionEquality().equals(other.sortType, sortType));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(sortType));
 
   @JsonKey(ignore: true)
   @override
-  _$$OnChangedCopyWith<_$OnChanged> get copyWith =>
-      __$$OnChangedCopyWithImpl<_$OnChanged>(this, _$identity);
+  _$$DropdownListChangedCopyWith<_$DropdownListChanged> get copyWith =>
+      __$$DropdownListChangedCopyWithImpl<_$DropdownListChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) started,
     required TResult Function() refresh,
-    required TResult Function(String value) onChanged,
-    required TResult Function() onTap,
+    required TResult Function(String sortType) dropdownListChanged,
   }) {
-    return onChanged(value);
+    return dropdownListChanged(sortType);
   }
 
   @override
@@ -445,10 +430,9 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
   }) {
-    return onChanged?.call(value);
+    return dropdownListChanged?.call(sortType);
   }
 
   @override
@@ -456,12 +440,11 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? started,
     TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
+    TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
-    if (onChanged != null) {
-      return onChanged(value);
+    if (dropdownListChanged != null) {
+      return dropdownListChanged(sortType);
     }
     return orElse();
   }
@@ -471,10 +454,9 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Refresh value) refresh,
-    required TResult Function(OnChanged value) onChanged,
-    required TResult Function(OnTap value) onTap,
+    required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
-    return onChanged(this);
+    return dropdownListChanged(this);
   }
 
   @override
@@ -482,10 +464,9 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
-    return onChanged?.call(this);
+    return dropdownListChanged?.call(this);
   }
 
   @override
@@ -493,145 +474,24 @@ class _$OnChanged with DiagnosticableTreeMixin implements OnChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
+    TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
-    if (onChanged != null) {
-      return onChanged(this);
+    if (dropdownListChanged != null) {
+      return dropdownListChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class OnChanged implements FindListRepairerEvent {
-  const factory OnChanged({required final String value}) = _$OnChanged;
+abstract class DropdownListChanged implements FindListRepairerEvent {
+  const factory DropdownListChanged({required final String sortType}) =
+      _$DropdownListChanged;
 
-  String get value;
+  String get sortType;
   @JsonKey(ignore: true)
-  _$$OnChangedCopyWith<_$OnChanged> get copyWith =>
+  _$$DropdownListChangedCopyWith<_$DropdownListChanged> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$OnTapCopyWith<$Res> {
-  factory _$$OnTapCopyWith(_$OnTap value, $Res Function(_$OnTap) then) =
-      __$$OnTapCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$OnTapCopyWithImpl<$Res>
-    extends _$FindListRepairerEventCopyWithImpl<$Res>
-    implements _$$OnTapCopyWith<$Res> {
-  __$$OnTapCopyWithImpl(_$OnTap _value, $Res Function(_$OnTap) _then)
-      : super(_value, (v) => _then(v as _$OnTap));
-
-  @override
-  _$OnTap get _value => super._value as _$OnTap;
-}
-
-/// @nodoc
-
-class _$OnTap with DiagnosticableTreeMixin implements OnTap {
-  const _$OnTap();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerEvent.onTap()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'FindListRepairerEvent.onTap'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnTap);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool hasValue) started,
-    required TResult Function() refresh,
-    required TResult Function(String value) onChanged,
-    required TResult Function() onTap,
-  }) {
-    return onTap();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
-    TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
-  }) {
-    return onTap?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
-    TResult Function()? refresh,
-    TResult Function(String value)? onChanged,
-    TResult Function()? onTap,
-    required TResult orElse(),
-  }) {
-    if (onTap != null) {
-      return onTap();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Refresh value) refresh,
-    required TResult Function(OnChanged value) onChanged,
-    required TResult Function(OnTap value) onTap,
-  }) {
-    return onTap(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
-  }) {
-    return onTap?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
-    TResult Function(OnChanged value)? onChanged,
-    TResult Function(OnTap value)? onTap,
-    required TResult orElse(),
-  }) {
-    if (onTap != null) {
-      return onTap(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class OnTap implements FindListRepairerEvent {
-  const factory OnTap() = _$OnTap;
 }
 
 /// @nodoc
@@ -639,50 +499,56 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) refreshCompleted,
-    required TResult Function(String value) valueChanged,
-    required TResult Function() pickARepairer,
+    required TResult Function(List<List<String>> listProvider) refreshSuccess,
+    required TResult Function(List<List<String>> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) refreshCompleted,
-    required TResult Function(_ValueChanged value) valueChanged,
-    required TResult Function(_PickARepairer value) pickARepairer,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -778,9 +644,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) refreshCompleted,
-    required TResult Function(String value) valueChanged,
-    required TResult Function() pickARepairer,
+    required TResult Function(List<List<String>> listProvider) refreshSuccess,
+    required TResult Function(List<List<String>> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
   }) {
     return initial(hasValue);
   }
@@ -789,9 +656,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
   }) {
     return initial?.call(hasValue);
   }
@@ -800,9 +668,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -815,9 +684,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) refreshCompleted,
-    required TResult Function(_ValueChanged value) valueChanged,
-    required TResult Function(_PickARepairer value) pickARepairer,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
   }) {
     return initial(this);
   }
@@ -826,9 +696,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
   }) {
     return initial?.call(this);
   }
@@ -837,9 +708,10 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -859,30 +731,32 @@ abstract class _Initial implements FindListRepairerState {
 }
 
 /// @nodoc
-abstract class _$$_ReloadCopyWith<$Res> {
-  factory _$$_ReloadCopyWith(_$_Reload value, $Res Function(_$_Reload) then) =
-      __$$_ReloadCopyWithImpl<$Res>;
-  $Res call({List<List<String>> listItems});
+abstract class _$$_RefreshSuccessCopyWith<$Res> {
+  factory _$$_RefreshSuccessCopyWith(
+          _$_RefreshSuccess value, $Res Function(_$_RefreshSuccess) then) =
+      __$$_RefreshSuccessCopyWithImpl<$Res>;
+  $Res call({List<List<String>> listProvider});
 }
 
 /// @nodoc
-class __$$_ReloadCopyWithImpl<$Res>
+class __$$_RefreshSuccessCopyWithImpl<$Res>
     extends _$FindListRepairerStateCopyWithImpl<$Res>
-    implements _$$_ReloadCopyWith<$Res> {
-  __$$_ReloadCopyWithImpl(_$_Reload _value, $Res Function(_$_Reload) _then)
-      : super(_value, (v) => _then(v as _$_Reload));
+    implements _$$_RefreshSuccessCopyWith<$Res> {
+  __$$_RefreshSuccessCopyWithImpl(
+      _$_RefreshSuccess _value, $Res Function(_$_RefreshSuccess) _then)
+      : super(_value, (v) => _then(v as _$_RefreshSuccess));
 
   @override
-  _$_Reload get _value => super._value as _$_Reload;
+  _$_RefreshSuccess get _value => super._value as _$_RefreshSuccess;
 
   @override
   $Res call({
-    Object? listItems = freezed,
+    Object? listProvider = freezed,
   }) {
-    return _then(_$_Reload(
-      listItems: listItems == freezed
-          ? _value._listItems
-          : listItems // ignore: cast_nullable_to_non_nullable
+    return _then(_$_RefreshSuccess(
+      listProvider: listProvider == freezed
+          ? _value._listProvider
+          : listProvider // ignore: cast_nullable_to_non_nullable
               as List<List<String>>,
     ));
   }
@@ -890,82 +764,86 @@ class __$$_ReloadCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Reload with DiagnosticableTreeMixin implements _Reload {
-  const _$_Reload({required final List<List<String>> listItems})
-      : _listItems = listItems;
+class _$_RefreshSuccess
+    with DiagnosticableTreeMixin
+    implements _RefreshSuccess {
+  const _$_RefreshSuccess({required final List<List<String>> listProvider})
+      : _listProvider = listProvider;
 
-  final List<List<String>> _listItems;
+  final List<List<String>> _listProvider;
   @override
-  List<List<String>> get listItems {
+  List<List<String>> get listProvider {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_listItems);
+    return EqualUnmodifiableListView(_listProvider);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerState.refreshCompleted(listItems: $listItems)';
+    return 'FindListRepairerState.refreshSuccess(listProvider: $listProvider)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'FindListRepairerState.refreshCompleted'))
-      ..add(DiagnosticsProperty('listItems', listItems));
+      ..add(DiagnosticsProperty('type', 'FindListRepairerState.refreshSuccess'))
+      ..add(DiagnosticsProperty('listProvider', listProvider));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Reload &&
+            other is _$_RefreshSuccess &&
             const DeepCollectionEquality()
-                .equals(other._listItems, _listItems));
+                .equals(other._listProvider, _listProvider));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listItems));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_listProvider));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ReloadCopyWith<_$_Reload> get copyWith =>
-      __$$_ReloadCopyWithImpl<_$_Reload>(this, _$identity);
+  _$$_RefreshSuccessCopyWith<_$_RefreshSuccess> get copyWith =>
+      __$$_RefreshSuccessCopyWithImpl<_$_RefreshSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) refreshCompleted,
-    required TResult Function(String value) valueChanged,
-    required TResult Function() pickARepairer,
+    required TResult Function(List<List<String>> listProvider) refreshSuccess,
+    required TResult Function(List<List<String>> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
   }) {
-    return refreshCompleted(listItems);
+    return refreshSuccess(listProvider);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
   }) {
-    return refreshCompleted?.call(listItems);
+    return refreshSuccess?.call(listProvider);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
-    if (refreshCompleted != null) {
-      return refreshCompleted(listItems);
+    if (refreshSuccess != null) {
+      return refreshSuccess(listProvider);
     }
     return orElse();
   }
@@ -974,77 +852,88 @@ class _$_Reload with DiagnosticableTreeMixin implements _Reload {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) refreshCompleted,
-    required TResult Function(_ValueChanged value) valueChanged,
-    required TResult Function(_PickARepairer value) pickARepairer,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
   }) {
-    return refreshCompleted(this);
+    return refreshSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
   }) {
-    return refreshCompleted?.call(this);
+    return refreshSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
-    if (refreshCompleted != null) {
-      return refreshCompleted(this);
+    if (refreshSuccess != null) {
+      return refreshSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _Reload implements FindListRepairerState {
-  const factory _Reload({required final List<List<String>> listItems}) =
-      _$_Reload;
+abstract class _RefreshSuccess implements FindListRepairerState {
+  const factory _RefreshSuccess(
+      {required final List<List<String>> listProvider}) = _$_RefreshSuccess;
 
-  List<List<String>> get listItems;
+  List<List<String>> get listProvider;
   @JsonKey(ignore: true)
-  _$$_ReloadCopyWith<_$_Reload> get copyWith =>
+  _$$_RefreshSuccessCopyWith<_$_RefreshSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ValueChangedCopyWith<$Res> {
-  factory _$$_ValueChangedCopyWith(
-          _$_ValueChanged value, $Res Function(_$_ValueChanged) then) =
-      __$$_ValueChangedCopyWithImpl<$Res>;
-  $Res call({String value});
+abstract class _$$_DropdownListChangedSuccessCopyWith<$Res> {
+  factory _$$_DropdownListChangedSuccessCopyWith(
+          _$_DropdownListChangedSuccess value,
+          $Res Function(_$_DropdownListChangedSuccess) then) =
+      __$$_DropdownListChangedSuccessCopyWithImpl<$Res>;
+  $Res call({List<List<String>> listProvider, String sortType});
 }
 
 /// @nodoc
-class __$$_ValueChangedCopyWithImpl<$Res>
+class __$$_DropdownListChangedSuccessCopyWithImpl<$Res>
     extends _$FindListRepairerStateCopyWithImpl<$Res>
-    implements _$$_ValueChangedCopyWith<$Res> {
-  __$$_ValueChangedCopyWithImpl(
-      _$_ValueChanged _value, $Res Function(_$_ValueChanged) _then)
-      : super(_value, (v) => _then(v as _$_ValueChanged));
+    implements _$$_DropdownListChangedSuccessCopyWith<$Res> {
+  __$$_DropdownListChangedSuccessCopyWithImpl(
+      _$_DropdownListChangedSuccess _value,
+      $Res Function(_$_DropdownListChangedSuccess) _then)
+      : super(_value, (v) => _then(v as _$_DropdownListChangedSuccess));
 
   @override
-  _$_ValueChanged get _value => super._value as _$_ValueChanged;
+  _$_DropdownListChangedSuccess get _value =>
+      super._value as _$_DropdownListChangedSuccess;
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? listProvider = freezed,
+    Object? sortType = freezed,
   }) {
-    return _then(_$_ValueChanged(
-      value: value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+    return _then(_$_DropdownListChangedSuccess(
+      listProvider: listProvider == freezed
+          ? _value._listProvider
+          : listProvider // ignore: cast_nullable_to_non_nullable
+              as List<List<String>>,
+      sortType: sortType == freezed
+          ? _value.sortType
+          : sortType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1052,75 +941,96 @@ class __$$_ValueChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
-  const _$_ValueChanged({required this.value});
+class _$_DropdownListChangedSuccess
+    with DiagnosticableTreeMixin
+    implements _DropdownListChangedSuccess {
+  const _$_DropdownListChangedSuccess(
+      {required final List<List<String>> listProvider, required this.sortType})
+      : _listProvider = listProvider;
+
+  final List<List<String>> _listProvider;
+  @override
+  List<List<String>> get listProvider {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listProvider);
+  }
 
   @override
-  final String value;
+  final String sortType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerState.valueChanged(value: $value)';
+    return 'FindListRepairerState.dropdownListChangedSuccess(listProvider: $listProvider, sortType: $sortType)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerState.valueChanged'))
-      ..add(DiagnosticsProperty('value', value));
+      ..add(DiagnosticsProperty(
+          'type', 'FindListRepairerState.dropdownListChangedSuccess'))
+      ..add(DiagnosticsProperty('listProvider', listProvider))
+      ..add(DiagnosticsProperty('sortType', sortType));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ValueChanged &&
-            const DeepCollectionEquality().equals(other.value, value));
+            other is _$_DropdownListChangedSuccess &&
+            const DeepCollectionEquality()
+                .equals(other._listProvider, _listProvider) &&
+            const DeepCollectionEquality().equals(other.sortType, sortType));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_listProvider),
+      const DeepCollectionEquality().hash(sortType));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ValueChangedCopyWith<_$_ValueChanged> get copyWith =>
-      __$$_ValueChangedCopyWithImpl<_$_ValueChanged>(this, _$identity);
+  _$$_DropdownListChangedSuccessCopyWith<_$_DropdownListChangedSuccess>
+      get copyWith => __$$_DropdownListChangedSuccessCopyWithImpl<
+          _$_DropdownListChangedSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) refreshCompleted,
-    required TResult Function(String value) valueChanged,
-    required TResult Function() pickARepairer,
+    required TResult Function(List<List<String>> listProvider) refreshSuccess,
+    required TResult Function(List<List<String>> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
   }) {
-    return valueChanged(value);
+    return dropdownListChangedSuccess(listProvider, sortType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
   }) {
-    return valueChanged?.call(value);
+    return dropdownListChangedSuccess?.call(listProvider, sortType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
-    if (valueChanged != null) {
-      return valueChanged(value);
+    if (dropdownListChangedSuccess != null) {
+      return dropdownListChangedSuccess(listProvider, sortType);
     }
     return orElse();
   }
@@ -1129,89 +1039,94 @@ class _$_ValueChanged with DiagnosticableTreeMixin implements _ValueChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) refreshCompleted,
-    required TResult Function(_ValueChanged value) valueChanged,
-    required TResult Function(_PickARepairer value) pickARepairer,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
   }) {
-    return valueChanged(this);
+    return dropdownListChangedSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
   }) {
-    return valueChanged?.call(this);
+    return dropdownListChangedSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
-    if (valueChanged != null) {
-      return valueChanged(this);
+    if (dropdownListChangedSuccess != null) {
+      return dropdownListChangedSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _ValueChanged implements FindListRepairerState {
-  const factory _ValueChanged({required final String value}) = _$_ValueChanged;
+abstract class _DropdownListChangedSuccess implements FindListRepairerState {
+  const factory _DropdownListChangedSuccess(
+      {required final List<List<String>> listProvider,
+      required final String sortType}) = _$_DropdownListChangedSuccess;
 
-  String get value;
+  List<List<String>> get listProvider;
+  String get sortType;
   @JsonKey(ignore: true)
-  _$$_ValueChangedCopyWith<_$_ValueChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_DropdownListChangedSuccessCopyWith<_$_DropdownListChangedSuccess>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_PickARepairerCopyWith<$Res> {
-  factory _$$_PickARepairerCopyWith(
-          _$_PickARepairer value, $Res Function(_$_PickARepairer) then) =
-      __$$_PickARepairerCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_PickARepairerCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
     extends _$FindListRepairerStateCopyWithImpl<$Res>
-    implements _$$_PickARepairerCopyWith<$Res> {
-  __$$_PickARepairerCopyWithImpl(
-      _$_PickARepairer _value, $Res Function(_$_PickARepairer) _then)
-      : super(_value, (v) => _then(v as _$_PickARepairer));
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
   @override
-  _$_PickARepairer get _value => super._value as _$_PickARepairer;
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
 
-class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
-  const _$_PickARepairer();
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+  const _$_Loading();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerState.pickARepairer()';
+    return 'FindListRepairerState.loading()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-        DiagnosticsProperty('type', 'FindListRepairerState.pickARepairer'));
+    properties
+        .add(DiagnosticsProperty('type', 'FindListRepairerState.loading'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PickARepairer);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -1221,35 +1136,38 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listItems) refreshCompleted,
-    required TResult Function(String value) valueChanged,
-    required TResult Function() pickARepairer,
+    required TResult Function(List<List<String>> listProvider) refreshSuccess,
+    required TResult Function(List<List<String>> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
   }) {
-    return pickARepairer();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
   }) {
-    return pickARepairer?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listItems)? refreshCompleted,
-    TResult Function(String value)? valueChanged,
-    TResult Function()? pickARepairer,
+    TResult Function(List<List<String>> listProvider)? refreshSuccess,
+    TResult Function(List<List<String>> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
     required TResult orElse(),
   }) {
-    if (pickARepairer != null) {
-      return pickARepairer();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -1258,40 +1176,43 @@ class _$_PickARepairer with DiagnosticableTreeMixin implements _PickARepairer {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Reload value) refreshCompleted,
-    required TResult Function(_ValueChanged value) valueChanged,
-    required TResult Function(_PickARepairer value) pickARepairer,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
   }) {
-    return pickARepairer(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
   }) {
-    return pickARepairer?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Reload value)? refreshCompleted,
-    TResult Function(_ValueChanged value)? valueChanged,
-    TResult Function(_PickARepairer value)? pickARepairer,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
-    if (pickARepairer != null) {
-      return pickARepairer(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
 }
 
-abstract class _PickARepairer implements FindListRepairerState {
-  const factory _PickARepairer() = _$_PickARepairer;
+abstract class _Loading implements FindListRepairerState {
+  const factory _Loading() = _$_Loading;
 }

@@ -36,8 +36,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const ListRepairerPage());
     },
     RepairerProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<RepairerProfileRouteArgs>();
       return AdaptivePage<void>(
-          routeData: routeData, child: const RepairerProfilePage());
+          routeData: routeData,
+          child: RepairerProfilePage(args.providerID, key: args.key));
     }
   };
 
@@ -95,9 +97,24 @@ class ListRepairerRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RepairerProfilePage]
-class RepairerProfileRoute extends PageRouteInfo<void> {
-  const RepairerProfileRoute()
-      : super(RepairerProfileRoute.name, path: '/repairer-profile-page');
+class RepairerProfileRoute extends PageRouteInfo<RepairerProfileRouteArgs> {
+  RepairerProfileRoute({required String providerID, Key? key})
+      : super(RepairerProfileRoute.name,
+            path: '/repairer-profile-page',
+            args: RepairerProfileRouteArgs(providerID: providerID, key: key));
 
   static const String name = 'RepairerProfileRoute';
+}
+
+class RepairerProfileRouteArgs {
+  const RepairerProfileRouteArgs({required this.providerID, this.key});
+
+  final String providerID;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RepairerProfileRouteArgs{providerID: $providerID, key: $key}';
+  }
 }

@@ -8,7 +8,7 @@ import 'repairer_profile_tabbar.u.dart';
 
 class RepairerProfileMainContent extends StatelessWidget {
   const RepairerProfileMainContent({super.key});
-
+  final double coverHeight = 150;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,115 +16,92 @@ class RepairerProfileMainContent extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Column(
-            children: [
-              Expanded(
-                child: Stack(
+      body: Column(
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
+            children: <Widget>[
+              RepairerProfileCoverImage(coverHeight),
+              Positioned(
+                left: 16,
+                top: coverHeight - 124 / 2,
+                child: const RepairerProfileAvatarImage(),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: coverHeight + 124 / 2,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const RepairerProfileCoverImage(),
-                    Positioned(
-                      bottom: 10,
-                      left: 16,
-                      child: Row(
-                        children: [
-                          const RepairerProfileAvatarImage(),
-                          const SizedBox(
-                            width: 20,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    AutoSizeText(
+                      'Nguyễn Văn Toản',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    AutoSizeText(
+                      'Đến với chúng tôi các bạn sẽ là thượng đế',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Icon(Icons.location_on_outlined),
+                        Expanded(
+                          child: AutoSizeText(
+                            'Q. Đống Đa, Hà Nội',
+                            style: Theme.of(context).textTheme.labelLarge,
+                            maxLines: 1,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                'Nguyen Van A',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                  ),
-                                  AutoSizeText.rich(
-                                    TextSpan(
-                                      text: '4.9',
-                                      children: <InlineSpan>[
-                                        TextSpan(
-                                          text: '(107 đánh giá)',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
-                                        ),
-                                      ],
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.home_outlined,
-                                    color: Theme.of(context).colorScheme.shadow,
-                                  ),
-                                  AutoSizeText(
-                                    '77 Khuất Duy Tiến, p.Nhân Chính, q.Thanh Xuân, Hà Nội',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                    maxLines: 2,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.format_quote_outlined,
-                                    color: Theme.of(context).colorScheme.shadow,
-                                  ),
-                                  AutoSizeText(
-                                    'Đến với chúng tôi khách hàng luôn là thượng đế',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                    maxLines: 2,
-                                  ),
-                                ],
-                              ),
-                            ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        Expanded(
+                          child: AutoSizeText(
+                            '4.7 | 109 lượt',
+                            style: Theme.of(context).textTheme.labelLarge,
+                            maxLines: 1,
                           ),
-                        ],
-                      ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      height: 1,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .inverseSurface
+                          .withOpacity(0.2),
+                      width: double.infinity,
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: Theme.of(context).elevatedButtonTheme.style,
-                child: Text(
-                  context.l10n.callHelpLabel,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
-              const Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 56),
-                  child: RepairerProfileTabBar(),
-                ),
-              ),
             ],
           ),
+          const Expanded(child: RepairerProfileTabBar()),
         ],
       ),
     );
