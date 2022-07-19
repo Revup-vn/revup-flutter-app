@@ -29,22 +29,20 @@ class ChooseServiceView extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 60),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: Column(
-                children: [
-                  BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
-                    builder: (context, state) {
-                      return state.when(
-                        initial: () => const Text('Empty'),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        failure: () => const Text('Failed'),
-                        success: (services) => ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Column(
+              children: [
+                BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () => const Text('Empty'),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      failure: () => const Text('Failed'),
+                      success: (services) => Expanded(
+                        child: ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 100),
                           itemCount: services.length,
                           itemBuilder: (context, index) {
                             return ServiceCheckboxTile(
@@ -57,11 +55,11 @@ class ChooseServiceView extends StatelessWidget {
                             );
                           },
                         ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           ),
           Positioned(
