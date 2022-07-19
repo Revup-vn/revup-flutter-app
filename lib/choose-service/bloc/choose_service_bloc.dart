@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../new-service/bloc/new_service_bloc.dart';
 import '../models/product_data.dart';
 import '../models/service_data.dart';
 
@@ -11,24 +15,30 @@ part 'choose_service_bloc.freezed.dart';
 
 class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   ChooseServiceBloc() : super(const _Initial()) {
+    on<Started>(_onStarted);
+
     on<ServiceSelected>((event, emit) {
       selectedServices.appendElement(event.serviceId);
     });
+
     on<ServiceUnselected>(
       (event, emit) {
         selectedServices.filter((a) => a != event.serviceId);
       },
     );
+
     on<ServiceListSubmitted>(
       (event, emit) {
         emit(const ChooseServiceState.loading());
       },
     );
 
-    on<Started>(getServices);
+    on<NewServiceRequested>(
+      (event, emit) {},
+    );
   }
 
-  Future<void> getServices(
+  Future<void> _onStarted(
     Started event,
     Emitter<ChooseServiceState> emit,
   ) async {

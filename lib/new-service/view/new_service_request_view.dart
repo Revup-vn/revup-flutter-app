@@ -1,15 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../choose-service/bloc/choose_service_bloc.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../bloc/new_service_bloc.dart';
 
 class NewServiceRequestView extends StatelessWidget {
   const NewServiceRequestView({super.key});
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -22,30 +24,37 @@ class NewServiceRequestView extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
         child: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: 120,
-              child: DottedBorder(
-                color: Theme.of(context).colorScheme.primary,
-                borderType: BorderType.RRect,
-                dashPattern: const [6, 5],
-                radius: const Radius.circular(12),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.screens.addImage.svg(),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      AutoSizeText(
-                        l10n.chooseImageLabel,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+            GestureDetector(
+              onTap: () {
+                context
+                    .read<NewServiceBloc>()
+                    .add(const NewServiceEvent.started());
+              },
+              child: SizedBox(
+                width: double.infinity,
+                height: 120,
+                child: DottedBorder(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderType: BorderType.RRect,
+                  dashPattern: const [6, 5],
+                  radius: const Radius.circular(12),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Assets.screens.addImage.svg(),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        AutoSizeText(
+                          l10n.chooseImageLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -85,6 +94,15 @@ class NewServiceRequestView extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context
+                    .read<ChooseServiceBloc>()
+                    .add(const ChooseServiceEvent.newServiceRequested());
+              },
+              style: Theme.of(context).elevatedButtonTheme.style,
+              child: AutoSizeText(l10n.confirmLabel),
             ),
           ],
         ),
