@@ -71,7 +71,7 @@ class PincodeMainContent extends StatelessWidget {
                       ? () {
                           _countdownController.restart();
                           context.read<OTPBloc>().add(
-                                OTPEvent.pressedResendOTP(
+                                OTPEvent.otpResend(
                                   isTapable: false,
                                   phoneNumber: phoneNumber,
                                 ),

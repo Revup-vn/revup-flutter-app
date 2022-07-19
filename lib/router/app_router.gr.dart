@@ -41,8 +41,8 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<Signup6RouteArgs>();
       return AdaptivePage<void>(
           routeData: routeData,
-          child: Signup6Page(
-              args.completer, args.phoneNumber, args.photoURL, args.uid,
+          child: Signup6Page(args.completer, args.phoneNumber, args.photoURL,
+              args.uid, args.email,
               key: args.key));
     }
   };
@@ -130,6 +130,7 @@ class Signup6Route extends PageRouteInfo<Signup6RouteArgs> {
       required String phoneNumber,
       required String photoURL,
       required String uid,
+      required String email,
       Key? key})
       : super(Signup6Route.name,
             path: '/signup6-page',
@@ -138,6 +139,7 @@ class Signup6Route extends PageRouteInfo<Signup6RouteArgs> {
                 phoneNumber: phoneNumber,
                 photoURL: photoURL,
                 uid: uid,
+                email: email,
                 key: key));
 
   static const String name = 'Signup6Route';
@@ -149,6 +151,7 @@ class Signup6RouteArgs {
       required this.phoneNumber,
       required this.photoURL,
       required this.uid,
+      required this.email,
       this.key});
 
   final Completer<dynamic> completer;
@@ -159,10 +162,12 @@ class Signup6RouteArgs {
 
   final String uid;
 
+  final String email;
+
   final Key? key;
 
   @override
   String toString() {
-    return 'Signup6RouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, key: $key}';
+    return 'Signup6RouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, email: $email, key: $key}';
   }
 }

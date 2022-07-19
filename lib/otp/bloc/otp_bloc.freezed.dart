@@ -20,12 +20,9 @@ mixin _$OTPEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isTapable) started,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
+            String email, Completer<dynamic> completer)
         submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
+    required TResult Function(bool isTapable, String phoneNumber) otpResend,
     required TResult Function(bool isTapable) countDownFinish,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,10 +30,9 @@ mixin _$OTPEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
   }) =>
       throw _privateConstructorUsedError;
@@ -44,10 +40,9 @@ mixin _$OTPEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
     required TResult orElse(),
   }) =>
@@ -56,8 +51,7 @@ mixin _$OTPEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
+    required TResult Function(OTPResend value) otpResend,
     required TResult Function(CountDownFinish value) countDownFinish,
   }) =>
       throw _privateConstructorUsedError;
@@ -65,8 +59,7 @@ mixin _$OTPEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,8 +67,7 @@ mixin _$OTPEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
     required TResult orElse(),
   }) =>
@@ -161,12 +153,9 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isTapable) started,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
+            String email, Completer<dynamic> completer)
         submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
+    required TResult Function(bool isTapable, String phoneNumber) otpResend,
     required TResult Function(bool isTapable) countDownFinish,
   }) {
     return started(isTapable);
@@ -177,10 +166,9 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
   }) {
     return started?.call(isTapable);
@@ -191,10 +179,9 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
     required TResult orElse(),
   }) {
@@ -209,8 +196,7 @@ class _$Started implements Started {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
+    required TResult Function(OTPResend value) otpResend,
     required TResult Function(CountDownFinish value) countDownFinish,
   }) {
     return started(this);
@@ -221,8 +207,7 @@ class _$Started implements Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
   }) {
     return started?.call(this);
@@ -233,8 +218,7 @@ class _$Started implements Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
     required TResult orElse(),
   }) {
@@ -262,6 +246,7 @@ abstract class _$$SubmitCopyWith<$Res> {
       {String uid,
       String phoneNumber,
       String photoURL,
+      String email,
       Completer<dynamic> completer});
 }
 
@@ -279,6 +264,7 @@ class __$$SubmitCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? phoneNumber = freezed,
     Object? photoURL = freezed,
+    Object? email = freezed,
     Object? completer = freezed,
   }) {
     return _then(_$Submit(
@@ -293,6 +279,10 @@ class __$$SubmitCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       completer: completer == freezed
           ? _value.completer
@@ -309,6 +299,7 @@ class _$Submit implements Submit {
       {required this.uid,
       required this.phoneNumber,
       required this.photoURL,
+      required this.email,
       required this.completer});
 
   @override
@@ -318,11 +309,13 @@ class _$Submit implements Submit {
   @override
   final String photoURL;
   @override
+  final String email;
+  @override
   final Completer<dynamic> completer;
 
   @override
   String toString() {
-    return 'OTPEvent.submit(uid: $uid, phoneNumber: $phoneNumber, photoURL: $photoURL, completer: $completer)';
+    return 'OTPEvent.submit(uid: $uid, phoneNumber: $phoneNumber, photoURL: $photoURL, email: $email, completer: $completer)';
   }
 
   @override
@@ -334,6 +327,7 @@ class _$Submit implements Submit {
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.completer, completer));
   }
 
@@ -343,6 +337,7 @@ class _$Submit implements Submit {
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(completer));
 
   @JsonKey(ignore: true)
@@ -355,15 +350,12 @@ class _$Submit implements Submit {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isTapable) started,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
+            String email, Completer<dynamic> completer)
         submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
+    required TResult Function(bool isTapable, String phoneNumber) otpResend,
     required TResult Function(bool isTapable) countDownFinish,
   }) {
-    return submit(uid, phoneNumber, photoURL, completer);
+    return submit(uid, phoneNumber, photoURL, email, completer);
   }
 
   @override
@@ -371,13 +363,12 @@ class _$Submit implements Submit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
   }) {
-    return submit?.call(uid, phoneNumber, photoURL, completer);
+    return submit?.call(uid, phoneNumber, photoURL, email, completer);
   }
 
   @override
@@ -385,15 +376,14 @@ class _$Submit implements Submit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(uid, phoneNumber, photoURL, completer);
+      return submit(uid, phoneNumber, photoURL, email, completer);
     }
     return orElse();
   }
@@ -403,8 +393,7 @@ class _$Submit implements Submit {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
+    required TResult Function(OTPResend value) otpResend,
     required TResult Function(CountDownFinish value) countDownFinish,
   }) {
     return submit(this);
@@ -415,8 +404,7 @@ class _$Submit implements Submit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
   }) {
     return submit?.call(this);
@@ -427,8 +415,7 @@ class _$Submit implements Submit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
     required TResult orElse(),
   }) {
@@ -444,11 +431,13 @@ abstract class Submit implements OTPEvent {
       {required final String uid,
       required final String phoneNumber,
       required final String photoURL,
+      required final String email,
       required final Completer<dynamic> completer}) = _$Submit;
 
   String get uid;
   String get phoneNumber;
   String get photoURL;
+  String get email;
   Completer<dynamic> get completer;
   @JsonKey(ignore: true)
   _$$SubmitCopyWith<_$Submit> get copyWith =>
@@ -456,202 +445,29 @@ abstract class Submit implements OTPEvent {
 }
 
 /// @nodoc
-abstract class _$$SubmitToSignupCopyWith<$Res> {
-  factory _$$SubmitToSignupCopyWith(
-          _$SubmitToSignup value, $Res Function(_$SubmitToSignup) then) =
-      __$$SubmitToSignupCopyWithImpl<$Res>;
-  $Res call({String phoneNumber, String otpCode});
-}
-
-/// @nodoc
-class __$$SubmitToSignupCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
-    implements _$$SubmitToSignupCopyWith<$Res> {
-  __$$SubmitToSignupCopyWithImpl(
-      _$SubmitToSignup _value, $Res Function(_$SubmitToSignup) _then)
-      : super(_value, (v) => _then(v as _$SubmitToSignup));
-
-  @override
-  _$SubmitToSignup get _value => super._value as _$SubmitToSignup;
-
-  @override
-  $Res call({
-    Object? phoneNumber = freezed,
-    Object? otpCode = freezed,
-  }) {
-    return _then(_$SubmitToSignup(
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      otpCode: otpCode == freezed
-          ? _value.otpCode
-          : otpCode // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SubmitToSignup implements SubmitToSignup {
-  const _$SubmitToSignup({required this.phoneNumber, required this.otpCode});
-
-  @override
-  final String phoneNumber;
-  @override
-  final String otpCode;
-
-  @override
-  String toString() {
-    return 'OTPEvent.submitToSignup(phoneNumber: $phoneNumber, otpCode: $otpCode)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SubmitToSignup &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.otpCode, otpCode));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(otpCode));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$SubmitToSignupCopyWith<_$SubmitToSignup> get copyWith =>
-      __$$SubmitToSignupCopyWithImpl<_$SubmitToSignup>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool isTapable) started,
-    required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
-    required TResult Function(bool isTapable) countDownFinish,
-  }) {
-    return submitToSignup(phoneNumber, otpCode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool isTapable)? started,
-    TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
-    TResult Function(bool isTapable)? countDownFinish,
-  }) {
-    return submitToSignup?.call(phoneNumber, otpCode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isTapable)? started,
-    TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
-    TResult Function(bool isTapable)? countDownFinish,
-    required TResult orElse(),
-  }) {
-    if (submitToSignup != null) {
-      return submitToSignup(phoneNumber, otpCode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
-    required TResult Function(CountDownFinish value) countDownFinish,
-  }) {
-    return submitToSignup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
-    TResult Function(CountDownFinish value)? countDownFinish,
-  }) {
-    return submitToSignup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
-    TResult Function(CountDownFinish value)? countDownFinish,
-    required TResult orElse(),
-  }) {
-    if (submitToSignup != null) {
-      return submitToSignup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SubmitToSignup implements OTPEvent {
-  const factory SubmitToSignup(
-      {required final String phoneNumber,
-      required final String otpCode}) = _$SubmitToSignup;
-
-  String get phoneNumber;
-  String get otpCode;
-  @JsonKey(ignore: true)
-  _$$SubmitToSignupCopyWith<_$SubmitToSignup> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PressResendOTPCopyWith<$Res> {
-  factory _$$PressResendOTPCopyWith(
-          _$PressResendOTP value, $Res Function(_$PressResendOTP) then) =
-      __$$PressResendOTPCopyWithImpl<$Res>;
+abstract class _$$OTPResendCopyWith<$Res> {
+  factory _$$OTPResendCopyWith(
+          _$OTPResend value, $Res Function(_$OTPResend) then) =
+      __$$OTPResendCopyWithImpl<$Res>;
   $Res call({bool isTapable, String phoneNumber});
 }
 
 /// @nodoc
-class __$$PressResendOTPCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
-    implements _$$PressResendOTPCopyWith<$Res> {
-  __$$PressResendOTPCopyWithImpl(
-      _$PressResendOTP _value, $Res Function(_$PressResendOTP) _then)
-      : super(_value, (v) => _then(v as _$PressResendOTP));
+class __$$OTPResendCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
+    implements _$$OTPResendCopyWith<$Res> {
+  __$$OTPResendCopyWithImpl(
+      _$OTPResend _value, $Res Function(_$OTPResend) _then)
+      : super(_value, (v) => _then(v as _$OTPResend));
 
   @override
-  _$PressResendOTP get _value => super._value as _$PressResendOTP;
+  _$OTPResend get _value => super._value as _$OTPResend;
 
   @override
   $Res call({
     Object? isTapable = freezed,
     Object? phoneNumber = freezed,
   }) {
-    return _then(_$PressResendOTP(
+    return _then(_$OTPResend(
       isTapable: isTapable == freezed
           ? _value.isTapable
           : isTapable // ignore: cast_nullable_to_non_nullable
@@ -666,8 +482,8 @@ class __$$PressResendOTPCopyWithImpl<$Res> extends _$OTPEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PressResendOTP implements PressResendOTP {
-  const _$PressResendOTP({required this.isTapable, required this.phoneNumber});
+class _$OTPResend implements OTPResend {
+  const _$OTPResend({required this.isTapable, required this.phoneNumber});
 
   @override
   final bool isTapable;
@@ -676,14 +492,14 @@ class _$PressResendOTP implements PressResendOTP {
 
   @override
   String toString() {
-    return 'OTPEvent.pressedResendOTP(isTapable: $isTapable, phoneNumber: $phoneNumber)';
+    return 'OTPEvent.otpResend(isTapable: $isTapable, phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PressResendOTP &&
+            other is _$OTPResend &&
             const DeepCollectionEquality().equals(other.isTapable, isTapable) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber));
@@ -697,23 +513,20 @@ class _$PressResendOTP implements PressResendOTP {
 
   @JsonKey(ignore: true)
   @override
-  _$$PressResendOTPCopyWith<_$PressResendOTP> get copyWith =>
-      __$$PressResendOTPCopyWithImpl<_$PressResendOTP>(this, _$identity);
+  _$$OTPResendCopyWith<_$OTPResend> get copyWith =>
+      __$$OTPResendCopyWithImpl<_$OTPResend>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isTapable) started,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
+            String email, Completer<dynamic> completer)
         submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
+    required TResult Function(bool isTapable, String phoneNumber) otpResend,
     required TResult Function(bool isTapable) countDownFinish,
   }) {
-    return pressedResendOTP(isTapable, phoneNumber);
+    return otpResend(isTapable, phoneNumber);
   }
 
   @override
@@ -721,13 +534,12 @@ class _$PressResendOTP implements PressResendOTP {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
   }) {
-    return pressedResendOTP?.call(isTapable, phoneNumber);
+    return otpResend?.call(isTapable, phoneNumber);
   }
 
   @override
@@ -735,15 +547,14 @@ class _$PressResendOTP implements PressResendOTP {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
     required TResult orElse(),
   }) {
-    if (pressedResendOTP != null) {
-      return pressedResendOTP(isTapable, phoneNumber);
+    if (otpResend != null) {
+      return otpResend(isTapable, phoneNumber);
     }
     return orElse();
   }
@@ -753,11 +564,10 @@ class _$PressResendOTP implements PressResendOTP {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
+    required TResult Function(OTPResend value) otpResend,
     required TResult Function(CountDownFinish value) countDownFinish,
   }) {
-    return pressedResendOTP(this);
+    return otpResend(this);
   }
 
   @override
@@ -765,11 +575,10 @@ class _$PressResendOTP implements PressResendOTP {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
   }) {
-    return pressedResendOTP?.call(this);
+    return otpResend?.call(this);
   }
 
   @override
@@ -777,27 +586,26 @@ class _$PressResendOTP implements PressResendOTP {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
     required TResult orElse(),
   }) {
-    if (pressedResendOTP != null) {
-      return pressedResendOTP(this);
+    if (otpResend != null) {
+      return otpResend(this);
     }
     return orElse();
   }
 }
 
-abstract class PressResendOTP implements OTPEvent {
-  const factory PressResendOTP(
+abstract class OTPResend implements OTPEvent {
+  const factory OTPResend(
       {required final bool isTapable,
-      required final String phoneNumber}) = _$PressResendOTP;
+      required final String phoneNumber}) = _$OTPResend;
 
   bool get isTapable;
   String get phoneNumber;
   @JsonKey(ignore: true)
-  _$$PressResendOTPCopyWith<_$PressResendOTP> get copyWith =>
+  _$$OTPResendCopyWith<_$OTPResend> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -867,12 +675,9 @@ class _$CountDownFinish implements CountDownFinish {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isTapable) started,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
+            String email, Completer<dynamic> completer)
         submit,
-    required TResult Function(String phoneNumber, String otpCode)
-        submitToSignup,
-    required TResult Function(bool isTapable, String phoneNumber)
-        pressedResendOTP,
+    required TResult Function(bool isTapable, String phoneNumber) otpResend,
     required TResult Function(bool isTapable) countDownFinish,
   }) {
     return countDownFinish(isTapable);
@@ -883,10 +688,9 @@ class _$CountDownFinish implements CountDownFinish {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
   }) {
     return countDownFinish?.call(isTapable);
@@ -897,10 +701,9 @@ class _$CountDownFinish implements CountDownFinish {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isTapable)? started,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
+            String email, Completer<dynamic> completer)?
         submit,
-    TResult Function(String phoneNumber, String otpCode)? submitToSignup,
-    TResult Function(bool isTapable, String phoneNumber)? pressedResendOTP,
+    TResult Function(bool isTapable, String phoneNumber)? otpResend,
     TResult Function(bool isTapable)? countDownFinish,
     required TResult orElse(),
   }) {
@@ -915,8 +718,7 @@ class _$CountDownFinish implements CountDownFinish {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submit value) submit,
-    required TResult Function(SubmitToSignup value) submitToSignup,
-    required TResult Function(PressResendOTP value) pressedResendOTP,
+    required TResult Function(OTPResend value) otpResend,
     required TResult Function(CountDownFinish value) countDownFinish,
   }) {
     return countDownFinish(this);
@@ -927,8 +729,7 @@ class _$CountDownFinish implements CountDownFinish {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
   }) {
     return countDownFinish?.call(this);
@@ -939,8 +740,7 @@ class _$CountDownFinish implements CountDownFinish {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submit value)? submit,
-    TResult Function(SubmitToSignup value)? submitToSignup,
-    TResult Function(PressResendOTP value)? pressedResendOTP,
+    TResult Function(OTPResend value)? otpResend,
     TResult Function(CountDownFinish value)? countDownFinish,
     required TResult orElse(),
   }) {
@@ -967,74 +767,67 @@ mixin _$OTPState {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1131,14 +924,12 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
     return initial(phoneNumber, isTapable);
   }
@@ -1148,13 +939,12 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
     return initial?.call(phoneNumber, isTapable);
   }
@@ -1164,13 +954,12 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1183,12 +972,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
     return initial(this);
   }
@@ -1197,12 +985,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
     return initial?.call(this);
   }
@@ -1211,12 +998,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1246,6 +1032,7 @@ abstract class _$$_SuccessToLoginCopyWith<$Res> {
       {String uid,
       String phoneNumber,
       String photoURL,
+      String email,
       Completer<dynamic> completer});
 }
 
@@ -1264,6 +1051,7 @@ class __$$_SuccessToLoginCopyWithImpl<$Res> extends _$OTPStateCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? phoneNumber = freezed,
     Object? photoURL = freezed,
+    Object? email = freezed,
     Object? completer = freezed,
   }) {
     return _then(_$_SuccessToLogin(
@@ -1278,6 +1066,10 @@ class __$$_SuccessToLoginCopyWithImpl<$Res> extends _$OTPStateCopyWithImpl<$Res>
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       completer: completer == freezed
           ? _value.completer
@@ -1294,6 +1086,7 @@ class _$_SuccessToLogin implements _SuccessToLogin {
       {required this.uid,
       required this.phoneNumber,
       required this.photoURL,
+      required this.email,
       required this.completer});
 
   @override
@@ -1303,11 +1096,13 @@ class _$_SuccessToLogin implements _SuccessToLogin {
   @override
   final String photoURL;
   @override
+  final String email;
+  @override
   final Completer<dynamic> completer;
 
   @override
   String toString() {
-    return 'OTPState.successToLogin(uid: $uid, phoneNumber: $phoneNumber, photoURL: $photoURL, completer: $completer)';
+    return 'OTPState.success(uid: $uid, phoneNumber: $phoneNumber, photoURL: $photoURL, email: $email, completer: $completer)';
   }
 
   @override
@@ -1319,6 +1114,7 @@ class _$_SuccessToLogin implements _SuccessToLogin {
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.photoURL, photoURL) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.completer, completer));
   }
 
@@ -1328,6 +1124,7 @@ class _$_SuccessToLogin implements _SuccessToLogin {
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(photoURL),
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(completer));
 
   @JsonKey(ignore: true)
@@ -1340,16 +1137,14 @@ class _$_SuccessToLogin implements _SuccessToLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
-    return successToLogin(uid, phoneNumber, photoURL, completer);
+    return success(uid, phoneNumber, photoURL, email, completer);
   }
 
   @override
@@ -1357,15 +1152,14 @@ class _$_SuccessToLogin implements _SuccessToLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
-    return successToLogin?.call(uid, phoneNumber, photoURL, completer);
+    return success?.call(uid, phoneNumber, photoURL, email, completer);
   }
 
   @override
@@ -1373,17 +1167,16 @@ class _$_SuccessToLogin implements _SuccessToLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
-    if (successToLogin != null) {
-      return successToLogin(uid, phoneNumber, photoURL, completer);
+    if (success != null) {
+      return success(uid, phoneNumber, photoURL, email, completer);
     }
     return orElse();
   }
@@ -1392,44 +1185,41 @@ class _$_SuccessToLogin implements _SuccessToLogin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
-    return successToLogin(this);
+    return success(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
-    return successToLogin?.call(this);
+    return success?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
-    if (successToLogin != null) {
-      return successToLogin(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
@@ -1440,201 +1230,16 @@ abstract class _SuccessToLogin implements OTPState {
       {required final String uid,
       required final String phoneNumber,
       required final String photoURL,
+      required final String email,
       required final Completer<dynamic> completer}) = _$_SuccessToLogin;
 
   String get uid;
   String get phoneNumber;
   String get photoURL;
+  String get email;
   Completer<dynamic> get completer;
   @JsonKey(ignore: true)
   _$$_SuccessToLoginCopyWith<_$_SuccessToLogin> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SuccessToSignupCopyWith<$Res> {
-  factory _$$_SuccessToSignupCopyWith(
-          _$_SuccessToSignup value, $Res Function(_$_SuccessToSignup) then) =
-      __$$_SuccessToSignupCopyWithImpl<$Res>;
-  $Res call({String phoneNumber, String credentials});
-}
-
-/// @nodoc
-class __$$_SuccessToSignupCopyWithImpl<$Res>
-    extends _$OTPStateCopyWithImpl<$Res>
-    implements _$$_SuccessToSignupCopyWith<$Res> {
-  __$$_SuccessToSignupCopyWithImpl(
-      _$_SuccessToSignup _value, $Res Function(_$_SuccessToSignup) _then)
-      : super(_value, (v) => _then(v as _$_SuccessToSignup));
-
-  @override
-  _$_SuccessToSignup get _value => super._value as _$_SuccessToSignup;
-
-  @override
-  $Res call({
-    Object? phoneNumber = freezed,
-    Object? credentials = freezed,
-  }) {
-    return _then(_$_SuccessToSignup(
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      credentials: credentials == freezed
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SuccessToSignup implements _SuccessToSignup {
-  const _$_SuccessToSignup(
-      {required this.phoneNumber, required this.credentials});
-
-  @override
-  final String phoneNumber;
-  @override
-  final String credentials;
-
-  @override
-  String toString() {
-    return 'OTPState.successToSignup(phoneNumber: $phoneNumber, credentials: $credentials)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SuccessToSignup &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.credentials, credentials));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(credentials));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessToSignupCopyWith<_$_SuccessToSignup> get copyWith =>
-      __$$_SuccessToSignupCopyWithImpl<_$_SuccessToSignup>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? phoneNumber, bool isTapable) initial,
-    required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
-    required TResult Function(bool isTapable) ready,
-    required TResult Function(bool hasError) failure,
-    required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
-  }) {
-    return successToSignup(phoneNumber, credentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? phoneNumber, bool isTapable)? initial,
-    TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
-    TResult Function(bool isTapable)? ready,
-    TResult Function(bool hasError)? failure,
-    TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
-  }) {
-    return successToSignup?.call(phoneNumber, credentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? phoneNumber, bool isTapable)? initial,
-    TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
-    TResult Function(bool isTapable)? ready,
-    TResult Function(bool hasError)? failure,
-    TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
-    required TResult orElse(),
-  }) {
-    if (successToSignup != null) {
-      return successToSignup(phoneNumber, credentials);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
-    required TResult Function(_Ready value) ready,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
-  }) {
-    return successToSignup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
-    TResult Function(_Ready value)? ready,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
-  }) {
-    return successToSignup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
-    TResult Function(_Ready value)? ready,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
-    required TResult orElse(),
-  }) {
-    if (successToSignup != null) {
-      return successToSignup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SuccessToSignup implements OTPState {
-  const factory _SuccessToSignup(
-      {required final String phoneNumber,
-      required final String credentials}) = _$_SuccessToSignup;
-
-  String get phoneNumber;
-  String get credentials;
-  @JsonKey(ignore: true)
-  _$$_SuccessToSignupCopyWith<_$_SuccessToSignup> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1702,14 +1307,12 @@ class _$_Ready implements _Ready {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
     return ready(isTapable);
   }
@@ -1719,13 +1322,12 @@ class _$_Ready implements _Ready {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
     return ready?.call(isTapable);
   }
@@ -1735,13 +1337,12 @@ class _$_Ready implements _Ready {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -1754,12 +1355,11 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
     return ready(this);
   }
@@ -1768,12 +1368,11 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
     return ready?.call(this);
   }
@@ -1782,12 +1381,11 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -1871,14 +1469,12 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
     return failure(hasError);
   }
@@ -1888,13 +1484,12 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
     return failure?.call(hasError);
   }
@@ -1904,13 +1499,12 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1923,12 +1517,11 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
     return failure(this);
   }
@@ -1937,12 +1530,11 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
     return failure?.call(this);
   }
@@ -1951,12 +1543,11 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -2016,14 +1607,12 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
     return loading();
   }
@@ -2033,13 +1622,12 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
     return loading?.call();
   }
@@ -2049,13 +1637,12 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -2068,12 +1655,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
     return loading(this);
   }
@@ -2082,12 +1668,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
     return loading?.call(this);
   }
@@ -2096,12 +1681,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -2154,7 +1738,7 @@ class _$_Resend implements _Resend {
 
   @override
   String toString() {
-    return 'OTPState.resend(phoneNumber: $phoneNumber)';
+    return 'OTPState.otpResendSuccess(phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -2180,16 +1764,14 @@ class _$_Resend implements _Resend {
   TResult when<TResult extends Object?>({
     required TResult Function(String? phoneNumber, bool isTapable) initial,
     required TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)
-        successToLogin,
-    required TResult Function(String phoneNumber, String credentials)
-        successToSignup,
+            String email, Completer<dynamic> completer)
+        success,
     required TResult Function(bool isTapable) ready,
     required TResult Function(bool hasError) failure,
     required TResult Function() loading,
-    required TResult Function(String phoneNumber) resend,
+    required TResult Function(String phoneNumber) otpResendSuccess,
   }) {
-    return resend(phoneNumber);
+    return otpResendSuccess(phoneNumber);
   }
 
   @override
@@ -2197,15 +1779,14 @@ class _$_Resend implements _Resend {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
   }) {
-    return resend?.call(phoneNumber);
+    return otpResendSuccess?.call(phoneNumber);
   }
 
   @override
@@ -2213,17 +1794,16 @@ class _$_Resend implements _Resend {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? phoneNumber, bool isTapable)? initial,
     TResult Function(String uid, String phoneNumber, String photoURL,
-            Completer<dynamic> completer)?
-        successToLogin,
-    TResult Function(String phoneNumber, String credentials)? successToSignup,
+            String email, Completer<dynamic> completer)?
+        success,
     TResult Function(bool isTapable)? ready,
     TResult Function(bool hasError)? failure,
     TResult Function()? loading,
-    TResult Function(String phoneNumber)? resend,
+    TResult Function(String phoneNumber)? otpResendSuccess,
     required TResult orElse(),
   }) {
-    if (resend != null) {
-      return resend(phoneNumber);
+    if (otpResendSuccess != null) {
+      return otpResendSuccess(phoneNumber);
     }
     return orElse();
   }
@@ -2232,44 +1812,41 @@ class _$_Resend implements _Resend {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SuccessToLogin value) successToLogin,
-    required TResult Function(_SuccessToSignup value) successToSignup,
+    required TResult Function(_SuccessToLogin value) success,
     required TResult Function(_Ready value) ready,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Resend value) resend,
+    required TResult Function(_Resend value) otpResendSuccess,
   }) {
-    return resend(this);
+    return otpResendSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
   }) {
-    return resend?.call(this);
+    return otpResendSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SuccessToLogin value)? successToLogin,
-    TResult Function(_SuccessToSignup value)? successToSignup,
+    TResult Function(_SuccessToLogin value)? success,
     TResult Function(_Ready value)? ready,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Resend value)? resend,
+    TResult Function(_Resend value)? otpResendSuccess,
     required TResult orElse(),
   }) {
-    if (resend != null) {
-      return resend(this);
+    if (otpResendSuccess != null) {
+      return otpResendSuccess(this);
     }
     return orElse();
   }

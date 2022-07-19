@@ -9,16 +9,13 @@ class OTPEvent with _$OTPEvent {
     required String uid,
     required String phoneNumber,
     required String photoURL,
+    required String email,
     required Completer completer,
   }) = Submit;
-  const factory OTPEvent.submitToSignup({
-    required String phoneNumber,
-    required String otpCode,
-  }) = SubmitToSignup;
-  const factory OTPEvent.pressedResendOTP({
+  const factory OTPEvent.otpResend({
     required bool isTapable,
     required String phoneNumber,
-  }) = PressResendOTP;
+  }) = OTPResend;
   const factory OTPEvent.countDownFinish({
     required bool isTapable,
   }) = CountDownFinish;

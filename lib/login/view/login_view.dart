@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -138,9 +138,9 @@ class LoginView extends StatelessWidget {
                                       AuthenticateEvent.loginWithPhone(
                                         phoneNumber:
                                             '+84${_formKey.currentState!.value['phone']}',
-                                        onSubmitOTP: () {
+                                        onSubmitOTP: () async {
                                           final completer = Completer<String>();
-                                          context.router.push(
+                                          await context.router.push(
                                             OTPRoute(
                                               phoneNumber: _formKey
                                                   .currentState!.value['phone']
@@ -150,14 +150,15 @@ class LoginView extends StatelessWidget {
                                           );
                                           return completer.future;
                                         },
-                                        onSignUpSubmit: (user) {
+                                        onSignUpSubmit: (user) async {
                                           final completer =
                                               Completer<AppUser>();
                                           context.read<OTPBloc>().add(
                                                 OTPEvent.submit(
+                                                  email: user.email ?? '',
                                                   phoneNumber:
-                                                      user.phoneNumber!,
-                                                  photoURL: user.photoURL!,
+                                                      user.phoneNumber ?? '',
+                                                  photoURL: user.photoURL ?? '',
                                                   uid: user.uid,
                                                   completer: completer,
                                                 ),
@@ -202,14 +203,13 @@ class LoginView extends StatelessWidget {
                       AuthenticateEvent.loginWithGoogle(
                         onCompleteSignUp: (user) async {
                           final completer = Completer<AppUser>();
-                          _formKey.currentState!.saveAndValidate();
                           await context.router.push(
                             Signup6Route(
                               completer: completer,
-                              phoneNumber: user.phoneNumber ??
-                                  '+84${_formKey.currentState!.value['phone']}',
+                              phoneNumber: user.phoneNumber ?? '',
                               photoURL: user.photoURL ?? '',
                               uid: user.uid,
+                              email: user.email ?? '',
                             ),
                           );
                           return completer.future;

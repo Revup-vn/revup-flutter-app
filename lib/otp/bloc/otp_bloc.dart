@@ -19,16 +19,17 @@ class OTPBloc extends Bloc<OTPEvent, OTPState> {
     on<Submit>(
       (event, emit) {
         emit(
-          OTPState.successToLogin(
+          OTPState.success(
             completer: event.completer,
             phoneNumber: event.phoneNumber,
             photoURL: event.photoURL,
             uid: event.uid,
+            email: event.email,
           ),
         );
       },
     );
-    on<PressResendOTP>(
+    on<OTPResend>(
       (event, emit) {
         emit(
           OTPState.initial(
@@ -45,21 +46,5 @@ class OTPBloc extends Bloc<OTPEvent, OTPState> {
         );
       },
     );
-    on<SubmitToSignup>(
-      (event, emit) {
-        final credential = getCredential(event.phoneNumber, event.otpCode);
-        if (credential != '') {
-          emit(
-            OTPState.successToSignup(
-              phoneNumber: event.phoneNumber,
-              credentials: credential,
-            ),
-          );
-        }
-      },
-    );
-  }
-  String getCredential(String phoneNumber, String otp) {
-    return (phoneNumber == '+84 163999999' && otp == '123456') ? 'aaa' : '';
   }
 }
