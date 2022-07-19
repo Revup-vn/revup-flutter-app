@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../splash/splash.dart';
+import '../choose-product/view/choose_product_page.dart';
 import '../login/view/login_page.dart';
 import '../choose-service/models/service_data.dart';
 import '../onboarding/view/onboarding_page.dart';
@@ -16,16 +17,14 @@ part 'app_router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
-    AdaptiveRoute<void>(
-      page: ChooseServicePage,
-      initial: true,
-    ),
+    AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<void>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),
+    AdaptiveRoute<void>(page: ChooseProductPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

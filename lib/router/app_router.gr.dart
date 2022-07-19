@@ -45,6 +45,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child:
               ServiceDetailsPage(key: args.key, serviceData: args.serviceData));
+    },
+    ChooseProductRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ChooseProductPage());
     }
   };
 
@@ -57,7 +61,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(ChooseServiceRoute.name, path: '/'),
         RouteConfig(NewServiceRequestRoute.name,
             path: '/new-service-request-page'),
-        RouteConfig(ServiceDetailsRoute.name, path: '/service-details-page')
+        RouteConfig(ServiceDetailsRoute.name, path: '/service-details-page'),
+        RouteConfig(ChooseProductRoute.name, path: '/choose-product-page')
       ];
 }
 
@@ -133,4 +138,13 @@ class ServiceDetailsRouteArgs {
   String toString() {
     return 'ServiceDetailsRouteArgs{key: $key, serviceData: $serviceData}';
   }
+}
+
+/// generated route for
+/// [ChooseProductPage]
+class ChooseProductRoute extends PageRouteInfo<void> {
+  const ChooseProductRoute()
+      : super(ChooseProductRoute.name, path: '/choose-product-page');
+
+  static const String name = 'ChooseProductRoute';
 }

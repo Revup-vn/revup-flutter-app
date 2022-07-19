@@ -7,8 +7,8 @@ import '../../gen/assets.gen.dart';
 import '../bloc/choose_service_bloc.dart';
 import '../models/service_data.dart';
 
-class ServiceCheckboxListTile extends StatefulWidget {
-  const ServiceCheckboxListTile({
+class ServiceCheckboxTile extends StatefulWidget {
+  const ServiceCheckboxTile({
     super.key,
     required this.serviceData,
     this.onTap,
@@ -17,11 +17,10 @@ class ServiceCheckboxListTile extends StatefulWidget {
   final VoidCallback? onTap;
 
   @override
-  State<ServiceCheckboxListTile> createState() =>
-      _ServiceCheckboxListTileState();
+  State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
 }
 
-class _ServiceCheckboxListTileState extends State<ServiceCheckboxListTile> {
+class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {

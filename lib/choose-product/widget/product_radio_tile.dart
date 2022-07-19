@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import '../../choose-service/models/product_data.dart';
 import '../../gen/assets.gen.dart';
 
-class ProductRadioTile extends StatefulWidget {
-  const ProductRadioTile({super.key, required this.productData, this.onTap});
+class ProductCheckboxTile extends StatefulWidget {
+  const ProductCheckboxTile({super.key, required this.productData, this.onTap});
   final ProductData productData;
   final VoidCallback? onTap;
   @override
-  State<ProductRadioTile> createState() => _ProductRadioTileState();
+  State<ProductCheckboxTile> createState() => _ProductCheckboxTileState();
 }
 
-class _ProductRadioTileState extends State<ProductRadioTile> {
-  String? _groupValue;
+class _ProductCheckboxTileState extends State<ProductCheckboxTile> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -51,12 +51,13 @@ class _ProductRadioTileState extends State<ProductRadioTile> {
         ),
         title: AutoSizeText(widget.productData.name!),
         subtitle: const AutoSizeText('Đơn giá: '),
-        trailing: Radio(
-          value: widget.productData.id ?? '',
-          groupValue: _groupValue,
-          onChanged: (String? value) {
+        trailing: Checkbox(
+          checkColor: Theme.of(context).colorScheme.onPrimary,
+          activeColor: Theme.of(context).colorScheme.primary,
+          value: isChecked,
+          onChanged: (bool? value) {
             setState(() {
-              _groupValue = value;
+              isChecked = value!;
             });
           },
         ),

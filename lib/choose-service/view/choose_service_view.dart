@@ -27,47 +27,61 @@ class ChooseServiceView extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
-              builder: (context, state) {
-                return state.when(
-                  initial: () => const Text('Empty'),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  failure: () => const Text('Failed'),
-                  success: (services) => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: services.length,
-                    itemBuilder: (context, index) {
-                      return ServiceCheckboxListTile(
-                        onTap: () => context.router.push(
-                          ServiceDetailsRoute(serviceData: services[index]),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 60),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              child: Column(
+                children: [
+                  BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () => const Text('Empty'),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        failure: () => const Text('Failed'),
+                        success: (services) => ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: services.length,
+                          itemBuilder: (context, index) {
+                            return ServiceCheckboxTile(
+                              onTap: () => context.router.push(
+                                ServiceDetailsRoute(
+                                    serviceData: services[index]),
+                              ),
+                              serviceData: services[index],
+                            );
+                          },
                         ),
-                        serviceData: services[index],
                       );
                     },
                   ),
-                );
-              },
+                ],
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                context
-                    .read<ChooseServiceBloc>()
-                    .add(const ChooseServiceEvent.serviceListSubmitted());
-              },
-              style: Theme.of(context).elevatedButtonTheme.style,
-              child: AutoSizeText(l10n.confirmLabel),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(color: Theme.of(context).cardColor),
+              child: ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<ChooseServiceBloc>()
+                      .add(const ChooseServiceEvent.serviceListSubmitted());
+                },
+                style: Theme.of(context).elevatedButtonTheme.style,
+                child: AutoSizeText(l10n.confirmLabel),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      // ),
     );
   }
 }
