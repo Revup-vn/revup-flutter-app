@@ -20,92 +20,103 @@ class NewServiceRequestView extends StatelessWidget {
         title: AutoSizeText(l10n.newRequestServiceAppBarTitle),
         centerTitle: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                context
-                    .read<NewServiceBloc>()
-                    .add(const NewServiceEvent.started());
-              },
-              child: SizedBox(
-                width: double.infinity,
-                height: 120,
-                child: DottedBorder(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderType: BorderType.RRect,
-                  dashPattern: const [6, 5],
-                  radius: const Radius.circular(12),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Assets.screens.addImage.svg(),
-                        const SizedBox(
-                          height: 8,
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context
+                        .read<NewServiceBloc>()
+                        .add(const NewServiceEvent.started());
+                  },
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 120,
+                    child: DottedBorder(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderType: BorderType.RRect,
+                      dashPattern: const [6, 5],
+                      radius: const Radius.circular(12),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Assets.screens.addImage.svg(),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            AutoSizeText(
+                              l10n.chooseImageLabel,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                        AutoSizeText(
-                          l10n.chooseImageLabel,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
+                AutoSizeText(
+                  l10n.chooseImageNoteLabel,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                FormBuilder(
+                  child: Column(
+                    children: [
+                      FormBuilderTextField(
+                        name: 'name',
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: l10n.serviceNameLabel,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      FormBuilderTextField(
+                        name: 'description',
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: l10n.serviceDescriptionLabel,
+                        ),
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+                        validator: FormBuilderValidators.max(100),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<ChooseServiceBloc>()
+                      .add(const ChooseServiceEvent.newServiceRequested());
+                },
+                style: Theme.of(context).elevatedButtonTheme.style,
+                child: AutoSizeText(l10n.confirmLabel),
               ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            AutoSizeText(
-              l10n.chooseImageNoteLabel,
-              style: Theme.of(context).textTheme.caption,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            FormBuilder(
-              child: Column(
-                children: [
-                  FormBuilderTextField(
-                    name: 'name',
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText: l10n.serviceNameLabel,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  FormBuilderTextField(
-                    name: 'description',
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText: l10n.serviceDescriptionLabel,
-                    ),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 5,
-                    validator: FormBuilderValidators.max(100),
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context
-                    .read<ChooseServiceBloc>()
-                    .add(const ChooseServiceEvent.newServiceRequested());
-              },
-              style: Theme.of(context).elevatedButtonTheme.style,
-              child: AutoSizeText(l10n.confirmLabel),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

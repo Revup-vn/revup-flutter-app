@@ -50,7 +50,8 @@ class ChooseServiceView extends StatelessWidget {
                             return ServiceCheckboxTile(
                               onTap: () => context.router.push(
                                 ServiceDetailsRoute(
-                                    serviceData: services[index]),
+                                  serviceData: services[index],
+                                ),
                               ),
                               serviceData: services[index],
                             );

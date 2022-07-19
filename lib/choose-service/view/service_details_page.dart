@@ -17,7 +17,7 @@ class ServiceDetailsPage extends StatelessWidget {
         centerTitle: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,6 +32,7 @@ class ServiceDetailsPage extends StatelessWidget {
               AutoSizeText(l10n.productListLabel),
               ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: serviceData.products?.length,
                 itemBuilder: (context, index) {
                   return ServiceListTile(

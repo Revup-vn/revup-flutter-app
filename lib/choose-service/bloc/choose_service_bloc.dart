@@ -71,6 +71,69 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                 'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
             price: 100000,
           ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
+          ProductData(
+            id: 'id',
+            name: 'Cat Product',
+            productImageUrl:
+                'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+            price: 100000,
+          ),
         ],
       ),
       const ServiceData(
