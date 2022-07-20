@@ -10,7 +10,8 @@ class ChooseProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ChooseProductBloc(),
+      create: (_) =>
+          ChooseProductBloc()..add(const ChooseProductEvent.started()),
       child: const ChooseProductView(),
     );
   }

@@ -32,5 +32,7 @@
   "serviceDescriptionLabel": "Mô tả (tối đa 100 kí tự)",
   "chooseImageLabel": "Chọn hình ảnh",
   "chooseImageNoteLabel": "Thêm ảnh để thợ sửa hình dung rõ hơn về yêu cầu của bạn nhé",
-  "chooseProductAppBarTitle": "Lựa chọn sản phẩm"
+  "chooseProductAppBarTitle": "Lựa chọn sản phẩm",
+  "imageFromGalleryLabel": "Chọn từ thư viện ảnh",
+  "photoWithCameraLabel": "Chụp ảnh"
 }

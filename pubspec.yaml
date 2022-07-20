@@ -32,6 +32,7 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
+  modal_bottom_sheet: ^2.1.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git

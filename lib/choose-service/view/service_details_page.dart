@@ -27,7 +27,6 @@ class ServiceDetailsPage extends StatelessWidget {
                 title: serviceData.name ?? '',
                 subtitle: serviceData.productPriceRange ?? '',
                 imageUrl: serviceData.imageUrl ?? '',
-                imageSize: 48,
               ),
               AutoSizeText(l10n.productListLabel),
               ListView.builder(
@@ -40,7 +39,6 @@ class ServiceDetailsPage extends StatelessWidget {
                     subtitle: serviceData.products![index].price.toString(),
                     imageUrl:
                         serviceData.products![index].productImageUrl ?? '',
-                    imageSize: 32,
                   );
                 },
               ),

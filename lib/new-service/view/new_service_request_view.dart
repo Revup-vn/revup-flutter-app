@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../choose-service/bloc/choose_service_bloc.dart';
 import '../../gen/assets.gen.dart';
@@ -28,9 +29,37 @@ class NewServiceRequestView extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context
-                        .read<NewServiceBloc>()
-                        .add(const NewServiceEvent.started());
+                    showMaterialModalBottomSheet<Widget>(
+                      context: context,
+                      builder: (context) => SafeArea(
+                        top: false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ListTile(
+                              title: AutoSizeText(l10n.imageFromGalleryLabel),
+                              leading: const Icon(Icons.photo_library_rounded),
+                              onTap: () {
+                                BlocProvider.of<NewServiceBloc>(context).add(
+                                  const NewServiceEvent
+                                      .imageFromGallerySelected(),
+                                );
+                              },
+                            ),
+                            ListTile(
+                              title: AutoSizeText(l10n.photoWithCameraLabel),
+                              leading: const Icon(Icons.camera_alt_rounded),
+                              onTap: () {
+                                BlocProvider.of<NewServiceBloc>(context).add(
+                                  const NewServiceEvent
+                                      .photoWithCameraSelected(),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   },
                   child: SizedBox(
                     width: double.infinity,

@@ -32,5 +32,7 @@
   "serviceDescriptionLabel": "Description (100 characters max)",
   "chooseImageLabel": "Choose image",
   "chooseImageNoteLabel": "Add a photo for the repairman to better visualize your request",
-  "chooseProductAppBarTitle": "Choose product"
+  "chooseProductAppBarTitle": "Choose product",
+  "imageFromGalleryLabel": "Choose image from gallery",
+  "photoWithCameraLabel": "Take photo"
 }
