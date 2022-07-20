@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../l10n/l10n.dart';
-
 import '../bloc/find_list_repairer_bloc.dart';
 import 'list_repairer_main_content.u.dart';
 
