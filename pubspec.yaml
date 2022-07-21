@@ -32,10 +32,7 @@ dependencies:
   json_annotation: ^4.6.0
   pin_code_fields: ^7.4.0
   revup_core:
-    git:
-      url: https://github.com/Revup-vn/revup-core.git
-      ref: main
-      version: ^1.1.1+1
+    path: ../revup-core
   shared_preferences: ^2.0.15
   timer_count_down: ^2.2.1
 

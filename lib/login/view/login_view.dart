@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -142,9 +144,8 @@ class LoginView extends StatelessWidget {
                                           final completer = Completer<String>();
                                           await context.router.push(
                                             OTPRoute(
-                                              phoneNumber: _formKey
-                                                  .currentState!.value['phone']
-                                                  .toString(),
+                                              phoneNumber:
+                                                  '+84${_formKey.currentState!.value['phone']}',
                                               completer: completer,
                                             ),
                                           );
@@ -153,16 +154,16 @@ class LoginView extends StatelessWidget {
                                         onSignUpSubmit: (user) async {
                                           final completer =
                                               Completer<AppUser>();
-                                          context.read<OTPBloc>().add(
-                                                OTPEvent.submit(
-                                                  email: user.email ?? '',
-                                                  phoneNumber:
-                                                      user.phoneNumber ?? '',
-                                                  photoURL: user.photoURL ?? '',
-                                                  uid: user.uid,
-                                                  completer: completer,
-                                                ),
-                                              );
+                                          await context.router.push(
+                                            Signup6Route(
+                                              completer: completer,
+                                              phoneNumber:
+                                                  user.phoneNumber ?? '',
+                                              photoURL: user.photoURL ?? '',
+                                              uid: user.uid,
+                                              email: user.email ?? '',
+                                            ),
+                                          );
                                           return completer.future;
                                         },
                                         onSignUpSuccess: () {

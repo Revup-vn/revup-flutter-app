@@ -245,7 +245,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.5"
+    version: "2.3.6"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -273,7 +273,7 @@ packages:
       name: connectivity_plus_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.2"
+    version: "1.2.3"
   connectivity_plus_windows:
     dependency: transitive
     description:
@@ -343,7 +343,7 @@ packages:
       name: dbus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.6"
+    version: "0.7.7"
   dependency_validator:
     dependency: "direct dev"
     description:
@@ -448,7 +448,7 @@ packages:
       name: flash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3+2"
+    version: "2.0.3+3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -920,12 +920,10 @@ packages:
   revup_core:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "2da2730ea050035211de25945364bb939d093069"
-      url: "https://github.com/Revup-vn/revup-core.git"
-    source: git
-    version: "1.1.1+1"
+      path: "../revup-core"
+      relative: true
+    source: path
+    version: "1.6.0"
   rxdart:
     dependency: transitive
     description:
