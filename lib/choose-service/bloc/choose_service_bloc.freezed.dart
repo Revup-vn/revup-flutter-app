@@ -20,7 +20,8 @@ mixin _$ChooseServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) =>
@@ -29,7 +30,7 @@ mixin _$ChooseServiceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) =>
@@ -38,7 +39,7 @@ mixin _$ChooseServiceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
@@ -132,7 +133,8 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) {
@@ -144,7 +146,7 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) {
@@ -156,7 +158,7 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
@@ -255,7 +257,8 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) {
@@ -267,7 +270,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) {
@@ -279,7 +282,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
@@ -340,6 +343,9 @@ abstract class _$$NewServiceRequestedCopyWith<$Res> {
   factory _$$NewServiceRequestedCopyWith(_$NewServiceRequested value,
           $Res Function(_$NewServiceRequested) then) =
       __$$NewServiceRequestedCopyWithImpl<$Res>;
+  $Res call({ServiceRequestData serviceData});
+
+  $ServiceRequestDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
@@ -352,37 +358,70 @@ class __$$NewServiceRequestedCopyWithImpl<$Res>
 
   @override
   _$NewServiceRequested get _value => super._value as _$NewServiceRequested;
+
+  @override
+  $Res call({
+    Object? serviceData = freezed,
+  }) {
+    return _then(_$NewServiceRequested(
+      serviceData == freezed
+          ? _value.serviceData
+          : serviceData // ignore: cast_nullable_to_non_nullable
+              as ServiceRequestData,
+    ));
+  }
+
+  @override
+  $ServiceRequestDataCopyWith<$Res> get serviceData {
+    return $ServiceRequestDataCopyWith<$Res>(_value.serviceData, (value) {
+      return _then(_value.copyWith(serviceData: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$NewServiceRequested implements NewServiceRequested {
-  const _$NewServiceRequested();
+  const _$NewServiceRequested(this.serviceData);
+
+  @override
+  final ServiceRequestData serviceData;
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.newServiceRequested()';
+    return 'ChooseServiceEvent.newServiceRequested(serviceData: $serviceData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NewServiceRequested);
+        (other.runtimeType == runtimeType &&
+            other is _$NewServiceRequested &&
+            const DeepCollectionEquality()
+                .equals(other.serviceData, serviceData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceData));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$NewServiceRequestedCopyWith<_$NewServiceRequested> get copyWith =>
+      __$$NewServiceRequestedCopyWithImpl<_$NewServiceRequested>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) {
-    return newServiceRequested();
+    return newServiceRequested(serviceData);
   }
 
   @override
@@ -390,11 +429,11 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) {
-    return newServiceRequested?.call();
+    return newServiceRequested?.call(serviceData);
   }
 
   @override
@@ -402,13 +441,13 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
-      return newServiceRequested();
+      return newServiceRequested(serviceData);
     }
     return orElse();
   }
@@ -455,7 +494,13 @@ class _$NewServiceRequested implements NewServiceRequested {
 }
 
 abstract class NewServiceRequested implements ChooseServiceEvent {
-  const factory NewServiceRequested() = _$NewServiceRequested;
+  const factory NewServiceRequested(final ServiceRequestData serviceData) =
+      _$NewServiceRequested;
+
+  ServiceRequestData get serviceData;
+  @JsonKey(ignore: true)
+  _$$NewServiceRequestedCopyWith<_$NewServiceRequested> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -525,7 +570,8 @@ class _$ServiceSelected implements ServiceSelected {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) {
@@ -537,7 +583,7 @@ class _$ServiceSelected implements ServiceSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) {
@@ -549,7 +595,7 @@ class _$ServiceSelected implements ServiceSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),
@@ -677,7 +723,8 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function() newServiceRequested,
+    required TResult Function(ServiceRequestData serviceData)
+        newServiceRequested,
     required TResult Function(String serviceId) serviceSelected,
     required TResult Function(String serviceId) serviceUnselected,
   }) {
@@ -689,7 +736,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
   }) {
@@ -701,7 +748,7 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function()? newServiceRequested,
+    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
     TResult Function(String serviceId)? serviceSelected,
     TResult Function(String serviceId)? serviceUnselected,
     required TResult orElse(),

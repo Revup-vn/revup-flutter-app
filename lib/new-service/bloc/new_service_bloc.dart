@@ -1,13 +1,12 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
+part 'new_service_bloc.freezed.dart';
 part 'new_service_event.dart';
 part 'new_service_state.dart';
-part 'new_service_bloc.freezed.dart';
 
 class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
   NewServiceBloc() : super(const _Initial()) {
@@ -34,7 +33,7 @@ class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
   ) async {
     final _picker = ImagePicker();
 
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    final photo = await _picker.pickImage(source: ImageSource.camera);
 
     if (photo != null) {
       final _image = File(photo.path);

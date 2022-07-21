@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../choose-service/bloc/choose_service_bloc.dart';
 import '../../choose-service/models/product_data.dart';
 
+part 'choose_product_bloc.freezed.dart';
 part 'choose_product_event.dart';
 part 'choose_product_state.dart';
-part 'choose_product_bloc.freezed.dart';
 
 class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
   ChooseProductBloc() : super(const _Initial()) {
@@ -60,6 +59,6 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
     Submitted event,
     Emitter<ChooseProductState> emit,
   ) async {
-    // TODO: implement submitted event
+    // TODO(cantgim): implement submitted event
   }
 }

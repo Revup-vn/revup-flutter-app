@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ServiceRequestData {
-  String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  List<String>? get imageAttachments => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServiceRequestDataCopyWith<ServiceRequestData> get copyWith =>
@@ -30,8 +30,7 @@ abstract class $ServiceRequestDataCopyWith<$Res> {
   factory $ServiceRequestDataCopyWith(
           ServiceRequestData value, $Res Function(ServiceRequestData) then) =
       _$ServiceRequestDataCopyWithImpl<$Res>;
-  $Res call(
-      {String? name, String? description, List<String>? imageAttachments});
+  $Res call({String name, String description, String image});
 }
 
 /// @nodoc
@@ -47,21 +46,21 @@ class _$ServiceRequestDataCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
-    Object? imageAttachments = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageAttachments: imageAttachments == freezed
-          ? _value.imageAttachments
-          : imageAttachments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -73,8 +72,7 @@ abstract class _$$_ServiceRequestDataCopyWith<$Res>
           $Res Function(_$_ServiceRequestData) then) =
       __$$_ServiceRequestDataCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? name, String? description, List<String>? imageAttachments});
+  $Res call({String name, String description, String image});
 }
 
 /// @nodoc
@@ -92,21 +90,21 @@ class __$$_ServiceRequestDataCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
-    Object? imageAttachments = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$_ServiceRequestData(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageAttachments: imageAttachments == freezed
-          ? _value._imageAttachments
-          : imageAttachments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -115,25 +113,18 @@ class __$$_ServiceRequestDataCopyWithImpl<$Res>
 
 class _$_ServiceRequestData implements _ServiceRequestData {
   const _$_ServiceRequestData(
-      {this.name, this.description, final List<String>? imageAttachments})
-      : _imageAttachments = imageAttachments;
+      {required this.name, required this.description, required this.image});
 
   @override
-  final String? name;
+  final String name;
   @override
-  final String? description;
-  final List<String>? _imageAttachments;
+  final String description;
   @override
-  List<String>? get imageAttachments {
-    final value = _imageAttachments;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final String image;
 
   @override
   String toString() {
-    return 'ServiceRequestData(name: $name, description: $description, imageAttachments: $imageAttachments)';
+    return 'ServiceRequestData(name: $name, description: $description, image: $image)';
   }
 
   @override
@@ -144,8 +135,7 @@ class _$_ServiceRequestData implements _ServiceRequestData {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality()
-                .equals(other._imageAttachments, _imageAttachments));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
@@ -153,7 +143,7 @@ class _$_ServiceRequestData implements _ServiceRequestData {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(_imageAttachments));
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -164,16 +154,16 @@ class _$_ServiceRequestData implements _ServiceRequestData {
 
 abstract class _ServiceRequestData implements ServiceRequestData {
   const factory _ServiceRequestData(
-      {final String? name,
-      final String? description,
-      final List<String>? imageAttachments}) = _$_ServiceRequestData;
+      {required final String name,
+      required final String description,
+      required final String image}) = _$_ServiceRequestData;
 
   @override
-  String? get name;
+  String get name;
   @override
-  String? get description;
+  String get description;
   @override
-  List<String>? get imageAttachments;
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceRequestDataCopyWith<_$_ServiceRequestData> get copyWith =>
