@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../choose-service/widgets/service_avatar.dart';
-import '../../l10n/l10n.dart';
+import '../../../l10n/l10n.dart';
+import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
 
 class ChooseProductView extends StatefulWidget {
@@ -19,6 +18,7 @@ class _ChooseProductViewState extends State<ChooseProductView> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(l10n.chooseProductAppBarTitle),
@@ -45,7 +45,6 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                             return Card(
                               elevation: 0,
                               child: ListTile(
-                                onTap: () {},
                                 leading: ServiceAvatar(
                                   imageUrl:
                                       products[index].productImageUrl ?? '',

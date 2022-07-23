@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../models/service_data.dart';
+
 part 'new_service_bloc.freezed.dart';
 part 'new_service_event.dart';
 part 'new_service_state.dart';
@@ -12,6 +14,17 @@ class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
   NewServiceBloc() : super(const _Initial()) {
     on<ImageFromGallerySelected>(_onImageFromGallerySelected);
     on<PhotoWithCameraSelected>(_onPhotoWithCameraSelected);
+    on<Submitted>(_onSubmitted);
+  }
+
+  Future<void> _onSubmitted(
+    Submitted event,
+    Emitter<NewServiceState> emit,
+  ) async {
+    emit(const NewServiceState.loading());
+    // TODO(cantgim): save on firestore,
+    // then emit data saved (id, image url,...)
+    emit(NewServiceState.success(event.serviceData));
   }
 
   Future<void> _onImageFromGallerySelected(

@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../gen/assets.gen.dart';
-import '../bloc/choose_service_bloc.dart';
+import '../choose-service/bloc/choose_service_bloc.dart';
 import '../models/service_data.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
@@ -35,7 +35,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(48),
             child: CachedNetworkImage(
-              imageUrl: widget.serviceData.imageUrl!,
+              imageUrl: widget.serviceData.imageUrl ?? '',
               placeholder: (context, url) => Assets.screens.dfAvatar.image(
                 fit: BoxFit.cover,
                 height: 64,
@@ -57,7 +57,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             ),
           ),
         ),
-        title: AutoSizeText(widget.serviceData.name!),
+        title: AutoSizeText(widget.serviceData.name ?? ''),
         subtitle: const AutoSizeText('Đơn giá: '),
         trailing: Checkbox(
           checkColor: Theme.of(context).colorScheme.onPrimary,
@@ -70,12 +70,12 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             isChecked
                 ? context.read<ChooseServiceBloc>().add(
                       ChooseServiceEvent.serviceSelected(
-                        widget.serviceData.id ?? '',
+                        widget.serviceData,
                       ),
                     )
                 : context.read<ChooseServiceBloc>().add(
                       ChooseServiceEvent.serviceUnselected(
-                        widget.serviceData.id ?? '',
+                        widget.serviceData,
                       ),
                     );
           },

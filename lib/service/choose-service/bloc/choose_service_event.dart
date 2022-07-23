@@ -6,10 +6,10 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
   const factory ChooseServiceEvent.serviceListSubmitted() =
       ServiceListSubmitted;
   const factory ChooseServiceEvent.newServiceRequested(
-    ServiceRequestData serviceData,
+    ServiceData serviceData,
   ) = NewServiceRequested;
-  const factory ChooseServiceEvent.serviceSelected(String serviceId) =
+  const factory ChooseServiceEvent.serviceSelected(ServiceData serviceData) =
       ServiceSelected;
-  const factory ChooseServiceEvent.serviceUnselected(String serviceId) =
+  const factory ChooseServiceEvent.serviceUnselected(ServiceData serviceData) =
       ServiceUnselected;
 }

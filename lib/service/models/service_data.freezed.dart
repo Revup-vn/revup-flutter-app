@@ -22,7 +22,9 @@ mixin _$ServiceData {
   String? get providerId => throw _privateConstructorUsedError;
   num? get serviceFee => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get desc => throw _privateConstructorUsedError;
   String? get productPriceRange => throw _privateConstructorUsedError;
+  bool get isSelected => throw _privateConstructorUsedError;
   List<ProductData>? get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,7 +44,9 @@ abstract class $ServiceDataCopyWith<$Res> {
       String? providerId,
       num? serviceFee,
       String? imageUrl,
+      String? desc,
       String? productPriceRange,
+      bool isSelected,
       List<ProductData>? products});
 }
 
@@ -62,7 +66,9 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
     Object? providerId = freezed,
     Object? serviceFee = freezed,
     Object? imageUrl = freezed,
+    Object? desc = freezed,
     Object? productPriceRange = freezed,
+    Object? isSelected = freezed,
     Object? products = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,10 +96,18 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String?,
       productPriceRange: productPriceRange == freezed
           ? _value.productPriceRange
           : productPriceRange // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -116,7 +130,9 @@ abstract class _$$_ServiceDataCopyWith<$Res>
       String? providerId,
       num? serviceFee,
       String? imageUrl,
+      String? desc,
       String? productPriceRange,
+      bool isSelected,
       List<ProductData>? products});
 }
 
@@ -138,7 +154,9 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
     Object? providerId = freezed,
     Object? serviceFee = freezed,
     Object? imageUrl = freezed,
+    Object? desc = freezed,
     Object? productPriceRange = freezed,
+    Object? isSelected = freezed,
     Object? products = freezed,
   }) {
     return _then(_$_ServiceData(
@@ -166,10 +184,18 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String?,
       productPriceRange: productPriceRange == freezed
           ? _value.productPriceRange
           : productPriceRange // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       products: products == freezed
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -188,7 +214,9 @@ class _$_ServiceData implements _ServiceData {
       this.providerId,
       this.serviceFee,
       this.imageUrl,
+      this.desc,
       this.productPriceRange,
+      this.isSelected = false,
       final List<ProductData>? products})
       : _products = products;
 
@@ -205,7 +233,12 @@ class _$_ServiceData implements _ServiceData {
   @override
   final String? imageUrl;
   @override
+  final String? desc;
+  @override
   final String? productPriceRange;
+  @override
+  @JsonKey()
+  final bool isSelected;
   final List<ProductData>? _products;
   @override
   List<ProductData>? get products {
@@ -217,7 +250,7 @@ class _$_ServiceData implements _ServiceData {
 
   @override
   String toString() {
-    return 'ServiceData(id: $id, name: $name, categoryId: $categoryId, providerId: $providerId, serviceFee: $serviceFee, imageUrl: $imageUrl, productPriceRange: $productPriceRange, products: $products)';
+    return 'ServiceData(id: $id, name: $name, categoryId: $categoryId, providerId: $providerId, serviceFee: $serviceFee, imageUrl: $imageUrl, desc: $desc, productPriceRange: $productPriceRange, isSelected: $isSelected, products: $products)';
   }
 
   @override
@@ -234,8 +267,11 @@ class _$_ServiceData implements _ServiceData {
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.desc, desc) &&
             const DeepCollectionEquality()
                 .equals(other.productPriceRange, productPriceRange) &&
+            const DeepCollectionEquality()
+                .equals(other.isSelected, isSelected) &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
@@ -248,7 +284,9 @@ class _$_ServiceData implements _ServiceData {
       const DeepCollectionEquality().hash(providerId),
       const DeepCollectionEquality().hash(serviceFee),
       const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(desc),
       const DeepCollectionEquality().hash(productPriceRange),
+      const DeepCollectionEquality().hash(isSelected),
       const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
@@ -265,7 +303,9 @@ abstract class _ServiceData implements ServiceData {
       final String? providerId,
       final num? serviceFee,
       final String? imageUrl,
+      final String? desc,
       final String? productPriceRange,
+      final bool isSelected,
       final List<ProductData>? products}) = _$_ServiceData;
 
   @override
@@ -281,7 +321,11 @@ abstract class _ServiceData implements ServiceData {
   @override
   String? get imageUrl;
   @override
+  String? get desc;
+  @override
   String? get productPriceRange;
+  @override
+  bool get isSelected;
   @override
   List<ProductData>? get products;
   @override

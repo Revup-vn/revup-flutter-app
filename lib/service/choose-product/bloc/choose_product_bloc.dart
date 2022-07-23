@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../choose-service/models/product_data.dart';
+import '../../models/product_data.dart';
 
 part 'choose_product_bloc.freezed.dart';
 part 'choose_product_event.dart';

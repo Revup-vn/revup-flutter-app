@@ -1,10 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../l10n/l10n.dart';
-import '../models/service_data.dart';
-import '../widgets/service_list_tile.dart';
+import '../../../l10n/l10n.dart';
+import '../../models/service_data.dart';
+import '../../widgets/service_list_tile.dart';
 
 class ServiceDetailsPage extends StatelessWidget {
   const ServiceDetailsPage({super.key, required this.serviceData});
@@ -12,6 +11,7 @@ class ServiceDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(l10n.serviceDetailsAppBarTitle),
@@ -33,7 +33,7 @@ class ServiceDetailsPage extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: serviceData.products?.length,
+                itemCount: serviceData.products?.length ?? 0,
                 itemBuilder: (context, index) {
                   return ServiceListTile(
                     title: serviceData.products![index].name ?? '',

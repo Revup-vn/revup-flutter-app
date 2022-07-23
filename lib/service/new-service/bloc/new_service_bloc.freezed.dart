@@ -19,6 +19,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ServiceData serviceData) submitted,
     required TResult Function() imageFromGallerySelected,
     required TResult Function() photoWithCameraSelected,
   }) =>
@@ -26,6 +27,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
   }) =>
@@ -33,6 +35,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Submitted value) submitted,
     required TResult Function(ImageFromGallerySelected value)
         imageFromGallerySelected,
     required TResult Function(PhotoWithCameraSelected value)
@@ -50,6 +54,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
   }) =>
@@ -57,6 +62,7 @@ mixin _$NewServiceEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
     required TResult orElse(),
@@ -120,6 +126,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ServiceData serviceData) submitted,
     required TResult Function() imageFromGallerySelected,
     required TResult Function() photoWithCameraSelected,
   }) {
@@ -130,6 +137,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
   }) {
@@ -140,6 +148,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
     required TResult orElse(),
@@ -154,6 +163,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Submitted value) submitted,
     required TResult Function(ImageFromGallerySelected value)
         imageFromGallerySelected,
     required TResult Function(PhotoWithCameraSelected value)
@@ -166,6 +176,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
   }) {
@@ -176,6 +187,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
     required TResult orElse(),
@@ -189,6 +201,164 @@ class _$Started implements Started {
 
 abstract class Started implements NewServiceEvent {
   const factory Started() = _$Started;
+}
+
+/// @nodoc
+abstract class _$$SubmittedCopyWith<$Res> {
+  factory _$$SubmittedCopyWith(
+          _$Submitted value, $Res Function(_$Submitted) then) =
+      __$$SubmittedCopyWithImpl<$Res>;
+  $Res call({ServiceData serviceData});
+
+  $ServiceDataCopyWith<$Res> get serviceData;
+}
+
+/// @nodoc
+class __$$SubmittedCopyWithImpl<$Res>
+    extends _$NewServiceEventCopyWithImpl<$Res>
+    implements _$$SubmittedCopyWith<$Res> {
+  __$$SubmittedCopyWithImpl(
+      _$Submitted _value, $Res Function(_$Submitted) _then)
+      : super(_value, (v) => _then(v as _$Submitted));
+
+  @override
+  _$Submitted get _value => super._value as _$Submitted;
+
+  @override
+  $Res call({
+    Object? serviceData = freezed,
+  }) {
+    return _then(_$Submitted(
+      serviceData == freezed
+          ? _value.serviceData
+          : serviceData // ignore: cast_nullable_to_non_nullable
+              as ServiceData,
+    ));
+  }
+
+  @override
+  $ServiceDataCopyWith<$Res> get serviceData {
+    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
+      return _then(_value.copyWith(serviceData: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$Submitted implements Submitted {
+  const _$Submitted(this.serviceData);
+
+  @override
+  final ServiceData serviceData;
+
+  @override
+  String toString() {
+    return 'NewServiceEvent.submitted(serviceData: $serviceData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Submitted &&
+            const DeepCollectionEquality()
+                .equals(other.serviceData, serviceData));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceData));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
+      __$$SubmittedCopyWithImpl<_$Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(ServiceData serviceData) submitted,
+    required TResult Function() imageFromGallerySelected,
+    required TResult Function() photoWithCameraSelected,
+  }) {
+    return submitted(serviceData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
+    TResult Function()? imageFromGallerySelected,
+    TResult Function()? photoWithCameraSelected,
+  }) {
+    return submitted?.call(serviceData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
+    TResult Function()? imageFromGallerySelected,
+    TResult Function()? photoWithCameraSelected,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(serviceData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(Submitted value) submitted,
+    required TResult Function(ImageFromGallerySelected value)
+        imageFromGallerySelected,
+    required TResult Function(PhotoWithCameraSelected value)
+        photoWithCameraSelected,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
+    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
+    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
+    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
+    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Submitted implements NewServiceEvent {
+  const factory Submitted(final ServiceData serviceData) = _$Submitted;
+
+  ServiceData get serviceData;
+  @JsonKey(ignore: true)
+  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -235,6 +405,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ServiceData serviceData) submitted,
     required TResult Function() imageFromGallerySelected,
     required TResult Function() photoWithCameraSelected,
   }) {
@@ -245,6 +416,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
   }) {
@@ -255,6 +427,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
     required TResult orElse(),
@@ -269,6 +442,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Submitted value) submitted,
     required TResult Function(ImageFromGallerySelected value)
         imageFromGallerySelected,
     required TResult Function(PhotoWithCameraSelected value)
@@ -281,6 +455,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
   }) {
@@ -291,6 +466,7 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
     required TResult orElse(),
@@ -350,6 +526,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ServiceData serviceData) submitted,
     required TResult Function() imageFromGallerySelected,
     required TResult Function() photoWithCameraSelected,
   }) {
@@ -360,6 +537,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
   }) {
@@ -370,6 +548,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ServiceData serviceData)? submitted,
     TResult Function()? imageFromGallerySelected,
     TResult Function()? photoWithCameraSelected,
     required TResult orElse(),
@@ -384,6 +563,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Submitted value) submitted,
     required TResult Function(ImageFromGallerySelected value)
         imageFromGallerySelected,
     required TResult Function(PhotoWithCameraSelected value)
@@ -396,6 +576,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
   }) {
@@ -406,6 +587,7 @@ class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Submitted value)? submitted,
     TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
     TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
     required TResult orElse(),
@@ -426,18 +608,24 @@ mixin _$NewServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ServiceData serviceData) success,
     required TResult Function(File image) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
@@ -445,19 +633,25 @@ mixin _$NewServiceState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_NewServiceState value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -520,6 +714,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ServiceData serviceData) success,
     required TResult Function(File image) choosePhotoSuccess,
   }) {
     return initial();
@@ -529,6 +725,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
   }) {
     return initial?.call();
@@ -538,6 +736,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
@@ -551,7 +751,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_NewServiceState value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
     return initial(this);
   }
@@ -560,7 +762,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
     return initial?.call(this);
   }
@@ -569,7 +773,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -584,29 +790,298 @@ abstract class _Initial implements NewServiceState {
 }
 
 /// @nodoc
-abstract class _$$_NewServiceStateCopyWith<$Res> {
-  factory _$$_NewServiceStateCopyWith(
-          _$_NewServiceState value, $Res Function(_$_NewServiceState) then) =
-      __$$_NewServiceStateCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'NewServiceState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ServiceData serviceData) success,
+    required TResult Function(File image) choosePhotoSuccess,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
+    TResult Function(File image)? choosePhotoSuccess,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
+    TResult Function(File image)? choosePhotoSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements NewServiceState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({ServiceData serviceData});
+
+  $ServiceDataCopyWith<$Res> get serviceData;
+}
+
+/// @nodoc
+class __$$_SuccessCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+      : super(_value, (v) => _then(v as _$_Success));
+
+  @override
+  _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? serviceData = freezed,
+  }) {
+    return _then(_$_Success(
+      serviceData == freezed
+          ? _value.serviceData
+          : serviceData // ignore: cast_nullable_to_non_nullable
+              as ServiceData,
+    ));
+  }
+
+  @override
+  $ServiceDataCopyWith<$Res> get serviceData {
+    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
+      return _then(_value.copyWith(serviceData: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Success implements _Success {
+  const _$_Success(this.serviceData);
+
+  @override
+  final ServiceData serviceData;
+
+  @override
+  String toString() {
+    return 'NewServiceState.success(serviceData: $serviceData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality()
+                .equals(other.serviceData, serviceData));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceData));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ServiceData serviceData) success,
+    required TResult Function(File image) choosePhotoSuccess,
+  }) {
+    return success(serviceData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
+    TResult Function(File image)? choosePhotoSuccess,
+  }) {
+    return success?.call(serviceData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
+    TResult Function(File image)? choosePhotoSuccess,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(serviceData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Success implements NewServiceState {
+  const factory _Success(final ServiceData serviceData) = _$_Success;
+
+  ServiceData get serviceData;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  factory _$$_ChoosePhotoSuccessCopyWith(_$_ChoosePhotoSuccess value,
+          $Res Function(_$_ChoosePhotoSuccess) then) =
+      __$$_ChoosePhotoSuccessCopyWithImpl<$Res>;
   $Res call({File image});
 }
 
 /// @nodoc
-class __$$_NewServiceStateCopyWithImpl<$Res>
+class __$$_ChoosePhotoSuccessCopyWithImpl<$Res>
     extends _$NewServiceStateCopyWithImpl<$Res>
-    implements _$$_NewServiceStateCopyWith<$Res> {
-  __$$_NewServiceStateCopyWithImpl(
-      _$_NewServiceState _value, $Res Function(_$_NewServiceState) _then)
-      : super(_value, (v) => _then(v as _$_NewServiceState));
+    implements _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  __$$_ChoosePhotoSuccessCopyWithImpl(
+      _$_ChoosePhotoSuccess _value, $Res Function(_$_ChoosePhotoSuccess) _then)
+      : super(_value, (v) => _then(v as _$_ChoosePhotoSuccess));
 
   @override
-  _$_NewServiceState get _value => super._value as _$_NewServiceState;
+  _$_ChoosePhotoSuccess get _value => super._value as _$_ChoosePhotoSuccess;
 
   @override
   $Res call({
     Object? image = freezed,
   }) {
-    return _then(_$_NewServiceState(
+    return _then(_$_ChoosePhotoSuccess(
       image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -617,8 +1092,8 @@ class __$$_NewServiceStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NewServiceState implements _NewServiceState {
-  const _$_NewServiceState(this.image);
+class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
+  const _$_ChoosePhotoSuccess(this.image);
 
   @override
   final File image;
@@ -632,7 +1107,7 @@ class _$_NewServiceState implements _NewServiceState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NewServiceState &&
+            other is _$_ChoosePhotoSuccess &&
             const DeepCollectionEquality().equals(other.image, image));
   }
 
@@ -642,13 +1117,16 @@ class _$_NewServiceState implements _NewServiceState {
 
   @JsonKey(ignore: true)
   @override
-  _$$_NewServiceStateCopyWith<_$_NewServiceState> get copyWith =>
-      __$$_NewServiceStateCopyWithImpl<_$_NewServiceState>(this, _$identity);
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
+      __$$_ChoosePhotoSuccessCopyWithImpl<_$_ChoosePhotoSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ServiceData serviceData) success,
     required TResult Function(File image) choosePhotoSuccess,
   }) {
     return choosePhotoSuccess(image);
@@ -658,6 +1136,8 @@ class _$_NewServiceState implements _NewServiceState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
   }) {
     return choosePhotoSuccess?.call(image);
@@ -667,6 +1147,8 @@ class _$_NewServiceState implements _NewServiceState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ServiceData serviceData)? success,
     TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
@@ -680,7 +1162,9 @@ class _$_NewServiceState implements _NewServiceState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_NewServiceState value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
     return choosePhotoSuccess(this);
   }
@@ -689,7 +1173,9 @@ class _$_NewServiceState implements _NewServiceState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
     return choosePhotoSuccess?.call(this);
   }
@@ -698,7 +1184,9 @@ class _$_NewServiceState implements _NewServiceState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_NewServiceState value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (choosePhotoSuccess != null) {
@@ -708,11 +1196,11 @@ class _$_NewServiceState implements _NewServiceState {
   }
 }
 
-abstract class _NewServiceState implements NewServiceState {
-  const factory _NewServiceState(final File image) = _$_NewServiceState;
+abstract class _ChoosePhotoSuccess implements NewServiceState {
+  const factory _ChoosePhotoSuccess(final File image) = _$_ChoosePhotoSuccess;
 
   File get image;
   @JsonKey(ignore: true)
-  _$$_NewServiceStateCopyWith<_$_NewServiceState> get copyWith =>
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

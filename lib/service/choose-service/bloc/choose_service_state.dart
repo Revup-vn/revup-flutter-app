@@ -5,6 +5,6 @@ class ChooseServiceState with _$ChooseServiceState {
   const factory ChooseServiceState.initial() = _Initial;
   const factory ChooseServiceState.loading() = _Loading;
   const factory ChooseServiceState.failure() = _Failure;
-  const factory ChooseServiceState.success(List<ServiceData> services) =
+  const factory ChooseServiceState.success(IList<ServiceData> services) =
       _Success;
 }

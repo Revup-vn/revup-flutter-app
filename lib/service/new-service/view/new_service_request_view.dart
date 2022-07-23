@@ -9,10 +9,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../../choose-service/bloc/choose_service_bloc.dart';
-import '../../choose-service/models/service_request_data.dart';
-import '../../gen/assets.gen.dart';
-import '../../l10n/l10n.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../l10n/l10n.dart';
+import '../../models/service_data.dart';
 import '../bloc/new_service_bloc.dart';
 
 class NewServiceRequestView extends StatefulWidget {
@@ -28,6 +27,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(l10n.newRequestServiceAppBarTitle),
@@ -76,11 +76,16 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                       ),
                     );
                   },
-                  child: BlocBuilder<NewServiceBloc, NewServiceState>(
+                  child: BlocConsumer<NewServiceBloc, NewServiceState>(
+                    listener: (context, state) => state.mapOrNull(
+                      success: (value) =>
+                          context.router.pop<ServiceData>(value.serviceData),
+                    ),
                     builder: (context, state) {
                       return state.maybeWhen(
                         choosePhotoSuccess: (image) {
                           _image = image;
+
                           return SizedBox(
                             height: 120,
                             child: Image.file(
@@ -145,6 +150,9 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                           border: const OutlineInputBorder(),
                           labelText: l10n.serviceNameLabel,
                         ),
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập trường này',
+                        ),
                       ),
                       const SizedBox(
                         height: 16,
@@ -179,12 +187,14 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                     final desc = _formKey.currentState?.fields['desc']!.value
                             .toString() ??
                         '';
-                    context.read<ChooseServiceBloc>().add(
-                          ChooseServiceEvent.newServiceRequested(
-                            ServiceRequestData(
+                    context.read<NewServiceBloc>().add(
+                          NewServiceEvent.submitted(
+                            ServiceData(
+                              id: '99',
                               name: name,
-                              description: desc,
-                              image: _image!.path,
+                              isSelected: true,
+                              desc: desc,
+                              imageUrl: _image!.path,
                             ),
                           ),
                         );

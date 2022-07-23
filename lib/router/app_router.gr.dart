@@ -36,7 +36,7 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const ChooseServicePage());
     },
     NewServiceRequestRoute.name: (routeData) {
-      return AdaptivePage<void>(
+      return AdaptivePage<ServiceData>(
           routeData: routeData, child: const NewServiceRequestPage());
     },
     ServiceDetailsRoute.name: (routeData) {
@@ -54,11 +54,11 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
-        RouteConfig(ChooseServiceRoute.name, path: '/choose-service-page'),
+        RouteConfig(ChooseServiceRoute.name, path: '/'),
         RouteConfig(NewServiceRequestRoute.name,
             path: '/new-service-request-page'),
         RouteConfig(ServiceDetailsRoute.name, path: '/service-details-page'),
@@ -69,7 +69,7 @@ class _$AppRouter extends RootStackRouter {
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -102,8 +102,7 @@ class OnboardingRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [ChooseServicePage]
 class ChooseServiceRoute extends PageRouteInfo<void> {
-  const ChooseServiceRoute()
-      : super(ChooseServiceRoute.name, path: '/choose-service-page');
+  const ChooseServiceRoute() : super(ChooseServiceRoute.name, path: '/');
 
   static const String name = 'ChooseServiceRoute';
 }

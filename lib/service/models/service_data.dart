@@ -13,7 +13,9 @@ class ServiceData with _$ServiceData {
     String? providerId,
     num? serviceFee,
     String? imageUrl,
+    String? desc,
     String? productPriceRange,
+    @Default(false) bool isSelected,
     List<ProductData>? products,
   }) = _ServiceData;
 }

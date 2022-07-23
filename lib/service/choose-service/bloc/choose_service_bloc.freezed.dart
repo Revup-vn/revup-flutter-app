@@ -20,28 +20,27 @@ mixin _$ChooseServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,10 +132,9 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) {
     return started();
   }
@@ -146,9 +144,9 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) {
     return started?.call();
   }
@@ -158,9 +156,9 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -257,10 +255,9 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) {
     return serviceListSubmitted();
   }
@@ -270,9 +267,9 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) {
     return serviceListSubmitted?.call();
   }
@@ -282,9 +279,9 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -343,9 +340,9 @@ abstract class _$$NewServiceRequestedCopyWith<$Res> {
   factory _$$NewServiceRequestedCopyWith(_$NewServiceRequested value,
           $Res Function(_$NewServiceRequested) then) =
       __$$NewServiceRequestedCopyWithImpl<$Res>;
-  $Res call({ServiceRequestData serviceData});
+  $Res call({ServiceData serviceData});
 
-  $ServiceRequestDataCopyWith<$Res> get serviceData;
+  $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
@@ -367,13 +364,13 @@ class __$$NewServiceRequestedCopyWithImpl<$Res>
       serviceData == freezed
           ? _value.serviceData
           : serviceData // ignore: cast_nullable_to_non_nullable
-              as ServiceRequestData,
+              as ServiceData,
     ));
   }
 
   @override
-  $ServiceRequestDataCopyWith<$Res> get serviceData {
-    return $ServiceRequestDataCopyWith<$Res>(_value.serviceData, (value) {
+  $ServiceDataCopyWith<$Res> get serviceData {
+    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
       return _then(_value.copyWith(serviceData: value));
     });
   }
@@ -385,7 +382,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   const _$NewServiceRequested(this.serviceData);
 
   @override
-  final ServiceRequestData serviceData;
+  final ServiceData serviceData;
 
   @override
   String toString() {
@@ -416,10 +413,9 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) {
     return newServiceRequested(serviceData);
   }
@@ -429,9 +425,9 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) {
     return newServiceRequested?.call(serviceData);
   }
@@ -441,9 +437,9 @@ class _$NewServiceRequested implements NewServiceRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
@@ -494,10 +490,10 @@ class _$NewServiceRequested implements NewServiceRequested {
 }
 
 abstract class NewServiceRequested implements ChooseServiceEvent {
-  const factory NewServiceRequested(final ServiceRequestData serviceData) =
+  const factory NewServiceRequested(final ServiceData serviceData) =
       _$NewServiceRequested;
 
-  ServiceRequestData get serviceData;
+  ServiceData get serviceData;
   @JsonKey(ignore: true)
   _$$NewServiceRequestedCopyWith<_$NewServiceRequested> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +504,9 @@ abstract class _$$ServiceSelectedCopyWith<$Res> {
   factory _$$ServiceSelectedCopyWith(
           _$ServiceSelected value, $Res Function(_$ServiceSelected) then) =
       __$$ServiceSelectedCopyWithImpl<$Res>;
-  $Res call({String serviceId});
+  $Res call({ServiceData serviceData});
+
+  $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
@@ -524,28 +522,35 @@ class __$$ServiceSelectedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceId = freezed,
+    Object? serviceData = freezed,
   }) {
     return _then(_$ServiceSelected(
-      serviceId == freezed
-          ? _value.serviceId
-          : serviceId // ignore: cast_nullable_to_non_nullable
-              as String,
+      serviceData == freezed
+          ? _value.serviceData
+          : serviceData // ignore: cast_nullable_to_non_nullable
+              as ServiceData,
     ));
+  }
+
+  @override
+  $ServiceDataCopyWith<$Res> get serviceData {
+    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
+      return _then(_value.copyWith(serviceData: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ServiceSelected implements ServiceSelected {
-  const _$ServiceSelected(this.serviceId);
+  const _$ServiceSelected(this.serviceData);
 
   @override
-  final String serviceId;
+  final ServiceData serviceData;
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceSelected(serviceId: $serviceId)';
+    return 'ChooseServiceEvent.serviceSelected(serviceData: $serviceData)';
   }
 
   @override
@@ -553,12 +558,13 @@ class _$ServiceSelected implements ServiceSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceSelected &&
-            const DeepCollectionEquality().equals(other.serviceId, serviceId));
+            const DeepCollectionEquality()
+                .equals(other.serviceData, serviceData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(serviceId));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceData));
 
   @JsonKey(ignore: true)
   @override
@@ -570,12 +576,11 @@ class _$ServiceSelected implements ServiceSelected {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) {
-    return serviceSelected(serviceId);
+    return serviceSelected(serviceData);
   }
 
   @override
@@ -583,11 +588,11 @@ class _$ServiceSelected implements ServiceSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) {
-    return serviceSelected?.call(serviceId);
+    return serviceSelected?.call(serviceData);
   }
 
   @override
@@ -595,13 +600,13 @@ class _$ServiceSelected implements ServiceSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (serviceSelected != null) {
-      return serviceSelected(serviceId);
+      return serviceSelected(serviceData);
     }
     return orElse();
   }
@@ -648,9 +653,10 @@ class _$ServiceSelected implements ServiceSelected {
 }
 
 abstract class ServiceSelected implements ChooseServiceEvent {
-  const factory ServiceSelected(final String serviceId) = _$ServiceSelected;
+  const factory ServiceSelected(final ServiceData serviceData) =
+      _$ServiceSelected;
 
-  String get serviceId;
+  ServiceData get serviceData;
   @JsonKey(ignore: true)
   _$$ServiceSelectedCopyWith<_$ServiceSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -661,7 +667,9 @@ abstract class _$$ServiceUnselectedCopyWith<$Res> {
   factory _$$ServiceUnselectedCopyWith(
           _$ServiceUnselected value, $Res Function(_$ServiceUnselected) then) =
       __$$ServiceUnselectedCopyWithImpl<$Res>;
-  $Res call({String serviceId});
+  $Res call({ServiceData serviceData});
+
+  $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
@@ -677,28 +685,35 @@ class __$$ServiceUnselectedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? serviceId = freezed,
+    Object? serviceData = freezed,
   }) {
     return _then(_$ServiceUnselected(
-      serviceId == freezed
-          ? _value.serviceId
-          : serviceId // ignore: cast_nullable_to_non_nullable
-              as String,
+      serviceData == freezed
+          ? _value.serviceData
+          : serviceData // ignore: cast_nullable_to_non_nullable
+              as ServiceData,
     ));
+  }
+
+  @override
+  $ServiceDataCopyWith<$Res> get serviceData {
+    return $ServiceDataCopyWith<$Res>(_value.serviceData, (value) {
+      return _then(_value.copyWith(serviceData: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ServiceUnselected implements ServiceUnselected {
-  const _$ServiceUnselected(this.serviceId);
+  const _$ServiceUnselected(this.serviceData);
 
   @override
-  final String serviceId;
+  final ServiceData serviceData;
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceUnselected(serviceId: $serviceId)';
+    return 'ChooseServiceEvent.serviceUnselected(serviceData: $serviceData)';
   }
 
   @override
@@ -706,12 +721,13 @@ class _$ServiceUnselected implements ServiceUnselected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceUnselected &&
-            const DeepCollectionEquality().equals(other.serviceId, serviceId));
+            const DeepCollectionEquality()
+                .equals(other.serviceData, serviceData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(serviceId));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceData));
 
   @JsonKey(ignore: true)
   @override
@@ -723,12 +739,11 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() serviceListSubmitted,
-    required TResult Function(ServiceRequestData serviceData)
-        newServiceRequested,
-    required TResult Function(String serviceId) serviceSelected,
-    required TResult Function(String serviceId) serviceUnselected,
+    required TResult Function(ServiceData serviceData) newServiceRequested,
+    required TResult Function(ServiceData serviceData) serviceSelected,
+    required TResult Function(ServiceData serviceData) serviceUnselected,
   }) {
-    return serviceUnselected(serviceId);
+    return serviceUnselected(serviceData);
   }
 
   @override
@@ -736,11 +751,11 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
   }) {
-    return serviceUnselected?.call(serviceId);
+    return serviceUnselected?.call(serviceData);
   }
 
   @override
@@ -748,13 +763,13 @@ class _$ServiceUnselected implements ServiceUnselected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? serviceListSubmitted,
-    TResult Function(ServiceRequestData serviceData)? newServiceRequested,
-    TResult Function(String serviceId)? serviceSelected,
-    TResult Function(String serviceId)? serviceUnselected,
+    TResult Function(ServiceData serviceData)? newServiceRequested,
+    TResult Function(ServiceData serviceData)? serviceSelected,
+    TResult Function(ServiceData serviceData)? serviceUnselected,
     required TResult orElse(),
   }) {
     if (serviceUnselected != null) {
-      return serviceUnselected(serviceId);
+      return serviceUnselected(serviceData);
     }
     return orElse();
   }
@@ -801,9 +816,10 @@ class _$ServiceUnselected implements ServiceUnselected {
 }
 
 abstract class ServiceUnselected implements ChooseServiceEvent {
-  const factory ServiceUnselected(final String serviceId) = _$ServiceUnselected;
+  const factory ServiceUnselected(final ServiceData serviceData) =
+      _$ServiceUnselected;
 
-  String get serviceId;
+  ServiceData get serviceData;
   @JsonKey(ignore: true)
   _$$ServiceUnselectedCopyWith<_$ServiceUnselected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -816,7 +832,7 @@ mixin _$ChooseServiceState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceData> services) success,
+    required TResult Function(IList<ServiceData> services) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -824,7 +840,7 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -832,7 +848,7 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -923,7 +939,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceData> services) success,
+    required TResult Function(IList<ServiceData> services) success,
   }) {
     return initial();
   }
@@ -934,7 +950,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
   }) {
     return initial?.call();
   }
@@ -945,7 +961,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1039,7 +1055,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceData> services) success,
+    required TResult Function(IList<ServiceData> services) success,
   }) {
     return loading();
   }
@@ -1050,7 +1066,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
   }) {
     return loading?.call();
   }
@@ -1061,7 +1077,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1155,7 +1171,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceData> services) success,
+    required TResult Function(IList<ServiceData> services) success,
   }) {
     return failure();
   }
@@ -1166,7 +1182,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
   }) {
     return failure?.call();
   }
@@ -1177,7 +1193,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1233,7 +1249,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({List<ServiceData> services});
+  $Res call({IList<ServiceData> services});
 }
 
 /// @nodoc
@@ -1252,9 +1268,9 @@ class __$$_SuccessCopyWithImpl<$Res>
   }) {
     return _then(_$_Success(
       services == freezed
-          ? _value._services
+          ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceData>,
+              as IList<ServiceData>,
     ));
   }
 }
@@ -1262,14 +1278,10 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(final List<ServiceData> services) : _services = services;
+  const _$_Success(this.services);
 
-  final List<ServiceData> _services;
   @override
-  List<ServiceData> get services {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_services);
-  }
+  final IList<ServiceData> services;
 
   @override
   String toString() {
@@ -1281,12 +1293,12 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other._services, _services));
+            const DeepCollectionEquality().equals(other.services, services));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_services));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(services));
 
   @JsonKey(ignore: true)
   @override
@@ -1299,7 +1311,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceData> services) success,
+    required TResult Function(IList<ServiceData> services) success,
   }) {
     return success(services);
   }
@@ -1310,7 +1322,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
   }) {
     return success?.call(services);
   }
@@ -1321,7 +1333,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceData> services)? success,
+    TResult Function(IList<ServiceData> services)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1369,9 +1381,9 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements ChooseServiceState {
-  const factory _Success(final List<ServiceData> services) = _$_Success;
+  const factory _Success(final IList<ServiceData> services) = _$_Success;
 
-  List<ServiceData> get services;
+  IList<ServiceData> get services;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
