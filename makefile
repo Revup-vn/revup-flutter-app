@@ -26,7 +26,7 @@ analyze:
 	@flutter analyze lib test
 
 coverage:  ##run test and gen coverage report
-	@very_good test --coverage --exclude-coverage '{**/{*.{g,freezed,gen},*_{page,providers}}.dart,lib/l10n/l10n.dart}' --min-coverage 100 || true
+	@very_good test --coverage --exclude-coverage '{**/{*.{g,freezed,gen,u},*_{page,providers}}.dart,lib/l10n/l10n.dart}' --min-coverage 100 || true
 	@lcov --remove coverage/lcov.info -o coverage/exclude.info \
     '**/*.g.dart' \
     '**/*.gen.dart' \
