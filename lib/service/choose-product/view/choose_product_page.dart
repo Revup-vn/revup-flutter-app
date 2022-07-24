@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/choose_product_bloc.dart';
-import 'choose_product_view.dart';
+import 'choose_product_view.u.dart';
 
 class ChooseProductPage extends StatelessWidget {
   const ChooseProductPage({super.key});
