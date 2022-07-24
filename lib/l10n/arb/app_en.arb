@@ -20,5 +20,15 @@
   "onboardPageThirdTitle": "Transparent price, rest assured repair",
   "skipLabel": "Skip",
   "nextLabel": "Next",
-  "doneLabel": "Done"
+  "doneLabel": "Done",
+  "cancelLabel": "Cancel",
+  "serviceDetailLabel": "Service details required",
+  "serviceRequestLabel": "Service request",
+  "tubeLabel": "Change the tube",
+  "updateLabel":"Update",
+  "homeLabel":"Home",
+  "activateLabel":"Activate",
+  "notificationLabel":"Notification",
+  "accountLabel":"Account",
+  "workerRepairLabel":"Worker doing repairs"
 }

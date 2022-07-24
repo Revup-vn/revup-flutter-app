@@ -20,5 +20,15 @@
   "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",
   "skipLabel": "Bỏ qua",
   "nextLabel": "Tiếp theo",
-  "doneLabel": "Xong"
+  "doneLabel": "Xong",
+    "cancelLabel": "Huỷ bỏ",
+  "serviceDetailLabel": "Chi tiết dịch vụ yêu cầu",
+  "serviceRequestLabel": "Dịch vụ yêu cầu",
+  "total": "Tổng cộng",
+  "updateLabel":"Cập nhật",
+  "homeLabel":"Trang chủ",
+  "activateLabel":"Hoạt động",
+  "notificationLabel":"Thông báo",
+  "accountLabel":"Tài khoản",
+  "workerRepairLabel":"Thợ đang tiến hành sửa chữa"
 }

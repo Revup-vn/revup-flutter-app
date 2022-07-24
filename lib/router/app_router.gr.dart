@@ -21,6 +21,18 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const SplashPage());
     },
+    ServiceDetailRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ServiceDetailPage());
+    },
+    ServiceInvoiceRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ServiceInvoicePage());
+    },
+    ReviewRepairmanRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ReviewRepairmanPage());
+    },
     TestRoute.name: (routeData) {
       return AdaptivePage<void>(routeData: routeData, child: const TestPage());
     },
@@ -35,7 +47,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(SplashRoute.name, path: '/splash-page'),
+        RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
+        RouteConfig(ServiceInvoiceRoute.name, path: '/service-invoice-page'),
+        RouteConfig(ReviewRepairmanRoute.name, path: '/'),
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
         RouteConfig(OnboardingRoute.name, path: '/onboarding-page')
@@ -45,9 +60,35 @@ class _$AppRouter extends RootStackRouter {
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [ServiceDetailPage]
+class ServiceDetailRoute extends PageRouteInfo<void> {
+  const ServiceDetailRoute()
+      : super(ServiceDetailRoute.name, path: '/service-detail-page');
+
+  static const String name = 'ServiceDetailRoute';
+}
+
+/// generated route for
+/// [ServiceInvoicePage]
+class ServiceInvoiceRoute extends PageRouteInfo<void> {
+  const ServiceInvoiceRoute()
+      : super(ServiceInvoiceRoute.name, path: '/service-invoice-page');
+
+  static const String name = 'ServiceInvoiceRoute';
+}
+
+/// generated route for
+/// [ReviewRepairmanPage]
+class ReviewRepairmanRoute extends PageRouteInfo<void> {
+  const ReviewRepairmanRoute() : super(ReviewRepairmanRoute.name, path: '/');
+
+  static const String name = 'ReviewRepairmanRoute';
 }
 
 /// generated route for
