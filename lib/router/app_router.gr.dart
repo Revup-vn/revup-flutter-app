@@ -28,10 +28,6 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const PaymentPage());
     },
-    Signup6Route.name: (routeData) {
-      return AdaptivePage<void>(
-          routeData: routeData, child: const Signup6Page());
-    },
     UpdateProfileRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const UpdateProfilePage());
@@ -50,6 +46,14 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<void>(
           routeData: routeData, child: const HomeBodyPage());
     },
+    ActivateRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const ActivatePage());
+    },
+    NotificationRoute.name: (routeData) {
+      return AdaptivePage<void>(
+          routeData: routeData, child: const NotificationPage());
+    },
     AccountRoute.name: (routeData) {
       return AdaptivePage<void>(
           routeData: routeData, child: const AccountPage());
@@ -62,11 +66,14 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(HomeRoute.name, path: '/', children: [
           RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
+          RouteConfig(ActivateRoute.name,
+              path: 'activate-page', parent: HomeRoute.name),
+          RouteConfig(NotificationRoute.name,
+              path: 'notification-page', parent: HomeRoute.name),
           RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
         RouteConfig(PaymentRoute.name, path: '/payment-page'),
-        RouteConfig(Signup6Route.name, path: '/signup6-page'),
         RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
         RouteConfig(TestRoute.name, path: '/test-page'),
         RouteConfig(LoginRoute.name, path: '/login-page'),
@@ -97,14 +104,6 @@ class PaymentRoute extends PageRouteInfo<void> {
   const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
 
   static const String name = 'PaymentRoute';
-}
-
-/// generated route for
-/// [Signup6Page]
-class Signup6Route extends PageRouteInfo<void> {
-  const Signup6Route() : super(Signup6Route.name, path: '/signup6-page');
-
-  static const String name = 'Signup6Route';
 }
 
 /// generated route for
@@ -147,6 +146,23 @@ class HomeBodyRoute extends PageRouteInfo<void> {
   const HomeBodyRoute() : super(HomeBodyRoute.name, path: 'home-body-page');
 
   static const String name = 'HomeBodyRoute';
+}
+
+/// generated route for
+/// [ActivatePage]
+class ActivateRoute extends PageRouteInfo<void> {
+  const ActivateRoute() : super(ActivateRoute.name, path: 'activate-page');
+
+  static const String name = 'ActivateRoute';
+}
+
+/// generated route for
+/// [NotificationPage]
+class NotificationRoute extends PageRouteInfo<void> {
+  const NotificationRoute()
+      : super(NotificationRoute.name, path: 'notification-page');
+
+  static const String name = 'NotificationRoute';
 }
 
 /// generated route for

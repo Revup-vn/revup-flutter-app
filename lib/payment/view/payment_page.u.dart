@@ -28,9 +28,12 @@ class PaymentPage extends StatelessWidget {
             child: AutoSizeText(
               l10n.morePaymentMethodsLabel,
               style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
+                      .textTheme
+                      .labelLarge
+                      ?.copyWith(fontWeight: FontWeight.bold) ??
+                  const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           Row(

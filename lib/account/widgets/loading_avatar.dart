@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:shimmer/shimmer.dart';
 
 class LoadingAvatar extends StatelessWidget {
@@ -12,8 +13,8 @@ class LoadingAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        baseColor: Colors.grey[300] ?? Colors.grey,
+        highlightColor: Colors.grey[100] ?? Colors.grey,
         child: CircleAvatar(
           radius: avatarSize,
           backgroundColor: Theme.of(context).colorScheme.primary,

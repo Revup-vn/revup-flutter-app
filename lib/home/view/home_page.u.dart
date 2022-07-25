@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
 import '../../l10n/l10n.dart';
 import '../../router/app_router.dart';
 
@@ -9,13 +10,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return AutoTabsScaffold(
       routes: const [
         HomeBodyRoute(),
-        // TestRoute(),
-        // TestRoute(),
-        HomeBodyRoute(),
-        HomeBodyRoute(),
+        ActivateRoute(),
+        NotificationRoute(),
         AccountRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
@@ -23,7 +23,6 @@ class HomePage extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           currentIndex: tabsRouter.activeIndex,
           onTap: (index) {
-            // here we switch between tabs
             tabsRouter.setActiveIndex(index);
           },
           items: [

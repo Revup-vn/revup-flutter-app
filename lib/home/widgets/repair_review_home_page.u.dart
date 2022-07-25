@@ -1,12 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
-//import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../../account/bloc/account_bloc.dart';
 import '../../account/widgets/default_avatar.dart';
-import '../../account/model/user_data.dart';
 import '../../l10n/l10n.dart';
-import '../model/provider_data.dart';
+import '../bloc/home_bloc.dart';
+
+//import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
   const RepairReviewHomePage({
@@ -16,10 +20,8 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final users = UserData.fetchAll();
-    final user = users.first;
-    final providers = ProviderData.fetchAll();
-    final provider = providers.first;
+    // final providers = ProviderData.fetchAll();
+    // final provider = providers.first;
     const timeRepair = '16:10 - 17:00';
     const dayRepair = '17/10/2022';
     return Column(
@@ -28,44 +30,55 @@ class RepairReviewHomePage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(48),
-                    child: CachedNetworkImage(
-                      fadeInDuration: const Duration(milliseconds: 50),
-                      fadeOutDuration: const Duration(milliseconds: 50),
-                      imageUrl: user.urlImage,
-                      placeholder: (context, url) {
-                        return DefaultAvatar(
-                          textSize: Theme.of(context).textTheme.titleLarge,
-                          userName: user.name,
-                        );
-                      },
-                      // ignore: implicit_dynamic_parameter
-                      errorWidget: (context, url, error) {
-                        return DefaultAvatar(
-                          textSize: Theme.of(context).textTheme.titleLarge,
-                          userName: user.name,
-                        );
-                      },
-                      height: 64,
-                      width: 64,
-                      fit: BoxFit.fitWidth,
-                    ),
+            BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const Text('Empty'),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  failure: () => const Text('Failed'),
+                  success: (user) => Column(
+                    children: [
+                      SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(48),
+                          child: CachedNetworkImage(
+                            fadeInDuration: const Duration(milliseconds: 50),
+                            fadeOutDuration: const Duration(milliseconds: 50),
+                            imageUrl: user.urlImage,
+                            placeholder: (context, url) {
+                              return DefaultAvatar(
+                                textSize:
+                                    Theme.of(context).textTheme.titleLarge,
+                                userName: user.name,
+                              );
+                            },
+                            errorWidget: (context, url, dynamic error) {
+                              return DefaultAvatar(
+                                textSize:
+                                    Theme.of(context).textTheme.titleLarge,
+                                userName: user.name,
+                              );
+                            },
+                            height: 64,
+                            width: 64,
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: AutoSizeText(
+                          user.name,
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: AutoSizeText(
-                    user.name,
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ),
-              ],
+                );
+              },
             ),
             Column(
               children: [
@@ -88,20 +101,31 @@ class RepairReviewHomePage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           child: Center(
-            child: Column(
-              children: [
-                RatingBar.builder(
-                  ignoreGestures: true,
-                  initialRating: provider.rating,
-                  itemSize: 30,
-                  allowHalfRating: true,
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+            child: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const Text('Empty'),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  failure: () => const Text('Failed'),
+                  success: (provider, imageList) => Column(
+                    children: [
+                      RatingBar.builder(
+                        ignoreGestures: true,
+                        initialRating: provider.rating,
+                        itemSize: 30,
+                        allowHalfRating: true,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        onRatingUpdate:
+                            (double value) {}, // TODO(namngoc231): star rating
+                      ),
+                    ],
                   ),
-                  onRatingUpdate: (double value) {},
-                ),
-              ],
+                );
+              },
             ),
           ),
         ),

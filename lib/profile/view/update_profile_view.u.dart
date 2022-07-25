@@ -7,11 +7,13 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 import '../../account/bloc/account_bloc.dart';
+import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../l10n/l10n.dart';
+import '../bloc/profile_bloc.dart';
 
-class Signup6Page extends StatelessWidget {
-  const Signup6Page({super.key});
+class UpdateProfileView extends StatelessWidget {
+  const UpdateProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class Signup6Page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          l10n.completeRegistrationLabel,
+          l10n.editProfileLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -47,6 +49,7 @@ class Signup6Page extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: FormBuilder(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -74,10 +77,8 @@ class Signup6Page extends StatelessWidget {
                               errorText: l10n.invalidFormatLabel,
                             ),
                           ]),
-                          onChanged: (fullname) {
-                            _formKey.currentState?.fields['fullName']!
-                                .validate();
-                          },
+                          initialValue: user.name,
+                          onChanged: (fullname) {},
                         ),
                         FormBuilderTextField(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -101,9 +102,35 @@ class Signup6Page extends StatelessWidget {
                               errorText: l10n.invalidFormatLabel,
                             ),
                           ]),
-                          onChanged: (email) {
-                            _formKey.currentState?.fields['email']!.validate();
-                          },
+                          initialValue: user.email,
+                          onChanged: (email) {},
+                        ),
+                        FormBuilderTextField(
+                          style: Theme.of(context).textTheme.labelLarge,
+                          decoration: InputDecoration(
+                            labelText: l10n.phoneLabel,
+                            labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge
+                                    ?.copyWith(fontWeight: FontWeight.bold) ??
+                                const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          keyboardType: TextInputType.number,
+                          name: 'phone',
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: l10n.emptyLabel,
+                            ),
+                            FormBuilderValidators.match(
+                              r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                              errorText: l10n.invalidFormatLabel,
+                            ),
+                          ]),
+                          initialValue: user.phone,
+                          enabled: false,
+                          onChanged: (phoneNumber) {},
                         ),
                         FormBuilderDateTimePicker(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -120,7 +147,7 @@ class Signup6Page extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
-                          initialValue: DateTime.now(),
+                          initialValue: user.date,
                         ),
                         FormBuilderTextField(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -141,20 +168,50 @@ class Signup6Page extends StatelessWidget {
                               errorText: l10n.emptyLabel,
                             ),
                           ]),
-                          onChanged: (address) {
-                            _formKey.currentState?.fields['address']!
-                                .validate();
-                          },
+                          initialValue: user.address,
+                          onChanged: (address) {},
+                        ),
+                        BlocSelector<ProfileBloc, ProfileState, String>(
+                          selector: (state) => state.maybeWhen(
+                            loaded: (
+                              fullName,
+                              email,
+                              phone,
+                              date,
+                              address,
+                            ) =>
+                                DateFormat('dd-MM-yyyy').format(date),
+                            orElse: () => '',
+                          ),
+                          builder: (context, state) => Text(state),
                         ),
                         const SizedBox(
-                          height: 240,
+                          height: 160,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
-                          // TODO(namngoc231): complete update profile
+                          onPressed: () {
+                            _formKey.currentState!.saveAndValidate();
+                            final data = _formKey.currentState!.value;
+                            final fName = data['fullName'].toString();
+                            final email = data['email'].toString();
+                            final phone = data['phone'].toString();
+                            final date = data['date'] as DateTime;
+                            final address = data['address'].toString();
+                            final user = UserModel(
+                              name: fName,
+                              email: email,
+                              phone: phone,
+                              date: date,
+                              address: address,
+                              urlImage: '',
+                            );
+                            context
+                                .read<ProfileBloc>()
+                                .add(ProfileEvent.submitted(user));
+                          }, // TODO(namngoc231): complete update profile
                           style: Theme.of(context).elevatedButtonTheme.style,
                           child: AutoSizeText(
-                            l10n.doneLabel,
+                            l10n.updateLabel,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
