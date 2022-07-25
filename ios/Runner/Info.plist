@@ -52,5 +52,7 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location required</string>
+	<key>MBXAccessToken</key>
+	<string></string>
 </dict>
 </plist>

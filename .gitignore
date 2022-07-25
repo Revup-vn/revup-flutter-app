@@ -141,3 +141,4 @@ packages/injected/**
 android/app/google-services.json
 ios/GoogleService-Info.plist
 lib/configs/firebase_options.dart
+lib/configs/.mapbox
