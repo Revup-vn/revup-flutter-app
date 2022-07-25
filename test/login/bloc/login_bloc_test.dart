@@ -18,5 +18,13 @@ void main() {
       expect: () =>
           <LoginState>[const LoginState.ready(isLoginButtonEnabled: false)],
     );
+    blocTest<LoginBloc, LoginState>(
+      'emit sucess state when Submit event is added',
+      build: () => loginBloc,
+      act: (bloc) =>
+          bloc.add(const LoginEvent.submit(phoneNumber: '123456789')),
+      expect: () =>
+          <LoginState>[const LoginState.success(phoneNumber: '123456789')],
+    );
   });
 }

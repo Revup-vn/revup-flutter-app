@@ -180,7 +180,6 @@ class Signup6Page extends StatelessWidget {
                       FormBuilderValidators.required(
                         errorText: 'Email Not Empty',
                       ),
-                      FormBuilderValidators.email(),
                     ]),
                     onChanged: (email) {
                       _completeSignup.currentState?.fields['email']?.validate();
@@ -219,7 +218,7 @@ class Signup6Page extends StatelessWidget {
                     height: 210,
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_completeSignup.currentState!.validate()) {
                         _completeSignup.currentState!.saveAndValidate();
                         final data = _completeSignup.currentState!.value;
@@ -231,7 +230,7 @@ class Signup6Page extends StatelessWidget {
                             uuid: uid,
                             firstName: fName,
                             lastName: lName,
-                            phone: data['phone'].toString(),
+                            phone: '+84${data['phone'].toString()}',
                             dob: DateTime.parse(
                               data['dateUpdate'].toString().split(' ')[0],
                             ),
@@ -245,7 +244,7 @@ class Signup6Page extends StatelessWidget {
                           ),
                         );
                       }
-                      context.router.pop();
+                      await context.router.pop();
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(

@@ -26,6 +26,7 @@
   "loginBySSOLabel": "Hoặc đăng nhập bằng",
   "phoneRequiredErrorLabel": "Nhập số điện thoại của bạn",
   "invalidPhoneNumberLabel": "Số điện thoại không hợp lệ",
+  "existedPhoneNumberLabel": "Số điện thoại đã được đăng kí bởi tài khoản khác",
   "onboardPageFirstTitle": "Dịch vụ đặt sửa chữa xe chuyên nghiệp",
   "onboardPageSecondTitle": "Luôn túc trực mọi cung đường",
   "onboardPageThirdTitle": "Giá cả minh bạch, yên tâm sửa chữa",

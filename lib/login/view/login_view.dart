@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -9,219 +10,239 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
-import '../../otp/bloc/otp_bloc.dart';
 import '../../router/router.dart';
 import '../bloc/login_bloc.dart';
 import 'login_sso_item.dart';
 
 class LoginView extends StatelessWidget {
-  LoginView({super.key});
-
+  LoginView({
+    super.key,
+    this.errorMessage,
+  });
+  final String? errorMessage;
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 56, 16, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 350,
-              child: Assets.screens.logoTrans.svg(),
-            ),
-            AutoSizeText(
-              l10n.loginPageTitle,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            AutoSizeText(
-              l10n.loginPageLabel,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(height: 24),
-            FormBuilder(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  FormBuilderTextField(
-                    name: 'phone',
-                    decoration: InputDecoration(
-                      prefixIcon: Ink(
-                        child: Padding(
-                          padding: EdgeInsets.zero,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Assets.screens.flagVietNam.svg(),
-                              const SizedBox(width: 8),
-                              const FittedBox(
-                                child: AutoSizeText('+84'),
-                              ),
-                              const SizedBox(width: 8),
-                            ],
-                          ),
-                        ),
-                      ),
-                      hintText: l10n.phoneFieldLabel,
-                    ),
-                    keyboardType: TextInputType.number,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.phoneRequiredErrorLabel,
-                      ),
-                      FormBuilderValidators.match(
-                        r'^0?(3|5|7|8|9){1}([0-9]{8})$',
-                        errorText: l10n.invalidPhoneNumberLabel,
-                      ),
-                    ]),
-                    onChanged: (phoneNumber) {
-                      if (phoneNumber!.isEmpty) return;
-                      final isValid =
-                          _formKey.currentState?.validate() ?? false;
-                      context.read<LoginBloc>().add(
-                            LoginEvent.start(
-                              isLoginButtonEnabled: isValid,
+    return LoaderOverlay(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          padding: const EdgeInsets.fromLTRB(16, 56, 16, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 350,
+                child: Assets.screens.logoTrans.svg(),
+              ),
+              AutoSizeText(
+                l10n.loginPageTitle,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              AutoSizeText(
+                l10n.loginPageLabel,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 12),
+              FormBuilder(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    FormBuilderTextField(
+                      name: 'phone',
+                      decoration: InputDecoration(
+                        prefixIcon: Ink(
+                          child: Padding(
+                            padding: EdgeInsets.zero,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Assets.screens.flagVietNam.svg(),
+                                const SizedBox(width: 8),
+                                const FittedBox(
+                                  child: AutoSizeText('+84'),
+                                ),
+                                const SizedBox(width: 8),
+                              ],
                             ),
-                          );
-                    },
-                  ),
-                  const SizedBox(
-                    height: 80,
-                  ),
-                  AutoSizeText.rich(
-                    TextSpan(
-                      style: Theme.of(context).textTheme.caption,
-                      children: [
-                        TextSpan(
-                          text: l10n.acceptPolicyLabel,
-                        ),
-                        TextSpan(
-                          text: l10n.privacyLabel,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
                           ),
-                          // TODO(cantgim): implement regconizer
                         ),
-                        TextSpan(
-                          text: l10n.andLabel,
+                        hintText: l10n.phoneFieldLabel,
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.phoneRequiredErrorLabel,
                         ),
-                        TextSpan(
-                          text: l10n.termLabel,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                        FormBuilderValidators.match(
+                          r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                          errorText: l10n.invalidPhoneNumberLabel,
+                        ),
+                      ]),
+                      onChanged: (phoneNumber) {
+                        if (phoneNumber!.isEmpty) return;
+                        final isValid =
+                            _formKey.currentState?.validate() ?? false;
+                        context.read<LoginBloc>().add(
+                              LoginEvent.start(
+                                isLoginButtonEnabled: isValid,
+                              ),
+                            );
+                      },
+                    ),
+                    if (errorMessage != null)
+                      AutoSizeText(
+                        errorMessage == 'existedPhone'
+                            ? context.l10n.existedPhoneNumberLabel
+                            : context.l10n.invalidPhoneNumberLabel,
+                        style: Theme.of(context).textTheme.caption!.copyWith(
+                            color: Theme.of(context).colorScheme.error),
+                        maxLines: 1,
+                      ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    AutoSizeText.rich(
+                      TextSpan(
+                        style: Theme.of(context).textTheme.caption,
+                        children: [
+                          TextSpan(
+                            text: l10n.acceptPolicyLabel,
                           ),
-                          // TODO(cantgim): implement regconizer
-                        ),
-                      ],
+                          TextSpan(
+                            text: l10n.privacyLabel,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            // TODO(cantgim): implement regconizer
+                          ),
+                          TextSpan(
+                            text: l10n.andLabel,
+                          ),
+                          TextSpan(
+                            text: l10n.termLabel,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            // TODO(cantgim): implement regconizer
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  BlocSelector<LoginBloc, LoginState, bool>(
-                    selector: (state) => state.maybeMap(
-                      initial: (value) => value.isLoginButtonEnabled,
-                      ready: (value) => value.isLoginButtonEnabled,
-                      orElse: () => false,
-                    ),
-                    builder: (context, state) => ElevatedButton(
-                      onPressed: state
-                          ? () {
-                              if (_formKey.currentState!.validate()) {
-                                _formKey.currentState!.saveAndValidate();
-                                context.read<AuthenticateBloc>().add(
-                                      AuthenticateEvent.loginWithPhone(
-                                        phoneNumber:
-                                            '+84${_formKey.currentState!.value['phone']}',
-                                        onSubmitOTP: () async {
-                                          final completer = Completer<String>();
-                                          await context.router.push(
-                                            OTPRoute(
-                                              phoneNumber:
-                                                  '+84${_formKey.currentState!.value['phone']}',
-                                              completer: completer,
-                                            ),
-                                          );
-                                          return completer.future;
-                                        },
-                                        onSignUpSubmit: (user) async {
-                                          final completer =
-                                              Completer<AppUser>();
-                                          await context.router.push(
-                                            Signup6Route(
-                                              completer: completer,
-                                              phoneNumber:
-                                                  user.phoneNumber ?? '',
-                                              photoURL: user.photoURL ?? '',
-                                              uid: user.uid,
-                                              email: user.email ?? '',
-                                            ),
-                                          );
-                                          return completer.future;
-                                        },
-                                        onSignUpSuccess: () {
-                                          throw NullThrownError();
-                                        },
-                                      ),
-                                    );
+                    const SizedBox(height: 24),
+                    BlocSelector<LoginBloc, LoginState, bool>(
+                      selector: (state) => state.maybeMap(
+                        initial: (value) => value.isLoginButtonEnabled,
+                        ready: (value) => value.isLoginButtonEnabled,
+                        orElse: () => false,
+                      ),
+                      builder: (bloccontext, state) => ElevatedButton(
+                        onPressed: state
+                            ? () {
+                                context.loaderOverlay.show();
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.saveAndValidate();
+                                  final phoneNumber =
+                                      '+84${_formKey.currentState!.value['phone']}';
+                                  context.read<AuthenticateBloc>().add(
+                                        AuthenticateEvent.loginWithPhone(
+                                          phoneNumber: phoneNumber,
+                                          onSubmitOTP: () async {
+                                            final completer =
+                                                Completer<String>();
+                                            await context.router.push(
+                                              OTPRoute(
+                                                phoneNumber: phoneNumber,
+                                                completer: completer,
+                                              ),
+                                            );
+                                            context.loaderOverlay.hide();
+                                            return completer.future;
+                                          },
+                                          onSignUpSubmit: (user) async {
+                                            context.loaderOverlay.show();
+                                            final completer =
+                                                Completer<AppUser>();
+                                            await context.router.push(
+                                              Signup6Route(
+                                                completer: completer,
+                                                phoneNumber:
+                                                    user.phoneNumber ?? '',
+                                                photoURL: user.photoURL ?? '',
+                                                uid: user.uid,
+                                                email: user.email ?? '',
+                                              ),
+                                            );
+                                            context.loaderOverlay.hide();
+                                            return completer.future;
+                                          },
+                                          onSignUpSuccess: () {
+                                            return Future.value(unit);
+                                          },
+                                        ),
+                                      );
+                                }
                               }
-                            }
-                          : null,
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(l10n.continueLabel),
+                            : null,
+                        style: Theme.of(context).elevatedButtonTheme.style,
+                        child: AutoSizeText(l10n.continueLabel),
+                      ),
                     ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  const Expanded(child: Divider()),
+                  AutoSizeText(l10n.loginBySSOLabel),
+                  const Expanded(child: Divider()),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoginSsoItem(
+                    ssoIcon: Assets.screens.facebookOriginal.svg(),
+                  ),
+                  const SizedBox(width: 56),
+                  LoginSsoItem(
+                    ssoIcon: Assets.screens.googleOriginal.svg(),
+                    onPressed: () {
+                      context.loaderOverlay.show();
+                      context.read<AuthenticateBloc>().add(
+                        AuthenticateEvent.loginWithGoogle(
+                          onCompleteSignUp: (user) async {
+                            final completer = Completer<AppUser>();
+                            await context.router.push(
+                              Signup6Route(
+                                completer: completer,
+                                phoneNumber: user.phoneNumber ?? '',
+                                photoURL: user.photoURL ?? '',
+                                uid: user.uid,
+                                email: user.email ?? '',
+                              ),
+                            );
+                            context.loaderOverlay.hide();
+                            return completer.future;
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 132),
-            Row(
-              children: [
-                const Expanded(child: Divider()),
-                AutoSizeText(l10n.loginBySSOLabel),
-                const Expanded(child: Divider()),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LoginSsoItem(
-                  ssoIcon: Assets.screens.facebookOriginal.svg(),
-                ),
-                const SizedBox(width: 56),
-                LoginSsoItem(
-                  ssoIcon: Assets.screens.googleOriginal.svg(),
-                  onPressed: () {
-                    context.read<AuthenticateBloc>().add(
-                      AuthenticateEvent.loginWithGoogle(
-                        onCompleteSignUp: (user) async {
-                          final completer = Completer<AppUser>();
-                          await context.router.push(
-                            Signup6Route(
-                              completer: completer,
-                              phoneNumber: user.phoneNumber ?? '',
-                              photoURL: user.photoURL ?? '',
-                              uid: user.uid,
-                              email: user.email ?? '',
-                            ),
-                          );
-                          return completer.future;
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

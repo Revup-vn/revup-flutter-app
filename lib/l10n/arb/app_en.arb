@@ -26,6 +26,7 @@
     "loginBySSOLabel": "Or login with",
     "phoneRequiredErrorLabel": "Please enter your phone number",
     "invalidPhoneNumberLabel": "Please enter a valid phone number",
+    "existedPhoneNumberLabel": "Phone number already existed",
     "onboardPageFirstTitle": "Professional car repair service",
     "onboardPageSecondTitle": "Always on duty on all roads",
     "onboardPageThirdTitle": "Transparent price, rest assured repair",

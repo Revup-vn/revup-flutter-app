@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -36,7 +38,11 @@ class PincodeMainContent extends StatelessWidget {
           ),
           cursorColor: Theme.of(context).shadowColor,
           keyboardType: TextInputType.number,
-          onCompleted: completer.complete,
+          onCompleted: (v) async {
+            log('an an cut');
+            completer.complete(v);
+            await context.router.pop();
+          },
           onChanged: (v) {},
         ),
         BlocSelector<OTPBloc, OTPState, bool>(
