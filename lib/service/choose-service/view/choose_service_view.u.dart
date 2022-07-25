@@ -7,7 +7,7 @@ import '../../../l10n/l10n.dart';
 import '../../../router/app_router.dart';
 import '../../models/service_data.dart';
 import '../../widgets/service_checkbox_tile.dart';
-import '../bloc/choose_service_bloc.dart';
+import '../bloc/choose_service_bloc.u.dart';
 
 class ChooseServiceView extends StatelessWidget {
   const ChooseServiceView({super.key});

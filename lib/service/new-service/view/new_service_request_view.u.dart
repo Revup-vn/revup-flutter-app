@@ -12,7 +12,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../models/service_data.dart';
-import '../bloc/new_service_bloc.dart';
+import '../bloc/new_service_bloc.u.dart';
 
 class NewServiceRequestView extends StatefulWidget {
   const NewServiceRequestView({super.key});

@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../models/service_data.dart';
 
-part 'new_service_bloc.freezed.dart';
+part 'new_service_bloc.u.freezed.dart';
 part 'new_service_event.dart';
 part 'new_service_state.dart';
 

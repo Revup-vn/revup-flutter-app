@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:revup/service/choose-product/bloc/choose_product_bloc.dart';
+import 'package:revup/service/choose-product/bloc/choose_product_bloc.u.dart';
 import 'package:revup/service/models/product_data.dart';
 
 void main() {

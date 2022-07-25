@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../models/product_data.dart';
 import '../../models/service_data.dart';
 
-part 'choose_service_bloc.freezed.dart';
+part 'choose_service_bloc.u.freezed.dart';
 part 'choose_service_event.dart';
 part 'choose_service_state.dart';
 

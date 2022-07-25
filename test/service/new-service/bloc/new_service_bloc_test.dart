@@ -1,3 +1,8 @@
+import '../image_picker.mocks.dart' as base_mock;
+
+// Add the mixin to make the platform interface accept the mock.
+class MockImagePickerPlatform extends base_mock.MockImagePickerPlatform {}
+
 void main() {
   // late NewServiceBloc newServiceBloc;
 
@@ -9,7 +14,11 @@ void main() {
   //   build: () {
   //     return newServiceBloc;
   //   },
-  //   act: (bloc) => bloc.add(const NewServiceEvent.imageFromGallerySelected()),
+  //   act: (bloc) async {
+  //     bloc.add(const NewServiceEvent.imageFromGallerySelected());
+  //     final ImagePicker picker = ImagePicker();
+  //     await picker.pickImage(source: ImageSource.gallery);
+  //   },
   //   expect: () => [NewServiceState.choosePhotoSuccess(File(''))],
   // );
 }

@@ -1,4 +1,4 @@
-part of 'choose_service_bloc.dart';
+part of 'choose_service_bloc.u.dart';
 
 @freezed
 class ChooseServiceEvent with _$ChooseServiceEvent {

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../widgets/service_avatar.dart';
-import '../bloc/choose_product_bloc.dart';
+import '../bloc/choose_product_bloc.u.dart';
 
 class ChooseProductView extends StatefulWidget {
   const ChooseProductView({super.key});
