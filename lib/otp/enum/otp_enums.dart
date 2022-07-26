@@ -1,4 +1,0 @@
-enum OTPType {
-  login,
-  signup,
-}

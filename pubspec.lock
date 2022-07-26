@@ -225,6 +225,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.1"
+  cloud_functions:
+    dependency: transitive
+    description:
+      name: cloud_functions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.3"
+  cloud_functions_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_functions_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.12"
+  cloud_functions_web:
+    dependency: transitive
+    description:
+      name: cloud_functions_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.1"
   code_builder:
     dependency: transitive
     description:
@@ -957,10 +978,10 @@ packages:
     description:
       path: "."
       ref: "hotfix/authen-reset-state"
-      resolved-ref: da985bf4514d9ef029a5760c296983c169a47783
+      resolved-ref: "8109673cb8f11400e5bdf2918537b0acb5eb8e2e"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "1.9.1-dev+7"
+    version: "1.9.2-dev"
   rxdart:
     dependency: transitive
     description:

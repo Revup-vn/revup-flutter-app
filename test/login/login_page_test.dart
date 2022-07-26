@@ -10,8 +10,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:revup/l10n/l10n.dart';
 import 'package:revup/login/bloc/login_bloc.dart';
 import 'package:revup/login/login.dart';
-import 'package:revup/login/view/login_sso_item.dart';
-import 'package:revup/login/view/login_view.dart';
+import 'package:revup/login/view/login_sso_item.u.dart';
+import 'package:revup/login/view/login_view.u.dart';
 
 class MockLoginBloc extends MockBloc<LoginEvent, LoginState>
     implements LoginBloc {}

@@ -54,7 +54,7 @@ class OTPMainContent extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              PincodeMainContent(phoneNumber, completer),
+              PincodeOTP(phoneNumber, completer),
             ],
           ),
         ),

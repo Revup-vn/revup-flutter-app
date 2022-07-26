@@ -43,9 +43,3 @@ class LoginSucess extends StatelessWidget {
     );
   }
 }
-
-class HomePageRoute extends PageRouteInfo<void> {
-  const HomePageRoute() : super(name, path: '/home');
-
-  static const String name = 'HomePageRoute';
-}

@@ -2,11 +2,11 @@
 
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -17,7 +17,7 @@ import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../bloc/login_bloc.dart';
-import 'login_sso_item.dart';
+import 'login_sso_item.u.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({
@@ -139,8 +139,9 @@ class LoginView extends StatelessWidget {
                             ? () {
                                 context.loaderOverlay.show();
                                 _formKey.currentState!.saveAndValidate();
-                                final phoneNumber =
-                                    '+84${_formKey.currentState!.value['phone']}';
+                                final phoneNumber = _formKey
+                                    .currentState!.value['phone']
+                                    .toString();
                                 context.read<AuthenticateBloc>().add(
                                       AuthenticateEvent.loginWithPhone(
                                         phoneNumber: phoneNumber,

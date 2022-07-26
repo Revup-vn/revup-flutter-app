@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:revup_core/core.dart';
 
 import '../../splash/splash.dart';
-import '../login/view/login_page.dart';
+import '../login/view/login_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../otp/view/otp_page.u.dart';
 import '../signup/view/signup6_page.dart';

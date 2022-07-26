@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -11,9 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
-import '../../gen/assets.gen.dart';
-import '../../router/app_router.dart';
-import '../../test/test.dart';
 
 // import '../../../account/widgets/default_avatar.dart';
 // import '../../../account/model/user_data.dart';

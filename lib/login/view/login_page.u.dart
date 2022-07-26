@@ -1,26 +1,22 @@
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../router/app_router.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
-import '../widgets/login_loading.u.dart';
 import '../widgets/login_success.u.dart';
-import 'login_view.dart';
+import 'login_view.u.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -57,8 +53,7 @@ class LoginPage extends StatelessWidget {
             return authFailure!.maybeWhen(
               invalidData: (message) =>
                   LoginFailure(errorMessage: message ?? 'Something went wrong'),
-              orElse: () =>
-                  const LoginFailure(errorMessage: 'Something went wrong'),
+              orElse: () => const LoginFailure(errorMessage: 'Unknow issues'),
             );
           },
           orElse: LoginView.new,
