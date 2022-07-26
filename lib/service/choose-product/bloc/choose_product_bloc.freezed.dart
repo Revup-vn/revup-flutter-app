@@ -37,20 +37,20 @@ mixin _$ChooseProductEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,26 +74,27 @@ class _$ChooseProductEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$StartedCopyWith<$Res> {
-  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
-      __$$StartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
     extends _$ChooseProductEventCopyWithImpl<$Res>
-    implements _$$StartedCopyWith<$Res> {
-  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
-      : super(_value, (v) => _then(v as _$Started));
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$Started get _value => super._value as _$Started;
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -103,7 +104,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Started);
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
@@ -143,8 +144,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -152,8 +153,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -161,8 +162,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,34 +173,34 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements ChooseProductEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements ChooseProductEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$SubmittedCopyWith<$Res> {
-  factory _$$SubmittedCopyWith(
-          _$Submitted value, $Res Function(_$Submitted) then) =
-      __$$SubmittedCopyWithImpl<$Res>;
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
   $Res call({String? groupValue});
 }
 
 /// @nodoc
-class __$$SubmittedCopyWithImpl<$Res>
+class __$$_SubmittedCopyWithImpl<$Res>
     extends _$ChooseProductEventCopyWithImpl<$Res>
-    implements _$$SubmittedCopyWith<$Res> {
-  __$$SubmittedCopyWithImpl(
-      _$Submitted _value, $Res Function(_$Submitted) _then)
-      : super(_value, (v) => _then(v as _$Submitted));
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
 
   @override
-  _$Submitted get _value => super._value as _$Submitted;
+  _$_Submitted get _value => super._value as _$_Submitted;
 
   @override
   $Res call({
     Object? groupValue = freezed,
   }) {
-    return _then(_$Submitted(
+    return _then(_$_Submitted(
       groupValue == freezed
           ? _value.groupValue
           : groupValue // ignore: cast_nullable_to_non_nullable
@@ -210,8 +211,8 @@ class __$$SubmittedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Submitted implements Submitted {
-  const _$Submitted(this.groupValue);
+class _$_Submitted implements _Submitted {
+  const _$_Submitted(this.groupValue);
 
   @override
   final String? groupValue;
@@ -225,7 +226,7 @@ class _$Submitted implements Submitted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Submitted &&
+            other is _$_Submitted &&
             const DeepCollectionEquality()
                 .equals(other.groupValue, groupValue));
   }
@@ -236,8 +237,8 @@ class _$Submitted implements Submitted {
 
   @JsonKey(ignore: true)
   @override
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
-      __$$SubmittedCopyWithImpl<_$Submitted>(this, _$identity);
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -273,8 +274,8 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return submitted(this);
   }
@@ -282,8 +283,8 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return submitted?.call(this);
   }
@@ -291,8 +292,8 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -302,12 +303,12 @@ class _$Submitted implements Submitted {
   }
 }
 
-abstract class Submitted implements ChooseProductEvent {
-  const factory Submitted(final String? groupValue) = _$Submitted;
+abstract class _Submitted implements ChooseProductEvent {
+  const factory _Submitted(final String? groupValue) = _$_Submitted;
 
   String? get groupValue;
   @JsonKey(ignore: true)
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

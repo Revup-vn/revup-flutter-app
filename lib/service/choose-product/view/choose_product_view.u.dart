@@ -34,10 +34,13 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                 BlocBuilder<ChooseProductBloc, ChooseProductState>(
                   builder: (context, state) {
                     return state.when(
-                      initial: () => const Text('Empty'),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      failure: () => const Text('Failed'),
+                      initial: () =>
+                          Center(child: AutoSizeText(l10n.emptyErrorLabel)),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                      failure: () =>
+                          Center(child: AutoSizeText(l10n.commonErrorLabel)),
                       success: (products) => Expanded(
                         child: ListView.builder(
                           padding: const EdgeInsets.only(bottom: 100),
@@ -51,7 +54,10 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                                       products[index].productImageUrl ?? '',
                                 ),
                                 title: AutoSizeText(products[index].name ?? ''),
-                                subtitle: const AutoSizeText('Đơn giá: '),
+                                subtitle: AutoSizeText(
+                                  '${l10n.productPriceLabel}: '
+                                  '${products[index].price ?? 0}',
+                                ),
                                 trailing: Radio<String>(
                                   activeColor:
                                       Theme.of(context).colorScheme.primary,

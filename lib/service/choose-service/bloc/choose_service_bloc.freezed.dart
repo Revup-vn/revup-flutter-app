@@ -46,26 +46,26 @@ mixin _$ChooseServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(NewServiceRequested value) newServiceRequested,
-    required TResult Function(ServiceSelectChanged value) serviceSelectChanged,
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_ServiceSelectChanged value) serviceSelectChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,26 +89,27 @@ class _$ChooseServiceEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$StartedCopyWith<$Res> {
-  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
-      __$$StartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
     extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$StartedCopyWith<$Res> {
-  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
-      : super(_value, (v) => _then(v as _$Started));
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$Started get _value => super._value as _$Started;
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -118,7 +119,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Started);
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
@@ -167,10 +168,10 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(NewServiceRequested value) newServiceRequested,
-    required TResult Function(ServiceSelectChanged value) serviceSelectChanged,
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_ServiceSelectChanged value) serviceSelectChanged,
   }) {
     return started(this);
   }
@@ -178,10 +179,10 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
   }) {
     return started?.call(this);
   }
@@ -189,10 +190,10 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -202,33 +203,33 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements ChooseServiceEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements ChooseServiceEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$ServiceListSubmittedCopyWith<$Res> {
-  factory _$$ServiceListSubmittedCopyWith(_$ServiceListSubmitted value,
-          $Res Function(_$ServiceListSubmitted) then) =
-      __$$ServiceListSubmittedCopyWithImpl<$Res>;
+abstract class _$$_ServiceListSubmittedCopyWith<$Res> {
+  factory _$$_ServiceListSubmittedCopyWith(_$_ServiceListSubmitted value,
+          $Res Function(_$_ServiceListSubmitted) then) =
+      __$$_ServiceListSubmittedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ServiceListSubmittedCopyWithImpl<$Res>
+class __$$_ServiceListSubmittedCopyWithImpl<$Res>
     extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$ServiceListSubmittedCopyWith<$Res> {
-  __$$ServiceListSubmittedCopyWithImpl(_$ServiceListSubmitted _value,
-      $Res Function(_$ServiceListSubmitted) _then)
-      : super(_value, (v) => _then(v as _$ServiceListSubmitted));
+    implements _$$_ServiceListSubmittedCopyWith<$Res> {
+  __$$_ServiceListSubmittedCopyWithImpl(_$_ServiceListSubmitted _value,
+      $Res Function(_$_ServiceListSubmitted) _then)
+      : super(_value, (v) => _then(v as _$_ServiceListSubmitted));
 
   @override
-  _$ServiceListSubmitted get _value => super._value as _$ServiceListSubmitted;
+  _$_ServiceListSubmitted get _value => super._value as _$_ServiceListSubmitted;
 }
 
 /// @nodoc
 
-class _$ServiceListSubmitted implements ServiceListSubmitted {
-  const _$ServiceListSubmitted();
+class _$_ServiceListSubmitted implements _ServiceListSubmitted {
+  const _$_ServiceListSubmitted();
 
   @override
   String toString() {
@@ -238,7 +239,7 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ServiceListSubmitted);
+        (other.runtimeType == runtimeType && other is _$_ServiceListSubmitted);
   }
 
   @override
@@ -287,10 +288,10 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(NewServiceRequested value) newServiceRequested,
-    required TResult Function(ServiceSelectChanged value) serviceSelectChanged,
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_ServiceSelectChanged value) serviceSelectChanged,
   }) {
     return serviceListSubmitted(this);
   }
@@ -298,10 +299,10 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
   }) {
     return serviceListSubmitted?.call(this);
   }
@@ -309,10 +310,10 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -322,36 +323,36 @@ class _$ServiceListSubmitted implements ServiceListSubmitted {
   }
 }
 
-abstract class ServiceListSubmitted implements ChooseServiceEvent {
-  const factory ServiceListSubmitted() = _$ServiceListSubmitted;
+abstract class _ServiceListSubmitted implements ChooseServiceEvent {
+  const factory _ServiceListSubmitted() = _$_ServiceListSubmitted;
 }
 
 /// @nodoc
-abstract class _$$NewServiceRequestedCopyWith<$Res> {
-  factory _$$NewServiceRequestedCopyWith(_$NewServiceRequested value,
-          $Res Function(_$NewServiceRequested) then) =
-      __$$NewServiceRequestedCopyWithImpl<$Res>;
+abstract class _$$_NewServiceRequestedCopyWith<$Res> {
+  factory _$$_NewServiceRequestedCopyWith(_$_NewServiceRequested value,
+          $Res Function(_$_NewServiceRequested) then) =
+      __$$_NewServiceRequestedCopyWithImpl<$Res>;
   $Res call({ServiceData serviceData});
 
   $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
-class __$$NewServiceRequestedCopyWithImpl<$Res>
+class __$$_NewServiceRequestedCopyWithImpl<$Res>
     extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$NewServiceRequestedCopyWith<$Res> {
-  __$$NewServiceRequestedCopyWithImpl(
-      _$NewServiceRequested _value, $Res Function(_$NewServiceRequested) _then)
-      : super(_value, (v) => _then(v as _$NewServiceRequested));
+    implements _$$_NewServiceRequestedCopyWith<$Res> {
+  __$$_NewServiceRequestedCopyWithImpl(_$_NewServiceRequested _value,
+      $Res Function(_$_NewServiceRequested) _then)
+      : super(_value, (v) => _then(v as _$_NewServiceRequested));
 
   @override
-  _$NewServiceRequested get _value => super._value as _$NewServiceRequested;
+  _$_NewServiceRequested get _value => super._value as _$_NewServiceRequested;
 
   @override
   $Res call({
     Object? serviceData = freezed,
   }) {
-    return _then(_$NewServiceRequested(
+    return _then(_$_NewServiceRequested(
       serviceData == freezed
           ? _value.serviceData
           : serviceData // ignore: cast_nullable_to_non_nullable
@@ -369,8 +370,8 @@ class __$$NewServiceRequestedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NewServiceRequested implements NewServiceRequested {
-  const _$NewServiceRequested(this.serviceData);
+class _$_NewServiceRequested implements _NewServiceRequested {
+  const _$_NewServiceRequested(this.serviceData);
 
   @override
   final ServiceData serviceData;
@@ -384,7 +385,7 @@ class _$NewServiceRequested implements NewServiceRequested {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NewServiceRequested &&
+            other is _$_NewServiceRequested &&
             const DeepCollectionEquality()
                 .equals(other.serviceData, serviceData));
   }
@@ -395,8 +396,8 @@ class _$NewServiceRequested implements NewServiceRequested {
 
   @JsonKey(ignore: true)
   @override
-  _$$NewServiceRequestedCopyWith<_$NewServiceRequested> get copyWith =>
-      __$$NewServiceRequestedCopyWithImpl<_$NewServiceRequested>(
+  _$$_NewServiceRequestedCopyWith<_$_NewServiceRequested> get copyWith =>
+      __$$_NewServiceRequestedCopyWithImpl<_$_NewServiceRequested>(
           this, _$identity);
 
   @override
@@ -442,10 +443,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(NewServiceRequested value) newServiceRequested,
-    required TResult Function(ServiceSelectChanged value) serviceSelectChanged,
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_ServiceSelectChanged value) serviceSelectChanged,
   }) {
     return newServiceRequested(this);
   }
@@ -453,10 +454,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
   }) {
     return newServiceRequested?.call(this);
   }
@@ -464,10 +465,10 @@ class _$NewServiceRequested implements NewServiceRequested {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
@@ -477,43 +478,43 @@ class _$NewServiceRequested implements NewServiceRequested {
   }
 }
 
-abstract class NewServiceRequested implements ChooseServiceEvent {
-  const factory NewServiceRequested(final ServiceData serviceData) =
-      _$NewServiceRequested;
+abstract class _NewServiceRequested implements ChooseServiceEvent {
+  const factory _NewServiceRequested(final ServiceData serviceData) =
+      _$_NewServiceRequested;
 
   ServiceData get serviceData;
   @JsonKey(ignore: true)
-  _$$NewServiceRequestedCopyWith<_$NewServiceRequested> get copyWith =>
+  _$$_NewServiceRequestedCopyWith<_$_NewServiceRequested> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ServiceSelectChangedCopyWith<$Res> {
-  factory _$$ServiceSelectChangedCopyWith(_$ServiceSelectChanged value,
-          $Res Function(_$ServiceSelectChanged) then) =
-      __$$ServiceSelectChangedCopyWithImpl<$Res>;
+abstract class _$$_ServiceSelectChangedCopyWith<$Res> {
+  factory _$$_ServiceSelectChangedCopyWith(_$_ServiceSelectChanged value,
+          $Res Function(_$_ServiceSelectChanged) then) =
+      __$$_ServiceSelectChangedCopyWithImpl<$Res>;
   $Res call({ServiceData serviceData, bool isSelected});
 
   $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
-class __$$ServiceSelectChangedCopyWithImpl<$Res>
+class __$$_ServiceSelectChangedCopyWithImpl<$Res>
     extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$ServiceSelectChangedCopyWith<$Res> {
-  __$$ServiceSelectChangedCopyWithImpl(_$ServiceSelectChanged _value,
-      $Res Function(_$ServiceSelectChanged) _then)
-      : super(_value, (v) => _then(v as _$ServiceSelectChanged));
+    implements _$$_ServiceSelectChangedCopyWith<$Res> {
+  __$$_ServiceSelectChangedCopyWithImpl(_$_ServiceSelectChanged _value,
+      $Res Function(_$_ServiceSelectChanged) _then)
+      : super(_value, (v) => _then(v as _$_ServiceSelectChanged));
 
   @override
-  _$ServiceSelectChanged get _value => super._value as _$ServiceSelectChanged;
+  _$_ServiceSelectChanged get _value => super._value as _$_ServiceSelectChanged;
 
   @override
   $Res call({
     Object? serviceData = freezed,
     Object? isSelected = freezed,
   }) {
-    return _then(_$ServiceSelectChanged(
+    return _then(_$_ServiceSelectChanged(
       serviceData: serviceData == freezed
           ? _value.serviceData
           : serviceData // ignore: cast_nullable_to_non_nullable
@@ -535,8 +536,8 @@ class __$$ServiceSelectChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ServiceSelectChanged implements ServiceSelectChanged {
-  const _$ServiceSelectChanged(
+class _$_ServiceSelectChanged implements _ServiceSelectChanged {
+  const _$_ServiceSelectChanged(
       {required this.serviceData, required this.isSelected});
 
   @override
@@ -553,7 +554,7 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ServiceSelectChanged &&
+            other is _$_ServiceSelectChanged &&
             const DeepCollectionEquality()
                 .equals(other.serviceData, serviceData) &&
             const DeepCollectionEquality()
@@ -568,8 +569,8 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$$ServiceSelectChangedCopyWith<_$ServiceSelectChanged> get copyWith =>
-      __$$ServiceSelectChangedCopyWithImpl<_$ServiceSelectChanged>(
+  _$$_ServiceSelectChangedCopyWith<_$_ServiceSelectChanged> get copyWith =>
+      __$$_ServiceSelectChangedCopyWithImpl<_$_ServiceSelectChanged>(
           this, _$identity);
 
   @override
@@ -615,10 +616,10 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(NewServiceRequested value) newServiceRequested,
-    required TResult Function(ServiceSelectChanged value) serviceSelectChanged,
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_ServiceSelectChanged value) serviceSelectChanged,
   }) {
     return serviceSelectChanged(this);
   }
@@ -626,10 +627,10 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
   }) {
     return serviceSelectChanged?.call(this);
   }
@@ -637,10 +638,10 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(NewServiceRequested value)? newServiceRequested,
-    TResult Function(ServiceSelectChanged value)? serviceSelectChanged,
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_ServiceSelectChanged value)? serviceSelectChanged,
     required TResult orElse(),
   }) {
     if (serviceSelectChanged != null) {
@@ -650,15 +651,15 @@ class _$ServiceSelectChanged implements ServiceSelectChanged {
   }
 }
 
-abstract class ServiceSelectChanged implements ChooseServiceEvent {
-  const factory ServiceSelectChanged(
+abstract class _ServiceSelectChanged implements ChooseServiceEvent {
+  const factory _ServiceSelectChanged(
       {required final ServiceData serviceData,
-      required final bool isSelected}) = _$ServiceSelectChanged;
+      required final bool isSelected}) = _$_ServiceSelectChanged;
 
   ServiceData get serviceData;
   bool get isSelected;
   @JsonKey(ignore: true)
-  _$$ServiceSelectChangedCopyWith<_$ServiceSelectChanged> get copyWith =>
+  _$$_ServiceSelectChangedCopyWith<_$_ServiceSelectChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,39 +13,37 @@ part 'choose_service_state.dart';
 
 class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   ChooseServiceBloc() : super(const _Initial()) {
-    on<Started>(_onStarted);
+    on<ChooseServiceEvent>(_onEvent);
+  }
 
-    on<ServiceSelectChanged>((event, emit) {
-      services.map((e) {
-        if (e.id == event.serviceData.id) {
-          e.copyWith(isSelected: event.isSelected);
-        }
-      });
-    });
-
-    on<ServiceListSubmitted>(
-      (event, emit) {
+  FutureOr<void> _onEvent(
+    ChooseServiceEvent event,
+    Emitter<ChooseServiceState> emit,
+  ) async {
+    event.when(
+      started: () {
+        emit(const ChooseServiceState.loading());
+        emit(ChooseServiceState.success(services));
+      },
+      serviceListSubmitted: () {
         emit(const ChooseServiceState.loading());
       },
+      newServiceRequested: (serviceData) {
+        emit(const ChooseServiceState.loading());
+        emit(
+          ChooseServiceState.success(
+            services.appendElement(serviceData),
+          ),
+        );
+      },
+      serviceSelectChanged: (serviceData, isSelected) {
+        services.map((e) {
+          if (e.id == serviceData.id) {
+            e.copyWith(isSelected: isSelected);
+          }
+        });
+      },
     );
-
-    on<NewServiceRequested>(_onNewServiceRequested);
-  }
-
-  Future<void> _onNewServiceRequested(
-    NewServiceRequested event,
-    Emitter<ChooseServiceState> emit,
-  ) async {
-    emit(const ChooseServiceState.loading());
-    emit(ChooseServiceState.success(services.appendElement(event.serviceData)));
-  }
-
-  Future<void> _onStarted(
-    Started event,
-    Emitter<ChooseServiceState> emit,
-  ) async {
-    emit(const ChooseServiceState.loading());
-    emit(ChooseServiceState.success(services));
   }
 
   final services = ilist(<ServiceData>[

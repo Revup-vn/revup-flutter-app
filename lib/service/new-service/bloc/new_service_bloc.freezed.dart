@@ -40,23 +40,23 @@ mixin _$NewServiceEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,25 +80,26 @@ class _$NewServiceEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$StartedCopyWith<$Res> {
-  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
-      __$$StartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedCopyWithImpl<$Res> extends _$NewServiceEventCopyWithImpl<$Res>
-    implements _$$StartedCopyWith<$Res> {
-  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
-      : super(_value, (v) => _then(v as _$Started));
+class __$$_StartedCopyWithImpl<$Res> extends _$NewServiceEventCopyWithImpl<$Res>
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$Started get _value => super._value as _$Started;
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -108,7 +109,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Started);
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
@@ -151,9 +152,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
   }
@@ -161,9 +162,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
   }
@@ -171,9 +172,9 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -183,36 +184,36 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements NewServiceEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements NewServiceEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$SubmittedCopyWith<$Res> {
-  factory _$$SubmittedCopyWith(
-          _$Submitted value, $Res Function(_$Submitted) then) =
-      __$$SubmittedCopyWithImpl<$Res>;
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
   $Res call({ServiceData serviceData});
 
   $ServiceDataCopyWith<$Res> get serviceData;
 }
 
 /// @nodoc
-class __$$SubmittedCopyWithImpl<$Res>
+class __$$_SubmittedCopyWithImpl<$Res>
     extends _$NewServiceEventCopyWithImpl<$Res>
-    implements _$$SubmittedCopyWith<$Res> {
-  __$$SubmittedCopyWithImpl(
-      _$Submitted _value, $Res Function(_$Submitted) _then)
-      : super(_value, (v) => _then(v as _$Submitted));
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
 
   @override
-  _$Submitted get _value => super._value as _$Submitted;
+  _$_Submitted get _value => super._value as _$_Submitted;
 
   @override
   $Res call({
     Object? serviceData = freezed,
   }) {
-    return _then(_$Submitted(
+    return _then(_$_Submitted(
       serviceData == freezed
           ? _value.serviceData
           : serviceData // ignore: cast_nullable_to_non_nullable
@@ -230,8 +231,8 @@ class __$$SubmittedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Submitted implements Submitted {
-  const _$Submitted(this.serviceData);
+class _$_Submitted implements _Submitted {
+  const _$_Submitted(this.serviceData);
 
   @override
   final ServiceData serviceData;
@@ -245,7 +246,7 @@ class _$Submitted implements Submitted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Submitted &&
+            other is _$_Submitted &&
             const DeepCollectionEquality()
                 .equals(other.serviceData, serviceData));
   }
@@ -256,8 +257,8 @@ class _$Submitted implements Submitted {
 
   @JsonKey(ignore: true)
   @override
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
-      __$$SubmittedCopyWithImpl<_$Submitted>(this, _$identity);
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -296,9 +297,9 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return submitted(this);
   }
@@ -306,9 +307,9 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return submitted?.call(this);
   }
@@ -316,9 +317,9 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -328,39 +329,39 @@ class _$Submitted implements Submitted {
   }
 }
 
-abstract class Submitted implements NewServiceEvent {
-  const factory Submitted(final ServiceData serviceData) = _$Submitted;
+abstract class _Submitted implements NewServiceEvent {
+  const factory _Submitted(final ServiceData serviceData) = _$_Submitted;
 
   ServiceData get serviceData;
   @JsonKey(ignore: true)
-  _$$SubmittedCopyWith<_$Submitted> get copyWith =>
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ImageUploadSelectedCopyWith<$Res> {
-  factory _$$ImageUploadSelectedCopyWith(_$ImageUploadSelected value,
-          $Res Function(_$ImageUploadSelected) then) =
-      __$$ImageUploadSelectedCopyWithImpl<$Res>;
+abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
+  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
+          $Res Function(_$_ImageUploadSelected) then) =
+      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
   $Res call({ImageSource source});
 }
 
 /// @nodoc
-class __$$ImageUploadSelectedCopyWithImpl<$Res>
+class __$$_ImageUploadSelectedCopyWithImpl<$Res>
     extends _$NewServiceEventCopyWithImpl<$Res>
-    implements _$$ImageUploadSelectedCopyWith<$Res> {
-  __$$ImageUploadSelectedCopyWithImpl(
-      _$ImageUploadSelected _value, $Res Function(_$ImageUploadSelected) _then)
-      : super(_value, (v) => _then(v as _$ImageUploadSelected));
+    implements _$$_ImageUploadSelectedCopyWith<$Res> {
+  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
+      $Res Function(_$_ImageUploadSelected) _then)
+      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
 
   @override
-  _$ImageUploadSelected get _value => super._value as _$ImageUploadSelected;
+  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
 
   @override
   $Res call({
     Object? source = freezed,
   }) {
-    return _then(_$ImageUploadSelected(
+    return _then(_$_ImageUploadSelected(
       source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -371,8 +372,8 @@ class __$$ImageUploadSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ImageUploadSelected implements ImageUploadSelected {
-  const _$ImageUploadSelected(this.source);
+class _$_ImageUploadSelected implements _ImageUploadSelected {
+  const _$_ImageUploadSelected(this.source);
 
   @override
   final ImageSource source;
@@ -386,7 +387,7 @@ class _$ImageUploadSelected implements ImageUploadSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageUploadSelected &&
+            other is _$_ImageUploadSelected &&
             const DeepCollectionEquality().equals(other.source, source));
   }
 
@@ -396,8 +397,8 @@ class _$ImageUploadSelected implements ImageUploadSelected {
 
   @JsonKey(ignore: true)
   @override
-  _$$ImageUploadSelectedCopyWith<_$ImageUploadSelected> get copyWith =>
-      __$$ImageUploadSelectedCopyWithImpl<_$ImageUploadSelected>(
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
           this, _$identity);
 
   @override
@@ -437,9 +438,9 @@ class _$ImageUploadSelected implements ImageUploadSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return imageUploadSelected(this);
   }
@@ -447,9 +448,9 @@ class _$ImageUploadSelected implements ImageUploadSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return imageUploadSelected?.call(this);
   }
@@ -457,9 +458,9 @@ class _$ImageUploadSelected implements ImageUploadSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (imageUploadSelected != null) {
@@ -469,13 +470,13 @@ class _$ImageUploadSelected implements ImageUploadSelected {
   }
 }
 
-abstract class ImageUploadSelected implements NewServiceEvent {
-  const factory ImageUploadSelected(final ImageSource source) =
-      _$ImageUploadSelected;
+abstract class _ImageUploadSelected implements NewServiceEvent {
+  const factory _ImageUploadSelected(final ImageSource source) =
+      _$_ImageUploadSelected;
 
   ImageSource get source;
   @JsonKey(ignore: true)
-  _$$ImageUploadSelectedCopyWith<_$ImageUploadSelected> get copyWith =>
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

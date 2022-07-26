@@ -54,25 +54,25 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                             ListTile(
                               title: AutoSizeText(l10n.imageFromGalleryLabel),
                               leading: const Icon(Icons.photo_library_rounded),
-                              onTap: () {
+                              onTap: () async {
                                 bloc.add(
                                   const NewServiceEvent.imageUploadSelected(
                                     ImageSource.gallery,
                                   ),
                                 );
-                                context.router.pop();
+                                await context.router.pop();
                               },
                             ),
                             ListTile(
                               title: AutoSizeText(l10n.photoWithCameraLabel),
                               leading: const Icon(Icons.camera_alt_rounded),
-                              onTap: () {
+                              onTap: () async {
                                 bloc.add(
                                   const NewServiceEvent.imageUploadSelected(
                                     ImageSource.camera,
                                   ),
                                 );
-                                context.router.pop();
+                                await context.router.pop();
                               },
                             ),
                           ],
@@ -185,10 +185,10 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState?.saveAndValidate() ?? false) {
-                    final name = _formKey.currentState?.fields['name']!.value
+                    final name = _formKey.currentState?.fields['name']?.value
                             .toString() ??
                         '';
-                    final desc = _formKey.currentState?.fields['desc']!.value
+                    final desc = _formKey.currentState?.fields['desc']?.value
                             .toString() ??
                         '';
                     context.read<NewServiceBloc>().add(

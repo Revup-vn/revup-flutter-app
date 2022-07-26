@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../choose-service/bloc/choose_service_bloc.dart';
 import '../models/service_data.dart';
 
@@ -22,9 +23,11 @@ class ServiceCheckboxTile extends StatefulWidget {
 }
 
 class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
-  bool isChecked = false;
+  bool? isChecked = false;
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Card(
       elevation: 0,
       child: ListTile(
@@ -42,8 +45,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 gaplessPlayback: true,
                 width: 64,
               ),
-              // ignore: implicit_dynamic_parameter
-              errorWidget: (context, url, error) {
+              errorWidget: <dynamic>(context, url, error) {
                 return Assets.screens.dfAvatar.image(
                   fit: BoxFit.cover,
                   height: 64,
@@ -58,20 +60,23 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
           ),
         ),
         title: AutoSizeText(widget.serviceData.name ?? ''),
-        subtitle: const AutoSizeText('Đơn giá: '),
+        subtitle: AutoSizeText(
+          '${l10n.servicePriceLabel}: '
+          '${widget.serviceData.productPriceRange ?? '0'}',
+        ),
         trailing: Checkbox(
           checkColor: Theme.of(context).colorScheme.onPrimary,
           activeColor: Theme.of(context).colorScheme.primary,
           value: isChecked,
           onChanged: (bool? value) {
             setState(() {
-              isChecked = value!;
+              isChecked = value;
             });
 
             context.read<ChooseServiceBloc>().add(
                   ChooseServiceEvent.serviceSelectChanged(
                     serviceData: widget.serviceData,
-                    isSelected: isChecked,
+                    isSelected: isChecked ?? false,
                   ),
                 );
           },

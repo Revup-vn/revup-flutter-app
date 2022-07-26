@@ -34,5 +34,10 @@
   "chooseImageNoteLabel": "Add a photo for the repairman to better visualize your request",
   "chooseProductAppBarTitle": "Choose product",
   "imageFromGalleryLabel": "Choose image from gallery",
-  "photoWithCameraLabel": "Take photo"
+  "photoWithCameraLabel": "Take photo",
+  "emptyErrorLabel": "Please do not leave it blank",
+  "productPriceLabel": "Unit price",
+  "commonErrorLabel": "An error occurred",
+  "emptyLabel": "Empty",
+  "servicePriceLabel": "Price"
 }

@@ -35,5 +35,9 @@
   "chooseProductAppBarTitle": "Lựa chọn sản phẩm",
   "imageFromGalleryLabel": "Chọn từ thư viện ảnh",
   "photoWithCameraLabel": "Chụp ảnh",
-  "emptyErrorLabel": "Vui lòng không bỏ trống"
+  "emptyErrorLabel": "Vui lòng không bỏ trống",
+  "productPriceLabel": "Đơn giá",
+  "commonErrorLabel": "Có lỗi xảy ra",
+  "emptyLabel": "Trống",
+  "servicePriceLabel": "Giá"
 }

@@ -48,10 +48,13 @@ class ChooseServiceView extends StatelessWidget {
                 BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
                   builder: (context, state) {
                     return state.when(
-                      initial: () => const Text('Empty'),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      failure: () => const Text('Failed'),
+                      initial: () =>
+                          Center(child: AutoSizeText(l10n.emptyErrorLabel)),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                      failure: () =>
+                          Center(child: AutoSizeText(l10n.commonErrorLabel)),
                       success: (services) => Expanded(
                         child: ListView.builder(
                           padding: const EdgeInsets.only(bottom: 100),

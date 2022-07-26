@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -12,30 +13,30 @@ part 'new_service_state.dart';
 
 class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
   NewServiceBloc(this._imagePicker) : super(const _Initial()) {
-    on<ImageUploadSelected>(_onImageUploadSelected);
-    on<Submitted>(_onSubmitted);
+    on<NewServiceEvent>(_onEvent);
   }
 
   final ImagePicker _imagePicker;
 
-  Future<void> _onSubmitted(
-    Submitted event,
+  FutureOr<void> _onEvent(
+    NewServiceEvent event,
     Emitter<NewServiceState> emit,
   ) async {
-    emit(const NewServiceState.loading());
-    // TODO(cantgim): save on firestore,
-    // then emit data saved (id, image url,...)
-    emit(NewServiceState.success(event.serviceData));
-  }
-
-  Future<void> _onImageUploadSelected(
-    ImageUploadSelected event,
-    Emitter<NewServiceState> emit,
-  ) async {
-    final pickedImage = await _imagePicker.pickImage(source: event.source);
-    if (pickedImage != null) {
-      final _image = File(pickedImage.path);
-      emit(NewServiceState.choosePhotoSuccess(_image));
-    }
+    await event.when(
+      started: () {},
+      submitted: (serviceData) {
+        emit(const NewServiceState.loading());
+        // TODO(cantgim): save on firestore,
+        // then emit data saved (id, image url,...)
+        emit(NewServiceState.success(serviceData));
+      },
+      imageUploadSelected: (source) async {
+        final pickedImage = await _imagePicker.pickImage(source: source);
+        if (pickedImage != null) {
+          final _image = File(pickedImage.path);
+          emit(NewServiceState.choosePhotoSuccess(_image));
+        }
+      },
+    );
   }
 }
