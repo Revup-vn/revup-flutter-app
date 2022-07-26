@@ -20,6 +20,13 @@ void main() {
   final image = Uint8List.fromList([1, 2, 3, 4]);
 
   blocTest<NewServiceBloc, NewServiceState>(
+    'emits [] when Started is added.',
+    build: () => NewServiceBloc(mockImagePicker),
+    act: (NewServiceBloc newServiceBloc) {
+      newServiceBloc.add(const NewServiceEvent.started());
+    },
+  );
+  blocTest<NewServiceBloc, NewServiceState>(
     'emits ChoosePhotoSuccess when ImageUploadSelected is added.',
     setUp: () {
       when(() => mockImagePicker.pickImage(source: ImageSource.gallery))

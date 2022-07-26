@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -55,23 +56,30 @@ class ChooseServiceView extends StatelessWidget {
                       ),
                       failure: () =>
                           Center(child: AutoSizeText(l10n.commonErrorLabel)),
-                      success: (services) => Expanded(
-                        child: ListView.builder(
-                          padding: const EdgeInsets.only(bottom: 100),
-                          itemCount: services.length(),
-                          itemBuilder: (context, index) {
-                            return ServiceCheckboxTile(
-                              onTap: () => context.router.push(
-                                ServiceDetailsRoute(
-                                  serviceData:
-                                      services.toList().elementAt(index),
+                      success: (services) {
+                        final servicesVector =
+                            IVector.from(services.toIterable());
+                        return Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 100),
+                            itemCount: services.length(),
+                            itemBuilder: (context, index) {
+                              return ServiceCheckboxTile(
+                                onTap: () => context.router.push(
+                                  ServiceDetailsRoute(
+                                    serviceData: servicesVector
+                                        .get(index)
+                                        .getOrElse(() => const ServiceData()),
+                                  ),
                                 ),
-                              ),
-                              serviceData: services.toList().elementAt(index),
-                            );
-                          },
-                        ),
-                      ),
+                                serviceData: servicesVector
+                                    .get(index)
+                                    .getOrElse(() => const ServiceData()),
+                              );
+                            },
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
