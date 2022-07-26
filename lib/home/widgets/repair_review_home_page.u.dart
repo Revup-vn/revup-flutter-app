@@ -10,8 +10,6 @@ import '../../account/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../bloc/home_bloc.dart';
 
-//import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 class RepairReviewHomePage extends StatelessWidget {
   const RepairReviewHomePage({
     super.key,
@@ -20,10 +18,9 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // final providers = ProviderData.fetchAll();
-    // final provider = providers.first;
     const timeRepair = '16:10 - 17:00';
     const dayRepair = '17/10/2022';
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -119,8 +116,7 @@ class RepairReviewHomePage extends StatelessWidget {
                           Icons.star,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
-                        onRatingUpdate:
-                            (double value) {}, // TODO(namngoc231): star rating
+                        onRatingUpdate: print,
                       ),
                     ],
                   ),

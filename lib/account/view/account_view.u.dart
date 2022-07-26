@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
@@ -31,8 +32,9 @@ class AccountView extends StatelessWidget {
                   children: <Widget>[
                     Avatar(
                       user: user,
-                      callback: () {},
-                      // TODO(namngoc231): Go to photo selection method
+                      callback: () {
+                        // TODO(namngoc231): Go to photo selection method
+                      },
                     ),
                     const SizedBox(
                       height: 16,
@@ -65,7 +67,9 @@ class AccountView extends StatelessWidget {
                     AccountItem(
                       accountName: l10n.serviceAccountLabel,
                       accountIcon: const Icon(Icons.home_repair_service),
-                      callback: () {}, // TODO(namngoc231): Go to Service
+                      callback: () {
+                        // TODO(namngoc231): Go to Service
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.editProfileLabel,
@@ -74,7 +78,7 @@ class AccountView extends StatelessWidget {
                         context.router.push(
                           const UpdateProfileRoute(),
                         );
-                      }, // TODO(namngoc231): Go to Edit Profile
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.paymentLabel,
@@ -83,27 +87,30 @@ class AccountView extends StatelessWidget {
                         context.router.push(
                           const PaymentRoute(),
                         );
-                      }, // TODO(namngoc231): Go to Payment
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.organizationLabel,
                       accountIcon: const Icon(Icons.business),
-                      callback:
-                          () {}, // TODO(namngoc231): Go to Organization account
+                      callback: () {
+                        // TODO(namngoc231): Go to Organization account
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.changePassWordLabel,
                       accountIcon: const Icon(Icons.key),
-                      callback:
-                          () {}, // TODO(namngoc231): Go to Change PassWord
+                      callback: () {
+                        // TODO(namngoc231): Go to Change PassWord
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.changeLanguageLabel,
                       accountIcon: const Icon(
                         IconData(0xe366, fontFamily: 'MaterialIcons'),
                       ),
-                      callback:
-                          () {}, // TODO(namngoc231): Go to Change Language
+                      callback: () {
+                        // TODO(namngoc231): Go to Change Language
+                      },
                     ),
                     const Divider(
                       height: 1,
@@ -126,28 +133,37 @@ class AccountView extends StatelessWidget {
                     AccountItem(
                       accountName: l10n.faqsLabel,
                       accountIcon: const Icon(Icons.quiz),
-                      callback: () {}, // TODO(namngoc231): Go to FAQs
+                      callback: () {
+                        // TODO(namngoc231): Go to FAQs
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.termsOfServiceLabel,
                       accountIcon: const Icon(Icons.fact_check),
-                      callback:
-                          () {}, // TODO(namngoc231): Go to Terms of Service
+                      callback: () {
+                        // TODO(namngoc231): Go to Terms of Service
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.aboutUsLabel,
                       accountIcon: const Icon(Icons.people),
-                      callback: () {}, // TODO(namngoc231): Go to About Us
+                      callback: () {
+                        // TODO(namngoc231): Go to About Us
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.suportsLabel,
                       accountIcon: const Icon(Icons.help),
-                      callback: () {}, // TODO(namngoc231): Go to Suports
+                      callback: () {
+                        // TODO(namngoc231): Go to Suports
+                      },
                     ),
                     AccountItem(
                       accountName: l10n.logoutLabel,
                       accountIcon: const Icon(Icons.logout),
-                      callback: () {}, // TODO(namngoc231): Go to Logout
+                      callback: () {
+                        // TODO(namngoc231): Go to Logout
+                      },
                     ),
                   ],
                 ),

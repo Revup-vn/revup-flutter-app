@@ -11,6 +11,7 @@ class SupportHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Container(
       height: 140,
       color: Theme.of(context).colorScheme.inversePrimary,

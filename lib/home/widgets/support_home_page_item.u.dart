@@ -26,7 +26,9 @@ class SupportHomePageItem extends StatelessWidget {
             child: IconButton(
               icon: icon,
               iconSize: 35,
-              onPressed: () {}, // TODO(namngoc231): Call rescue
+              onPressed: () {
+                // TODO(namngoc231): Call rescue
+              },
             ),
           ),
         ),

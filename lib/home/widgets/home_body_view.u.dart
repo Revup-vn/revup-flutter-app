@@ -16,6 +16,7 @@ class HomeBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -56,7 +57,7 @@ class HomeBodyView extends StatelessWidget {
                 loading: () => const Center(child: CircularProgressIndicator()),
                 failure: () => const Text('Failed'),
                 success: (provider, imageList) => Swiper(
-                  layout: SwiperLayout.TINDER,
+                  layout: SwiperLayout.STACK,
                   itemCount: imageList.length(),
                   itemBuilder: (context, index) {
                     return CachedNetworkImage(
@@ -103,7 +104,7 @@ class HomeBodyView extends StatelessWidget {
                 loading: () => const Center(child: CircularProgressIndicator()),
                 failure: () => const Text('Failed'),
                 success: (provider, imageList) => Swiper(
-                  layout: SwiperLayout.TINDER,
+                  layout: SwiperLayout.STACK,
                   itemCount: imageList.length(),
                   itemBuilder: (context, index) {
                     return CachedNetworkImage(

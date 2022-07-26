@@ -9,10 +9,10 @@ class Avatar extends StatelessWidget {
   const Avatar({
     super.key,
     required this.user,
-    required this.callback,
+    this.callback,
   });
   final UserModel user;
-  final VoidCallback callback;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {

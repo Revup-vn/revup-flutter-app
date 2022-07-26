@@ -14,11 +14,17 @@ class UpdateProfilePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AccountBloc>(
-          create: (_) => AccountBloc()..add(const AccountEvent.started()),
+          create: (_) => AccountBloc()
+            ..add(
+              const AccountEvent.started(),
+            ),
         ),
         BlocProvider<ProfileBloc>(
-          create: (_) => ProfileBloc()..add(const ProfileEvent.started()),
-        )
+          create: (_) => ProfileBloc()
+            ..add(
+              const ProfileEvent.started(),
+            ),
+        ),
       ],
       child: const UpdateProfileView(),
     );

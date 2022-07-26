@@ -17,6 +17,7 @@ class Signup6Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
@@ -40,8 +41,9 @@ class Signup6Page extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
                   child: Avatar(
                     user: user,
-                    callback:
-                        () {}, // TODO(namngoc231): Go to photo selection method
+                    callback: () {
+                      // TODO(namngoc231): Go to photo selection method
+                    },
                   ),
                 ),
                 Padding(
@@ -150,8 +152,9 @@ class Signup6Page extends StatelessWidget {
                           height: 240,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
-                          // TODO(namngoc231): complete update profile
+                          onPressed: () {
+                            // TODO(namngoc231): complete update profile
+                          },
                           style: Theme.of(context).elevatedButtonTheme.style,
                           child: AutoSizeText(
                             l10n.doneLabel,

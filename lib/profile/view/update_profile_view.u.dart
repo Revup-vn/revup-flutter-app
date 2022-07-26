@@ -19,6 +19,7 @@ class UpdateProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
@@ -42,8 +43,9 @@ class UpdateProfileView extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
                   child: Avatar(
                     user: user,
-                    callback:
-                        () {}, // TODO(namngoc231): Go to photo selection method
+                    callback: () {
+                      // TODO(namngoc231): Go to photo selection method
+                    },
                   ),
                 ),
                 Padding(
@@ -78,7 +80,6 @@ class UpdateProfileView extends StatelessWidget {
                             ),
                           ]),
                           initialValue: user.name,
-                          onChanged: (fullname) {},
                         ),
                         FormBuilderTextField(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -103,7 +104,6 @@ class UpdateProfileView extends StatelessWidget {
                             ),
                           ]),
                           initialValue: user.email,
-                          onChanged: (email) {},
                         ),
                         FormBuilderTextField(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -130,7 +130,6 @@ class UpdateProfileView extends StatelessWidget {
                           ]),
                           initialValue: user.phone,
                           enabled: false,
-                          onChanged: (phoneNumber) {},
                         ),
                         FormBuilderDateTimePicker(
                           style: Theme.of(context).textTheme.labelLarge,
@@ -169,7 +168,6 @@ class UpdateProfileView extends StatelessWidget {
                             ),
                           ]),
                           initialValue: user.address,
-                          onChanged: (address) {},
                         ),
                         BlocSelector<ProfileBloc, ProfileState, String>(
                           selector: (state) => state.maybeWhen(

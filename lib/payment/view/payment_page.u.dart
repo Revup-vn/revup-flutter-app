@@ -8,9 +8,11 @@ import '../widgets/payment_item.u.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
@@ -42,12 +44,16 @@ class PaymentPage extends StatelessWidget {
               PaymentItem(
                 paymentIcon: Assets.screens.iconsZalo.svg(),
                 paymentName: l10n.zaloPayLabel,
-                clickCallback: () {},
+                clickCallback: () {
+                  // TODO(namngoc231): payment ZaloPay
+                },
               ),
               PaymentItem(
                 paymentIcon: Assets.screens.iconMomo.svg(),
                 paymentName: l10n.momoLabel,
-                clickCallback: () {},
+                clickCallback: () {
+                  // TODO(namngoc231): payment MoMo
+                },
               ),
             ],
           ),
