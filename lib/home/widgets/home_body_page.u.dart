@@ -14,10 +14,10 @@ class HomeBodyPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (_) => HomeBloc(),
+          create: (_) => HomeBloc()..add(const HomeEvent.started()),
         ),
         BlocProvider<AccountBloc>(
-          create: (_) => AccountBloc(),
+          create: (_) => AccountBloc()..add(const AccountEvent.started()),
         ),
       ],
       child: const HomeBodyView(),
