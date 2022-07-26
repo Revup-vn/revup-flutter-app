@@ -22,12 +22,11 @@ import 'login_sso_item.dart';
 class LoginView extends StatelessWidget {
   LoginView({
     super.key,
-    this.errorMessage,
   });
-  final String? errorMessage;
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
+    if (context.loaderOverlay.visible) context.loaderOverlay.hide();
     final l10n = context.l10n;
     return LoaderOverlay(
       child: Scaffold(
@@ -98,15 +97,6 @@ class LoginView extends StatelessWidget {
                             );
                       },
                     ),
-                    if (errorMessage != null)
-                      AutoSizeText(
-                        errorMessage == 'existedPhone'
-                            ? context.l10n.existedPhoneNumberLabel
-                            : context.l10n.invalidPhoneNumberLabel,
-                        style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: Theme.of(context).colorScheme.error),
-                        maxLines: 1,
-                      ),
                     const SizedBox(
                       height: 40,
                     ),
@@ -148,48 +138,44 @@ class LoginView extends StatelessWidget {
                         onPressed: state
                             ? () {
                                 context.loaderOverlay.show();
-                                if (_formKey.currentState!.validate()) {
-                                  _formKey.currentState!.saveAndValidate();
-                                  final phoneNumber =
-                                      '+84${_formKey.currentState!.value['phone']}';
-                                  context.read<AuthenticateBloc>().add(
-                                        AuthenticateEvent.loginWithPhone(
-                                          phoneNumber: phoneNumber,
-                                          onSubmitOTP: () async {
-                                            final completer =
-                                                Completer<String>();
-                                            await context.router.push(
-                                              OTPRoute(
-                                                phoneNumber: phoneNumber,
-                                                completer: completer,
-                                              ),
-                                            );
-                                            context.loaderOverlay.hide();
-                                            return completer.future;
-                                          },
-                                          onSignUpSubmit: (user) async {
-                                            context.loaderOverlay.show();
-                                            final completer =
-                                                Completer<AppUser>();
-                                            await context.router.push(
-                                              Signup6Route(
-                                                completer: completer,
-                                                phoneNumber:
-                                                    user.phoneNumber ?? '',
-                                                photoURL: user.photoURL ?? '',
-                                                uid: user.uid,
-                                                email: user.email ?? '',
-                                              ),
-                                            );
-                                            context.loaderOverlay.hide();
-                                            return completer.future;
-                                          },
-                                          onSignUpSuccess: () {
-                                            return Future.value(unit);
-                                          },
-                                        ),
-                                      );
-                                }
+                                _formKey.currentState!.saveAndValidate();
+                                final phoneNumber =
+                                    '+84${_formKey.currentState!.value['phone']}';
+                                context.read<AuthenticateBloc>().add(
+                                      AuthenticateEvent.loginWithPhone(
+                                        phoneNumber: phoneNumber,
+                                        onSubmitOTP: () async {
+                                          final completer = Completer<String>();
+                                          await context.router.push(
+                                            OTPRoute(
+                                              phoneNumber: phoneNumber,
+                                              completer: completer,
+                                            ),
+                                          );
+                                          context.loaderOverlay.hide();
+                                          return completer.future;
+                                        },
+                                        onSignUpSubmit: (user) async {
+                                          context.loaderOverlay.show();
+                                          final completer =
+                                              Completer<AppUser>();
+                                          await context.router.push(
+                                            Signup6Route(
+                                              completer: completer,
+                                              phoneNumber:
+                                                  user.phoneNumber ?? '',
+                                              photoURL: user.photoURL ?? '',
+                                              uid: user.uid,
+                                              email: user.email ?? '',
+                                            ),
+                                          );
+                                          return completer.future;
+                                        },
+                                        onSignUpSuccess: () {
+                                          return Future.value(unit);
+                                        },
+                                      ),
+                                    );
                               }
                             : null,
                         style: Theme.of(context).elevatedButtonTheme.style,
@@ -232,7 +218,6 @@ class LoginView extends StatelessWidget {
                                 email: user.email ?? '',
                               ),
                             );
-                            context.loaderOverlay.hide();
                             return completer.future;
                           },
                         ),

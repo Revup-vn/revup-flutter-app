@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -17,7 +18,8 @@ class LoginFailure extends StatelessWidget {
     Future<void>.delayed(
       const Duration(seconds: 3),
       () {
-        context.router.push(const LoginRoute());
+        context.read<AuthenticateBloc>().add(const AuthenticateEvent.reset());
+        context.router.pop();
       },
     );
     return Stack(
@@ -35,11 +37,11 @@ class LoginFailure extends StatelessWidget {
                 Icons.check_circle,
                 color: Colors.red,
               ),
-              Text(
+              AutoSizeText(
                 errorMessage,
                 style: Theme.of(context).textTheme.headline5,
+                maxLines: 1,
               ),
-              const CircularProgressIndicator.adaptive(),
             ],
           ),
         )

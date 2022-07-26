@@ -219,31 +219,28 @@ class Signup6Page extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      if (_completeSignup.currentState!.validate()) {
-                        _completeSignup.currentState!.saveAndValidate();
-                        final data = _completeSignup.currentState!.value;
-                        final fName = data['fullName'].toString().split(' ')[0];
-                        final lName =
-                            data['fullName'].toString().split(fName)[1];
-                        completer.complete(
-                          AppUser.consumer(
-                            uuid: uid,
-                            firstName: fName,
-                            lastName: lName,
-                            phone: '+84${data['phone'].toString()}',
-                            dob: DateTime.parse(
-                              data['dateUpdate'].toString().split(' ')[0],
-                            ),
-                            addr: data['address'].toString(),
-                            email: data['email'].toString(),
-                            active: true,
-                            avatarUrl:
-                                photoURL == '' ? 'default/avatar' : photoURL,
-                            createdTime: DateTime.now(),
-                            lastUpdatedTime: DateTime.now(),
+                      _completeSignup.currentState!.saveAndValidate();
+                      final data = _completeSignup.currentState!.value;
+                      final fName = data['fullName'].toString().split(' ')[0];
+                      final lName = data['fullName'].toString().split(fName)[1];
+                      completer.complete(
+                        AppUser.consumer(
+                          uuid: uid,
+                          firstName: fName,
+                          lastName: lName,
+                          phone: '+84${data['phone'].toString()}',
+                          dob: DateTime.parse(
+                            data['dateUpdate'].toString().split(' ')[0],
                           ),
-                        );
-                      }
+                          addr: data['address'].toString(),
+                          email: data['email'].toString(),
+                          active: true,
+                          avatarUrl:
+                              photoURL == '' ? 'default/avatar' : photoURL,
+                          createdTime: DateTime.now(),
+                          lastUpdatedTime: DateTime.now(),
+                        ),
+                      );
                       await context.router.pop();
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,

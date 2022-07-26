@@ -12,6 +12,7 @@ import 'package:revup_core/core.dart';
 import '../../router/app_router.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
+import '../widgets/login_loading.u.dart';
 import '../widgets/login_success.u.dart';
 import 'login_view.dart';
 
@@ -53,14 +54,12 @@ class LoginPage extends StatelessWidget {
           authenticated: (authType) => const LoginSucess(),
           loading: LoginView.new,
           failure: (errorMessage, authFailure) {
-            authFailure == const AuthFailure.invalidData()
-                ? LoginView(
-                    errorMessage: 'existedPhone',
-                  )
-                : LoginView(
-                    errorMessage: 'invalidPhone',
-                  );
-            return LoginView();
+            return authFailure!.maybeWhen(
+              invalidData: (message) =>
+                  LoginFailure(errorMessage: message ?? 'Something went wrong'),
+              orElse: () =>
+                  const LoginFailure(errorMessage: 'Something went wrong'),
+            );
           },
           orElse: LoginView.new,
         ),
