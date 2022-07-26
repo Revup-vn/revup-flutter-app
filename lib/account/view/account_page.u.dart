@@ -11,7 +11,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => AccountBloc()..add(const AccountEvent.started()),
+      create: (_) => AccountBloc(),
       child: const AccountView(),
     );
   }

@@ -169,7 +169,8 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs)
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +179,9 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,7 +189,9 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -274,7 +279,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs)
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
         success,
   }) {
     return initial();
@@ -286,7 +292,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
   }) {
     return initial?.call();
   }
@@ -297,7 +305,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -390,7 +400,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs)
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
         success,
   }) {
     return loading();
@@ -402,7 +413,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
   }) {
     return loading?.call();
   }
@@ -413,7 +426,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -506,7 +521,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs)
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
         success,
   }) {
     return failure();
@@ -518,7 +534,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
   }) {
     return failure?.call();
   }
@@ -529,7 +547,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -585,7 +605,11 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({ProviderModel provider, IVector<String> imgs});
+  $Res call(
+      {ProviderModel provider,
+      IVector<String> imgs,
+      String timeRepair,
+      String dayRepair});
 
   $ProviderModelCopyWith<$Res> get provider;
 }
@@ -603,6 +627,8 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? provider = freezed,
     Object? imgs = freezed,
+    Object? timeRepair = freezed,
+    Object? dayRepair = freezed,
   }) {
     return _then(_$_Success(
       provider: provider == freezed
@@ -613,6 +639,14 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.imgs
           : imgs // ignore: cast_nullable_to_non_nullable
               as IVector<String>,
+      timeRepair: timeRepair == freezed
+          ? _value.timeRepair
+          : timeRepair // ignore: cast_nullable_to_non_nullable
+              as String,
+      dayRepair: dayRepair == freezed
+          ? _value.dayRepair
+          : dayRepair // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -627,16 +661,24 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.provider, required this.imgs});
+  const _$_Success(
+      {required this.provider,
+      required this.imgs,
+      required this.timeRepair,
+      required this.dayRepair});
 
   @override
   final ProviderModel provider;
   @override
   final IVector<String> imgs;
+  @override
+  final String timeRepair;
+  @override
+  final String dayRepair;
 
   @override
   String toString() {
-    return 'HomeState.success(provider: $provider, imgs: $imgs)';
+    return 'HomeState.success(provider: $provider, imgs: $imgs, timeRepair: $timeRepair, dayRepair: $dayRepair)';
   }
 
   @override
@@ -645,14 +687,19 @@ class _$_Success implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
             const DeepCollectionEquality().equals(other.provider, provider) &&
-            const DeepCollectionEquality().equals(other.imgs, imgs));
+            const DeepCollectionEquality().equals(other.imgs, imgs) &&
+            const DeepCollectionEquality()
+                .equals(other.timeRepair, timeRepair) &&
+            const DeepCollectionEquality().equals(other.dayRepair, dayRepair));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(provider),
-      const DeepCollectionEquality().hash(imgs));
+      const DeepCollectionEquality().hash(imgs),
+      const DeepCollectionEquality().hash(timeRepair),
+      const DeepCollectionEquality().hash(dayRepair));
 
   @JsonKey(ignore: true)
   @override
@@ -665,10 +712,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs)
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
         success,
   }) {
-    return success(provider, imgs);
+    return success(provider, imgs, timeRepair, dayRepair);
   }
 
   @override
@@ -677,9 +725,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
   }) {
-    return success?.call(provider, imgs);
+    return success?.call(provider, imgs, timeRepair, dayRepair);
   }
 
   @override
@@ -688,11 +738,13 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs)? success,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(provider, imgs);
+      return success(provider, imgs, timeRepair, dayRepair);
     }
     return orElse();
   }
@@ -738,10 +790,14 @@ class _$_Success implements _Success {
 abstract class _Success implements HomeState {
   const factory _Success(
       {required final ProviderModel provider,
-      required final IVector<String> imgs}) = _$_Success;
+      required final IVector<String> imgs,
+      required final String timeRepair,
+      required final String dayRepair}) = _$_Success;
 
   ProviderModel get provider;
   IVector<String> get imgs;
+  String get timeRepair;
+  String get dayRepair;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

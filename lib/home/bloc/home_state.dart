@@ -8,5 +8,7 @@ class HomeState with _$HomeState {
   const factory HomeState.success({
     required ProviderModel provider,
     required IVector<String> imgs,
+    required String timeRepair,
+    required String dayRepair,
   }) = _Success;
 }

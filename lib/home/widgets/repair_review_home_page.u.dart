@@ -77,21 +77,32 @@ class RepairReviewHomePage extends StatelessWidget {
                 );
               },
             ),
-            Column(
-              children: [
-                AutoSizeText(
-                  '${l10n.serviceAccountLabel}: ${l10n.autoRepairLabel}',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                AutoSizeText(
-                  '${l10n.timeLabel}: $timeRepair',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                AutoSizeText(
-                  '${l10n.dayLabel}: $dayRepair',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-              ],
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const Text('Empty'),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  failure: () => const Text('Failed'),
+                  success: (provider, imageList, timeRepair, dayRepair) =>
+                      Column(
+                    children: [
+                      AutoSizeText(
+                        '${l10n.serviceAccountLabel}: ${l10n.autoRepairLabel}',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      AutoSizeText(
+                        '${l10n.timeLabel}: $timeRepair',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      AutoSizeText(
+                        '${l10n.dayLabel}: $dayRepair',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -105,7 +116,8 @@ class RepairReviewHomePage extends StatelessWidget {
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                   failure: () => const Text('Failed'),
-                  success: (provider, imageList) => Column(
+                  success: (provider, imageList, timeRepair, dayRepair) =>
+                      Column(
                     children: [
                       RatingBar.builder(
                         ignoreGestures: true,

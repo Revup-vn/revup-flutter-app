@@ -56,7 +56,7 @@ class HomeBodyView extends StatelessWidget {
                 initial: () => const Text('Empty'),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 failure: () => const Text('Failed'),
-                success: (provider, imageList) => Swiper(
+                success: (provider, imageList, timeRepair, dayRepair) => Swiper(
                   layout: SwiperLayout.STACK,
                   itemCount: imageList.length(),
                   itemBuilder: (context, index) {
@@ -103,7 +103,7 @@ class HomeBodyView extends StatelessWidget {
                 initial: () => const Text('Empty'),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 failure: () => const Text('Failed'),
-                success: (provider, imageList) => Swiper(
+                success: (provider, imageList, timeRepair, dayRepair) => Swiper(
                   layout: SwiperLayout.STACK,
                   itemCount: imageList.length(),
                   itemBuilder: (context, index) {
