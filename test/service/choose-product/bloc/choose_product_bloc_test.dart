@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:revup/service/choose-product/bloc/choose_product_bloc.u.dart';
+
+import 'package:revup/service/choose-product/bloc/choose_product_bloc.dart';
 import 'package:revup/service/models/product_data.dart';
 
 void main() {
@@ -50,6 +51,14 @@ void main() {
     expect: () => [
       const ChooseProductState.loading(),
       ChooseProductState.success(products)
+    ],
+  );
+  blocTest<ChooseProductBloc, ChooseProductState>(
+    'emits Loading when Submitted is added.',
+    build: () => chooseProductBloc,
+    act: (bloc) => bloc.add(const ChooseProductEvent.submitted('')),
+    expect: () => [
+      const ChooseProductState.loading(),
     ],
   );
 }

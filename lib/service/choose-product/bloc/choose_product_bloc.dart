@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../models/product_data.dart';
 
-part 'choose_product_bloc.u.freezed.dart';
+part 'choose_product_bloc.freezed.dart';
 part 'choose_product_event.dart';
 part 'choose_product_state.dart';
 
@@ -59,6 +59,9 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
     Submitted event,
     Emitter<ChooseProductState> emit,
   ) async {
+    emit(
+      const ChooseProductState.loading(),
+    );
     // TODO(cantgim): implement submitted event
   }
 }

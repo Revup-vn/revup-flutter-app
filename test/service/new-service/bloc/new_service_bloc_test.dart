@@ -1,24 +1,65 @@
-import '../image_picker.mocks.dart' as base_mock;
+import 'dart:typed_data';
 
-// Add the mixin to make the platform interface accept the mock.
-class MockImagePickerPlatform extends base_mock.MockImagePickerPlatform {}
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mocktail/mocktail.dart';
+
+import 'package:revup/service/models/service_data.dart';
+import 'package:revup/service/new-service/bloc/new_service_bloc.dart';
+
+class MockImagePicker extends Mock implements ImagePicker {}
 
 void main() {
-  // late NewServiceBloc newServiceBloc;
+  late MockImagePicker mockImagePicker;
 
-  // setUp(() {
-  //   newServiceBloc = NewServiceBloc();
-  // });
-  // blocTest<NewServiceBloc, NewServiceState>(
-  //   'emits ChoosePhotoSuccess when ImageFromGallerySelected is added.',
-  //   build: () {
-  //     return newServiceBloc;
-  //   },
-  //   act: (bloc) async {
-  //     bloc.add(const NewServiceEvent.imageFromGallerySelected());
-  //     final ImagePicker picker = ImagePicker();
-  //     await picker.pickImage(source: ImageSource.gallery);
-  //   },
-  //   expect: () => [NewServiceState.choosePhotoSuccess(File(''))],
-  // );
+  setUp(() {
+    mockImagePicker = MockImagePicker();
+  });
+
+  final image = Uint8List.fromList([1, 2, 3, 4]);
+
+  blocTest<NewServiceBloc, NewServiceState>(
+    'emits ChoosePhotoSuccess when ImageUploadSelected is added.',
+    setUp: () {
+      when(() => mockImagePicker.pickImage(source: ImageSource.gallery))
+          .thenAnswer(
+        (_) async => XFile.fromData(image),
+      );
+    },
+    build: () => NewServiceBloc(mockImagePicker),
+    act: (NewServiceBloc newServiceBloc) {
+      newServiceBloc
+          .add(const NewServiceEvent.imageUploadSelected(ImageSource.gallery));
+    },
+  );
+  blocTest<NewServiceBloc, NewServiceState>(
+    'emits [loading, success] when Submmitted is added.',
+    build: () => NewServiceBloc(mockImagePicker),
+    act: (NewServiceBloc newServiceBloc) {
+      newServiceBloc.add(
+        const NewServiceEvent.submitted(
+          ServiceData(
+            id: '99',
+            name: '',
+            isSelected: true,
+            desc: '',
+            imageUrl: '',
+          ),
+        ),
+      );
+    },
+    expect: () => [
+      const NewServiceState.loading(),
+      const NewServiceState.success(
+        ServiceData(
+          id: '99',
+          name: '',
+          isSelected: true,
+          desc: '',
+          imageUrl: '',
+        ),
+      ),
+    ],
+  );
 }

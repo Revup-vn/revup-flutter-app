@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/app_router.dart';
 import '../../models/service_data.dart';
 import '../../widgets/service_checkbox_tile.dart';
-import '../bloc/choose_service_bloc.u.dart';
+import '../bloc/choose_service_bloc.dart';
 
 class ChooseServiceView extends StatelessWidget {
   const ChooseServiceView({super.key});

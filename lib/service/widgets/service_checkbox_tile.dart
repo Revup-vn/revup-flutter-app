@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../gen/assets.gen.dart';
-import '../choose-service/bloc/choose_service_bloc.u.dart';
+import '../choose-service/bloc/choose_service_bloc.dart';
 import '../models/service_data.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
@@ -66,17 +67,13 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             setState(() {
               isChecked = value!;
             });
-            isChecked
-                ? context.read<ChooseServiceBloc>().add(
-                      ChooseServiceEvent.serviceSelected(
-                        widget.serviceData,
-                      ),
-                    )
-                : context.read<ChooseServiceBloc>().add(
-                      ChooseServiceEvent.serviceUnselected(
-                        widget.serviceData,
-                      ),
-                    );
+
+            context.read<ChooseServiceBloc>().add(
+                  ChooseServiceEvent.serviceSelectChanged(
+                    serviceData: widget.serviceData,
+                    isSelected: isChecked,
+                  ),
+                );
           },
         ),
       ),

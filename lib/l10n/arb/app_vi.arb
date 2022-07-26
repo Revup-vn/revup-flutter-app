@@ -34,5 +34,6 @@
   "chooseImageNoteLabel": "Thêm ảnh để thợ sửa hình dung rõ hơn về yêu cầu của bạn nhé",
   "chooseProductAppBarTitle": "Lựa chọn sản phẩm",
   "imageFromGalleryLabel": "Chọn từ thư viện ảnh",
-  "photoWithCameraLabel": "Chụp ảnh"
+  "photoWithCameraLabel": "Chụp ảnh",
+  "emptyErrorLabel": "Vui lòng không bỏ trống"
 }

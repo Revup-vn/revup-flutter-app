@@ -1,4 +1,4 @@
-part of 'choose_service_bloc.u.dart';
+part of 'choose_service_bloc.dart';
 
 @freezed
 class ChooseServiceEvent with _$ChooseServiceEvent {
@@ -8,8 +8,8 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
   const factory ChooseServiceEvent.newServiceRequested(
     ServiceData serviceData,
   ) = NewServiceRequested;
-  const factory ChooseServiceEvent.serviceSelected(ServiceData serviceData) =
-      ServiceSelected;
-  const factory ChooseServiceEvent.serviceUnselected(ServiceData serviceData) =
-      ServiceUnselected;
+  const factory ChooseServiceEvent.serviceSelectChanged({
+    required ServiceData serviceData,
+    required bool isSelected,
+  }) = ServiceSelectChanged;
 }

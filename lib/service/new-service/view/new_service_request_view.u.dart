@@ -1,18 +1,20 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../models/service_data.dart';
-import '../bloc/new_service_bloc.u.dart';
+import '../bloc/new_service_bloc.dart';
 
 class NewServiceRequestView extends StatefulWidget {
   const NewServiceRequestView({super.key});
@@ -54,8 +56,9 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                               leading: const Icon(Icons.photo_library_rounded),
                               onTap: () {
                                 bloc.add(
-                                  const NewServiceEvent
-                                      .imageFromGallerySelected(),
+                                  const NewServiceEvent.imageUploadSelected(
+                                    ImageSource.gallery,
+                                  ),
                                 );
                                 context.router.pop();
                               },
@@ -65,8 +68,9 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                               leading: const Icon(Icons.camera_alt_rounded),
                               onTap: () {
                                 bloc.add(
-                                  const NewServiceEvent
-                                      .photoWithCameraSelected(),
+                                  const NewServiceEvent.imageUploadSelected(
+                                    ImageSource.camera,
+                                  ),
                                 );
                                 context.router.pop();
                               },
@@ -151,7 +155,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                           labelText: l10n.serviceNameLabel,
                         ),
                         validator: FormBuilderValidators.required(
-                          errorText: 'Vui lòng nhập trường này',
+                          errorText: l10n.emptyErrorLabel,
                         ),
                       ),
                       const SizedBox(
@@ -165,7 +169,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                         ),
                         keyboardType: TextInputType.multiline,
                         maxLines: 5,
-                        validator: FormBuilderValidators.max(100),
+                        maxLength: 100,
                       ),
                     ],
                   ),

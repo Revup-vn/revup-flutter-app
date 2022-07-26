@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'new_service_bloc.u.dart';
+part of 'new_service_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,24 +20,21 @@ mixin _$NewServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ServiceData serviceData) submitted,
-    required TResult Function() imageFromGallerySelected,
-    required TResult Function() photoWithCameraSelected,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,26 +42,21 @@ mixin _$NewServiceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageFromGallerySelected value)
-        imageFromGallerySelected,
-    required TResult Function(PhotoWithCameraSelected value)
-        photoWithCameraSelected,
+    required TResult Function(ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,8 +119,7 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ServiceData serviceData) submitted,
-    required TResult Function() imageFromGallerySelected,
-    required TResult Function() photoWithCameraSelected,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return started();
   }
@@ -138,8 +129,7 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return started?.call();
   }
@@ -149,8 +139,7 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -164,10 +153,7 @@ class _$Started implements Started {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageFromGallerySelected value)
-        imageFromGallerySelected,
-    required TResult Function(PhotoWithCameraSelected value)
-        photoWithCameraSelected,
+    required TResult Function(ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
   }
@@ -177,8 +163,7 @@ class _$Started implements Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
   }
@@ -188,8 +173,7 @@ class _$Started implements Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -280,8 +264,7 @@ class _$Submitted implements Submitted {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ServiceData serviceData) submitted,
-    required TResult Function() imageFromGallerySelected,
-    required TResult Function() photoWithCameraSelected,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return submitted(serviceData);
   }
@@ -291,8 +274,7 @@ class _$Submitted implements Submitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return submitted?.call(serviceData);
   }
@@ -302,8 +284,7 @@ class _$Submitted implements Submitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -317,10 +298,7 @@ class _$Submitted implements Submitted {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageFromGallerySelected value)
-        imageFromGallerySelected,
-    required TResult Function(PhotoWithCameraSelected value)
-        photoWithCameraSelected,
+    required TResult Function(ImageUploadSelected value) imageUploadSelected,
   }) {
     return submitted(this);
   }
@@ -330,8 +308,7 @@ class _$Submitted implements Submitted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
   }) {
     return submitted?.call(this);
   }
@@ -341,8 +318,7 @@ class _$Submitted implements Submitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -362,54 +338,76 @@ abstract class Submitted implements NewServiceEvent {
 }
 
 /// @nodoc
-abstract class _$$ImageFromGallerySelectedCopyWith<$Res> {
-  factory _$$ImageFromGallerySelectedCopyWith(_$ImageFromGallerySelected value,
-          $Res Function(_$ImageFromGallerySelected) then) =
-      __$$ImageFromGallerySelectedCopyWithImpl<$Res>;
+abstract class _$$ImageUploadSelectedCopyWith<$Res> {
+  factory _$$ImageUploadSelectedCopyWith(_$ImageUploadSelected value,
+          $Res Function(_$ImageUploadSelected) then) =
+      __$$ImageUploadSelectedCopyWithImpl<$Res>;
+  $Res call({ImageSource source});
 }
 
 /// @nodoc
-class __$$ImageFromGallerySelectedCopyWithImpl<$Res>
+class __$$ImageUploadSelectedCopyWithImpl<$Res>
     extends _$NewServiceEventCopyWithImpl<$Res>
-    implements _$$ImageFromGallerySelectedCopyWith<$Res> {
-  __$$ImageFromGallerySelectedCopyWithImpl(_$ImageFromGallerySelected _value,
-      $Res Function(_$ImageFromGallerySelected) _then)
-      : super(_value, (v) => _then(v as _$ImageFromGallerySelected));
+    implements _$$ImageUploadSelectedCopyWith<$Res> {
+  __$$ImageUploadSelectedCopyWithImpl(
+      _$ImageUploadSelected _value, $Res Function(_$ImageUploadSelected) _then)
+      : super(_value, (v) => _then(v as _$ImageUploadSelected));
 
   @override
-  _$ImageFromGallerySelected get _value =>
-      super._value as _$ImageFromGallerySelected;
+  _$ImageUploadSelected get _value => super._value as _$ImageUploadSelected;
+
+  @override
+  $Res call({
+    Object? source = freezed,
+  }) {
+    return _then(_$ImageUploadSelected(
+      source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$ImageFromGallerySelected implements ImageFromGallerySelected {
-  const _$ImageFromGallerySelected();
+class _$ImageUploadSelected implements ImageUploadSelected {
+  const _$ImageUploadSelected(this.source);
+
+  @override
+  final ImageSource source;
 
   @override
   String toString() {
-    return 'NewServiceEvent.imageFromGallerySelected()';
+    return 'NewServiceEvent.imageUploadSelected(source: $source)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageFromGallerySelected);
+            other is _$ImageUploadSelected &&
+            const DeepCollectionEquality().equals(other.source, source));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ImageUploadSelectedCopyWith<_$ImageUploadSelected> get copyWith =>
+      __$$ImageUploadSelectedCopyWithImpl<_$ImageUploadSelected>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ServiceData serviceData) submitted,
-    required TResult Function() imageFromGallerySelected,
-    required TResult Function() photoWithCameraSelected,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
-    return imageFromGallerySelected();
+    return imageUploadSelected(source);
   }
 
   @override
@@ -417,10 +415,9 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
-    return imageFromGallerySelected?.call();
+    return imageUploadSelected?.call(source);
   }
 
   @override
@@ -428,12 +425,11 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (imageFromGallerySelected != null) {
-      return imageFromGallerySelected();
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(source);
     }
     return orElse();
   }
@@ -443,12 +439,9 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageFromGallerySelected value)
-        imageFromGallerySelected,
-    required TResult Function(PhotoWithCameraSelected value)
-        photoWithCameraSelected,
+    required TResult Function(ImageUploadSelected value) imageUploadSelected,
   }) {
-    return imageFromGallerySelected(this);
+    return imageUploadSelected(this);
   }
 
   @override
@@ -456,10 +449,9 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
   }) {
-    return imageFromGallerySelected?.call(this);
+    return imageUploadSelected?.call(this);
   }
 
   @override
@@ -467,140 +459,24 @@ class _$ImageFromGallerySelected implements ImageFromGallerySelected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
+    TResult Function(ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (imageFromGallerySelected != null) {
-      return imageFromGallerySelected(this);
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class ImageFromGallerySelected implements NewServiceEvent {
-  const factory ImageFromGallerySelected() = _$ImageFromGallerySelected;
-}
+abstract class ImageUploadSelected implements NewServiceEvent {
+  const factory ImageUploadSelected(final ImageSource source) =
+      _$ImageUploadSelected;
 
-/// @nodoc
-abstract class _$$PhotoWithCameraSelectedCopyWith<$Res> {
-  factory _$$PhotoWithCameraSelectedCopyWith(_$PhotoWithCameraSelected value,
-          $Res Function(_$PhotoWithCameraSelected) then) =
-      __$$PhotoWithCameraSelectedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PhotoWithCameraSelectedCopyWithImpl<$Res>
-    extends _$NewServiceEventCopyWithImpl<$Res>
-    implements _$$PhotoWithCameraSelectedCopyWith<$Res> {
-  __$$PhotoWithCameraSelectedCopyWithImpl(_$PhotoWithCameraSelected _value,
-      $Res Function(_$PhotoWithCameraSelected) _then)
-      : super(_value, (v) => _then(v as _$PhotoWithCameraSelected));
-
-  @override
-  _$PhotoWithCameraSelected get _value =>
-      super._value as _$PhotoWithCameraSelected;
-}
-
-/// @nodoc
-
-class _$PhotoWithCameraSelected implements PhotoWithCameraSelected {
-  const _$PhotoWithCameraSelected();
-
-  @override
-  String toString() {
-    return 'NewServiceEvent.photoWithCameraSelected()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PhotoWithCameraSelected);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(ServiceData serviceData) submitted,
-    required TResult Function() imageFromGallerySelected,
-    required TResult Function() photoWithCameraSelected,
-  }) {
-    return photoWithCameraSelected();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
-  }) {
-    return photoWithCameraSelected?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ServiceData serviceData)? submitted,
-    TResult Function()? imageFromGallerySelected,
-    TResult Function()? photoWithCameraSelected,
-    required TResult orElse(),
-  }) {
-    if (photoWithCameraSelected != null) {
-      return photoWithCameraSelected();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Submitted value) submitted,
-    required TResult Function(ImageFromGallerySelected value)
-        imageFromGallerySelected,
-    required TResult Function(PhotoWithCameraSelected value)
-        photoWithCameraSelected,
-  }) {
-    return photoWithCameraSelected(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
-  }) {
-    return photoWithCameraSelected?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Submitted value)? submitted,
-    TResult Function(ImageFromGallerySelected value)? imageFromGallerySelected,
-    TResult Function(PhotoWithCameraSelected value)? photoWithCameraSelected,
-    required TResult orElse(),
-  }) {
-    if (photoWithCameraSelected != null) {
-      return photoWithCameraSelected(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PhotoWithCameraSelected implements NewServiceEvent {
-  const factory PhotoWithCameraSelected() = _$PhotoWithCameraSelected;
+  ImageSource get source;
+  @JsonKey(ignore: true)
+  _$$ImageUploadSelectedCopyWith<_$ImageUploadSelected> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

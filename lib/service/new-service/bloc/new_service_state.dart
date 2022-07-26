@@ -1,4 +1,4 @@
-part of 'new_service_bloc.u.dart';
+part of 'new_service_bloc.dart';
 
 @freezed
 class NewServiceState with _$NewServiceState {

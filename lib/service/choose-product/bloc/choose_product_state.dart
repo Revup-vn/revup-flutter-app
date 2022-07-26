@@ -1,4 +1,4 @@
-part of 'choose_product_bloc.u.dart';
+part of 'choose_product_bloc.dart';
 
 @freezed
 class ChooseProductState with _$ChooseProductState {
