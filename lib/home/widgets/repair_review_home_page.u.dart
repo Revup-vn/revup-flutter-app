@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -18,8 +17,6 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    const timeRepair = '16:10 - 17:00';
-    const dayRepair = '17/10/2022';
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
