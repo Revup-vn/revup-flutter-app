@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import '../../router/app_router.dart';
+import '../../router/app_router.gr.dart';
 
 class LoginSucess extends StatelessWidget {
   const LoginSucess({super.key});

@@ -103,23 +103,15 @@ class __$$StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Start with DiagnosticableTreeMixin implements Start {
+class _$Start implements Start {
   const _$Start({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginEvent.start(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.start'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -242,23 +234,15 @@ class __$$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Submit with DiagnosticableTreeMixin implements Submit {
+class _$Submit implements Submit {
   const _$Submit({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginEvent.submit(phoneNumber: $phoneNumber)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.submit'))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
@@ -459,23 +443,15 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.initial(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.initial'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -618,23 +594,15 @@ class __$$_ReadyCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Ready with DiagnosticableTreeMixin implements _Ready {
+class _$_Ready implements _Ready {
   const _$_Ready({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.ready(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.ready'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -764,18 +732,12 @@ class __$$_LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LoginState.loading'));
   }
 
   @override
@@ -904,23 +866,15 @@ class __$$_FailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure with DiagnosticableTreeMixin implements _Failure {
+class _$_Failure implements _Failure {
   const _$_Failure({required this.errorMessage});
 
   @override
   final String errorMessage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.failure(errorMessage: $errorMessage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.failure'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override
@@ -1063,23 +1017,15 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success with DiagnosticableTreeMixin implements _Success {
+class _$_Success implements _Success {
   const _$_Success({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.success(phoneNumber: $phoneNumber)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.success'))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override
