@@ -12,7 +12,7 @@ class LoginSucess extends StatelessWidget {
     Future<void>.delayed(
       const Duration(seconds: 3),
       () => context.router.pushAndPopUntil(
-        const TestRoute(),
+        const HomeRoute(),
         predicate: (dynamic _) => false,
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:revup_core/core.dart';
 
+import '../../shared/fallbacks.dart';
 import 'default_avatar.dart';
 
 class Avatar extends StatelessWidget {
@@ -26,7 +27,7 @@ class Avatar extends StatelessWidget {
             child: CachedNetworkImage(
               fadeInDuration: const Duration(milliseconds: 50),
               fadeOutDuration: const Duration(milliseconds: 50),
-              imageUrl: user.avatarUrl,
+              imageUrl: user.avatarUrl == '' ? kFallbackImage : user.avatarUrl,
               placeholder: (context, url) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.headline1,

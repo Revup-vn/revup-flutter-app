@@ -24,6 +24,7 @@ import 'package:revup/notification_page/view/notification_page.u.dart' as _i16;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i7;
 import 'package:revup/otp/view/otp_page.u.dart' as _i8;
 import 'package:revup/payment/view/payment_page.u.dart' as _i3;
+import 'package:revup/profile/view/signup6_page.u.dart' as _i9;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i4;
 import 'package:revup/service/choose-product/view/choose_product_page.dart'
     as _i13;
@@ -34,7 +35,6 @@ import 'package:revup/service/choose-service/view/service_details_page.dart'
 import 'package:revup/service/models/service_data.dart' as _i20;
 import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i11;
-import 'package:revup/signup/view/signup6_page.dart' as _i9;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i5;
 
@@ -125,8 +125,8 @@ class AppRouter extends _i18.RootStackRouter {
 
   @override
   List<_i18.RouteConfig> get routes => [
-        _i18.RouteConfig(SplashRoute.name, path: '/splash-page'),
-        _i18.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i18.RouteConfig(SplashRoute.name, path: '/'),
+        _i18.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i18.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
           _i18.RouteConfig(ActivateRoute.name,
@@ -155,7 +155,7 @@ class AppRouter extends _i18.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i18.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -164,7 +164,7 @@ class SplashRoute extends _i18.PageRouteInfo<void> {
 /// [_i2.HomePage]
 class HomeRoute extends _i18.PageRouteInfo<void> {
   const HomeRoute({List<_i18.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
