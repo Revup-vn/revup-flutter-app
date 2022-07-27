@@ -7,10 +7,9 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
@@ -23,12 +22,19 @@ class $AssetsScreensGen {
   SvgGenImage get googleOriginal =>
       const SvgGenImage('assets/screens/Google_Original.svg');
 
+  /// File path: assets/screens/add_image.svg
+  SvgGenImage get addImage => const SvgGenImage('assets/screens/add_image.svg');
+
   /// File path: assets/screens/castrol.svg
   SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
 
   /// File path: assets/screens/destination.svg
   SvgGenImage get destination =>
       const SvgGenImage('assets/screens/destination.svg');
+
+  /// File path: assets/screens/df_avatar.png
+  AssetGenImage get dfAvatar =>
+      const AssetGenImage('assets/screens/df_avatar.png');
 
   /// File path: assets/screens/flag_VietNam.svg
   SvgGenImage get flagVietNam =>

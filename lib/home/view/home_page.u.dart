@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/app_router.dart';
+import '../../router/app_router.gr.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

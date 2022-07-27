@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/app_router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/utils.dart';
 import '../widgets/account_item.dart';
 import '../widgets/avatar.dart';
