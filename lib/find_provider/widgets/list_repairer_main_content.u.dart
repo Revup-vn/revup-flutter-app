@@ -1,40 +1,23 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../router/router.dart';
-import '../bloc/find_list_repairer_bloc.dart';
+import '../models/provider_data.dart';
 
 class ListRepairerContent extends StatelessWidget {
-  ListRepairerContent({
+  const ListRepairerContent({
     super.key,
     this.listProvider,
   });
-  final List<List<String>>? listProvider;
-  final List<String> item1 = [
-    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
-    'Nguyen Van A',
-    'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
-    '4.9',
-    '109',
-    '500',
-    '10',
-  ];
-  final List<String> item2 = [
-    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
-    'Nguyen Van B',
-    'Cửa hàng sửa xe A, 14A, ngõ Thanh Bình',
-    '4.9',
-    '109',
-    '500',
-    '10',
-  ];
+  final IList<ProviderData>? listProvider;
   @override
   Widget build(BuildContext context) {
-    final iListItems = <List<String>>[item1, item2];
+    final providerVector =
+        IVector.from(listProvider!.toIterable()); //null check
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -54,7 +37,11 @@ class ListRepairerContent extends StatelessWidget {
                           onTap: () {
                             context.router.push(
                               RepairerProfileRoute(
-                                providerID: 'ID',
+                                providerID: providerVector
+                                        .get(index)
+                                        .getOrElse(ProviderData.new)
+                                        .id ??
+                                    '',
                               ),
                             );
                           },
@@ -65,12 +52,20 @@ class ListRepairerContent extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: iListItems[index][0],
+                                imageUrl: providerVector
+                                        .get(index)
+                                        .getOrElse(ProviderData.new)
+                                        .avatar ??
+                                    '',
                               ),
                             ),
                           ),
                           title: AutoSizeText(
-                            iListItems[index][1],
+                            providerVector
+                                    .get(index)
+                                    .getOrElse(ProviderData.new)
+                                    .fullName ??
+                                '',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -79,7 +74,11 @@ class ListRepairerContent extends StatelessWidget {
                                 ),
                           ),
                           subtitle: AutoSizeText(
-                            iListItems[index][2],
+                            providerVector
+                                    .get(index)
+                                    .getOrElse(ProviderData.new)
+                                    .address ??
+                                '',
                             style: Theme.of(context).textTheme.bodyMedium,
                             maxLines: 1,
                           ),
@@ -89,7 +88,11 @@ class ListRepairerContent extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               AutoSizeText(
-                                iListItems[index][3],
+                                providerVector
+                                    .get(index)
+                                    .getOrElse(ProviderData.new)
+                                    .numberStarRating
+                                    .toString(),
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               Icon(
@@ -100,7 +103,9 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '(${iListItems[index][4]})',
+                                '(${providerVector.get(index).getOrElse(
+                                      ProviderData.new,
+                                    ).totalRating.toString()})',
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                               const Icon(
@@ -108,7 +113,9 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${iListItems[index][5]} m',
+                                '${providerVector.get(index).getOrElse(
+                                      ProviderData.new,
+                                    ).distance.toString()} m',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const Icon(
@@ -116,7 +123,9 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${iListItems[index][6]} minute',
+                                '${providerVector.get(index).getOrElse(
+                                      ProviderData.new,
+                                    ).timeArrivalInMinus.toString()} minute',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],
@@ -140,7 +149,7 @@ class ListRepairerContent extends StatelessWidget {
           ),
         );
       },
-      itemCount: iListItems.length,
+      itemCount: listProvider!.length(),
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),

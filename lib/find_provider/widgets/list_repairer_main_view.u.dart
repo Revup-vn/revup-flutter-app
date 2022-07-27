@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../models/provider_data.dart';
 import '../../l10n/l10n.dart';
 import '../bloc/find_list_repairer_bloc.dart';
 import 'list_repairer_main_content.u.dart';
@@ -12,7 +14,7 @@ class ListRepairerMainView extends StatelessWidget {
     this.listProvider,
   });
   final String? sortType;
-  final List<List<String>>? listProvider;
+  final IList<ProviderData>? listProvider;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,16 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../l10n/l10n.dart';
 import 'repairer_profile_avatar_image.u.dart';
 import 'repairer_profile_cover_image.u.dart';
 import 'repairer_profile_tabbar.u.dart';
 
 class RepairerProfileMainContent extends StatelessWidget {
   const RepairerProfileMainContent({super.key});
-  final double coverHeight = 150;
+
   @override
   Widget build(BuildContext context) {
+    const coverHeight = 150;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -21,14 +21,14 @@ class RepairerProfileMainContent extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: <Widget>[
-              RepairerProfileCoverImage(coverHeight),
-              Positioned(
+              RepairerProfileCoverImage(coverHeight.toDouble()),
+              const Positioned(
                 left: 16,
                 top: coverHeight - 124 / 2,
-                child: const RepairerProfileAvatarImage(),
+                child: RepairerProfileAvatarImage(),
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: coverHeight + 124 / 2,
                   left: 16,
                   right: 16,

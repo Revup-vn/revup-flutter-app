@@ -12,13 +12,15 @@ class ListRepairerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FindListRepairerBloc, FindListRepairerState>(
       builder: (context, state) => state.maybeWhen(
-        initial: (hasValue) => const ListRepairerMainView(),
+        dataLoadSuccess: (listProvider) =>
+            ListRepairerMainView(listProvider: listProvider),
         refreshSuccess: (listProvider) => ListRepairerMainView(
           listProvider: listProvider,
         ),
         dropdownListChangedSuccess: (listProvider, sortType) =>
             ListRepairerMainView(
           listProvider: listProvider,
+          sortType: sortType,
         ),
         orElse: () => const ListRepairerMainView(),
       ),

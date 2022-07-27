@@ -499,8 +499,9 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listProvider) refreshSuccess,
-    required TResult Function(List<List<String>> listProvider, String sortType)
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
   }) =>
@@ -508,8 +509,9 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
   }) =>
@@ -517,8 +519,9 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     required TResult orElse(),
@@ -527,6 +530,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
     required TResult Function(_RefreshSuccess value) refreshSuccess,
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
@@ -536,6 +540,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -545,6 +550,7 @@ mixin _$FindListRepairerState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -644,8 +650,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listProvider) refreshSuccess,
-    required TResult Function(List<List<String>> listProvider, String sortType)
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
   }) {
@@ -656,8 +663,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
   }) {
@@ -668,8 +676,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     required TResult orElse(),
@@ -684,6 +693,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
     required TResult Function(_RefreshSuccess value) refreshSuccess,
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
@@ -696,6 +706,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -708,6 +719,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -731,11 +743,182 @@ abstract class _Initial implements FindListRepairerState {
 }
 
 /// @nodoc
+abstract class _$$_DataLoadSuccessCopyWith<$Res> {
+  factory _$$_DataLoadSuccessCopyWith(
+          _$_DataLoadSuccess value, $Res Function(_$_DataLoadSuccess) then) =
+      __$$_DataLoadSuccessCopyWithImpl<$Res>;
+  $Res call({IList<ProviderData> listProvider});
+}
+
+/// @nodoc
+class __$$_DataLoadSuccessCopyWithImpl<$Res>
+    extends _$FindListRepairerStateCopyWithImpl<$Res>
+    implements _$$_DataLoadSuccessCopyWith<$Res> {
+  __$$_DataLoadSuccessCopyWithImpl(
+      _$_DataLoadSuccess _value, $Res Function(_$_DataLoadSuccess) _then)
+      : super(_value, (v) => _then(v as _$_DataLoadSuccess));
+
+  @override
+  _$_DataLoadSuccess get _value => super._value as _$_DataLoadSuccess;
+
+  @override
+  $Res call({
+    Object? listProvider = freezed,
+  }) {
+    return _then(_$_DataLoadSuccess(
+      listProvider: listProvider == freezed
+          ? _value.listProvider
+          : listProvider // ignore: cast_nullable_to_non_nullable
+              as IList<ProviderData>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DataLoadSuccess
+    with DiagnosticableTreeMixin
+    implements _DataLoadSuccess {
+  const _$_DataLoadSuccess({required this.listProvider});
+
+  @override
+  final IList<ProviderData> listProvider;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FindListRepairerState.dataLoadSuccess(listProvider: $listProvider)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'FindListRepairerState.dataLoadSuccess'))
+      ..add(DiagnosticsProperty('listProvider', listProvider));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DataLoadSuccess &&
+            const DeepCollectionEquality()
+                .equals(other.listProvider, listProvider));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(listProvider));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_DataLoadSuccessCopyWith<_$_DataLoadSuccess> get copyWith =>
+      __$$_DataLoadSuccessCopyWithImpl<_$_DataLoadSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool hasValue) initial,
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
+  }) {
+    return dataLoadSuccess(listProvider);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool hasValue)? initial,
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
+  }) {
+    return dataLoadSuccess?.call(listProvider);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool hasValue)? initial,
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if (dataLoadSuccess != null) {
+      return dataLoadSuccess(listProvider);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
+  }) {
+    return dataLoadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
+  }) {
+    return dataLoadSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (dataLoadSuccess != null) {
+      return dataLoadSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataLoadSuccess implements FindListRepairerState {
+  const factory _DataLoadSuccess(
+      {required final IList<ProviderData> listProvider}) = _$_DataLoadSuccess;
+
+  IList<ProviderData> get listProvider;
+  @JsonKey(ignore: true)
+  _$$_DataLoadSuccessCopyWith<_$_DataLoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$_RefreshSuccessCopyWith<$Res> {
   factory _$$_RefreshSuccessCopyWith(
           _$_RefreshSuccess value, $Res Function(_$_RefreshSuccess) then) =
       __$$_RefreshSuccessCopyWithImpl<$Res>;
-  $Res call({List<List<String>> listProvider});
+  $Res call({IList<ProviderData> listProvider});
 }
 
 /// @nodoc
@@ -755,9 +938,9 @@ class __$$_RefreshSuccessCopyWithImpl<$Res>
   }) {
     return _then(_$_RefreshSuccess(
       listProvider: listProvider == freezed
-          ? _value._listProvider
+          ? _value.listProvider
           : listProvider // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
+              as IList<ProviderData>,
     ));
   }
 }
@@ -767,15 +950,10 @@ class __$$_RefreshSuccessCopyWithImpl<$Res>
 class _$_RefreshSuccess
     with DiagnosticableTreeMixin
     implements _RefreshSuccess {
-  const _$_RefreshSuccess({required final List<List<String>> listProvider})
-      : _listProvider = listProvider;
+  const _$_RefreshSuccess({required this.listProvider});
 
-  final List<List<String>> _listProvider;
   @override
-  List<List<String>> get listProvider {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_listProvider);
-  }
+  final IList<ProviderData> listProvider;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -796,12 +974,12 @@ class _$_RefreshSuccess
         (other.runtimeType == runtimeType &&
             other is _$_RefreshSuccess &&
             const DeepCollectionEquality()
-                .equals(other._listProvider, _listProvider));
+                .equals(other.listProvider, listProvider));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_listProvider));
+      runtimeType, const DeepCollectionEquality().hash(listProvider));
 
   @JsonKey(ignore: true)
   @override
@@ -812,8 +990,9 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listProvider) refreshSuccess,
-    required TResult Function(List<List<String>> listProvider, String sortType)
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
   }) {
@@ -824,8 +1003,9 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
   }) {
@@ -836,8 +1016,9 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     required TResult orElse(),
@@ -852,6 +1033,7 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
     required TResult Function(_RefreshSuccess value) refreshSuccess,
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
@@ -864,6 +1046,7 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -876,6 +1059,7 @@ class _$_RefreshSuccess
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -891,9 +1075,9 @@ class _$_RefreshSuccess
 
 abstract class _RefreshSuccess implements FindListRepairerState {
   const factory _RefreshSuccess(
-      {required final List<List<String>> listProvider}) = _$_RefreshSuccess;
+      {required final IList<ProviderData> listProvider}) = _$_RefreshSuccess;
 
-  List<List<String>> get listProvider;
+  IList<ProviderData> get listProvider;
   @JsonKey(ignore: true)
   _$$_RefreshSuccessCopyWith<_$_RefreshSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -905,7 +1089,7 @@ abstract class _$$_DropdownListChangedSuccessCopyWith<$Res> {
           _$_DropdownListChangedSuccess value,
           $Res Function(_$_DropdownListChangedSuccess) then) =
       __$$_DropdownListChangedSuccessCopyWithImpl<$Res>;
-  $Res call({List<List<String>> listProvider, String sortType});
+  $Res call({IList<ProviderData> listProvider, String sortType});
 }
 
 /// @nodoc
@@ -928,9 +1112,9 @@ class __$$_DropdownListChangedSuccessCopyWithImpl<$Res>
   }) {
     return _then(_$_DropdownListChangedSuccess(
       listProvider: listProvider == freezed
-          ? _value._listProvider
+          ? _value.listProvider
           : listProvider // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
+              as IList<ProviderData>,
       sortType: sortType == freezed
           ? _value.sortType
           : sortType // ignore: cast_nullable_to_non_nullable
@@ -945,16 +1129,10 @@ class _$_DropdownListChangedSuccess
     with DiagnosticableTreeMixin
     implements _DropdownListChangedSuccess {
   const _$_DropdownListChangedSuccess(
-      {required final List<List<String>> listProvider, required this.sortType})
-      : _listProvider = listProvider;
+      {required this.listProvider, required this.sortType});
 
-  final List<List<String>> _listProvider;
   @override
-  List<List<String>> get listProvider {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_listProvider);
-  }
-
+  final IList<ProviderData> listProvider;
   @override
   final String sortType;
 
@@ -979,14 +1157,14 @@ class _$_DropdownListChangedSuccess
         (other.runtimeType == runtimeType &&
             other is _$_DropdownListChangedSuccess &&
             const DeepCollectionEquality()
-                .equals(other._listProvider, _listProvider) &&
+                .equals(other.listProvider, listProvider) &&
             const DeepCollectionEquality().equals(other.sortType, sortType));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_listProvider),
+      const DeepCollectionEquality().hash(listProvider),
       const DeepCollectionEquality().hash(sortType));
 
   @JsonKey(ignore: true)
@@ -999,8 +1177,9 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listProvider) refreshSuccess,
-    required TResult Function(List<List<String>> listProvider, String sortType)
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
   }) {
@@ -1011,8 +1190,9 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
   }) {
@@ -1023,8 +1203,9 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     required TResult orElse(),
@@ -1039,6 +1220,7 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
     required TResult Function(_RefreshSuccess value) refreshSuccess,
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
@@ -1051,6 +1233,7 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -1063,6 +1246,7 @@ class _$_DropdownListChangedSuccess
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -1078,10 +1262,10 @@ class _$_DropdownListChangedSuccess
 
 abstract class _DropdownListChangedSuccess implements FindListRepairerState {
   const factory _DropdownListChangedSuccess(
-      {required final List<List<String>> listProvider,
+      {required final IList<ProviderData> listProvider,
       required final String sortType}) = _$_DropdownListChangedSuccess;
 
-  List<List<String>> get listProvider;
+  IList<ProviderData> get listProvider;
   String get sortType;
   @JsonKey(ignore: true)
   _$$_DropdownListChangedSuccessCopyWith<_$_DropdownListChangedSuccess>
@@ -1136,8 +1320,9 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool hasValue) initial,
-    required TResult Function(List<List<String>> listProvider) refreshSuccess,
-    required TResult Function(List<List<String>> listProvider, String sortType)
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
   }) {
@@ -1148,8 +1333,9 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
   }) {
@@ -1160,8 +1346,9 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool hasValue)? initial,
-    TResult Function(List<List<String>> listProvider)? refreshSuccess,
-    TResult Function(List<List<String>> listProvider, String sortType)?
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     required TResult orElse(),
@@ -1176,6 +1363,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
     required TResult Function(_RefreshSuccess value) refreshSuccess,
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
@@ -1188,6 +1376,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
@@ -1200,6 +1389,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
     TResult Function(_RefreshSuccess value)? refreshSuccess,
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
