@@ -39,21 +39,25 @@ class PaymentPage extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              PaymentItem(
-                paymentIcon: Assets.screens.iconsZalo.svg(),
-                paymentName: l10n.zaloPayLabel,
-                clickCallback: () {
-                  // TODO(namngoc231): payment ZaloPay
-                },
+              Expanded(
+                child: PaymentItem(
+                  paymentIcon: Assets.screens.iconsZalo.svg(),
+                  paymentName: l10n.zaloPayLabel,
+                  clickCallback: () {
+                    // TODO(namngoc231): payment ZaloPay
+                  },
+                ),
               ),
-              PaymentItem(
-                paymentIcon: Assets.screens.iconMomo.svg(),
-                paymentName: l10n.momoLabel,
-                clickCallback: () {
-                  // TODO(namngoc231): payment MoMo
-                },
+              Expanded(
+                child: PaymentItem(
+                  paymentIcon: Assets.screens.iconMomo.svg(),
+                  paymentName: l10n.momoLabel,
+                  clickCallback: () {
+                    // TODO(namngoc231): payment MoMo
+                  },
+                ),
               ),
             ],
           ),

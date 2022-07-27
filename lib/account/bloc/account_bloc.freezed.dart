@@ -170,7 +170,7 @@ mixin _$AccountState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(UserModel user) success,
+    required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,7 +178,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,7 +186,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -275,7 +275,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(UserModel user) success,
+    required TResult Function() success,
   }) {
     return initial();
   }
@@ -286,7 +286,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
   }) {
     return initial?.call();
   }
@@ -297,7 +297,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -390,7 +390,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(UserModel user) success,
+    required TResult Function() success,
   }) {
     return loading();
   }
@@ -401,7 +401,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
   }) {
     return loading?.call();
   }
@@ -412,7 +412,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -505,7 +505,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(UserModel user) success,
+    required TResult Function() success,
   }) {
     return failure();
   }
@@ -516,7 +516,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
   }) {
     return failure?.call();
   }
@@ -527,7 +527,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -583,9 +583,6 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({UserModel user});
-
-  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -596,56 +593,26 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
 
   @override
   _$_Success get _value => super._value as _$_Success;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_$_Success(
-      user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-    ));
-  }
-
-  @override
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(this.user);
-
-  @override
-  final UserModel user;
+  const _$_Success();
 
   @override
   String toString() {
-    return 'AccountState.success(user: $user)';
+    return 'AccountState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other.user, user));
+        (other.runtimeType == runtimeType && other is _$_Success);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -653,9 +620,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(UserModel user) success,
+    required TResult Function() success,
   }) {
-    return success(user);
+    return success();
   }
 
   @override
@@ -664,9 +631,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
   }) {
-    return success?.call(user);
+    return success?.call();
   }
 
   @override
@@ -675,11 +642,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(UserModel user)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(user);
+      return success();
     }
     return orElse();
   }
@@ -723,10 +690,5 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements AccountState {
-  const factory _Success(final UserModel user) = _$_Success;
-
-  UserModel get user;
-  @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Success() = _$_Success;
 }
