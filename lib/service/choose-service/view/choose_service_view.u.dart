@@ -6,7 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
-import '../../../router/app_router.dart';
+import '../../../router/app_router.gr.dart';
 import '../../models/service_data.dart';
 import '../../widgets/service_checkbox_tile.dart';
 import '../bloc/choose_service_bloc.dart';

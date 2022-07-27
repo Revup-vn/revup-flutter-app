@@ -7,10 +7,9 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
@@ -26,6 +25,9 @@ class $AssetsScreensGen {
   /// File path: assets/screens/add_image.svg
   SvgGenImage get addImage => const SvgGenImage('assets/screens/add_image.svg');
 
+  /// File path: assets/screens/castrol.svg
+  SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
+
   /// File path: assets/screens/destination.svg
   SvgGenImage get destination =>
       const SvgGenImage('assets/screens/destination.svg');
@@ -38,6 +40,23 @@ class $AssetsScreensGen {
   SvgGenImage get flagVietNam =>
       const SvgGenImage('assets/screens/flag_VietNam.svg');
 
+  /// File path: assets/screens/free_ship.svg
+  SvgGenImage get freeShip => const SvgGenImage('assets/screens/free_ship.svg');
+
+  /// File path: assets/screens/gas_station.svg
+  SvgGenImage get gasStation =>
+      const SvgGenImage('assets/screens/gas_station.svg');
+
+  /// File path: assets/screens/icon_cash.svg
+  SvgGenImage get iconCash => const SvgGenImage('assets/screens/icon_cash.svg');
+
+  /// File path: assets/screens/icon_momo.svg
+  SvgGenImage get iconMomo => const SvgGenImage('assets/screens/icon_momo.svg');
+
+  /// File path: assets/screens/icons-zalo.svg
+  SvgGenImage get iconsZalo =>
+      const SvgGenImage('assets/screens/icons-zalo.svg');
+
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');
@@ -49,6 +68,13 @@ class $AssetsScreensGen {
   /// File path: assets/screens/order_confirm.svg
   SvgGenImage get orderConfirm =>
       const SvgGenImage('assets/screens/order_confirm.svg');
+
+  /// File path: assets/screens/sos.svg
+  SvgGenImage get sos => const SvgGenImage('assets/screens/sos.svg');
+
+  /// File path: assets/screens/vehicle_maintenance.svg
+  SvgGenImage get vehicleMaintenance =>
+      const SvgGenImage('assets/screens/vehicle_maintenance.svg');
 
   /// File path: assets/screens/vietnam_flag.png
   AssetGenImage get vietnamFlag =>
