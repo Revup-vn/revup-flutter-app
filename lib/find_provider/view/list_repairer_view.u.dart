@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +12,14 @@ class ListRepairerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FindListRepairerBloc>().state.maybeWhen(
+          initial: (hasValue) {
+            return context
+                .read<FindListRepairerBloc>()
+                .add(const FindListRepairerEvent.started());
+          },
+          orElse: () => false,
+        );
     return BlocBuilder<FindListRepairerBloc, FindListRepairerState>(
       builder: (context, state) => state.maybeWhen(
         dataLoadSuccess: (listProvider) =>
@@ -22,6 +32,7 @@ class ListRepairerView extends StatelessWidget {
           listProvider: listProvider,
           sortType: sortType,
         ),
+        initial: (_) => Container(),
         orElse: () => const ListRepairerMainView(),
       ),
     );

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +24,8 @@ class FindListRepairerBloc
     Emitter<FindListRepairerState> emit,
   ) async {
     event.when(
-      started: (hasValue) {
+      started: () {
+        log('dataload');
         emit(
           FindListRepairerState.dataLoadSuccess(
             listProvider: listRepairer,

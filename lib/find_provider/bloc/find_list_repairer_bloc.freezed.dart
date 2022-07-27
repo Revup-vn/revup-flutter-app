@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FindListRepairerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool hasValue) started,
+    required TResult Function() started,
     required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
@@ -83,7 +83,6 @@ class _$FindListRepairerEventCopyWithImpl<$Res>
 abstract class _$$StartedCopyWith<$Res> {
   factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
       __$$StartedCopyWithImpl<$Res>;
-  $Res call({bool hasValue});
 }
 
 /// @nodoc
@@ -95,88 +94,64 @@ class __$$StartedCopyWithImpl<$Res>
 
   @override
   _$Started get _value => super._value as _$Started;
-
-  @override
-  $Res call({
-    Object? hasValue = freezed,
-  }) {
-    return _then(_$Started(
-      hasValue: hasValue == freezed
-          ? _value.hasValue
-          : hasValue // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$Started with DiagnosticableTreeMixin implements Started {
-  const _$Started({required this.hasValue});
-
-  @override
-  final bool hasValue;
+  const _$Started();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FindListRepairerEvent.started(hasValue: $hasValue)';
+    return 'FindListRepairerEvent.started()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerEvent.started'))
-      ..add(DiagnosticsProperty('hasValue', hasValue));
+        .add(DiagnosticsProperty('type', 'FindListRepairerEvent.started'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Started &&
-            const DeepCollectionEquality().equals(other.hasValue, hasValue));
+        (other.runtimeType == runtimeType && other is _$Started);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(hasValue));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$StartedCopyWith<_$Started> get copyWith =>
-      __$$StartedCopyWithImpl<_$Started>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool hasValue) started,
+    required TResult Function() started,
     required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) {
-    return started(hasValue);
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) {
-    return started?.call(hasValue);
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(hasValue);
+      return started();
     }
     return orElse();
   }
@@ -217,12 +192,7 @@ class _$Started with DiagnosticableTreeMixin implements Started {
 }
 
 abstract class Started implements FindListRepairerEvent {
-  const factory Started({required final bool hasValue}) = _$Started;
-
-  bool get hasValue;
-  @JsonKey(ignore: true)
-  _$$StartedCopyWith<_$Started> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory Started() = _$Started;
 }
 
 /// @nodoc
@@ -271,7 +241,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool hasValue) started,
+    required TResult Function() started,
     required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) {
@@ -281,7 +251,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) {
@@ -291,7 +261,7 @@ class _$Refresh with DiagnosticableTreeMixin implements Refresh {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
@@ -418,7 +388,7 @@ class _$DropdownListChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool hasValue) started,
+    required TResult Function() started,
     required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) {
@@ -428,7 +398,7 @@ class _$DropdownListChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) {
@@ -438,7 +408,7 @@ class _$DropdownListChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool hasValue)? started,
+    TResult Function()? started,
     TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),

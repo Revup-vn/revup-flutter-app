@@ -11,12 +11,7 @@ class ListRepairerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => FindListRepairerBloc()
-        ..add(
-          const FindListRepairerEvent.started(
-            hasValue: false,
-          ),
-        ),
+      create: (_) => FindListRepairerBloc(),
       child: const Scaffold(
         body: ListRepairerView(),
       ),
