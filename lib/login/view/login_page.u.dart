@@ -23,27 +23,43 @@ class LoginPage extends StatelessWidget {
       create: (BuildContext context) => LoginBloc(),
       child: BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) => state.maybeWhen(
-          partial: (appUser) => context.read<AuthenticateBloc>().add(
-                AuthenticateEvent.loginWithPhone(
-                  phoneNumber: appUser.phone,
-                  onSubmitOTP: () async {
-                    final completer = Completer<String>();
-                    await context.router.push(
-                      OTPRoute(
-                        phoneNumber: appUser.phone,
-                        completer: completer,
-                      ),
-                    );
-                    return completer.future;
-                  },
-                  onSignUpSubmit: (user) {
-                    return appUser;
-                  },
-                  onSignUpSuccess: () {
-                    return Future.value(unit);
-                  },
-                ),
-              ),
+          partial: (appUser) {
+            var phoneNumber = appUser.phone;
+            if (phoneNumber.substring(0, 3) == '+84') {
+              phoneNumber = phoneNumber.substring(
+                3,
+                phoneNumber.length,
+              );
+            }
+            if (phoneNumber.substring(0, 1) == '0') {
+              phoneNumber = phoneNumber.substring(
+                1,
+                phoneNumber.length,
+              );
+            }
+            return context.read<AuthenticateBloc>().add(
+                  AuthenticateEvent.loginWithPhone(
+                    phoneNumber: '+84${appUser.phone}',
+                    onSubmitOTP: () async {
+                      final completer = Completer<String>();
+
+                      await context.router.push(
+                        OTPRoute(
+                          phoneNumber: appUser.phone,
+                          completer: completer,
+                        ),
+                      );
+                      return completer.future;
+                    },
+                    onSignUpSubmit: (user) {
+                      return appUser;
+                    },
+                    onSignUpSuccess: () {
+                      return Future.value(unit);
+                    },
+                  ),
+                );
+          },
           orElse: () => false,
         ),
         builder: (context, state) => state.maybeWhen(

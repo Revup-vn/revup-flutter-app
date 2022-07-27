@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "40.0.0"
+    version: "43.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.3.1"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -343,7 +343,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.16.0"
+    version: "4.17.0"
   dart_style:
     dependency: transitive
     description:
@@ -587,7 +587,7 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.1.0+1"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -978,10 +978,10 @@ packages:
     description:
       path: "."
       ref: "hotfix/authen-reset-state"
-      resolved-ref: "8109673cb8f11400e5bdf2918537b0acb5eb8e2e"
+      resolved-ref: "875f0a54e795cc1289dee3ec3796d79f01d2ff68"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "1.9.2-dev"
+    version: "1.9.2-dev+2"
   rxdart:
     dependency: transitive
     description:

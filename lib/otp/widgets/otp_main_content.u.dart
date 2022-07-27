@@ -41,7 +41,7 @@ class OTPMainContent extends StatelessWidget {
                   text: l10n.sendOTPCodeToLabel,
                   children: [
                     TextSpan(
-                      text: phoneNumber,
+                      text: '+84 0$phoneNumber',
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge

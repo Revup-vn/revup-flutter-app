@@ -139,12 +139,24 @@ class LoginView extends StatelessWidget {
                             ? () {
                                 context.loaderOverlay.show();
                                 _formKey.currentState!.saveAndValidate();
-                                final phoneNumber = _formKey
+                                var phoneNumber = _formKey
                                     .currentState!.value['phone']
                                     .toString();
+                                if (phoneNumber.substring(0, 3) == '+84') {
+                                  phoneNumber = phoneNumber.substring(
+                                    3,
+                                    phoneNumber.length,
+                                  );
+                                }
+                                if (phoneNumber.substring(0, 1) == '0') {
+                                  phoneNumber = phoneNumber.substring(
+                                    1,
+                                    phoneNumber.length,
+                                  );
+                                }
                                 context.read<AuthenticateBloc>().add(
                                       AuthenticateEvent.loginWithPhone(
-                                        phoneNumber: phoneNumber,
+                                        phoneNumber: '+84$phoneNumber',
                                         onSubmitOTP: () async {
                                           final completer = Completer<String>();
                                           await context.router.push(

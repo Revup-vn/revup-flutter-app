@@ -111,19 +111,6 @@ class Signup6Page extends StatelessWidget {
                     enabled: phoneNumber == '',
                     initialValue: phoneNumber,
                     decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.zero,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            FittedBox(
-                              child: AutoSizeText('+84'),
-                            ),
-                            SizedBox(width: 8),
-                          ],
-                        ),
-                      ),
                       hintText: l10n.phoneFieldLabel,
                     ),
                     keyboardType: TextInputType.number,
@@ -219,12 +206,25 @@ class Signup6Page extends StatelessWidget {
                       final data = _completeSignup.currentState!.value;
                       final fName = data['fullName'].toString().split(' ')[0];
                       final lName = data['fullName'].toString().split(fName)[1];
+                      var phoneNumber = data['phone'].toString();
+                      if (phoneNumber.substring(0, 3) == '+84') {
+                        phoneNumber = phoneNumber.substring(
+                          3,
+                          phoneNumber.length,
+                        );
+                      }
+                      if (phoneNumber.substring(0, 1) == '0') {
+                        phoneNumber = phoneNumber.substring(
+                          1,
+                          phoneNumber.length,
+                        );
+                      }
                       completer.complete(
                         AppUser.consumer(
                           uuid: uid,
                           firstName: fName,
                           lastName: lName,
-                          phone: '+84${data['phone'].toString()}',
+                          phone: '+84$phoneNumber',
                           dob: DateTime.parse(
                             data['dateUpdate'].toString().split(' ')[0],
                           ),
