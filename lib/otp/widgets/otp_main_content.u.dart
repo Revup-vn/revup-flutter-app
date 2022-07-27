@@ -36,8 +36,9 @@ class OTPMainContent extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
                 maxLines: 1,
               ),
-              RichText(
-                text: TextSpan(
+              AutoSizeText.rich(
+                maxLines: 1,
+                TextSpan(
                   text: l10n.sendOTPCodeToLabel,
                   children: [
                     TextSpan(

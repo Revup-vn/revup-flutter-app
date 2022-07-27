@@ -427,21 +427,21 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.5.1"
+    version: "3.6.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.4.0"
+    version: "6.5.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.2.0"
   firebase_core:
     dependency: "direct main"
     description:
@@ -469,7 +469,7 @@ packages:
       name: firebase_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.3.3"
+    version: "10.3.4"
   firebase_storage_platform_interface:
     dependency: transitive
     description:
@@ -483,7 +483,7 @@ packages:
       name: firebase_storage_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.1"
+    version: "3.3.2"
   fixnum:
     dependency: transitive
     description:
@@ -977,11 +977,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "hotfix/authen-reset-state"
-      resolved-ref: "875f0a54e795cc1289dee3ec3796d79f01d2ff68"
+      ref: main
+      resolved-ref: "65e44992c3714ae78b295bbe7ca9ea295302aa69"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "1.9.2-dev+2"
+    version: "2.0.0-dev"
   rxdart:
     dependency: transitive
     description:

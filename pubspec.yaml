@@ -35,8 +35,8 @@ dependencies:
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: hotfix/authen-reset-state
-      version: ^1.9.2-dev+2
+      ref: main
+      version: ^2.0.0-dev
   shared_preferences: ^2.0.15
   timer_count_down: ^2.2.1
 dev_dependencies:

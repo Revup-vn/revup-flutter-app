@@ -165,7 +165,6 @@ class LoginView extends StatelessWidget {
                                               completer: completer,
                                             ),
                                           );
-                                          context.loaderOverlay.hide();
                                           return completer.future;
                                         },
                                         onSignUpSubmit: (user) async {
