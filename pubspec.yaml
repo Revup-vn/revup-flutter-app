@@ -1,6 +1,6 @@
 name: revup
 description: A Very Good App
-version: 1.0.0+1
+version: 1.0.0-dev+2
 publish_to: none
 
 environment:
@@ -11,9 +11,11 @@ dependencies:
   auto_size_text: ^3.0.0
   bloc: ^8.0.3
   build_runner: ^2.1.11
+  cached_network_image: ^3.2.1
   connectivity_plus: ^2.3.6
   dartz: ^0.10.1
   dio: ^4.0.1
+  dotted_border: ^2.0.0+2
   firebase_core: ^1.20.0
   flutter:
     sdk: flutter
@@ -26,9 +28,12 @@ dependencies:
   form_builder_validators: ^8.1.1
   freezed_annotation: ^2.1.0
   hive: ^2.2.3
+  image_picker: ^0.8.5+3
+  injectable: ^1.5.3
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
+  modal_bottom_sheet: ^2.1.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
@@ -48,6 +53,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   import_sorter: ^4.6.0
   json_serializable: ^6.3.1
+  mockito: ^5.2.0
   mocktail: ^0.3.0
   very_good_analysis: ^3.0.1
 

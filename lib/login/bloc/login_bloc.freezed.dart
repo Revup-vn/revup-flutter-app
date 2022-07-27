@@ -206,7 +206,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
 abstract class Start implements LoginEvent {
   const factory Start({required final bool isLoginButtonEnabled}) = _$Start;
 
-  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  bool get isLoginButtonEnabled;
   @JsonKey(ignore: true)
   _$$StartCopyWith<_$Start> get copyWith => throw _privateConstructorUsedError;
 }
@@ -549,7 +549,7 @@ abstract class _Initial implements LoginState {
   const factory _Initial({required final bool isLoginButtonEnabled}) =
       _$_Initial;
 
-  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  bool get isLoginButtonEnabled;
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -707,7 +707,7 @@ class _$_Ready with DiagnosticableTreeMixin implements _Ready {
 abstract class _Ready implements LoginState {
   const factory _Ready({required final bool isLoginButtonEnabled}) = _$_Ready;
 
-  bool get isLoginButtonEnabled => throw _privateConstructorUsedError;
+  bool get isLoginButtonEnabled;
   @JsonKey(ignore: true)
   _$$_ReadyCopyWith<_$_Ready> get copyWith =>
       throw _privateConstructorUsedError;
@@ -993,7 +993,7 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
 abstract class _Failure implements LoginState {
   const factory _Failure({required final String errorMessage}) = _$_Failure;
 
-  String get errorMessage => throw _privateConstructorUsedError;
+  String get errorMessage;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1152,7 +1152,7 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
 abstract class _Success implements LoginState {
   const factory _Success({required final String phoneNumber}) = _$_Success;
 
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
