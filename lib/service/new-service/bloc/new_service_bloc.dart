@@ -26,8 +26,6 @@ class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
       started: () {},
       submitted: (serviceData) {
         emit(const NewServiceState.loading());
-        // TODO(cantgim): save on firestore,
-        // then emit data saved (id, image url,...)
         emit(NewServiceState.success(serviceData));
       },
       imageUploadSelected: (source) async {
