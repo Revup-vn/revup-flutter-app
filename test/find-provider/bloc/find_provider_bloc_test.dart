@@ -36,6 +36,7 @@ void main() {
       build: () => findListRepairerBloc,
       act: (bloc) => bloc.add(const FindListRepairerEvent.started()),
       expect: () => <FindListRepairerState>[
+        const FindListRepairerState.loading(),
         FindListRepairerState.dataLoadSuccess(listProvider: listProvider)
       ],
     );
@@ -44,6 +45,7 @@ void main() {
       build: () => findListRepairerBloc,
       act: (bloc) => bloc.add(const FindListRepairerEvent.refresh()),
       expect: () => <FindListRepairerState>[
+        const FindListRepairerState.loading(),
         FindListRepairerState.refreshSuccess(
           listProvider: listProvider,
         )
