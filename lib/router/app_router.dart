@@ -31,7 +31,6 @@ import '../test/test.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
-      initial: true,
     ),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
@@ -48,7 +47,7 @@ import '../test/test.dart';
       ],
     ),
     AdaptiveRoute<void>(page: PaymentPage),
-    AdaptiveRoute<void>(page: UpdateProfilePage),
+    AdaptiveRoute<void>(page: UpdateProfilePage, initial: true),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
