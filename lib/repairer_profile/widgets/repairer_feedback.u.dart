@@ -1,27 +1,18 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../models/rating_data.dart';
+
 class RepairerProfileFeedback extends StatelessWidget {
-  RepairerProfileFeedback({super.key});
-  final List<String> item1 = [
-    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
-    'Khach Hang A',
-    'Thợ sửa rất có tâm và có tầm',
-    '4.9',
-    '5'
-  ];
-  final List<String> item2 = [
-    'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e0bc7a8fa1576b1.jpg',
-    'Khac Hang B',
-    'Thợ sửa rất có tâm và có tầm',
-    '4.9',
-    '10',
-  ];
+  const RepairerProfileFeedback(this.ratingData, {super.key});
+  final IVector<RatingData> ratingData;
+
   @override
   Widget build(BuildContext context) {
-    final iListItems = <List<String>>[item1, item2];
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -45,12 +36,20 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: iListItems[index][0],
+                                imageUrl: ratingData
+                                        .get(index)
+                                        .getOrElse(RatingData.new)
+                                        .imageUrl ??
+                                    '',
                               ),
                             ),
                           ),
                           title: AutoSizeText(
-                            iListItems[index][1],
+                            ratingData
+                                    .get(index)
+                                    .getOrElse(RatingData.new)
+                                    .consumerName ??
+                                '',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -61,7 +60,13 @@ class RepairerProfileFeedback extends StatelessWidget {
                           ),
                           subtitle: RatingBar.builder(
                             ignoreGestures: true,
-                            initialRating: double.parse(iListItems[index][3]),
+                            initialRating: double.parse(
+                              ratingData
+                                  .get(index)
+                                  .getOrElse(RatingData.new)
+                                  .rating
+                                  .toString(),
+                            ),
                             itemSize: 19,
                             allowHalfRating: true,
                             itemBuilder: (context, _) => Icon(
@@ -73,7 +78,11 @@ class RepairerProfileFeedback extends StatelessWidget {
                           ),
                         ),
                         AutoSizeText(
-                          iListItems[index][2],
+                          ratingData
+                                  .get(index)
+                                  .getOrElse(RatingData.new)
+                                  .description ??
+                              '',
                           style: Theme.of(context).textTheme.bodyMedium,
                           maxLines: 2,
                         ),
@@ -81,9 +90,20 @@ class RepairerProfileFeedback extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: AutoSizeText(
-                      '${iListItems[index][4]} ngày trước',
-                      maxLines: 1,
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: AutoSizeText(
+                        ratingData
+                                    .get(index)
+                                    .getOrElse(RatingData.new)
+                                    .createdTime
+                                    ?.day !=
+                                DateTime.now().day
+                            ? '''${DateTime.now().difference(ratingData.get(index).getOrElse(RatingData.new).createdTime!).inDays} ngày trước'''
+                            : 'Today',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        maxLines: 1,
+                      ),
                     ),
                   ),
                 ],
@@ -92,7 +112,7 @@ class RepairerProfileFeedback extends StatelessWidget {
           ),
         );
       },
-      itemCount: iListItems.length,
+      itemCount: ratingData.length(),
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),

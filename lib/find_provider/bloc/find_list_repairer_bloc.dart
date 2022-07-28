@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../models/provider_data.dart';
@@ -25,7 +24,9 @@ class FindListRepairerBloc
   ) async {
     event.when(
       started: () {
-        log('dataload');
+        emit(
+          const FindListRepairerState.loading(),
+        );
         emit(
           FindListRepairerState.dataLoadSuccess(
             listProvider: listRepairer,
@@ -33,6 +34,9 @@ class FindListRepairerBloc
         );
       },
       refresh: () {
+        emit(
+          const FindListRepairerState.loading(),
+        );
         emit(
           FindListRepairerState.refreshSuccess(
             listProvider: listRepairer,
@@ -63,7 +67,7 @@ class FindListRepairerBloc
         backgroundImg:
             'https://listbds.com/wp-content/uploads/2022/01/cua-hang-sua-xe-may-uy-tin.jpg',
         profileBio: 'Đến với chúng tôi các bạn sẽ là thượng đế',
-        timeArrivalInMinus: 10,
+        timeArrivalInMinute: 10,
         totalRating: 107,
       )
     ],

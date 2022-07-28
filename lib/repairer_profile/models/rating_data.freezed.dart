@@ -20,11 +20,12 @@ RatingData _$RatingDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RatingData {
-  BigInt? get feedbackID => throw _privateConstructorUsedError;
-  BigInt? get userID => throw _privateConstructorUsedError;
-  double? get rating => throw _privateConstructorUsedError;
+  int? get rating => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime? get createdTime => throw _privateConstructorUsedError;
+  DateTime? get updatedTime => throw _privateConstructorUsedError;
+  String? get consumerName => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +39,12 @@ abstract class $RatingDataCopyWith<$Res> {
           RatingData value, $Res Function(RatingData) then) =
       _$RatingDataCopyWithImpl<$Res>;
   $Res call(
-      {BigInt? feedbackID,
-      BigInt? userID,
-      double? rating,
+      {int? rating,
       String? description,
-      DateTime? createdTime});
+      DateTime? createdTime,
+      DateTime? updatedTime,
+      String? consumerName,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -55,25 +57,18 @@ class _$RatingDataCopyWithImpl<$Res> implements $RatingDataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? feedbackID = freezed,
-    Object? userID = freezed,
     Object? rating = freezed,
     Object? description = freezed,
     Object? createdTime = freezed,
+    Object? updatedTime = freezed,
+    Object? consumerName = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      feedbackID: feedbackID == freezed
-          ? _value.feedbackID
-          : feedbackID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
-      userID: userID == freezed
-          ? _value.userID
-          : userID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -82,6 +77,18 @@ class _$RatingDataCopyWithImpl<$Res> implements $RatingDataCopyWith<$Res> {
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      updatedTime: updatedTime == freezed
+          ? _value.updatedTime
+          : updatedTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      consumerName: consumerName == freezed
+          ? _value.consumerName
+          : consumerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -94,11 +101,12 @@ abstract class _$$_RatingDataCopyWith<$Res>
       __$$_RatingDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {BigInt? feedbackID,
-      BigInt? userID,
-      double? rating,
+      {int? rating,
       String? description,
-      DateTime? createdTime});
+      DateTime? createdTime,
+      DateTime? updatedTime,
+      String? consumerName,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -113,25 +121,18 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? feedbackID = freezed,
-    Object? userID = freezed,
     Object? rating = freezed,
     Object? description = freezed,
     Object? createdTime = freezed,
+    Object? updatedTime = freezed,
+    Object? consumerName = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$_RatingData(
-      feedbackID: feedbackID == freezed
-          ? _value.feedbackID
-          : feedbackID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
-      userID: userID == freezed
-          ? _value.userID
-          : userID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -140,6 +141,18 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      updatedTime: updatedTime == freezed
+          ? _value.updatedTime
+          : updatedTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      consumerName: consumerName == freezed
+          ? _value.consumerName
+          : consumerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -148,29 +161,32 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RatingData implements _RatingData {
   _$_RatingData(
-      {this.feedbackID,
-      this.userID,
-      this.rating,
+      {this.rating,
       this.description,
-      this.createdTime});
+      this.createdTime,
+      this.updatedTime,
+      this.consumerName,
+      this.imageUrl});
 
   factory _$_RatingData.fromJson(Map<String, dynamic> json) =>
       _$$_RatingDataFromJson(json);
 
   @override
-  final BigInt? feedbackID;
-  @override
-  final BigInt? userID;
-  @override
-  final double? rating;
+  final int? rating;
   @override
   final String? description;
   @override
   final DateTime? createdTime;
+  @override
+  final DateTime? updatedTime;
+  @override
+  final String? consumerName;
+  @override
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'RatingData(feedbackID: $feedbackID, userID: $userID, rating: $rating, description: $description, createdTime: $createdTime)';
+    return 'RatingData(rating: $rating, description: $description, createdTime: $createdTime, updatedTime: $updatedTime, consumerName: $consumerName, imageUrl: $imageUrl)';
   }
 
   @override
@@ -178,25 +194,28 @@ class _$_RatingData implements _RatingData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RatingData &&
-            const DeepCollectionEquality()
-                .equals(other.feedbackID, feedbackID) &&
-            const DeepCollectionEquality().equals(other.userID, userID) &&
             const DeepCollectionEquality().equals(other.rating, rating) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
-                .equals(other.createdTime, createdTime));
+                .equals(other.createdTime, createdTime) &&
+            const DeepCollectionEquality()
+                .equals(other.updatedTime, updatedTime) &&
+            const DeepCollectionEquality()
+                .equals(other.consumerName, consumerName) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(feedbackID),
-      const DeepCollectionEquality().hash(userID),
       const DeepCollectionEquality().hash(rating),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(createdTime));
+      const DeepCollectionEquality().hash(createdTime),
+      const DeepCollectionEquality().hash(updatedTime),
+      const DeepCollectionEquality().hash(consumerName),
+      const DeepCollectionEquality().hash(imageUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -211,25 +230,28 @@ class _$_RatingData implements _RatingData {
 
 abstract class _RatingData implements RatingData {
   factory _RatingData(
-      {final BigInt? feedbackID,
-      final BigInt? userID,
-      final double? rating,
+      {final int? rating,
       final String? description,
-      final DateTime? createdTime}) = _$_RatingData;
+      final DateTime? createdTime,
+      final DateTime? updatedTime,
+      final String? consumerName,
+      final String? imageUrl}) = _$_RatingData;
 
   factory _RatingData.fromJson(Map<String, dynamic> json) =
       _$_RatingData.fromJson;
 
   @override
-  BigInt? get feedbackID;
-  @override
-  BigInt? get userID;
-  @override
-  double? get rating;
+  int? get rating;
   @override
   String? get description;
   @override
   DateTime? get createdTime;
+  @override
+  DateTime? get updatedTime;
+  @override
+  String? get consumerName;
+  @override
+  String? get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_RatingDataCopyWith<_$_RatingData> get copyWith =>

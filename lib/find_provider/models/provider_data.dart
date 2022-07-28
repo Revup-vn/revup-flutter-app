@@ -11,7 +11,7 @@ class ProviderData with _$ProviderData {
     String? address,
     String? avatar,
     num? distance,
-    num? timeArrivalInMinus,
+    num? timeArrivalInMinute,
     double? numberStarRating,
     int? totalRating,
     String? backgroundImg,

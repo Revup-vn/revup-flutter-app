@@ -6,10 +6,8 @@ part 'service_data.g.dart';
 @freezed
 class ServiceData with _$ServiceData {
   factory ServiceData({
-    BigInt? id,
-    BigInt? providerID,
     String? name,
-    double? serviceFee,
+    int? serviceFee,
     String? imageURL,
   }) = _ServiceData;
 

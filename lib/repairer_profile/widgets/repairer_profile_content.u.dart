@@ -1,16 +1,30 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
+
+import '../../find_provider/models/provider_data.dart';
+import '../models/rating_data.dart';
+import '../models/service_data.dart';
 import 'repairer_profile_avatar_image.u.dart';
 import 'repairer_profile_cover_image.u.dart';
 import 'repairer_profile_tabbar.u.dart';
 
 class RepairerProfileMainContent extends StatelessWidget {
-  const RepairerProfileMainContent({super.key});
-
+  const RepairerProfileMainContent(
+    this.serviceData,
+    this.ratingData,
+    this.provider, {
+    super.key,
+  });
+  final IList<ServiceData> serviceData;
+  final IList<RatingData> ratingData;
+  final ProviderData provider;
   @override
   Widget build(BuildContext context) {
     const coverHeight = 150;
+    final serviceDataVector = IVector.from(serviceData.toIterable());
+    final ratingDataVector = IVector.from(ratingData.toIterable());
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -21,11 +35,14 @@ class RepairerProfileMainContent extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: <Widget>[
-              RepairerProfileCoverImage(coverHeight.toDouble()),
-              const Positioned(
+              RepairerProfileCoverImage(
+                coverHeight.toDouble(),
+                provider.backgroundImg ?? '',
+              ),
+              Positioned(
                 left: 16,
                 top: coverHeight - 124 / 2,
-                child: RepairerProfileAvatarImage(),
+                child: RepairerProfileAvatarImage(provider.avatar ?? ''),
               ),
               Container(
                 margin: const EdgeInsets.only(
@@ -40,7 +57,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                       height: 10,
                     ),
                     AutoSizeText(
-                      'Nguyễn Văn Toản',
+                      provider.fullName ?? '',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -50,7 +67,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                       height: 5,
                     ),
                     AutoSizeText(
-                      'Đến với chúng tôi các bạn sẽ là thượng đế',
+                      provider.profileBio ?? '',
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const SizedBox(
@@ -62,7 +79,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                         const Icon(Icons.location_on_outlined),
                         Expanded(
                           child: AutoSizeText(
-                            'Q. Đống Đa, Hà Nội',
+                            provider.address ?? 'No location yet',
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
@@ -78,7 +95,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                         ),
                         Expanded(
                           child: AutoSizeText(
-                            '4.7 | 109 lượt',
+                            '''${provider.numberStarRating} | ${provider.totalRating} lượt''',
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
@@ -101,7 +118,9 @@ class RepairerProfileMainContent extends StatelessWidget {
               ),
             ],
           ),
-          const Expanded(child: RepairerProfileTabBar()),
+          Expanded(
+            child: RepairerProfileTabBar(serviceDataVector, ratingDataVector),
+          ),
         ],
       ),
     );

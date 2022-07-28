@@ -20,10 +20,8 @@ ServiceData _$ServiceDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ServiceData {
-  BigInt? get id => throw _privateConstructorUsedError;
-  BigInt? get providerID => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  double? get serviceFee => throw _privateConstructorUsedError;
+  int? get serviceFee => throw _privateConstructorUsedError;
   String? get imageURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,12 +35,7 @@ abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
           ServiceData value, $Res Function(ServiceData) then) =
       _$ServiceDataCopyWithImpl<$Res>;
-  $Res call(
-      {BigInt? id,
-      BigInt? providerID,
-      String? name,
-      double? serviceFee,
-      String? imageURL});
+  $Res call({String? name, int? serviceFee, String? imageURL});
 }
 
 /// @nodoc
@@ -55,21 +48,11 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? providerID = freezed,
     Object? name = freezed,
     Object? serviceFee = freezed,
     Object? imageURL = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
-      providerID: providerID == freezed
-          ? _value.providerID
-          : providerID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -77,7 +60,7 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
       serviceFee: serviceFee == freezed
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       imageURL: imageURL == freezed
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
@@ -93,12 +76,7 @@ abstract class _$$_ServiceDataCopyWith<$Res>
           _$_ServiceData value, $Res Function(_$_ServiceData) then) =
       __$$_ServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {BigInt? id,
-      BigInt? providerID,
-      String? name,
-      double? serviceFee,
-      String? imageURL});
+  $Res call({String? name, int? serviceFee, String? imageURL});
 }
 
 /// @nodoc
@@ -113,21 +91,11 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? providerID = freezed,
     Object? name = freezed,
     Object? serviceFee = freezed,
     Object? imageURL = freezed,
   }) {
     return _then(_$_ServiceData(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
-      providerID: providerID == freezed
-          ? _value.providerID
-          : providerID // ignore: cast_nullable_to_non_nullable
-              as BigInt?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -135,7 +103,7 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
       serviceFee: serviceFee == freezed
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       imageURL: imageURL == freezed
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
@@ -147,26 +115,21 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ServiceData implements _ServiceData {
-  _$_ServiceData(
-      {this.id, this.providerID, this.name, this.serviceFee, this.imageURL});
+  _$_ServiceData({this.name, this.serviceFee, this.imageURL});
 
   factory _$_ServiceData.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceDataFromJson(json);
 
   @override
-  final BigInt? id;
-  @override
-  final BigInt? providerID;
-  @override
   final String? name;
   @override
-  final double? serviceFee;
+  final int? serviceFee;
   @override
   final String? imageURL;
 
   @override
   String toString() {
-    return 'ServiceData(id: $id, providerID: $providerID, name: $name, serviceFee: $serviceFee, imageURL: $imageURL)';
+    return 'ServiceData(name: $name, serviceFee: $serviceFee, imageURL: $imageURL)';
   }
 
   @override
@@ -174,9 +137,6 @@ class _$_ServiceData implements _ServiceData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ServiceData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.providerID, providerID) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
@@ -187,8 +147,6 @@ class _$_ServiceData implements _ServiceData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(providerID),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(serviceFee),
       const DeepCollectionEquality().hash(imageURL));
@@ -206,23 +164,17 @@ class _$_ServiceData implements _ServiceData {
 
 abstract class _ServiceData implements ServiceData {
   factory _ServiceData(
-      {final BigInt? id,
-      final BigInt? providerID,
-      final String? name,
-      final double? serviceFee,
+      {final String? name,
+      final int? serviceFee,
       final String? imageURL}) = _$_ServiceData;
 
   factory _ServiceData.fromJson(Map<String, dynamic> json) =
       _$_ServiceData.fromJson;
 
   @override
-  BigInt? get id;
-  @override
-  BigInt? get providerID;
-  @override
   String? get name;
   @override
-  double? get serviceFee;
+  int? get serviceFee;
   @override
   String? get imageURL;
   @override

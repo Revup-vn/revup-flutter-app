@@ -32,5 +32,6 @@
   "nextLabel": "Next",
   "doneLabel": "Done",
   "callHelpLabel" : "Call Help",
-  "serviceLabel" : "Service"
+  "serviceLabel" : "Service",
+  "minutesLabel" : "minutes"
 }

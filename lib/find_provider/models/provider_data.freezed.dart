@@ -25,7 +25,7 @@ mixin _$ProviderData {
   String? get address => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   num? get distance => throw _privateConstructorUsedError;
-  num? get timeArrivalInMinus => throw _privateConstructorUsedError;
+  num? get timeArrivalInMinute => throw _privateConstructorUsedError;
   double? get numberStarRating => throw _privateConstructorUsedError;
   int? get totalRating => throw _privateConstructorUsedError;
   String? get backgroundImg => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $ProviderDataCopyWith<$Res> {
       String? address,
       String? avatar,
       num? distance,
-      num? timeArrivalInMinus,
+      num? timeArrivalInMinute,
       double? numberStarRating,
       int? totalRating,
       String? backgroundImg,
@@ -70,7 +70,7 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
     Object? address = freezed,
     Object? avatar = freezed,
     Object? distance = freezed,
-    Object? timeArrivalInMinus = freezed,
+    Object? timeArrivalInMinute = freezed,
     Object? numberStarRating = freezed,
     Object? totalRating = freezed,
     Object? backgroundImg = freezed,
@@ -97,9 +97,9 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as num?,
-      timeArrivalInMinus: timeArrivalInMinus == freezed
-          ? _value.timeArrivalInMinus
-          : timeArrivalInMinus // ignore: cast_nullable_to_non_nullable
+      timeArrivalInMinute: timeArrivalInMinute == freezed
+          ? _value.timeArrivalInMinute
+          : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
               as num?,
       numberStarRating: numberStarRating == freezed
           ? _value.numberStarRating
@@ -134,7 +134,7 @@ abstract class _$$_ProviderDataCopyWith<$Res>
       String? address,
       String? avatar,
       num? distance,
-      num? timeArrivalInMinus,
+      num? timeArrivalInMinute,
       double? numberStarRating,
       int? totalRating,
       String? backgroundImg,
@@ -159,7 +159,7 @@ class __$$_ProviderDataCopyWithImpl<$Res>
     Object? address = freezed,
     Object? avatar = freezed,
     Object? distance = freezed,
-    Object? timeArrivalInMinus = freezed,
+    Object? timeArrivalInMinute = freezed,
     Object? numberStarRating = freezed,
     Object? totalRating = freezed,
     Object? backgroundImg = freezed,
@@ -186,9 +186,9 @@ class __$$_ProviderDataCopyWithImpl<$Res>
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as num?,
-      timeArrivalInMinus: timeArrivalInMinus == freezed
-          ? _value.timeArrivalInMinus
-          : timeArrivalInMinus // ignore: cast_nullable_to_non_nullable
+      timeArrivalInMinute: timeArrivalInMinute == freezed
+          ? _value.timeArrivalInMinute
+          : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
               as num?,
       numberStarRating: numberStarRating == freezed
           ? _value.numberStarRating
@@ -219,7 +219,7 @@ class _$_ProviderData implements _ProviderData {
       this.address,
       this.avatar,
       this.distance,
-      this.timeArrivalInMinus,
+      this.timeArrivalInMinute,
       this.numberStarRating,
       this.totalRating,
       this.backgroundImg,
@@ -239,7 +239,7 @@ class _$_ProviderData implements _ProviderData {
   @override
   final num? distance;
   @override
-  final num? timeArrivalInMinus;
+  final num? timeArrivalInMinute;
   @override
   final double? numberStarRating;
   @override
@@ -251,7 +251,7 @@ class _$_ProviderData implements _ProviderData {
 
   @override
   String toString() {
-    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinus: $timeArrivalInMinus, numberStarRating: $numberStarRating, totalRating: $totalRating, backgroundImg: $backgroundImg, profileBio: $profileBio)';
+    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinute: $timeArrivalInMinute, numberStarRating: $numberStarRating, totalRating: $totalRating, backgroundImg: $backgroundImg, profileBio: $profileBio)';
   }
 
   @override
@@ -265,7 +265,7 @@ class _$_ProviderData implements _ProviderData {
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.distance, distance) &&
             const DeepCollectionEquality()
-                .equals(other.timeArrivalInMinus, timeArrivalInMinus) &&
+                .equals(other.timeArrivalInMinute, timeArrivalInMinute) &&
             const DeepCollectionEquality()
                 .equals(other.numberStarRating, numberStarRating) &&
             const DeepCollectionEquality()
@@ -285,7 +285,7 @@ class _$_ProviderData implements _ProviderData {
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(timeArrivalInMinus),
+      const DeepCollectionEquality().hash(timeArrivalInMinute),
       const DeepCollectionEquality().hash(numberStarRating),
       const DeepCollectionEquality().hash(totalRating),
       const DeepCollectionEquality().hash(backgroundImg),
@@ -309,7 +309,7 @@ abstract class _ProviderData implements ProviderData {
       final String? address,
       final String? avatar,
       final num? distance,
-      final num? timeArrivalInMinus,
+      final num? timeArrivalInMinute,
       final double? numberStarRating,
       final int? totalRating,
       final String? backgroundImg,
@@ -329,7 +329,7 @@ abstract class _ProviderData implements ProviderData {
   @override
   num? get distance;
   @override
-  num? get timeArrivalInMinus;
+  num? get timeArrivalInMinute;
   @override
   double? get numberStarRating;
   @override

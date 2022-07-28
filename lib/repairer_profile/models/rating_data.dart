@@ -6,11 +6,12 @@ part 'rating_data.g.dart';
 @freezed
 class RatingData with _$RatingData {
   factory RatingData({
-    BigInt? feedbackID,
-    BigInt? userID,
-    double? rating,
+    int? rating,
     String? description,
     DateTime? createdTime,
+    DateTime? updatedTime,
+    String? consumerName,
+    String? imageUrl,
   }) = _RatingData;
 
   factory RatingData.fromJson(Map<String, dynamic> json) =>

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:dartz/dartz.dart';
+
 import '../../l10n/l10n.dart';
+import '../models/rating_data.dart';
+import '../models/service_data.dart';
 import 'repairer_feedback.u.dart';
 import 'repairer_services.u.dart';
 
 class RepairerProfileTabBar extends StatelessWidget {
-  const RepairerProfileTabBar({super.key});
+  const RepairerProfileTabBar(this.serviceData, this.ratingData, {super.key});
+  final IVector<ServiceData> serviceData;
+  final IVector<RatingData> ratingData;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -35,8 +41,8 @@ class RepairerProfileTabBar extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            RepairerProfileServices(),
-            RepairerProfileFeedback(),
+            RepairerProfileServices(serviceData),
+            RepairerProfileFeedback(ratingData),
           ],
         ),
       ),

@@ -17,8 +17,8 @@ _$_ProviderData _$$_ProviderDataFromJson(Map<String, dynamic> json) =>
           address: $checkedConvert('address', (v) => v as String?),
           avatar: $checkedConvert('avatar', (v) => v as String?),
           distance: $checkedConvert('distance', (v) => v as num?),
-          timeArrivalInMinus:
-              $checkedConvert('time_arrival_in_minus', (v) => v as num?),
+          timeArrivalInMinute:
+              $checkedConvert('time_arrival_in_minute', (v) => v as num?),
           numberStarRating: $checkedConvert(
               'number_star_rating', (v) => (v as num?)?.toDouble()),
           totalRating: $checkedConvert('total_rating', (v) => v as int?),
@@ -29,7 +29,7 @@ _$_ProviderData _$$_ProviderDataFromJson(Map<String, dynamic> json) =>
       },
       fieldKeyMap: const {
         'fullName': 'full_name',
-        'timeArrivalInMinus': 'time_arrival_in_minus',
+        'timeArrivalInMinute': 'time_arrival_in_minute',
         'numberStarRating': 'number_star_rating',
         'totalRating': 'total_rating',
         'backgroundImg': 'background_img',
@@ -44,7 +44,7 @@ Map<String, dynamic> _$$_ProviderDataToJson(_$_ProviderData instance) =>
       'address': instance.address,
       'avatar': instance.avatar,
       'distance': instance.distance,
-      'time_arrival_in_minus': instance.timeArrivalInMinus,
+      'time_arrival_in_minute': instance.timeArrivalInMinute,
       'number_star_rating': instance.numberStarRating,
       'total_rating': instance.totalRating,
       'background_img': instance.backgroundImg,

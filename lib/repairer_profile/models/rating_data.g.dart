@@ -12,29 +12,31 @@ _$_RatingData _$$_RatingDataFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = _$_RatingData(
-          feedbackID: $checkedConvert('feedback_i_d',
-              (v) => v == null ? null : BigInt.parse(v as String)),
-          userID: $checkedConvert(
-              'user_i_d', (v) => v == null ? null : BigInt.parse(v as String)),
-          rating: $checkedConvert('rating', (v) => (v as num?)?.toDouble()),
+          rating: $checkedConvert('rating', (v) => v as int?),
           description: $checkedConvert('description', (v) => v as String?),
           createdTime: $checkedConvert('created_time',
               (v) => v == null ? null : DateTime.parse(v as String)),
+          updatedTime: $checkedConvert('updated_time',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+          consumerName: $checkedConvert('consumer_name', (v) => v as String?),
+          imageUrl: $checkedConvert('image_url', (v) => v as String?),
         );
         return val;
       },
       fieldKeyMap: const {
-        'feedbackID': 'feedback_i_d',
-        'userID': 'user_i_d',
-        'createdTime': 'created_time'
+        'createdTime': 'created_time',
+        'updatedTime': 'updated_time',
+        'consumerName': 'consumer_name',
+        'imageUrl': 'image_url'
       },
     );
 
 Map<String, dynamic> _$$_RatingDataToJson(_$_RatingData instance) =>
     <String, dynamic>{
-      'feedback_i_d': instance.feedbackID?.toString(),
-      'user_i_d': instance.userID?.toString(),
       'rating': instance.rating,
       'description': instance.description,
       'created_time': instance.createdTime?.toIso8601String(),
+      'updated_time': instance.updatedTime?.toIso8601String(),
+      'consumer_name': instance.consumerName,
+      'image_url': instance.imageUrl,
     };

@@ -1,25 +1,17 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class RepairerProfileServices extends StatelessWidget {
-  RepairerProfileServices({super.key});
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart';
 
-  final List<String> item1 = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFmMQW_46WiQGj4DA4Z_DcXz2RrBE7gr7v9qqmOTydEkLH02RVePhWZsSoa-G1UwhtP2A&usqp=CAU',
-    'Thay xăm',
-    '80.000',
-    '1.500.000',
-  ];
-  final List<String> item2 = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFmMQW_46WiQGj4DA4Z_DcXz2RrBE7gr7v9qqmOTydEkLH02RVePhWZsSoa-G1UwhtP2A&usqp=CAU',
-    'Thay xăm',
-    '80.000',
-    '1.200.000',
-  ];
+import '../models/service_data.dart';
+
+class RepairerProfileServices extends StatelessWidget {
+  const RepairerProfileServices(this.serviceData, {super.key});
+  final IVector<ServiceData> serviceData;
+
   @override
   Widget build(BuildContext context) {
-    final iListItems = <List<String>>[item1, item2];
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -45,12 +37,20 @@ class RepairerProfileServices extends StatelessWidget {
                                   height: 64,
                                   width: 64,
                                   fit: BoxFit.fitWidth,
-                                  imageUrl: iListItems[index][0],
+                                  imageUrl: serviceData
+                                          .get(index)
+                                          .getOrElse(ServiceData.new)
+                                          .imageURL ??
+                                      '',
                                 ),
                               ),
                             ),
                             title: AutoSizeText(
-                              iListItems[index][1],
+                              serviceData
+                                      .get(index)
+                                      .getOrElse(ServiceData.new)
+                                      .name ??
+                                  '',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -60,7 +60,7 @@ class RepairerProfileServices extends StatelessWidget {
                               maxLines: 1,
                             ),
                             subtitle: AutoSizeText(
-                              'Đơn giá : ${iListItems[index][2]}đ - ${iListItems[index][3]}đ',
+                              '''Đơn giá : ${serviceData.get(index).getOrElse(ServiceData.new).serviceFee ?? ''}đ''',
                               style: Theme.of(context).textTheme.bodyMedium,
                               maxLines: 1,
                             ),
@@ -80,7 +80,7 @@ class RepairerProfileServices extends StatelessWidget {
           ),
         );
       },
-      itemCount: iListItems.length,
+      itemCount: serviceData.length(),
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),

@@ -474,6 +474,7 @@ mixin _$FindListRepairerState {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -484,6 +485,7 @@ mixin _$FindListRepairerState {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -494,6 +496,7 @@ mixin _$FindListRepairerState {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -505,6 +508,7 @@ mixin _$FindListRepairerState {
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -515,6 +519,7 @@ mixin _$FindListRepairerState {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -525,6 +530,7 @@ mixin _$FindListRepairerState {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -625,6 +631,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) {
     return initial(hasValue);
   }
@@ -638,6 +645,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) {
     return initial?.call(hasValue);
   }
@@ -651,6 +659,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -668,6 +677,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
   }
@@ -681,6 +691,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -694,6 +705,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -795,6 +807,7 @@ class _$_DataLoadSuccess
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) {
     return dataLoadSuccess(listProvider);
   }
@@ -808,6 +821,7 @@ class _$_DataLoadSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) {
     return dataLoadSuccess?.call(listProvider);
   }
@@ -821,6 +835,7 @@ class _$_DataLoadSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (dataLoadSuccess != null) {
@@ -838,6 +853,7 @@ class _$_DataLoadSuccess
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) {
     return dataLoadSuccess(this);
   }
@@ -851,6 +867,7 @@ class _$_DataLoadSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) {
     return dataLoadSuccess?.call(this);
   }
@@ -864,6 +881,7 @@ class _$_DataLoadSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (dataLoadSuccess != null) {
@@ -965,6 +983,7 @@ class _$_RefreshSuccess
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) {
     return refreshSuccess(listProvider);
   }
@@ -978,6 +997,7 @@ class _$_RefreshSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) {
     return refreshSuccess?.call(listProvider);
   }
@@ -991,6 +1011,7 @@ class _$_RefreshSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (refreshSuccess != null) {
@@ -1008,6 +1029,7 @@ class _$_RefreshSuccess
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) {
     return refreshSuccess(this);
   }
@@ -1021,6 +1043,7 @@ class _$_RefreshSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) {
     return refreshSuccess?.call(this);
   }
@@ -1034,6 +1057,7 @@ class _$_RefreshSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (refreshSuccess != null) {
@@ -1152,6 +1176,7 @@ class _$_DropdownListChangedSuccess
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) {
     return dropdownListChangedSuccess(listProvider, sortType);
   }
@@ -1165,6 +1190,7 @@ class _$_DropdownListChangedSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) {
     return dropdownListChangedSuccess?.call(listProvider, sortType);
   }
@@ -1178,6 +1204,7 @@ class _$_DropdownListChangedSuccess
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (dropdownListChangedSuccess != null) {
@@ -1195,6 +1222,7 @@ class _$_DropdownListChangedSuccess
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) {
     return dropdownListChangedSuccess(this);
   }
@@ -1208,6 +1236,7 @@ class _$_DropdownListChangedSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) {
     return dropdownListChangedSuccess?.call(this);
   }
@@ -1221,6 +1250,7 @@ class _$_DropdownListChangedSuccess
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (dropdownListChangedSuccess != null) {
@@ -1295,6 +1325,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
+    required TResult Function() failure,
   }) {
     return loading();
   }
@@ -1308,6 +1339,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
   }) {
     return loading?.call();
   }
@@ -1321,6 +1353,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1338,6 +1371,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     required TResult Function(_DropdownListChangedSuccess value)
         dropdownListChangedSuccess,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
   }
@@ -1351,6 +1385,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -1364,6 +1399,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(_DropdownListChangedSuccess value)?
         dropdownListChangedSuccess,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1375,4 +1411,145 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
 
 abstract class _Loading implements FindListRepairerState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$FindListRepairerStateCopyWithImpl<$Res>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, (v) => _then(v as _$_Failure));
+
+  @override
+  _$_Failure get _value => super._value as _$_Failure;
+}
+
+/// @nodoc
+
+class _$_Failure with DiagnosticableTreeMixin implements _Failure {
+  const _$_Failure();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FindListRepairerState.failure()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'FindListRepairerState.failure'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Failure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool hasValue) initial,
+    required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
+    required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
+    required TResult Function(IList<ProviderData> listProvider, String sortType)
+        dropdownListChangedSuccess,
+    required TResult Function() loading,
+    required TResult Function() failure,
+  }) {
+    return failure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool hasValue)? initial,
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+  }) {
+    return failure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool hasValue)? initial,
+    TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
+    TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
+    TResult Function(IList<ProviderData> listProvider, String sortType)?
+        dropdownListChangedSuccess,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_DataLoadSuccess value) dataLoadSuccess,
+    required TResult Function(_RefreshSuccess value) refreshSuccess,
+    required TResult Function(_DropdownListChangedSuccess value)
+        dropdownListChangedSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataLoadSuccess value)? dataLoadSuccess,
+    TResult Function(_RefreshSuccess value)? refreshSuccess,
+    TResult Function(_DropdownListChangedSuccess value)?
+        dropdownListChangedSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements FindListRepairerState {
+  const factory _Failure() = _$_Failure;
 }

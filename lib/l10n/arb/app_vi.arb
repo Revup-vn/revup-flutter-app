@@ -32,5 +32,6 @@
   "nextLabel": "Tiếp theo",
   "doneLabel": "Xong",
   "callHelpLabel" : "Gọi trợ giúp",
-  "serviceLabel" : "Dịch vụ"
+  "serviceLabel" : "Dịch vụ",
+  "minutesLabel" : "phút"
 }

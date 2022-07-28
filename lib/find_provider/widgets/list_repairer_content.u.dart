@@ -1,10 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart';
 
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../models/provider_data.dart';
 
@@ -16,8 +17,7 @@ class ListRepairerContent extends StatelessWidget {
   final IList<ProviderData>? listProvider;
   @override
   Widget build(BuildContext context) {
-    final providerVector =
-        IVector.from(listProvider!.toIterable()); //null check
+    final providerVector = IVector.from(listProvider!.toIterable());
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -84,8 +84,9 @@ class ListRepairerContent extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          margin: const EdgeInsets.only(left: 8),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               AutoSizeText(
                                 providerVector
@@ -93,7 +94,7 @@ class ListRepairerContent extends StatelessWidget {
                                     .getOrElse(ProviderData.new)
                                     .numberStarRating
                                     .toString(),
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
                               Icon(
                                 Icons.star,
@@ -106,7 +107,10 @@ class ListRepairerContent extends StatelessWidget {
                                 '(${providerVector.get(index).getOrElse(
                                       ProviderData.new,
                                     ).totalRating.toString()})',
-                                style: Theme.of(context).textTheme.bodySmall,
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                              const SizedBox(
+                                width: 10,
                               ),
                               const Icon(
                                 Icons.location_pin,
@@ -118,14 +122,18 @@ class ListRepairerContent extends StatelessWidget {
                                     ).distance.toString()} m',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               const Icon(
                                 Icons.timer,
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${providerVector.get(index).getOrElse(
+                                '''
+${providerVector.get(index).getOrElse(
                                       ProviderData.new,
-                                    ).timeArrivalInMinus.toString()} minute',
+                                    ).timeArrivalInMinute.toString()} ${context.l10n.minutesLabel}''',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],

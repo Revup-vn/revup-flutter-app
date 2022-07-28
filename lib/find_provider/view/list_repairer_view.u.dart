@@ -1,11 +1,11 @@
-import 'dart:developer';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/find_list_repairer_bloc.dart';
-import '../widgets/list_repairer_main_view.u.dart';
+import '../widgets/list_repairer.u.dart';
+import '../widgets/list_repairer_failure.dart';
+import '../widgets/list_repairer_loading.u.dart';
 
 class ListRepairerView extends StatelessWidget {
   const ListRepairerView({super.key});
@@ -21,19 +21,19 @@ class ListRepairerView extends StatelessWidget {
           orElse: () => false,
         );
     return BlocBuilder<FindListRepairerBloc, FindListRepairerState>(
-      builder: (context, state) => state.maybeWhen(
+      builder: (context, state) => state.when(
         dataLoadSuccess: (listProvider) =>
-            ListRepairerMainView(listProvider: listProvider),
-        refreshSuccess: (listProvider) => ListRepairerMainView(
+            ListRepairer(listProvider: listProvider),
+        refreshSuccess: (listProvider) => ListRepairer(
           listProvider: listProvider,
         ),
-        dropdownListChangedSuccess: (listProvider, sortType) =>
-            ListRepairerMainView(
+        dropdownListChangedSuccess: (listProvider, sortType) => ListRepairer(
           listProvider: listProvider,
           sortType: sortType,
         ),
         initial: (_) => Container(),
-        orElse: () => const ListRepairerMainView(),
+        loading: () => const ListRepairerLoading(),
+        failure: () => const ListRepairerLoadDataFailure(),
       ),
     );
   }
