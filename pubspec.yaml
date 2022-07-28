@@ -9,10 +9,8 @@ environment:
 dependencies:
   auto_route: ^4.2.1
   auto_size_text: ^3.0.0
-  bloc: ^8.0.3
   cached_network_image: ^3.2.1
   card_swiper: ^2.0.4
-  connectivity_plus: ^2.3.5
   dartz: ^0.10.1
   dotted_border: ^2.0.0+2
   firebase_core: ^1.20.0

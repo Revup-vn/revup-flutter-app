@@ -40,22 +40,22 @@ mixin _$FindListRepairerEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Refresh value) refresh,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) =>
@@ -80,26 +80,27 @@ class _$FindListRepairerEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$StartedCopyWith<$Res> {
-  factory _$$StartedCopyWith(_$Started value, $Res Function(_$Started) then) =
-      __$$StartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
     extends _$FindListRepairerEventCopyWithImpl<$Res>
-    implements _$$StartedCopyWith<$Res> {
-  __$$StartedCopyWithImpl(_$Started _value, $Res Function(_$Started) _then)
-      : super(_value, (v) => _then(v as _$Started));
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$Started get _value => super._value as _$Started;
+  _$_Started get _value => super._value as _$_Started;
 }
 
 /// @nodoc
 
-class _$Started implements Started {
-  const _$Started();
+class _$_Started implements _Started {
+  const _$_Started();
 
   @override
   String toString() {
@@ -109,7 +110,7 @@ class _$Started implements Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Started);
+        (other.runtimeType == runtimeType && other is _$_Started);
   }
 
   @override
@@ -152,8 +153,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Refresh value) refresh,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return started(this);
@@ -162,8 +163,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return started?.call(this);
@@ -172,8 +173,8 @@ class _$Started implements Started {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -184,31 +185,32 @@ class _$Started implements Started {
   }
 }
 
-abstract class Started implements FindListRepairerEvent {
-  const factory Started() = _$Started;
+abstract class _Started implements FindListRepairerEvent {
+  const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$RefreshCopyWith<$Res> {
-  factory _$$RefreshCopyWith(_$Refresh value, $Res Function(_$Refresh) then) =
-      __$$RefreshCopyWithImpl<$Res>;
+abstract class _$$_RefreshCopyWith<$Res> {
+  factory _$$_RefreshCopyWith(
+          _$_Refresh value, $Res Function(_$_Refresh) then) =
+      __$$_RefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RefreshCopyWithImpl<$Res>
+class __$$_RefreshCopyWithImpl<$Res>
     extends _$FindListRepairerEventCopyWithImpl<$Res>
-    implements _$$RefreshCopyWith<$Res> {
-  __$$RefreshCopyWithImpl(_$Refresh _value, $Res Function(_$Refresh) _then)
-      : super(_value, (v) => _then(v as _$Refresh));
+    implements _$$_RefreshCopyWith<$Res> {
+  __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
+      : super(_value, (v) => _then(v as _$_Refresh));
 
   @override
-  _$Refresh get _value => super._value as _$Refresh;
+  _$_Refresh get _value => super._value as _$_Refresh;
 }
 
 /// @nodoc
 
-class _$Refresh implements Refresh {
-  const _$Refresh();
+class _$_Refresh implements _Refresh {
+  const _$_Refresh();
 
   @override
   String toString() {
@@ -218,7 +220,7 @@ class _$Refresh implements Refresh {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Refresh);
+        (other.runtimeType == runtimeType && other is _$_Refresh);
   }
 
   @override
@@ -261,8 +263,8 @@ class _$Refresh implements Refresh {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Refresh value) refresh,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return refresh(this);
@@ -271,8 +273,8 @@ class _$Refresh implements Refresh {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return refresh?.call(this);
@@ -281,8 +283,8 @@ class _$Refresh implements Refresh {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -293,8 +295,8 @@ class _$Refresh implements Refresh {
   }
 }
 
-abstract class Refresh implements FindListRepairerEvent {
-  const factory Refresh() = _$Refresh;
+abstract class _Refresh implements FindListRepairerEvent {
+  const factory _Refresh() = _$_Refresh;
 }
 
 /// @nodoc
@@ -397,8 +399,8 @@ class _$DropdownListChanged implements DropdownListChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(Refresh value) refresh,
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return dropdownListChanged(this);
@@ -407,8 +409,8 @@ class _$DropdownListChanged implements DropdownListChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return dropdownListChanged?.call(this);
@@ -417,8 +419,8 @@ class _$DropdownListChanged implements DropdownListChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(Refresh value)? refresh,
+    TResult Function(_Started value)? started,
+    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {

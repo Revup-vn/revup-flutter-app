@@ -20,6 +20,7 @@ class RepairerProfileView extends StatelessWidget {
           },
           orElse: () => false,
         );
+
     return BlocBuilder<RepairerProfileBloc, RepairerProfileState>(
       builder: (context, state) => state.when(
         initial: () => const RepairerLoading(),

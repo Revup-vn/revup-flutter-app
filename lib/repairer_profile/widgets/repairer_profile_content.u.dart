@@ -25,6 +25,7 @@ class RepairerProfileMainContent extends StatelessWidget {
     const coverHeight = 150;
     final serviceDataVector = IVector.from(serviceData.toIterable());
     final ratingDataVector = IVector.from(ratingData.toIterable());
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -83,7 +84,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
-                        )
+                        ),
                       ],
                     ),
                     Row(
@@ -99,7 +100,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
-                        )
+                        ),
                       ],
                     ),
                     const SizedBox(

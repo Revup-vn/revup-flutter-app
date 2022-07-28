@@ -18,6 +18,7 @@ class ListRepairerContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerVector = IVector.from(listProvider!.toIterable());
+
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -152,7 +153,7 @@ ${providerVector.get(index).getOrElse(
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         );

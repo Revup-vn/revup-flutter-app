@@ -74,7 +74,9 @@ class RepairerProfileFeedback extends StatelessWidget {
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,
                             ),
-                            onRatingUpdate: (double value) {},
+                            onRatingUpdate: (double value) {
+                              // TODO(wamynobe): update when rating change
+                            },
                           ),
                         ),
                         AutoSizeText(
@@ -107,7 +109,7 @@ class RepairerProfileFeedback extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         );

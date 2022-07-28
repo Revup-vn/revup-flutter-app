@@ -20,7 +20,9 @@ class RepairerProfileServices extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              // TODO(wanynobe): rount to service detail screen
+            },
             child: ListBody(
               children: [
                 Row(
@@ -74,7 +76,7 @@ class RepairerProfileServices extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

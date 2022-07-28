@@ -67,7 +67,7 @@ class FindListRepairerBloc
         profileBio: 'Đến với chúng tôi các bạn sẽ là thượng đế',
         timeArrivalInMinute: 10,
         totalRating: 107,
-      )
+      ),
     ],
   );
 }

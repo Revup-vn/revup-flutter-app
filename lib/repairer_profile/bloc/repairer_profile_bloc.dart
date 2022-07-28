@@ -45,9 +45,10 @@ class RepairerProfileBloc
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFmMQW_46WiQGj4DA4Z_DcXz2RrBE7gr7v9qqmOTydEkLH02RVePhWZsSoa-G1UwhtP2A&usqp=CAU',
           name: 'Thay Xăm',
           serviceFee: 200000,
-        )
+        ),
       ],
     );
+
     return listServiceData;
   }
 
@@ -83,6 +84,7 @@ class RepairerProfileBloc
         ),
       ],
     );
+
     return listServiceData;
   }
 
@@ -101,6 +103,7 @@ class RepairerProfileBloc
       timeArrivalInMinute: 10,
       totalRating: 107,
     );
+
     return provider;
   }
 }

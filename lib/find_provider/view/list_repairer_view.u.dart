@@ -20,6 +20,7 @@ class ListRepairerView extends StatelessWidget {
           },
           orElse: () => false,
         );
+
     return BlocBuilder<FindListRepairerBloc, FindListRepairerState>(
       builder: (context, state) => state.when(
         dataLoadSuccess: (listProvider) =>
