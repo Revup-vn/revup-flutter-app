@@ -158,7 +158,9 @@ class _$_ServiceData implements _ServiceData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ServiceDataToJson(this);
+    return _$$_ServiceDataToJson(
+      this,
+    );
   }
 }
 

@@ -19,19 +19,19 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,23 +103,15 @@ class __$$StartCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Start with DiagnosticableTreeMixin implements Start {
+class _$Start implements Start {
   const _$Start({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginEvent.start(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.start'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -144,7 +136,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) {
     return start(isLoginButtonEnabled);
   }
@@ -153,7 +145,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) {
     return start?.call(isLoginButtonEnabled);
   }
@@ -162,7 +154,7 @@ class _$Start with DiagnosticableTreeMixin implements Start {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -215,6 +207,7 @@ abstract class Start implements LoginEvent {
 abstract class _$$SubmitCopyWith<$Res> {
   factory _$$SubmitCopyWith(_$Submit value, $Res Function(_$Submit) then) =
       __$$SubmitCopyWithImpl<$Res>;
+  $Res call({String phoneNumber});
 }
 
 /// @nodoc
@@ -225,60 +218,78 @@ class __$$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
   @override
   _$Submit get _value => super._value as _$Submit;
+
+  @override
+  $Res call({
+    Object? phoneNumber = freezed,
+  }) {
+    return _then(_$Submit(
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$Submit with DiagnosticableTreeMixin implements Submit {
-  const _$Submit();
+class _$Submit implements Submit {
+  const _$Submit({required this.phoneNumber});
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginEvent.submit()';
-  }
+  final String phoneNumber;
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LoginEvent.submit'));
+  String toString() {
+    return 'LoginEvent.submit(phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Submit);
+        (other.runtimeType == runtimeType &&
+            other is _$Submit &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(phoneNumber));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SubmitCopyWith<_$Submit> get copyWith =>
+      __$$SubmitCopyWithImpl<_$Submit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isLoginButtonEnabled) start,
-    required TResult Function() submit,
+    required TResult Function(String phoneNumber) submit,
   }) {
-    return submit();
+    return submit(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
   }) {
-    return submit?.call();
+    return submit?.call(phoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoginButtonEnabled)? start,
-    TResult Function()? submit,
+    TResult Function(String phoneNumber)? submit,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit();
+      return submit(phoneNumber);
     }
     return orElse();
   }
@@ -316,7 +327,12 @@ class _$Submit with DiagnosticableTreeMixin implements Submit {
 }
 
 abstract class Submit implements LoginEvent {
-  const factory Submit() = _$Submit;
+  const factory Submit({required final String phoneNumber}) = _$Submit;
+
+  String get phoneNumber;
+  @JsonKey(ignore: true)
+  _$$SubmitCopyWith<_$Submit> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -427,23 +443,15 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.initial(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.initial'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -586,23 +594,15 @@ class __$$_ReadyCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Ready with DiagnosticableTreeMixin implements _Ready {
+class _$_Ready implements _Ready {
   const _$_Ready({required this.isLoginButtonEnabled});
 
   @override
   final bool isLoginButtonEnabled;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.ready(isLoginButtonEnabled: $isLoginButtonEnabled)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.ready'))
-      ..add(DiagnosticsProperty('isLoginButtonEnabled', isLoginButtonEnabled));
   }
 
   @override
@@ -732,18 +732,12 @@ class __$$_LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LoginState.loading'));
   }
 
   @override
@@ -872,23 +866,15 @@ class __$$_FailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure with DiagnosticableTreeMixin implements _Failure {
+class _$_Failure implements _Failure {
   const _$_Failure({required this.errorMessage});
 
   @override
   final String errorMessage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.failure(errorMessage: $errorMessage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.failure'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override
@@ -1031,23 +1017,15 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success with DiagnosticableTreeMixin implements _Success {
+class _$_Success implements _Success {
   const _$_Success({required this.phoneNumber});
 
   @override
   final String phoneNumber;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginState.success(phoneNumber: $phoneNumber)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.success'))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber));
   }
 
   @override

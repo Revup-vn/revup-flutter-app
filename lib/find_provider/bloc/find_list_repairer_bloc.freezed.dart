@@ -98,19 +98,12 @@ class __$$StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Started with DiagnosticableTreeMixin implements Started {
+class _$Started implements Started {
   const _$Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'FindListRepairerEvent.started'));
   }
 
   @override
@@ -214,19 +207,12 @@ class __$$RefreshCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Refresh with DiagnosticableTreeMixin implements Refresh {
+class _$Refresh implements Refresh {
   const _$Refresh();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerEvent.refresh()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'FindListRepairerEvent.refresh'));
   }
 
   @override
@@ -345,26 +331,15 @@ class __$$DropdownListChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DropdownListChanged
-    with DiagnosticableTreeMixin
-    implements DropdownListChanged {
+class _$DropdownListChanged implements DropdownListChanged {
   const _$DropdownListChanged({required this.sortType});
 
   @override
   final String sortType;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerEvent.dropdownListChanged(sortType: $sortType)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'FindListRepairerEvent.dropdownListChanged'))
-      ..add(DiagnosticsProperty('sortType', sortType));
   }
 
   @override
@@ -586,23 +561,15 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial({required this.hasValue});
 
   @override
   final bool hasValue;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.initial(hasValue: $hasValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerState.initial'))
-      ..add(DiagnosticsProperty('hasValue', hasValue));
   }
 
   @override
@@ -758,26 +725,15 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataLoadSuccess
-    with DiagnosticableTreeMixin
-    implements _DataLoadSuccess {
+class _$_DataLoadSuccess implements _DataLoadSuccess {
   const _$_DataLoadSuccess({required this.listProvider});
 
   @override
   final IList<ProviderData> listProvider;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.dataLoadSuccess(listProvider: $listProvider)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(
-          DiagnosticsProperty('type', 'FindListRepairerState.dataLoadSuccess'))
-      ..add(DiagnosticsProperty('listProvider', listProvider));
   }
 
   @override
@@ -935,25 +891,15 @@ class __$$_RefreshSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RefreshSuccess
-    with DiagnosticableTreeMixin
-    implements _RefreshSuccess {
+class _$_RefreshSuccess implements _RefreshSuccess {
   const _$_RefreshSuccess({required this.listProvider});
 
   @override
   final IList<ProviderData> listProvider;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.refreshSuccess(listProvider: $listProvider)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'FindListRepairerState.refreshSuccess'))
-      ..add(DiagnosticsProperty('listProvider', listProvider));
   }
 
   @override
@@ -1119,9 +1065,7 @@ class __$$_DropdownListChangedSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DropdownListChangedSuccess
-    with DiagnosticableTreeMixin
-    implements _DropdownListChangedSuccess {
+class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
   const _$_DropdownListChangedSuccess(
       {required this.listProvider, required this.sortType});
 
@@ -1131,18 +1075,8 @@ class _$_DropdownListChangedSuccess
   final String sortType;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.dropdownListChangedSuccess(listProvider: $listProvider, sortType: $sortType)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'FindListRepairerState.dropdownListChangedSuccess'))
-      ..add(DiagnosticsProperty('listProvider', listProvider))
-      ..add(DiagnosticsProperty('sortType', sortType));
   }
 
   @override
@@ -1292,19 +1226,12 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'FindListRepairerState.loading'));
   }
 
   @override
@@ -1433,19 +1360,12 @@ class __$$_FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure with DiagnosticableTreeMixin implements _Failure {
+class _$_Failure implements _Failure {
   const _$_Failure();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'FindListRepairerState.failure()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'FindListRepairerState.failure'));
   }
 
   @override

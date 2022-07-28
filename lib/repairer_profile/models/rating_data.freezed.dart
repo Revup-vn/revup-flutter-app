@@ -224,7 +224,9 @@ class _$_RatingData implements _RatingData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RatingDataToJson(this);
+    return _$$_RatingDataToJson(
+      this,
+    );
   }
 }
 

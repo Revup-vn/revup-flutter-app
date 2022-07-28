@@ -298,7 +298,9 @@ class _$_ProviderData implements _ProviderData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProviderDataToJson(this);
+    return _$$_ProviderDataToJson(
+      this,
+    );
   }
 }
 

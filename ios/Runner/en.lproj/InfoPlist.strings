@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by dvg on 18/07/2022.
+  
+*/
+"NSCameraUsageDescription"="Revup requires access to the camera";
+"NSPhotoLibraryUsageDescription"="Revup requires access to the photo librar";
