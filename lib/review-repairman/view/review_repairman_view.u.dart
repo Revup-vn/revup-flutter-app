@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -205,7 +204,6 @@ class ReviewRepairmanView extends StatelessWidget {
                         child: Column(
                           children: [
                             RatingBar.builder(
-                              ignoreGestures: true,
                               initialRating: 4.5,
                               itemSize: 30,
                               allowHalfRating: true,
