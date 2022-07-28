@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +13,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     });
 
-    on<Submit>((event, emit) {}); // TODO(cantgim): implement submit event
+    on<Submit>((event, emit) {
+      emit(
+        LoginState.success(phoneNumber: event.phoneNumber),
+      );
+    }); // TODO(cantgim): implement submit event
   }
 }

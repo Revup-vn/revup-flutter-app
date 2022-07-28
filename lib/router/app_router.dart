@@ -5,10 +5,12 @@ import '../account/view/account_page.u.dart';
 import '../activate/view/activate_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
-import '../login/view/login_page.dart';
+import '../login/view/login_page.u.dart';
 import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
+import '../profile/view/signup6_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
 import '../service/choose-product/view/choose_product_page.dart';
 import '../service/choose-service/view/choose_service_page.dart';
@@ -22,10 +24,10 @@ import '../test/test.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
+      initial: true,
     ),
     AdaptiveRoute<void>(
       page: HomePage,
-      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: ActivatePage),
@@ -38,6 +40,8 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
+    AdaptiveRoute<void>(page: OTPPage),
+    AdaptiveRoute<void>(page: Signup6Page),
     AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<ServiceData>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),

@@ -1,46 +1,36 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
-import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../l10n/l10n.dart';
-import '../../shared/utils.dart';
-import '../bloc/profile_bloc.dart';
 
 class Signup6Page extends StatelessWidget {
-  const Signup6Page({super.key});
+  const Signup6Page(
+    this.completer,
+    this.phoneNumber,
+    this.photoURL,
+    this.uid,
+    this.email, {
+    super.key,
+  });
+  final Completer completer;
+  final String phoneNumber;
+  final String photoURL;
+  final String uid;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    //late AppUser user ;
-    late var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime.now(),
-      addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
-      active: true,
-      avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-    );
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +48,19 @@ class Signup6Page extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: user,
+              user: AppUser.consumer(
+                uuid: '',
+                firstName: '',
+                lastName: '',
+                phone: phoneNumber,
+                dob: DateTime.now(),
+                addr: '',
+                email: email,
+                active: false,
+                avatarUrl: photoURL,
+                createdTime: DateTime.now(),
+                lastUpdatedTime: DateTime.now(),
+              ),
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
@@ -97,6 +99,8 @@ class Signup6Page extends StatelessWidget {
                     ]),
                   ),
                   FormBuilderTextField(
+                    enabled: email == '',
+                    initialValue: email,
                     style: Theme.of(context).textTheme.labelLarge,
                     decoration: InputDecoration(
                       labelText: l10n.emailLabel,
@@ -120,6 +124,8 @@ class Signup6Page extends StatelessWidget {
                     ]),
                   ),
                   FormBuilderTextField(
+                    enabled: phoneNumber == '',
+                    initialValue: phoneNumber,
                     style: Theme.of(context).textTheme.labelLarge,
                     decoration: InputDecoration(
                       labelText: l10n.phoneLabel,
@@ -180,43 +186,46 @@ class Signup6Page extends StatelessWidget {
                       ),
                     ]),
                   ),
-                  BlocSelector<ProfileBloc, ProfileState, String>(
-                    selector: (state) => state.maybeWhen(
-                      loaded: (
-                        fullName,
-                        email,
-                        phone,
-                        date,
-                        address,
-                      ) =>
-                          DateFormat('dd-MM-yyyy').format(date),
-                      orElse: () => '',
-                    ),
-                    builder: (context, state) => Text(state),
-                  ),
                   const SizedBox(
                     height: 160,
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       _formKey.currentState!.saveAndValidate();
                       final data = _formKey.currentState!.value;
-                      final fName = data['fullName'].toString();
-                      final email = data['email'].toString();
-                      final phone = data['phone'].toString();
-                      final date = data['date'] as DateTime;
-                      final address = data['address'].toString();
-                      final user = UserModel(
-                        name: fName,
-                        email: email,
-                        phone: phone,
-                        date: date,
-                        address: address,
-                        urlImage: '',
+                      final fName = data['fullName'].toString().split(' ')[0];
+                      final lName = data['fullName'].toString().split(fName)[1];
+                      var phoneNumber = data['phone'].toString();
+                      if (phoneNumber.substring(0, 3) == '+84') {
+                        phoneNumber = phoneNumber.substring(
+                          3,
+                          phoneNumber.length,
+                        );
+                      }
+                      if (phoneNumber.substring(0, 1) == '0') {
+                        phoneNumber = phoneNumber.substring(
+                          1,
+                          phoneNumber.length,
+                        );
+                      }
+                      completer.complete(
+                        AppUser.consumer(
+                          uuid: uid,
+                          firstName: fName,
+                          lastName: lName,
+                          phone: '+84$phoneNumber',
+                          dob: DateTime.parse(
+                            data['date'].toString().split(' ')[0],
+                          ),
+                          addr: data['address'].toString(),
+                          email: data['email'].toString(),
+                          active: true,
+                          avatarUrl: photoURL,
+                          createdTime: DateTime.now(),
+                          lastUpdatedTime: DateTime.now(),
+                        ),
                       );
-                      context
-                          .read<ProfileBloc>()
-                          .add(ProfileEvent.submitted(user));
+                      await context.router.pop();
                     }, // TODO(namngoc231): complete update profile
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(

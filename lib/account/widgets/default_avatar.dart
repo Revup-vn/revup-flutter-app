@@ -19,7 +19,7 @@ class DefaultAvatar extends StatelessWidget {
         children: [
           Align(
             child: AutoSizeText(
-              userName[0].toUpperCase(),
+              userName == '' ? 'R' : userName[0].toUpperCase(),
               style: textSize?.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary,
                   ) ??
