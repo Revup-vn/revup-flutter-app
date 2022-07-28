@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../find_provider/models/provider_data.dart';
-import '../models/rating_data.dart';
-import '../models/service_data.dart';
+import '../../find_provider/models/provider_data.u.dart';
+import '../models/rating_data.u.dart';
+import '../models/service_data.u.dart';
 
 part 'repairer_profile_event.dart';
 part 'repairer_profile_state.dart';

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'rating_data.dart';
+part of 'rating_data.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RatingData _$RatingDataFromJson(Map<String, dynamic> json) {
-  return _RatingData.fromJson(json);
-}
-
 /// @nodoc
 mixin _$RatingData {
   int? get rating => throw _privateConstructorUsedError;
@@ -27,7 +23,6 @@ mixin _$RatingData {
   String? get consumerName => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RatingDataCopyWith<RatingData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -158,7 +153,7 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_RatingData implements _RatingData {
   _$_RatingData(
       {this.rating,
@@ -167,9 +162,6 @@ class _$_RatingData implements _RatingData {
       this.updatedTime,
       this.consumerName,
       this.imageUrl});
-
-  factory _$_RatingData.fromJson(Map<String, dynamic> json) =>
-      _$$_RatingDataFromJson(json);
 
   @override
   final int? rating;
@@ -206,7 +198,6 @@ class _$_RatingData implements _RatingData {
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -221,13 +212,6 @@ class _$_RatingData implements _RatingData {
   @override
   _$$_RatingDataCopyWith<_$_RatingData> get copyWith =>
       __$$_RatingDataCopyWithImpl<_$_RatingData>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RatingDataToJson(
-      this,
-    );
-  }
 }
 
 abstract class _RatingData implements RatingData {
@@ -238,9 +222,6 @@ abstract class _RatingData implements RatingData {
       final DateTime? updatedTime,
       final String? consumerName,
       final String? imageUrl}) = _$_RatingData;
-
-  factory _RatingData.fromJson(Map<String, dynamic> json) =
-      _$_RatingData.fromJson;
 
   @override
   int? get rating;

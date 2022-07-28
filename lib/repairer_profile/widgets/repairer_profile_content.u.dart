@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../find_provider/models/provider_data.dart';
-import '../models/rating_data.dart';
-import '../models/service_data.dart';
+import '../../find_provider/models/provider_data.u.dart';
+import '../models/rating_data.u.dart';
+import '../models/service_data.u.dart';
 import 'repairer_profile_avatar_image.u.dart';
 import 'repairer_profile_cover_image.u.dart';
 import 'repairer_profile_tabbar.u.dart';

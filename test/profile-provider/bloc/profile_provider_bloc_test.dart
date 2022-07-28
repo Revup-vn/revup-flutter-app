@@ -2,10 +2,10 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:revup/find_provider/models/provider_data.dart';
+import 'package:revup/find_provider/models/provider_data.u.dart';
 import 'package:revup/repairer_profile/bloc/repairer_profile_bloc.dart';
-import 'package:revup/repairer_profile/models/rating_data.dart';
-import 'package:revup/repairer_profile/models/service_data.dart';
+import 'package:revup/repairer_profile/models/rating_data.u.dart';
+import 'package:revup/repairer_profile/models/service_data.u.dart';
 
 void main() {
   group('LoginBloc', () {

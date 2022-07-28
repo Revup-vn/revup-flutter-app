@@ -373,8 +373,6 @@ abstract class _$$_DataLoadSuccessCopyWith<$Res> {
       {IList<ServiceData> serviceData,
       IList<RatingData> ratingData,
       ProviderData provider});
-
-  $ProviderDataCopyWith<$Res> get provider;
 }
 
 /// @nodoc
@@ -408,13 +406,6 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
           : provider // ignore: cast_nullable_to_non_nullable
               as ProviderData,
     ));
-  }
-
-  @override
-  $ProviderDataCopyWith<$Res> get provider {
-    return $ProviderDataCopyWith<$Res>(_value.provider, (value) {
-      return _then(_value.copyWith(provider: value));
-    });
   }
 }
 

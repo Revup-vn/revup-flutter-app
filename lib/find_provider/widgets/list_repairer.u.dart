@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
 import '../bloc/find_list_repairer_bloc.dart';
-import '../models/provider_data.dart';
+import '../models/provider_data.u.dart';
 import 'list_repairer_content.u.dart';
 
 class ListRepairer extends StatelessWidget {

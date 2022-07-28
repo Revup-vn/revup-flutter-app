@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:revup/find_provider/bloc/find_list_repairer_bloc.dart';
-import 'package:revup/find_provider/models/provider_data.dart';
+import 'package:revup/find_provider/models/provider_data.u.dart';
 
 void main() {
   group('LoginBloc', () {

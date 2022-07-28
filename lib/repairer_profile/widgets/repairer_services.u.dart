@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
 
-import '../models/service_data.dart';
+import '../models/service_data.u.dart';
 
 class RepairerProfileServices extends StatelessWidget {
   const RepairerProfileServices(this.serviceData, {super.key});

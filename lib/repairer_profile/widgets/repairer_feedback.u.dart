@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../models/rating_data.dart';
+import '../models/rating_data.u.dart';
 
 class RepairerProfileFeedback extends StatelessWidget {
   const RepairerProfileFeedback(this.ratingData, {super.key});

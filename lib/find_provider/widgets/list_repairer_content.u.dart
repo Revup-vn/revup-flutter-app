@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
-import '../models/provider_data.dart';
+import '../models/provider_data.u.dart';
 
 class ListRepairerContent extends StatelessWidget {
   const ListRepairerContent({

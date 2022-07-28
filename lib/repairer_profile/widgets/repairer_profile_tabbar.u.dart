@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../l10n/l10n.dart';
-import '../models/rating_data.dart';
-import '../models/service_data.dart';
+import '../models/rating_data.u.dart';
+import '../models/service_data.u.dart';
 import 'repairer_feedback.u.dart';
 import 'repairer_services.u.dart';
 

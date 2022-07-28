@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../models/provider_data.dart';
+import '../models/provider_data.u.dart';
 
 part 'find_list_repairer_event.dart';
 part 'find_list_repairer_state.dart';
