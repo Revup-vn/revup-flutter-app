@@ -8,7 +8,7 @@ import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../order-sevice/bloc/order_service_bloc.dart';
-import '../../router/app_router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/utils.dart';
 import '../widgets/default_avatar.dart';
 

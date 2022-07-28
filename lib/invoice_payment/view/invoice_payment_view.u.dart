@@ -9,7 +9,7 @@ import 'package:revup_core/core.dart';
 import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../order-sevice/bloc/order_service_bloc.dart';
-import '../../router/app_router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/utils.dart';
 
 class InvoicePaymentView extends StatelessWidget {

@@ -8,6 +8,8 @@ part 'invoice_payment_state.dart';
 class InvoicePaymentBloc
     extends Bloc<InvoicePaymentEvent, InvoicePaymentState> {
   InvoicePaymentBloc() : super(const _Initial()) {
-    on<InvoicePaymentEvent>((event, emit) {});
+    on<InvoicePaymentEvent>((event, emit) {
+      // TODO(namngoc231): Invoice Payment
+    });
   }
 }

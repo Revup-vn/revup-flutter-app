@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by dvg on 18/07/2022.
+  
+*/
+"NSCameraUsageDescription"="Cho phép Revup truy cập camera";
+"NSPhotoLibraryUsageDescription"="Cho phép Revup truy cập ảnh của bạn";
