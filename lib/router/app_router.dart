@@ -6,14 +6,19 @@ import '../activate/view/activate_page.u.dart';
 import '../find_provider/view/list_repairer_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
+import '../invoice/view/service_invoice_page.u.dart';
+import '../invoice_payment/view/invoice_payment_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../order-sevice/view/repair_status_page.u.dart';
+import '../order-sevice/view/service_detail_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../profile/view/signup6_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
+import '../review-repairman/view/review_repairman_page.u.dart';
 import '../service/choose-product/view/choose_product_page.dart';
 import '../service/choose-service/view/choose_service_page.dart';
 import '../service/choose-service/view/service_details_page.dart';
@@ -28,6 +33,11 @@ import '../test/test.dart';
       page: SplashPage,
       initial: true,
     ),
+    AdaptiveRoute<void>(page: ServiceDetailPage),
+    AdaptiveRoute<void>(page: RepairStatusPage),
+    AdaptiveRoute<void>(page: ServiceInvoicePage),
+    AdaptiveRoute<void>(page: InvoicePaymentPage),
+    AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
