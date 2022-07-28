@@ -167,7 +167,7 @@ class AppRouter extends _i25.RootStackRouter {
 
   @override
   List<_i25.RouteConfig> get routes => [
-        _i25.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i25.RouteConfig(SplashRoute.name, path: '/'),
         _i25.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
         _i25.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i25.RouteConfig(ServiceInvoiceRoute.name,
@@ -187,7 +187,7 @@ class AppRouter extends _i25.RootStackRouter {
               path: 'account-page', parent: HomeRoute.name)
         ]),
         _i25.RouteConfig(PaymentRoute.name, path: '/payment-page'),
-        _i25.RouteConfig(UpdateProfileRoute.name, path: '/'),
+        _i25.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
         _i25.RouteConfig(TestRoute.name, path: '/test-page'),
         _i25.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i25.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
@@ -208,7 +208,7 @@ class AppRouter extends _i25.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i25.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -297,7 +297,8 @@ class PaymentRoute extends _i25.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.UpdateProfilePage]
 class UpdateProfileRoute extends _i25.PageRouteInfo<void> {
-  const UpdateProfileRoute() : super(UpdateProfileRoute.name, path: '/');
+  const UpdateProfileRoute()
+      : super(UpdateProfileRoute.name, path: '/update-profile-page');
 
   static const String name = 'UpdateProfileRoute';
 }
