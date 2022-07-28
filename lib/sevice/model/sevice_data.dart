@@ -31,6 +31,42 @@ class ServiceData {
         name: 'Thay phanh',
         price: 250000,
       ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
+      ServiceModel(
+        name: 'Thay phanh',
+        price: 250000,
+      ),
     ];
   }
 }
