@@ -212,6 +212,7 @@ class LoginView extends StatelessWidget {
                 children: [
                   LoginSsoItem(
                     ssoIcon: Assets.screens.facebookOriginal.svg(),
+                    // TODO(wamynobe): display toast
                   ),
                   const SizedBox(width: 56),
                   LoginSsoItem(
