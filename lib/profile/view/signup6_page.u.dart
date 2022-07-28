@@ -31,6 +31,7 @@ class Signup6Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(

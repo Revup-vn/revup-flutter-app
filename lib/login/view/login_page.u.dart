@@ -37,6 +37,7 @@ class LoginPage extends StatelessWidget {
                 phoneNumber.length,
               );
             }
+
             return context.read<AuthenticateBloc>().add(
                   AuthenticateEvent.loginWithPhone(
                     phoneNumber: '+84${appUser.phone}',
@@ -49,6 +50,7 @@ class LoginPage extends StatelessWidget {
                           completer: completer,
                         ),
                       );
+
                       return completer.future;
                     },
                     onSignUpSubmit: (user) {

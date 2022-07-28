@@ -20,6 +20,7 @@ class LoginFailure extends StatelessWidget {
         context.router.pop();
       },
     );
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -42,7 +43,7 @@ class LoginFailure extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

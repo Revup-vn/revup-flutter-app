@@ -16,6 +16,7 @@ class LoginSucess extends StatelessWidget {
         predicate: (dynamic _) => false,
       ),
     );
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -38,7 +39,7 @@ class LoginSucess extends StatelessWidget {
               const CircularProgressIndicator.adaptive(),
             ],
           ),
-        )
+        ),
       ],
     );
   }

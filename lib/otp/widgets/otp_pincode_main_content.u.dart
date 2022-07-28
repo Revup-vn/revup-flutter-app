@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class PincodeOTP extends StatelessWidget {
-  const PincodeOTP(this.phoneNumber, this.completer, {super.key});
+class OTPCode extends StatelessWidget {
+  const OTPCode(this.phoneNumber, this.completer, {super.key});
   final String phoneNumber;
   final Completer completer;
 
@@ -32,7 +32,9 @@ class PincodeOTP extends StatelessWidget {
             completer.complete(v);
             await context.router.pop();
           },
-          onChanged: (v) {},
+          onChanged: (String value) {
+            // TODO(wamynob): implement
+          },
         ),
       ],
     );

@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -28,6 +26,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (context.loaderOverlay.visible) context.loaderOverlay.hide();
     final l10n = context.l10n;
+
     return LoaderOverlay(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -165,6 +164,7 @@ class LoginView extends StatelessWidget {
                                               completer: completer,
                                             ),
                                           );
+
                                           return completer.future;
                                         },
                                         onSignUpSubmit: (user) async {
@@ -181,6 +181,7 @@ class LoginView extends StatelessWidget {
                                               email: user.email ?? '',
                                             ),
                                           );
+
                                           return completer.future;
                                         },
                                         onSignUpSuccess: () {
@@ -230,6 +231,7 @@ class LoginView extends StatelessWidget {
                                 email: user.email ?? '',
                               ),
                             );
+
                             return completer.future;
                           },
                         ),

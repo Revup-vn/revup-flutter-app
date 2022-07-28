@@ -59,6 +59,7 @@ class ChooseServiceView extends StatelessWidget {
                       success: (services) {
                         final servicesVector =
                             IVector.from(services.toIterable());
+
                         return Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.only(bottom: 100),

@@ -45,8 +45,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 gaplessPlayback: true,
                 width: 64,
               ),
-              // ignore: implicit_dynamic_parameter
-              errorWidget: (context, url, error) {
+              errorWidget: (context, url, dynamic error) {
                 return Assets.screens.dfAvatar.image(
                   fit: BoxFit.cover,
                   height: 64,

@@ -14,6 +14,7 @@ class OTPMainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
@@ -55,7 +56,7 @@ class OTPMainContent extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              PincodeOTP(phoneNumber, completer),
+              OTPCode(phoneNumber, completer),
             ],
           ),
         ),

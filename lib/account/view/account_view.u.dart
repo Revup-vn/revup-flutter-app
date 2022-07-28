@@ -141,7 +141,7 @@ class AccountView extends StatelessWidget {
                     width: 16,
                   ),
                   AutoSizeText(
-                    l10n.guideAndSuportLabel,
+                    l10n.guideAndSupportLabel,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],
@@ -168,7 +168,7 @@ class AccountView extends StatelessWidget {
                 },
               ),
               AccountItem(
-                accountName: l10n.suportsLabel,
+                accountName: l10n.supportsLabel,
                 accountIcon: const Icon(Icons.help),
                 callback: () {
                   // TODO(namngoc231): Go to Suports
