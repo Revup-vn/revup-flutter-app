@@ -129,7 +129,6 @@ class RepairReviewHomePage extends StatelessWidget {
                       Column(
                     children: [
                       RatingBar.builder(
-                        ignoreGestures: true,
                         initialRating: provider.rating,
                         itemSize: 30,
                         allowHalfRating: true,
