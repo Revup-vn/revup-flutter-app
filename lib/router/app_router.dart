@@ -48,9 +48,7 @@ import '../test/test.dart';
       ],
     ),
     AdaptiveRoute<void>(page: PaymentPage),
-    AdaptiveRoute<void>(
-      page: UpdateProfilePage,
-    ),
+    AdaptiveRoute<void>(page: UpdateProfilePage),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
