@@ -10,7 +10,8 @@
 //
 // ignore_for_file: type=lint
 
-import 'dart:async' as _i21;
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i22;
 
 import 'package:auto_route/auto_route.dart' as _i18;
 import 'package:flutter/material.dart' as _i19;
@@ -36,6 +37,7 @@ import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i11;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i5;
+import 'package:revup_core/core.dart' as _i21;
 
 class AppRouter extends _i18.RootStackRouter {
   AppRouter([_i19.GlobalKey<_i19.NavigatorState>? navigatorKey])
@@ -48,8 +50,10 @@ class AppRouter extends _i18.RootStackRouter {
           routeData: routeData, child: const _i1.SplashPage());
     },
     HomeRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeRouteArgs>();
       return _i18.AdaptivePage<void>(
-          routeData: routeData, child: const _i2.HomePage());
+          routeData: routeData,
+          child: _i2.HomePage(key: args.key, user: args.user));
     },
     PaymentRoute.name: (routeData) {
       return _i18.AdaptivePage<void>(
@@ -161,11 +165,30 @@ class SplashRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.HomePage]
-class HomeRoute extends _i18.PageRouteInfo<void> {
-  const HomeRoute({List<_i18.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home-page', initialChildren: children);
+class HomeRoute extends _i18.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute(
+      {_i19.Key? key,
+      required _i21.AppUser user,
+      List<_i18.PageRouteInfo>? children})
+      : super(HomeRoute.name,
+            path: '/home-page',
+            args: HomeRouteArgs(key: key, user: user),
+            initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key, required this.user});
+
+  final _i19.Key? key;
+
+  final _i21.AppUser user;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for
@@ -215,7 +238,7 @@ class OnboardingRoute extends _i18.PageRouteInfo<void> {
 class OTPRoute extends _i18.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i21.Completer<dynamic> completer,
+      required _i22.Completer<dynamic> completer,
       _i19.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -231,7 +254,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i21.Completer<dynamic> completer;
+  final _i22.Completer<dynamic> completer;
 
   final _i19.Key? key;
 
@@ -245,7 +268,7 @@ class OTPRouteArgs {
 /// [_i9.Signup6Page]
 class Signup6Route extends _i18.PageRouteInfo<Signup6RouteArgs> {
   Signup6Route(
-      {required _i21.Completer<dynamic> completer,
+      {required _i22.Completer<_i21.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
@@ -273,7 +296,7 @@ class Signup6RouteArgs {
       required this.email,
       this.key});
 
-  final _i21.Completer<dynamic> completer;
+  final _i22.Completer<_i21.AppUser> completer;
 
   final String phoneNumber;
 

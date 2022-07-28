@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:revup_core/core.dart';
 
 import '../../router/app_router.gr.dart';
 
-class LoginSucess extends StatelessWidget {
-  const LoginSucess({super.key});
+class LoginSuccess extends StatelessWidget {
+  const LoginSuccess({
+    super.key,
+    required this.type,
+  });
+
+  final AuthType type;
 
   @override
   Widget build(BuildContext context) {
     Future<void>.delayed(
       const Duration(seconds: 3),
       () => context.router.pushAndPopUntil(
-        const HomeRoute(),
+        HomeRoute(user: type.user),
         predicate: (dynamic _) => false,
       ),
     );

@@ -21,7 +21,7 @@ class Signup6Page extends StatelessWidget {
     this.email, {
     super.key,
   });
-  final Completer completer;
+  final Completer<AppUser> completer;
   final String phoneNumber;
   final String photoURL;
   final String uid;
