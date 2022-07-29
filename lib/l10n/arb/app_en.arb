@@ -89,7 +89,6 @@
   "serviceDescriptionLabel": "Description (100 characters max)",
   "serviceDetailLabel": "Service details required",
   "serviceDetailsAppBarTitle": "Service details",
-  "serviceInfoLabel": "Service information",
   "serviceInforLabel" : "Service Information",
   "serviceInvoiceLabel":"Service Invoice",
   "serviceLabel":"Service",
