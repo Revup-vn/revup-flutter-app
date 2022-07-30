@@ -12,11 +12,22 @@ import 'list_repairer_content.u.dart';
 class ListRepairer extends StatelessWidget {
   const ListRepairer({
     super.key,
-    this.sortType,
-    this.listProvider,
+    required this.sortType,
+    required this.listProvider,
   });
-  final String? sortType;
-  final IList<ProviderData>? listProvider;
+
+  factory ListRepairer.def({
+    Key? key,
+    required IList<ProviderData> listProvider,
+  }) =>
+      ListRepairer(
+        key: key,
+        sortType: '',
+        listProvider: listProvider,
+      );
+
+  final String sortType;
+  final IList<ProviderData> listProvider;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

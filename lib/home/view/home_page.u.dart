@@ -16,8 +16,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return RepositoryProvider<AppUser>(
-      create: (_) => user,
+    return RepositoryProvider.value(
+      value: user,
       child: AutoTabsScaffold(
         routes: const [
           HomeBodyRoute(),

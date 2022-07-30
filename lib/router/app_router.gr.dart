@@ -85,8 +85,10 @@ class AppRouter extends _i25.RootStackRouter {
           child: _i7.HomePage(key: args.key, user: args.user));
     },
     PaymentRoute.name: (routeData) {
+      final args = routeData.argsAs<PaymentRouteArgs>();
       return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.PaymentPage());
+          routeData: routeData,
+          child: _i8.PaymentPage(key: args.key, user: args.user));
     },
     UpdateProfileRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
@@ -288,10 +290,26 @@ class HomeRouteArgs {
 
 /// generated route for
 /// [_i8.PaymentPage]
-class PaymentRoute extends _i25.PageRouteInfo<void> {
-  const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
+class PaymentRoute extends _i25.PageRouteInfo<PaymentRouteArgs> {
+  PaymentRoute({_i26.Key? key, required _i28.AppUser user})
+      : super(PaymentRoute.name,
+            path: '/payment-page',
+            args: PaymentRouteArgs(key: key, user: user));
 
   static const String name = 'PaymentRoute';
+}
+
+class PaymentRouteArgs {
+  const PaymentRouteArgs({this.key, required this.user});
+
+  final _i26.Key? key;
+
+  final _i28.AppUser user;
+
+  @override
+  String toString() {
+    return 'PaymentRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

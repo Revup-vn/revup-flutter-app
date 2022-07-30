@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:revup_core/core.dart';
 
 import '../models/provider_data.u.dart';
 
@@ -12,24 +13,31 @@ part 'find_list_repairer_bloc.freezed.dart';
 
 class FindListRepairerBloc
     extends Bloc<FindListRepairerEvent, FindListRepairerState> {
-  FindListRepairerBloc() : super(const _Initial(hasValue: false)) {
+  FindListRepairerBloc(this._userStore)
+      : super(const _Initial(hasValue: false)) {
     on<FindListRepairerEvent>(_onEvent);
   }
 
+  final IStore<AppUser> _userStore;
   FutureOr<void> _onEvent(
     FindListRepairerEvent event,
     Emitter<FindListRepairerState> emit,
   ) async {
-    event.when(
-      started: () {
+    await event.when(
+      started: () async {
         emit(
           const FindListRepairerState.loading(),
         );
-        emit(
-          FindListRepairerState.dataLoadSuccess(
-            listProvider: listRepairer,
-          ),
-        );
+        (await _userStore.all())
+            .map((aUsers) => aUsers.map(ProviderData.fromDtos))
+            .fold(
+              (l) => emit(const FindListRepairerState.failure()),
+              (r) => emit(
+                FindListRepairerState.dataLoadSuccess(
+                  listProvider: r,
+                ),
+              ),
+            );
       },
       refresh: () {
         emit(
