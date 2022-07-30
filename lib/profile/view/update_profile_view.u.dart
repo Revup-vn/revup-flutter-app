@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -11,38 +9,32 @@ import 'package:revup_core/core.dart';
 import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../l10n/l10n.dart';
-import '../../shared/utils.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/profile_bloc.dart';
 
 class UpdateProfileView extends StatelessWidget {
-  const UpdateProfileView({super.key});
-
+  const UpdateProfileView({super.key, required this.user, required this.model});
+  final UserModel user;
+  final AppUser model;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    //late AppUser user ;
-    late var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime(1997),
-      addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
-      active: true,
-      avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-    );
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
+
+    // late var user = AppUser.consumer(
+    //   uuid: '1a',
+    //   firstName: 'Nam',
+    //   lastName: 'Ngoc',
+    //   phone: '0866199497',
+    //   dob: DateTime(1997),
+    //   addr: 'Ninh Binh',
+    //   email: 'namngoc231@gmail.com',
+    //   active: true,
+    //   avatarUrl:
+    //       'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
+    //   createdTime: DateTime.now(),
+    //   lastUpdatedTime: DateTime.now(),
+    // );
 
     return Scaffold(
       appBar: AppBar(
@@ -99,7 +91,8 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
-                      initialValue: '${user.firstName} ${user.lastName}',
+                      //initialValue: '${user.firstName} ${user.lastName}',
+                      initialValue: user.name,
                     ),
                     FormBuilderTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -169,7 +162,7 @@ class UpdateProfileView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      initialValue: user.dob,
+                      initialValue: user.date,
                       initialDate: DateTime.now()
                           .subtract(const Duration(days: 356 * 18)),
                       lastDate: DateTime.now()
@@ -195,7 +188,7 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.emptyLabel,
                         ),
                       ]),
-                      initialValue: user.addr,
+                      initialValue: user.address,
                     ),
                     BlocSelector<ProfileBloc, ProfileState, String>(
                       selector: (state) => state.maybeWhen(

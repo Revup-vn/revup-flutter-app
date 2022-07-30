@@ -152,14 +152,15 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserModel implements _UserModel {
+class _$_UserModel extends _UserModel {
   const _$_UserModel(
       {required this.name,
       required this.email,
       required this.phone,
       required this.date,
       required this.address,
-      required this.urlImage});
+      required this.urlImage})
+      : super._();
 
   @override
   final String name;
@@ -208,7 +209,7 @@ class _$_UserModel implements _UserModel {
       __$$_UserModelCopyWithImpl<_$_UserModel>(this, _$identity);
 }
 
-abstract class _UserModel implements UserModel {
+abstract class _UserModel extends UserModel {
   const factory _UserModel(
       {required final String name,
       required final String email,
@@ -216,6 +217,7 @@ abstract class _UserModel implements UserModel {
       required final DateTime date,
       required final String address,
       required final String urlImage}) = _$_UserModel;
+  const _UserModel._() : super._();
 
   @override
   String get name;

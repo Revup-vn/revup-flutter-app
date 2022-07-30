@@ -4,6 +4,10 @@ import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
 import '../activate/view/activate_page.u.dart';
 import '../find_provider/view/list_repairer_page.u.dart';
+import '../guide-support/view/about_us_page.u.dart';
+import '../guide-support/view/faqs_page.u.dart';
+import '../guide-support/view/terms_privacy_page.u.dart';
+import '../guide-support/widgets/faqs_item_otp.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../invoice/view/service_invoice_page.u.dart';
@@ -48,7 +52,9 @@ import '../test/test.dart';
       ],
     ),
     AdaptiveRoute<void>(page: PaymentPage),
-    AdaptiveRoute<void>(page: UpdateProfilePage),
+    AdaptiveRoute<void>(
+      page: UpdateProfilePage,
+    ),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
@@ -60,6 +66,12 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
+    AdaptiveRoute<void>(
+      page: FAQsPage,
+    ),
+    AdaptiveRoute<void>(page: FAQsItemOTPPage),
+    AdaptiveRoute<void>(page: AboutUsPage),
+    AdaptiveRoute<void>(page: TermsPrivacyPage),
   ],
 )
 class $AppRouter {}
