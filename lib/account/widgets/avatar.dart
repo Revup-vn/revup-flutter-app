@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:revup_core/core.dart';
+
 import '../../shared/fallbacks.dart';
-import '../model/user_model.dart';
 import 'default_avatar.dart';
 
 class Avatar extends StatelessWidget {
@@ -11,7 +12,7 @@ class Avatar extends StatelessWidget {
     required this.user,
     this.callback,
   });
-  final UserModel user;
+  final AppUser user;
   final VoidCallback? callback;
 
   @override
@@ -26,17 +27,17 @@ class Avatar extends StatelessWidget {
             child: CachedNetworkImage(
               fadeInDuration: const Duration(milliseconds: 50),
               fadeOutDuration: const Duration(milliseconds: 50),
-              imageUrl: user.urlImage.isEmpty ? kFallbackImage : user.urlImage,
+              imageUrl: user.avatarUrl == '' ? kFallbackImage : user.avatarUrl,
               placeholder: (context, url) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.headline1,
-                  userName: user.name,
+                  userName: user.firstName + user.lastName,
                 );
               },
               errorWidget: (context, url, dynamic error) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.headline1,
-                  userName: user.name,
+                  userName: user.firstName + user.lastName,
                 );
               },
               height: 64,

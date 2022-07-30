@@ -1,23 +1,43 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
-import '../model/user_model.dart';
+import '../../shared/utils.dart';
 import '../widgets/account_item.dart';
 import '../widgets/avatar.dart';
 
 class AccountView extends StatelessWidget {
-  const AccountView({super.key, required this.user, required this.model});
-
-  final UserModel user;
-  final AppUser model;
+  const AccountView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
+    //late AppUser user ;
+    late var user = AppUser.consumer(
+      uuid: '1a',
+      firstName: 'Nam',
+      lastName: 'Ngoc',
+      phone: '0866199497',
+      dob: DateTime.now(),
+      addr: 'Ninh Binh',
+      email: 'namngoc231@gmail.com',
+      active: true,
+      avatarUrl:
+          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
+      createdTime: DateTime.now(),
+      lastUpdatedTime: DateTime.now(),
+    );
+    if (mayBeUser.isSome()) {
+      user = mayBeUser.toNullable()!;
+    } else {
+      context.router.popUntil((route) => true);
+    }
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -36,7 +56,7 @@ class AccountView extends StatelessWidget {
                 height: 16,
               ),
               AutoSizeText(
-                user.name,
+                '${user.firstName} ${user.lastName}',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
