@@ -9,6 +9,7 @@ import '../home/widgets/home_body_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../order/order_overview/view/overview_order_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../profile/view/signup6_page.u.dart';
@@ -20,13 +21,13 @@ import '../service/choose-service/view/service_details_page.dart';
 import '../service/models/service_data.dart';
 import '../service/new-service/view/new_service_request_page.dart';
 import '../test/test.dart';
+import '../video_call/view/calling_page.u.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
-      initial: true,
     ),
     AdaptiveRoute<void>(
       page: HomePage,
@@ -50,6 +51,8 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
+    AdaptiveRoute<void>(page: OverViewOrderPage),
+    AdaptiveRoute<void>(page: CallingPage, initial: true),
   ],
 )
 class $AppRouter {}

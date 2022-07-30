@@ -38,6 +38,7 @@ dependencies:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
       version: ^2.0.0-dev
+  simple_ripple_animation: ^0.0.3
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 

@@ -94,5 +94,11 @@
   "productPriceLabel": "Đơn giá",
   "commonErrorLabel": "Đã xảy ra lỗi",
   "emptyLabel": "Trống",
-  "servicePriceLabel": "Giá"
+  "servicePriceLabel": "Giá",
+  "videoCallDescription": "Đối tác có thể trao đổi qua cuộc gọi video với thợ sửa để có sự chuẩn bị tốt nhất nhé!",
+  "detailLabel": "Chi tiết",
+  "totalFeeLabel": "Tổng chi phí",
+  "transitFeeLabel": "Phí di chuyển",
+  "serviceFeeLabel": "Phí dịch vụ"
+
 }

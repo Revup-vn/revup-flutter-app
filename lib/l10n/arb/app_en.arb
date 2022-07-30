@@ -80,7 +80,7 @@
   "confirmLabel": "Confirm",
   "addLabel": "Add new",
   "serviceDetailsAppBarTitle": "Service details",
-  "serviceInfoLabel": "Service information",
+  "serviceInforLabel": "Service information",
   "productListLabel": "List of products",
   "newRequestServiceAppBarTitle": "Other service request",
   "serviceNameLabel": "Service name",
@@ -94,5 +94,10 @@
   "productPriceLabel": "Unit price",
   "commonErrorLabel": "An error occurred",
   "emptyLabel": "Empty",
-  "servicePriceLabel": "Price"
+  "servicePriceLabel": "Price",
+  "videoCallDescription": "Partners can discuss via video call with the repairman for the best preparation!",
+  "detailLabel": "Detail",
+  "totalFeeLabel": "Total Fee",
+  "transitFeeLabel": "Transit fee",
+  "serviceFeeLabel": "Service fee"
 }
