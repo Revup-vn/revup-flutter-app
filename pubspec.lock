@@ -1076,10 +1076,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: a73fb36651712b0cae43c5cd529652c541bbaffe
+      resolved-ref: "5aee4e51c941102e0f4ec9228a39eb75a497e655"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "2.3.0-dev+1"
+    version: "2.3.0-dev+2"
   rxdart:
     dependency: transitive
     description:

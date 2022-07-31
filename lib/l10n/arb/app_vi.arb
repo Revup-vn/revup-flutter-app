@@ -112,5 +112,11 @@
   "workerRepairLabel": "Thợ đang tiến hành sửa chữa",
   "yourFeedbackLabel": "Phản hồi của bạn",
   "zaloPayLabel": "ZaloPay",
-  "selectProductLabel": "Chọn sản phẩm"
+  "selectProductLabel": "Chọn sản phẩm",
+  "postLabel": "Bài viết",
+  "termsPrivacyLabel": "Điều khoản và bảo mật",
+  "questionOTPLabel": "Tại sao tôi không nhận được Mã xác minh (OTP)?",
+  "questionCallLabel": "Làm sao để gọi điện trên ứng dụng Revup?",
+  "questionPayLabel": "Làm sao để thanh toán trên ứng dụng Revup?",
+  "questionAccountLabel": "Tại sao tài khoản REVUP của tôi bị khoá?"
 }

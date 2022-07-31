@@ -11,10 +11,15 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i33;
+
+import 'dart:async' as _i34;
+
+import 'package:flutter/material.dart' as _i30;
 
 import 'package:auto_route/auto_route.dart' as _i29;
-import 'package:flutter/material.dart' as _i30;
+import 'package:revup_core/core.dart' as _i32;
+
+import 'package:revup/account/model/user_model.dart' as _i33;
 import 'package:revup/account/view/account_page.u.dart' as _i28;
 import 'package:revup/activate/view/activate_page.u.dart' as _i26;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i19;
@@ -35,6 +40,10 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i13;
 import 'package:revup/payment/view/payment_page.u.dart' as _i8;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i14;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i9;
+import 'package:revup/service/models/service_data.dart' as _i31;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i10;
+
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i20;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
@@ -45,12 +54,8 @@ import 'package:revup/service/choose-service/view/choose_service_page.dart'
     as _i15;
 import 'package:revup/service/choose-service/view/service_details_page.dart'
     as _i17;
-import 'package:revup/service/models/service_data.dart' as _i31;
 import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i16;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i10;
-import 'package:revup_core/core.dart' as _i32;
 
 class AppRouter extends _i29.RootStackRouter {
   AppRouter([_i30.GlobalKey<_i30.NavigatorState>? navigatorKey])
@@ -89,12 +94,17 @@ class AppRouter extends _i29.RootStackRouter {
           child: _i7.HomePage(key: args.key, user: args.user));
     },
     PaymentRoute.name: (routeData) {
+      final args = routeData.argsAs<PaymentRouteArgs>();
       return _i29.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.PaymentPage());
+          routeData: routeData,
+          child: _i8.PaymentPage(key: args.key, user: args.user));
     },
     UpdateProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<UpdateProfileRouteArgs>();
       return _i29.AdaptivePage<void>(
-          routeData: routeData, child: const _i9.UpdateProfilePage());
+          routeData: routeData,
+          child: _i9.UpdateProfilePage(
+              key: args.key, user: args.user, model: args.model));
     },
     TestRoute.name: (routeData) {
       return _i29.AdaptivePage<void>(
@@ -187,7 +197,7 @@ class AppRouter extends _i29.RootStackRouter {
 
   @override
   List<_i29.RouteConfig> get routes => [
-        _i29.RouteConfig(SplashRoute.name, path: '/'),
+        _i29.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i29.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
         _i29.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i29.RouteConfig(ServiceInvoiceRoute.name,
@@ -222,7 +232,7 @@ class AppRouter extends _i29.RootStackRouter {
         _i29.RouteConfig(ListRepairerRoute.name, path: '/list-repairer-page'),
         _i29.RouteConfig(RepairerProfileRoute.name,
             path: '/repairer-profile-page'),
-        _i29.RouteConfig(FAQsRoute.name, path: '/f-aqs-page'),
+        _i29.RouteConfig(FAQsRoute.name, path: '/'),
         _i29.RouteConfig(FAQsItemOTPRoute.name, path: '/f-aqs-item-ot-pPage'),
         _i29.RouteConfig(AboutUsRoute.name, path: '/about-us-page'),
         _i29.RouteConfig(TermsPrivacyRoute.name, path: '/terms-privacy-page')
@@ -232,7 +242,7 @@ class AppRouter extends _i29.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i29.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -312,19 +322,56 @@ class HomeRouteArgs {
 
 /// generated route for
 /// [_i8.PaymentPage]
-class PaymentRoute extends _i29.PageRouteInfo<void> {
-  const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
+class PaymentRoute extends _i29.PageRouteInfo<PaymentRouteArgs> {
+  PaymentRoute({_i30.Key? key, required _i32.AppUser user})
+      : super(PaymentRoute.name,
+            path: '/payment-page',
+            args: PaymentRouteArgs(key: key, user: user));
 
   static const String name = 'PaymentRoute';
 }
 
+class PaymentRouteArgs {
+  const PaymentRouteArgs({this.key, required this.user});
+
+  final _i30.Key? key;
+
+  final _i32.AppUser user;
+
+  @override
+  String toString() {
+    return 'PaymentRouteArgs{key: $key, user: $user}';
+  }
+}
+
 /// generated route for
 /// [_i9.UpdateProfilePage]
-class UpdateProfileRoute extends _i29.PageRouteInfo<void> {
-  const UpdateProfileRoute()
-      : super(UpdateProfileRoute.name, path: '/update-profile-page');
+class UpdateProfileRoute extends _i29.PageRouteInfo<UpdateProfileRouteArgs> {
+  UpdateProfileRoute(
+      {_i30.Key? key,
+      required _i33.UserModel user,
+      required _i32.AppUser model})
+      : super(UpdateProfileRoute.name,
+            path: '/update-profile-page',
+            args: UpdateProfileRouteArgs(key: key, user: user, model: model));
 
   static const String name = 'UpdateProfileRoute';
+}
+
+class UpdateProfileRouteArgs {
+  const UpdateProfileRouteArgs(
+      {this.key, required this.user, required this.model});
+
+  final _i30.Key? key;
+
+  final _i33.UserModel user;
+
+  final _i32.AppUser model;
+
+  @override
+  String toString() {
+    return 'UpdateProfileRouteArgs{key: $key, user: $user, model: $model}';
+  }
 }
 
 /// generated route for
@@ -357,7 +404,7 @@ class OnboardingRoute extends _i29.PageRouteInfo<void> {
 class OTPRoute extends _i29.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i33.Completer<dynamic> completer,
+      required _i34.Completer<dynamic> completer,
       _i30.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -373,7 +420,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i33.Completer<dynamic> completer;
+  final _i34.Completer<dynamic> completer;
 
   final _i30.Key? key;
 
@@ -387,7 +434,7 @@ class OTPRouteArgs {
 /// [_i14.Signup6Page]
 class Signup6Route extends _i29.PageRouteInfo<Signup6RouteArgs> {
   Signup6Route(
-      {required _i33.Completer<_i32.AppUser> completer,
+      {required _i34.Completer<_i32.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
@@ -415,7 +462,7 @@ class Signup6RouteArgs {
       required this.email,
       this.key});
 
-  final _i33.Completer<_i32.AppUser> completer;
+  final _i34.Completer<_i32.AppUser> completer;
 
   final String phoneNumber;
 
@@ -521,7 +568,7 @@ class RepairerProfileRouteArgs {
 /// generated route for
 /// [_i21.FAQsPage]
 class FAQsRoute extends _i29.PageRouteInfo<void> {
-  const FAQsRoute() : super(FAQsRoute.name, path: '/f-aqs-page');
+  const FAQsRoute() : super(FAQsRoute.name, path: '/');
 
   static const String name = 'FAQsRoute';
 }

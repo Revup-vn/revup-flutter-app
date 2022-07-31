@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 

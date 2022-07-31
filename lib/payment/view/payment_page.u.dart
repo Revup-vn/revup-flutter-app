@@ -1,16 +1,32 @@
-import 'package:auto_size_text/auto_size_text.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/payment_item.u.dart';
 
 class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key, required this.user});
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    final _paymentAccount =
+        context.read<StoreRepository>().paymentAccount(user);
+    _paymentAccount.all().then<void>(
+          (value) => value.fold(
+            (l) => log('error'),
+            (r) => log(r.length().toString()),
+          ),
+        );
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +60,7 @@ class PaymentPage extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconsZalo.svg(),
                   paymentName: l10n.zaloPayLabel,
-                  clickCallback: () {
+                  callback: () {
                     // TODO(namngoc231): payment ZaloPay
                   },
                 ),
@@ -53,8 +69,14 @@ class PaymentPage extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconMomo.svg(),
                   paymentName: l10n.momoLabel,
-                  clickCallback: () {
-                    // TODO(namngoc231): payment MoMo
+                  callback: () {
+                    showFlash(
+                      context: context,
+                      builder: (context, controller) => Flash<void>.dialog(
+                        controller: controller,
+                        child: const Text('OK'),
+                      ),
+                    );
                   },
                 ),
               ),

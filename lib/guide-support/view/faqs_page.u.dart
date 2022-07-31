@@ -16,7 +16,7 @@ class FAQsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          'Câu hỏi thường gặp',
+          l10n.faqsLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -30,7 +30,7 @@ class FAQsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FAQsItem(
-                faqsName: 'Tại sao tôi không nhận được Mã xác minh (OTP)?',
+                faqsName: l10n.questionOTPLabel,
                 callback: () {
                   context.router.push(
                     const FAQsItemOTPRoute(),
@@ -38,7 +38,7 @@ class FAQsPage extends StatelessWidget {
                 }, // TODO(namngoc231): go to faqs detail
               ),
               FAQsItem(
-                faqsName: 'Làm sao để gọi điện trên ứng dụng Revup?',
+                faqsName: l10n.questionCallLabel,
                 callback: () {
                   context.router.push(
                     const AboutUsRoute(),
@@ -46,7 +46,7 @@ class FAQsPage extends StatelessWidget {
                 }, // TODO(namngoc231): go to faqs detail
               ),
               FAQsItem(
-                faqsName: 'Làm sao để thanh toán trên ứng dụng Revup?',
+                faqsName: l10n.questionCallLabel,
                 callback: () {
                   context.router.push(
                     const TermsPrivacyRoute(),
@@ -54,8 +54,10 @@ class FAQsPage extends StatelessWidget {
                 }, // TODO(namngoc231): go to faqs detail
               ),
               FAQsItem(
-                faqsName: 'Tại sao tài khoản REVUP của tôi bị khoá?',
-                callback: () {}, // TODO(namngoc231): go to faqs detail
+                faqsName: l10n.questionAccountLabel,
+                callback: () {
+                  // TODO(namngoc231): go to faqs detail
+                },
               ),
             ],
           ),

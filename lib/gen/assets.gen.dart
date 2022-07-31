@@ -73,11 +73,12 @@ class $AssetsScreensGen {
   SvgGenImage get orderConfirm =>
       const SvgGenImage('assets/screens/order_confirm.svg');
 
-  /// File path: assets/screens/privacy.svg
-  SvgGenImage get privacy => const SvgGenImage('assets/screens/privacy.svg');
-
   /// File path: assets/screens/sos.svg
   SvgGenImage get sos => const SvgGenImage('assets/screens/sos.svg');
+
+  /// File path: assets/screens/terms-privacy.svg
+  SvgGenImage get termsPrivacy =>
+      const SvgGenImage('assets/screens/terms-privacy.svg');
 
   /// File path: assets/screens/vehicle_maintenance.svg
   SvgGenImage get vehicleMaintenance =>
@@ -87,8 +88,8 @@ class $AssetsScreensGen {
   AssetGenImage get vietnamFlag =>
       const AssetGenImage('assets/screens/vietnam_flag.png');
 
-  /// File path: assets/screens/vision.svg
-  SvgGenImage get vision => const SvgGenImage('assets/screens/vision.svg');
+  /// File path: assets/screens/vison.svg
+  SvgGenImage get vison => const SvgGenImage('assets/screens/vison.svg');
 
   /// File path: assets/screens/welcome.svg
   SvgGenImage get welcome => const SvgGenImage('assets/screens/welcome.svg');

@@ -40,7 +40,7 @@
   "endowLabel": "Endow",
   "enterOTPCodeLabel": "Enter your OTP",
   "existedPhoneNumberLabel": "Phone number already existed",
-  "faqsLabel": "FAQs",
+  "faqsLabel": "Frequently asked questions",
   "fullNameLabel": "FULL NAME",
   "gasStationLabel": "Find a gas station",
   "guideAndSupportLabel": "Guide & Support",
@@ -112,5 +112,11 @@
   "workerRepairLabel": "Worker doing repairs",
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
-  "selectProductLabel": "Select product"
+  "selectProductLabel": "Select product",
+  "postLabel": "Posts",
+  "termsPrivacyLabel": "Terms and Privacy",
+  "questionOTPLabel": "Why didn't I receive the Verification Code (OTP)?",
+  "questionCallLabel": "How to make calls on Revup app?",
+  "questionPayLabel": "How to pay on Revup app?",
+  "questionAccountLabel": "Why is my REVUP account locked?"
 }
