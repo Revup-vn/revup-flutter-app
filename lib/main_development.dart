@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'router/app_router.gr.dart';
 import 'package:revup_core/core.dart';
 
-import 'configs/firebase_options_pub.dart';
+import 'configs/firebase_options.dart';
 import 'l10n/l10n.dart';
 
 void main() {

@@ -23,7 +23,8 @@ class ServiceAvatar extends StatelessWidget {
             gaplessPlayback: true,
             width: 64,
           ),
-          errorWidget: <dynamic>(context, url, error) {
+          // ignore: implicit_dynamic_parameter
+          errorWidget: (context, url, error) {
             return Assets.screens.dfAvatar.image(
               fit: BoxFit.cover,
               height: 64,

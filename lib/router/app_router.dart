@@ -3,6 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
 import '../activate/view/activate_page.u.dart';
+
+import '../find_nearby/view/find_nearby_page.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../login/view/login_page.dart';
@@ -25,7 +27,6 @@ import '../test/test.dart';
     ),
     AdaptiveRoute<void>(
       page: HomePage,
-      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: ActivatePage),
@@ -42,6 +43,7 @@ import '../test/test.dart';
     AdaptiveRoute<ServiceData>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
+    AdaptiveRoute<void>(page: FindNearbyPage, initial: true),
   ],
 )
 class $AppRouter {}
