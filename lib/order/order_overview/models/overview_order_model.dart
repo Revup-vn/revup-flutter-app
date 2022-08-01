@@ -7,6 +7,8 @@ part 'overview_order_model.freezed.dart';
 class OverviewOrderModel with _$OverviewOrderModel {
   factory OverviewOrderModel({
     required String providerID,
+    required String providerAvatarImg,
+    required String proviverPhoneNumber,
     required String videoCallID,
     required String providerName,
     required String distance,
@@ -17,8 +19,10 @@ class OverviewOrderModel with _$OverviewOrderModel {
           providerID: user.uuid,
           videoCallID: 'videoCallID',
           providerName: '${user.firstName} ${user.lastName}',
-          distance: distance,
+          distance: '500',
+          providerAvatarImg: user.avatarUrl,
+          proviverPhoneNumber: user.phone,
         ),
-        orElse: () => false,
+        orElse: () => throw NullThrownError(),
       );
 }

@@ -16,9 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OverviewOrderModel {
-  String? get providerID => throw _privateConstructorUsedError;
-  String? get distance => throw _privateConstructorUsedError;
-  String? get repairRequestID => throw _privateConstructorUsedError;
+  String get providerID => throw _privateConstructorUsedError;
+  String get providerAvatarImg => throw _privateConstructorUsedError;
+  String get proviverPhoneNumber => throw _privateConstructorUsedError;
+  String get videoCallID => throw _privateConstructorUsedError;
+  String get providerName => throw _privateConstructorUsedError;
+  String get distance => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OverviewOrderModelCopyWith<OverviewOrderModel> get copyWith =>
@@ -30,7 +33,13 @@ abstract class $OverviewOrderModelCopyWith<$Res> {
   factory $OverviewOrderModelCopyWith(
           OverviewOrderModel value, $Res Function(OverviewOrderModel) then) =
       _$OverviewOrderModelCopyWithImpl<$Res>;
-  $Res call({String? providerID, String? distance, String? repairRequestID});
+  $Res call(
+      {String providerID,
+      String providerAvatarImg,
+      String proviverPhoneNumber,
+      String videoCallID,
+      String providerName,
+      String distance});
 }
 
 /// @nodoc
@@ -45,22 +54,37 @@ class _$OverviewOrderModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? providerID = freezed,
+    Object? providerAvatarImg = freezed,
+    Object? proviverPhoneNumber = freezed,
+    Object? videoCallID = freezed,
+    Object? providerName = freezed,
     Object? distance = freezed,
-    Object? repairRequestID = freezed,
   }) {
     return _then(_value.copyWith(
       providerID: providerID == freezed
           ? _value.providerID
           : providerID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      providerAvatarImg: providerAvatarImg == freezed
+          ? _value.providerAvatarImg
+          : providerAvatarImg // ignore: cast_nullable_to_non_nullable
+              as String,
+      proviverPhoneNumber: proviverPhoneNumber == freezed
+          ? _value.proviverPhoneNumber
+          : proviverPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      videoCallID: videoCallID == freezed
+          ? _value.videoCallID
+          : videoCallID // ignore: cast_nullable_to_non_nullable
+              as String,
+      providerName: providerName == freezed
+          ? _value.providerName
+          : providerName // ignore: cast_nullable_to_non_nullable
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String?,
-      repairRequestID: repairRequestID == freezed
-          ? _value.repairRequestID
-          : repairRequestID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -72,7 +96,13 @@ abstract class _$$_OverviewOrderModelCopyWith<$Res>
           $Res Function(_$_OverviewOrderModel) then) =
       __$$_OverviewOrderModelCopyWithImpl<$Res>;
   @override
-  $Res call({String? providerID, String? distance, String? repairRequestID});
+  $Res call(
+      {String providerID,
+      String providerAvatarImg,
+      String proviverPhoneNumber,
+      String videoCallID,
+      String providerName,
+      String distance});
 }
 
 /// @nodoc
@@ -89,22 +119,37 @@ class __$$_OverviewOrderModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? providerID = freezed,
+    Object? providerAvatarImg = freezed,
+    Object? proviverPhoneNumber = freezed,
+    Object? videoCallID = freezed,
+    Object? providerName = freezed,
     Object? distance = freezed,
-    Object? repairRequestID = freezed,
   }) {
     return _then(_$_OverviewOrderModel(
       providerID: providerID == freezed
           ? _value.providerID
           : providerID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      providerAvatarImg: providerAvatarImg == freezed
+          ? _value.providerAvatarImg
+          : providerAvatarImg // ignore: cast_nullable_to_non_nullable
+              as String,
+      proviverPhoneNumber: proviverPhoneNumber == freezed
+          ? _value.proviverPhoneNumber
+          : proviverPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      videoCallID: videoCallID == freezed
+          ? _value.videoCallID
+          : videoCallID // ignore: cast_nullable_to_non_nullable
+              as String,
+      providerName: providerName == freezed
+          ? _value.providerName
+          : providerName // ignore: cast_nullable_to_non_nullable
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String?,
-      repairRequestID: repairRequestID == freezed
-          ? _value.repairRequestID
-          : repairRequestID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -112,18 +157,30 @@ class __$$_OverviewOrderModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OverviewOrderModel implements _OverviewOrderModel {
-  _$_OverviewOrderModel({this.providerID, this.distance, this.repairRequestID});
+  _$_OverviewOrderModel(
+      {required this.providerID,
+      required this.providerAvatarImg,
+      required this.proviverPhoneNumber,
+      required this.videoCallID,
+      required this.providerName,
+      required this.distance});
 
   @override
-  final String? providerID;
+  final String providerID;
   @override
-  final String? distance;
+  final String providerAvatarImg;
   @override
-  final String? repairRequestID;
+  final String proviverPhoneNumber;
+  @override
+  final String videoCallID;
+  @override
+  final String providerName;
+  @override
+  final String distance;
 
   @override
   String toString() {
-    return 'OverviewOrderModel(providerID: $providerID, distance: $distance, repairRequestID: $repairRequestID)';
+    return 'OverviewOrderModel(providerID: $providerID, providerAvatarImg: $providerAvatarImg, proviverPhoneNumber: $proviverPhoneNumber, videoCallID: $videoCallID, providerName: $providerName, distance: $distance)';
   }
 
   @override
@@ -133,17 +190,26 @@ class _$_OverviewOrderModel implements _OverviewOrderModel {
             other is _$_OverviewOrderModel &&
             const DeepCollectionEquality()
                 .equals(other.providerID, providerID) &&
-            const DeepCollectionEquality().equals(other.distance, distance) &&
             const DeepCollectionEquality()
-                .equals(other.repairRequestID, repairRequestID));
+                .equals(other.providerAvatarImg, providerAvatarImg) &&
+            const DeepCollectionEquality()
+                .equals(other.proviverPhoneNumber, proviverPhoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.videoCallID, videoCallID) &&
+            const DeepCollectionEquality()
+                .equals(other.providerName, providerName) &&
+            const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(providerID),
-      const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(repairRequestID));
+      const DeepCollectionEquality().hash(providerAvatarImg),
+      const DeepCollectionEquality().hash(proviverPhoneNumber),
+      const DeepCollectionEquality().hash(videoCallID),
+      const DeepCollectionEquality().hash(providerName),
+      const DeepCollectionEquality().hash(distance));
 
   @JsonKey(ignore: true)
   @override
@@ -154,16 +220,25 @@ class _$_OverviewOrderModel implements _OverviewOrderModel {
 
 abstract class _OverviewOrderModel implements OverviewOrderModel {
   factory _OverviewOrderModel(
-      {final String? providerID,
-      final String? distance,
-      final String? repairRequestID}) = _$_OverviewOrderModel;
+      {required final String providerID,
+      required final String providerAvatarImg,
+      required final String proviverPhoneNumber,
+      required final String videoCallID,
+      required final String providerName,
+      required final String distance}) = _$_OverviewOrderModel;
 
   @override
-  String? get providerID;
+  String get providerID;
   @override
-  String? get distance;
+  String get providerAvatarImg;
   @override
-  String? get repairRequestID;
+  String get proviverPhoneNumber;
+  @override
+  String get videoCallID;
+  @override
+  String get providerName;
+  @override
+  String get distance;
   @override
   @JsonKey(ignore: true)
   _$$_OverviewOrderModelCopyWith<_$_OverviewOrderModel> get copyWith =>

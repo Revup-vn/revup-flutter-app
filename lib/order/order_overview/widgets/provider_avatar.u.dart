@@ -27,7 +27,9 @@ class ProviderAvatar extends StatelessWidget {
               child: CachedNetworkImage(
                 colorBlendMode: BlendMode.modulate,
                 imageUrl: imageUrl,
-                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
               ),
             ),
           ),

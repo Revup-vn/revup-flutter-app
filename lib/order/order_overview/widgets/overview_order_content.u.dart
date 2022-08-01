@@ -248,13 +248,15 @@ class OverviewOrderContent extends StatelessWidget {
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
                                         ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(''),
+                            Expanded(
+                              child: TextButton(
+                                onPressed: () {},
+                                child: const Text(''),
+                              ),
                             ),
                           ],
                         ),

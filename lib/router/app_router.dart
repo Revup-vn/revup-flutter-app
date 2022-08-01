@@ -25,7 +25,7 @@ import '../test/test.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage, initial: true),
+    AdaptiveRoute<void>(page: SplashPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
@@ -48,7 +48,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
-    AdaptiveRoute<void>(page: OverViewOrderPage),
+    AdaptiveRoute<void>(page: OverViewOrderPage, initial: true),
   ],
 )
 class $AppRouter {}
