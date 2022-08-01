@@ -20,6 +20,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_form_builder: ^7.3.1
   flutter_form_field_validator: ^1.0.0
+  flutter_html: ^3.0.0-alpha.5
   flutter_localizations:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
@@ -35,11 +36,11 @@ dependencies:
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
+    # path: packages/injected/revup-dev
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^2.3.0-dev+1
-    version: ^2.4.0-dev
+      version: ^2.4.0-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 

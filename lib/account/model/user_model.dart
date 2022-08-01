@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:revup_core/core.dart';
 
 part 'user_model.freezed.dart';
 
@@ -12,4 +15,12 @@ class UserModel with _$UserModel {
     required String address,
     required String urlImage,
   }) = _UserModel;
+  factory UserModel.fromDto(AppUser user) => UserModel(
+        name: '${user.firstName} ${user.lastName}',
+        email: user.email.isEmpty ? 'unknown' : user.email,
+        phone: user.phone,
+        date: user.dob,
+        address: user.addr,
+        urlImage: user.avatarUrl,
+      );
 }

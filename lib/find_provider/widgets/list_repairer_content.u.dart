@@ -12,12 +12,12 @@ import '../models/provider_data.u.dart';
 class ListRepairerContent extends StatelessWidget {
   const ListRepairerContent({
     super.key,
-    this.listProvider,
+    required this.listProvider,
   });
-  final IList<ProviderData>? listProvider;
+  final IList<ProviderData> listProvider;
   @override
   Widget build(BuildContext context) {
-    final providerVector = IVector.from(listProvider!.toIterable());
+    final providers = listProvider.toIterable().toList();
 
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
@@ -38,11 +38,7 @@ class ListRepairerContent extends StatelessWidget {
                           onTap: () {
                             context.router.push(
                               RepairerProfileRoute(
-                                providerID: providerVector
-                                        .get(index)
-                                        .getOrElse(ProviderData.new)
-                                        .id ??
-                                    '',
+                                providerID: providers[index].id,
                               ),
                             );
                           },
@@ -53,20 +49,12 @@ class ListRepairerContent extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: providerVector
-                                        .get(index)
-                                        .getOrElse(ProviderData.new)
-                                        .avatar ??
-                                    '',
+                                imageUrl: providers[index].avatar,
                               ),
                             ),
                           ),
                           title: AutoSizeText(
-                            providerVector
-                                    .get(index)
-                                    .getOrElse(ProviderData.new)
-                                    .fullName ??
-                                '',
+                            providers[index].fullName,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -75,11 +63,7 @@ class ListRepairerContent extends StatelessWidget {
                                 ),
                           ),
                           subtitle: AutoSizeText(
-                            providerVector
-                                    .get(index)
-                                    .getOrElse(ProviderData.new)
-                                    .address ??
-                                '',
+                            providers[index].address,
                             style: Theme.of(context).textTheme.bodyMedium,
                             maxLines: 1,
                           ),
@@ -90,11 +74,7 @@ class ListRepairerContent extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               AutoSizeText(
-                                providerVector
-                                    .get(index)
-                                    .getOrElse(ProviderData.new)
-                                    .numberStarRating
-                                    .toString(),
+                                providers[index].numberStarRating.toString(),
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               Icon(
@@ -105,9 +85,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '(${providerVector.get(index).getOrElse(
-                                      ProviderData.new,
-                                    ).totalRating.toString()})',
+                                providers[index].totalRating.toString(),
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(
@@ -118,9 +96,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${providerVector.get(index).getOrElse(
-                                      ProviderData.new,
-                                    ).distance.toString()} m',
+                                '${providers[index].distance} m',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(
@@ -132,9 +108,7 @@ class ListRepairerContent extends StatelessWidget {
                               ),
                               AutoSizeText(
                                 '''
-${providerVector.get(index).getOrElse(
-                                      ProviderData.new,
-                                    ).timeArrivalInMinute.toString()} ${context.l10n.minutesLabel}''',
+${providers[index].timeArrivalInMinute} ${context.l10n.minutesLabel}''',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],
@@ -158,7 +132,7 @@ ${providerVector.get(index).getOrElse(
           ),
         );
       },
-      itemCount: listProvider!.length(),
+      itemCount: listProvider.length(),
       separatorBuilder: (BuildContext context, int index) => const SizedBox(
         height: 5,
       ),

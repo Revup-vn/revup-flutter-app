@@ -7,6 +7,7 @@ class LoadingAvatar extends StatelessWidget {
     super.key,
     required this.avatarSize,
   });
+  // TODO(namngoc231): Use this widget to loading avatar state
   final double avatarSize;
 
   @override

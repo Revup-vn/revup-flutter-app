@@ -246,7 +246,7 @@ class ReviewRepairmanView extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.multiline,
                       maxLines: 5,
-                      maxLength: 1000,
+                      maxLength: 100,
                     ),
                   ],
                 ),

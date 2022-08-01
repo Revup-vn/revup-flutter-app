@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../router/app_router.gr.dart';
+import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
 import '../widgets/login_success.u.dart';
@@ -22,31 +24,34 @@ class LoginPage extends StatelessWidget {
           partial: (appUser) => _onPartialAuth(appUser, context),
           orElse: () => unit,
         );
+    log(context.read<ConnectivityBloc>().state.toString());
 
-    return BlocProvider(
-      create: (BuildContext context) => LoginBloc(),
-      child: BlocConsumer<AuthenticateBloc, AuthenticateState>(
-        listener: (context, state) => state.maybeWhen(
-          partial: (au) => _onPartialAuth(au, context),
-          orElse: () => false,
-        ),
-        builder: (context, state) => state.maybeWhen(
-          authenticated: (authType) => LoginSuccess(type: authType),
-          loading: LoginView.new,
-          failure: (errorMessage, authFailure) {
-            return authFailure?.maybeWhen(
-                  invalidData: (message) => LoginFailure(
-                    errorMessage: message ?? 'Something went wrong',
-                  ),
-                  orElse: () =>
-                      const LoginFailure(errorMessage: 'Unknown issues'),
-                ) ??
-                LoginFailure(
-                  errorMessage: errorMessage ?? 'General Error Message',
-                );
-            // TODO(wamynobe): change general error message
-          },
-          orElse: LoginView.new,
+    return InternetAvailabilityPage(
+      child: BlocProvider(
+        create: (BuildContext context) => LoginBloc(),
+        child: BlocConsumer<AuthenticateBloc, AuthenticateState>(
+          listener: (context, state) => state.maybeWhen(
+            partial: (au) => _onPartialAuth(au, context),
+            orElse: () => false,
+          ),
+          builder: (context, state) => state.maybeWhen(
+            authenticated: (authType) => LoginSuccess(type: authType),
+            loading: LoginView.new,
+            failure: (errorMessage, authFailure) {
+              return authFailure?.maybeWhen(
+                    invalidData: (message) => LoginFailure(
+                      errorMessage: message ?? 'Something went wrong',
+                    ),
+                    orElse: () =>
+                        const LoginFailure(errorMessage: 'Unknown issues'),
+                  ) ??
+                  LoginFailure(
+                    errorMessage: errorMessage ?? 'General Error Message',
+                  );
+              // TODO(wamynobe): change general error message
+            },
+            orElse: LoginView.new,
+          ),
         ),
       ),
     );

@@ -10,6 +10,7 @@ part 'order_service_state.dart';
 class OrderServiceBloc extends Bloc<OrderServiceEvent, OrderServiceState> {
   OrderServiceBloc() : super(const _Initial()) {
     on<OrderServiceEvent>(_onEvent);
+    // TODO(namngoc231): Wire APIs
   }
 
   int totalPrice = 0;
@@ -37,22 +38,6 @@ class OrderServiceBloc extends Bloc<OrderServiceEvent, OrderServiceState> {
           const ServiceModel(
             name: 'Thay lốp',
             price: 350000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
           ),
           const ServiceModel(
             name: 'Thay phanh',
