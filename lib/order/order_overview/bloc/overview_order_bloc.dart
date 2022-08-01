@@ -10,9 +10,10 @@ part 'overview_order_state.dart';
 part 'overview_order_bloc.freezed.dart';
 
 class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
-  OverviewOrderBloc() : super(const _Initial()) {
+  OverviewOrderBloc(this.providerID) : super(const _Initial()) {
     on<OverviewOrderEvent>(_onEvent);
   }
+  final String providerID;
   FutureOr<void> _onEvent(
     OverviewOrderEvent event,
     Emitter<OverviewOrderState> emit,
@@ -23,20 +24,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
           const OverviewOrderState.loading(),
         );
         emit(
-          const OverviewOrderState.initial(),
-        );
-      },
-      selectedProduct: (totalFeeService) {
-        emit(
-          OverviewOrderState.ready(
-            totalFeeService: totalFeeService,
-            ready: int.parse(totalFeeService.replaceAll('.', '')) != 0,
-          ),
-        );
-      },
-      arrowButtonPressed: (currenStateButton) {
-        emit(
-          OverviewOrderState.showListFee(showListFee: !currenStateButton),
+          OverviewOrderState.loadDataSuccess(overviewOrderData: overViewModel),
         );
       },
     );

@@ -1,8 +1,12 @@
 import 'dart:math' as math;
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../account/model/user_model.dart';
+import '../bloc/overview_bloc.dart';
 import '../bloc/overview_order_bloc.dart';
+import '../models/overview_order_model.dart';
 import 'provider_avatar.u.dart';
 
 import '../../../l10n/l10n.dart';
@@ -10,11 +14,10 @@ import '../../../l10n/l10n.dart';
 class OverviewOrderContent extends StatelessWidget {
   const OverviewOrderContent({
     super.key,
-    this.totalFeeService,
-    this.providerID,
+    required this.modelData,
   });
-  final String? providerID;
-  final String? totalFeeService;
+  final OverviewOrderModel modelData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,15 +49,15 @@ class OverviewOrderContent extends StatelessWidget {
                           fit: BoxFit.fill,
                           child: Row(
                             children: [
-                              const ProviderAvatar(
-                                'https://image.thanhnien.vn/w1024/Uploaded/2022/pwivoviu/2022_01_21/anh-1-9607.jpg',
+                              ProviderAvatar(
+                                modelData.providerAvatarImg,
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
                               AutoSizeText(
                                 maxFontSize: 22,
-                                'Nguyễn Văn A',
+                                modelData.providerName,
                                 style: Theme.of(context).textTheme.headline5,
                               ),
                               const SizedBox(
@@ -167,11 +170,10 @@ class OverviewOrderContent extends StatelessWidget {
                       Expanded(
                         child: TextButton(
                           onPressed: () {
-                            context.read<OverviewOrderBloc>().add(
-                                  const OverviewOrderEvent.selectedProduct(
-                                    totalServiceFee: '450.000',
-                                  ),
-                                );
+                            context.read<OverviewBloc>().add(
+                                const OverviewEvent.selectedProduct(
+                                    totalServiceFee: '450.000'));
+                            // TODO(wamynobe): route to detail service and choose product
                           },
                           child: Text(
                             context.l10n.detailLabel,
@@ -206,7 +208,7 @@ class OverviewOrderContent extends StatelessWidget {
                                         Theme.of(context).textTheme.bodyLarge,
                                   ),
                                   TextSpan(
-                                    text: '2.7km',
+                                    text: '${modelData.distance}km',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge
@@ -261,8 +263,7 @@ class OverviewOrderContent extends StatelessWidget {
                           ],
                         ),
                       ),
-                      BlocSelector<OverviewOrderBloc, OverviewOrderState,
-                          String>(
+                      BlocSelector<OverviewBloc, OverviewState, String>(
                         selector: (ready) => ready.maybeMap(
                           ready: (value) => value.totalFeeService,
                           showListFee: (value) => '1',
@@ -271,8 +272,8 @@ class OverviewOrderContent extends StatelessWidget {
                         builder: (context, ready) {
                           return Visibility(
                             visible: ready != '0',
-                            child: BlocSelector<OverviewOrderBloc,
-                                OverviewOrderState, bool>(
+                            child:
+                                BlocSelector<OverviewBloc, OverviewState, bool>(
                               selector: (state) => state.maybeMap(
                                 showListFee: (value) => value.showListFee,
                                 orElse: () => false,
@@ -287,8 +288,8 @@ class OverviewOrderContent extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    context.read<OverviewOrderBloc>().add(
-                                          OverviewOrderEvent.arrowButtonPressed(
+                                    context.read<OverviewBloc>().add(
+                                          OverviewEvent.arrowButtonPressed(
                                             currentStateButton: state,
                                           ),
                                         );
@@ -305,15 +306,11 @@ class OverviewOrderContent extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       left: 30,
                     ),
-                    child: BlocSelector<OverviewOrderBloc, OverviewOrderState,
-                        bool>(
-                      selector: (state) => state.maybeMap(
-                        showListFee: (value) => value.showListFee,
-                        orElse: () => false,
-                      ),
-                      builder: (context, state) {
-                        return Visibility(
-                          visible: state,
+                    child: BlocBuilder<OverviewBloc, OverviewState>(
+                      builder: (context, state) => state.maybeWhen(
+                        orElse: Container.new,
+                        showListFee: (showListFee) => Visibility(
+                          visible: showListFee,
                           child: Column(
                             children: [
                               Row(
@@ -372,8 +369,8 @@ class OverviewOrderContent extends StatelessWidget {
                               ),
                             ],
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -399,7 +396,7 @@ class OverviewOrderContent extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  BlocSelector<OverviewOrderBloc, OverviewOrderState, String>(
+                  BlocSelector<OverviewBloc, OverviewState, String>(
                     selector: (state) => state.maybeMap(
                       ready: (value) => value.totalFeeService,
                       showListFee: (value) => '1',

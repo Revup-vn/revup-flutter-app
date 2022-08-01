@@ -19,44 +19,32 @@ mixin _$OverviewOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String totalServiceFee) selectedProduct,
-    required TResult Function(bool currentStateButton) arrowButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SelectedProduct value) selectedProduct,
-    required TResult Function(_ArrowButtonPressed value) arrowButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,8 +108,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String totalServiceFee) selectedProduct,
-    required TResult Function(bool currentStateButton) arrowButtonPressed,
   }) {
     return started();
   }
@@ -130,8 +116,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
   }) {
     return started?.call();
   }
@@ -140,8 +124,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -154,8 +136,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SelectedProduct value) selectedProduct,
-    required TResult Function(_ArrowButtonPressed value) arrowButtonPressed,
   }) {
     return started(this);
   }
@@ -164,8 +144,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
   }) {
     return started?.call(this);
   }
@@ -174,8 +152,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -190,345 +166,55 @@ abstract class _Started implements OverviewOrderEvent {
 }
 
 /// @nodoc
-abstract class _$$_SelectedProductCopyWith<$Res> {
-  factory _$$_SelectedProductCopyWith(
-          _$_SelectedProduct value, $Res Function(_$_SelectedProduct) then) =
-      __$$_SelectedProductCopyWithImpl<$Res>;
-  $Res call({String totalServiceFee});
-}
-
-/// @nodoc
-class __$$_SelectedProductCopyWithImpl<$Res>
-    extends _$OverviewOrderEventCopyWithImpl<$Res>
-    implements _$$_SelectedProductCopyWith<$Res> {
-  __$$_SelectedProductCopyWithImpl(
-      _$_SelectedProduct _value, $Res Function(_$_SelectedProduct) _then)
-      : super(_value, (v) => _then(v as _$_SelectedProduct));
-
-  @override
-  _$_SelectedProduct get _value => super._value as _$_SelectedProduct;
-
-  @override
-  $Res call({
-    Object? totalServiceFee = freezed,
-  }) {
-    return _then(_$_SelectedProduct(
-      totalServiceFee: totalServiceFee == freezed
-          ? _value.totalServiceFee
-          : totalServiceFee // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SelectedProduct implements _SelectedProduct {
-  const _$_SelectedProduct({required this.totalServiceFee});
-
-  @override
-  final String totalServiceFee;
-
-  @override
-  String toString() {
-    return 'OverviewOrderEvent.selectedProduct(totalServiceFee: $totalServiceFee)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SelectedProduct &&
-            const DeepCollectionEquality()
-                .equals(other.totalServiceFee, totalServiceFee));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(totalServiceFee));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SelectedProductCopyWith<_$_SelectedProduct> get copyWith =>
-      __$$_SelectedProductCopyWithImpl<_$_SelectedProduct>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String totalServiceFee) selectedProduct,
-    required TResult Function(bool currentStateButton) arrowButtonPressed,
-  }) {
-    return selectedProduct(totalServiceFee);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
-  }) {
-    return selectedProduct?.call(totalServiceFee);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
-    required TResult orElse(),
-  }) {
-    if (selectedProduct != null) {
-      return selectedProduct(totalServiceFee);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_SelectedProduct value) selectedProduct,
-    required TResult Function(_ArrowButtonPressed value) arrowButtonPressed,
-  }) {
-    return selectedProduct(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
-  }) {
-    return selectedProduct?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
-    required TResult orElse(),
-  }) {
-    if (selectedProduct != null) {
-      return selectedProduct(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectedProduct implements OverviewOrderEvent {
-  const factory _SelectedProduct({required final String totalServiceFee}) =
-      _$_SelectedProduct;
-
-  String get totalServiceFee;
-  @JsonKey(ignore: true)
-  _$$_SelectedProductCopyWith<_$_SelectedProduct> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ArrowButtonPressedCopyWith<$Res> {
-  factory _$$_ArrowButtonPressedCopyWith(_$_ArrowButtonPressed value,
-          $Res Function(_$_ArrowButtonPressed) then) =
-      __$$_ArrowButtonPressedCopyWithImpl<$Res>;
-  $Res call({bool currentStateButton});
-}
-
-/// @nodoc
-class __$$_ArrowButtonPressedCopyWithImpl<$Res>
-    extends _$OverviewOrderEventCopyWithImpl<$Res>
-    implements _$$_ArrowButtonPressedCopyWith<$Res> {
-  __$$_ArrowButtonPressedCopyWithImpl(
-      _$_ArrowButtonPressed _value, $Res Function(_$_ArrowButtonPressed) _then)
-      : super(_value, (v) => _then(v as _$_ArrowButtonPressed));
-
-  @override
-  _$_ArrowButtonPressed get _value => super._value as _$_ArrowButtonPressed;
-
-  @override
-  $Res call({
-    Object? currentStateButton = freezed,
-  }) {
-    return _then(_$_ArrowButtonPressed(
-      currentStateButton: currentStateButton == freezed
-          ? _value.currentStateButton
-          : currentStateButton // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ArrowButtonPressed implements _ArrowButtonPressed {
-  const _$_ArrowButtonPressed({required this.currentStateButton});
-
-  @override
-  final bool currentStateButton;
-
-  @override
-  String toString() {
-    return 'OverviewOrderEvent.arrowButtonPressed(currentStateButton: $currentStateButton)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ArrowButtonPressed &&
-            const DeepCollectionEquality()
-                .equals(other.currentStateButton, currentStateButton));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentStateButton));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ArrowButtonPressedCopyWith<_$_ArrowButtonPressed> get copyWith =>
-      __$$_ArrowButtonPressedCopyWithImpl<_$_ArrowButtonPressed>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String totalServiceFee) selectedProduct,
-    required TResult Function(bool currentStateButton) arrowButtonPressed,
-  }) {
-    return arrowButtonPressed(currentStateButton);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
-  }) {
-    return arrowButtonPressed?.call(currentStateButton);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String totalServiceFee)? selectedProduct,
-    TResult Function(bool currentStateButton)? arrowButtonPressed,
-    required TResult orElse(),
-  }) {
-    if (arrowButtonPressed != null) {
-      return arrowButtonPressed(currentStateButton);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_SelectedProduct value) selectedProduct,
-    required TResult Function(_ArrowButtonPressed value) arrowButtonPressed,
-  }) {
-    return arrowButtonPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
-  }) {
-    return arrowButtonPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SelectedProduct value)? selectedProduct,
-    TResult Function(_ArrowButtonPressed value)? arrowButtonPressed,
-    required TResult orElse(),
-  }) {
-    if (arrowButtonPressed != null) {
-      return arrowButtonPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ArrowButtonPressed implements OverviewOrderEvent {
-  const factory _ArrowButtonPressed({required final bool currentStateButton}) =
-      _$_ArrowButtonPressed;
-
-  bool get currentStateButton;
-  @JsonKey(ignore: true)
-  _$$_ArrowButtonPressedCopyWith<_$_ArrowButtonPressed> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$OverviewOrderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
+    required TResult Function(OverviewOrderModel overviewOrderData)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -592,10 +278,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
+    required TResult Function(OverviewOrderModel overviewOrderData)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
   }) {
     return initial();
   }
@@ -604,10 +290,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
   }) {
     return initial?.call();
   }
@@ -616,10 +301,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -632,10 +316,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
   }) {
     return initial(this);
   }
@@ -644,10 +327,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
   }) {
     return initial?.call(this);
   }
@@ -656,10 +338,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -674,112 +355,111 @@ abstract class _Initial implements OverviewOrderState {
 }
 
 /// @nodoc
-abstract class _$$_ReadyCopyWith<$Res> {
-  factory _$$_ReadyCopyWith(_$_Ready value, $Res Function(_$_Ready) then) =
-      __$$_ReadyCopyWithImpl<$Res>;
-  $Res call({String totalFeeService, bool ready});
+abstract class _$$_LoadDataSuccessCopyWith<$Res> {
+  factory _$$_LoadDataSuccessCopyWith(
+          _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
+      __$$_LoadDataSuccessCopyWithImpl<$Res>;
+  $Res call({OverviewOrderModel overviewOrderData});
+
+  $OverviewOrderModelCopyWith<$Res> get overviewOrderData;
 }
 
 /// @nodoc
-class __$$_ReadyCopyWithImpl<$Res>
+class __$$_LoadDataSuccessCopyWithImpl<$Res>
     extends _$OverviewOrderStateCopyWithImpl<$Res>
-    implements _$$_ReadyCopyWith<$Res> {
-  __$$_ReadyCopyWithImpl(_$_Ready _value, $Res Function(_$_Ready) _then)
-      : super(_value, (v) => _then(v as _$_Ready));
+    implements _$$_LoadDataSuccessCopyWith<$Res> {
+  __$$_LoadDataSuccessCopyWithImpl(
+      _$_LoadDataSuccess _value, $Res Function(_$_LoadDataSuccess) _then)
+      : super(_value, (v) => _then(v as _$_LoadDataSuccess));
 
   @override
-  _$_Ready get _value => super._value as _$_Ready;
+  _$_LoadDataSuccess get _value => super._value as _$_LoadDataSuccess;
 
   @override
   $Res call({
-    Object? totalFeeService = freezed,
-    Object? ready = freezed,
+    Object? overviewOrderData = freezed,
   }) {
-    return _then(_$_Ready(
-      totalFeeService: totalFeeService == freezed
-          ? _value.totalFeeService
-          : totalFeeService // ignore: cast_nullable_to_non_nullable
-              as String,
-      ready: ready == freezed
-          ? _value.ready
-          : ready // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_$_LoadDataSuccess(
+      overviewOrderData: overviewOrderData == freezed
+          ? _value.overviewOrderData
+          : overviewOrderData // ignore: cast_nullable_to_non_nullable
+              as OverviewOrderModel,
     ));
+  }
+
+  @override
+  $OverviewOrderModelCopyWith<$Res> get overviewOrderData {
+    return $OverviewOrderModelCopyWith<$Res>(_value.overviewOrderData, (value) {
+      return _then(_value.copyWith(overviewOrderData: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$_Ready implements _Ready {
-  const _$_Ready({required this.totalFeeService, required this.ready});
+class _$_LoadDataSuccess implements _LoadDataSuccess {
+  const _$_LoadDataSuccess({required this.overviewOrderData});
 
   @override
-  final String totalFeeService;
-  @override
-  final bool ready;
+  final OverviewOrderModel overviewOrderData;
 
   @override
   String toString() {
-    return 'OverviewOrderState.ready(totalFeeService: $totalFeeService, ready: $ready)';
+    return 'OverviewOrderState.loadDataSuccess(overviewOrderData: $overviewOrderData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Ready &&
+            other is _$_LoadDataSuccess &&
             const DeepCollectionEquality()
-                .equals(other.totalFeeService, totalFeeService) &&
-            const DeepCollectionEquality().equals(other.ready, ready));
+                .equals(other.overviewOrderData, overviewOrderData));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(totalFeeService),
-      const DeepCollectionEquality().hash(ready));
+      runtimeType, const DeepCollectionEquality().hash(overviewOrderData));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ReadyCopyWith<_$_Ready> get copyWith =>
-      __$$_ReadyCopyWithImpl<_$_Ready>(this, _$identity);
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      __$$_LoadDataSuccessCopyWithImpl<_$_LoadDataSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
+    required TResult Function(OverviewOrderModel overviewOrderData)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
   }) {
-    return ready(totalFeeService, this.ready);
+    return loadDataSuccess(overviewOrderData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
   }) {
-    return ready?.call(totalFeeService, this.ready);
+    return loadDataSuccess?.call(overviewOrderData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
     required TResult orElse(),
   }) {
-    if (ready != null) {
-      return ready(totalFeeService, this.ready);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(overviewOrderData);
     }
     return orElse();
   }
@@ -788,52 +468,48 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
   }) {
-    return ready(this);
+    return loadDataSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
   }) {
-    return ready?.call(this);
+    return loadDataSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
     required TResult orElse(),
   }) {
-    if (ready != null) {
-      return ready(this);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _Ready implements OverviewOrderState {
-  const factory _Ready(
-      {required final String totalFeeService,
-      required final bool ready}) = _$_Ready;
+abstract class _LoadDataSuccess implements OverviewOrderState {
+  const factory _LoadDataSuccess(
+          {required final OverviewOrderModel overviewOrderData}) =
+      _$_LoadDataSuccess;
 
-  String get totalFeeService;
-  bool get ready;
+  OverviewOrderModel get overviewOrderData;
   @JsonKey(ignore: true)
-  _$$_ReadyCopyWith<_$_Ready> get copyWith =>
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -878,10 +554,10 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
+    required TResult Function(OverviewOrderModel overviewOrderData)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
   }) {
     return loading();
   }
@@ -890,10 +566,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
   }) {
     return loading?.call();
   }
@@ -902,10 +577,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -918,10 +592,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
   }) {
     return loading(this);
   }
@@ -930,10 +603,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
   }) {
     return loading?.call(this);
   }
@@ -942,10 +614,9 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1000,10 +671,10 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
+    required TResult Function(OverviewOrderModel overviewOrderData)
+        loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
   }) {
     return failure();
   }
@@ -1012,10 +683,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
   }) {
     return failure?.call();
   }
@@ -1024,10 +694,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
+    TResult Function(OverviewOrderModel overviewOrderData)? loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1040,10 +709,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
   }) {
     return failure(this);
   }
@@ -1052,10 +720,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
   }) {
     return failure?.call(this);
   }
@@ -1064,10 +731,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1079,158 +745,4 @@ class _$_Failure implements _Failure {
 
 abstract class _Failure implements OverviewOrderState {
   const factory _Failure() = _$_Failure;
-}
-
-/// @nodoc
-abstract class _$$_ShowListFeeCopyWith<$Res> {
-  factory _$$_ShowListFeeCopyWith(
-          _$_ShowListFee value, $Res Function(_$_ShowListFee) then) =
-      __$$_ShowListFeeCopyWithImpl<$Res>;
-  $Res call({bool showListFee});
-}
-
-/// @nodoc
-class __$$_ShowListFeeCopyWithImpl<$Res>
-    extends _$OverviewOrderStateCopyWithImpl<$Res>
-    implements _$$_ShowListFeeCopyWith<$Res> {
-  __$$_ShowListFeeCopyWithImpl(
-      _$_ShowListFee _value, $Res Function(_$_ShowListFee) _then)
-      : super(_value, (v) => _then(v as _$_ShowListFee));
-
-  @override
-  _$_ShowListFee get _value => super._value as _$_ShowListFee;
-
-  @override
-  $Res call({
-    Object? showListFee = freezed,
-  }) {
-    return _then(_$_ShowListFee(
-      showListFee: showListFee == freezed
-          ? _value.showListFee
-          : showListFee // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ShowListFee implements _ShowListFee {
-  const _$_ShowListFee({required this.showListFee});
-
-  @override
-  final bool showListFee;
-
-  @override
-  String toString() {
-    return 'OverviewOrderState.showListFee(showListFee: $showListFee)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ShowListFee &&
-            const DeepCollectionEquality()
-                .equals(other.showListFee, showListFee));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(showListFee));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ShowListFeeCopyWith<_$_ShowListFee> get copyWith =>
-      __$$_ShowListFeeCopyWithImpl<_$_ShowListFee>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String totalFeeService, bool ready) ready,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(bool showListFee) showListFee,
-  }) {
-    return showListFee(this.showListFee);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
-  }) {
-    return showListFee?.call(this.showListFee);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String totalFeeService, bool ready)? ready,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(bool showListFee)? showListFee,
-    required TResult orElse(),
-  }) {
-    if (showListFee != null) {
-      return showListFee(this.showListFee);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Ready value) ready,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_ShowListFee value) showListFee,
-  }) {
-    return showListFee(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
-  }) {
-    return showListFee?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Ready value)? ready,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_ShowListFee value)? showListFee,
-    required TResult orElse(),
-  }) {
-    if (showListFee != null) {
-      return showListFee(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ShowListFee implements OverviewOrderState {
-  const factory _ShowListFee({required final bool showListFee}) =
-      _$_ShowListFee;
-
-  bool get showListFee;
-  @JsonKey(ignore: true)
-  _$$_ShowListFeeCopyWith<_$_ShowListFee> get copyWith =>
-      throw _privateConstructorUsedError;
 }

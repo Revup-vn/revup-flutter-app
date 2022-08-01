@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/overview_order_bloc.dart';
+import '../widgets/loading_overview.u.dart';
 import '../widgets/overview_order_content.u.dart';
 
 class OverViewOrderView extends StatelessWidget {
@@ -9,11 +10,20 @@ class OverViewOrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<OverviewOrderBloc>().state.maybeWhen(
+          initial: () {
+            return context.read<OverviewOrderBloc>().add(
+                  const OverviewOrderEvent.started(),
+                );
+          },
+          orElse: () => false,
+        );
     return BlocBuilder<OverviewOrderBloc, OverviewOrderState>(
-      builder: (context, state) => state.maybeWhen(
-        ready: (totalFeeService, ready) =>
-            OverviewOrderContent(totalFeeService: totalFeeService),
-        orElse: () => const OverviewOrderContent(),
+      builder: (context, state) => state.when(
+        initial: Container.new,
+        failure: Container.new,
+        loading: LoadingOverView.new,
+        loadDataSuccess: (data) => OverviewOrderContent(modelData: data),
       ),
     );
   }
