@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../account/widgets/default_avatar.dart';
@@ -9,24 +10,12 @@ class HistoryItem extends StatelessWidget {
   const HistoryItem({
     super.key,
     required this.callback,
+    required this.user,
   });
+  final AppUser user;
   final VoidCallback callback;
   @override
   Widget build(BuildContext context) {
-    var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime.now(),
-      addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
-      active: true,
-      avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -56,7 +45,16 @@ class HistoryItem extends StatelessWidget {
                       ),
                       AutoSizeText(
                         '12/06/2022  16:30',
-                        style: Theme.of(context).textTheme.labelLarge,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ) ??
+                            TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
                       ),
                     ],
                   ),
@@ -84,8 +82,7 @@ class HistoryItem extends StatelessWidget {
                                         '${user.firstName} ${user.lastName}',
                                   );
                                 },
-                                // ignore: implicit_dynamic_parameter
-                                errorWidget: (context, url, error) {
+                                errorWidget: (context, url, dynamic error) {
                                   return DefaultAvatar(
                                     textSize:
                                         Theme.of(context).textTheme.titleLarge,
@@ -112,8 +109,24 @@ class HistoryItem extends StatelessWidget {
                             style: Theme.of(context)
                                     .textTheme
                                     .labelLarge
-                                    ?.copyWith(color: Colors.red) ??
-                                const TextStyle(color: Colors.red),
+                                    ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                    ) ??
+                                TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                            // style: Theme.of(context)
+                            //         .textTheme
+                            //         .labelLarge
+                            //         ?.copyWith(
+                            //           color: Theme.of(context)
+                            //               .colorScheme
+                            //               .tertiary,
+                            //         ) ??
+                            //     TextStyle(
+                            //       color: Theme.of(context).colorScheme.tertiary,
+                            //     ),
                           ),
                         ],
                       ),

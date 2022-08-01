@@ -7,7 +7,6 @@ part 'account_state.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(const _Initial()) {
-    // TODO(namngoc231): Implement Bloc
     on<_Started>(_onStarted);
   }
 

@@ -1,5 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
@@ -56,21 +57,27 @@ class HistoryView extends StatelessWidget {
                       height: 32,
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     HistoryItem(
+                      user: user,
                       callback: () {},
                     ),
                     const SizedBox(

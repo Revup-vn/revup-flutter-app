@@ -7,6 +7,7 @@ import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
 import '../guide-support/view/terms_privacy_page.u.dart';
 import '../guide-support/widgets/faqs_item_otp.u.dart';
+import '../history/view/history_detail_page.u.dart';
 import '../history/view/history_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
@@ -33,9 +34,7 @@ import '../test/test.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(
-      page: SplashPage,
-    ),
+    AdaptiveRoute<void>(page: SplashPage),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
     AdaptiveRoute<void>(page: ServiceInvoicePage),
@@ -45,23 +44,21 @@ import '../test/test.dart';
       page: HomePage,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
-        AdaptiveRoute<void>(
-          page: TestPage,
-        ),
+        AdaptiveRoute<void>(page: TestPage),
         AdaptiveRoute<void>(page: NotificationPage),
         AdaptiveRoute<void>(page: AccountPage),
       ],
     ),
     AdaptiveRoute<void>(
       page: HistoryPage,
+    ),
+    AdaptiveRoute<void>(
+      page: HistoryDetailPage,
       initial: true,
     ),
     AdaptiveRoute<void>(page: PaymentPage),
     // AdaptiveRoute<void>(page: TestPage),
-    AdaptiveRoute<void>(
-      page: UpdateProfilePage,
-    ),
-    AdaptiveRoute<void>(page: TestPage),
+    AdaptiveRoute<void>(page: UpdateProfilePage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
     AdaptiveRoute<void>(page: OTPPage),
@@ -72,9 +69,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
-    AdaptiveRoute<void>(
-      page: FAQsPage,
-    ),
+    AdaptiveRoute<void>(page: FAQsPage),
     AdaptiveRoute<void>(page: FAQsItemOTPPage),
     AdaptiveRoute<void>(page: AboutUsPage),
     AdaptiveRoute<void>(page: TermsPrivacyPage),
