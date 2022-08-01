@@ -16,16 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProviderData {
-  String? get id => throw _privateConstructorUsedError;
-  String? get fullName => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
-  num? get distance => throw _privateConstructorUsedError;
-  num? get timeArrivalInMinute => throw _privateConstructorUsedError;
-  double? get numberStarRating => throw _privateConstructorUsedError;
-  int? get totalRating => throw _privateConstructorUsedError;
-  String? get backgroundImg => throw _privateConstructorUsedError;
-  String? get profileBio => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
+  double get timeArrivalInMinute => throw _privateConstructorUsedError;
+  double get numberStarRating => throw _privateConstructorUsedError;
+  int get totalRating => throw _privateConstructorUsedError;
+  String get backgroundImg => throw _privateConstructorUsedError;
+  String get profileBio => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProviderDataCopyWith<ProviderData> get copyWith =>
@@ -38,16 +38,16 @@ abstract class $ProviderDataCopyWith<$Res> {
           ProviderData value, $Res Function(ProviderData) then) =
       _$ProviderDataCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
-      String? fullName,
-      String? address,
-      String? avatar,
-      num? distance,
-      num? timeArrivalInMinute,
-      double? numberStarRating,
-      int? totalRating,
-      String? backgroundImg,
-      String? profileBio});
+      {String id,
+      String fullName,
+      String address,
+      String avatar,
+      double distance,
+      double timeArrivalInMinute,
+      double numberStarRating,
+      int totalRating,
+      String backgroundImg,
+      String profileBio});
 }
 
 /// @nodoc
@@ -75,43 +75,43 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as double,
       timeArrivalInMinute: timeArrivalInMinute == freezed
           ? _value.timeArrivalInMinute
           : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as double,
       numberStarRating: numberStarRating == freezed
           ? _value.numberStarRating
           : numberStarRating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       totalRating: totalRating == freezed
           ? _value.totalRating
           : totalRating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       backgroundImg: backgroundImg == freezed
           ? _value.backgroundImg
           : backgroundImg // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       profileBio: profileBio == freezed
           ? _value.profileBio
           : profileBio // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -124,16 +124,16 @@ abstract class _$$_ProviderDataCopyWith<$Res>
       __$$_ProviderDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
-      String? fullName,
-      String? address,
-      String? avatar,
-      num? distance,
-      num? timeArrivalInMinute,
-      double? numberStarRating,
-      int? totalRating,
-      String? backgroundImg,
-      String? profileBio});
+      {String id,
+      String fullName,
+      String address,
+      String avatar,
+      double distance,
+      double timeArrivalInMinute,
+      double numberStarRating,
+      int totalRating,
+      String backgroundImg,
+      String profileBio});
 }
 
 /// @nodoc
@@ -164,43 +164,43 @@ class __$$_ProviderDataCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as double,
       timeArrivalInMinute: timeArrivalInMinute == freezed
           ? _value.timeArrivalInMinute
           : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as double,
       numberStarRating: numberStarRating == freezed
           ? _value.numberStarRating
           : numberStarRating // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       totalRating: totalRating == freezed
           ? _value.totalRating
           : totalRating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       backgroundImg: backgroundImg == freezed
           ? _value.backgroundImg
           : backgroundImg // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       profileBio: profileBio == freezed
           ? _value.profileBio
           : profileBio // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -209,37 +209,37 @@ class __$$_ProviderDataCopyWithImpl<$Res>
 
 class _$_ProviderData implements _ProviderData {
   _$_ProviderData(
-      {this.id,
-      this.fullName,
-      this.address,
-      this.avatar,
-      this.distance,
-      this.timeArrivalInMinute,
-      this.numberStarRating,
-      this.totalRating,
-      this.backgroundImg,
-      this.profileBio});
+      {required this.id,
+      required this.fullName,
+      required this.address,
+      required this.avatar,
+      required this.distance,
+      required this.timeArrivalInMinute,
+      required this.numberStarRating,
+      required this.totalRating,
+      required this.backgroundImg,
+      required this.profileBio});
 
   @override
-  final String? id;
+  final String id;
   @override
-  final String? fullName;
+  final String fullName;
   @override
-  final String? address;
+  final String address;
   @override
-  final String? avatar;
+  final String avatar;
   @override
-  final num? distance;
+  final double distance;
   @override
-  final num? timeArrivalInMinute;
+  final double timeArrivalInMinute;
   @override
-  final double? numberStarRating;
+  final double numberStarRating;
   @override
-  final int? totalRating;
+  final int totalRating;
   @override
-  final String? backgroundImg;
+  final String backgroundImg;
   @override
-  final String? profileBio;
+  final String profileBio;
 
   @override
   String toString() {
@@ -290,37 +290,37 @@ class _$_ProviderData implements _ProviderData {
 
 abstract class _ProviderData implements ProviderData {
   factory _ProviderData(
-      {final String? id,
-      final String? fullName,
-      final String? address,
-      final String? avatar,
-      final num? distance,
-      final num? timeArrivalInMinute,
-      final double? numberStarRating,
-      final int? totalRating,
-      final String? backgroundImg,
-      final String? profileBio}) = _$_ProviderData;
+      {required final String id,
+      required final String fullName,
+      required final String address,
+      required final String avatar,
+      required final double distance,
+      required final double timeArrivalInMinute,
+      required final double numberStarRating,
+      required final int totalRating,
+      required final String backgroundImg,
+      required final String profileBio}) = _$_ProviderData;
 
   @override
-  String? get id;
+  String get id;
   @override
-  String? get fullName;
+  String get fullName;
   @override
-  String? get address;
+  String get address;
   @override
-  String? get avatar;
+  String get avatar;
   @override
-  num? get distance;
+  double get distance;
   @override
-  num? get timeArrivalInMinute;
+  double get timeArrivalInMinute;
   @override
-  double? get numberStarRating;
+  double get numberStarRating;
   @override
-  int? get totalRating;
+  int get totalRating;
   @override
-  String? get backgroundImg;
+  String get backgroundImg;
   @override
-  String? get profileBio;
+  String get profileBio;
   @override
   @JsonKey(ignore: true)
   _$$_ProviderDataCopyWith<_$_ProviderData> get copyWith =>

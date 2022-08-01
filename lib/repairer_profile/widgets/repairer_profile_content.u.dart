@@ -38,12 +38,12 @@ class RepairerProfileMainContent extends StatelessWidget {
             children: <Widget>[
               RepairerProfileCoverImage(
                 coverHeight.toDouble(),
-                provider.backgroundImg ?? '',
+                provider.backgroundImg,
               ),
               Positioned(
                 left: 16,
                 top: coverHeight - 124 / 2,
-                child: RepairerProfileAvatarImage(provider.avatar ?? ''),
+                child: RepairerProfileAvatarImage(provider.avatar),
               ),
               Container(
                 margin: const EdgeInsets.only(
@@ -58,7 +58,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                       height: 10,
                     ),
                     AutoSizeText(
-                      provider.fullName ?? '',
+                      provider.fullName,
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -68,7 +68,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                       height: 5,
                     ),
                     AutoSizeText(
-                      provider.profileBio ?? '',
+                      provider.profileBio,
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const SizedBox(
@@ -80,7 +80,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                         const Icon(Icons.location_on_outlined),
                         Expanded(
                           child: AutoSizeText(
-                            provider.address ?? 'No location yet',
+                            provider.address,
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
