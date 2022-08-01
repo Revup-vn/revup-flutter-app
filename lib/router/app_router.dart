@@ -21,14 +21,11 @@ import '../service/choose-service/view/service_details_page.dart';
 import '../service/models/service_data.dart';
 import '../service/new-service/view/new_service_request_page.dart';
 import '../test/test.dart';
-import '../video_call/view/calling_page.u.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(
-      page: SplashPage,
-    ),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
@@ -52,7 +49,6 @@ import '../video_call/view/calling_page.u.dart';
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
     AdaptiveRoute<void>(page: OverViewOrderPage),
-    AdaptiveRoute<void>(page: CallingPage, initial: true),
   ],
 )
 class $AppRouter {}
