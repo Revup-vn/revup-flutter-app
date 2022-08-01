@@ -1,6 +1,6 @@
 name: revup
 description: A Very Good App
-version: 1.0.0-dev+7
+version: 1.0.0-dev+8
 publish_to: none
 
 environment:
@@ -36,7 +36,6 @@ dependencies:
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
-    # path: packages/injected/revup-dev
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main

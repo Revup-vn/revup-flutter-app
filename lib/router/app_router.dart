@@ -17,6 +17,7 @@ import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../order-sevice/view/repair_status_page.u.dart';
 import '../order-sevice/view/service_detail_page.u.dart';
+import '../order/order_overview/view/overview_order_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../profile/view/signup6_page.u.dart';
@@ -66,6 +67,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
+    AdaptiveRoute<void>(page: OverViewOrderPage),
     AdaptiveRoute<void>(
       page: FAQsPage,
     ),
