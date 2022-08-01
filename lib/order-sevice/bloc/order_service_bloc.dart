@@ -10,6 +10,7 @@ part 'order_service_state.dart';
 class OrderServiceBloc extends Bloc<OrderServiceEvent, OrderServiceState> {
   OrderServiceBloc() : super(const _Initial()) {
     on<OrderServiceEvent>(_onEvent);
+    // TODO(namngoc231): Wire APIs
   }
 
   int totalPrice = 0;
