@@ -3,12 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../bloc/overview_bloc.u.dart';
-
 import '../models/overview_order_model.dart';
 import 'provider_avatar.u.dart';
 
@@ -110,8 +108,8 @@ class OverviewOrderContent extends StatelessWidget {
                                   ),
                                   child: IconButton(
                                     onPressed: () {
-                                      // TODO(wamynobe):implement
-                                      //video call function
+                                      // TODO(wamynobe): mplement video
+                                      // call function
                                     },
                                     icon: Icon(
                                       Icons.videocam,
@@ -177,7 +175,7 @@ class OverviewOrderContent extends StatelessWidget {
                                     totalServiceFee: '450.000',
                                   ),
                                 );
-                            // TODO(wamynobe):route to detail
+                            // TODO(wamynobe): route to detail
                             // service and choose product
                           },
                           child: Text(

@@ -43,6 +43,29 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           }
         });
       },
+      detailRequestAccepted: (String recordId) {
+        const serSelected = ServiceData(
+          id: '4',
+          name: 'Cat Service',
+          isSelected: true,
+          imageUrl:
+              'https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
+          products: [
+            ProductData(
+              id: '2',
+              name: 'Cat Product',
+              productImageUrl:
+                  'https://images.unsplash.com/photo-1492370284958-c20b15c692d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=749&q=80',
+              price: 100000,
+            ),
+          ],
+        );
+        emit(
+          ChooseServiceState.orderModify(
+            services.appendElement(serSelected),
+          ),
+        );
+      },
     );
   }
 

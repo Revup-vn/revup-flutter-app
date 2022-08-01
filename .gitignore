@@ -143,3 +143,5 @@ ios/GoogleService-Info.plist
 lib/configs/firebase_options.dart
 lib/configs/.mapbox
 android/app/src/main/res/values/developer-config.xml
+
+desiredFileName.txt

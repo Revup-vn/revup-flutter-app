@@ -76,6 +76,36 @@ class ChooseServiceView extends StatelessWidget {
                                 serviceData: servicesVector
                                     .get(index)
                                     .getOrElse(() => const ServiceData()),
+                                selectProMode: false,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      orderModify: (IList<ServiceData> services) {
+                        final servicesVector =
+                            IVector.from(services.toIterable());
+
+                        return Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 100),
+                            itemCount: services.length(),
+                            itemBuilder: (context, index) {
+                              return ServiceCheckboxTile(
+                                onTap: () => context.router.push(
+                                  ServiceDetailsRoute(
+                                    serviceData: servicesVector
+                                        .get(index)
+                                        .getOrElse(() => const ServiceData()),
+                                  ),
+                                ),
+                                serviceData: servicesVector
+                                    .get(index)
+                                    .getOrElse(() => const ServiceData()),
+                                selectProMode: servicesVector
+                                    .get(index)
+                                    .getOrElse(ServiceData.new)
+                                    .isSelected,
                               );
                             },
                           ),

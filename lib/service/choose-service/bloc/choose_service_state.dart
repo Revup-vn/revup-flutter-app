@@ -7,4 +7,6 @@ class ChooseServiceState with _$ChooseServiceState {
   const factory ChooseServiceState.failure() = _Failure;
   const factory ChooseServiceState.success(IList<ServiceData> services) =
       _Success;
+  const factory ChooseServiceState.orderModify(IList<ServiceData> services) =
+      _OrderModify;
 }

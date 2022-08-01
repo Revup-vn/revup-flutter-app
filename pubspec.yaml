@@ -1,6 +1,6 @@
 name: revup
 description: A Very Good App
-version: 1.0.0-dev+6
+version: 1.0.0-dev+7
 publish_to: none
 
 environment:
@@ -14,33 +14,37 @@ dependencies:
   dartz: ^0.10.1
   dotted_border: ^2.0.0+2
   firebase_core: ^1.20.0
+  flash: ^2.0.3+3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_form_builder: ^7.3.1
   flutter_form_field_validator: ^1.0.0
+  flutter_html: ^3.0.0-alpha.5
   flutter_localizations:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.0
-  form_builder_validators: ^8.2.0
+  form_builder_validators: ^8.3.0
   freezed_annotation: ^2.0.3
   hive: ^2.2.3
   image_picker: ^0.8.5+3
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
-  loader_overlay: ^2.0.7
+  loader_overlay: ^2.0.9
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
+    # path: packages/injected/revup-dev
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^2.0.0-dev
-  simple_ripple_animation: ^0.0.3
+      version: ^2.4.0-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
+  simple_ripple_animation: ^0.0.3
+  
 
 dev_dependencies:
   auto_route_generator: ^4.0.0
@@ -54,7 +58,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   import_sorter: ^4.6.0
   json_serializable: ^6.3.1
-  mockito: ^5.2.0
+  mockito: ^5.3.0
   mocktail: ^0.3.0
   very_good_analysis: ^3.0.1
 
