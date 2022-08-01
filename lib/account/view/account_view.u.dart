@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
@@ -82,7 +81,7 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.payment),
                 callback: () {
                   context.router.push(
-                    PaymentRoute(user: model),
+                    PaymentRoute(user: user, model: model),
                   );
                 },
               ),
@@ -91,13 +90,6 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.business),
                 callback: () {
                   // TODO(namngoc231): Go to Organization account
-                },
-              ),
-              AccountItem(
-                accountName: l10n.changePassWordLabel,
-                accountIcon: const Icon(Icons.key),
-                callback: () {
-                  // TODO(namngoc231): Go to Change PassWord
                 },
               ),
               AccountItem(
@@ -152,13 +144,6 @@ class AccountView extends StatelessWidget {
                   context.router.push(
                     const AboutUsRoute(),
                   );
-                },
-              ),
-              AccountItem(
-                accountName: l10n.supportsLabel,
-                accountIcon: const Icon(Icons.help),
-                callback: () {
-                  // TODO(namngoc231): Go to Suports
                 },
               ),
               AccountItem(
