@@ -7,7 +7,7 @@ import '../models/overview_order_model.dart';
 
 part 'overview_order_event.dart';
 part 'overview_order_state.dart';
-part 'overview_order_bloc.freezed.dart';
+part 'overview_order_bloc.u.freezed.dart';
 
 class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
   OverviewOrderBloc(this.providerID) : super(const _Initial()) {

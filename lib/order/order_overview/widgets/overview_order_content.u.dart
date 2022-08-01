@@ -1,15 +1,16 @@
 import 'dart:math' as math;
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dartz/dartz.dart';
+
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../account/model/user_model.dart';
-import '../bloc/overview_bloc.dart';
-import '../bloc/overview_order_bloc.dart';
-import '../models/overview_order_model.dart';
-import 'provider_avatar.u.dart';
 
 import '../../../l10n/l10n.dart';
+import '../bloc/overview_bloc.u.dart';
+
+import '../models/overview_order_model.dart';
+import 'provider_avatar.u.dart';
 
 class OverviewOrderContent extends StatelessWidget {
   const OverviewOrderContent({
@@ -109,7 +110,8 @@ class OverviewOrderContent extends StatelessWidget {
                                   ),
                                   child: IconButton(
                                     onPressed: () {
-                                      // TODO(wamynobe): implement video call function
+                                      // TODO(wamynobe):implement
+                                      //video call function
                                     },
                                     icon: Icon(
                                       Icons.videocam,
@@ -160,7 +162,7 @@ class OverviewOrderContent extends StatelessWidget {
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
                                         ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -171,9 +173,12 @@ class OverviewOrderContent extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {
                             context.read<OverviewBloc>().add(
-                                const OverviewEvent.selectedProduct(
-                                    totalServiceFee: '450.000'));
-                            // TODO(wamynobe): route to detail service and choose product
+                                  const OverviewEvent.selectedProduct(
+                                    totalServiceFee: '450.000',
+                                  ),
+                                );
+                            // TODO(wamynobe):route to detail
+                            // service and choose product
                           },
                           child: Text(
                             context.l10n.detailLabel,
@@ -215,7 +220,7 @@ class OverviewOrderContent extends StatelessWidget {
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
                                         ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -254,10 +259,10 @@ class OverviewOrderContent extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Expanded(
+                            const Expanded(
                               child: TextButton(
-                                onPressed: () {},
-                                child: const Text(''),
+                                onPressed: null,
+                                child: Text(''),
                               ),
                             ),
                           ],
@@ -331,8 +336,9 @@ class OverviewOrderContent extends StatelessWidget {
                                               .textTheme
                                               .bodyLarge!
                                               .copyWith(
-                                                  fontWeight: FontWeight.bold),
-                                        )
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -361,7 +367,7 @@ class OverviewOrderContent extends StatelessWidget {
                                               .copyWith(
                                                 fontWeight: FontWeight.bold,
                                               ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -406,7 +412,8 @@ class OverviewOrderContent extends StatelessWidget {
                       return ElevatedButton(
                         onPressed: state != '0'
                             ? () {
-                                // TODO(wamynobe): implement confirm service when consumer selected products.
+                                // TODO(wamynobe): implement confirm
+                                //service when consumer selected products.
                               }
                             : null,
                         child: AutoSizeText(

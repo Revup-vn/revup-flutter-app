@@ -1,4 +1,4 @@
-part of 'overview_bloc.dart';
+part of 'overview_bloc.u.dart';
 
 @freezed
 class OverviewEvent with _$OverviewEvent {

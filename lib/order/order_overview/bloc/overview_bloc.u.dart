@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'overview_event.dart';
 part 'overview_state.dart';
-part 'overview_bloc.freezed.dart';
+part 'overview_bloc.u.freezed.dart';
 
 class OverviewBloc extends Bloc<OverviewEvent, OverviewState> {
   OverviewBloc() : super(const _Initial()) {
@@ -16,7 +16,9 @@ class OverviewBloc extends Bloc<OverviewEvent, OverviewState> {
     Emitter<OverviewState> emit,
   ) {
     event.when(
-      started: () {},
+      started: () {
+        emit(const OverviewState.initial());
+      },
       selectedProduct: (totalFeeService) {
         emit(
           OverviewState.ready(

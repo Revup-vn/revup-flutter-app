@@ -1,4 +1,4 @@
-part of 'overview_order_bloc.dart';
+part of 'overview_order_bloc.u.dart';
 
 @freezed
 class OverviewOrderState with _$OverviewOrderState {
