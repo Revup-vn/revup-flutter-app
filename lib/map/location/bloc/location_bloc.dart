@@ -13,7 +13,7 @@ part 'location_state.dart';
 part 'location_bloc.freezed.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
-  LocationBloc() : super(const LocationState.initial()) {
+  LocationBloc() : super(const LocationState.loading()) {
     on<LocationEvent>(_onEvent);
   }
   CameraPosition cameraPosition = const CameraPosition(
@@ -26,12 +26,17 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     Emitter<LocationState> emit,
   ) async {
     await event.when(
-      positionUpdated: (position) async {
+      started: () async {
+        final location = await _determinePosition();
+        emit(LocationState.initial(location: location));
+      },
+      locationUpdated: (location) async {
         cameraPosition = CameraPosition(
-          target: LatLng(position.latitude, position.longitude),
+          target: LatLng(location.latitude, location.longitude),
           zoom: 14,
         );
-        final address = await getAddress(position);
+        final address =
+            await getAddress(LatLng(location.latitude, location.longitude));
         emit(LocationState.addressLoaded(address: address));
       },
       placeSearch: (String placeId) async {

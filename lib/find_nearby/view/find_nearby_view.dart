@@ -31,7 +31,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-    locatePosition(context.read<LocationBloc>());
+    context.read<LocationBloc>().add(const LocationEvent.started());
   }
 
   void _onTap(LatLng point) {
@@ -47,22 +47,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
     });
     context
         .read<LocationBloc>()
-        .add(LocationEvent.positionUpdated(position: point));
-  }
-
-  void locatePosition(LocationBloc bloc) async {
-    final position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    currentLocation = position;
-    final latLngPosition = LatLng(position.latitude, position.longitude);
-    final cameraPosition = CameraPosition(target: latLngPosition, zoom: 14);
-    Future.delayed(const Duration(milliseconds: 100), () {
-      mapController
-          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-    });
-
-    bloc.add(LocationEvent.positionUpdated(position: latLngPosition));
+        .add(LocationEvent.locationUpdated(location: point));
   }
 
   @override
@@ -70,6 +55,25 @@ class _FindNearbyViewState extends State<FindNearbyView> {
     return BlocConsumer<LocationBloc, LocationState>(
       listener: (context, state) {
         state.whenOrNull(
+          initial: (location) {
+            currentLocation = location;
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: LatLng(location.latitude, location.longitude),
+                  zoom: 14,
+                ),
+              ),
+            );
+            context.read<LocationBloc>().add(
+                  LocationEvent.locationUpdated(
+                    location: LatLng(
+                      location.latitude,
+                      location.longitude,
+                    ),
+                  ),
+                );
+          },
           placeDetailsLoaded: (placeDetails) {
             makers
               ..clear()
