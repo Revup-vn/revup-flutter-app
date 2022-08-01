@@ -10,7 +10,7 @@ import '../../l10n/l10n.dart';
 class FAQsItemOTPPage extends StatelessWidget {
   const FAQsItemOTPPage({super.key});
 
-  final _viHtmlContent = ''' 
+  String get _viHtmlContent => '''
 <div>
     <p>Nếu bạn không nhận được <strong>Mã xác minh OTP</strong> khi đăng nhập hoặc thay đổi mật khẩu tài khoản qua tin nhắn SMS, nguyên nhân có thể là do:</p>
 <ol>
@@ -30,7 +30,7 @@ minh phải là số điện thoại bạn đã dùng để đăng ký tài kho�
 </div>
   ''';
 
-  final _enHtmlContent = '''
+  String get _enHtmlContent => '''
 <div>
     <p>If you don't receive <strong>OTP verification code</strong> when you log in or change your account password via SMS, it could be because:</p>
 <ol>

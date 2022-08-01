@@ -11,7 +11,7 @@ import '../../l10n/l10n.dart';
 class TermsPrivacyPage extends StatelessWidget {
   const TermsPrivacyPage({super.key});
 
-  final _viHtmlContent = ''' 
+  String get _viHtmlContent => '''
 <div>
     <p>  Khi sử dụng <strong>Dịch vụ</strong>, sử dụng ứng dụng REVUP, Quý khách cam kết và bảo đảm rằng:</p>
 <ol>
@@ -24,7 +24,7 @@ class TermsPrivacyPage extends StatelessWidget {
 </div>
   ''';
 
-  final _enHtmlContent = '''
+  String get _enHtmlContent => '''
 <p> When using <strong>Service</strong>, using the REVUP application, you represent and warrant that:</p>
 <ol>
   <li>Having full civil act capacity as required by applicable law to accept and agree to the Terms of Use; has the right, authority and capacity to use the Service and to abide by these Terms of Use</li>

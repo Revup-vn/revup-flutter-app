@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:revup_core/core.dart';
 
 import '../../account/model/user_model.dart';

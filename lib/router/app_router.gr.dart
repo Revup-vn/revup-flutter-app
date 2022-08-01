@@ -11,10 +11,14 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i34;
 
-import 'package:auto_route/auto_route.dart' as _i29;
 import 'package:flutter/material.dart' as _i30;
+
+import 'package:auto_route/auto_route.dart' as _i29;
+import 'package:revup_core/core.dart' as _i32;
+
 import 'package:revup/account/model/user_model.dart' as _i33;
 import 'package:revup/account/view/account_page.u.dart' as _i28;
 import 'package:revup/activate/view/activate_page.u.dart' as _i26;
@@ -36,6 +40,10 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i13;
 import 'package:revup/payment/view/payment_page.u.dart' as _i8;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i14;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i9;
+import 'package:revup/service/models/service_data.dart' as _i31;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i10;
+
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i20;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
@@ -46,12 +54,8 @@ import 'package:revup/service/choose-service/view/choose_service_page.dart'
     as _i15;
 import 'package:revup/service/choose-service/view/service_details_page.dart'
     as _i17;
-import 'package:revup/service/models/service_data.dart' as _i31;
 import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i16;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i10;
-import 'package:revup_core/core.dart' as _i32;
 
 class AppRouter extends _i29.RootStackRouter {
   AppRouter([_i30.GlobalKey<_i30.NavigatorState>? navigatorKey])

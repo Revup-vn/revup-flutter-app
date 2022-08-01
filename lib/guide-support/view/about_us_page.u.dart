@@ -10,7 +10,7 @@ import '../../l10n/l10n.dart';
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({super.key});
 
-  final _viHtmlContent = ''' 
+  String get _viHtmlContent => '''
 <h2 style="text-align: center;">Tầm nhìn</h2>
 <p> Chúng tôi mong muốn trở thành một phần không thể tách rời trong cuộc sống hằng ngày của mỗi người Việt Nam.</p>
 <hr>
@@ -23,7 +23,7 @@ class AboutUsPage extends StatelessWidget {
 <p>Tạo Điều Kiện Phát Triển</p>
   ''';
 
-  final _enHtmlContent = '''
+  String get _enHtmlContent => '''
 <h2 style="text-align: center;">Tầm nhìn</h2>
 <p> Chúng tôi mong muốn trở thành một phần không thể tách rời trong cuộc sống hằng ngày của mỗi người Việt Nam.</p>
 <hr>
