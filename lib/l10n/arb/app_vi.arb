@@ -19,7 +19,6 @@
   "cancelLabel": "Huỷ bỏ",
   "cashLabel": "Tiền mặt",
   "changeLanguageLabel": "Thay đổi ngôn ngữ",
-  "changePassWordLabel": "Thay đổi PassWord",
   "chooseImageLabel": "Chọn hình ảnh",
   "chooseImageNoteLabel": "Thêm ảnh để thợ sửa chữa hình dung rõ hơn yêu cầu của bạn",
   "chooseProductAppBarTitle": "Chọn sản phẩm",
@@ -98,7 +97,6 @@
   "skipLabel": "Bỏ qua",
   "sortAsLabel": "Sắp xếp theo",
   "sosLabel": "Gọi trợ giúp",
-  "supportsLabel": "Suports",
   "termLabel": "Điều khoản dịch vụ",
   "termsOfServiceLabel": "Điều khoản Dịch vụ",
   "timeLabel": "Thời gian",
@@ -107,10 +105,15 @@
   "tubeLabel": "Thay đổi tube",
   "updateLabel": "Cập nhật",
   "vehicleMaintenanceLabel": "Bảo dưỡng xe",
-  "viettelMoneyLabel": "ViettelMoney",
   "workerRepairing": "Thợ đang tiến hành sửa",
   "workerRepairLabel": "Thợ đang tiến hành sửa chữa",
   "yourFeedbackLabel": "Phản hồi của bạn",
   "zaloPayLabel": "ZaloPay",
-  "selectProductLabel": "Chọn sản phẩm"
+  "selectProductLabel": "Chọn sản phẩm",
+  "postLabel": "Bài viết",
+  "termsPrivacyLabel": "Điều khoản và bảo mật",
+  "questionOTPLabel": "Tại sao tôi không nhận được Mã xác minh (OTP)?",
+  "questionCallLabel": "Làm sao để gọi điện trên ứng dụng Revup?",
+  "questionPayLabel": "Làm sao để thanh toán trên ứng dụng Revup?",
+  "questionAccountLabel": "Tại sao tài khoản REVUP của tôi bị khoá?"
 }

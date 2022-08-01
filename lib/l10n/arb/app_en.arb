@@ -19,7 +19,6 @@
   "cancelLabel": "Cancel",
   "cashLabel": "Cash",
   "changeLanguageLabel": "Change Language",
-  "changePassWordLabel": "Change PassWord",
   "chooseImageLabel": "Choose image",
   "chooseImageNoteLabel": "Add a photo for the repairman to better visualize your request",
   "chooseProductAppBarTitle": "Choose product",
@@ -98,7 +97,6 @@
   "skipLabel": "Skip",
   "sortAsLabel": "Sort as",
   "sosLabel": "Call for help",
-  "supportsLabel": "Supports",
   "termLabel": "Terms of Service",
   "termsOfServiceLabel": "Terms of Service",
   "timeLabel": "Time",
@@ -107,10 +105,15 @@
   "tubeLabel": "Change the tube",
   "updateLabel": "Update",
   "vehicleMaintenanceLabel": "Vehicle maintenance",
-  "viettelMoneyLabel": "ViettelMoney",
   "workerRepairing": "Worker is repairing",
   "workerRepairLabel": "Worker doing repairs",
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
-  "selectProductLabel": "Select product"
+  "selectProductLabel": "Select product",
+  "postLabel": "Posts",
+  "termsPrivacyLabel": "Terms and Privacy",
+  "questionOTPLabel": "Why didn't I receive the Verification Code (OTP)?",
+  "questionCallLabel": "How to make calls on Revup app?",
+  "questionPayLabel": "How to pay on Revup app?",
+  "questionAccountLabel": "Why is my REVUP account locked?"
 }

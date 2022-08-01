@@ -78,22 +78,6 @@ class OrderServiceBloc extends Bloc<OrderServiceEvent, OrderServiceState> {
             name: 'Thay phanh',
             price: 250000,
           ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
-          const ServiceModel(
-            name: 'Thay phanh',
-            price: 250000,
-          ),
         ];
         for (var i = 0; i < services.length; i++) {
           totalPrice += services.elementAt(i).price;

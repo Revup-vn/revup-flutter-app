@@ -24,8 +24,8 @@ class ListRepairerView extends StatelessWidget {
     return BlocBuilder<FindListRepairerBloc, FindListRepairerState>(
       builder: (context, state) => state.when(
         dataLoadSuccess: (listProvider) =>
-            ListRepairer(listProvider: listProvider),
-        refreshSuccess: (listProvider) => ListRepairer(
+            ListRepairer.def(listProvider: listProvider),
+        refreshSuccess: (listProvider) => ListRepairer.def(
           listProvider: listProvider,
         ),
         dropdownListChangedSuccess: (listProvider, sortType) => ListRepairer(

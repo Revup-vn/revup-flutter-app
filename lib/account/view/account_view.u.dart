@@ -1,43 +1,23 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
-import '../../shared/utils.dart';
+import '../model/user_model.dart';
 import '../widgets/account_item.dart';
 import '../widgets/avatar.dart';
 
 class AccountView extends StatelessWidget {
-  const AccountView({super.key});
+  const AccountView({super.key, required this.user, required this.model});
+
+  final UserModel user;
+  final AppUser model;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    //late AppUser user ;
-    late var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime.now(),
-      addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
-      active: true,
-      avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-    );
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -56,7 +36,7 @@ class AccountView extends StatelessWidget {
                 height: 16,
               ),
               AutoSizeText(
-                '${user.firstName} ${user.lastName}',
+                user.name,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
@@ -92,7 +72,7 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.portrait),
                 callback: () {
                   context.router.push(
-                    const UpdateProfileRoute(),
+                    UpdateProfileRoute(user: user, model: model),
                   );
                 },
               ),
@@ -101,7 +81,7 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.payment),
                 callback: () {
                   context.router.push(
-                    const PaymentRoute(),
+                    PaymentRoute(user: user, model: model),
                   );
                 },
               ),
@@ -110,13 +90,6 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.business),
                 callback: () {
                   // TODO(namngoc231): Go to Organization account
-                },
-              ),
-              AccountItem(
-                accountName: l10n.changePassWordLabel,
-                accountIcon: const Icon(Icons.key),
-                callback: () {
-                  // TODO(namngoc231): Go to Change PassWord
                 },
               ),
               AccountItem(
@@ -150,28 +123,27 @@ class AccountView extends StatelessWidget {
                 accountName: l10n.faqsLabel,
                 accountIcon: const Icon(Icons.quiz),
                 callback: () {
-                  // TODO(namngoc231): Go to FAQs
+                  context.router.push(
+                    const FAQsRoute(),
+                  );
                 },
               ),
               AccountItem(
                 accountName: l10n.termsOfServiceLabel,
                 accountIcon: const Icon(Icons.fact_check),
                 callback: () {
-                  // TODO(namngoc231): Go to Terms of Service
+                  context.router.push(
+                    const TermsPrivacyRoute(),
+                  );
                 },
               ),
               AccountItem(
                 accountName: l10n.aboutUsLabel,
                 accountIcon: const Icon(Icons.people),
                 callback: () {
-                  // TODO(namngoc231): Go to About Us
-                },
-              ),
-              AccountItem(
-                accountName: l10n.supportsLabel,
-                accountIcon: const Icon(Icons.help),
-                callback: () {
-                  // TODO(namngoc231): Go to Suports
+                  context.router.push(
+                    const AboutUsRoute(),
+                  );
                 },
               ),
               AccountItem(
