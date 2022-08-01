@@ -16,8 +16,8 @@ import 'dart:async' as _i29;
 import 'package:auto_route/auto_route.dart' as _i25;
 import 'package:flutter/material.dart' as _i26;
 import 'package:revup/account/view/account_page.u.dart' as _i24;
-import 'package:revup/activate/view/activate_page.u.dart' as _i22;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i19;
+import 'package:revup/history/view/history_page.u.dart' as _i8;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i21;
 import 'package:revup/invoice/view/service_invoice_page.u.dart' as _i4;
@@ -28,9 +28,9 @@ import 'package:revup/onboarding/view/onboarding_page.dart' as _i12;
 import 'package:revup/order-sevice/view/repair_status_page.u.dart' as _i3;
 import 'package:revup/order-sevice/view/service_detail_page.u.dart' as _i2;
 import 'package:revup/otp/view/otp_page.u.dart' as _i13;
-import 'package:revup/payment/view/payment_page.u.dart' as _i8;
+import 'package:revup/payment/view/payment_page.u.dart' as _i9;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i14;
-import 'package:revup/profile/view/update_profile_page.u.dart' as _i9;
+import 'package:revup/profile/view/update_profile_page.u.dart' as _i10;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i20;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
@@ -45,7 +45,7 @@ import 'package:revup/service/models/service_data.dart' as _i27;
 import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i16;
 import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i10;
+import 'package:revup/test/test.dart' as _i22;
 import 'package:revup_core/core.dart' as _i28;
 
 class AppRouter extends _i25.RootStackRouter {
@@ -84,17 +84,17 @@ class AppRouter extends _i25.RootStackRouter {
           routeData: routeData,
           child: _i7.HomePage(key: args.key, user: args.user));
     },
+    HistoryRoute.name: (routeData) {
+      return _i25.AdaptivePage<void>(
+          routeData: routeData, child: const _i8.HistoryPage());
+    },
     PaymentRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.PaymentPage());
+          routeData: routeData, child: const _i9.PaymentPage());
     },
     UpdateProfileRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i9.UpdateProfilePage());
-    },
-    TestRoute.name: (routeData) {
-      return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i10.TestPage());
+          routeData: routeData, child: const _i10.UpdateProfilePage());
     },
     LoginRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
@@ -151,9 +151,9 @@ class AppRouter extends _i25.RootStackRouter {
       return _i25.AdaptivePage<void>(
           routeData: routeData, child: const _i21.HomeBodyPage());
     },
-    ActivateRoute.name: (routeData) {
+    TestRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
-          routeData: routeData, child: const _i22.ActivatePage());
+          routeData: routeData, child: const _i22.TestPage());
     },
     NotificationRoute.name: (routeData) {
       return _i25.AdaptivePage<void>(
@@ -167,7 +167,7 @@ class AppRouter extends _i25.RootStackRouter {
 
   @override
   List<_i25.RouteConfig> get routes => [
-        _i25.RouteConfig(SplashRoute.name, path: '/'),
+        _i25.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i25.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
         _i25.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i25.RouteConfig(ServiceInvoiceRoute.name,
@@ -179,16 +179,16 @@ class AppRouter extends _i25.RootStackRouter {
         _i25.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i25.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
-          _i25.RouteConfig(ActivateRoute.name,
-              path: 'activate-page', parent: HomeRoute.name),
+          _i25.RouteConfig(TestRoute.name,
+              path: 'test-page', parent: HomeRoute.name),
           _i25.RouteConfig(NotificationRoute.name,
               path: 'notification-page', parent: HomeRoute.name),
           _i25.RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
+        _i25.RouteConfig(HistoryRoute.name, path: '/'),
         _i25.RouteConfig(PaymentRoute.name, path: '/payment-page'),
         _i25.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
-        _i25.RouteConfig(TestRoute.name, path: '/test-page'),
         _i25.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i25.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
         _i25.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
@@ -208,7 +208,7 @@ class AppRouter extends _i25.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i25.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -287,7 +287,15 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i8.PaymentPage]
+/// [_i8.HistoryPage]
+class HistoryRoute extends _i25.PageRouteInfo<void> {
+  const HistoryRoute() : super(HistoryRoute.name, path: '/');
+
+  static const String name = 'HistoryRoute';
+}
+
+/// generated route for
+/// [_i9.PaymentPage]
 class PaymentRoute extends _i25.PageRouteInfo<void> {
   const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
 
@@ -295,20 +303,12 @@ class PaymentRoute extends _i25.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.UpdateProfilePage]
+/// [_i10.UpdateProfilePage]
 class UpdateProfileRoute extends _i25.PageRouteInfo<void> {
   const UpdateProfileRoute()
       : super(UpdateProfileRoute.name, path: '/update-profile-page');
 
   static const String name = 'UpdateProfileRoute';
-}
-
-/// generated route for
-/// [_i10.TestPage]
-class TestRoute extends _i25.PageRouteInfo<void> {
-  const TestRoute() : super(TestRoute.name, path: '/test-page');
-
-  static const String name = 'TestRoute';
 }
 
 /// generated route for
@@ -503,11 +503,11 @@ class HomeBodyRoute extends _i25.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i22.ActivatePage]
-class ActivateRoute extends _i25.PageRouteInfo<void> {
-  const ActivateRoute() : super(ActivateRoute.name, path: 'activate-page');
+/// [_i22.TestPage]
+class TestRoute extends _i25.PageRouteInfo<void> {
+  const TestRoute() : super(TestRoute.name, path: 'test-page');
 
-  static const String name = 'ActivateRoute';
+  static const String name = 'TestRoute';
 }
 
 /// generated route for
