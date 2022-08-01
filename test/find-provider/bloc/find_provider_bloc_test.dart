@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 // import 'package:bloc_test/bloc_test.dart';
 // import 'package:dartz/dartz.dart';
 // import 'package:flutter_test/flutter_test.dart';
@@ -21,11 +23,13 @@
 //             distance: 500,
 //             numberStarRating: 4.5,
 //             avatar:
-//                 'https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e
-// 0bc7a8fa1576b1.jpg',
+//                 '''
+// https://i.pinimg.com/564x/6d/ba/ee/6dbaee5de0f568b75e
+// 0bc7a8fa1576b1.jpg''',
 //             backgroundImg:
-//                 'https://listbds.com/wp-content/uploads/2022/01/cua-ha
-// ng-sua-xe-may-uy-tin.jpg',
+//                 '''
+// https://listbds.com/wp-content/uploads/2022/01/cua-ha
+// ng-sua-xe-may-uy-tin.jpg''',
 //             profileBio: 'Đến với chúng tôi các bạn sẽ là thượng đế',
 //             timeArrivalInMinute: 10,
 //             totalRating: 107,
@@ -54,11 +58,12 @@
 //       ],
 //     );
 //     blocTest<FindListRepairerBloc, FindListRepairerState>(
-//       '''emit dropdownListChangedSuccess state when dropdownListChanged
+//       '''
+// emit dropdownListChangedSuccess state when dropdownListChanged
 // event is added''',
 //       build: () => findListRepairerBloc,
 //       act: (bloc) => bloc.add(
-//         const FindListRepairerEvent.dropdownListChanged(sortType: 
+//         const FindListRepairerEvent.dropdownListChanged(sortType:
 // 'Distance'),
 //       ),
 //       expect: () => <FindListRepairerState>[
