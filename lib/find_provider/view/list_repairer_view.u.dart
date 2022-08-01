@@ -34,7 +34,7 @@ class ListRepairerView extends StatelessWidget {
         ),
         initial: (_) => Container(),
         loading: () => const ListRepairerLoading(),
-        failure: () => const ListRepairerLoadDataFailure(),
+        failure: ListRepairerLoadDataFailure.new,
       ),
     );
   }

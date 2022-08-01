@@ -112,5 +112,7 @@
   "workerRepairLabel": "Worker doing repairs",
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
-  "selectProductLabel": "Select product"
+  "selectProductLabel": "Select product",
+  "findRepairerErrorMessageLabel": "Some thing went wrong, please refresh or restart the application",
+  "emptyRepairerLabel": "There is not any active repairer around you, we are very sorry for this problem"
 }

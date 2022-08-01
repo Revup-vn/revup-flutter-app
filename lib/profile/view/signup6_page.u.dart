@@ -50,19 +50,21 @@ class Signup6Page extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: UserModel.fromDto(AppUser.consumer(
-                uuid: '',
-                firstName: '',
-                lastName: '',
-                phone: phoneNumber,
-                dob: DateTime.now(),
-                addr: '',
-                email: email,
-                active: false,
-                avatarUrl: photoURL,
-                createdTime: DateTime.now(),
-                lastUpdatedTime: DateTime.now(),
-              )),
+              user: UserModel.fromDto(
+                AppUser.consumer(
+                  uuid: '',
+                  firstName: '',
+                  lastName: '',
+                  phone: phoneNumber,
+                  dob: DateTime.now(),
+                  addr: '',
+                  email: email,
+                  active: false,
+                  avatarUrl: photoURL,
+                  createdTime: DateTime.now(),
+                  lastUpdatedTime: DateTime.now(),
+                ),
+              ),
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },

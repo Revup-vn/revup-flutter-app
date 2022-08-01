@@ -8,11 +8,16 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../models/rating_data.u.dart';
 
 class RepairerProfileFeedback extends StatelessWidget {
-  const RepairerProfileFeedback(this.ratingData, {super.key});
+  const RepairerProfileFeedback({
+    super.key,
+    required this.ratingData,
+  });
   final IVector<RatingData> ratingData;
 
   @override
   Widget build(BuildContext context) {
+    final data = ratingData.toIterable().toList();
+
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -36,20 +41,12 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: ratingData
-                                        .get(index)
-                                        .getOrElse(RatingData.new)
-                                        .imageUrl ??
-                                    '',
+                                imageUrl: data[index].imageUrl,
                               ),
                             ),
                           ),
                           title: AutoSizeText(
-                            ratingData
-                                    .get(index)
-                                    .getOrElse(RatingData.new)
-                                    .consumerName ??
-                                '',
+                            data[index].consumerName,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -60,13 +57,7 @@ class RepairerProfileFeedback extends StatelessWidget {
                           ),
                           subtitle: RatingBar.builder(
                             ignoreGestures: true,
-                            initialRating: double.parse(
-                              ratingData
-                                  .get(index)
-                                  .getOrElse(RatingData.new)
-                                  .rating
-                                  .toString(),
-                            ),
+                            initialRating: data[index].rating.toDouble(),
                             itemSize: 19,
                             allowHalfRating: true,
                             itemBuilder: (context, _) => Icon(
@@ -74,17 +65,11 @@ class RepairerProfileFeedback extends StatelessWidget {
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,
                             ),
-                            onRatingUpdate: (double value) {
-                              // TODO(wamynobe): update when rating change
-                            },
+                            onRatingUpdate: (value) {},
                           ),
                         ),
                         AutoSizeText(
-                          ratingData
-                                  .get(index)
-                                  .getOrElse(RatingData.new)
-                                  .description ??
-                              '',
+                          data[index].description,
                           style: Theme.of(context).textTheme.bodyMedium,
                           maxLines: 2,
                         ),
@@ -95,13 +80,8 @@ class RepairerProfileFeedback extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.topCenter,
                       child: AutoSizeText(
-                        ratingData
-                                    .get(index)
-                                    .getOrElse(RatingData.new)
-                                    .createdTime
-                                    ?.day !=
-                                DateTime.now().day
-                            ? '''${DateTime.now().difference(ratingData.get(index).getOrElse(RatingData.new).createdTime!).inDays} ngày trước'''
+                        data[index].createdTime.day == DateTime.now().day
+                            ? '''${DateTime.now().difference(data[index].createdTime).inDays} ngày trước'''
                             : 'Today',
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: 1,

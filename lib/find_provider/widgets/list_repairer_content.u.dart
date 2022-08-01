@@ -7,6 +7,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/fallbacks.dart';
 import '../models/provider_data.u.dart';
 
 class ListRepairerContent extends StatelessWidget {
@@ -20,7 +21,7 @@ class ListRepairerContent extends StatelessWidget {
     final providers = listProvider.toIterable().toList();
 
     return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (BuildContext buildContext, int index) {
         return Card(
           color: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(
@@ -42,14 +43,20 @@ class ListRepairerContent extends StatelessWidget {
                               ),
                             );
                           },
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(48),
-                            child: CircleAvatar(
-                              child: CachedNetworkImage(
-                                height: 64,
-                                width: 64,
-                                fit: BoxFit.fitWidth,
-                                imageUrl: providers[index].avatar,
+                          leading: SizedBox(
+                            width: 54,
+                            height: 54,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(48),
+                              child: CircleAvatar(
+                                child: CachedNetworkImage(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  fit: BoxFit.fill,
+                                  imageUrl: providers[index].avatar.isEmpty
+                                      ? kFallbackImage
+                                      : providers[index].avatar,
+                                ),
                               ),
                             ),
                           ),
@@ -96,7 +103,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${providers[index].distance} m',
+                                '${providers[index].distance.toInt()} m',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(
@@ -108,7 +115,7 @@ class ListRepairerContent extends StatelessWidget {
                               ),
                               AutoSizeText(
                                 '''
-${providers[index].timeArrivalInMinute} ${context.l10n.minutesLabel}''',
+${providers[index].timeArrivalInMinute.toInt()} ${context.l10n.minutesLabel}''',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                             ],

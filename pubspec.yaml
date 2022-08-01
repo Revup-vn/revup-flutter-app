@@ -35,11 +35,11 @@ dependencies:
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
-    path: packages/injected/revup-dev
-    # git:
-    #   url: https://github.com/Revup-vn/revup-core.git
-    #   ref: main
-    #   version: ^2.3.0-dev+1
+    # path: packages/injected/revup-dev
+    git:
+      url: https://github.com/Revup-vn/revup-core.git
+      ref: main
+      version: ^2.3.0-dev+2
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
 

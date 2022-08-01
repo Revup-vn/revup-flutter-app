@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RatingData {
-  int? get rating => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  DateTime? get createdTime => throw _privateConstructorUsedError;
-  DateTime? get updatedTime => throw _privateConstructorUsedError;
-  String? get consumerName => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
+  int get rating => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  DateTime get createdTime => throw _privateConstructorUsedError;
+  DateTime get updatedTime => throw _privateConstructorUsedError;
+  String get consumerName => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RatingDataCopyWith<RatingData> get copyWith =>
@@ -34,12 +34,12 @@ abstract class $RatingDataCopyWith<$Res> {
           RatingData value, $Res Function(RatingData) then) =
       _$RatingDataCopyWithImpl<$Res>;
   $Res call(
-      {int? rating,
-      String? description,
-      DateTime? createdTime,
-      DateTime? updatedTime,
-      String? consumerName,
-      String? imageUrl});
+      {int rating,
+      String description,
+      DateTime createdTime,
+      DateTime updatedTime,
+      String consumerName,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -63,27 +63,27 @@ class _$RatingDataCopyWithImpl<$Res> implements $RatingDataCopyWith<$Res> {
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdTime: createdTime == freezed
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       updatedTime: updatedTime == freezed
           ? _value.updatedTime
           : updatedTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       consumerName: consumerName == freezed
           ? _value.consumerName
           : consumerName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -96,12 +96,12 @@ abstract class _$$_RatingDataCopyWith<$Res>
       __$$_RatingDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? rating,
-      String? description,
-      DateTime? createdTime,
-      DateTime? updatedTime,
-      String? consumerName,
-      String? imageUrl});
+      {int rating,
+      String description,
+      DateTime createdTime,
+      DateTime updatedTime,
+      String consumerName,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -127,27 +127,27 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
       rating: rating == freezed
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdTime: createdTime == freezed
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       updatedTime: updatedTime == freezed
           ? _value.updatedTime
           : updatedTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       consumerName: consumerName == freezed
           ? _value.consumerName
           : consumerName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -156,25 +156,25 @@ class __$$_RatingDataCopyWithImpl<$Res> extends _$RatingDataCopyWithImpl<$Res>
 
 class _$_RatingData implements _RatingData {
   _$_RatingData(
-      {this.rating,
-      this.description,
-      this.createdTime,
-      this.updatedTime,
-      this.consumerName,
-      this.imageUrl});
+      {required this.rating,
+      required this.description,
+      required this.createdTime,
+      required this.updatedTime,
+      required this.consumerName,
+      required this.imageUrl});
 
   @override
-  final int? rating;
+  final int rating;
   @override
-  final String? description;
+  final String description;
   @override
-  final DateTime? createdTime;
+  final DateTime createdTime;
   @override
-  final DateTime? updatedTime;
+  final DateTime updatedTime;
   @override
-  final String? consumerName;
+  final String consumerName;
   @override
-  final String? imageUrl;
+  final String imageUrl;
 
   @override
   String toString() {
@@ -216,25 +216,25 @@ class _$_RatingData implements _RatingData {
 
 abstract class _RatingData implements RatingData {
   factory _RatingData(
-      {final int? rating,
-      final String? description,
-      final DateTime? createdTime,
-      final DateTime? updatedTime,
-      final String? consumerName,
-      final String? imageUrl}) = _$_RatingData;
+      {required final int rating,
+      required final String description,
+      required final DateTime createdTime,
+      required final DateTime updatedTime,
+      required final String consumerName,
+      required final String imageUrl}) = _$_RatingData;
 
   @override
-  int? get rating;
+  int get rating;
   @override
-  String? get description;
+  String get description;
   @override
-  DateTime? get createdTime;
+  DateTime get createdTime;
   @override
-  DateTime? get updatedTime;
+  DateTime get updatedTime;
   @override
-  String? get consumerName;
+  String get consumerName;
   @override
-  String? get imageUrl;
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_RatingDataCopyWith<_$_RatingData> get copyWith =>

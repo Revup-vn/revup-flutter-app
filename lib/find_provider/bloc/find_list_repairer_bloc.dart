@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,10 +12,13 @@ part 'find_list_repairer_bloc.freezed.dart';
 
 class FindListRepairerBloc
     extends Bloc<FindListRepairerEvent, FindListRepairerState> {
-  FindListRepairerBloc(this._userStore)
-      : super(const _Initial(hasValue: false)) {
+  FindListRepairerBloc(
+    this._userStore,
+    this.errorMessage,
+  ) : super(const _Initial(hasValue: false)) {
     on<FindListRepairerEvent>(_onEvent);
   }
+  final List<String> errorMessage;
 
   final IStore<AppUser> _userStore;
   FutureOr<void> _onEvent(
@@ -29,25 +31,39 @@ class FindListRepairerBloc
           const FindListRepairerState.loading(),
         );
         (await _userStore.all())
-            .map((aUsers) => aUsers.map(ProviderData.fromDtos))
-            .fold(
-              (l) => emit(const FindListRepairerState.failure()),
-              (r) => emit(
-                FindListRepairerState.dataLoadSuccess(
-                  listProvider: r,
+            .map<IList<Option<ProviderData>>>(
+              (r) => r.map(
+                (a) => a.maybeMap(
+                  orElse: none,
+                  provider: (v) => some(ProviderData.fromDtos(v)),
                 ),
               ),
-            );
-      },
-      refresh: () {
-        emit(
-          const FindListRepairerState.loading(),
-        );
-        emit(
-          FindListRepairerState.refreshSuccess(
-            listProvider: listRepairer,
-          ),
-        );
+            )
+            .map<IList<ProviderData>>(
+              (r) => r.filter((a) => a.isSome()).map(
+                    (a) => a.getOrElse(
+                      () => throw NullThrownError(),
+                    ),
+                  ),
+            )
+            .fold(
+                (l) => emit(
+                      FindListRepairerState.failure(
+                        errorMessage: errorMessage.elementAt(0),
+                      ),
+                    ), (r) {
+          r != ilist<ProviderData>([])
+              ? emit(
+                  FindListRepairerState.dataLoadSuccess(
+                    listProvider: r,
+                  ),
+                )
+              : emit(
+                  FindListRepairerState.failure(
+                    errorMessage: errorMessage.elementAt(1),
+                  ),
+                );
+        });
       },
       dropdownListChanged: (sortType) {
         emit(

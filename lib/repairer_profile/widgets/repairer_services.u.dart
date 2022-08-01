@@ -7,11 +7,15 @@ import 'package:dartz/dartz.dart';
 import '../models/service_data.u.dart';
 
 class RepairerProfileServices extends StatelessWidget {
-  const RepairerProfileServices(this.serviceData, {super.key});
+  const RepairerProfileServices({
+    super.key,
+    required this.serviceData,
+  });
   final IVector<ServiceData> serviceData;
 
   @override
   Widget build(BuildContext context) {
+    final data = serviceData.toIterable().toList();
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Card(
@@ -39,20 +43,12 @@ class RepairerProfileServices extends StatelessWidget {
                                   height: 64,
                                   width: 64,
                                   fit: BoxFit.fitWidth,
-                                  imageUrl: serviceData
-                                          .get(index)
-                                          .getOrElse(ServiceData.new)
-                                          .imageURL ??
-                                      '',
+                                  imageUrl: data[index].imageURL,
                                 ),
                               ),
                             ),
                             title: AutoSizeText(
-                              serviceData
-                                      .get(index)
-                                      .getOrElse(ServiceData.new)
-                                      .name ??
-                                  '',
+                              data[index].name,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -62,7 +58,7 @@ class RepairerProfileServices extends StatelessWidget {
                               maxLines: 1,
                             ),
                             subtitle: AutoSizeText(
-                              '''Đơn giá : ${serviceData.get(index).getOrElse(ServiceData.new).serviceFee ?? ''}đ''',
+                              '''Đơn giá : ${data[index].serviceFee}đ''',
                               style: Theme.of(context).textTheme.bodyMedium,
                               maxLines: 1,
                             ),

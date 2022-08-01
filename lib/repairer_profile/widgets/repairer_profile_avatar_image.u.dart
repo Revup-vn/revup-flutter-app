@@ -27,7 +27,9 @@ class RepairerProfileAvatarImage extends StatelessWidget {
               child: CachedNetworkImage(
                 colorBlendMode: BlendMode.modulate,
                 imageUrl: imageUrl,
-                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.fill,
               ),
             ),
           ),

@@ -1,5 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
+
+import '../../shared/fallbacks.dart';
 
 part 'provider_data.u.freezed.dart';
 
@@ -18,16 +21,22 @@ class ProviderData with _$ProviderData {
     required String profileBio,
   }) = _ProviderData;
 
-  factory ProviderData.fromDtos(AppUser user) => ProviderData(
-        id: user.uuid,
-        fullName: '${user.firstName} ${user.lastName}',
-        address: user.addr,
-        avatar: user.avatarUrl,
-        distance: 0,
-        timeArrivalInMinute: 0,
-        numberStarRating: 0,
-        totalRating: 0,
-        backgroundImg: '',
-        profileBio: '',
+  factory ProviderData.fromDtos(AppUser user) => user.map(
+        consumer: (user) => throw NullThrownError(),
+        provider: (user) => ProviderData(
+          id: user.uuid,
+          fullName: '${user.firstName} ${user.lastName}',
+          address: user.addr,
+          avatar: user.avatarUrl.isEmpty ? kFallbackImage : user.avatarUrl,
+          distance: 500,
+          timeArrivalInMinute: 10,
+          numberStarRating: 4,
+          totalRating: 100,
+          backgroundImg: user.backgroundUrl.isEmpty
+              ? kFallbackBackground
+              : user.backgroundUrl,
+          profileBio: user.bio,
+        ),
+        admin: (user) => throw NullThrownError(),
       );
 }

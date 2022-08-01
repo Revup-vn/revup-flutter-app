@@ -23,9 +23,7 @@ class NewServiceBloc extends Bloc<NewServiceEvent, NewServiceState> {
     Emitter<NewServiceState> emit,
   ) async {
     await event.when(
-      started: () {
-        // TODO(wamynobe): implement
-      },
+      started: () {},
       submitted: (serviceData) {
         emit(const NewServiceState.loading());
         emit(NewServiceState.success(serviceData));

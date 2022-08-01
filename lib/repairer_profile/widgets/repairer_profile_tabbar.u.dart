@@ -41,8 +41,12 @@ class RepairerProfileTabBar extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            RepairerProfileServices(serviceData),
-            RepairerProfileFeedback(ratingData),
+            RepairerProfileServices(
+              serviceData: serviceData,
+            ),
+            RepairerProfileFeedback(
+              ratingData: ratingData,
+            ),
           ],
         ),
       ),

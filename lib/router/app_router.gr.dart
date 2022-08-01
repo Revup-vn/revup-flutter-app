@@ -169,7 +169,7 @@ class AppRouter extends _i25.RootStackRouter {
 
   @override
   List<_i25.RouteConfig> get routes => [
-        _i25.RouteConfig(SplashRoute.name, path: '/'),
+        _i25.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i25.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
         _i25.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i25.RouteConfig(ServiceInvoiceRoute.name,
@@ -201,7 +201,7 @@ class AppRouter extends _i25.RootStackRouter {
         _i25.RouteConfig(ServiceDetailsRoute.name,
             path: '/service-details-page'),
         _i25.RouteConfig(ChooseProductRoute.name, path: '/choose-product-page'),
-        _i25.RouteConfig(ListRepairerRoute.name, path: '/list-repairer-page'),
+        _i25.RouteConfig(ListRepairerRoute.name, path: '/'),
         _i25.RouteConfig(RepairerProfileRoute.name,
             path: '/repairer-profile-page')
       ];
@@ -210,7 +210,7 @@ class AppRouter extends _i25.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i25.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
@@ -481,8 +481,7 @@ class ChooseProductRoute extends _i25.PageRouteInfo<void> {
 /// generated route for
 /// [_i19.ListRepairerPage]
 class ListRepairerRoute extends _i25.PageRouteInfo<void> {
-  const ListRepairerRoute()
-      : super(ListRepairerRoute.name, path: '/list-repairer-page');
+  const ListRepairerRoute() : super(ListRepairerRoute.name, path: '/');
 
   static const String name = 'ListRepairerRoute';
 }

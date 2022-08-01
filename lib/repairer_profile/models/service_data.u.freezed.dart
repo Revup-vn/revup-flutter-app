@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ServiceData {
-  String? get name => throw _privateConstructorUsedError;
-  int? get serviceFee => throw _privateConstructorUsedError;
-  String? get imageURL => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get serviceFee => throw _privateConstructorUsedError;
+  String get imageURL => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServiceDataCopyWith<ServiceData> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
           ServiceData value, $Res Function(ServiceData) then) =
       _$ServiceDataCopyWithImpl<$Res>;
-  $Res call({String? name, int? serviceFee, String? imageURL});
+  $Res call({String name, int serviceFee, String imageURL});
 }
 
 /// @nodoc
@@ -51,15 +51,15 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       serviceFee: serviceFee == freezed
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       imageURL: imageURL == freezed
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -71,7 +71,7 @@ abstract class _$$_ServiceDataCopyWith<$Res>
           _$_ServiceData value, $Res Function(_$_ServiceData) then) =
       __$$_ServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, int? serviceFee, String? imageURL});
+  $Res call({String name, int serviceFee, String imageURL});
 }
 
 /// @nodoc
@@ -94,15 +94,15 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       serviceFee: serviceFee == freezed
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       imageURL: imageURL == freezed
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -110,14 +110,15 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ServiceData implements _ServiceData {
-  _$_ServiceData({this.name, this.serviceFee, this.imageURL});
+  _$_ServiceData(
+      {required this.name, required this.serviceFee, required this.imageURL});
 
   @override
-  final String? name;
+  final String name;
   @override
-  final int? serviceFee;
+  final int serviceFee;
   @override
-  final String? imageURL;
+  final String imageURL;
 
   @override
   String toString() {
@@ -150,16 +151,16 @@ class _$_ServiceData implements _ServiceData {
 
 abstract class _ServiceData implements ServiceData {
   factory _ServiceData(
-      {final String? name,
-      final int? serviceFee,
-      final String? imageURL}) = _$_ServiceData;
+      {required final String name,
+      required final int serviceFee,
+      required final String imageURL}) = _$_ServiceData;
 
   @override
-  String? get name;
+  String get name;
   @override
-  int? get serviceFee;
+  int get serviceFee;
   @override
-  String? get imageURL;
+  String get imageURL;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceDataCopyWith<_$_ServiceData> get copyWith =>
