@@ -26,6 +26,7 @@ dependencies:
   flutter_form_field_validator: ^1.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_polyline_points: ^1.0.0
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.0
   form_builder_validators: ^8.2.0
@@ -45,7 +46,7 @@ dependencies:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^1.1.1+0
+      version: ^3.1.0-dev
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   uuid: ^3.0.6

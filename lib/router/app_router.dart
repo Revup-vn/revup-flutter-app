@@ -12,6 +12,7 @@ import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../payment/view/payment_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
+import '../request_provider/view/request_provider_page.dart';
 import '../service/choose-product/view/choose_product_page.dart';
 import '../service/choose-service/view/choose_service_page.dart';
 import '../service/choose-service/view/service_details_page.dart';
@@ -43,7 +44,8 @@ import '../test/test.dart';
     AdaptiveRoute<ServiceData>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
-    AdaptiveRoute<void>(page: FindNearbyPage, initial: true),
+    AdaptiveRoute<void>(page: FindNearbyPage),
+    AdaptiveRoute<void>(page: RequestProviderPage, initial: true),
   ],
 )
 class $AppRouter {}

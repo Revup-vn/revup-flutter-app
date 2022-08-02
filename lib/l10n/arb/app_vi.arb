@@ -93,5 +93,7 @@
   "servicePriceLabel": "Giá",
   "breakdownLocationLabel": "Địa điểm hỏng xe của bạn",
   "lookingForHelpLabel": "Tìm kiếm trợ giúp",
-  "searchLabel": "Tìm kiếm..."
+  "searchLabel": "Tìm kiếm...",
+  "paymentFeeOfTransportLabel": "Thanh toán phí di chuyển",
+  "callForHelpLabel": "Gọi trợ giúp"
 }

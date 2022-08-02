@@ -7,4 +7,6 @@ class LocationEvent with _$LocationEvent {
       _PositionUpdated;
   const factory LocationEvent.placeSearch({required String placeId}) =
       _PlaceSearch;
+  const factory LocationEvent.saved({required LatLng location}) =
+      _LocationSaved;
 }

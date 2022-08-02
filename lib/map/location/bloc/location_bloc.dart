@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../configs/map_config.dart';
+import '../../../shared/preferences.dart';
+import '../../models/directions_model.dart';
 import '../../models/place_details_model.dart';
 
 part 'location_event.dart';
@@ -16,10 +18,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationBloc() : super(const LocationState.loading()) {
     on<LocationEvent>(_onEvent);
   }
-  CameraPosition cameraPosition = const CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
 
   FutureOr<void> _onEvent(
     LocationEvent event,
@@ -31,10 +29,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         emit(LocationState.initial(location: location));
       },
       locationUpdated: (location) async {
-        cameraPosition = CameraPosition(
-          target: LatLng(location.latitude, location.longitude),
-          zoom: 14,
-        );
         final address =
             await getAddress(LatLng(location.latitude, location.longitude));
         emit(LocationState.addressLoaded(address: address));
@@ -49,6 +43,10 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
           ),
         );
         emit(LocationState.addressLoaded(address: address));
+      },
+      saved: (LatLng location) async {
+        final prefs = await Preferences.getInstance();
+        await prefs.saveCurrentLocation(location);
       },
     );
   }

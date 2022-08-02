@@ -31,6 +31,7 @@ class AccountView extends StatelessWidget {
           'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
+      vac: VideoCallAccount(id: '', username: '', pwd: ''),
     );
     if (mayBeUser.isSome()) {
       user = mayBeUser.toNullable()!;

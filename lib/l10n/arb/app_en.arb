@@ -93,5 +93,7 @@
   "servicePriceLabel": "Price",
   "breakdownLocationLabel": "Your vehicle breakdown location",
   "lookingForHelpLabel": "Looking for help",
-  "searchLabel": "Search..."
+  "searchLabel": "Search...",
+  "paymentFeeOfTransportLabel": "Payment of transportation fees",
+  "callForHelpLabel": "Call for help"
 }

@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AutocompleteEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String searchInput, Position location) started,
+    required TResult Function(String searchInput, LatLng location) started,
     required TResult Function() clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
     required TResult orElse(),
   }) =>
@@ -78,7 +78,7 @@ abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  $Res call({String searchInput, Position location});
+  $Res call({String searchInput, LatLng location});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$_StartedCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as LatLng,
     ));
   }
 }
@@ -117,7 +117,7 @@ class _$_Started implements _Started {
   @override
   final String searchInput;
   @override
-  final Position location;
+  final LatLng location;
 
   @override
   String toString() {
@@ -148,7 +148,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String searchInput, Position location) started,
+    required TResult Function(String searchInput, LatLng location) started,
     required TResult Function() clear,
   }) {
     return started(searchInput, location);
@@ -157,7 +157,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
   }) {
     return started?.call(searchInput, location);
@@ -166,7 +166,7 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
     required TResult orElse(),
   }) {
@@ -211,10 +211,10 @@ class _$_Started implements _Started {
 abstract class _Started implements AutocompleteEvent {
   const factory _Started(
       {required final String searchInput,
-      required final Position location}) = _$_Started;
+      required final LatLng location}) = _$_Started;
 
   String get searchInput;
-  Position get location;
+  LatLng get location;
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
@@ -258,7 +258,7 @@ class _$_Clear implements _Clear {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String searchInput, Position location) started,
+    required TResult Function(String searchInput, LatLng location) started,
     required TResult Function() clear,
   }) {
     return clear();
@@ -267,7 +267,7 @@ class _$_Clear implements _Clear {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
   }) {
     return clear?.call();
@@ -276,7 +276,7 @@ class _$_Clear implements _Clear {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchInput, Position location)? started,
+    TResult Function(String searchInput, LatLng location)? started,
     TResult Function()? clear,
     required TResult orElse(),
   }) {

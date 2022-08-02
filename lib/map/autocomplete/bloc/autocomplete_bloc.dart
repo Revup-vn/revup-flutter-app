@@ -7,6 +7,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 import '../../../configs/map_config.dart';
 
@@ -22,7 +23,9 @@ class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
   }
 
   FutureOr<void> _onEvent(
-      AutocompleteEvent event, Emitter<AutocompleteState> emit) async {
+    AutocompleteEvent event,
+    Emitter<AutocompleteState> emit,
+  ) async {
     await event.when(
       started: (searchInput, location) async {
         final sessionToken = const Uuid().v4();
@@ -31,7 +34,6 @@ class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
           sessionToken,
           location,
         );
-        print(autocomplete);
         emit(AutocompleteState.loaded(autocomplete: autocomplete));
       },
       clear: () {
@@ -41,7 +43,10 @@ class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
   }
 
   Future<List<PlaceAutocomplete>> getAutocomplete(
-      String searchInput, String sessionToken, Position location) async {
+    String searchInput,
+    String sessionToken,
+    LatLng location,
+  ) async {
     final url =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$searchInput&types=address&language=vi&components=country:vn&location=${location.latitude},${location.longitude}&key=$ggMapKey&sessiontoken=$sessionToken';
 

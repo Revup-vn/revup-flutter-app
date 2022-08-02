@@ -20,7 +20,7 @@ class FindNearbyView extends StatefulWidget {
 class _FindNearbyViewState extends State<FindNearbyView> {
   late GoogleMapController mapController;
 
-  late Position currentLocation;
+  late LatLng currentLocation;
 
   final makers = <Marker>[];
 
@@ -56,7 +56,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
       listener: (context, state) {
         state.whenOrNull(
           initial: (location) {
-            currentLocation = location;
+            currentLocation = LatLng(location.latitude, location.longitude);
             mapController.animateCamera(
               CameraUpdate.newCameraPosition(
                 CameraPosition(
@@ -104,6 +104,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
           body: Stack(
             children: [
               GoogleMap(
+                padding: const EdgeInsets.only(bottom: 250),
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: _onMapCreated,
                 myLocationEnabled: true,
@@ -163,7 +164,13 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<LocationBloc>().add(
+                                  LocationEvent.saved(
+                                    location: currentLocation,
+                                  ),
+                                );
+                          },
                           child: AutoSizeText(l10n.lookingForHelpLabel),
                         ),
                       ],
@@ -204,45 +211,47 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                   return BlocBuilder<AutocompleteBloc, AutocompleteState>(
                       builder: (context, state) {
                     return state.when(
-                        loading: SizedBox.new,
-                        loaded: (autocomplete) {
-                          return Material(
-                            color: Colors.white,
-                            elevation: 4,
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              itemCount: autocomplete.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  ListTile(
-                                    title: AutoSizeText(
-                                      autocomplete[index].description,
-                                    ),
-                                    onTap: () {
-                                      context.read<LocationBloc>().add(
-                                            LocationEvent.placeSearch(
-                                              placeId:
-                                                  autocomplete[index].placeId,
-                                            ),
-                                          );
-                                      FloatingSearchBar.of(context)?.close();
-                                      context
-                                          .read<AutocompleteBloc>()
-                                          .add(const AutocompleteEvent.clear());
-                                    },
+                      loading: SizedBox.new,
+                      loaded: (autocomplete) {
+                        return Material(
+                          color: Colors.white,
+                          elevation: 4,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            itemCount: autocomplete.length,
+                            itemBuilder: (context, index) => Column(
+                              children: [
+                                ListTile(
+                                  title: AutoSizeText(
+                                    autocomplete[index].description,
                                   ),
-                                  if (autocomplete[index]
-                                          .description
-                                          .isNotEmpty &&
-                                      autocomplete[index] != autocomplete.last)
-                                    const Divider(height: 0),
-                                ],
-                              ),
+                                  onTap: () {
+                                    context.read<LocationBloc>().add(
+                                          LocationEvent.placeSearch(
+                                            placeId:
+                                                autocomplete[index].placeId,
+                                          ),
+                                        );
+                                    FloatingSearchBar.of(context)?.close();
+                                    context
+                                        .read<AutocompleteBloc>()
+                                        .add(const AutocompleteEvent.clear());
+                                  },
+                                ),
+                                if (autocomplete[index]
+                                        .description
+                                        .isNotEmpty &&
+                                    autocomplete[index] != autocomplete.last)
+                                  const Divider(height: 0),
+                              ],
                             ),
-                          );
-                        },
-                        failure: () => AutoSizeText('Failure'));
+                          ),
+                        );
+                      },
+                      failure: () =>
+                          Center(child: AutoSizeText(l10n.commonErrorLabel)),
+                    );
                   });
                 },
               ),
