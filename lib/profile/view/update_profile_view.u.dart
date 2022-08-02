@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -11,6 +12,7 @@ import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/utils.dart';
+import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/profile_bloc.dart';
 
 class UpdateProfileView extends StatelessWidget {
@@ -27,7 +29,7 @@ class UpdateProfileView extends StatelessWidget {
       firstName: 'Nam',
       lastName: 'Ngoc',
       phone: '0866199497',
-      dob: DateTime.now(),
+      dob: DateTime(1997),
       addr: 'Ninh Binh',
       email: 'namngoc231@gmail.com',
       active: true,
@@ -59,178 +61,189 @@ class UpdateProfileView extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: user,
+              user: UserModel.fromDto(user),
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: FormBuilder(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  FormBuilderTextField(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    decoration: InputDecoration(
-                      labelText: l10n.fullNameLabel,
-                      labelStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    keyboardType: TextInputType.text,
-                    name: 'fullName',
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.emptyLabel,
+          DismissKeyboard(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: FormBuilder(
+                autovalidateMode: AutovalidateMode.disabled,
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    FormBuilderTextField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      decoration: InputDecoration(
+                        labelText: l10n.fullNameLabel,
+                        labelStyle: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold) ??
+                            const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      FormBuilderValidators.match(
-                        r'^[a-zA-Z ]+$',
-                        errorText: l10n.invalidFormatLabel,
-                      ),
-                    ]),
-                    initialValue: '${user.firstName} ${user.lastName}',
-                  ),
-                  FormBuilderTextField(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    decoration: InputDecoration(
-                      labelText: l10n.emailLabel,
-                      labelStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      keyboardType: TextInputType.text,
+                      name: 'fullName',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.emptyLabel,
+                        ),
+                        FormBuilderValidators.match(
+                          r'^[a-zA-Z ]+$',
+                          errorText: l10n.invalidFormatLabel,
+                        ),
+                      ]),
+                      initialValue: '${user.firstName} ${user.lastName}',
                     ),
-                    keyboardType: TextInputType.text,
-                    name: 'email',
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.emptyLabel,
+                    FormBuilderTextField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      decoration: InputDecoration(
+                        labelText: l10n.emailLabel,
+                        labelStyle: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold) ??
+                            const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      FormBuilderValidators.email(
-                        errorText: l10n.invalidFormatLabel,
+                      keyboardType: TextInputType.text,
+                      name: 'email',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.emptyLabel,
+                        ),
+                        FormBuilderValidators.email(
+                          errorText: l10n.invalidFormatLabel,
+                        ),
+                      ]),
+                      enabled: user.email == '',
+                      initialValue: user.email,
+                    ),
+                    FormBuilderTextField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      decoration: InputDecoration(
+                        labelText: l10n.phoneLabel,
+                        labelStyle: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold) ??
+                            const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                    ]),
-                    initialValue: user.email,
-                  ),
-                  FormBuilderTextField(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    decoration: InputDecoration(
-                      labelText: l10n.phoneLabel,
-                      labelStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      keyboardType: TextInputType.number,
+                      name: 'phone',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.emptyLabel,
+                        ),
+                        FormBuilderValidators.match(
+                          r'^0?(3|5|7|8|9){1}([0-9]{8})$',
+                          errorText: l10n.invalidFormatLabel,
+                        ),
+                      ]),
+                      initialValue: user.phone,
+                      enabled: user.phone == '',
                     ),
-                    keyboardType: TextInputType.number,
-                    name: 'phone',
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.emptyLabel,
+                    FormBuilderDateTimePicker(
+                      style: Theme.of(context).textTheme.labelLarge,
+                      name: 'date',
+                      inputType: InputType.date,
+                      format: DateFormat('dd-MM-yyyy'),
+                      decoration: InputDecoration(
+                        labelText: l10n.dateLabel,
+                        labelStyle: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold) ??
+                            const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                      FormBuilderValidators.match(
-                        r'^0?(3|5|7|8|9){1}([0-9]{8})$',
-                        errorText: l10n.invalidFormatLabel,
+                      initialValue: user.dob,
+                      initialDate: DateTime.now()
+                          .subtract(const Duration(days: 356 * 18)),
+                      lastDate: DateTime.now()
+                          .subtract(const Duration(days: 356 * 18)),
+                    ),
+                    FormBuilderTextField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      decoration: InputDecoration(
+                        labelText: l10n.addressLabel,
+                        labelStyle: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold) ??
+                            const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                    ]),
-                    initialValue: user.phone,
-                    enabled: false,
-                  ),
-                  FormBuilderDateTimePicker(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    name: 'date',
-                    inputType: InputType.date,
-                    format: DateFormat('dd-MM-yyyy'),
-                    decoration: InputDecoration(
-                      labelText: l10n.dateLabel,
-                      labelStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      keyboardType: TextInputType.text,
+                      name: 'address',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: l10n.emptyLabel,
+                        ),
+                      ]),
+                      initialValue: user.addr,
                     ),
-                    initialValue: user.dob,
-                  ),
-                  FormBuilderTextField(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    decoration: InputDecoration(
-                      labelText: l10n.addressLabel,
-                      labelStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    keyboardType: TextInputType.text,
-                    name: 'address',
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: l10n.emptyLabel,
+                    BlocSelector<ProfileBloc, ProfileState, String>(
+                      selector: (state) => state.maybeWhen(
+                        loaded: (
+                          fullName,
+                          email,
+                          phone,
+                          date,
+                          address,
+                        ) =>
+                            DateFormat('dd-MM-yyyy').format(date),
+                        orElse: () => '',
                       ),
-                    ]),
-                    initialValue: user.addr,
-                  ),
-                  BlocSelector<ProfileBloc, ProfileState, String>(
-                    selector: (state) => state.maybeWhen(
-                      loaded: (
-                        fullName,
-                        email,
-                        phone,
-                        date,
-                        address,
-                      ) =>
-                          DateFormat('dd-MM-yyyy').format(date),
-                      orElse: () => '',
+                      builder: (context, state) => Text(state),
                     ),
-                    builder: (context, state) => Text(state),
-                  ),
-                  const SizedBox(
-                    height: 160,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _formKey.currentState!.saveAndValidate();
-                      final data = _formKey.currentState!.value;
-                      final fName = data['fullName'].toString();
-                      final email = data['email'].toString();
-                      final phone = data['phone'].toString();
-                      final date = data['date'] as DateTime;
-                      final address = data['address'].toString();
-                      final user = UserModel(
-                        name: fName,
-                        email: email,
-                        phone: phone,
-                        date: date,
-                        address: address,
-                        urlImage: '',
-                      );
-                      context
-                          .read<ProfileBloc>()
-                          .add(ProfileEvent.submitted(user));
-                    }, // TODO(namngoc231): complete update profile
-                    style: Theme.of(context).elevatedButtonTheme.style,
-                    child: AutoSizeText(
-                      l10n.updateLabel,
-                      style: Theme.of(context).textTheme.titleMedium,
+                    const SizedBox(
+                      height: 160,
                     ),
-                  ),
-                ],
+                    ElevatedButton(
+                      onPressed: () {
+                        _formKey.currentState!.saveAndValidate();
+                        final data = _formKey.currentState!.value;
+                        final fName = data['fullName'].toString();
+                        final email = data['email'].toString();
+                        final phone = data['phone'].toString();
+                        final date = data['date'] as DateTime;
+                        final address = data['address'].toString();
+                        final user = UserModel(
+                          name: fName,
+                          email: email,
+                          phone: phone,
+                          date: date,
+                          address: address,
+                          urlImage: '',
+                        );
+                        context
+                            .read<ProfileBloc>()
+                            .add(ProfileEvent.submitted(user));
+                      }, // TODO(namngoc231): complete update profile
+                      style: Theme.of(context).elevatedButtonTheme.style,
+                      child: AutoSizeText(
+                        l10n.updateLabel,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

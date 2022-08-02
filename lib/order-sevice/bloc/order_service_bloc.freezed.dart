@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'account_bloc.dart';
+part of 'order_service_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AccountEvent {
+mixin _$OrderServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -51,19 +51,20 @@ mixin _$AccountEvent {
 }
 
 /// @nodoc
-abstract class $AccountEventCopyWith<$Res> {
-  factory $AccountEventCopyWith(
-          AccountEvent value, $Res Function(AccountEvent) then) =
-      _$AccountEventCopyWithImpl<$Res>;
+abstract class $OrderServiceEventCopyWith<$Res> {
+  factory $OrderServiceEventCopyWith(
+          OrderServiceEvent value, $Res Function(OrderServiceEvent) then) =
+      _$OrderServiceEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AccountEventCopyWithImpl<$Res> implements $AccountEventCopyWith<$Res> {
-  _$AccountEventCopyWithImpl(this._value, this._then);
+class _$OrderServiceEventCopyWithImpl<$Res>
+    implements $OrderServiceEventCopyWith<$Res> {
+  _$OrderServiceEventCopyWithImpl(this._value, this._then);
 
-  final AccountEvent _value;
+  final OrderServiceEvent _value;
   // ignore: unused_field
-  final $Res Function(AccountEvent) _then;
+  final $Res Function(OrderServiceEvent) _then;
 }
 
 /// @nodoc
@@ -74,7 +75,8 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
+    extends _$OrderServiceEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -90,7 +92,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'AccountEvent.started()';
+    return 'OrderServiceEvent.started()';
   }
 
   @override
@@ -159,18 +161,19 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements AccountEvent {
+abstract class _Started implements OrderServiceEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-mixin _$AccountState {
+mixin _$OrderServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceModel> services, int totalPrice)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,7 +181,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,7 +189,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -218,19 +221,20 @@ mixin _$AccountState {
 }
 
 /// @nodoc
-abstract class $AccountStateCopyWith<$Res> {
-  factory $AccountStateCopyWith(
-          AccountState value, $Res Function(AccountState) then) =
-      _$AccountStateCopyWithImpl<$Res>;
+abstract class $OrderServiceStateCopyWith<$Res> {
+  factory $OrderServiceStateCopyWith(
+          OrderServiceState value, $Res Function(OrderServiceState) then) =
+      _$OrderServiceStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AccountStateCopyWithImpl<$Res> implements $AccountStateCopyWith<$Res> {
-  _$AccountStateCopyWithImpl(this._value, this._then);
+class _$OrderServiceStateCopyWithImpl<$Res>
+    implements $OrderServiceStateCopyWith<$Res> {
+  _$OrderServiceStateCopyWithImpl(this._value, this._then);
 
-  final AccountState _value;
+  final OrderServiceState _value;
   // ignore: unused_field
-  final $Res Function(AccountState) _then;
+  final $Res Function(OrderServiceState) _then;
 }
 
 /// @nodoc
@@ -241,7 +245,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$OrderServiceStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -257,7 +262,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AccountState.initial()';
+    return 'OrderServiceState.initial()';
   }
 
   @override
@@ -275,7 +280,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceModel> services, int totalPrice)
+        success,
   }) {
     return initial();
   }
@@ -286,7 +292,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
   }) {
     return initial?.call();
   }
@@ -297,7 +303,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -344,7 +350,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AccountState {
+abstract class _Initial implements OrderServiceState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -356,7 +362,8 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$OrderServiceStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -372,7 +379,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'AccountState.loading()';
+    return 'OrderServiceState.loading()';
   }
 
   @override
@@ -390,7 +397,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceModel> services, int totalPrice)
+        success,
   }) {
     return loading();
   }
@@ -401,7 +409,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
   }) {
     return loading?.call();
   }
@@ -412,7 +420,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -459,7 +467,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements AccountState {
+abstract class _Loading implements OrderServiceState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -471,7 +479,8 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$OrderServiceStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -487,7 +496,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'AccountState.failure()';
+    return 'OrderServiceState.failure()';
   }
 
   @override
@@ -505,7 +514,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceModel> services, int totalPrice)
+        success,
   }) {
     return failure();
   }
@@ -516,7 +526,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
   }) {
     return failure?.call();
   }
@@ -527,7 +537,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -574,7 +584,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements AccountState {
+abstract class _Failure implements OrderServiceState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -583,36 +593,78 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call({List<ServiceModel> services, int totalPrice});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$OrderServiceStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? services = freezed,
+    Object? totalPrice = freezed,
+  }) {
+    return _then(_$_Success(
+      services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ServiceModel>,
+      totalPrice == freezed
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success(final List<ServiceModel> services, this.totalPrice)
+      : _services = services;
+
+  final List<ServiceModel> _services;
+  @override
+  List<ServiceModel> get services {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
+
+  @override
+  final int totalPrice;
 
   @override
   String toString() {
-    return 'AccountState.success()';
+    return 'OrderServiceState.success(services: $services, totalPrice: $totalPrice)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality().equals(other._services, _services) &&
+            const DeepCollectionEquality()
+                .equals(other.totalPrice, totalPrice));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_services),
+      const DeepCollectionEquality().hash(totalPrice));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -620,9 +672,10 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(List<ServiceModel> services, int totalPrice)
+        success,
   }) {
-    return success();
+    return success(services, totalPrice);
   }
 
   @override
@@ -631,9 +684,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
   }) {
-    return success?.call();
+    return success?.call(services, totalPrice);
   }
 
   @override
@@ -642,11 +695,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(List<ServiceModel> services, int totalPrice)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(services, totalPrice);
     }
     return orElse();
   }
@@ -689,6 +742,13 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements AccountState {
-  const factory _Success() = _$_Success;
+abstract class _Success implements OrderServiceState {
+  const factory _Success(
+      final List<ServiceModel> services, final int totalPrice) = _$_Success;
+
+  List<ServiceModel> get services;
+  int get totalPrice;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }

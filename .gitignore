@@ -143,3 +143,4 @@ ios/GoogleService-Info.plist
 lib/configs/firebase_options.dart
 ios/.ggmap
 lib/configs/map_config.dart
+desiredFileName.txt

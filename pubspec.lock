@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  back_button_interceptor:
+    dependency: transitive
+    description:
+      name: back_button_interceptor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.1"
   bloc:
     dependency: "direct main"
     description:
@@ -924,6 +931,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.1"
+  loader_overlay:
+    dependency: "direct main"
+    description:
+      name: loader_overlay
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.10"
   logging:
     dependency: transitive
     description:
@@ -1106,6 +1120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  pin_code_fields:
+    dependency: "direct main"
+    description:
+      name: pin_code_fields
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.4.0"
   platform:
     dependency: transitive
     description:

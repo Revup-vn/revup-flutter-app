@@ -40,8 +40,10 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
+  loader_overlay: ^2.0.10
   material_floating_search_bar: ^0.3.7
   modal_bottom_sheet: ^2.1.0
+  pin_code_fields: ^7.4.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
