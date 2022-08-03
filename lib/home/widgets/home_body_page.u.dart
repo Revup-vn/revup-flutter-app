@@ -13,8 +13,7 @@ class HomeBodyPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (_) => HomeBloc()
-            ..add(const HomeEvent.started()), // TODO(namngoc231): delete add
+          create: (_) => HomeBloc()..add(const HomeEvent.started()),
         ),
       ],
       child: const HomeBodyView(),

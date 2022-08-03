@@ -27,7 +27,7 @@ class SupportHomePageItem extends StatelessWidget {
               icon: icon,
               iconSize: 35,
               onPressed: () {
-                // TODO(namngoc231): Call rescue
+                // TODO(namngoc231): Call rescuer
               },
             ),
           ),
