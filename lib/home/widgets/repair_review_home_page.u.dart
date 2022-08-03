@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../account/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
@@ -32,7 +33,7 @@ class RepairReviewHomePage extends StatelessWidget {
       email: 'namngoc231@gmail.com',
       active: true,
       avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
+          'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
       vac: VideoCallAccount(id: '', username: '', pwd: ''),
@@ -43,57 +44,53 @@ class RepairReviewHomePage extends StatelessWidget {
       context.router.popUntil((route) => true);
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Row(
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(48),
-                    child: CachedNetworkImage(
-                      fadeInDuration: const Duration(milliseconds: 50),
-                      fadeOutDuration: const Duration(milliseconds: 50),
-                      imageUrl: user.avatarUrl,
-                      placeholder: (context, url) {
-                        return DefaultAvatar(
-                          textSize: Theme.of(context).textTheme.titleLarge,
-                          userName: '${user.firstName} ${user.lastName}',
-                        );
-                      },
-                      errorWidget: (context, url, dynamic error) {
-                        return DefaultAvatar(
-                          textSize: Theme.of(context).textTheme.titleLarge,
-                          userName: '${user.firstName} ${user.lastName}',
-                        );
-                      },
-                      height: 64,
-                      width: 64,
-                      fit: BoxFit.fitWidth,
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(48),
+                        child: CachedNetworkImage(
+                          fadeInDuration: const Duration(milliseconds: 50),
+                          fadeOutDuration: const Duration(milliseconds: 50),
+                          imageUrl: user.avatarUrl,
+                          placeholder: (context, url) {
+                            return DefaultAvatar(
+                              textSize: Theme.of(context).textTheme.titleLarge,
+                              userName: '${user.firstName} ${user.lastName}',
+                            );
+                          },
+                          errorWidget: (context, url, dynamic error) {
+                            return DefaultAvatar(
+                              textSize: Theme.of(context).textTheme.titleLarge,
+                              userName: '${user.firstName} ${user.lastName}',
+                            );
+                          },
+                          height: 64,
+                          width: 64,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      child: AutoSizeText(
+                        '${user.firstName} ${user.lastName}',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: AutoSizeText(
-                    '${user.firstName} ${user.lastName}',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ),
-              ],
-            ),
-            BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                return state.when(
-                  initial: () => const Text('Empty'),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  failure: () => const Text('Failed'),
+                state.maybeWhen(
                   success: (provider, imageList, timeRepair, dayRepair) =>
                       Column(
                     children: [
@@ -102,30 +99,52 @@ class RepairReviewHomePage extends StatelessWidget {
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       AutoSizeText(
-                        '${l10n.timeLabel}: $timeRepair',
+                        '${l10n.timeLabel}: ',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       AutoSizeText(
-                        '${l10n.dayLabel}: $dayRepair',
+                        '${l10n.dayLabel}: ',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
                   ),
-                );
-              },
+                  // orElse: () => Text('okeee'),
+                  orElse: () => Shimmer.fromColors(
+                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
+                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 8,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 8,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 8,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Center(
-            child: BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                return state.when(
-                  initial: () => const Text('Empty'),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  failure: () => const Text('Failed'),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                child: state.maybeWhen(
                   success: (provider, imageList, timeRepair, dayRepair) =>
                       Column(
                     children: [
@@ -141,12 +160,21 @@ class RepairReviewHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                );
-              },
+                  orElse: () => Shimmer.fromColors(
+                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
+                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
+                    child: Container(
+                      width: double.infinity,
+                      height: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

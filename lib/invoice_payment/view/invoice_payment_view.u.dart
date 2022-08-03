@@ -30,7 +30,7 @@ class InvoicePaymentView extends StatelessWidget {
       email: 'namngoc231@gmail.com',
       active: true,
       avatarUrl:
-          'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
+          'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
       vac: const VideoCallAccount(

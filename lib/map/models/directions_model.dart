@@ -9,8 +9,8 @@ class Directions with _$Directions {
   const factory Directions({
     required LatLngBounds bounds,
     required List<PointLatLng> polylinePoints,
-    required String distance,
-    required String duration,
+    required int distance,
+    required int duration,
   }) = _Directions;
 
   factory Directions.fromMap(Map<String, dynamic> map) {
@@ -29,13 +29,13 @@ class Directions with _$Directions {
     );
 
     // Distance & Duration
-    String? distance;
-    String? duration;
+    int? distance;
+    int? duration;
 
     if ((data['legs'] as List).isNotEmpty) {
       final leg = (data['legs'] as List)[0] as Map<String, dynamic>;
-      distance = (leg['distance'] as Map<String, dynamic>)['text'] as String;
-      duration = (leg['duration'] as Map<String, dynamic>)['text'] as String;
+      distance = (leg['distance'] as Map<String, dynamic>)['value'] as int;
+      duration = (leg['duration'] as Map<String, dynamic>)['value'] as int;
     }
 
     return Directions(
@@ -43,8 +43,8 @@ class Directions with _$Directions {
       polylinePoints: PolylinePoints().decodePolyline(
         (data['overview_polyline'] as Map<String, dynamic>)['points'] as String,
       ),
-      distance: distance ?? '',
-      duration: duration ?? '',
+      distance: distance ?? 0,
+      duration: duration ?? 0,
     );
   }
 }

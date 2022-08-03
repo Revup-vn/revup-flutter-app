@@ -19,32 +19,38 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String vehicle) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,12 +90,18 @@ class __$$_StartedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started implements _Started {
+class _$_Started with DiagnosticableTreeMixin implements _Started {
   const _$_Started();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'HomeEvent.started()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeEvent.started'));
   }
 
   @override
@@ -105,6 +117,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String vehicle) submitted,
   }) {
     return started();
   }
@@ -113,6 +126,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
   }) {
     return started?.call();
   }
@@ -121,6 +135,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -133,6 +148,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -141,6 +157,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -149,6 +166,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,12 +181,154 @@ abstract class _Started implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+  $Res call({String vehicle});
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
+
+  @override
+  _$_Submitted get _value => super._value as _$_Submitted;
+
+  @override
+  $Res call({
+    Object? vehicle = freezed,
+  }) {
+    return _then(_$_Submitted(
+      vehicle: vehicle == freezed
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Submitted with DiagnosticableTreeMixin implements _Submitted {
+  const _$_Submitted({required this.vehicle});
+
+  @override
+  final String vehicle;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeEvent.submitted(vehicle: $vehicle)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeEvent.submitted'))
+      ..add(DiagnosticsProperty('vehicle', vehicle));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submitted &&
+            const DeepCollectionEquality().equals(other.vehicle, vehicle));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(vehicle));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String vehicle) submitted,
+  }) {
+    return submitted(vehicle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
+  }) {
+    return submitted?.call(vehicle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String vehicle)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(vehicle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements HomeEvent {
+  const factory _Submitted({required final String vehicle}) = _$_Submitted;
+
+  String get vehicle;
+  @JsonKey(ignore: true)
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -179,6 +339,7 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -189,6 +350,7 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -200,6 +362,7 @@ mixin _$HomeState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -208,6 +371,7 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -216,6 +380,7 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
@@ -256,12 +421,18 @@ class __$$_InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'HomeState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeState.initial'));
   }
 
   @override
@@ -279,6 +450,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -292,6 +464,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -305,6 +478,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -322,6 +496,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return initial(this);
@@ -333,6 +508,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
@@ -344,6 +520,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -377,12 +554,18 @@ class __$$_LoadingCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'HomeState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeState.loading'));
   }
 
   @override
@@ -400,6 +583,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -413,6 +597,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -426,6 +611,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -443,6 +629,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return loading(this);
@@ -454,6 +641,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return loading?.call(this);
@@ -465,6 +653,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -498,12 +687,18 @@ class __$$_FailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
+class _$_Failure with DiagnosticableTreeMixin implements _Failure {
   const _$_Failure();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'HomeState.failure()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeState.failure'));
   }
 
   @override
@@ -521,6 +716,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -534,6 +730,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -547,6 +744,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -564,6 +762,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return failure(this);
@@ -575,6 +774,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return failure?.call(this);
@@ -586,6 +786,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -598,6 +799,177 @@ class _$_Failure implements _Failure {
 
 abstract class _Failure implements HomeState {
   const factory _Failure() = _$_Failure;
+}
+
+/// @nodoc
+abstract class _$$_AppServiceSuccessCopyWith<$Res> {
+  factory _$$_AppServiceSuccessCopyWith(_$_AppServiceSuccess value,
+          $Res Function(_$_AppServiceSuccess) then) =
+      __$$_AppServiceSuccessCopyWithImpl<$Res>;
+  $Res call({LatLng currentLocation});
+}
+
+/// @nodoc
+class __$$_AppServiceSuccessCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res>
+    implements _$$_AppServiceSuccessCopyWith<$Res> {
+  __$$_AppServiceSuccessCopyWithImpl(
+      _$_AppServiceSuccess _value, $Res Function(_$_AppServiceSuccess) _then)
+      : super(_value, (v) => _then(v as _$_AppServiceSuccess));
+
+  @override
+  _$_AppServiceSuccess get _value => super._value as _$_AppServiceSuccess;
+
+  @override
+  $Res call({
+    Object? currentLocation = freezed,
+  }) {
+    return _then(_$_AppServiceSuccess(
+      currentLocation: currentLocation == freezed
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AppServiceSuccess
+    with DiagnosticableTreeMixin
+    implements _AppServiceSuccess {
+  const _$_AppServiceSuccess({required this.currentLocation});
+
+  @override
+  final LatLng currentLocation;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeState.appServiceSuccess(currentLocation: $currentLocation)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeState.appServiceSuccess'))
+      ..add(DiagnosticsProperty('currentLocation', currentLocation));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppServiceSuccess &&
+            const DeepCollectionEquality()
+                .equals(other.currentLocation, currentLocation));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentLocation));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AppServiceSuccessCopyWith<_$_AppServiceSuccess> get copyWith =>
+      __$$_AppServiceSuccessCopyWithImpl<_$_AppServiceSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
+    required TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)
+        success,
+  }) {
+    return appServiceSuccess(currentLocation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
+  }) {
+    return appServiceSuccess?.call(currentLocation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
+    TResult Function(ProviderModel provider, IVector<String> imgs,
+            String timeRepair, String dayRepair)?
+        success,
+    required TResult orElse(),
+  }) {
+    if (appServiceSuccess != null) {
+      return appServiceSuccess(currentLocation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
+    required TResult Function(_Success value) success,
+  }) {
+    return appServiceSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
+    TResult Function(_Success value)? success,
+  }) {
+    return appServiceSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (appServiceSuccess != null) {
+      return appServiceSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppServiceSuccess implements HomeState {
+  const factory _AppServiceSuccess({required final LatLng currentLocation}) =
+      _$_AppServiceSuccess;
+
+  LatLng get currentLocation;
+  @JsonKey(ignore: true)
+  _$$_AppServiceSuccessCopyWith<_$_AppServiceSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -660,7 +1032,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success implements _Success {
+class _$_Success with DiagnosticableTreeMixin implements _Success {
   const _$_Success(
       {required this.provider,
       required this.imgs,
@@ -677,8 +1049,19 @@ class _$_Success implements _Success {
   final String dayRepair;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'HomeState.success(provider: $provider, imgs: $imgs, timeRepair: $timeRepair, dayRepair: $dayRepair)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'HomeState.success'))
+      ..add(DiagnosticsProperty('provider', provider))
+      ..add(DiagnosticsProperty('imgs', imgs))
+      ..add(DiagnosticsProperty('timeRepair', timeRepair))
+      ..add(DiagnosticsProperty('dayRepair', dayRepair));
   }
 
   @override
@@ -712,6 +1095,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -725,6 +1109,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -738,6 +1123,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -755,6 +1141,7 @@ class _$_Success implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return success(this);
@@ -766,6 +1153,7 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return success?.call(this);
@@ -777,6 +1165,7 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {

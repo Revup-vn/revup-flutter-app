@@ -15,6 +15,7 @@ import 'dart:async' as _i31;
 
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:flutter/material.dart' as _i28;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i32;
 import 'package:revup/account/view/account_page.u.dart' as _i26;
 import 'package:revup/activate/view/activate_page.u.dart' as _i24;
 import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i19;
@@ -81,10 +82,10 @@ class AppRouter extends _i27.RootStackRouter {
           routeData: routeData, child: const _i6.ReviewRepairmanPage());
     },
     HomeRoute.name: (routeData) {
-      final args = routeData.argsAs<HomeRouteArgs>();
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i27.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i7.HomePage(key: args.key, user: args.user));
+          routeData: routeData, child: _i7.HomePage(key: args.key));
     },
     PaymentRoute.name: (routeData) {
       final args = routeData.argsAs<PaymentRouteArgs>();
@@ -142,8 +143,11 @@ class AppRouter extends _i27.RootStackRouter {
           routeData: routeData, child: const _i18.ChooseProductPage());
     },
     FindNearbyRoute.name: (routeData) {
+      final args = routeData.argsAs<FindNearbyRouteArgs>();
       return _i27.AdaptivePage<void>(
-          routeData: routeData, child: const _i19.FindNearbyPage());
+          routeData: routeData,
+          child: _i19.FindNearbyPage(
+              key: args.key, currentLocation: args.currentLocation));
     },
     RequestProviderRoute.name: (routeData) {
       return _i27.AdaptivePage<void>(
@@ -188,7 +192,7 @@ class AppRouter extends _i27.RootStackRouter {
             path: '/invoice-payment-page'),
         _i27.RouteConfig(ReviewRepairmanRoute.name,
             path: '/review-repairman-page'),
-        _i27.RouteConfig(HomeRoute.name, path: '/home-page', children: [
+        _i27.RouteConfig(HomeRoute.name, path: '/', children: [
           _i27.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
           _i27.RouteConfig(ActivateRoute.name,
@@ -212,7 +216,8 @@ class AppRouter extends _i27.RootStackRouter {
             path: '/service-details-page'),
         _i27.RouteConfig(ChooseProductRoute.name, path: '/choose-product-page'),
         _i27.RouteConfig(FindNearbyRoute.name, path: '/find-nearby-page'),
-        _i27.RouteConfig(RequestProviderRoute.name, path: '/'),
+        _i27.RouteConfig(RequestProviderRoute.name,
+            path: '/request-provider-page'),
         _i27.RouteConfig(ListRepairerRoute.name, path: '/list-repairer-page'),
         _i27.RouteConfig(RepairerProfileRoute.name,
             path: '/repairer-profile-page')
@@ -275,28 +280,23 @@ class ReviewRepairmanRoute extends _i27.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.HomePage]
 class HomeRoute extends _i27.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute(
-      {_i28.Key? key,
-      required _i30.AppUser user,
-      List<_i27.PageRouteInfo>? children})
+  HomeRoute({_i28.Key? key, List<_i27.PageRouteInfo>? children})
       : super(HomeRoute.name,
-            path: '/home-page',
-            args: HomeRouteArgs(key: key, user: user),
+            path: '/',
+            args: HomeRouteArgs(key: key),
             initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
 class HomeRouteArgs {
-  const HomeRouteArgs({this.key, required this.user});
+  const HomeRouteArgs({this.key});
 
   final _i28.Key? key;
 
-  final _i30.AppUser user;
-
   @override
   String toString() {
-    return 'HomeRouteArgs{key: $key, user: $user}';
+    return 'HomeRouteArgs{key: $key}';
   }
 }
 
@@ -492,17 +492,34 @@ class ChooseProductRoute extends _i27.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.FindNearbyPage]
-class FindNearbyRoute extends _i27.PageRouteInfo<void> {
-  const FindNearbyRoute()
-      : super(FindNearbyRoute.name, path: '/find-nearby-page');
+class FindNearbyRoute extends _i27.PageRouteInfo<FindNearbyRouteArgs> {
+  FindNearbyRoute({_i28.Key? key, required _i32.LatLng currentLocation})
+      : super(FindNearbyRoute.name,
+            path: '/find-nearby-page',
+            args: FindNearbyRouteArgs(
+                key: key, currentLocation: currentLocation));
 
   static const String name = 'FindNearbyRoute';
+}
+
+class FindNearbyRouteArgs {
+  const FindNearbyRouteArgs({this.key, required this.currentLocation});
+
+  final _i28.Key? key;
+
+  final _i32.LatLng currentLocation;
+
+  @override
+  String toString() {
+    return 'FindNearbyRouteArgs{key: $key, currentLocation: $currentLocation}';
+  }
 }
 
 /// generated route for
 /// [_i20.RequestProviderPage]
 class RequestProviderRoute extends _i27.PageRouteInfo<void> {
-  const RequestProviderRoute() : super(RequestProviderRoute.name, path: '/');
+  const RequestProviderRoute()
+      : super(RequestProviderRoute.name, path: '/request-provider-page');
 
   static const String name = 'RequestProviderRoute';
 }

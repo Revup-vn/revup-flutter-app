@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,12 +7,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../find_provider/bloc/find_list_repairer_bloc.dart';
 import '../../l10n/l10n.dart';
 import '../../map/autocomplete/bloc/autocomplete_bloc.dart';
 import '../../map/location/bloc/location_bloc.dart';
+import '../../router/router.dart';
 
 class FindNearbyView extends StatefulWidget {
-  const FindNearbyView({super.key});
+  const FindNearbyView({super.key, required this.initCameraPosition});
+
+  final LatLng initCameraPosition;
 
   @override
   State<FindNearbyView> createState() => _FindNearbyViewState();
@@ -23,11 +28,6 @@ class _FindNearbyViewState extends State<FindNearbyView> {
   late LatLng currentLocation;
 
   final makers = <Marker>[];
-
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -105,7 +105,8 @@ class _FindNearbyViewState extends State<FindNearbyView> {
             children: [
               GoogleMap(
                 padding: const EdgeInsets.only(bottom: 250),
-                initialCameraPosition: _kGooglePlex,
+                initialCameraPosition:
+                    CameraPosition(target: widget.initCameraPosition, zoom: 15),
                 onMapCreated: _onMapCreated,
                 myLocationEnabled: true,
                 markers: Set.from(makers),
@@ -146,9 +147,19 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                         const Divider(),
                         state.maybeWhen(
                           addressLoaded: (address) => Expanded(
-                            child: ListTile(
-                              title: AutoSizeText(address),
-                              leading: const Icon(Icons.place),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: ListTile(
+                                title: AutoSizeText(
+                                  address,
+                                  maxLines: 3,
+                                ),
+                                leading: const Icon(
+                                  Icons.place,
+                                  size: 32,
+                                  color: Colors.red,
+                                ),
+                              ),
                             ),
                           ),
                           orElse: () => Expanded(
@@ -170,6 +181,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                                     location: currentLocation,
                                   ),
                                 );
+                            context.router.push(const ListRepairerRoute());
                           },
                           child: AutoSizeText(l10n.lookingForHelpLabel),
                         ),

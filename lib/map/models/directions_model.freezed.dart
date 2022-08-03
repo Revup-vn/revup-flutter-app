@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Directions {
   LatLngBounds get bounds => throw _privateConstructorUsedError;
   List<PointLatLng> get polylinePoints => throw _privateConstructorUsedError;
-  String get distance => throw _privateConstructorUsedError;
-  String get duration => throw _privateConstructorUsedError;
+  int get distance => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DirectionsCopyWith<Directions> get copyWith =>
@@ -34,8 +34,8 @@ abstract class $DirectionsCopyWith<$Res> {
   $Res call(
       {LatLngBounds bounds,
       List<PointLatLng> polylinePoints,
-      String distance,
-      String duration});
+      int distance,
+      int duration});
 }
 
 /// @nodoc
@@ -65,11 +65,11 @@ class _$DirectionsCopyWithImpl<$Res> implements $DirectionsCopyWith<$Res> {
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -84,8 +84,8 @@ abstract class _$$_DirectionsCopyWith<$Res>
   $Res call(
       {LatLngBounds bounds,
       List<PointLatLng> polylinePoints,
-      String distance,
-      String duration});
+      int distance,
+      int duration});
 }
 
 /// @nodoc
@@ -117,11 +117,11 @@ class __$$_DirectionsCopyWithImpl<$Res> extends _$DirectionsCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -146,9 +146,9 @@ class _$_Directions implements _Directions {
   }
 
   @override
-  final String distance;
+  final int distance;
   @override
-  final String duration;
+  final int duration;
 
   @override
   String toString() {
@@ -185,17 +185,17 @@ abstract class _Directions implements Directions {
   const factory _Directions(
       {required final LatLngBounds bounds,
       required final List<PointLatLng> polylinePoints,
-      required final String distance,
-      required final String duration}) = _$_Directions;
+      required final int distance,
+      required final int duration}) = _$_Directions;
 
   @override
   LatLngBounds get bounds;
   @override
   List<PointLatLng> get polylinePoints;
   @override
-  String get distance;
+  int get distance;
   @override
-  String get duration;
+  int get duration;
   @override
   @JsonKey(ignore: true)
   _$$_DirectionsCopyWith<_$_Directions> get copyWith =>

@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ProviderData _$ProviderDataFromJson(Map<String, dynamic> json) {
+  return _ProviderData.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ProviderData {
   String get id => throw _privateConstructorUsedError;
@@ -27,6 +31,7 @@ mixin _$ProviderData {
   String get backgroundImg => throw _privateConstructorUsedError;
   String get profileBio => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProviderDataCopyWith<ProviderData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -206,7 +211,7 @@ class __$$_ProviderDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_ProviderData implements _ProviderData {
   _$_ProviderData(
       {required this.id,
@@ -219,6 +224,9 @@ class _$_ProviderData implements _ProviderData {
       required this.totalRating,
       required this.backgroundImg,
       required this.profileBio});
+
+  factory _$_ProviderData.fromJson(Map<String, dynamic> json) =>
+      _$$_ProviderDataFromJson(json);
 
   @override
   final String id;
@@ -268,6 +276,7 @@ class _$_ProviderData implements _ProviderData {
                 .equals(other.profileBio, profileBio));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -286,6 +295,13 @@ class _$_ProviderData implements _ProviderData {
   @override
   _$$_ProviderDataCopyWith<_$_ProviderData> get copyWith =>
       __$$_ProviderDataCopyWithImpl<_$_ProviderData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProviderDataToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ProviderData implements ProviderData {
@@ -300,6 +316,9 @@ abstract class _ProviderData implements ProviderData {
       required final int totalRating,
       required final String backgroundImg,
       required final String profileBio}) = _$_ProviderData;
+
+  factory _ProviderData.fromJson(Map<String, dynamic> json) =
+      _$_ProviderData.fromJson;
 
   @override
   String get id;

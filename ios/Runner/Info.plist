@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Google Sign-in Section -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.755978697752-rjbicfb9i561rlae6pbgfgcp52jtcnak</string>
+			</array>
+		</dict>
+	</array>
+	<!-- End of the Google Sign-in Section -->
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>

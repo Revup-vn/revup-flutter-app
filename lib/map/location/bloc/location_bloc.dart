@@ -5,10 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../../configs/map_config.dart';
 import '../../../shared/preferences.dart';
 import '../../models/directions_model.dart';
 import '../../models/place_details_model.dart';
+import '../../utils/map_utils.dart';
 
 part 'location_event.dart';
 part 'location_state.dart';
@@ -25,7 +27,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   ) async {
     await event.when(
       started: () async {
-        final location = await _determinePosition();
+        final location = await determinePosition();
         emit(LocationState.initial(location: location));
       },
       locationUpdated: (location) async {
@@ -45,37 +47,12 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         emit(LocationState.addressLoaded(address: address));
       },
       saved: (LatLng location) async {
-        final prefs = await Preferences.getInstance();
-        await prefs.saveCurrentLocation(location);
+        final boxLocation = Hive.box<dynamic>(
+          'location',
+        );
+        await boxLocation.put('repairLat', location.latitude);
+        await boxLocation.put('repairLng', location.longitude);
       },
-    );
-  }
-
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-        '''Location permissions are permanently denied, we cannot request permissions.''',
-      );
-    }
-
-    return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
     );
   }
 

@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 
-class SupportHomePageItem extends StatelessWidget {
-  const SupportHomePageItem({
+import '../bloc/home_bloc.dart';
+
+class AppServiceItem extends StatelessWidget {
+  const AppServiceItem({
     super.key,
-    required this.userName,
+    required this.name,
     required this.icon,
+    required this.onPressed,
   });
-  final String userName;
+  final String name;
   final Icon icon;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,16 +32,14 @@ class SupportHomePageItem extends StatelessWidget {
             child: IconButton(
               icon: icon,
               iconSize: 35,
-              onPressed: () {
-                // TODO(namngoc231): Call rescue
-              },
+              onPressed: onPressed,
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: AutoSizeText(
-            userName,
+            name,
             style: Theme.of(context)
                     .textTheme
                     .labelLarge

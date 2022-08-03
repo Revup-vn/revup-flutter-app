@@ -32,7 +32,9 @@ import '../test/test.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(
+      page: SplashPage,
+    ),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
     AdaptiveRoute<void>(page: ServiceInvoicePage),
@@ -40,6 +42,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(
       page: HomePage,
+      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: ActivatePage),
@@ -59,7 +62,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ServiceDetailsPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),
-    AdaptiveRoute<void>(page: RequestProviderPage, initial: true),
+    AdaptiveRoute<void>(page: RequestProviderPage),
     AdaptiveRoute<void>(
       page: ListRepairerPage,
     ),

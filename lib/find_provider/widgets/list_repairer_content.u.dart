@@ -103,7 +103,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${providers[index].distance.toInt()} m',
+                                '${providers[index].distance} km',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(
