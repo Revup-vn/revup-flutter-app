@@ -7,6 +7,7 @@ import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../models/rating_data.u.dart';
+import '../models/record_rating_data.dart';
 import '../models/service_data.u.dart';
 
 part 'repairer_profile_event.dart';
@@ -67,6 +68,36 @@ class RepairerProfileBloc
           () async => none(),
           (a) async => (await _provider.get(a.value1)).toOption(),
         );
+
+        final rating =
+            (await _repairRecord.where('pid', isEqualTo: _providerID))
+                .map<IList<Option<RecordRatingData>>>(
+                  (r) => r.map(
+                    (a) => a.maybeMap(
+                      orElse: none,
+                      finished: (v) => some(
+                        RecordRatingData.fromDtos(v),
+                      ),
+                    ),
+                  ),
+                )
+                .map<IList<RecordRatingData>>(
+                  (r) => r.filter((a) => a.isSome()).map(
+                        (a) => a.getOrElse(
+                          () => throw NullThrownError(),
+                        ),
+                      ),
+                )
+                .map(
+                  (r) =>
+                      r
+                          .map((a) => a.feedback.rating)
+                          .foldLeft<int>(0, (previous, a) => previous + a) /
+                      r.length(),
+                )
+                .fold((l) => 0.0, (r) => r);
+
+        print(rating);
 
         final maybeCategoryService =
             maybeProviderData.fold<Option<IStore<RepairCategory>>>(

@@ -17,6 +17,7 @@ class RepairerProfileServices extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = serviceData.toIterable().toList();
     return ListView.separated(
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           color: Theme.of(context).colorScheme.surface,

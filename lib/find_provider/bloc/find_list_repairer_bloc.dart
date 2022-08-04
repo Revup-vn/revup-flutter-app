@@ -35,8 +35,8 @@ class FindListRepairerBloc
       started: () async {
         emit(const FindListRepairerState.loading());
         // mock provider location
-        // final point = geo.point(
-        //     latitude: 21.030919894910200, longitude: 105.8341858504336);
+        // final point = _geo.point(
+        //     latitude: 21.030919894910200, longitude: 105.8341858504330);
         // await _userStore.collection().doc('geCHNSHZ2xg2GfMSfZpxAweWWln2').set(
         //   <String, dynamic>{'cur_location': point.data},
         //   SetOptions(merge: true),
@@ -59,9 +59,6 @@ class FindListRepairerBloc
               LatLng(repairPoint.latitude, repairPoint.longitude),
               LatLng(providerLoc.latitude, providerLoc.longitude),
             );
-
-            print('ccc: ${directions.distance}');
-            print('ccc: ${directions.duration}');
             final provider = ProviderData.fromDtos(
               AppUser.fromJson(data),
               distance: directions.distance.toDouble(),

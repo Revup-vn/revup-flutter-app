@@ -65,6 +65,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       options: Options(responseType: ResponseType.json),
     );
 
+    print(response.statusMessage);
+
     final formattedAddress = ((response.data!['results'] as List<dynamic>)[0]
             as Map<String, dynamic>)['formatted_address']
         .toString();

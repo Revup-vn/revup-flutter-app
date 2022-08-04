@@ -37,7 +37,12 @@ class UpdateProfileView extends StatelessWidget {
           'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
-      vac: VideoCallAccount(id: '', username: '', pwd: ''),
+      vac: VideoCallAccount(
+        id: '',
+        username: '',
+        pwd: '',
+        email: '',
+      ),
     );
     if (mayBeUser.isSome()) {
       user = mayBeUser.toNullable()!;

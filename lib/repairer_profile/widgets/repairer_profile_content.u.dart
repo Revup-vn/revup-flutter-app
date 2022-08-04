@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
+import '../../l10n/l10n.dart';
 import '../models/rating_data.u.dart';
 import '../models/service_data.u.dart';
 import 'repairer_profile_avatar_image.u.dart';
@@ -25,6 +26,7 @@ class RepairerProfileMainContent extends StatelessWidget {
     const coverHeight = 150;
     final serviceDataVector = IVector.from(serviceData.toIterable());
     final ratingDataVector = IVector.from(ratingData.toIterable());
+    final l10n = context.l10n;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -96,7 +98,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                         ),
                         Expanded(
                           child: AutoSizeText(
-                            '''${provider.numberStarRating} | ${provider.totalRating} lượt''',
+                            '''${provider.numberStarRating} | ${provider.totalRating} ${l10n.starRatingCountLabel}''',
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),
@@ -106,21 +108,29 @@ class RepairerProfileMainContent extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 1,
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: AutoSizeText(l10n.callForHelpLabel),
+                      ),
+                    ),
+                    Divider(
                       color: Theme.of(context)
                           .colorScheme
                           .inverseSurface
                           .withOpacity(0.2),
-                      width: double.infinity,
-                    ),
+                    )
                   ],
                 ),
               ),
             ],
           ),
           Expanded(
-            child: RepairerProfileTabBar(serviceDataVector, ratingDataVector),
+            child: RepairerProfileTabBar(
+              serviceDataVector,
+              ratingDataVector,
+            ),
           ),
         ],
       ),

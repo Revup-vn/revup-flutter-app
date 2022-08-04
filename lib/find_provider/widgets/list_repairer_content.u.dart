@@ -103,7 +103,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                '${providers[index].distance} km',
+                                '''${double.parse((providers[index].distance).toStringAsFixed(2))} km''',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(
@@ -124,10 +124,16 @@ ${providers[index].timeArrivalInMinute.toInt()} ${context.l10n.minutesLabel}''',
                       ],
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: IconButton(
-                      onPressed: null,
-                      icon: Icon(
+                      onPressed: () {
+                        context.router.push(
+                          RepairerProfileRoute(
+                            providerID: providers[index].id,
+                          ),
+                        );
+                      },
+                      icon: const Icon(
                         Icons.arrow_forward_ios,
                         size: 18,
                       ),

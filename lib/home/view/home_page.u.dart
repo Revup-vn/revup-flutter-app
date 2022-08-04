@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
       id: '',
       username: '',
       pwd: '',
+      email: '',
     ),
   );
 

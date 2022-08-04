@@ -37,6 +37,7 @@ class InvoicePaymentView extends StatelessWidget {
         id: '',
         username: '',
         pwd: '',
+        email: '',
       ),
     );
     if (mayBeUser.isSome()) {

@@ -37,6 +37,7 @@ class ServiceInvoiceView extends StatelessWidget {
         id: '',
         username: '',
         pwd: '',
+        email: '',
       ),
     );
     if (mayBeUser.isSome()) {

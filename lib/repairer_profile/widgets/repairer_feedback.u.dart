@@ -19,6 +19,8 @@ class RepairerProfileFeedback extends StatelessWidget {
     final data = ratingData.toIterable().toList();
 
     return ListView.separated(
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           color: Theme.of(context).colorScheme.surface,

@@ -181,5 +181,6 @@
   "zaloPayLabel": "ZaloPay",
   "selectProductLabel": "Chọn sản phẩm",
   "findRepairerErrorMessageLabel": "Không thể tìm được thợ sử chữa, hãy thử refresh hoặc restart lại app nhé!",
-  "emptyRepairerLabel": "Không có thợ sửa chữa nào hoạt động quanh đây, chúng tôi rất xin lỗi vì sự bất tiện này"
+  "emptyRepairerLabel": "Không có thợ sửa chữa nào hoạt động quanh đây, chúng tôi rất xin lỗi vì sự bất tiện này",
+  "starRatingCountLabel": "lượt"
 }
