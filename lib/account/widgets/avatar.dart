@@ -9,10 +9,12 @@ import 'default_avatar.dart';
 class Avatar extends StatelessWidget {
   const Avatar({
     super.key,
-    required this.user,
+    required this.userName,
+    required this.imageUrl,
     this.callback,
   });
-  final UserModel user;
+  final String userName;
+  final String imageUrl;
   final VoidCallback? callback;
 
   @override
@@ -27,17 +29,17 @@ class Avatar extends StatelessWidget {
             child: CachedNetworkImage(
               fadeInDuration: const Duration(milliseconds: 50),
               fadeOutDuration: const Duration(milliseconds: 50),
-              imageUrl: user.urlImage.isEmpty ? kFallbackImage : user.urlImage,
+              imageUrl: imageUrl.isEmpty ? kFallbackImage : imageUrl,
               placeholder: (context, url) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.headline1,
-                  userName: user.name,
+                  userName: userName,
                 );
               },
               errorWidget: (context, url, dynamic error) {
                 return DefaultAvatar(
                   textSize: Theme.of(context).textTheme.headline1,
-                  userName: user.name,
+                  userName: userName,
                 );
               },
               height: 64,

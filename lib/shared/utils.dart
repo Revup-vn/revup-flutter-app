@@ -6,6 +6,7 @@ Option<AppUser> getUser(AuthenticateState state) =>
       authenticated: (authType) => authType.when(
         google: some,
         phone: some,
+        email: some,
       ),
       orElse: none,
     );

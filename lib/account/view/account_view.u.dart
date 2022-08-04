@@ -28,7 +28,8 @@ class AccountView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Avatar(
-                user: user,
+                imageUrl: user.urlImage,
+                userName: user.name,
                 callback: () {
                   // TODO(namngoc231): Go to photo selection method
                 },

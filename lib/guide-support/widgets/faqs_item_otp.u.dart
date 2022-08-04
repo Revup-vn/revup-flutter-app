@@ -54,8 +54,13 @@ must be the phone number you used to register your REVUP account. Please double 
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final content = context.read<LanguageCubit>().state.when(
-          system: (locale) =>
-              locale.contains('vi') ? _viHtmlContent : _enHtmlContent,
+          system: () => context
+                  .read<LanguageCubit>()
+                  .getSystemLocale()
+                  .languageCode
+                  .contains('vi')
+              ? _viHtmlContent
+              : _enHtmlContent,
           vietnamese: () => _viHtmlContent,
           english: () => _enHtmlContent,
         );

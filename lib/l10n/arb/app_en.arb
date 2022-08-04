@@ -120,5 +120,7 @@
   "workerRepairing": "Worker is repairing",
   "workerRepairLabel": "Worker doing repairs",
   "yourFeedbackLabel": "Your feedback",
-  "zaloPayLabel": "ZaloPay"
+  "zaloPayLabel": "ZaloPay",
+  "enterPhoneNumberLabel": "Enter your phone number to continue",
+  "loginSuccessLabel": "Login successfully"
 }

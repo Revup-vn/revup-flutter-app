@@ -120,5 +120,7 @@
   "workerRepairing": "Thợ đang tiến hành sửa",
   "workerRepairLabel": "Thợ đang tiến hành sửa chữa",
   "yourFeedbackLabel": "Phản hồi của bạn",
-  "zaloPayLabel": "ZaloPay"
+  "zaloPayLabel": "ZaloPay",
+  "enterPhoneNumberLabel": "Nhập số điện thoại của bạn để tiếp tục",
+  "loginSuccessLabel": "Đăng nhập thành công"
 }

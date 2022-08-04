@@ -1,18 +1,21 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
+import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
-import '../widgets/login_success.u.dart';
+
 import 'login_view.u.dart';
 
 class LoginPage extends StatelessWidget {
@@ -32,10 +35,54 @@ class LoginPage extends StatelessWidget {
         child: BlocConsumer<AuthenticateBloc, AuthenticateState>(
           listener: (context, state) => state.maybeWhen(
             partial: (au) => _onPartialAuth(au, context),
+            phoneCodeVerifyFailed: (phoneNumber) =>
+                _onReverifyOTP(phoneNumber, context),
+            authenticated: (authType) {
+              context.loaderOverlay.hide();
+              showDialog<String>(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    backgroundColor: Colors.transparent,
+                    insetPadding: const EdgeInsets.all(10),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          height: 200,
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.done,
+                                color: Theme.of(context).colorScheme.onTertiary,
+                              ),
+                              AutoSizeText(
+                                context.l10n.loginSuccessLabel,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiary,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+              return Future.delayed(const Duration(seconds: 3), () {
+                context.router.push(HomeRoute(user: authType.user));
+              });
+            },
             orElse: () => false,
           ),
           builder: (context, state) => state.maybeWhen(
-            authenticated: (authType) => LoginSuccess(type: authType),
+            //authenticated: (authType) => LoginSuccess(type: authType),
             loading: LoginView.new,
             failure: (errorMessage, authFailure) {
               return authFailure?.maybeWhen(
@@ -86,8 +133,72 @@ class LoginPage extends StatelessWidget {
 
               return completer.future;
             },
-            onSignUpSubmit: (user) {
-              return appUser;
+            onSignUpSubmit: (user) async {
+              context.loaderOverlay.show();
+              final completer = Completer<AppUser>();
+              await context.router.push(
+                Signup6Route(
+                  completer: completer,
+                  phoneNumber: user.phoneNumber ?? '',
+                  photoURL: user.photoURL ?? '',
+                  uid: user.uid,
+                  email: user.email ?? '',
+                ),
+              );
+
+              return completer.future;
+            },
+            onSignUpSuccess: () {
+              return Future.value(unit);
+            },
+          ),
+        );
+
+    return unit;
+  }
+
+  Unit _onReverifyOTP(String phoneNumber, BuildContext context) {
+    var phone = phoneNumber;
+    if (phone.substring(0, 3) == '+84') {
+      phone = phone.substring(
+        3,
+        phone.length,
+      );
+    } else if (phone.substring(0, 1) == '0') {
+      phone = phone.substring(
+        1,
+        phone.length,
+      );
+    }
+    context.read<AuthenticateBloc>().add(
+          AuthenticateEvent.loginWithPhone(
+            phoneNumber: '+84$phone',
+            onSubmitOTP: () async {
+              final completer = Completer<String>();
+
+              await context.router.push(
+                OTPRoute(
+                  phoneNumber: phone,
+                  completer: completer,
+                ),
+              );
+
+              return completer.future;
+            },
+            onSignUpSubmit: (user) async {
+              context.loaderOverlay.show();
+              final completer = Completer<AppUser>();
+              await context.router.push(
+                Signup6Route(
+                  completer: completer,
+                  phoneNumber: user.phoneNumber ?? '',
+                  photoURL: user.photoURL ?? '',
+                  uid: user.uid,
+                  email: user.email ?? '',
+                ),
+              );
+
+              return completer.future;
             },
             onSignUpSuccess: () {
               return Future.value(unit);

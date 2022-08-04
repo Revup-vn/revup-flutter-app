@@ -224,15 +224,14 @@ class LoginView extends StatelessWidget {
                           onCompleteSignUp: (user) async {
                             final completer = Completer<AppUser>();
                             await context.router.push(
-                              Signup6Route(
+                              LoginEnterPhoneRoute(
                                 completer: completer,
+                                email: user.email ?? '',
                                 phoneNumber: user.phoneNumber ?? '',
                                 photoURL: user.photoURL ?? '',
                                 uid: user.uid,
-                                email: user.email ?? '',
                               ),
                             );
-
                             return completer.future;
                           },
                         ),
