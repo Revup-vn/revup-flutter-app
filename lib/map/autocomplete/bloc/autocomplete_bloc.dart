@@ -1,21 +1,17 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
-import '../../../configs/map_config.dart';
 
+import '../../../configs/map_config.dart';
 import '../../models/place_autocomplete_model.dart';
 
+part 'autocomplete_bloc.freezed.dart';
 part 'autocomplete_event.dart';
 part 'autocomplete_state.dart';
-part 'autocomplete_bloc.freezed.dart';
 
 class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
   AutocompleteBloc() : super(const AutocompleteState.loading()) {

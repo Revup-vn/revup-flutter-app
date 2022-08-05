@@ -1,4 +1,3 @@
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -21,6 +20,7 @@ class Preferences {
 
   static Future<Preferences> getInstance() async {
     final box = await Hive.openBox<Object>(_preferencesBox);
+
     return Preferences._(box);
   }
 

@@ -1,13 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 
-import '../../find_nearby/view/find_nearby_page.dart';
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
-import '../../shared/preferences.dart';
 import '../bloc/home_bloc.dart';
 import 'app_service_item.u.dart';
 
@@ -97,7 +92,7 @@ class AppServicePanel extends StatelessWidget {
                                       },
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),

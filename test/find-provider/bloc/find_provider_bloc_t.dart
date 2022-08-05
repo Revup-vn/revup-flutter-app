@@ -52,10 +52,12 @@
 //       ],
 //     );
 //     blocTest<FindListRepairerBloc, FindListRepairerState>(
-//       '''emit dropdownListChangedSuccess state when dropdownListChanged event is added''',
+//       '''emit dropdownListChangedSuccess 
+//state when dropdownListChanged event is added''',
 //       build: () => findListRepairerBloc,
 //       act: (bloc) => bloc.add(
-//         const FindListRepairerEvent.dropdownListChanged(sortType: 'Distance'),
+//         const FindListRepairerEvent.dropdownListChanged(sortType: 'Distance'
+// ),
 //       ),
 //       expect: () => <FindListRepairerState>[
 //         FindListRepairerState.dropdownListChangedSuccess(

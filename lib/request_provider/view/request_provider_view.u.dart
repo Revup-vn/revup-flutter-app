@@ -2,12 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:revup_core/core.dart';
-import '../../../configs/map_config.dart';
 
+import '../../../configs/map_config.dart';
 import '../../l10n/l10n.dart';
 import '../../map/directions/bloc/directions_bloc.dart';
 import '../../map/models/directions_model.dart';
@@ -47,7 +45,6 @@ class _RequestProviderViewState extends State<RequestProviderView> {
   );
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _drawPolylineTest();
   }
@@ -64,6 +61,7 @@ class _RequestProviderViewState extends State<RequestProviderView> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return BlocConsumer<DirectionsBloc, DirectionsState>(
       listener: (context, state) {
         state.whenOrNull(
@@ -170,12 +168,12 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                                   child: Column(
                                     children: const [
                                       AutoSizeText(
-                                          'Địa chỉ: 77 Khuất Duy Tiến, Nhân Chính, Thanh Xuân, Hà Nội'),
+                                          '''Địa chỉ: 77 Khuất Duy Tiến, Nhân Chính, Thanh Xuân, Hà Nội''',),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       AutoSizeText(
-                                          'Lưu ý : Đây là phí di chuyển chưa bao gồm giá dịch vụ sửa chữa'),
+                                          '''Lưu ý : Đây là phí di chuyển chưa bao gồm giá dịch vụ sửa chữa''',),
                                     ],
                                   ),
                                 ),
@@ -196,10 +194,9 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  print('aaa');
                                 },
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(Icons.paid),
                                     AutoSizeText('Tiền mặt'),
                                   ],
@@ -207,15 +204,14 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  print('bbb');
                                 },
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(Icons.local_offer),
                                     AutoSizeText('Ưu đãi'),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -248,8 +244,8 @@ class _RequestProviderViewState extends State<RequestProviderView> {
       // },
       options: Options(responseType: ResponseType.json),
     );
-    print(response);
     final results = Directions.fromMap(response.data!);
+
     return results;
   }
 }

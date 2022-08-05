@@ -1,15 +1,16 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
+import '../models/provider_data.u.dart';
 
 part 'find_list_repairer_event.dart';
 part 'find_list_repairer_state.dart';
@@ -37,7 +38,8 @@ class FindListRepairerBloc
         // mock provider location
         // final point = _geo.point(
         //     latitude: 21.030919894910200, longitude: 105.8341858504330);
-        // await _userStore.collection().doc('geCHNSHZ2xg2GfMSfZpxAweWWln2').set(
+        // await _userStore.collection().doc('geCHNSHZ2xg2GfMSfZpxAweWWln2')
+        // .set(
         //   <String, dynamic>{'cur_location': point.data},
         //   SetOptions(merge: true),
         // );

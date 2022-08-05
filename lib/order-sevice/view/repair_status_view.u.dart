@@ -57,7 +57,7 @@ class RepairStatusView extends StatelessWidget {
                           icon: const Icon(Icons.add_box_outlined),
                           onPressed: () {
                             context.router.push(
-                              const ServiceDetailRoute(),
+                              const OrderDetailRoute(),
                             );
                           },
                         ),

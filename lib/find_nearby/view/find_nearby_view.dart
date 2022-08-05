@@ -2,12 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../find_provider/bloc/find_list_repairer_bloc.dart';
 import '../../l10n/l10n.dart';
 import '../../map/autocomplete/bloc/autocomplete_bloc.dart';
 import '../../map/location/bloc/location_bloc.dart';
@@ -86,6 +84,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                   ),
                 ),
               );
+
             return mapController.animateCamera(
               CameraUpdate.newLatLng(
                 LatLng(
@@ -99,6 +98,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
       },
       builder: (context, state) {
         final l10n = context.l10n;
+
         return Scaffold(
           resizeToAvoidBottomInset: false,
           body: Stack(
@@ -221,50 +221,51 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                 ],
                 builder: (context, transition) {
                   return BlocBuilder<AutocompleteBloc, AutocompleteState>(
-                      builder: (context, state) {
-                    return state.when(
-                      loading: SizedBox.new,
-                      loaded: (autocomplete) {
-                        return Material(
-                          color: Colors.white,
-                          elevation: 4,
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            itemCount: autocomplete.length,
-                            itemBuilder: (context, index) => Column(
-                              children: [
-                                ListTile(
-                                  title: AutoSizeText(
-                                    autocomplete[index].description,
+                    builder: (context, state) {
+                      return state.when(
+                        loading: SizedBox.new,
+                        loaded: (autocomplete) {
+                          return Material(
+                            color: Colors.white,
+                            elevation: 4,
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: autocomplete.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  ListTile(
+                                    title: AutoSizeText(
+                                      autocomplete[index].description,
+                                    ),
+                                    onTap: () {
+                                      context.read<LocationBloc>().add(
+                                            LocationEvent.placeSearch(
+                                              placeId:
+                                                  autocomplete[index].placeId,
+                                            ),
+                                          );
+                                      FloatingSearchBar.of(context)?.close();
+                                      context
+                                          .read<AutocompleteBloc>()
+                                          .add(const AutocompleteEvent.clear());
+                                    },
                                   ),
-                                  onTap: () {
-                                    context.read<LocationBloc>().add(
-                                          LocationEvent.placeSearch(
-                                            placeId:
-                                                autocomplete[index].placeId,
-                                          ),
-                                        );
-                                    FloatingSearchBar.of(context)?.close();
-                                    context
-                                        .read<AutocompleteBloc>()
-                                        .add(const AutocompleteEvent.clear());
-                                  },
-                                ),
-                                if (autocomplete[index]
-                                        .description
-                                        .isNotEmpty &&
-                                    autocomplete[index] != autocomplete.last)
-                                  const Divider(height: 0),
-                              ],
+                                  if (autocomplete[index]
+                                          .description
+                                          .isNotEmpty &&
+                                      autocomplete[index] != autocomplete.last)
+                                    const Divider(height: 0),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      failure: () =>
-                          Center(child: AutoSizeText(l10n.commonErrorLabel)),
-                    );
-                  });
+                          );
+                        },
+                        failure: () =>
+                            Center(child: AutoSizeText(l10n.commonErrorLabel)),
+                      );
+                    },
+                  );
                 },
               ),
             ],

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,12 +7,11 @@ import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../models/rating_data.u.dart';
-import '../models/record_rating_data.dart';
 import '../models/service_data.u.dart';
 
+part 'repairer_profile_bloc.freezed.dart';
 part 'repairer_profile_event.dart';
 part 'repairer_profile_state.dart';
-part 'repairer_profile_bloc.freezed.dart';
 
 class RepairerProfileBloc
     extends Bloc<RepairerProfileEvent, RepairerProfileState> {
@@ -63,41 +62,43 @@ class RepairerProfileBloc
                 ),
               ),
         );
-        final maybeCustomerData =
-            await mayBeCidAndFeedback.fold<Future<Option<AppUser>>>(
-          () async => none(),
-          (a) async => (await _provider.get(a.value1)).toOption(),
-        );
+        // final maybeCustomerData =
+        //     await mayBeCidAndFeedback.fold<Future<Option<AppUser>>>(
+        //   () async => none(),
+        //   (a) async => (await _provider.get(a.value1)).toOption(),
+        // );
 
-        final rating =
-            (await _repairRecord.where('pid', isEqualTo: _providerID))
-                .map<IList<Option<RecordRatingData>>>(
-                  (r) => r.map(
-                    (a) => a.maybeMap(
-                      orElse: none,
-                      finished: (v) => some(
-                        RecordRatingData.fromDtos(v),
-                      ),
-                    ),
-                  ),
-                )
-                .map<IList<RecordRatingData>>(
-                  (r) => r.filter((a) => a.isSome()).map(
-                        (a) => a.getOrElse(
-                          () => throw NullThrownError(),
-                        ),
-                      ),
-                )
-                .map(
-                  (r) =>
-                      r
-                          .map((a) => a.feedback.rating)
-                          .foldLeft<int>(0, (previous, a) => previous + a) /
-                      r.length(),
-                )
-                .fold((l) => 0.0, (r) => r);
+        // final rating =
+        //     _repairRecord.collection().where('pid', isEqualTo: _providerID);
 
-        print(rating);
+        // final rating =
+        //     (await _repairRecord.where('pid', isEqualTo: _providerID))
+        //         .map<IList<Option<RecordRatingData>>>(
+        //   (r) => r.map(
+        //     (a) => a.maybeMap(
+        //       orElse: none,
+        //       finished: (v) => some(
+        //         RecordRatingData.fromDtos(v),
+        //       ),
+        //     ),
+        //   ),
+        // );
+
+        // .map<IList<RecordRatingData>>(
+        //   (r) => r.filter((a) => a.isSome()).map(
+        //         (a) => a.getOrElse(
+        //           () => throw NullThrownError(),
+        //         ),
+        //       ),
+        // )
+        // .map(
+        //   (r) =>
+        //       r
+        //           .map((a) => a.feedback.rating)
+        //           .foldLeft<int>(0, (previous, a) => previous + a) /
+        //       r.length(),
+        // )
+        // .fold((l) => 0.0, (r) => r);
 
         final maybeCategoryService =
             maybeProviderData.fold<Option<IStore<RepairCategory>>>(

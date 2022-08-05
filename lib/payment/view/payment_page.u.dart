@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 

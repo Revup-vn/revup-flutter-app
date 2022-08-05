@@ -23,7 +23,7 @@ Future<Position> determinePosition() async {
     );
   }
 
-  return await Geolocator.getCurrentPosition(
+  return Geolocator.getCurrentPosition(
     desiredAccuracy: LocationAccuracy.high,
   );
 }

@@ -8,8 +8,8 @@ import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
 import '../bloc/order_service_bloc.dart';
 
-class ServiceDetailView extends StatelessWidget {
-  const ServiceDetailView({super.key});
+class OrderDetailView extends StatelessWidget {
+  const OrderDetailView({super.key});
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

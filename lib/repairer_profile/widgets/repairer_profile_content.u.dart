@@ -120,7 +120,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                           .colorScheme
                           .inverseSurface
                           .withOpacity(0.2),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -130,6 +130,7 @@ class RepairerProfileMainContent extends StatelessWidget {
             child: RepairerProfileTabBar(
               serviceDataVector,
               ratingDataVector,
+              providerId: provider.id,
             ),
           ),
         ],

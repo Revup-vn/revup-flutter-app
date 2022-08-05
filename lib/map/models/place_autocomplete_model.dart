@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'place_autocomplete_model.freezed.dart';
 part 'place_autocomplete_model.g.dart';
 

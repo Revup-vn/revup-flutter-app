@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
+
 part 'record_rating_data.freezed.dart';
 
 @freezed

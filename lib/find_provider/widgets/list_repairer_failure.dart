@@ -30,7 +30,7 @@ class ListRepairerLoadDataFailure extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         errorMessage ??
-                            'something went wrong please refresh or restart app',
+                            '''something went wrong please refresh or restart app''',
                         maxLines: 2,
                       ),
                     ),
@@ -44,7 +44,7 @@ class ListRepairerLoadDataFailure extends StatelessWidget {
               Icons.no_accounts_outlined,
               size: 128,
             ),
-          )
+          ),
         ],
       ),
     );

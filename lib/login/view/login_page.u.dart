@@ -26,6 +26,7 @@ class LoginPage extends StatelessWidget {
         );
 
     log(context.read<ConnectivityBloc>().state.toString());
+
     return InternetAvailabilityPage(
       child: BlocProvider(
         create: (BuildContext context) => LoginBloc(),

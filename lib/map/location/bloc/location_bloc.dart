@@ -6,15 +6,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../../configs/map_config.dart';
-import '../../../shared/preferences.dart';
-import '../../models/directions_model.dart';
 import '../../models/place_details_model.dart';
 import '../../utils/map_utils.dart';
 
+part 'location_bloc.freezed.dart';
 part 'location_event.dart';
 part 'location_state.dart';
-part 'location_bloc.freezed.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationBloc() : super(const LocationState.loading()) {
@@ -65,12 +64,10 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       options: Options(responseType: ResponseType.json),
     );
 
-    print(response.statusMessage);
-
     final formattedAddress = ((response.data!['results'] as List<dynamic>)[0]
             as Map<String, dynamic>)['formatted_address']
         .toString();
-    return await Future.value(formattedAddress);
+    return Future.value(formattedAddress);
   }
 
   Future<PlaceDetails> getPlaceDetails(String placeId) async {

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../models/service_data.u.dart';
 
@@ -10,12 +9,15 @@ class RepairerProfileServices extends StatelessWidget {
   const RepairerProfileServices({
     super.key,
     required this.serviceData,
+    required this.providerId,
   });
   final IVector<ServiceData> serviceData;
+  final String providerId;
 
   @override
   Widget build(BuildContext context) {
     final data = serviceData.toIterable().toList();
+
     return ListView.separated(
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
@@ -26,7 +28,6 @@ class RepairerProfileServices extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              // TODO(wanynobe): rount to service detail screen
             },
             child: ListBody(
               children: [

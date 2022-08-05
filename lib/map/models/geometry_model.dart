@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'location_model.dart';
+
 part 'geometry_model.freezed.dart';
 part 'geometry_model.g.dart';
 

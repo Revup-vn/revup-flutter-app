@@ -12,6 +12,7 @@ class RepairerProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
+
     return BlocProvider(
       create: (BuildContext context) => RepairerProfileBloc(
         providerID,

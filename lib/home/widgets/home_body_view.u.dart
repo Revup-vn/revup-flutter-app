@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -11,8 +11,8 @@ import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../bloc/home_bloc.dart';
-import 'repair_review_home_page.u.dart';
 import 'app_service_panel.u.dart';
+import 'repair_review_home_page.u.dart';
 
 class HomeBodyView extends StatelessWidget {
   const HomeBodyView({super.key});
