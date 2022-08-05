@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
+
+import '../../l10n/l10n.dart';
 
 class LoginFailure extends StatelessWidget {
   const LoginFailure({
@@ -15,9 +16,8 @@ class LoginFailure extends StatelessWidget {
   Widget build(BuildContext context) {
     Future<void>.delayed(
       const Duration(seconds: 3),
-      () {
+      () async {
         context.read<AuthenticateBloc>().add(const AuthenticateEvent.reset());
-        context.router.pop();
       },
     );
 
@@ -37,7 +37,9 @@ class LoginFailure extends StatelessWidget {
                 color: Colors.red,
               ),
               AutoSizeText(
-                errorMessage,
+                errorMessage == 'too-many-requests'
+                    ? context.l10n.toomanyReqLabel
+                    : errorMessage,
                 style: Theme.of(context).textTheme.headline5,
                 maxLines: 1,
               ),

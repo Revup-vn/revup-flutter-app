@@ -8,6 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config_pub.dart';
 import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/utils.dart';
@@ -28,12 +29,18 @@ class ReviewRepairmanView extends StatelessWidget {
       phone: '0866199497',
       dob: DateTime.now(),
       addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
+      email: 'huyxamxi@xamvhon.com',
       active: true,
       avatarUrl:
           'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280s.jpg',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
+      vac: const VideoCallAccount(
+        id: '1a',
+        username: '0866199497',
+        pwd: DEFAULT_PASS,
+        email: 'huyxamxi@xamvhon.com',
+      ),
     );
     if (mayBeUser.isSome()) {
       user = mayBeUser.toNullable()!;

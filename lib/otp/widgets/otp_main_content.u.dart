@@ -2,7 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import 'otp_pincode_main_content.u.dart';
@@ -17,7 +21,17 @@ class OTPMainContent extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              context.loaderOverlay.hide();
+              context.router.pop();
+              context.read<AuthenticateBloc>().add(
+                    const AuthenticateEvent.reset(),
+                  );
+            },
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.only(
             left: 16,

@@ -13,6 +13,7 @@ import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../invoice/view/service_invoice_page.u.dart';
 import '../invoice_payment/view/invoice_payment_page.u.dart';
+import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../notification_consumer/view/notification_consumer_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
@@ -69,6 +70,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: FAQsItemOTPPage),
     AdaptiveRoute<void>(page: AboutUsPage),
     AdaptiveRoute<void>(page: TermsPrivacyPage),
+    AdaptiveRoute<void>(page: LoginEnterPhonePage),
   ],
 )
 class $AppRouter {}

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/order_details.u.dart';
 import '../widgets/order_feedback.u.dart';
@@ -38,12 +39,18 @@ class HistoryConsumerDetailView extends StatelessWidget {
       phone: '0866199497',
       dob: DateTime.now(),
       addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
+      email: 'huyxamxi@xamvhon.com',
       active: true,
       avatarUrl:
           'https://cdn.pixabay.com/photo/2017/09/27/15/52/man-2792456_1280.jpg',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
+      vac: const VideoCallAccount(
+        id: '1a',
+        username: '0866199497',
+        pwd: DEFAULT_PASS,
+        email: 'huyxamxi@xamvhon.com',
+      ),
     );
 //order_payment
     final paymentMethod = l10n.zaloPaymentLabel;

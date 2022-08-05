@@ -38,7 +38,8 @@ class UpdateProfileView extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: user,
+              userName: user.name,
+              imageUrl: user.urlImage,
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
