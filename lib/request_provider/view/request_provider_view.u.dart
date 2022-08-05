@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -49,10 +50,12 @@ class _RequestProviderViewState extends State<RequestProviderView> {
     _drawPolylineTest();
   }
 
+  // ignore: avoid_void_async
   void _drawPolylineTest() async {
     directions = await getDirections(_origin.position, _destination.position);
   }
 
+  // ignore: use_setters_to_change_properties
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
     // context.read<LocationBloc>().add(const LocationEvent.started());
@@ -168,12 +171,14 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                                   child: Column(
                                     children: const [
                                       AutoSizeText(
-                                          '''Địa chỉ: 77 Khuất Duy Tiến, Nhân Chính, Thanh Xuân, Hà Nội''',),
+                                        '''Địa chỉ: 77 Khuất Duy Tiến, Nhân Chính, Thanh Xuân, Hà Nội''',
+                                      ),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       AutoSizeText(
-                                          '''Lưu ý : Đây là phí di chuyển chưa bao gồm giá dịch vụ sửa chữa''',),
+                                        '''Lưu ý : Đây là phí di chuyển chưa bao gồm giá dịch vụ sửa chữa''',
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -193,8 +198,7 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               InkWell(
-                                onTap: () {
-                                },
+                                onTap: () {},
                                 child: Row(
                                   children: const [
                                     Icon(Icons.paid),
@@ -203,8 +207,7 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
-                                },
+                                onTap: () {},
                                 child: Row(
                                   children: const [
                                     Icon(Icons.local_offer),
@@ -216,8 +219,9 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed:
-                              () {}, // TODO(cantgim): call bloc find nearby provider online
+                          onPressed: () {
+                            // TODO(cantgim): call bloc find nearby pro online
+                          },
                           child: AutoSizeText(l10n.callForHelpLabel),
                         ),
                       ],

@@ -45,6 +45,7 @@ class RepairerProfileBloc
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r);
 
+        // ignore: unused_local_variable
         final mayBeCidAndFeedback = await maybeProviderData
             .fold<Future<Option<Tuple2<String, Feedback>>>>(
           () async => none(),
@@ -62,6 +63,7 @@ class RepairerProfileBloc
                 ),
               ),
         );
+
         // final maybeCustomerData =
         //     await mayBeCidAndFeedback.fold<Future<Option<AppUser>>>(
         //   () async => none(),

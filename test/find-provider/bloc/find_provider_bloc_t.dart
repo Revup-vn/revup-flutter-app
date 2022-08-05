@@ -52,7 +52,7 @@
 //       ],
 //     );
 //     blocTest<FindListRepairerBloc, FindListRepairerState>(
-//       '''emit dropdownListChangedSuccess 
+//       '''emit dropdownListChangedSuccess
 //state when dropdownListChanged event is added''',
 //       build: () => findListRepairerBloc,
 //       act: (bloc) => bloc.add(

@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
@@ -19,8 +20,11 @@ class ServiceDetailsBloc
   ) : super(const _Initial()) {
     on<ServiceDetailsEvent>(_onEvent);
   }
+  // ignore: unused_field
   final String _serviceId;
+  // ignore: unused_field
   final String _providerId;
+  // ignore: unused_field
   final IStore<AppUser> _provider;
   final StoreRepository storeRepository;
 
