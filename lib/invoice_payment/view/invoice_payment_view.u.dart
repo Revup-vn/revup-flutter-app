@@ -91,8 +91,7 @@ class InvoicePaymentView extends StatelessWidget {
                                         '${user.firstName} ${user.lastName}',
                                   );
                                 },
-                                // ignore: implicit_dynamic_parameter
-                                errorWidget: (context, url, error) {
+                                errorWidget: (context, url, dynamic error) {
                                   return DefaultAvatar(
                                     textSize:
                                         Theme.of(context).textTheme.titleLarge,

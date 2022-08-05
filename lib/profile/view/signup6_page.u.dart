@@ -232,7 +232,7 @@ class Signup6Page extends StatelessWidget {
                           ),
                         );
                         await context.router.pop();
-                      }, // TODO(namngoc231): complete update profile
+                      },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.doneLabel,

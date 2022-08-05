@@ -200,7 +200,7 @@ class UpdateProfileView extends StatelessWidget {
                         context
                             .read<ProfileBloc>()
                             .add(ProfileEvent.submitted(user));
-                      }, // TODO(namngoc231): complete update profile
+                      },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.updateLabel,
