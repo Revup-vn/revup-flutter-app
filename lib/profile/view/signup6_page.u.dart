@@ -9,7 +9,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
-import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../configs/video_call_config.dart';
 import '../../l10n/l10n.dart';

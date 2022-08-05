@@ -1,4 +1,4 @@
-part of 'login_enter_phone_bloc.dart';
+part of 'login_enter_phone_bloc.u.dart';
 
 @freezed
 class LoginEnterPhoneEvent with _$LoginEnterPhoneEvent {

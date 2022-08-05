@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_enter_phone_event.dart';
 part 'login_enter_phone_state.dart';
-part 'login_enter_phone_bloc.freezed.dart';
+part 'login_enter_phone_bloc.u.freezed.dart';
 
 class LoginEnterPhoneBloc
     extends Bloc<LoginEnterPhoneEvent, LoginEnterPhoneState> {
@@ -11,7 +11,8 @@ class LoginEnterPhoneBloc
     on<Start>((event, emit) {
       emit(
         LoginEnterPhoneState.ready(
-            isLoginButtonEnabled: event.isLoginButtonEnabled),
+          isLoginButtonEnabled: event.isLoginButtonEnabled,
+        ),
       );
     });
 

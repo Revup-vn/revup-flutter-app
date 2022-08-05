@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -15,7 +15,6 @@ import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
-
 import 'login_view.u.dart';
 
 class LoginPage extends StatelessWidget {
@@ -35,8 +34,20 @@ class LoginPage extends StatelessWidget {
         child: BlocConsumer<AuthenticateBloc, AuthenticateState>(
           listener: (context, state) => state.maybeWhen(
             partial: (au) => _onPartialAuth(au, context),
-            phoneCodeVerifyFailed: (phoneNumber) =>
-                _onReverifyOTP(phoneNumber, context),
+            failure: (failure) => failure.maybeWhen(
+              expiredOTP: (phoneNumber) => _onReverifyOTP(
+                phoneNumber,
+                context,
+                context.l10n.otpCodeExpiredLabel,
+              ),
+              invalidOTP: (phoneNumber) => _onReverifyOTP(
+                phoneNumber,
+                context,
+                context.l10n.invalidOTPLabel,
+              ),
+              server: (message) => unit,
+              orElse: () => false,
+            ),
             authenticated: (authType) {
               context.loaderOverlay.hide();
               showDialog<String>(
@@ -75,6 +86,7 @@ class LoginPage extends StatelessWidget {
                   );
                 },
               );
+
               return Future.delayed(const Duration(seconds: 3), () {
                 context.router.push(HomeRoute(user: authType.user));
               });
@@ -84,17 +96,20 @@ class LoginPage extends StatelessWidget {
           builder: (context, state) => state.maybeWhen(
             //authenticated: (authType) => LoginSuccess(type: authType),
             loading: LoginView.new,
-            failure: (errorMessage, authFailure) {
-              return authFailure?.maybeWhen(
-                    invalidData: (message) => LoginFailure(
-                      errorMessage: message ?? 'Something went wrong',
-                    ),
-                    orElse: () =>
-                        const LoginFailure(errorMessage: 'Unknown issues'),
-                  ) ??
-                  LoginFailure(
-                    errorMessage: errorMessage ?? 'General Error Message',
-                  );
+
+            failure: (authFailure) {
+              return authFailure.maybeWhen(
+                invalidData: (message) => LoginFailure(
+                  errorMessage: message ?? context.l10n.unknowIssuesLabel,
+                ),
+                expiredOTP: (phoneNumber) => const LoginPage(),
+                invalidOTP: (phone) => const LoginPage(),
+                server: (message) => LoginFailure(
+                  errorMessage: message ?? context.l10n.unknowIssuesLabel,
+                ),
+                orElse: () =>
+                    LoginFailure(errorMessage: context.l10n.unknowIssuesLabel),
+              );
               // TODO(wamynobe): change general error message
             },
             orElse: LoginView.new,
@@ -120,13 +135,12 @@ class LoginPage extends StatelessWidget {
 
     context.read<AuthenticateBloc>().add(
           AuthenticateEvent.loginWithPhone(
-            phoneNumber: '+84${appUser.phone}',
+            phoneNumber: '+84$phoneNumber',
             onSubmitOTP: () async {
               final completer = Completer<String>();
-
               await context.router.push(
                 OTPRoute(
-                  phoneNumber: appUser.phone,
+                  phoneNumber: phoneNumber,
                   completer: completer,
                 ),
               );
@@ -148,16 +162,17 @@ class LoginPage extends StatelessWidget {
 
               return completer.future;
             },
-            onSignUpSuccess: () {
-              return Future.value(unit);
-            },
           ),
         );
 
     return unit;
   }
 
-  Unit _onReverifyOTP(String phoneNumber, BuildContext context) {
+  void _onReverifyOTP(
+    String phoneNumber,
+    BuildContext context,
+    String message,
+  ) {
     var phone = phoneNumber;
     if (phone.substring(0, 3) == '+84') {
       phone = phone.substring(
@@ -170,6 +185,39 @@ class LoginPage extends StatelessWidget {
         phone.length,
       );
     }
+    context.loaderOverlay.hide();
+    showDialog<String>(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(10),
+          child: Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.cancel_outlined,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                    AutoSizeText(
+                      message,
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
     context.read<AuthenticateBloc>().add(
           AuthenticateEvent.loginWithPhone(
             phoneNumber: '+84$phone',
@@ -200,12 +248,8 @@ class LoginPage extends StatelessWidget {
 
               return completer.future;
             },
-            onSignUpSuccess: () {
-              return Future.value(unit);
-            },
           ),
         );
-
-    return unit;
+    Navigator.of(context, rootNavigator: true).pop();
   }
 }

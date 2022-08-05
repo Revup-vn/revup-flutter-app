@@ -38,8 +38,8 @@ dependencies:
   revup_core:
     # git:
     #   url: https://github.com/Revup-vn/revup-core.git
-    #   ref: main
-    #   version: ^3.4.1-dev
+    #   ref: hotfix/re-verification-otp
+    #   version: ^3.4.5-dev
     path: ../revup-core
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
