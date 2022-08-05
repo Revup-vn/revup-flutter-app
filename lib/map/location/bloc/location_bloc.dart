@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../configs/map_config.dart';
+import '../../map_api/map_api.dart';
 import '../../models/place_details_model.dart';
 import '../../utils/map_utils.dart';
 
@@ -53,34 +52,5 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         await boxLocation.put('repairLng', location.longitude);
       },
     );
-  }
-
-  Future<String> getAddress(LatLng position) async {
-    final url =
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=$ggMapKey';
-
-    final response = await Dio().get<Map<String, dynamic>>(
-      url,
-      options: Options(responseType: ResponseType.json),
-    );
-
-    final formattedAddress = ((response.data!['results'] as List<dynamic>)[0]
-            as Map<String, dynamic>)['formatted_address']
-        .toString();
-    return Future.value(formattedAddress);
-  }
-
-  Future<PlaceDetails> getPlaceDetails(String placeId) async {
-    final url =
-        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$ggMapKey';
-
-    final response = await Dio().get<Map<String, dynamic>>(
-      url,
-      options: Options(responseType: ResponseType.json),
-    );
-
-    final results = response.data!['result'] as Map<String, dynamic>;
-
-    return PlaceDetails.fromJson(results);
   }
 }

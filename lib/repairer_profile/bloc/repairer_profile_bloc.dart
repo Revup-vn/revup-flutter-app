@@ -45,7 +45,6 @@ class RepairerProfileBloc
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r);
 
-        // ignore: unused_local_variable
         final mayBeCidAndFeedback = await maybeProviderData
             .fold<Future<Option<Tuple2<String, Feedback>>>>(
           () async => none(),
@@ -64,17 +63,15 @@ class RepairerProfileBloc
               ),
         );
 
-        // final maybeCustomerData =
-        //     await mayBeCidAndFeedback.fold<Future<Option<AppUser>>>(
-        //   () async => none(),
-        //   (a) async => (await _provider.get(a.value1)).toOption(),
-        // );
+        // ignore: unused_local_variable
+        final maybeCustomerData =
+            await mayBeCidAndFeedback.fold<Future<Option<AppUser>>>(
+          () async => none(),
+          (a) async => (await _provider.get(a.value1)).toOption(),
+        );
 
         // final rating =
-        //     _repairRecord.collection().where('pid', isEqualTo: _providerID);
-
-        // final rating =
-        //     (await _repairRecord.where('pid', isEqualTo: _providerID))
+        //     (await _repairRecord.where('pid', isEqualTo: _providerID));
         //         .map<IList<Option<RecordRatingData>>>(
         //   (r) => r.map(
         //     (a) => a.maybeMap(
@@ -85,7 +82,6 @@ class RepairerProfileBloc
         //     ),
         //   ),
         // );
-
         // .map<IList<RecordRatingData>>(
         //   (r) => r.filter((a) => a.isSome()).map(
         //         (a) => a.getOrElse(

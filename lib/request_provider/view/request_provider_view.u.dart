@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../configs/map_config.dart';
 import '../../l10n/l10n.dart';
 import '../../map/directions/bloc/directions_bloc.dart';
+import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
 import '../../service/widgets/service_avatar.dart';
 
@@ -234,22 +233,5 @@ class _RequestProviderViewState extends State<RequestProviderView> {
         );
       },
     );
-  }
-
-  Future<Directions> getDirections(LatLng origin, LatLng destination) async {
-    final url =
-        'https://maps.googleapis.com/maps/api/directions/json?destination=${destination.latitude},${destination.longitude}&origin=${origin.latitude},${origin.longitude}&key=$ggMapKey';
-    final response = await Dio().get<Map<String, dynamic>>(
-      url,
-      // queryParameters: <String, dynamic>{
-      //   'origin': '${origin.latitude},${origin.longitude}',
-      //   'destination': '${destination.latitude},${destination.longitude}',
-      //   'key': ggMapKey,
-      // },
-      options: Options(responseType: ResponseType.json),
-    );
-    final results = Directions.fromMap(response.data!);
-
-    return results;
   }
 }

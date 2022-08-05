@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../configs/map_config.dart';
+import '../../map_api/map_api.dart';
 import '../../models/place_autocomplete_model.dart';
 
 part 'autocomplete_bloc.freezed.dart';
@@ -36,27 +35,5 @@ class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
         emit(AutocompleteState.loaded(autocomplete: List.empty()));
       },
     );
-  }
-
-  Future<List<PlaceAutocomplete>> getAutocomplete(
-    String searchInput,
-    String sessionToken,
-    LatLng location,
-  ) async {
-    final url =
-        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$searchInput&types=address&language=vi&components=country:vn&location=${location.latitude},${location.longitude}&key=$ggMapKey&sessiontoken=$sessionToken';
-
-    final response = await Dio().get<Map<String, dynamic>>(url);
-
-    final places = List<Map<dynamic, dynamic>>.from(
-      response.data!['predictions'] as List,
-    )
-        .map(
-          (jsonMap) =>
-              PlaceAutocomplete.fromJson(Map<String, dynamic>.from(jsonMap)),
-        )
-        .toList();
-
-    return places;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../map/directions/bloc/directions_bloc.dart';
@@ -18,7 +17,7 @@ class RequestProviderPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DirectionsBloc(),
-        )
+        ),
       ],
       child: const RequestProviderView(),
     );
