@@ -1102,9 +1102,11 @@ packages:
   revup_core:
     dependency: "direct main"
     description:
-      path: "../revup-core"
-      relative: true
-    source: path
+      path: "."
+      ref: "hotfix/login"
+      resolved-ref: "18b57823010fb87b4571aa241aa55f69ff104251"
+      url: "https://github.com/Revup-vn/revup-core.git"
+    source: git
     version: "3.4.5-dev"
   rxdart:
     dependency: transitive
