@@ -8,7 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/utils.dart';

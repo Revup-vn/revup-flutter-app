@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/order_details.u.dart';
 import '../widgets/order_feedback.u.dart';

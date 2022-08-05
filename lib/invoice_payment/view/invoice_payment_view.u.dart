@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
-import '../../configs/video_call_config.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../order-sevice/bloc/order_service_bloc.dart';
