@@ -1,17 +1,15 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
-import '../widgets/login_failure.u.dart';
 import '../widgets/login_success.u.dart';
 import 'login_view.u.dart';
 
@@ -38,19 +36,19 @@ class LoginPage extends StatelessWidget {
           builder: (context, state) => state.maybeWhen(
             authenticated: (authType) => LoginSuccess(type: authType),
             loading: LoginView.new,
-            failure: (errorMessage, authFailure) {
-              return authFailure?.maybeWhen(
-                    invalidData: (message) => LoginFailure(
-                      errorMessage: message ?? 'Something went wrong',
-                    ),
-                    orElse: () =>
-                        const LoginFailure(errorMessage: 'Unknown issues'),
-                  ) ??
-                  LoginFailure(
-                    errorMessage: errorMessage ?? 'General Error Message',
-                  );
-              // TODO(wamynobe): change general error message
-            },
+            // failure: (errorMessage, authFailure) {
+            //   return authFailure?.maybeWhen(
+            //         invalidData: (message) => LoginFailure(
+            //           errorMessage: message ?? 'Something went wrong',
+            //         ),
+            //         orElse: () =>
+            //             const LoginFailure(errorMessage: 'Unknown issues'),
+            //       ) ??
+            //       LoginFailure(
+            //         errorMessage: errorMessage ?? 'General Error Message',
+            //       );
+            //   // TODO(wamynobe): change general error message
+            // },
             orElse: LoginView.new,
           ),
         ),
@@ -90,9 +88,9 @@ class LoginPage extends StatelessWidget {
             onSignUpSubmit: (user) {
               return appUser;
             },
-            onSignUpSuccess: () {
-              return Future.value(unit);
-            },
+            // onSignUpSuccess: () {
+            //   return Future.value(unit);
+            // },
           ),
         );
 

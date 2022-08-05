@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
@@ -98,7 +97,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                         ),
                         Expanded(
                           child: AutoSizeText(
-                            '''${provider.numberStarRating} | ${provider.totalRating} ${l10n.starRatingCountLabel}''',
+                            '''${provider.rating} | ${provider.ratingCount} ${l10n.starRatingCountLabel}''',
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
                           ),

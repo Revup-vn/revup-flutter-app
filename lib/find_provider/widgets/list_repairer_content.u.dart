@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -81,7 +80,7 @@ class ListRepairerContent extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               AutoSizeText(
-                                providers[index].numberStarRating.toString(),
+                                providers[index].rating.toString(),
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               Icon(
@@ -92,7 +91,7 @@ class ListRepairerContent extends StatelessWidget {
                                 size: 18,
                               ),
                               AutoSizeText(
-                                providers[index].totalRating.toString(),
+                                '(${providers[index].ratingCount})',
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               const SizedBox(

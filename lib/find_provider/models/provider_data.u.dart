@@ -15,8 +15,8 @@ class ProviderData with _$ProviderData {
     required String avatar,
     required double distance,
     required double timeArrivalInMinute,
-    required double numberStarRating,
-    required int totalRating,
+    required double rating,
+    required int ratingCount,
     required String backgroundImg,
     required String profileBio,
   }) = _ProviderData;
@@ -25,6 +25,8 @@ class ProviderData with _$ProviderData {
     AppUser user, {
     required double distance,
     required double duration,
+    required double rating,
+    required int ratingCount,
   }) =>
       user.map(
         consumer: (user) => throw NullThrownError(),
@@ -35,8 +37,8 @@ class ProviderData with _$ProviderData {
           avatar: user.avatarUrl.isEmpty ? kFallbackImage : user.avatarUrl,
           distance: distance / 1000,
           timeArrivalInMinute: duration / 60,
-          numberStarRating: 0,
-          totalRating: 0,
+          rating: rating,
+          ratingCount: ratingCount,
           backgroundImg: user.backgroundUrl.isEmpty
               ? kFallbackBackground
               : user.backgroundUrl,

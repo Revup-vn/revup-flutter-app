@@ -26,8 +26,8 @@ mixin _$ProviderData {
   String get avatar => throw _privateConstructorUsedError;
   double get distance => throw _privateConstructorUsedError;
   double get timeArrivalInMinute => throw _privateConstructorUsedError;
-  double get numberStarRating => throw _privateConstructorUsedError;
-  int get totalRating => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
+  int get ratingCount => throw _privateConstructorUsedError;
   String get backgroundImg => throw _privateConstructorUsedError;
   String get profileBio => throw _privateConstructorUsedError;
 
@@ -49,8 +49,8 @@ abstract class $ProviderDataCopyWith<$Res> {
       String avatar,
       double distance,
       double timeArrivalInMinute,
-      double numberStarRating,
-      int totalRating,
+      double rating,
+      int ratingCount,
       String backgroundImg,
       String profileBio});
 }
@@ -71,8 +71,8 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
     Object? avatar = freezed,
     Object? distance = freezed,
     Object? timeArrivalInMinute = freezed,
-    Object? numberStarRating = freezed,
-    Object? totalRating = freezed,
+    Object? rating = freezed,
+    Object? ratingCount = freezed,
     Object? backgroundImg = freezed,
     Object? profileBio = freezed,
   }) {
@@ -101,13 +101,13 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
           ? _value.timeArrivalInMinute
           : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
               as double,
-      numberStarRating: numberStarRating == freezed
-          ? _value.numberStarRating
-          : numberStarRating // ignore: cast_nullable_to_non_nullable
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
               as double,
-      totalRating: totalRating == freezed
-          ? _value.totalRating
-          : totalRating // ignore: cast_nullable_to_non_nullable
+      ratingCount: ratingCount == freezed
+          ? _value.ratingCount
+          : ratingCount // ignore: cast_nullable_to_non_nullable
               as int,
       backgroundImg: backgroundImg == freezed
           ? _value.backgroundImg
@@ -135,8 +135,8 @@ abstract class _$$_ProviderDataCopyWith<$Res>
       String avatar,
       double distance,
       double timeArrivalInMinute,
-      double numberStarRating,
-      int totalRating,
+      double rating,
+      int ratingCount,
       String backgroundImg,
       String profileBio});
 }
@@ -160,8 +160,8 @@ class __$$_ProviderDataCopyWithImpl<$Res>
     Object? avatar = freezed,
     Object? distance = freezed,
     Object? timeArrivalInMinute = freezed,
-    Object? numberStarRating = freezed,
-    Object? totalRating = freezed,
+    Object? rating = freezed,
+    Object? ratingCount = freezed,
     Object? backgroundImg = freezed,
     Object? profileBio = freezed,
   }) {
@@ -190,13 +190,13 @@ class __$$_ProviderDataCopyWithImpl<$Res>
           ? _value.timeArrivalInMinute
           : timeArrivalInMinute // ignore: cast_nullable_to_non_nullable
               as double,
-      numberStarRating: numberStarRating == freezed
-          ? _value.numberStarRating
-          : numberStarRating // ignore: cast_nullable_to_non_nullable
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
               as double,
-      totalRating: totalRating == freezed
-          ? _value.totalRating
-          : totalRating // ignore: cast_nullable_to_non_nullable
+      ratingCount: ratingCount == freezed
+          ? _value.ratingCount
+          : ratingCount // ignore: cast_nullable_to_non_nullable
               as int,
       backgroundImg: backgroundImg == freezed
           ? _value.backgroundImg
@@ -220,8 +220,8 @@ class _$_ProviderData implements _ProviderData {
       required this.avatar,
       required this.distance,
       required this.timeArrivalInMinute,
-      required this.numberStarRating,
-      required this.totalRating,
+      required this.rating,
+      required this.ratingCount,
       required this.backgroundImg,
       required this.profileBio});
 
@@ -241,9 +241,9 @@ class _$_ProviderData implements _ProviderData {
   @override
   final double timeArrivalInMinute;
   @override
-  final double numberStarRating;
+  final double rating;
   @override
-  final int totalRating;
+  final int ratingCount;
   @override
   final String backgroundImg;
   @override
@@ -251,7 +251,7 @@ class _$_ProviderData implements _ProviderData {
 
   @override
   String toString() {
-    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinute: $timeArrivalInMinute, numberStarRating: $numberStarRating, totalRating: $totalRating, backgroundImg: $backgroundImg, profileBio: $profileBio)';
+    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinute: $timeArrivalInMinute, rating: $rating, ratingCount: $ratingCount, backgroundImg: $backgroundImg, profileBio: $profileBio)';
   }
 
   @override
@@ -266,10 +266,9 @@ class _$_ProviderData implements _ProviderData {
             const DeepCollectionEquality().equals(other.distance, distance) &&
             const DeepCollectionEquality()
                 .equals(other.timeArrivalInMinute, timeArrivalInMinute) &&
+            const DeepCollectionEquality().equals(other.rating, rating) &&
             const DeepCollectionEquality()
-                .equals(other.numberStarRating, numberStarRating) &&
-            const DeepCollectionEquality()
-                .equals(other.totalRating, totalRating) &&
+                .equals(other.ratingCount, ratingCount) &&
             const DeepCollectionEquality()
                 .equals(other.backgroundImg, backgroundImg) &&
             const DeepCollectionEquality()
@@ -286,8 +285,8 @@ class _$_ProviderData implements _ProviderData {
       const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(distance),
       const DeepCollectionEquality().hash(timeArrivalInMinute),
-      const DeepCollectionEquality().hash(numberStarRating),
-      const DeepCollectionEquality().hash(totalRating),
+      const DeepCollectionEquality().hash(rating),
+      const DeepCollectionEquality().hash(ratingCount),
       const DeepCollectionEquality().hash(backgroundImg),
       const DeepCollectionEquality().hash(profileBio));
 
@@ -312,8 +311,8 @@ abstract class _ProviderData implements ProviderData {
       required final String avatar,
       required final double distance,
       required final double timeArrivalInMinute,
-      required final double numberStarRating,
-      required final int totalRating,
+      required final double rating,
+      required final int ratingCount,
       required final String backgroundImg,
       required final String profileBio}) = _$_ProviderData;
 
@@ -333,9 +332,9 @@ abstract class _ProviderData implements ProviderData {
   @override
   double get timeArrivalInMinute;
   @override
-  double get numberStarRating;
+  double get rating;
   @override
-  int get totalRating;
+  int get ratingCount;
   @override
   String get backgroundImg;
   @override

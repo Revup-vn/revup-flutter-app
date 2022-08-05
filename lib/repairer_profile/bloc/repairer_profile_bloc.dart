@@ -139,8 +139,8 @@ class RepairerProfileBloc
         await maybeProviderData.fold(() async => null, (provider) async {
           emit(
             RepairerProfileState.dataLoadSuccess(
-              provider:
-                  ProviderData.fromDtos(provider, distance: 0, duration: 0),
+              provider: ProviderData.fromDtos(provider,
+                  distance: 0, duration: 0, rating: 0, ratingCount: 0),
               ratingData: fetchRatingData(),
               serviceData: services,
             ),
