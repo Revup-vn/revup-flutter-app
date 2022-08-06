@@ -14,12 +14,13 @@
 import 'dart:async' as _i32;
 
 import 'package:auto_route/auto_route.dart' as _i28;
+import 'package:dartz/dartz.dart' as _i34;
 import 'package:flutter/material.dart' as _i29;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i33;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i35;
 import 'package:revup/account/view/account_page.u.dart' as _i27;
 import 'package:revup/activate/view/activate_page.u.dart' as _i25;
 import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i20;
-import 'package:revup/find_provider/models/provider_data.u.dart' as _i34;
+import 'package:revup/find_provider/models/provider_data.u.dart' as _i36;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i24;
@@ -34,6 +35,7 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i13;
 import 'package:revup/payment/view/payment_page.u.dart' as _i8;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i14;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i9;
+import 'package:revup/repairer_profile/models/service_data.u.dart' as _i33;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
 import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
@@ -147,8 +149,9 @@ class AppRouter extends _i28.RootStackRouter {
           routeData: routeData,
           child: _i18.ServiceDetailPage(
               key: args.key,
-              serviceId: args.serviceId,
-              providerId: args.providerId));
+              providerId: args.providerId,
+              serviceData: args.serviceData,
+              categories: args.categories));
     },
     ChooseProductRoute.name: (routeData) {
       return _i28.AdaptivePage<void>(
@@ -499,28 +502,42 @@ class ServiceDetailsRouteArgs {
 /// [_i18.ServiceDetailPage]
 class ServiceDetailRoute extends _i28.PageRouteInfo<ServiceDetailRouteArgs> {
   ServiceDetailRoute(
-      {_i29.Key? key, required String serviceId, required String providerId})
+      {_i29.Key? key,
+      required String providerId,
+      required _i33.ServiceData serviceData,
+      required List<
+              _i34.Tuple2<_i31.RepairCategory, _i34.IList<_i33.ServiceData>>>
+          categories})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
             args: ServiceDetailRouteArgs(
-                key: key, serviceId: serviceId, providerId: providerId));
+                key: key,
+                providerId: providerId,
+                serviceData: serviceData,
+                categories: categories));
 
   static const String name = 'ServiceDetailRoute';
 }
 
 class ServiceDetailRouteArgs {
   const ServiceDetailRouteArgs(
-      {this.key, required this.serviceId, required this.providerId});
+      {this.key,
+      required this.providerId,
+      required this.serviceData,
+      required this.categories});
 
   final _i29.Key? key;
 
-  final String serviceId;
-
   final String providerId;
+
+  final _i33.ServiceData serviceData;
+
+  final List<_i34.Tuple2<_i31.RepairCategory, _i34.IList<_i33.ServiceData>>>
+      categories;
 
   @override
   String toString() {
-    return 'ServiceDetailRouteArgs{key: $key, serviceId: $serviceId, providerId: $providerId}';
+    return 'ServiceDetailRouteArgs{key: $key, providerId: $providerId, serviceData: $serviceData, categories: $categories}';
   }
 }
 
@@ -536,7 +553,7 @@ class ChooseProductRoute extends _i28.PageRouteInfo<void> {
 /// generated route for
 /// [_i20.FindNearbyPage]
 class FindNearbyRoute extends _i28.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i29.Key? key, required _i33.LatLng currentLocation})
+  FindNearbyRoute({_i29.Key? key, required _i35.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -550,7 +567,7 @@ class FindNearbyRouteArgs {
 
   final _i29.Key? key;
 
-  final _i33.LatLng currentLocation;
+  final _i35.LatLng currentLocation;
 
   @override
   String toString() {
@@ -580,7 +597,7 @@ class ListRepairerRoute extends _i28.PageRouteInfo<void> {
 /// [_i23.RepairerProfilePage]
 class RepairerProfileRoute
     extends _i28.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({_i29.Key? key, required _i34.ProviderData providerData})
+  RepairerProfileRoute({_i29.Key? key, required _i36.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
             args:
@@ -594,7 +611,7 @@ class RepairerProfileRouteArgs {
 
   final _i29.Key? key;
 
-  final _i34.ProviderData providerData;
+  final _i36.ProviderData providerData;
 
   @override
   String toString() {

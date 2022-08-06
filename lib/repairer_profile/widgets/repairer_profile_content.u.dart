@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
@@ -14,12 +15,14 @@ class RepairerProfileMainContent extends StatelessWidget {
   const RepairerProfileMainContent(
     this.serviceData,
     this.ratingData,
-    this.provider, {
+    this.provider,
+    this.categories, {
     super.key,
   });
   final IList<ServiceData> serviceData;
   final IList<RatingData> ratingData;
   final ProviderData provider;
+  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
   @override
   Widget build(BuildContext context) {
     const coverHeight = 150;
@@ -130,6 +133,7 @@ class RepairerProfileMainContent extends StatelessWidget {
               svDataVector,
               ratingDataVector,
               providerId: provider.id,
+              categories,
             ),
           ),
         ],

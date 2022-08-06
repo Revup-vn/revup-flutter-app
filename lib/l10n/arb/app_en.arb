@@ -172,5 +172,6 @@
   "selectProductLabel": "Select product",
   "findRepairerErrorMessageLabel": "Some thing went wrong, please refresh or restart the application",
   "emptyRepairerLabel": "There is not any active repairer around you, we are very sorry for this problem",
-  "starRatingCountLabel": "ratings"
+  "starRatingCountLabel": "ratings",
+  "serviceFeeLabel": "Service fee"
 }

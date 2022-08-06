@@ -7,6 +7,7 @@ class RepairerProfileState with _$RepairerProfileState {
     required IList<ServiceData> serviceData,
     required IList<RatingData> ratingData,
     required ProviderData provider,
+    required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
   }) = _DataLoadSuccess;
   const factory RepairerProfileState.dataLoadFailure() = _DataLoadFailure;
   const factory RepairerProfileState.loading() = _Loading;

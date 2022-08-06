@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../models/rating_data.u.dart';
@@ -8,15 +9,17 @@ import 'repairer_feedback.u.dart';
 import 'repairer_services.u.dart';
 
 class RepairerProfileTabBar extends StatefulWidget {
-  RepairerProfileTabBar(
+  const RepairerProfileTabBar(
     this.serviceData,
-    this.ratingData, {
+    this.ratingData,
+    this.categories, {
     super.key,
     required this.providerId,
   });
   final IVector<ServiceData> serviceData;
   final IVector<RatingData> ratingData;
   final String providerId;
+  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
 
   @override
   State<RepairerProfileTabBar> createState() => _RepairerProfileTabBarState();
@@ -62,6 +65,7 @@ class _RepairerProfileTabBarState extends State<RepairerProfileTabBar>
               RepairerProfileServices(
                 serviceData: widget.serviceData,
                 providerId: widget.providerId,
+                categories: widget.categories,
               ),
               RepairerProfileFeedback(
                 ratingData: widget.ratingData,

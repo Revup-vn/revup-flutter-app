@@ -43,24 +43,6 @@ class RepairerProfileBloc
               some,
             )
             .getOrElse(() => throw NullThrownError());
-
-        // final mayBeCidAndFeedback = await maybeProviderData
-        //     .fold<Future<Option<Tuple2<String, Feedback>>>>(
-        //   () async => none(),
-        //   (a) async => (await _repairRecord.get(a.uuid))
-        //       .toOption()
-        //       .flatMap<Tuple2<String, Feedback>>(
-        //         (r) => r.maybeMap(
-        //           orElse: none,
-        //           finished: (r) => some(
-        //             tuple2(
-        //               r.cid,
-        //               r.feedback,
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        // );
         final feedbackData = (await _repairRecord.where(providerData.id))
             .map(
               (r) => r.map(
@@ -108,69 +90,23 @@ class RepairerProfileBloc
               (r) => r,
             );
 
-        final categories = (await Future.wait(catData.toIterable()))
-            .map(
-              (e) => e,
-            )
-            .toList();
-
-        print(categories);
+        final categories =
+            (await Future.wait(catData.toIterable())).map((e) => e).toList();
 
         final svList = categories.map((e) => e.value2).fold<IList<ServiceData>>(
               ilist(<ServiceData>[]),
               (previousValue, element) =>
                   IListMonoid<ServiceData>().append(previousValue, element),
             );
-        print(svList);
 
-        //     .fold(
-        //   (l) => throw NullThrownError(),
-        //   (r) => r,
-        // ).map((a) => (await storeRepository.repairServiceRepo(maybeProviderData, category)))
-
-        // final maybeCategoryService =
-        //     maybeProviderData.fold<Option<IStore<RepairCategory>>>(
-        //   none,
-        //   (a) => some(
-        //     storeRepository.repairCategoryRepo(a),
-        //   ),
-        // );
-
-        // final mayBeCategories = await maybeCategoryService
-        //     .fold<Future<Option<IList<RepairCategory>>>>(
-        //   () async => none(),
-        //   (a) async => (await a.all()).toOption(),
-        // );
-
-        // final mayBeIStoreServices = mayBeCategories
-        //     .map(
-        //       (cates) => cates.map(
-        //         (cate) => maybeProviderData.map(
-        //           (user) => storeRepository.repairServiceRepo(user, cate),
-        //         ),
-        //       ),
-        //     )
-        //     .fold<IList<IStore<RepairService>>>(
-        //       nil,
-        //       (a) => a.filter((a) => a.isSome()).map<IStore<RepairService>>(
-        //             (a) => a.getOrElse(() => throw NullThrownError()),
-        //           ),
-        //     );
-
-        // final maybeListServices = await Future.wait(
-        //   mayBeIStoreServices.map((a) async => a.all()).toIterable(),
-        // );
-        // final services = IList.from(
-        //   maybeListServices.where((element) => element.isRight()).expand(
-        //         (e) => e.getOrElse(() => throw NullThrownError()).toIterable(),
-        //       ),
-        // ).map<ServiceData>(ServiceData.fromDtos);
-
-        emit(RepairerProfileState.dataLoadSuccess(
-          provider: providerData,
-          ratingData: ilist(feedbacks),
-          serviceData: svList,
-        ));
+        emit(
+          RepairerProfileState.dataLoadSuccess(
+            provider: providerData,
+            ratingData: ilist(feedbacks),
+            serviceData: svList,
+            categories: categories,
+          ),
+        );
       },
     );
   }
