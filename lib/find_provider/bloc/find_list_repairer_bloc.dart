@@ -11,6 +11,8 @@ import 'package:revup_core/core.dart';
 
 import '../../map/map_api/map_api.dart';
 import '../../repairer_profile/models/record_rating_data.dart';
+import '../../shared/enums.dart';
+import '../../shared/extension.dart';
 import '../models/provider_data.u.dart';
 
 part 'find_list_repairer_bloc.freezed.dart';
@@ -28,6 +30,7 @@ class FindListRepairerBloc
   }
   final _geo = GeoFlutterFire();
   final List<String> errorMessage;
+  final providers = <ProviderData>[];
 
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
@@ -46,7 +49,6 @@ class FindListRepairerBloc
             boxLocation.get('repairLng', defaultValue: 0.0) as double;
         final repairPoint = GeoFirePoint(repairLat, repairLng);
         final stream = getNearbyProviders(repairLat, repairLng);
-        final providers = <ProviderData>[];
 
         await for (final List<DocumentSnapshot> dataList in stream) {
           for (final doc in dataList) {
@@ -114,9 +116,15 @@ class FindListRepairerBloc
         }
       },
       dropdownListChanged: (sortType) {
+        if (sortType == RepairerSortType.none) return;
         emit(
           FindListRepairerState.dropdownListChangedSuccess(
-            listProvider: ilist([]),
+            listProvider: sortType == RepairerSortType.distance
+                ? ilist(providers).sortByDouble(
+                    (e1, e2) => e1.distance.compareTo(e2.distance),
+                  )
+                : ilist(providers)
+                    .sortByDouble((e1, e2) => e1.rating.compareTo(e2.rating)),
             sortType: sortType,
           ),
         );

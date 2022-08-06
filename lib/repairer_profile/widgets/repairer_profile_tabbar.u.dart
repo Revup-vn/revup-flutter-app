@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../models/rating_data.u.dart';
@@ -9,7 +8,7 @@ import 'repairer_feedback.u.dart';
 import 'repairer_services.u.dart';
 
 class RepairerProfileTabBar extends StatefulWidget {
-  const RepairerProfileTabBar(
+  RepairerProfileTabBar(
     this.serviceData,
     this.ratingData, {
     super.key,

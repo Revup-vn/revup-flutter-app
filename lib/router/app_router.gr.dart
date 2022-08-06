@@ -19,6 +19,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as _i33;
 import 'package:revup/account/view/account_page.u.dart' as _i27;
 import 'package:revup/activate/view/activate_page.u.dart' as _i25;
 import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i20;
+import 'package:revup/find_provider/models/provider_data.u.dart' as _i34;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i24;
@@ -172,7 +173,8 @@ class AppRouter extends _i28.RootStackRouter {
       final args = routeData.argsAs<RepairerProfileRouteArgs>();
       return _i28.AdaptivePage<void>(
           routeData: routeData,
-          child: _i23.RepairerProfilePage(args.providerID, key: args.key));
+          child: _i23.RepairerProfilePage(
+              key: args.key, providerData: args.providerData));
     },
     HomeBodyRoute.name: (routeData) {
       return _i28.AdaptivePage<void>(
@@ -578,24 +580,25 @@ class ListRepairerRoute extends _i28.PageRouteInfo<void> {
 /// [_i23.RepairerProfilePage]
 class RepairerProfileRoute
     extends _i28.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({required String providerID, _i29.Key? key})
+  RepairerProfileRoute({_i29.Key? key, required _i34.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
-            args: RepairerProfileRouteArgs(providerID: providerID, key: key));
+            args:
+                RepairerProfileRouteArgs(key: key, providerData: providerData));
 
   static const String name = 'RepairerProfileRoute';
 }
 
 class RepairerProfileRouteArgs {
-  const RepairerProfileRouteArgs({required this.providerID, this.key});
-
-  final String providerID;
+  const RepairerProfileRouteArgs({this.key, required this.providerData});
 
   final _i29.Key? key;
 
+  final _i34.ProviderData providerData;
+
   @override
   String toString() {
-    return 'RepairerProfileRouteArgs{providerID: $providerID, key: $key}';
+    return 'RepairerProfileRouteArgs{key: $key, providerData: $providerData}';
   }
 }
 

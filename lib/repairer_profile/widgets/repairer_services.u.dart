@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../models/service_data.u.dart';
 
@@ -20,6 +19,7 @@ class RepairerProfileServices extends StatelessWidget {
     final data = serviceData.toIterable().toList();
 
     return ListView.separated(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Card(

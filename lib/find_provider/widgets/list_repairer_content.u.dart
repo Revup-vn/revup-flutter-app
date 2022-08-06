@@ -38,7 +38,7 @@ class ListRepairerContent extends StatelessWidget {
                           onTap: () {
                             context.router.push(
                               RepairerProfileRoute(
-                                providerID: providers[index].id,
+                                providerData: providers[index],
                               ),
                             );
                           },
@@ -128,7 +128,7 @@ ${providers[index].timeArrivalInMinute.toInt()} ${context.l10n.minutesLabel}''',
                       onPressed: () {
                         context.router.push(
                           RepairerProfileRoute(
-                            providerID: providers[index].id,
+                            providerData: providers[index],
                           ),
                         );
                       },

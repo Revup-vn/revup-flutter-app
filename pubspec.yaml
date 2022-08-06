@@ -48,8 +48,8 @@ dependencies:
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: hotfix/istore-where
-      version: ^3.4.6-dev
+      ref: main
+      version: ^3.4.6-dev+2
   # revup_core:
   #   path: ../revup-core
   shared_preferences: ^2.0.15

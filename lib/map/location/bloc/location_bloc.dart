@@ -45,11 +45,12 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         emit(LocationState.addressLoaded(address: address));
       },
       saved: (LatLng location) async {
-        final boxLocation = Hive.box<dynamic>(
-          'location',
-        );
+        final boxLocation = Hive.box<dynamic>('location');
         await boxLocation.put('repairLat', location.latitude);
         await boxLocation.put('repairLng', location.longitude);
+        final boxRprRecord = await Hive.openBox<dynamic>('repairRecord');
+        await boxRprRecord.put('toLat', location.latitude);
+        await boxRprRecord.put('toLng', location.longitude);
       },
     );
   }

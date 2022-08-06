@@ -23,7 +23,7 @@ class RepairerProfileMainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const coverHeight = 150;
-    final serviceDataVector = IVector.from(serviceData.toIterable());
+    final svDataVector = IVector.from(serviceData.toIterable());
     final ratingDataVector = IVector.from(ratingData.toIterable());
     final l10n = context.l10n;
 
@@ -127,7 +127,7 @@ class RepairerProfileMainContent extends StatelessWidget {
           ),
           Expanded(
             child: RepairerProfileTabBar(
-              serviceDataVector,
+              svDataVector,
               ratingDataVector,
               providerId: provider.id,
             ),

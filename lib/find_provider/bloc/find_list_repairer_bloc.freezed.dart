@@ -19,19 +19,19 @@ mixin _$FindListRepairerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String sortType) dropdownListChanged,
+    required TResult Function(RepairerSortType sortType) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +114,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String sortType) dropdownListChanged,
+    required TResult Function(RepairerSortType sortType) dropdownListChanged,
   }) {
     return started();
   }
@@ -123,7 +123,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
   }) {
     return started?.call();
   }
@@ -132,7 +132,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -182,7 +182,7 @@ abstract class _$$DropdownListChangedCopyWith<$Res> {
   factory _$$DropdownListChangedCopyWith(_$DropdownListChanged value,
           $Res Function(_$DropdownListChanged) then) =
       __$$DropdownListChangedCopyWithImpl<$Res>;
-  $Res call({String sortType});
+  $Res call({RepairerSortType sortType});
 }
 
 /// @nodoc
@@ -204,7 +204,7 @@ class __$$DropdownListChangedCopyWithImpl<$Res>
       sortType: sortType == freezed
           ? _value.sortType
           : sortType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RepairerSortType,
     ));
   }
 }
@@ -215,7 +215,7 @@ class _$DropdownListChanged implements DropdownListChanged {
   const _$DropdownListChanged({required this.sortType});
 
   @override
-  final String sortType;
+  final RepairerSortType sortType;
 
   @override
   String toString() {
@@ -244,7 +244,7 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String sortType) dropdownListChanged,
+    required TResult Function(RepairerSortType sortType) dropdownListChanged,
   }) {
     return dropdownListChanged(sortType);
   }
@@ -253,7 +253,7 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
   }) {
     return dropdownListChanged?.call(sortType);
   }
@@ -262,7 +262,7 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String sortType)? dropdownListChanged,
+    TResult Function(RepairerSortType sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
     if (dropdownListChanged != null) {
@@ -304,10 +304,10 @@ class _$DropdownListChanged implements DropdownListChanged {
 }
 
 abstract class DropdownListChanged implements FindListRepairerEvent {
-  const factory DropdownListChanged({required final String sortType}) =
-      _$DropdownListChanged;
+  const factory DropdownListChanged(
+      {required final RepairerSortType sortType}) = _$DropdownListChanged;
 
-  String get sortType;
+  RepairerSortType get sortType;
   @JsonKey(ignore: true)
   _$$DropdownListChangedCopyWith<_$DropdownListChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -320,7 +320,8 @@ mixin _$FindListRepairerState {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -331,7 +332,8 @@ mixin _$FindListRepairerState {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -342,7 +344,8 @@ mixin _$FindListRepairerState {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -469,7 +472,8 @@ class _$_Initial implements _Initial {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -483,7 +487,8 @@ class _$_Initial implements _Initial {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -497,7 +502,8 @@ class _$_Initial implements _Initial {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -634,7 +640,8 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -648,7 +655,8 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -662,7 +670,8 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -800,7 +809,8 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -814,7 +824,8 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -828,7 +839,8 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -903,7 +915,7 @@ abstract class _$$_DropdownListChangedSuccessCopyWith<$Res> {
           _$_DropdownListChangedSuccess value,
           $Res Function(_$_DropdownListChangedSuccess) then) =
       __$$_DropdownListChangedSuccessCopyWithImpl<$Res>;
-  $Res call({IList<ProviderData> listProvider, String sortType});
+  $Res call({IList<ProviderData> listProvider, RepairerSortType sortType});
 }
 
 /// @nodoc
@@ -932,7 +944,7 @@ class __$$_DropdownListChangedSuccessCopyWithImpl<$Res>
       sortType: sortType == freezed
           ? _value.sortType
           : sortType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RepairerSortType,
     ));
   }
 }
@@ -946,7 +958,7 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
   @override
   final IList<ProviderData> listProvider;
   @override
-  final String sortType;
+  final RepairerSortType sortType;
 
   @override
   String toString() {
@@ -981,7 +993,8 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -995,7 +1008,8 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -1009,7 +1023,8 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -1070,11 +1085,12 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
 
 abstract class _DropdownListChangedSuccess implements FindListRepairerState {
   const factory _DropdownListChangedSuccess(
-      {required final IList<ProviderData> listProvider,
-      required final String sortType}) = _$_DropdownListChangedSuccess;
+          {required final IList<ProviderData> listProvider,
+          required final RepairerSortType sortType}) =
+      _$_DropdownListChangedSuccess;
 
   IList<ProviderData> get listProvider;
-  String get sortType;
+  RepairerSortType get sortType;
   @JsonKey(ignore: true)
   _$$_DropdownListChangedSuccessCopyWith<_$_DropdownListChangedSuccess>
       get copyWith => throw _privateConstructorUsedError;
@@ -1123,7 +1139,8 @@ class _$_Loading implements _Loading {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -1137,7 +1154,8 @@ class _$_Loading implements _Loading {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -1151,7 +1169,8 @@ class _$_Loading implements _Loading {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -1282,7 +1301,8 @@ class _$_Failure implements _Failure {
     required TResult Function(bool hasValue) initial,
     required TResult Function(IList<ProviderData> listProvider) dataLoadSuccess,
     required TResult Function(IList<ProviderData> listProvider) refreshSuccess,
-    required TResult Function(IList<ProviderData> listProvider, String sortType)
+    required TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
     required TResult Function(String? errorMessage) failure,
@@ -1296,7 +1316,8 @@ class _$_Failure implements _Failure {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
@@ -1310,7 +1331,8 @@ class _$_Failure implements _Failure {
     TResult Function(bool hasValue)? initial,
     TResult Function(IList<ProviderData> listProvider)? dataLoadSuccess,
     TResult Function(IList<ProviderData> listProvider)? refreshSuccess,
-    TResult Function(IList<ProviderData> listProvider, String sortType)?
+    TResult Function(
+            IList<ProviderData> listProvider, RepairerSortType sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
     TResult Function(String? errorMessage)? failure,
