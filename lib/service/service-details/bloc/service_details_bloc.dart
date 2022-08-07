@@ -23,12 +23,10 @@ class ServiceDetailsBloc
   ) : super(const _Initial()) {
     on<ServiceDetailsEvent>(_onEvent);
   }
-  // ignore: unused_field
+
   final ServiceData _serviceData;
   final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
-  // ignore: unused_field
   final String _providerId;
-  // ignore: unused_field
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
 

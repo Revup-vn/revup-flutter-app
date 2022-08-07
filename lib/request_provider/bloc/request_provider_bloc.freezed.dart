@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'new_service_bloc.dart';
+part of 'request_provider_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$NewServiceEvent {
+mixin _$RequestProviderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -51,20 +51,20 @@ mixin _$NewServiceEvent {
 }
 
 /// @nodoc
-abstract class $NewServiceEventCopyWith<$Res> {
-  factory $NewServiceEventCopyWith(
-          NewServiceEvent value, $Res Function(NewServiceEvent) then) =
-      _$NewServiceEventCopyWithImpl<$Res>;
+abstract class $RequestProviderEventCopyWith<$Res> {
+  factory $RequestProviderEventCopyWith(RequestProviderEvent value,
+          $Res Function(RequestProviderEvent) then) =
+      _$RequestProviderEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewServiceEventCopyWithImpl<$Res>
-    implements $NewServiceEventCopyWith<$Res> {
-  _$NewServiceEventCopyWithImpl(this._value, this._then);
+class _$RequestProviderEventCopyWithImpl<$Res>
+    implements $RequestProviderEventCopyWith<$Res> {
+  _$RequestProviderEventCopyWithImpl(this._value, this._then);
 
-  final NewServiceEvent _value;
+  final RequestProviderEvent _value;
   // ignore: unused_field
-  final $Res Function(NewServiceEvent) _then;
+  final $Res Function(RequestProviderEvent) _then;
 }
 
 /// @nodoc
@@ -75,7 +75,8 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$NewServiceEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
+    extends _$RequestProviderEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -91,7 +92,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'NewServiceEvent.started()';
+    return 'RequestProviderEvent.started()';
   }
 
   @override
@@ -160,18 +161,20 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements NewServiceEvent {
+abstract class _Started implements RequestProviderEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-mixin _$NewServiceState {
+mixin _$RequestProviderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, int movingFee)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,7 +182,9 @@ mixin _$NewServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,7 +192,9 @@ mixin _$NewServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,20 +226,20 @@ mixin _$NewServiceState {
 }
 
 /// @nodoc
-abstract class $NewServiceStateCopyWith<$Res> {
-  factory $NewServiceStateCopyWith(
-          NewServiceState value, $Res Function(NewServiceState) then) =
-      _$NewServiceStateCopyWithImpl<$Res>;
+abstract class $RequestProviderStateCopyWith<$Res> {
+  factory $RequestProviderStateCopyWith(RequestProviderState value,
+          $Res Function(RequestProviderState) then) =
+      _$RequestProviderStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewServiceStateCopyWithImpl<$Res>
-    implements $NewServiceStateCopyWith<$Res> {
-  _$NewServiceStateCopyWithImpl(this._value, this._then);
+class _$RequestProviderStateCopyWithImpl<$Res>
+    implements $RequestProviderStateCopyWith<$Res> {
+  _$RequestProviderStateCopyWithImpl(this._value, this._then);
 
-  final NewServiceState _value;
+  final RequestProviderState _value;
   // ignore: unused_field
-  final $Res Function(NewServiceState) _then;
+  final $Res Function(RequestProviderState) _then;
 }
 
 /// @nodoc
@@ -243,7 +250,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$RequestProviderStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -259,7 +267,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'NewServiceState.initial()';
+    return 'RequestProviderState.initial()';
   }
 
   @override
@@ -277,7 +285,9 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, int movingFee)
+        success,
   }) {
     return initial();
   }
@@ -288,7 +298,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
   }) {
     return initial?.call();
   }
@@ -299,7 +311,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -346,7 +360,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements NewServiceState {
+abstract class _Initial implements RequestProviderState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -358,7 +372,8 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$RequestProviderStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -374,7 +389,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'NewServiceState.loading()';
+    return 'RequestProviderState.loading()';
   }
 
   @override
@@ -392,7 +407,9 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, int movingFee)
+        success,
   }) {
     return loading();
   }
@@ -403,7 +420,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
   }) {
     return loading?.call();
   }
@@ -414,7 +433,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -461,7 +482,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements NewServiceState {
+abstract class _Loading implements RequestProviderState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -473,7 +494,8 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$RequestProviderStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -489,7 +511,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'NewServiceState.failure()';
+    return 'RequestProviderState.failure()';
   }
 
   @override
@@ -507,7 +529,9 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, int movingFee)
+        success,
   }) {
     return failure();
   }
@@ -518,7 +542,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
   }) {
     return failure?.call();
   }
@@ -529,7 +555,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -576,7 +604,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements NewServiceState {
+abstract class _Failure implements RequestProviderState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -585,36 +613,108 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
+  $Res call(
+      {Directions directions,
+      Marker fromMarker,
+      Marker toMarker,
+      int movingFee});
+
+  $DirectionsCopyWith<$Res> get directions;
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$RequestProviderStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
 
   @override
   _$_Success get _value => super._value as _$_Success;
+
+  @override
+  $Res call({
+    Object? directions = freezed,
+    Object? fromMarker = freezed,
+    Object? toMarker = freezed,
+    Object? movingFee = freezed,
+  }) {
+    return _then(_$_Success(
+      directions: directions == freezed
+          ? _value.directions
+          : directions // ignore: cast_nullable_to_non_nullable
+              as Directions,
+      fromMarker: fromMarker == freezed
+          ? _value.fromMarker
+          : fromMarker // ignore: cast_nullable_to_non_nullable
+              as Marker,
+      toMarker: toMarker == freezed
+          ? _value.toMarker
+          : toMarker // ignore: cast_nullable_to_non_nullable
+              as Marker,
+      movingFee: movingFee == freezed
+          ? _value.movingFee
+          : movingFee // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  @override
+  $DirectionsCopyWith<$Res> get directions {
+    return $DirectionsCopyWith<$Res>(_value.directions, (value) {
+      return _then(_value.copyWith(directions: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success();
+  const _$_Success(
+      {required this.directions,
+      required this.fromMarker,
+      required this.toMarker,
+      required this.movingFee});
+
+  @override
+  final Directions directions;
+  @override
+  final Marker fromMarker;
+  @override
+  final Marker toMarker;
+  @override
+  final int movingFee;
 
   @override
   String toString() {
-    return 'NewServiceState.success()';
+    return 'RequestProviderState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, movingFee: $movingFee)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success &&
+            const DeepCollectionEquality()
+                .equals(other.directions, directions) &&
+            const DeepCollectionEquality()
+                .equals(other.fromMarker, fromMarker) &&
+            const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
+            const DeepCollectionEquality().equals(other.movingFee, movingFee));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(directions),
+      const DeepCollectionEquality().hash(fromMarker),
+      const DeepCollectionEquality().hash(toMarker),
+      const DeepCollectionEquality().hash(movingFee));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -622,9 +722,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function() success,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, int movingFee)
+        success,
   }) {
-    return success();
+    return success(directions, fromMarker, toMarker, movingFee);
   }
 
   @override
@@ -633,9 +735,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
   }) {
-    return success?.call();
+    return success?.call(directions, fromMarker, toMarker, movingFee);
   }
 
   @override
@@ -644,11 +748,13 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function()? success,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            int movingFee)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(directions, fromMarker, toMarker, movingFee);
     }
     return orElse();
   }
@@ -691,6 +797,18 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements NewServiceState {
-  const factory _Success() = _$_Success;
+abstract class _Success implements RequestProviderState {
+  const factory _Success(
+      {required final Directions directions,
+      required final Marker fromMarker,
+      required final Marker toMarker,
+      required final int movingFee}) = _$_Success;
+
+  Directions get directions;
+  Marker get fromMarker;
+  Marker get toMarker;
+  int get movingFee;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      throw _privateConstructorUsedError;
 }

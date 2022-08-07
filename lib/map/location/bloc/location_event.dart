@@ -9,4 +9,7 @@ class LocationEvent with _$LocationEvent {
       _PlaceSearch;
   const factory LocationEvent.saved({required LatLng location}) =
       _LocationSaved;
+  const factory LocationEvent.mapLoaded({
+    required Directions directions,
+  }) = _MapLoaded;
 }

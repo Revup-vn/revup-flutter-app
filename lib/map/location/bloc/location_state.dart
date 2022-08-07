@@ -9,4 +9,7 @@ class LocationState with _$LocationState {
   const factory LocationState.placeDetailsLoaded({
     required PlaceDetails placeDetails,
   }) = _PlaceDetailsLoaded;
+  const factory LocationState.directionsLoaded({
+    required Directions directions,
+  }) = _DirectionsLoaded;
 }

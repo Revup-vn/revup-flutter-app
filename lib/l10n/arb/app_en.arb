@@ -173,5 +173,11 @@
   "findRepairerErrorMessageLabel": "Some thing went wrong, please refresh or restart the application",
   "emptyRepairerLabel": "There is not any active repairer around you, we are very sorry for this problem",
   "starRatingCountLabel": "ratings",
-  "serviceFeeLabel": "Service fee"
+  "serviceFeeLabel": "Service fee",
+  "noteLabel": "Note",
+  "noteMovingFeeLabel": "This is a moving fee that does not include the price of repair services",
+  "addMessageTitle": "Message to repairer",
+  "optionalImgGuideLabel": "Provide pictures around so that the repairer knows better where you call for help.",
+  "optionalLocationImgLabel": "Photo of the rescue location (optional)",
+  "optionalAddMsgGuideLabel": "You can make notes for the repairer here."
 }

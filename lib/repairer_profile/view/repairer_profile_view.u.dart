@@ -23,13 +23,7 @@ class RepairerProfileView extends StatelessWidget {
     return BlocBuilder<RepairerProfileBloc, RepairerProfileState>(
       builder: (context, state) => state.when(
         initial: () => const RepairerLoading(),
-        dataLoadSuccess: (svData, rating, provider, categories) =>
-            RepairerProfileMainContent(
-          svData,
-          rating,
-          provider,
-          categories,
-        ),
+        dataLoadSuccess: RepairerProfileMainContent.new,
         dataLoadFailure: () => const RepairerLoadDataFailure(),
         loading: () => const RepairerLoading(),
       ),

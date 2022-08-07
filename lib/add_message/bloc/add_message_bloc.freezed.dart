@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'new_service_bloc.dart';
+part of 'add_message_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,56 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$NewServiceEvent {
+mixin _$AddMessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(MessageData messageData) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NewServiceEventCopyWith<$Res> {
-  factory $NewServiceEventCopyWith(
-          NewServiceEvent value, $Res Function(NewServiceEvent) then) =
-      _$NewServiceEventCopyWithImpl<$Res>;
+abstract class $AddMessageEventCopyWith<$Res> {
+  factory $AddMessageEventCopyWith(
+          AddMessageEvent value, $Res Function(AddMessageEvent) then) =
+      _$AddMessageEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewServiceEventCopyWithImpl<$Res>
-    implements $NewServiceEventCopyWith<$Res> {
-  _$NewServiceEventCopyWithImpl(this._value, this._then);
+class _$AddMessageEventCopyWithImpl<$Res>
+    implements $AddMessageEventCopyWith<$Res> {
+  _$AddMessageEventCopyWithImpl(this._value, this._then);
 
-  final NewServiceEvent _value;
+  final AddMessageEvent _value;
   // ignore: unused_field
-  final $Res Function(NewServiceEvent) _then;
+  final $Res Function(AddMessageEvent) _then;
 }
 
 /// @nodoc
@@ -75,7 +81,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$NewServiceEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res> extends _$AddMessageEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -91,7 +97,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'NewServiceEvent.started()';
+    return 'AddMessageEvent.started()';
   }
 
   @override
@@ -107,6 +113,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(MessageData messageData) submitted,
   }) {
     return started();
   }
@@ -115,6 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
   }) {
     return started?.call();
   }
@@ -123,6 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -135,6 +144,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -143,6 +153,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -160,12 +172,157 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements NewServiceEvent {
+abstract class _Started implements AddMessageEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-mixin _$NewServiceState {
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+  $Res call({MessageData messageData});
+
+  $MessageDataCopyWith<$Res> get messageData;
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res>
+    extends _$AddMessageEventCopyWithImpl<$Res>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
+
+  @override
+  _$_Submitted get _value => super._value as _$_Submitted;
+
+  @override
+  $Res call({
+    Object? messageData = freezed,
+  }) {
+    return _then(_$_Submitted(
+      messageData: messageData == freezed
+          ? _value.messageData
+          : messageData // ignore: cast_nullable_to_non_nullable
+              as MessageData,
+    ));
+  }
+
+  @override
+  $MessageDataCopyWith<$Res> get messageData {
+    return $MessageDataCopyWith<$Res>(_value.messageData, (value) {
+      return _then(_value.copyWith(messageData: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Submitted implements _Submitted {
+  const _$_Submitted({required this.messageData});
+
+  @override
+  final MessageData messageData;
+
+  @override
+  String toString() {
+    return 'AddMessageEvent.submitted(messageData: $messageData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submitted &&
+            const DeepCollectionEquality()
+                .equals(other.messageData, messageData));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(messageData));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(MessageData messageData) submitted,
+  }) {
+    return submitted(messageData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
+  }) {
+    return submitted?.call(messageData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(MessageData messageData)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(messageData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements AddMessageEvent {
+  const factory _Submitted({required final MessageData messageData}) =
+      _$_Submitted;
+
+  MessageData get messageData;
+  @JsonKey(ignore: true)
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AddMessageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -219,20 +376,20 @@ mixin _$NewServiceState {
 }
 
 /// @nodoc
-abstract class $NewServiceStateCopyWith<$Res> {
-  factory $NewServiceStateCopyWith(
-          NewServiceState value, $Res Function(NewServiceState) then) =
-      _$NewServiceStateCopyWithImpl<$Res>;
+abstract class $AddMessageStateCopyWith<$Res> {
+  factory $AddMessageStateCopyWith(
+          AddMessageState value, $Res Function(AddMessageState) then) =
+      _$AddMessageStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewServiceStateCopyWithImpl<$Res>
-    implements $NewServiceStateCopyWith<$Res> {
-  _$NewServiceStateCopyWithImpl(this._value, this._then);
+class _$AddMessageStateCopyWithImpl<$Res>
+    implements $AddMessageStateCopyWith<$Res> {
+  _$AddMessageStateCopyWithImpl(this._value, this._then);
 
-  final NewServiceState _value;
+  final AddMessageState _value;
   // ignore: unused_field
-  final $Res Function(NewServiceState) _then;
+  final $Res Function(AddMessageState) _then;
 }
 
 /// @nodoc
@@ -243,7 +400,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -259,7 +416,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'NewServiceState.initial()';
+    return 'AddMessageState.initial()';
   }
 
   @override
@@ -346,7 +503,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements NewServiceState {
+abstract class _Initial implements AddMessageState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -358,7 +515,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, (v) => _then(v as _$_Loading));
@@ -374,7 +531,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'NewServiceState.loading()';
+    return 'AddMessageState.loading()';
   }
 
   @override
@@ -461,7 +618,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements NewServiceState {
+abstract class _Loading implements AddMessageState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -473,7 +630,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -489,7 +646,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'NewServiceState.failure()';
+    return 'AddMessageState.failure()';
   }
 
   @override
@@ -576,7 +733,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements NewServiceState {
+abstract class _Failure implements AddMessageState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -588,7 +745,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$NewServiceStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -604,7 +761,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'NewServiceState.success()';
+    return 'AddMessageState.success()';
   }
 
   @override
@@ -691,6 +848,6 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements NewServiceState {
+abstract class _Success implements AddMessageState {
   const factory _Success() = _$_Success;
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../models/rating_data.u.dart';
 import '../models/service_data.u.dart';
 import 'repairer_profile_avatar_image.u.dart';
@@ -113,7 +115,13 @@ class RepairerProfileMainContent extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.router.push(
+                            RequestProviderRoute(
+                              providerData: provider,
+                            ),
+                          );
+                        },
                         child: AutoSizeText(l10n.callForHelpLabel),
                       ),
                     ),

@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:revup_core/core.dart';
 
 import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
 import '../activate/view/activate_page.u.dart';
+import '../add_message/view/add_message_page.dart';
 import '../find_nearby/view/find_nearby_page.dart';
 import '../find_provider/view/list_repairer_page.u.dart';
 import '../home/view/home_page.u.dart';
@@ -23,8 +25,6 @@ import '../request_provider/view/request_provider_page.dart';
 import '../review-repairman/view/review_repairman_page.u.dart';
 import '../service/choose-product/view/choose_product_page.dart';
 import '../service/choose-service/view/choose_service_page.dart';
-import '../service/choose-service/view/service_details_page.dart';
-import '../service/models/service_data.dart';
 import '../service/new-service/view/new_service_request_page.dart';
 import '../service/service-details/view/service_detail_page.dart';
 import '../test/test.dart';
@@ -58,16 +58,14 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: Signup6Page),
     AdaptiveRoute<void>(page: ChooseServicePage),
-    AdaptiveRoute<ServiceData>(page: NewServiceRequestPage),
-    AdaptiveRoute<void>(page: ServiceDetailsPage),
+    AdaptiveRoute<OptionalService>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),
     AdaptiveRoute<void>(page: RequestProviderPage),
-    AdaptiveRoute<void>(
-      page: ListRepairerPage,
-    ),
+    AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
+    AdaptiveRoute<void>(page: AddMessagePage),
   ],
 )
 class $AppRouter {}

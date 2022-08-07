@@ -183,5 +183,12 @@
   "findRepairerErrorMessageLabel": "Không thể tìm được thợ sử chữa, hãy thử refresh hoặc restart lại app nhé!",
   "emptyRepairerLabel": "Không có thợ sửa chữa nào hoạt động quanh đây, chúng tôi rất xin lỗi vì sự bất tiện này",
   "starRatingCountLabel": "lượt",
-  "serviceFeeLabel": "Phí dịch vụ"
+  "serviceFeeLabel": "Phí dịch vụ",
+  "noteLabel": "Lưu ý",
+  "noteMovingFeeLabel": "Đây là phí di chuyển chưa bao gồm giá dịch vụ sửa chữa",
+  "movingFeeLabel": "Phí di chuyển",
+  "addMessageTitle": "Lời nhắn",
+  "optionalImgGuideLabel": "Cung cấp hình ảnh xung quanh để thợ biết rõ hơn địa điểm bạn gọi cứu hộ nhé.",
+  "optionalLocationImgLabel": "Ảnh địa điểm cần cứu hộ (không bắt buộc)",
+  "optionalAddMsgGuideLabel": "Bạn có thể ghi chú cho thợ ở đây nhé."
 }

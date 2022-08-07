@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'directions_bloc.dart';
+part of 'image_picker_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,62 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DirectionsEvent {
+mixin _$ImagePickerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(LatLng origin, LatLng destination) directions,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Directions value) directions,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DirectionsEventCopyWith<$Res> {
-  factory $DirectionsEventCopyWith(
-          DirectionsEvent value, $Res Function(DirectionsEvent) then) =
-      _$DirectionsEventCopyWithImpl<$Res>;
+abstract class $ImagePickerEventCopyWith<$Res> {
+  factory $ImagePickerEventCopyWith(
+          ImagePickerEvent value, $Res Function(ImagePickerEvent) then) =
+      _$ImagePickerEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DirectionsEventCopyWithImpl<$Res>
-    implements $DirectionsEventCopyWith<$Res> {
-  _$DirectionsEventCopyWithImpl(this._value, this._then);
+class _$ImagePickerEventCopyWithImpl<$Res>
+    implements $ImagePickerEventCopyWith<$Res> {
+  _$ImagePickerEventCopyWithImpl(this._value, this._then);
 
-  final DirectionsEvent _value;
+  final ImagePickerEvent _value;
   // ignore: unused_field
-  final $Res Function(DirectionsEvent) _then;
+  final $Res Function(ImagePickerEvent) _then;
 }
 
 /// @nodoc
@@ -81,7 +81,8 @@ abstract class _$$_StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$DirectionsEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
+    extends _$ImagePickerEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
@@ -97,7 +98,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'DirectionsEvent.started()';
+    return 'ImagePickerEvent.started()';
   }
 
   @override
@@ -113,7 +114,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(LatLng origin, LatLng destination) directions,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
     return started();
   }
@@ -122,7 +123,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
     return started?.call();
   }
@@ -131,7 +132,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +145,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Directions value) directions,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
     return started(this);
   }
@@ -153,7 +154,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
     return started?.call(this);
   }
@@ -162,7 +163,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,110 +173,100 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements DirectionsEvent {
+abstract class _Started implements ImagePickerEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_DirectionsCopyWith<$Res> {
-  factory _$$_DirectionsCopyWith(
-          _$_Directions value, $Res Function(_$_Directions) then) =
-      __$$_DirectionsCopyWithImpl<$Res>;
-  $Res call({LatLng origin, LatLng destination});
+abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
+  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
+          $Res Function(_$_ImageUploadSelected) then) =
+      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
+  $Res call({ImageSource source});
 }
 
 /// @nodoc
-class __$$_DirectionsCopyWithImpl<$Res>
-    extends _$DirectionsEventCopyWithImpl<$Res>
-    implements _$$_DirectionsCopyWith<$Res> {
-  __$$_DirectionsCopyWithImpl(
-      _$_Directions _value, $Res Function(_$_Directions) _then)
-      : super(_value, (v) => _then(v as _$_Directions));
+class __$$_ImageUploadSelectedCopyWithImpl<$Res>
+    extends _$ImagePickerEventCopyWithImpl<$Res>
+    implements _$$_ImageUploadSelectedCopyWith<$Res> {
+  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
+      $Res Function(_$_ImageUploadSelected) _then)
+      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
 
   @override
-  _$_Directions get _value => super._value as _$_Directions;
+  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
 
   @override
   $Res call({
-    Object? origin = freezed,
-    Object? destination = freezed,
+    Object? source = freezed,
   }) {
-    return _then(_$_Directions(
-      origin: origin == freezed
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as LatLng,
-      destination: destination == freezed
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
-              as LatLng,
+    return _then(_$_ImageUploadSelected(
+      source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Directions implements _Directions {
-  const _$_Directions({required this.origin, required this.destination});
+class _$_ImageUploadSelected implements _ImageUploadSelected {
+  const _$_ImageUploadSelected(this.source);
 
   @override
-  final LatLng origin;
-  @override
-  final LatLng destination;
+  final ImageSource source;
 
   @override
   String toString() {
-    return 'DirectionsEvent.directions(origin: $origin, destination: $destination)';
+    return 'ImagePickerEvent.imageUploadSelected(source: $source)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Directions &&
-            const DeepCollectionEquality().equals(other.origin, origin) &&
-            const DeepCollectionEquality()
-                .equals(other.destination, destination));
+            other is _$_ImageUploadSelected &&
+            const DeepCollectionEquality().equals(other.source, source));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(origin),
-      const DeepCollectionEquality().hash(destination));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
 
   @JsonKey(ignore: true)
   @override
-  _$$_DirectionsCopyWith<_$_Directions> get copyWith =>
-      __$$_DirectionsCopyWithImpl<_$_Directions>(this, _$identity);
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(LatLng origin, LatLng destination) directions,
+    required TResult Function(ImageSource source) imageUploadSelected,
   }) {
-    return directions(origin, destination);
+    return imageUploadSelected(source);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
   }) {
-    return directions?.call(origin, destination);
+    return imageUploadSelected?.call(source);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(LatLng origin, LatLng destination)? directions,
+    TResult Function(ImageSource source)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (directions != null) {
-      return directions(origin, destination);
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(source);
     }
     return orElse();
   }
@@ -284,103 +275,101 @@ class _$_Directions implements _Directions {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Directions value) directions,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
   }) {
-    return directions(this);
+    return imageUploadSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
   }) {
-    return directions?.call(this);
+    return imageUploadSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Directions value)? directions,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
     required TResult orElse(),
   }) {
-    if (directions != null) {
-      return directions(this);
+    if (imageUploadSelected != null) {
+      return imageUploadSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class _Directions implements DirectionsEvent {
-  const factory _Directions(
-      {required final LatLng origin,
-      required final LatLng destination}) = _$_Directions;
+abstract class _ImageUploadSelected implements ImagePickerEvent {
+  const factory _ImageUploadSelected(final ImageSource source) =
+      _$_ImageUploadSelected;
 
-  LatLng get origin;
-  LatLng get destination;
+  ImageSource get source;
   @JsonKey(ignore: true)
-  _$$_DirectionsCopyWith<_$_Directions> get copyWith =>
+  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$DirectionsState {
+mixin _$ImagePickerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Directions directions) directionsLoaded,
+    required TResult Function(File image) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_DirectionsLoaded value) directionsLoaded,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DirectionsStateCopyWith<$Res> {
-  factory $DirectionsStateCopyWith(
-          DirectionsState value, $Res Function(DirectionsState) then) =
-      _$DirectionsStateCopyWithImpl<$Res>;
+abstract class $ImagePickerStateCopyWith<$Res> {
+  factory $ImagePickerStateCopyWith(
+          ImagePickerState value, $Res Function(ImagePickerState) then) =
+      _$ImagePickerStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DirectionsStateCopyWithImpl<$Res>
-    implements $DirectionsStateCopyWith<$Res> {
-  _$DirectionsStateCopyWithImpl(this._value, this._then);
+class _$ImagePickerStateCopyWithImpl<$Res>
+    implements $ImagePickerStateCopyWith<$Res> {
+  _$ImagePickerStateCopyWithImpl(this._value, this._then);
 
-  final DirectionsState _value;
+  final ImagePickerState _value;
   // ignore: unused_field
-  final $Res Function(DirectionsState) _then;
+  final $Res Function(ImagePickerState) _then;
 }
 
 /// @nodoc
@@ -391,7 +380,8 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$DirectionsStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$ImagePickerStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -407,7 +397,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'DirectionsState.initial()';
+    return 'ImagePickerState.initial()';
   }
 
   @override
@@ -423,7 +413,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Directions directions) directionsLoaded,
+    required TResult Function(File image) choosePhotoSuccess,
   }) {
     return initial();
   }
@@ -432,7 +422,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
   }) {
     return initial?.call();
   }
@@ -441,7 +431,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -454,7 +444,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_DirectionsLoaded value) directionsLoaded,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
     return initial(this);
   }
@@ -463,7 +453,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
     return initial?.call(this);
   }
@@ -472,7 +462,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -482,109 +472,100 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements DirectionsState {
+abstract class _Initial implements ImagePickerState {
   const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$_DirectionsLoadedCopyWith<$Res> {
-  factory _$$_DirectionsLoadedCopyWith(
-          _$_DirectionsLoaded value, $Res Function(_$_DirectionsLoaded) then) =
-      __$$_DirectionsLoadedCopyWithImpl<$Res>;
-  $Res call({Directions directions});
-
-  $DirectionsCopyWith<$Res> get directions;
+abstract class _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  factory _$$_ChoosePhotoSuccessCopyWith(_$_ChoosePhotoSuccess value,
+          $Res Function(_$_ChoosePhotoSuccess) then) =
+      __$$_ChoosePhotoSuccessCopyWithImpl<$Res>;
+  $Res call({File image});
 }
 
 /// @nodoc
-class __$$_DirectionsLoadedCopyWithImpl<$Res>
-    extends _$DirectionsStateCopyWithImpl<$Res>
-    implements _$$_DirectionsLoadedCopyWith<$Res> {
-  __$$_DirectionsLoadedCopyWithImpl(
-      _$_DirectionsLoaded _value, $Res Function(_$_DirectionsLoaded) _then)
-      : super(_value, (v) => _then(v as _$_DirectionsLoaded));
+class __$$_ChoosePhotoSuccessCopyWithImpl<$Res>
+    extends _$ImagePickerStateCopyWithImpl<$Res>
+    implements _$$_ChoosePhotoSuccessCopyWith<$Res> {
+  __$$_ChoosePhotoSuccessCopyWithImpl(
+      _$_ChoosePhotoSuccess _value, $Res Function(_$_ChoosePhotoSuccess) _then)
+      : super(_value, (v) => _then(v as _$_ChoosePhotoSuccess));
 
   @override
-  _$_DirectionsLoaded get _value => super._value as _$_DirectionsLoaded;
+  _$_ChoosePhotoSuccess get _value => super._value as _$_ChoosePhotoSuccess;
 
   @override
   $Res call({
-    Object? directions = freezed,
+    Object? image = freezed,
   }) {
-    return _then(_$_DirectionsLoaded(
-      directions: directions == freezed
-          ? _value.directions
-          : directions // ignore: cast_nullable_to_non_nullable
-              as Directions,
+    return _then(_$_ChoosePhotoSuccess(
+      image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
-  }
-
-  @override
-  $DirectionsCopyWith<$Res> get directions {
-    return $DirectionsCopyWith<$Res>(_value.directions, (value) {
-      return _then(_value.copyWith(directions: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$_DirectionsLoaded implements _DirectionsLoaded {
-  const _$_DirectionsLoaded({required this.directions});
+class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
+  const _$_ChoosePhotoSuccess(this.image);
 
   @override
-  final Directions directions;
+  final File image;
 
   @override
   String toString() {
-    return 'DirectionsState.directionsLoaded(directions: $directions)';
+    return 'ImagePickerState.choosePhotoSuccess(image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DirectionsLoaded &&
-            const DeepCollectionEquality()
-                .equals(other.directions, directions));
+            other is _$_ChoosePhotoSuccess &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(directions));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
-  _$$_DirectionsLoadedCopyWith<_$_DirectionsLoaded> get copyWith =>
-      __$$_DirectionsLoadedCopyWithImpl<_$_DirectionsLoaded>(this, _$identity);
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
+      __$$_ChoosePhotoSuccessCopyWithImpl<_$_ChoosePhotoSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Directions directions) directionsLoaded,
+    required TResult Function(File image) choosePhotoSuccess,
   }) {
-    return directionsLoaded(directions);
+    return choosePhotoSuccess(image);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
   }) {
-    return directionsLoaded?.call(directions);
+    return choosePhotoSuccess?.call(image);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Directions directions)? directionsLoaded,
+    TResult Function(File image)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
-    if (directionsLoaded != null) {
-      return directionsLoaded(directions);
+    if (choosePhotoSuccess != null) {
+      return choosePhotoSuccess(image);
     }
     return orElse();
   }
@@ -593,40 +574,39 @@ class _$_DirectionsLoaded implements _DirectionsLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_DirectionsLoaded value) directionsLoaded,
+    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
   }) {
-    return directionsLoaded(this);
+    return choosePhotoSuccess(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
   }) {
-    return directionsLoaded?.call(this);
+    return choosePhotoSuccess?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
     required TResult orElse(),
   }) {
-    if (directionsLoaded != null) {
-      return directionsLoaded(this);
+    if (choosePhotoSuccess != null) {
+      return choosePhotoSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _DirectionsLoaded implements DirectionsState {
-  const factory _DirectionsLoaded({required final Directions directions}) =
-      _$_DirectionsLoaded;
+abstract class _ChoosePhotoSuccess implements ImagePickerState {
+  const factory _ChoosePhotoSuccess(final File image) = _$_ChoosePhotoSuccess;
 
-  Directions get directions;
+  File get image;
   @JsonKey(ignore: true)
-  _$$_DirectionsLoadedCopyWith<_$_DirectionsLoaded> get copyWith =>
+  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -10,3 +10,14 @@ Option<AppUser> getUser(AuthenticateState state) =>
       ),
       orElse: none,
     );
+
+int calculateMovingFees(int distance, int baseFees, int increaseFees) {
+  var movingFees = 0;
+  const baseDistance = 3;
+  if (distance <= baseDistance) {
+    movingFees = baseFees;
+  } else {
+    movingFees = baseFees + (distance - baseDistance) * increaseFees;
+  }
+  return movingFees;
+}

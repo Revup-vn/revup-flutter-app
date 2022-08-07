@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../map_api/map_api.dart';
+import '../../models/directions_model.dart';
 import '../../models/place_details_model.dart';
 import '../../utils/map_utils.dart';
 
@@ -51,6 +52,9 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         final boxRprRecord = await Hive.openBox<dynamic>('repairRecord');
         await boxRprRecord.put('toLat', location.latitude);
         await boxRprRecord.put('toLng', location.longitude);
+      },
+      mapLoaded: (Directions directions) {
+        emit(LocationState.directionsLoaded(directions: directions));
       },
     );
   }
