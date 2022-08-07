@@ -79,7 +79,7 @@ class HistoryConsumerDetailView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  if (isComplete == true) ...[
+                  if (isComplete) ...[
                     OrderStatusItem(
                       orderNumber: orderNumber,
                       orderStatusNotification: l10n.completedOrderLabel,
@@ -100,25 +100,25 @@ class HistoryConsumerDetailView extends StatelessWidget {
                       serviceStartBooking: serviceStartBooking,
                       serviceEndBooking: serviceEndBooking,
                     ),
-                  ] else ...[
-                    OrderStatusItem(
-                      orderNumber: orderNumber,
-                      orderStatusNotification: l10n.cancelOrderLabel,
-                      textStyleNotification:
-                          Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: Theme.of(context).colorScheme.error,
-                                  ) ??
-                              TextStyle(
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                      iconOrder: Icon(
-                        Icons.inventory_outlined,
-                        size: 30,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      serviceStartBooking: serviceStartBooking,
-                      serviceEndBooking: serviceEndBooking,
-                    ),
+                    // ] else ...[
+                    //   OrderStatusItem(
+                    //     orderNumber: orderNumber,
+                    //     orderStatusNotification: l10n.cancelOrderLabel,
+                    //     textStyleNotification:
+                    //         Theme.of(context).textTheme.titleSmall?.copyWith(
+                    //             color: Theme.of(context).colorScheme.error,
+                    //                 ) ??
+                    //             TextStyle(
+                    //               color: Theme.of(context).colorScheme.error,
+                    //             ),
+                    //     iconOrder: Icon(
+                    //       Icons.inventory_outlined,
+                    //       size: 30,
+                    //       color: Theme.of(context).colorScheme.error,
+                    //     ),
+                    //     serviceStartBooking: serviceStartBooking,
+                    //     serviceEndBooking: serviceEndBooking,
+                    //   ),
                   ],
                   const Divider(
                     height: 1,

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
+import '../find_nearby/view/find_nearby_page.dart';
 import '../find_provider/view/list_repairer_page.u.dart';
 import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
@@ -18,19 +19,20 @@ import '../login/view/login_page.u.dart';
 import '../notification_consumer/view/notification_consumer_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
 import '../order-sevice/view/repair_status_page.u.dart';
-import '../order-sevice/view/service_detail_page.u.dart';
 import '../order/order_overview/view/overview_order_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../profile/view/signup6_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
+import '../request_provider/view/request_provider_page.dart';
 import '../review-repairman/view/review_repairman_page.u.dart';
 import '../service/choose-product/view/choose_product_page.dart';
 import '../service/choose-service/view/choose_service_page.dart';
 import '../service/choose-service/view/service_details_page.dart';
 import '../service/models/service_data.dart';
 import '../service/new-service/view/new_service_request_page.dart';
+import '../service/service-details/view/service_detail_page.dart';
 import '../test/test.dart';
 
 @AdaptiveAutoRouter(
@@ -62,7 +64,10 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<ServiceData>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailsPage),
+    AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
+    AdaptiveRoute<void>(page: FindNearbyPage),
+    AdaptiveRoute<void>(page: RequestProviderPage),
     AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
     AdaptiveRoute<void>(page: OverViewOrderPage),

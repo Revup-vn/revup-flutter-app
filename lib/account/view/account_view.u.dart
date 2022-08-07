@@ -83,7 +83,9 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.payment),
                 callback: () {
                   context.router.push(
-                    PaymentRoute(user: user, model: model),
+                    PaymentRoute(
+                      user: model,
+                    ),
                   );
                 },
               ),

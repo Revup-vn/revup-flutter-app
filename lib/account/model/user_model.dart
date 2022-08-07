@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
@@ -5,6 +7,8 @@ part 'user_model.freezed.dart';
 
 @freezed
 class UserModel with _$UserModel {
+  const UserModel._();
+
   const factory UserModel({
     required String name,
     required String email,

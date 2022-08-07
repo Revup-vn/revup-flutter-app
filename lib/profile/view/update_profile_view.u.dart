@@ -182,19 +182,19 @@ class UpdateProfileView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _formKey.currentState!.saveAndValidate();
-                        final data = _formKey.currentState!.value;
-                        final fName = data['fullName'].toString();
-                        final email = data['email'].toString();
-                        final phone = data['phone'].toString();
-                        final date = data['date'] as DateTime;
-                        final address = data['address'].toString();
+                        _formKey.currentState?.saveAndValidate();
+                        final data = _formKey.currentState?.value;
+                        final fName = data?['fullName'].toString();
+                        final email = data?['email'].toString();
+                        final phone = data?['phone'].toString();
+                        final date = data?['date'] as DateTime;
+                        final address = data?['address'].toString();
                         final user = UserModel(
-                          name: fName,
-                          email: email,
-                          phone: phone,
+                          name: fName ?? '',
+                          email: email ?? '',
+                          phone: phone ?? '',
                           date: date,
-                          address: address,
+                          address: address ?? '',
                           urlImage: '',
                         );
                         context

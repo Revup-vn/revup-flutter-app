@@ -17,5 +17,6 @@ class FindListRepairerState with _$FindListRepairerState {
     required String sortType,
   }) = _DropdownListChangedSuccess;
   const factory FindListRepairerState.loading() = _Loading;
-  const factory FindListRepairerState.failure() = _Failure;
+  const factory FindListRepairerState.failure({required String? errorMessage}) =
+      _Failure;
 }

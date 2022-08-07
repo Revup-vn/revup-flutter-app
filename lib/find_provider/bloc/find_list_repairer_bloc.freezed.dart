@@ -19,21 +19,18 @@ mixin _$FindListRepairerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) =>
@@ -41,21 +38,18 @@ mixin _$FindListRepairerEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) =>
@@ -120,7 +114,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) {
     return started();
@@ -130,7 +123,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) {
     return started?.call();
@@ -140,7 +132,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -154,7 +145,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return started(this);
@@ -164,7 +154,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return started?.call(this);
@@ -174,7 +163,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -187,116 +175,6 @@ class _$_Started implements _Started {
 
 abstract class _Started implements FindListRepairerEvent {
   const factory _Started() = _$_Started;
-}
-
-/// @nodoc
-abstract class _$$_RefreshCopyWith<$Res> {
-  factory _$$_RefreshCopyWith(
-          _$_Refresh value, $Res Function(_$_Refresh) then) =
-      __$$_RefreshCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_RefreshCopyWithImpl<$Res>
-    extends _$FindListRepairerEventCopyWithImpl<$Res>
-    implements _$$_RefreshCopyWith<$Res> {
-  __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
-      : super(_value, (v) => _then(v as _$_Refresh));
-
-  @override
-  _$_Refresh get _value => super._value as _$_Refresh;
-}
-
-/// @nodoc
-
-class _$_Refresh implements _Refresh {
-  const _$_Refresh();
-
-  @override
-  String toString() {
-    return 'FindListRepairerEvent.refresh()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Refresh);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() refresh,
-    required TResult Function(String sortType) dropdownListChanged,
-  }) {
-    return refresh();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? refresh,
-    TResult Function(String sortType)? dropdownListChanged,
-  }) {
-    return refresh?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? refresh,
-    TResult Function(String sortType)? dropdownListChanged,
-    required TResult orElse(),
-  }) {
-    if (refresh != null) {
-      return refresh();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Refresh value) refresh,
-    required TResult Function(DropdownListChanged value) dropdownListChanged,
-  }) {
-    return refresh(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(DropdownListChanged value)? dropdownListChanged,
-  }) {
-    return refresh?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(DropdownListChanged value)? dropdownListChanged,
-    required TResult orElse(),
-  }) {
-    if (refresh != null) {
-      return refresh(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Refresh implements FindListRepairerEvent {
-  const factory _Refresh() = _$_Refresh;
 }
 
 /// @nodoc
@@ -366,7 +244,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() refresh,
     required TResult Function(String sortType) dropdownListChanged,
   }) {
     return dropdownListChanged(sortType);
@@ -376,7 +253,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
   }) {
     return dropdownListChanged?.call(sortType);
@@ -386,7 +262,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? refresh,
     TResult Function(String sortType)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -400,7 +275,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(DropdownListChanged value) dropdownListChanged,
   }) {
     return dropdownListChanged(this);
@@ -410,7 +284,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
   }) {
     return dropdownListChanged?.call(this);
@@ -420,7 +293,6 @@ class _$DropdownListChanged implements DropdownListChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Refresh value)? refresh,
     TResult Function(DropdownListChanged value)? dropdownListChanged,
     required TResult orElse(),
   }) {
@@ -451,7 +323,7 @@ mixin _$FindListRepairerState {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -462,7 +334,7 @@ mixin _$FindListRepairerState {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -473,7 +345,7 @@ mixin _$FindListRepairerState {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -600,7 +472,7 @@ class _$_Initial implements _Initial {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
     return initial(hasValue);
   }
@@ -614,7 +486,7 @@ class _$_Initial implements _Initial {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
     return initial?.call(hasValue);
   }
@@ -628,7 +500,7 @@ class _$_Initial implements _Initial {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -765,7 +637,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
     return dataLoadSuccess(listProvider);
   }
@@ -779,7 +651,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
     return dataLoadSuccess?.call(listProvider);
   }
@@ -793,7 +665,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (dataLoadSuccess != null) {
@@ -931,7 +803,7 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
     return refreshSuccess(listProvider);
   }
@@ -945,7 +817,7 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
     return refreshSuccess?.call(listProvider);
   }
@@ -959,7 +831,7 @@ class _$_RefreshSuccess implements _RefreshSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (refreshSuccess != null) {
@@ -1112,7 +984,7 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
     return dropdownListChangedSuccess(listProvider, sortType);
   }
@@ -1126,7 +998,7 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
     return dropdownListChangedSuccess?.call(listProvider, sortType);
   }
@@ -1140,7 +1012,7 @@ class _$_DropdownListChangedSuccess implements _DropdownListChangedSuccess {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (dropdownListChangedSuccess != null) {
@@ -1254,7 +1126,7 @@ class _$_Loading implements _Loading {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
     return loading();
   }
@@ -1268,7 +1140,7 @@ class _$_Loading implements _Loading {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
     return loading?.call();
   }
@@ -1282,7 +1154,7 @@ class _$_Loading implements _Loading {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1347,6 +1219,7 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
+  $Res call({String? errorMessage});
 }
 
 /// @nodoc
@@ -1358,26 +1231,50 @@ class __$$_FailureCopyWithImpl<$Res>
 
   @override
   _$_Failure get _value => super._value as _$_Failure;
+
+  @override
+  $Res call({
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_$_Failure(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Failure implements _Failure {
-  const _$_Failure();
+  const _$_Failure({required this.errorMessage});
+
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'FindListRepairerState.failure()';
+    return 'FindListRepairerState.failure(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failure);
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(errorMessage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1388,9 +1285,9 @@ class _$_Failure implements _Failure {
     required TResult Function(IList<ProviderData> listProvider, String sortType)
         dropdownListChangedSuccess,
     required TResult Function() loading,
-    required TResult Function() failure,
+    required TResult Function(String? errorMessage) failure,
   }) {
-    return failure();
+    return failure(errorMessage);
   }
 
   @override
@@ -1402,9 +1299,9 @@ class _$_Failure implements _Failure {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
   }) {
-    return failure?.call();
+    return failure?.call(errorMessage);
   }
 
   @override
@@ -1416,11 +1313,11 @@ class _$_Failure implements _Failure {
     TResult Function(IList<ProviderData> listProvider, String sortType)?
         dropdownListChangedSuccess,
     TResult Function()? loading,
-    TResult Function()? failure,
+    TResult Function(String? errorMessage)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure();
+      return failure(errorMessage);
     }
     return orElse();
   }
@@ -1473,5 +1370,10 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements FindListRepairerState {
-  const factory _Failure() = _$_Failure;
+  const factory _Failure({required final String? errorMessage}) = _$_Failure;
+
+  String? get errorMessage;
+  @JsonKey(ignore: true)
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

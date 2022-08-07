@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
               );
 
               return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute(user: authType.user));
+                context.router.push(HomeRoute());
               });
             },
             orElse: () => false,
