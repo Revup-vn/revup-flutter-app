@@ -37,12 +37,14 @@ import '../test/test.dart';
     ),
     AdaptiveRoute<void>(page: OrderDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
-    AdaptiveRoute<void>(page: ServiceInvoicePage),
+    AdaptiveRoute<void>(
+      page: ServiceInvoicePage,
+      initial: true,
+    ),
     AdaptiveRoute<void>(page: InvoicePaymentPage),
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(
       page: HomePage,
-      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: ActivatePage),
@@ -64,9 +66,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),
     AdaptiveRoute<void>(page: RequestProviderPage),
-    AdaptiveRoute<void>(
-      page: ListRepairerPage,
-    ),
+    AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
   ],
 )

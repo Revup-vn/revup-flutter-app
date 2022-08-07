@@ -67,7 +67,9 @@ class RepairerProfileFeedback extends StatelessWidget {
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,
                             ),
-                            onRatingUpdate: (value) {},
+                            onRatingUpdate: (value) {
+                              // TODO(cantgim): implement sthg
+                            },
                           ),
                         ),
                         AutoSizeText(

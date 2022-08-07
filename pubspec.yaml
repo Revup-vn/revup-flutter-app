@@ -42,14 +42,14 @@ dependencies:
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
   loader_overlay: ^2.0.10
-  material_floating_search_bar: ^0.3.7
+  #material_floating_search_bar: ^0.3.7
   modal_bottom_sheet: ^2.1.0
   pin_code_fields: ^7.4.0
   revup_core:
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: hotfix/istore-where
-      version: ^3.4.6-dev
+      ref: main
+      version: ^3.4.6-dev+2
   # revup_core:
   #   path: ../revup-core
   shared_preferences: ^2.0.15

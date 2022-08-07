@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
@@ -110,7 +111,9 @@ class RepairerProfileMainContent extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO(cantgim): implement sthg
+                        },
                         child: AutoSizeText(l10n.callForHelpLabel),
                       ),
                     ),

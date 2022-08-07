@@ -1,44 +1,38 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flash/flash.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revup_core/core.dart' as feedback;
-import 'package:revup_core/core.dart';
+import 'package:dartz/dartz.dart';
 
-import '../../invoice/models/provider_data.dart';
-import '../../invoice/models/service_data.dart';
-import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
-import '../../router/router.dart';
-import '../../shared/utils.dart';
-import '../bloc/invoice_payment_bloc.u.dart';
+import '../models/provider_data.dart';
+import '../models/service_data.dart';
+import '../widgets/default_avatar.dart';
 
-class InvoicePaymentView extends StatelessWidget {
-  const InvoicePaymentView(
+class ServiceInvoiceContent extends StatelessWidget {
+  const ServiceInvoiceContent(
+    this.total,
     this.providerData,
-    this.serviceData,
-    this.total, {
+    this.serviceData, {
     super.key,
+    required this.ready,
   });
   final ProviderData providerData;
-  final List<ServiceData> serviceData;
-  final int total;
+  final IList<ServiceData> serviceData;
+  final bool ready;
+  final int? total;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final maybeUser = getUser(context.read<AuthenticateBloc>().state);
-    var isPayOnline = false;
+    final service = serviceData.toIterable().toList();
 
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          l10n.paymentLabel,
+          l10n.serviceInvoiceLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -126,7 +120,7 @@ class InvoicePaymentView extends StatelessWidget {
                                       .inversePrimary,
                                 ),
                                 AutoSizeText(
-                                  '(${providerData.totalStarRating})',
+                                  '''(${providerData.totalStarRating.toString()})''',
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
                               ],
@@ -171,7 +165,7 @@ class InvoicePaymentView extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: serviceData.length,
+                    itemCount: service.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SizedBox(
                         height: 50,
@@ -179,128 +173,17 @@ class InvoicePaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             AutoSizeText(
-                              serviceData[index].serviceName,
+                              service[index].serviceName,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              '${serviceData[index].serviceFee} 000đ',
+                              '''${service[index].serviceFee.toString()} 000đ''',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
                         ),
                       );
                     },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      AutoSizeText(
-                        l10n.invoiceInformationLabel,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          maybeUser.fold(
-                            () => null,
-                            (user) {
-                              final completer = Completer<bool>();
-                              context.router.push(
-                                PaymentRoute(
-                                  user: user,
-                                  completer: completer,
-                                ),
-                              );
-                              completer.future.then(
-                                (value) {
-                                  isPayOnline = value;
-                                  context.read<InvoicePaymentBloc>().add(
-                                        InvoicePaymentEvent.changePaymentMethod(
-                                          isPayOnline: value,
-                                        ),
-                                      );
-                                },
-                              );
-                            },
-                          );
-                          //test method
-
-                          // final completer = Completer<bool>();
-                          // context.router.push(
-                          //   PaymentRoute(
-                          //     user: user,
-                          //     completer: completer,
-                          //   ),
-                          // );
-                          // completer.future.then(
-                          //   (value) {
-                          //     isPayOnline = value;
-                          //     context.read<InvoicePaymentBloc>().add(
-                          //           InvoicePaymentEvent.changePaymentMethod(
-                          //             isPayOnline: value,
-                          //           ),
-                          //         );
-                          //   },
-                          // );
-                        },
-                        child: BlocSelector<InvoicePaymentBloc,
-                            InvoicePaymentState, bool>(
-                          selector: (state) => state.maybeWhen(
-                            changePaymentMethodSuccess: (isPaymentOnline) =>
-                                isPaymentOnline,
-                            orElse: () => false,
-                          ),
-                          builder: (context, isPaymentOnline) {
-                            return ListTile(
-                              title: AutoSizeText(
-                                isPaymentOnline
-                                    ? l10n.momoLabel
-                                    : l10n.cashLabel,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              leading: isPaymentOnline
-                                  ? const Icon(Icons.payment)
-                                  : const Icon(Icons.money),
-                              trailing: const Icon(Icons.arrow_forward_ios),
-                            );
-                          },
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          showFlash(
-                            context: context,
-                            builder: (context, controller) =>
-                                Flash<void>.dialog(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(2)),
-                              controller: controller,
-                              child: Text(context.l10n.notSupportLabel),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          title: AutoSizeText(
-                            l10n.endowLabel,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          leading: const Icon(Icons.loyalty),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                        ),
-                      ),
-                    ],
                   ),
                   const SizedBox(
                     height: 150,
@@ -350,33 +233,20 @@ class InvoicePaymentView extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      final completer = Completer<feedback.Feedback>();
-                      await context.router.push(
-                        ReviewRepairmanRoute(
-                          providerData: providerData,
-                          completer: completer,
-                        ),
-                      );
-                      final feedbackData = completer.future;
-                      await feedbackData.then((value) {
-                        maybeUser.fold(
-                          () => null,
-                          (user) => context.read<InvoicePaymentBloc>().add(
-                                InvoicePaymentEvent.sumbitPayment(
-                                  isPayOnline: isPayOnline,
-                                  totalAmount: total,
-                                  cid: user.uuid,
-                                  pid: providerData.providerID,
-                                  feedback: value,
-                                ),
+                    onPressed: ready
+                        ? () {
+                            context.router.push(
+                              InvoicePaymentRoute(
+                                providerData: providerData,
+                                serviceData: service,
+                                total: total ?? 0,
                               ),
-                        );
-                      });
-                    },
+                            );
+                          }
+                        : null,
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(
-                      l10n.paymentLabel,
+                      l10n.confirmLabel,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),

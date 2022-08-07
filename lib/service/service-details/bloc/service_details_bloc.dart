@@ -33,7 +33,9 @@ class ServiceDetailsBloc
     Emitter<ServiceDetailsState> emit,
   ) async {
     await event.when(
-      started: () async {},
+      started: () async {
+        // TODO(cantgim): implement sthg
+      },
     );
   }
 }

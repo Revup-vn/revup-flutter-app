@@ -21,7 +21,9 @@ class DirectionsBloc extends Bloc<DirectionsEvent, DirectionsState> {
     Emitter<DirectionsState> emit,
   ) async {
     await event.when(
-      started: () {},
+      started: () {
+        // TODO(cantgim): implement sthg
+      },
       directions: (LatLng origin, LatLng destination) async {
         final directions = await getDirections(origin, destination);
         emit(DirectionsState.directionsLoaded(directions: directions));

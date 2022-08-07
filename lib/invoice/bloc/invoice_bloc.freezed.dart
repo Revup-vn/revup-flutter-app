@@ -167,33 +167,51 @@ abstract class _Started implements InvoiceEvent {
 mixin _$InvoiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool ready) initial,
+    required TResult Function() loading,
+    required TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)
+        loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadDataSuccess value) loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -220,6 +238,7 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
+  $Res call({bool ready});
 }
 
 /// @nodoc
@@ -230,51 +249,86 @@ class __$$_InitialCopyWithImpl<$Res> extends _$InvoiceStateCopyWithImpl<$Res>
 
   @override
   _$_Initial get _value => super._value as _$_Initial;
+
+  @override
+  $Res call({
+    Object? ready = freezed,
+  }) {
+    return _then(_$_Initial(
+      ready: ready == freezed
+          ? _value.ready
+          : ready // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial();
+  const _$_Initial({required this.ready});
+
+  @override
+  final bool ready;
 
   @override
   String toString() {
-    return 'InvoiceState.initial()';
+    return 'InvoiceState.initial(ready: $ready)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_Initial &&
+            const DeepCollectionEquality().equals(other.ready, ready));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(ready));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool ready) initial,
+    required TResult Function() loading,
+    required TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)
+        loadingDataSuccess,
   }) {
-    return initial();
+    return initial(ready);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
   }) {
-    return initial?.call();
+    return initial?.call(ready);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(ready);
     }
     return orElse();
   }
@@ -283,6 +337,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadDataSuccess value) loadingDataSuccess,
   }) {
     return initial(this);
   }
@@ -291,6 +347,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
   }) {
     return initial?.call(this);
   }
@@ -299,6 +357,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -309,5 +369,320 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements InvoiceState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial({required final bool ready}) = _$_Initial;
+
+  bool get ready;
+  @JsonKey(ignore: true)
+  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res> extends _$InvoiceStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'InvoiceState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool ready) initial,
+    required TResult Function() loading,
+    required TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)
+        loadingDataSuccess,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadDataSuccess value) loadingDataSuccess,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements InvoiceState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_LoadDataSuccessCopyWith<$Res> {
+  factory _$$_LoadDataSuccessCopyWith(
+          _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
+      __$$_LoadDataSuccessCopyWithImpl<$Res>;
+  $Res call(
+      {ProviderData data, bool ready, int total, IList<ServiceData> service});
+
+  $ProviderDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$_LoadDataSuccessCopyWithImpl<$Res>
+    extends _$InvoiceStateCopyWithImpl<$Res>
+    implements _$$_LoadDataSuccessCopyWith<$Res> {
+  __$$_LoadDataSuccessCopyWithImpl(
+      _$_LoadDataSuccess _value, $Res Function(_$_LoadDataSuccess) _then)
+      : super(_value, (v) => _then(v as _$_LoadDataSuccess));
+
+  @override
+  _$_LoadDataSuccess get _value => super._value as _$_LoadDataSuccess;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? ready = freezed,
+    Object? total = freezed,
+    Object? service = freezed,
+  }) {
+    return _then(_$_LoadDataSuccess(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProviderData,
+      ready: ready == freezed
+          ? _value.ready
+          : ready // ignore: cast_nullable_to_non_nullable
+              as bool,
+      total: total == freezed
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      service: service == freezed
+          ? _value.service
+          : service // ignore: cast_nullable_to_non_nullable
+              as IList<ServiceData>,
+    ));
+  }
+
+  @override
+  $ProviderDataCopyWith<$Res> get data {
+    return $ProviderDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_LoadDataSuccess implements _LoadDataSuccess {
+  const _$_LoadDataSuccess(
+      {required this.data,
+      required this.ready,
+      required this.total,
+      required this.service});
+
+  @override
+  final ProviderData data;
+  @override
+  final bool ready;
+  @override
+  final int total;
+  @override
+  final IList<ServiceData> service;
+
+  @override
+  String toString() {
+    return 'InvoiceState.loadingDataSuccess(data: $data, ready: $ready, total: $total, service: $service)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadDataSuccess &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            const DeepCollectionEquality().equals(other.ready, ready) &&
+            const DeepCollectionEquality().equals(other.total, total) &&
+            const DeepCollectionEquality().equals(other.service, service));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(data),
+      const DeepCollectionEquality().hash(ready),
+      const DeepCollectionEquality().hash(total),
+      const DeepCollectionEquality().hash(service));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      __$$_LoadDataSuccessCopyWithImpl<_$_LoadDataSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool ready) initial,
+    required TResult Function() loading,
+    required TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)
+        loadingDataSuccess,
+  }) {
+    return loadingDataSuccess(data, ready, total, service);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
+  }) {
+    return loadingDataSuccess?.call(data, ready, total, service);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool ready)? initial,
+    TResult Function()? loading,
+    TResult Function(ProviderData data, bool ready, int total,
+            IList<ServiceData> service)?
+        loadingDataSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadingDataSuccess != null) {
+      return loadingDataSuccess(data, ready, total, service);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadDataSuccess value) loadingDataSuccess,
+  }) {
+    return loadingDataSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
+  }) {
+    return loadingDataSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadDataSuccess value)? loadingDataSuccess,
+    required TResult orElse(),
+  }) {
+    if (loadingDataSuccess != null) {
+      return loadingDataSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadDataSuccess implements InvoiceState {
+  const factory _LoadDataSuccess(
+      {required final ProviderData data,
+      required final bool ready,
+      required final int total,
+      required final IList<ServiceData> service}) = _$_LoadDataSuccess;
+
+  ProviderData get data;
+  bool get ready;
+  int get total;
+  IList<ServiceData> get service;
+  @JsonKey(ignore: true)
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }

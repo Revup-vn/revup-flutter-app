@@ -94,7 +94,7 @@
   "searchLabel": "Search...",
   "paymentFeeOfTransportLabel": "Payment of transportation fees",
   "callForHelpLabel": "Call for help",
-  "endowLabel": "Endow",
+  "endowLabel": "Voucher",
   "enterOTPCodeLabel": "Enter your OTP",
   "existedPhoneNumberLabel": "Phone number already existed",
   "faqsLabel": "FAQs",
@@ -172,5 +172,7 @@
   "selectProductLabel": "Select product",
   "findRepairerErrorMessageLabel": "Some thing went wrong, please refresh or restart the application",
   "emptyRepairerLabel": "There is not any active repairer around you, we are very sorry for this problem",
-  "starRatingCountLabel": "ratings"
+  "starRatingCountLabel": "ratings",
+  "paymentSupportDialogLabel": "We currently don't support this payment case",
+  "notSupportLabel": "We currently don't support this feature. We will release soon"
 }

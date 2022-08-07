@@ -109,14 +109,18 @@ class AppServicePanel extends StatelessWidget {
               icon: const Icon(
                 Icons.build,
               ),
-              onPressed: () {},
+              onPressed: () {
+                // TODO(cantgim): implement sthg
+              },
             ),
             AppServiceItem(
               name: l10n.sosLabel,
               icon: const Icon(
                 Icons.local_gas_station,
               ),
-              onPressed: () {},
+              onPressed: () {
+                // TODO(cantgim): implement sthg
+              },
             ),
           ],
         ),

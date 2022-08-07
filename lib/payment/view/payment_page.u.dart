@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +14,13 @@ import '../../l10n/l10n.dart';
 import '../widgets/payment_item.u.dart';
 
 class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key, required this.user});
+  const PaymentPage({
+    super.key,
+    required this.user,
+    this.completer,
+  });
   final AppUser user;
+  final Completer? completer;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +44,11 @@ class PaymentPage extends StatelessWidget {
               .headlineSmall
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
+        leading: BackButton(
+          onPressed: () {
+            context.router.pop();
+          },
+        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -58,27 +70,45 @@ class PaymentPage extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: PaymentItem(
-                  paymentIcon: Assets.screens.iconsZalo.svg(),
-                  paymentName: l10n.zaloPayLabel,
+                  paymentIcon: Assets.screens.iconMomo.svg(),
+                  paymentName: l10n.momoLabel,
                   clickCallback: () {
-                    // TODO(namngoc231): payment ZaloPay
+                    completer?.complete(true);
+                    context.router.pop();
                   },
                 ),
               ),
               Expanded(
                 child: PaymentItem(
-                  paymentIcon: Assets.screens.iconMomo.svg(),
-                  paymentName: l10n.momoLabel,
+                  paymentIcon: Assets.screens.iconsZalo.svg(),
+                  paymentName: l10n.zaloPayLabel,
                   clickCallback: () {
                     showFlash(
                       context: context,
                       builder: (context, controller) => Flash<void>.dialog(
                         controller: controller,
-                        child: const Text('OK'),
+                        child: Text(context.l10n.paymentSupportDialogLabel),
                       ),
                     );
                   },
                 ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: PaymentItem(
+                  paymentIcon: Assets.screens.iconCash.svg(),
+                  paymentName: l10n.cashLabel,
+                  clickCallback: () {
+                    completer?.complete(false);
+                    context.router.pop();
+                  },
+                ),
+              ),
+              const Expanded(
+                child: SizedBox(),
               ),
             ],
           ),

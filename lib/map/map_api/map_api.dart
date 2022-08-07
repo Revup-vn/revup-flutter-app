@@ -58,6 +58,7 @@ Future<String> getAddress(LatLng position) async {
   final formattedAddress = ((response.data!['results'] as List<dynamic>)[0]
           as Map<String, dynamic>)['formatted_address']
       .toString();
+
   return Future.value(formattedAddress);
 }
 

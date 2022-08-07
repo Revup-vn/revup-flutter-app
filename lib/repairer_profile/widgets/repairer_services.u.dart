@@ -28,7 +28,9 @@ class RepairerProfileServices extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              // TODO(cantgim): implement sthg
+            },
             child: ListBody(
               children: [
                 Row(

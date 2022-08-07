@@ -197,7 +197,9 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  // TODO(cantgim): implement sthgs
+                                },
                                 child: Row(
                                   children: const [
                                     Icon(Icons.paid),
@@ -206,7 +208,9 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  // TODO(cantgim): implement sthg
+                                },
                                 child: Row(
                                   children: const [
                                     Icon(Icons.local_offer),

@@ -11,17 +11,23 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i32;
+
+import 'dart:async' as _i33;
+
+import 'package:flutter/material.dart' as _i29;
 
 import 'package:auto_route/auto_route.dart' as _i28;
-import 'package:flutter/material.dart' as _i29;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i33;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i35;
+import 'package:revup_core/core.dart' as _i34;
+
 import 'package:revup/account/view/account_page.u.dart' as _i27;
 import 'package:revup/activate/view/activate_page.u.dart' as _i25;
 import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i20;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i24;
+import 'package:revup/invoice/models/provider_data.dart' as _i31;
+import 'package:revup/invoice/models/service_data.dart' as _i32;
 import 'package:revup/invoice/view/service_invoice_page.u.dart' as _i4;
 import 'package:revup/invoice_payment/view/invoice_payment_page.u.dart' as _i5;
 import 'package:revup/login/view/login_page.u.dart' as _i11;
@@ -33,9 +39,13 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i13;
 import 'package:revup/payment/view/payment_page.u.dart' as _i8;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i14;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i9;
+import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
+import 'package:revup/service/models/service_data.dart' as _i30;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i10;
+
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
-import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
     as _i6;
 import 'package:revup/service/choose-product/view/choose_product_page.dart'
@@ -44,14 +54,10 @@ import 'package:revup/service/choose-service/view/choose_service_page.dart'
     as _i15;
 import 'package:revup/service/choose-service/view/service_details_page.dart'
     as _i17;
-import 'package:revup/service/models/service_data.dart' as _i30;
 import 'package:revup/service/new-service/view/new_service_request_page.dart'
     as _i16;
 import 'package:revup/service/service-details/view/service_detail_page.dart'
     as _i18;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i10;
-import 'package:revup_core/core.dart' as _i31;
 
 class AppRouter extends _i28.RootStackRouter {
   AppRouter([_i29.GlobalKey<_i29.NavigatorState>? navigatorKey])
@@ -76,12 +82,19 @@ class AppRouter extends _i28.RootStackRouter {
           routeData: routeData, child: const _i4.ServiceInvoicePage());
     },
     InvoicePaymentRoute.name: (routeData) {
+      final args = routeData.argsAs<InvoicePaymentRouteArgs>();
       return _i28.AdaptivePage<void>(
-          routeData: routeData, child: const _i5.InvoicePaymentPage());
+          routeData: routeData,
+          child: _i5.InvoicePaymentPage(
+              args.providerData, args.serviceData, args.total,
+              key: args.key));
     },
     ReviewRepairmanRoute.name: (routeData) {
+      final args = routeData.argsAs<ReviewRepairmanRouteArgs>();
       return _i28.AdaptivePage<void>(
-          routeData: routeData, child: const _i6.ReviewRepairmanPage());
+          routeData: routeData,
+          child: _i6.ReviewRepairmanPage(args.providerData, args.completer,
+              key: args.key));
     },
     HomeRoute.name: (routeData) {
       final args =
@@ -93,7 +106,8 @@ class AppRouter extends _i28.RootStackRouter {
       final args = routeData.argsAs<PaymentRouteArgs>();
       return _i28.AdaptivePage<void>(
           routeData: routeData,
-          child: _i8.PaymentPage(key: args.key, user: args.user));
+          child: _i8.PaymentPage(
+              key: args.key, user: args.user, completer: args.completer));
     },
     UpdateProfileRoute.name: (routeData) {
       return _i28.AdaptivePage<void>(
@@ -197,13 +211,12 @@ class AppRouter extends _i28.RootStackRouter {
         _i28.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i28.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
         _i28.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
-        _i28.RouteConfig(ServiceInvoiceRoute.name,
-            path: '/service-invoice-page'),
+        _i28.RouteConfig(ServiceInvoiceRoute.name, path: '/'),
         _i28.RouteConfig(InvoicePaymentRoute.name,
             path: '/invoice-payment-page'),
         _i28.RouteConfig(ReviewRepairmanRoute.name,
             path: '/review-repairman-page'),
-        _i28.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i28.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i28.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
           _i28.RouteConfig(ActivateRoute.name,
@@ -265,28 +278,81 @@ class RepairStatusRoute extends _i28.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.ServiceInvoicePage]
 class ServiceInvoiceRoute extends _i28.PageRouteInfo<void> {
-  const ServiceInvoiceRoute()
-      : super(ServiceInvoiceRoute.name, path: '/service-invoice-page');
+  const ServiceInvoiceRoute() : super(ServiceInvoiceRoute.name, path: '/');
 
   static const String name = 'ServiceInvoiceRoute';
 }
 
 /// generated route for
 /// [_i5.InvoicePaymentPage]
-class InvoicePaymentRoute extends _i28.PageRouteInfo<void> {
-  const InvoicePaymentRoute()
-      : super(InvoicePaymentRoute.name, path: '/invoice-payment-page');
+class InvoicePaymentRoute extends _i28.PageRouteInfo<InvoicePaymentRouteArgs> {
+  InvoicePaymentRoute(
+      {required _i31.ProviderData providerData,
+      required List<_i32.ServiceData> serviceData,
+      required int total,
+      _i29.Key? key})
+      : super(InvoicePaymentRoute.name,
+            path: '/invoice-payment-page',
+            args: InvoicePaymentRouteArgs(
+                providerData: providerData,
+                serviceData: serviceData,
+                total: total,
+                key: key));
 
   static const String name = 'InvoicePaymentRoute';
 }
 
+class InvoicePaymentRouteArgs {
+  const InvoicePaymentRouteArgs(
+      {required this.providerData,
+      required this.serviceData,
+      required this.total,
+      this.key});
+
+  final _i31.ProviderData providerData;
+
+  final List<_i32.ServiceData> serviceData;
+
+  final int total;
+
+  final _i29.Key? key;
+
+  @override
+  String toString() {
+    return 'InvoicePaymentRouteArgs{providerData: $providerData, serviceData: $serviceData, total: $total, key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i6.ReviewRepairmanPage]
-class ReviewRepairmanRoute extends _i28.PageRouteInfo<void> {
-  const ReviewRepairmanRoute()
-      : super(ReviewRepairmanRoute.name, path: '/review-repairman-page');
+class ReviewRepairmanRoute
+    extends _i28.PageRouteInfo<ReviewRepairmanRouteArgs> {
+  ReviewRepairmanRoute(
+      {required _i31.ProviderData providerData,
+      required _i33.Completer<dynamic> completer,
+      _i29.Key? key})
+      : super(ReviewRepairmanRoute.name,
+            path: '/review-repairman-page',
+            args: ReviewRepairmanRouteArgs(
+                providerData: providerData, completer: completer, key: key));
 
   static const String name = 'ReviewRepairmanRoute';
+}
+
+class ReviewRepairmanRouteArgs {
+  const ReviewRepairmanRouteArgs(
+      {required this.providerData, required this.completer, this.key});
+
+  final _i31.ProviderData providerData;
+
+  final _i33.Completer<dynamic> completer;
+
+  final _i29.Key? key;
+
+  @override
+  String toString() {
+    return 'ReviewRepairmanRouteArgs{providerData: $providerData, completer: $completer, key: $key}';
+  }
 }
 
 /// generated route for
@@ -294,7 +360,7 @@ class ReviewRepairmanRoute extends _i28.PageRouteInfo<void> {
 class HomeRoute extends _i28.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({_i29.Key? key, List<_i28.PageRouteInfo>? children})
       : super(HomeRoute.name,
-            path: '/',
+            path: '/home-page',
             args: HomeRouteArgs(key: key),
             initialChildren: children);
 
@@ -315,24 +381,29 @@ class HomeRouteArgs {
 /// generated route for
 /// [_i8.PaymentPage]
 class PaymentRoute extends _i28.PageRouteInfo<PaymentRouteArgs> {
-  PaymentRoute({_i29.Key? key, required _i31.AppUser user})
+  PaymentRoute(
+      {_i29.Key? key,
+      required _i34.AppUser user,
+      _i33.Completer<dynamic>? completer})
       : super(PaymentRoute.name,
             path: '/payment-page',
-            args: PaymentRouteArgs(key: key, user: user));
+            args: PaymentRouteArgs(key: key, user: user, completer: completer));
 
   static const String name = 'PaymentRoute';
 }
 
 class PaymentRouteArgs {
-  const PaymentRouteArgs({this.key, required this.user});
+  const PaymentRouteArgs({this.key, required this.user, this.completer});
 
   final _i29.Key? key;
 
-  final _i31.AppUser user;
+  final _i34.AppUser user;
+
+  final _i33.Completer<dynamic>? completer;
 
   @override
   String toString() {
-    return 'PaymentRouteArgs{key: $key, user: $user}';
+    return 'PaymentRouteArgs{key: $key, user: $user, completer: $completer}';
   }
 }
 
@@ -375,7 +446,7 @@ class OnboardingRoute extends _i28.PageRouteInfo<void> {
 class OTPRoute extends _i28.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i32.Completer<dynamic> completer,
+      required _i33.Completer<dynamic> completer,
       _i29.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -391,7 +462,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i32.Completer<dynamic> completer;
+  final _i33.Completer<dynamic> completer;
 
   final _i29.Key? key;
 
@@ -405,7 +476,7 @@ class OTPRouteArgs {
 /// [_i14.Signup6Page]
 class Signup6Route extends _i28.PageRouteInfo<Signup6RouteArgs> {
   Signup6Route(
-      {required _i32.Completer<_i31.AppUser> completer,
+      {required _i33.Completer<_i34.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
@@ -433,7 +504,7 @@ class Signup6RouteArgs {
       required this.email,
       this.key});
 
-  final _i32.Completer<_i31.AppUser> completer;
+  final _i33.Completer<_i34.AppUser> completer;
 
   final String phoneNumber;
 
@@ -534,7 +605,7 @@ class ChooseProductRoute extends _i28.PageRouteInfo<void> {
 /// generated route for
 /// [_i20.FindNearbyPage]
 class FindNearbyRoute extends _i28.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i29.Key? key, required _i33.LatLng currentLocation})
+  FindNearbyRoute({_i29.Key? key, required _i35.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -548,7 +619,7 @@ class FindNearbyRouteArgs {
 
   final _i29.Key? key;
 
-  final _i33.LatLng currentLocation;
+  final _i35.LatLng currentLocation;
 
   @override
   String toString() {

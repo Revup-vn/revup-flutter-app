@@ -8,9 +8,10 @@ part 'order_service_event.dart';
 part 'order_service_state.dart';
 
 class OrderServiceBloc extends Bloc<OrderServiceEvent, OrderServiceState> {
-  OrderServiceBloc() : super(const _Initial()) {
+  OrderServiceBloc(this.providerID) : super(const _Initial()) {
     on<OrderServiceEvent>(_onEvent);
   }
+  final String providerID;
 
   int totalPrice = 0;
 
