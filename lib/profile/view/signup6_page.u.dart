@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
-import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
-import '../../shared/utils.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 
 class Signup6Page extends StatelessWidget {
@@ -35,13 +33,6 @@ class Signup6Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    late AppUser user;
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -59,9 +50,8 @@ class Signup6Page extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: UserModel.fromDto(
-                user,
-              ),
+              imageUrl: photoURL,
+              userName: 'Default',
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
@@ -233,16 +223,16 @@ class Signup6Page extends StatelessWidget {
                             avatarUrl: photoURL,
                             createdTime: DateTime.now(),
                             lastUpdatedTime: DateTime.now(),
-                            vac: const VideoCallAccount(
-                              id: '',
-                              username: '',
-                              pwd: '',
-                              email: '',
+                            vac: VideoCallAccount(
+                              id: uid,
+                              username: '+84$phoneNumber',
+                              pwd: DEFAULT_PASS,
+                              email: data['email'].toString(),
                             ),
                           ),
                         );
                         await context.router.pop();
-                      }, // TODO(namngoc231): complete update profile
+                      },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.doneLabel,

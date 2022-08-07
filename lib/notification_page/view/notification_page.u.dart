@@ -9,8 +9,9 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: AutoSizeText(
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: AutoSizeText(
         'Xin chao NotificationPage',
         style: Theme.of(context)
             .textTheme

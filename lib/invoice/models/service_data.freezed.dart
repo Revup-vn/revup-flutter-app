@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ServiceData {
   String get serviceName => throw _privateConstructorUsedError;
   int get serviceFee => throw _privateConstructorUsedError;
+  String get state => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServiceDataCopyWith<ServiceData> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
           ServiceData value, $Res Function(ServiceData) then) =
       _$ServiceDataCopyWithImpl<$Res>;
-  $Res call({String serviceName, int serviceFee});
+  $Res call({String serviceName, int serviceFee, String state});
 }
 
 /// @nodoc
@@ -44,6 +45,7 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
   $Res call({
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
+    Object? state = freezed,
   }) {
     return _then(_value.copyWith(
       serviceName: serviceName == freezed
@@ -54,6 +56,10 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -65,7 +71,7 @@ abstract class _$$_ServiceDataCopyWith<$Res>
           _$_ServiceData value, $Res Function(_$_ServiceData) then) =
       __$$_ServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call({String serviceName, int serviceFee});
+  $Res call({String serviceName, int serviceFee, String state});
 }
 
 /// @nodoc
@@ -82,6 +88,7 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
   $Res call({
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
+    Object? state = freezed,
   }) {
     return _then(_$_ServiceData(
       serviceName: serviceName == freezed
@@ -92,6 +99,10 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
           ? _value.serviceFee
           : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -99,16 +110,21 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ServiceData implements _ServiceData {
-  _$_ServiceData({required this.serviceName, required this.serviceFee});
+  _$_ServiceData(
+      {required this.serviceName,
+      required this.serviceFee,
+      required this.state});
 
   @override
   final String serviceName;
   @override
   final int serviceFee;
+  @override
+  final String state;
 
   @override
   String toString() {
-    return 'ServiceData(serviceName: $serviceName, serviceFee: $serviceFee)';
+    return 'ServiceData(serviceName: $serviceName, serviceFee: $serviceFee, state: $state)';
   }
 
   @override
@@ -119,14 +135,16 @@ class _$_ServiceData implements _ServiceData {
             const DeepCollectionEquality()
                 .equals(other.serviceName, serviceName) &&
             const DeepCollectionEquality()
-                .equals(other.serviceFee, serviceFee));
+                .equals(other.serviceFee, serviceFee) &&
+            const DeepCollectionEquality().equals(other.state, state));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(serviceName),
-      const DeepCollectionEquality().hash(serviceFee));
+      const DeepCollectionEquality().hash(serviceFee),
+      const DeepCollectionEquality().hash(state));
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +155,15 @@ class _$_ServiceData implements _ServiceData {
 abstract class _ServiceData implements ServiceData {
   factory _ServiceData(
       {required final String serviceName,
-      required final int serviceFee}) = _$_ServiceData;
+      required final int serviceFee,
+      required final String state}) = _$_ServiceData;
 
   @override
   String get serviceName;
   @override
   int get serviceFee;
+  @override
+  String get state;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceDataCopyWith<_$_ServiceData> get copyWith =>

@@ -28,7 +28,8 @@ class AccountView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Avatar(
-                user: user,
+                imageUrl: user.urlImage,
+                userName: user.name,
                 callback: () {
                   // TODO(namngoc231): Go to photo selection method
                 },
@@ -73,7 +74,7 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.portrait),
                 callback: () {
                   context.router.push(
-                    const UpdateProfileRoute(),
+                    UpdateProfileRoute(user: user, model: model),
                   );
                 },
               ),
@@ -82,7 +83,9 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.payment),
                 callback: () {
                   context.router.push(
-                    PaymentRoute(user: model),
+                    PaymentRoute(
+                      user: model,
+                    ),
                   );
                 },
               ),
@@ -91,13 +94,6 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.business),
                 callback: () {
                   // TODO(namngoc231): Go to Organization account
-                },
-              ),
-              AccountItem(
-                accountName: l10n.changePassWordLabel,
-                accountIcon: const Icon(Icons.key),
-                callback: () {
-                  // TODO(namngoc231): Go to Change PassWord
                 },
               ),
               AccountItem(
@@ -131,28 +127,27 @@ class AccountView extends StatelessWidget {
                 accountName: l10n.faqsLabel,
                 accountIcon: const Icon(Icons.quiz),
                 callback: () {
-                  // TODO(namngoc231): Go to FAQs
+                  context.router.push(
+                    const FAQsRoute(),
+                  );
                 },
               ),
               AccountItem(
                 accountName: l10n.termsOfServiceLabel,
                 accountIcon: const Icon(Icons.fact_check),
                 callback: () {
-                  // TODO(namngoc231): Go to Terms of Service
+                  context.router.push(
+                    const TermsPrivacyRoute(),
+                  );
                 },
               ),
               AccountItem(
                 accountName: l10n.aboutUsLabel,
                 accountIcon: const Icon(Icons.people),
                 callback: () {
-                  // TODO(namngoc231): Go to About Us
-                },
-              ),
-              AccountItem(
-                accountName: l10n.supportsLabel,
-                accountIcon: const Icon(Icons.help),
-                callback: () {
-                  // TODO(namngoc231): Go to Suports
+                  context.router.push(
+                    const AboutUsRoute(),
+                  );
                 },
               ),
               AccountItem(

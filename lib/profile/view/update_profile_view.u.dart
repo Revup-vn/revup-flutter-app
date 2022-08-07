@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -11,44 +10,17 @@ import 'package:revup_core/core.dart';
 import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
 import '../../l10n/l10n.dart';
-import '../../shared/utils.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/profile_bloc.dart';
 
 class UpdateProfileView extends StatelessWidget {
-  const UpdateProfileView({super.key});
-
+  const UpdateProfileView({super.key, required this.user, required this.model});
+  final UserModel user;
+  final AppUser model;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    //late AppUser user ;
-    late var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime(1997),
-      addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
-      active: true,
-      avatarUrl:
-          'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-      vac: const VideoCallAccount(
-        id: '',
-        username: '',
-        pwd: '',
-        email: '',
-      ),
-    );
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +38,8 @@ class UpdateProfileView extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: UserModel.fromDto(user),
+              userName: user.name,
+              imageUrl: user.urlImage,
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
@@ -105,7 +78,8 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
-                      initialValue: '${user.firstName} ${user.lastName}',
+                      //initialValue: '${user.firstName} ${user.lastName}',
+                      initialValue: user.name,
                     ),
                     FormBuilderTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -175,7 +149,7 @@ class UpdateProfileView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      initialValue: user.dob,
+                      initialValue: user.date,
                       initialDate: DateTime.now()
                           .subtract(const Duration(days: 356 * 18)),
                       lastDate: DateTime.now()
@@ -201,21 +175,7 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.emptyLabel,
                         ),
                       ]),
-                      initialValue: user.addr,
-                    ),
-                    BlocSelector<ProfileBloc, ProfileState, String>(
-                      selector: (state) => state.maybeWhen(
-                        loaded: (
-                          fullName,
-                          email,
-                          phone,
-                          date,
-                          address,
-                        ) =>
-                            DateFormat('dd-MM-yyyy').format(date),
-                        orElse: () => '',
-                      ),
-                      builder: (context, state) => Text(state),
+                      initialValue: user.address,
                     ),
                     const SizedBox(
                       height: 160,
@@ -240,7 +200,7 @@ class UpdateProfileView extends StatelessWidget {
                         context
                             .read<ProfileBloc>()
                             .add(ProfileEvent.submitted(user));
-                      }, // TODO(namngoc231): complete update profile
+                      },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.updateLabel,

@@ -17,7 +17,6 @@ class UserModel with _$UserModel {
     required String address,
     required String urlImage,
   }) = _UserModel;
-
   factory UserModel.fromDto(AppUser user) => UserModel(
         name: '${user.firstName} ${user.lastName}',
         email: user.email.isEmpty ? 'unknown' : user.email,

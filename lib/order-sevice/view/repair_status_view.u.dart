@@ -56,9 +56,10 @@ class RepairStatusView extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.add_box_outlined),
                           onPressed: () {
-                            context.router.push(
-                              const OrderDetailRoute(),
-                            );
+                            // context.router.push(
+                            //   const OrderDetailRoute(),
+                            // );
+                            // TODO(cantgim): push orderdetail page
                           },
                         ),
                       ],

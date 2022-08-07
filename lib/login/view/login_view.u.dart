@@ -10,6 +10,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config_pub.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -23,8 +24,10 @@ class LoginView extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
-    if (context.loaderOverlay.visible) context.loaderOverlay.hide();
     final l10n = context.l10n;
+    if (context.loaderOverlay.visible) {
+      context.loaderOverlay.hide();
+    }
 
     return LoaderOverlay(
       child: Scaffold(
@@ -183,9 +186,6 @@ class LoginView extends StatelessWidget {
 
                                           return completer.future;
                                         },
-                                        // onSignUpSuccess: () {
-                                        //   return Future.value(unit);
-                                        // },
                                       ),
                                     );
                               }
@@ -222,15 +222,40 @@ class LoginView extends StatelessWidget {
                         AuthenticateEvent.loginWithGoogle(
                           onCompleteSignUp: (user) async {
                             final completer = Completer<AppUser>();
-                            await context.router.push(
-                              Signup6Route(
-                                completer: completer,
-                                phoneNumber: user.phoneNumber ?? '',
-                                photoURL: user.photoURL ?? '',
-                                uid: user.uid,
-                                email: user.email ?? '',
-                              ),
-                            );
+                            if (user.phoneNumber == null ||
+                                user.phoneNumber == '') {
+                              await context.router.push(
+                                LoginEnterPhoneRoute(
+                                  completer: completer,
+                                  email: user.email ?? '',
+                                  phoneNumber: user.phoneNumber ?? '',
+                                  photoURL: user.photoURL ?? '',
+                                  uid: user.uid,
+                                ),
+                              );
+                            } else {
+                              completer.complete(
+                                AppUser.consumer(
+                                  uuid: user.uid,
+                                  firstName: '',
+                                  lastName: '',
+                                  phone: user.phoneNumber ?? '',
+                                  dob: DateTime.now(),
+                                  addr: '',
+                                  email: user.email ?? '',
+                                  active: true,
+                                  avatarUrl: user.photoURL ?? '',
+                                  createdTime: DateTime.now(),
+                                  lastUpdatedTime: DateTime.now(),
+                                  vac: VideoCallAccount(
+                                    email: user.email ?? '',
+                                    id: user.uid,
+                                    username: user.phoneNumber ?? '',
+                                    pwd: DEFAULT_PASS,
+                                  ),
+                                ),
+                              );
+                            }
 
                             return completer.future;
                           },

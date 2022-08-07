@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPCode extends StatelessWidget {
@@ -29,6 +30,7 @@ class OTPCode extends StatelessWidget {
           cursorColor: Theme.of(context).shadowColor,
           keyboardType: TextInputType.number,
           onCompleted: (v) async {
+            context.loaderOverlay.show();
             completer.complete(v);
             await context.router.pop();
           },

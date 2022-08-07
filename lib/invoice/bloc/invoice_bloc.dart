@@ -122,14 +122,22 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
               ),
         );
 
-        final listService = paymentList.map(
-          (a) => ServiceData(
-            serviceName: a.name,
-            serviceFee: a.amount,
+        final listOptionService = paymentList.map<Option<ServiceData>>(
+          (a) => a.when(
+            pending: (serviceName, moneyAmount, products) =>
+                some(ServiceData.fromDtos(serviceName, moneyAmount, 'pending')),
+            needToVerify: (serviceName, desc) => none(),
+            paid: (serviceName, moneyAmount, products, paidIn) =>
+                some(ServiceData.fromDtos(serviceName, moneyAmount, 'paid')),
           ),
         );
-        final total = listService
-            .map((a) => a.serviceFee)
+        final listService = listOptionService.filter((a) => a.isSome()).map(
+              (a) => a.getOrElse(
+                () => throw NullThrownError(),
+              ),
+            );
+        final total = listOptionService
+            .map((a) => a.fold(() => 0, (a) => a.serviceFee))
             .foldLeft<int>(0, (previous, a) => previous + a);
 
         maybeProviderData.fold(

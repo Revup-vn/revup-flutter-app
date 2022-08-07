@@ -601,6 +601,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.0"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      name: flutter_html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0-alpha.5"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -1015,6 +1022,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  numerus:
+    dependency: transitive
+    description:
+      name: numerus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   octo_image:
     dependency: transitive
     description:
@@ -1181,10 +1195,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "191a1de52ba5912da008d0bbd1c6ffd300fa2c05"
+      resolved-ref: "3603dffcc7f6e8a1f7288179903c6ce810bdc3ca"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "3.4.6-dev+2"
+    version: "4.1.0-dev"
   rxdart:
     dependency: transitive
     description:
@@ -1329,7 +1343,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.3+1"
   sqflite_common:
     dependency: transitive
     description:

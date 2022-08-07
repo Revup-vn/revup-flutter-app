@@ -9,6 +9,7 @@ import 'package:revup_core/core.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../account/widgets/default_avatar.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/utils.dart';
 import '../bloc/home_bloc.dart';
@@ -30,13 +31,18 @@ class RepairReviewHomePage extends StatelessWidget {
       phone: '0866199497',
       dob: DateTime.now(),
       addr: 'Ninh Binh',
-      email: 'namngoc231@gmail.com',
+      email: 'huyxamxi@xamvhon.com',
       active: true,
       avatarUrl:
           'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       createdTime: DateTime.now(),
       lastUpdatedTime: DateTime.now(),
-      vac: const VideoCallAccount(id: '', username: '', pwd: '', email: ''),
+      vac: const VideoCallAccount(
+        id: '1a',
+        username: '0866199497',
+        pwd: DEFAULT_PASS,
+        email: 'huyxamxi@xamvhon.com',
+      ),
     );
     if (mayBeUser.isSome()) {
       user = mayBeUser.toNullable()!;

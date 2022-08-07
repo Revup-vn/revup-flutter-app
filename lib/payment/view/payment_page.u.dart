@@ -72,7 +72,7 @@ class PaymentPage extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconMomo.svg(),
                   paymentName: l10n.momoLabel,
-                  clickCallback: () {
+                  callback: () {
                     completer?.complete(true);
                     context.router.pop();
                   },
@@ -82,7 +82,7 @@ class PaymentPage extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconsZalo.svg(),
                   paymentName: l10n.zaloPayLabel,
-                  clickCallback: () {
+                  callback: () {
                     showFlash(
                       context: context,
                       builder: (context, controller) => Flash<void>.dialog(
@@ -101,7 +101,7 @@ class PaymentPage extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconCash.svg(),
                   paymentName: l10n.cashLabel,
-                  clickCallback: () {
+                  callback: () {
                     completer?.complete(false);
                     context.router.pop();
                   },
