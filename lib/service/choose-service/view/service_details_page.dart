@@ -37,10 +37,11 @@ class ServiceDetailsPage extends StatelessWidget {
                 itemCount: serviceData.products?.length ?? 0,
                 itemBuilder: (context, index) {
                   return ServiceListTile(
-                    title: serviceData.products![index].name ?? '',
-                    subtitle: serviceData.products![index].price.toString(),
+                    title: serviceData.products?[index].name ?? '',
+                    subtitle:
+                        serviceData.products?[index].price.toString() ?? '',
                     imageUrl:
-                        serviceData.products![index].productImageUrl ?? '',
+                        serviceData.products?[index].productImageUrl ?? '',
                   );
                 },
               ),

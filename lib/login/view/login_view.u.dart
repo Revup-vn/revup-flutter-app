@@ -88,7 +88,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ]),
                       onChanged: (phoneNumber) {
-                        if (phoneNumber!.isEmpty) return;
+                        if (phoneNumber?.isEmpty ?? true) return;
                         final isValid =
                             _formKey.currentState?.validate() ?? false;
                         context.read<LoginBloc>().add(
@@ -139,10 +139,11 @@ class LoginView extends StatelessWidget {
                         onPressed: state
                             ? () {
                                 context.loaderOverlay.show();
-                                _formKey.currentState!.saveAndValidate();
+                                _formKey.currentState?.saveAndValidate();
                                 var phoneNumber = _formKey
-                                    .currentState!.value['phone']
-                                    .toString();
+                                        .currentState?.value['phone']
+                                        .toString() ??
+                                    '';
                                 if (phoneNumber.substring(0, 3) == '+84') {
                                   phoneNumber = phoneNumber.substring(
                                     3,

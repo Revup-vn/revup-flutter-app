@@ -92,9 +92,10 @@ class _RequestProviderViewState extends State<RequestProviderView> {
                         polylineId: const PolylineId('polyline'),
                         color: Colors.red,
                         width: 5,
-                        points: directions!.polylinePoints
-                            .map((e) => LatLng(e.latitude, e.longitude))
-                            .toList(),
+                        points: directions?.polylinePoints
+                                .map((e) => LatLng(e.latitude, e.longitude))
+                                .toList() ??
+                            [],
                       ),
                     },
                   );

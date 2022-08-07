@@ -51,8 +51,8 @@ class RepairerProfileFeedback extends StatelessWidget {
                             data[index].consumerName,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
-                                .copyWith(
+                                .titleMedium
+                                ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                             maxLines: 1,

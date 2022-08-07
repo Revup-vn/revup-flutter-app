@@ -1,6 +1,6 @@
 name: revup
 description: A Very Good App
-version: 1.0.0-dev+10
+version: 1.0.0-dev+11
 publish_to: none
 
 environment:
@@ -10,10 +10,8 @@ dependencies:
   auto_route: ^4.2.1
   auto_size_text: ^3.0.0
   bloc: ^8.0.3
-  build_runner: ^2.1.11
   cached_network_image: ^3.2.1
   card_swiper: ^2.0.4
-  connectivity_plus: ^2.3.6
   dartz: ^0.10.1
   dio: ^4.0.1
   dotted_border: ^2.0.0+2
@@ -21,7 +19,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-  flutter_dotenv: ^5.0.2
   flutter_form_builder: ^7.3.1
   flutter_form_field_validator: ^1.0.0
   flutter_html: ^3.0.0-alpha.5
@@ -35,10 +32,8 @@ dependencies:
   geoflutterfire2: ^2.3.12
   geolocator: ^9.0.1
   google_maps_flutter: ^2.1.10
-  hive: ^2.2.3
   hive_flutter: ^1.1.0
   image_picker: ^0.8.5+3
-  injectable: ^1.5.3
   intl: ^0.17.0
   introduction_screen: ^3.0.1
   json_annotation: ^4.6.0
@@ -51,15 +46,13 @@ dependencies:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
       version: ^3.4.6-dev+2
-  # revup_core:
-  #   path: ../revup-core
-  shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   uuid: ^3.0.6
 
 dev_dependencies:
   auto_route_generator: ^4.0.0
   bloc_test: ^9.0.3
+  build_runner: ^2.1.11
   dart_code_metrics: ^4.16.0
   dependency_validator: ^3.2.2
   flutter_gen_runner: ^4.3.0

@@ -55,8 +55,8 @@ class RepairerProfileServices extends StatelessWidget {
                               data[index].name,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium!
-                                  .copyWith(
+                                  .titleMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                               maxLines: 1,

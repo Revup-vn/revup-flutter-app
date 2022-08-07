@@ -122,7 +122,7 @@ class LoginEnterPhoneView extends StatelessWidget {
                       ),
                     ]),
                     onChanged: (phoneNumber) {
-                      if (phoneNumber!.isEmpty) return;
+                      if (phoneNumber?.isEmpty ?? true) return;
                       final isValid =
                           _formKey.currentState?.validate() ?? false;
                       context.read<LoginBloc>().add(
@@ -145,16 +145,16 @@ class LoginEnterPhoneView extends StatelessWidget {
                               context.loaderOverlay.show();
                               _formKey.currentState?.saveAndValidate();
                               var myPhone = _formKey
-                                  .currentState!.value['phone']
+                                  .currentState?.value['phone']
                                   .toString();
-                              if (myPhone.substring(0, 3) == '+84') {
-                                myPhone = myPhone.substring(
+                              if (myPhone?.substring(0, 3) == '+84') {
+                                myPhone = myPhone?.substring(
                                   3,
                                   myPhone.length,
                                 );
                               }
-                              if (myPhone.substring(0, 1) == '0') {
-                                myPhone = myPhone.substring(
+                              if (myPhone?.substring(0, 1) == '0') {
+                                myPhone = myPhone?.substring(
                                   1,
                                   myPhone.length,
                                 );
@@ -164,7 +164,7 @@ class LoginEnterPhoneView extends StatelessWidget {
                                   uuid: uid,
                                   firstName: '',
                                   lastName: '',
-                                  phone: myPhone,
+                                  phone: myPhone ?? '',
                                   dob: DateTime.now(),
                                   addr: '',
                                   email: email,

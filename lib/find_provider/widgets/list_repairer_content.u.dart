@@ -64,8 +64,8 @@ class ListRepairerContent extends StatelessWidget {
                             providers[index].fullName,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
-                                .copyWith(
+                                .titleMedium
+                                ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),

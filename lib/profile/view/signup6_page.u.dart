@@ -190,20 +190,21 @@ class Signup6Page extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        _formKey.currentState!.saveAndValidate();
-                        final data = _formKey.currentState!.value;
-                        final fName = data['fullName'].toString().split(' ')[0];
+                        _formKey.currentState?.saveAndValidate();
+                        final data = _formKey.currentState?.value;
+                        final fName =
+                            data?['fullName'].toString().split(' ')[0];
                         final lName =
-                            data['fullName'].toString().split(fName)[1];
-                        var phoneNumber = data['phone'].toString();
-                        if (phoneNumber.substring(0, 3) == '+84') {
-                          phoneNumber = phoneNumber.substring(
+                            data?['fullName'].toString().split(fName ?? '')[1];
+                        var phoneNumber = data?['phone'].toString();
+                        if (phoneNumber?.substring(0, 3) == '+84') {
+                          phoneNumber = phoneNumber?.substring(
                             3,
                             phoneNumber.length,
                           );
                         }
-                        if (phoneNumber.substring(0, 1) == '0') {
-                          phoneNumber = phoneNumber.substring(
+                        if (phoneNumber?.substring(0, 1) == '0') {
+                          phoneNumber = phoneNumber?.substring(
                             1,
                             phoneNumber.length,
                           );
@@ -211,14 +212,14 @@ class Signup6Page extends StatelessWidget {
                         completer.complete(
                           AppUser.consumer(
                             uuid: uid,
-                            firstName: fName,
-                            lastName: lName,
+                            firstName: fName ?? '',
+                            lastName: lName ?? '',
                             phone: '+84$phoneNumber',
                             dob: DateTime.parse(
-                              data['date'].toString().split(' ')[0],
+                              data?['date'].toString().split(' ')[0] ?? '',
                             ),
-                            addr: data['address'].toString(),
-                            email: data['email'].toString(),
+                            addr: data?['address'].toString() ?? '',
+                            email: data?['email'].toString() ?? '',
                             active: true,
                             avatarUrl: photoURL,
                             createdTime: DateTime.now(),
@@ -227,7 +228,7 @@ class Signup6Page extends StatelessWidget {
                               id: uid,
                               username: '+84$phoneNumber',
                               pwd: DEFAULT_PASS,
-                              email: data['email'].toString(),
+                              email: data?['email'].toString() ?? '',
                             ),
                           ),
                         );

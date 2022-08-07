@@ -50,7 +50,8 @@ class FindListRepairerBloc
 
         await for (final List<DocumentSnapshot> dataList in stream) {
           for (final doc in dataList) {
-            final providerData = doc.data()! as Map<String, dynamic>;
+            final providerData =
+                doc.data() as Map<String, dynamic>? ?? <String, dynamic>{};
             final providerLoc = (providerData['cur_location']
                 as Map<String, dynamic>)['geopoint'] as GeoPoint;
             final directions = await getDirections(

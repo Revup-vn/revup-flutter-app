@@ -332,8 +332,8 @@ class OverviewOrderContent extends StatelessWidget {
                                           text: '15.000đ',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
+                                              .bodyLarge
+                                              ?.copyWith(
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
@@ -361,8 +361,8 @@ class OverviewOrderContent extends StatelessWidget {
                                           text: '450.000đ',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
+                                              .bodyLarge
+                                              ?.copyWith(
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
