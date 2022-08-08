@@ -6,7 +6,6 @@ import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
 import '../models/rating_data.u.dart';
 import '../models/service_data.u.dart';
 import 'repairer_profile_avatar_image.u.dart';

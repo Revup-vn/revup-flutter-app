@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
 import '../models/provider_data.u.dart';
 
@@ -63,8 +62,8 @@ class ListRepairerContent extends StatelessWidget {
                             providers[index].fullName,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
-                                .copyWith(
+                                .titleMedium
+                                ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
 import '../models/service_data.u.dart';
 
 class RepairerProfileServices extends StatelessWidget {
@@ -68,8 +67,8 @@ class RepairerProfileServices extends StatelessWidget {
                               data[index].name,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium!
-                                  .copyWith(
+                                  .titleMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                               maxLines: 1,

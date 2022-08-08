@@ -42,8 +42,8 @@ class HomePage extends StatelessWidget {
       child: AutoTabsScaffold(
         routes: const [
           HomeBodyRoute(),
-          ActivateRoute(),
-          NotificationRoute(),
+          HistoryConsumerRoute(),
+          NotificationConsumerRoute(),
           AccountRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {

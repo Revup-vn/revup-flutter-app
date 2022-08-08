@@ -51,8 +51,8 @@ class RepairerProfileFeedback extends StatelessWidget {
                             data[index].consumerName,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
-                                .copyWith(
+                                .titleMedium
+                                ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                             maxLines: 1,
@@ -67,7 +67,9 @@ class RepairerProfileFeedback extends StatelessWidget {
                               color:
                                   Theme.of(context).colorScheme.inversePrimary,
                             ),
-                            onRatingUpdate: (value) {},
+                            onRatingUpdate: (value) {
+                              // TODO(cantgim): implement sthg
+                            },
                           ),
                         ),
                         AutoSizeText(

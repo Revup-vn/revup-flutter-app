@@ -11,7 +11,8 @@ class RepairStatusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => OrderServiceBloc()..add(const OrderServiceEvent.started()),
+      create: (_) =>
+          OrderServiceBloc('')..add(const OrderServiceEvent.started()),
       child: const RepairStatusView(),
     );
   }

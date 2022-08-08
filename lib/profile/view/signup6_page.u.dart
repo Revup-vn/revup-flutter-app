@@ -1,17 +1,16 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:revup_core/core.dart';
 
-import '../../account/model/user_model.dart';
 import '../../account/widgets/avatar.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/utils.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
@@ -59,9 +58,8 @@ class Signup6Page extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
             child: Avatar(
-              user: UserModel.fromDto(
-                user,
-              ),
+              imageUrl: photoURL,
+              userName: 'Default',
               callback: () {
                 // TODO(namngoc231): Go to photo selection method
               },
@@ -200,20 +198,21 @@ class Signup6Page extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        _formKey.currentState!.saveAndValidate();
-                        final data = _formKey.currentState!.value;
-                        final fName = data['fullName'].toString().split(' ')[0];
+                        _formKey.currentState?.saveAndValidate();
+                        final data = _formKey.currentState?.value;
+                        final fName =
+                            data?['fullName'].toString().split(' ')[0];
                         final lName =
-                            data['fullName'].toString().split(fName)[1];
-                        var phoneNumber = data['phone'].toString();
-                        if (phoneNumber.substring(0, 3) == '+84') {
-                          phoneNumber = phoneNumber.substring(
+                            data?['fullName'].toString().split(fName ?? '')[1];
+                        var phoneNumber = data?['phone'].toString();
+                        if (phoneNumber?.substring(0, 3) == '+84') {
+                          phoneNumber = phoneNumber?.substring(
                             3,
                             phoneNumber.length,
                           );
                         }
-                        if (phoneNumber.substring(0, 1) == '0') {
-                          phoneNumber = phoneNumber.substring(
+                        if (phoneNumber?.substring(0, 1) == '0') {
+                          phoneNumber = phoneNumber?.substring(
                             1,
                             phoneNumber.length,
                           );
@@ -221,28 +220,28 @@ class Signup6Page extends StatelessWidget {
                         completer.complete(
                           AppUser.consumer(
                             uuid: uid,
-                            firstName: fName,
-                            lastName: lName,
+                            firstName: fName ?? '',
+                            lastName: lName ?? '',
                             phone: '+84$phoneNumber',
                             dob: DateTime.parse(
-                              data['date'].toString().split(' ')[0],
+                              data?['date'].toString().split(' ')[0] ?? '',
                             ),
-                            addr: data['address'].toString(),
-                            email: data['email'].toString(),
+                            addr: data?['address'].toString() ?? '',
+                            email: data?['email'].toString() ?? '',
                             active: true,
                             avatarUrl: photoURL,
                             createdTime: DateTime.now(),
                             lastUpdatedTime: DateTime.now(),
-                            vac: const VideoCallAccount(
-                              id: '',
-                              username: '',
-                              pwd: '',
-                              email: '',
+                            vac: VideoCallAccount(
+                              id: uid,
+                              username: '+84$phoneNumber',
+                              pwd: DEFAULT_PASS,
+                              email: data?['email'].toString() ?? '',
                             ),
                           ),
                         );
                         await context.router.pop();
-                      }, // TODO(namngoc231): complete update profile
+                      },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
                         l10n.doneLabel,

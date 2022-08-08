@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/app_router.gr.dart';
 import '../bloc/order_service_bloc.dart';
 
 class RepairStatusView extends StatelessWidget {
@@ -56,9 +53,10 @@ class RepairStatusView extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.add_box_outlined),
                           onPressed: () {
-                            context.router.push(
-                              const OrderDetailRoute(),
-                            );
+                            // context.router.push(
+                            //   const OrderDetailRoute(),
+                            // );
+                            // TODO(cantgim): push orderdetail page
                           },
                         ),
                       ],

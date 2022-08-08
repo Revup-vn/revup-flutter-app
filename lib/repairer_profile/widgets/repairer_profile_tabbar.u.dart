@@ -42,8 +42,8 @@ class _RepairerProfileTabBarState extends State<RepairerProfileTabBar>
                 context.l10n.serviceLabel,
                 style: Theme.of(context)
                     .textTheme
-                    .labelLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
+                    .labelLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             Tab(
