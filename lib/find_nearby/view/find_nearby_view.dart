@@ -3,11 +3,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+// import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../l10n/l10n.dart';
-import '../../map/autocomplete/bloc/autocomplete_bloc.dart';
 import '../../map/location/bloc/location_bloc.dart';
 import '../../router/router.dart';
 

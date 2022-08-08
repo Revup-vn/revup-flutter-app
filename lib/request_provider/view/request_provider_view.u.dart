@@ -9,6 +9,7 @@ import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../map/location/bloc/location_bloc.dart';
 import '../../map/utils/map_utils.dart';
+import '../../router/router.dart';
 import '../../service/widgets/service_avatar.dart';
 import '../bloc/request_provider_bloc.dart';
 import '../widgets/request_provider_failure.dart';
