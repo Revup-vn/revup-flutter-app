@@ -276,5 +276,6 @@
   "optionalLocationImgLabel": "Photo of the rescue location (optional)",
   "optionalAddMsgGuideLabel": "You can make notes for the repairer here.",
   "zaloPayLabel": "ZaloPay",
-  "zaloPaymentLabel": "Pay with Zalo Pay"
+  "zaloPaymentLabel": "Pay with Zalo Pay",
+  "cancelUpdateServiceLabel" : "Choosen services will be lost if you cancel. Are you sure?"
 }

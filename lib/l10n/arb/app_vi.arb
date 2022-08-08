@@ -256,5 +256,6 @@
   "optionalImgGuideLabel": "Cung cấp hình ảnh xung quanh để thợ biết rõ hơn địa điểm bạn gọi cứu hộ nhé.",
   "optionalLocationImgLabel": "Ảnh địa điểm cần cứu hộ (không bắt buộc)",
   "optionalAddMsgGuideLabel": "Bạn có thể ghi chú cho thợ ở đây nhé.",
-  "zaloPaymentLabel": "Thanh toán bằng Zalo Pay"
+  "zaloPaymentLabel": "Thanh toán bằng Zalo Pay",
+  "cancelUpdateServiceLabel": "Dịch vụ sẽ không được chọn nếu bạn huỷ. Bạn có đồng ý?"
 }

@@ -81,8 +81,10 @@ class AppRouter extends _i35.RootStackRouter {
           routeData: routeData, child: const _i1.SplashPage());
     },
     OrderDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderDetailRouteArgs>(
+          orElse: () => const OrderDetailRouteArgs());
       return _i35.AdaptivePage<void>(
-          routeData: routeData, child: const _i2.OrderDetailPage());
+          routeData: routeData, child: _i2.OrderDetailPage(key: args.key));
     },
     RepairStatusRoute.name: (routeData) {
       return _i35.AdaptivePage<void>(
@@ -339,11 +341,23 @@ class SplashRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.OrderDetailPage]
-class OrderDetailRoute extends _i35.PageRouteInfo<void> {
-  const OrderDetailRoute()
-      : super(OrderDetailRoute.name, path: '/order-detail-page');
+class OrderDetailRoute extends _i35.PageRouteInfo<OrderDetailRouteArgs> {
+  OrderDetailRoute({_i36.Key? key})
+      : super(OrderDetailRoute.name,
+            path: '/order-detail-page', args: OrderDetailRouteArgs(key: key));
 
   static const String name = 'OrderDetailRoute';
+}
+
+class OrderDetailRouteArgs {
+  const OrderDetailRouteArgs({this.key});
+
+  final _i36.Key? key;
+
+  @override
+  String toString() {
+    return 'OrderDetailRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

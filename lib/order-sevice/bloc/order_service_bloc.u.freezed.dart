@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'order_service_bloc.dart';
+part of 'order_service_bloc.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -19,32 +19,50 @@ mixin _$OrderServiceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)
+        addNewService,
+    required TResult Function(IList<PaymentService> serviceModel) sumbit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_AddNewService value) addNewService,
+    required TResult Function(_Submit value) sumbit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +126,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)
+        addNewService,
+    required TResult Function(IList<PaymentService> serviceModel) sumbit,
   }) {
     return started();
   }
@@ -116,6 +138,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
   }) {
     return started?.call();
   }
@@ -124,6 +150,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -136,6 +166,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_AddNewService value) addNewService,
+    required TResult Function(_Submit value) sumbit,
   }) {
     return started(this);
   }
@@ -144,6 +176,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
   }) {
     return started?.call(this);
   }
@@ -152,6 +186,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -166,14 +202,327 @@ abstract class _Started implements OrderServiceEvent {
 }
 
 /// @nodoc
+abstract class _$$_AddNewServiceCopyWith<$Res> {
+  factory _$$_AddNewServiceCopyWith(
+          _$_AddNewService value, $Res Function(_$_AddNewService) then) =
+      __$$_AddNewServiceCopyWithImpl<$Res>;
+  $Res call(
+      {IList<ServiceModel> currentServiceModel,
+      IList<PaymentService> newlyAddedServiceModel});
+}
+
+/// @nodoc
+class __$$_AddNewServiceCopyWithImpl<$Res>
+    extends _$OrderServiceEventCopyWithImpl<$Res>
+    implements _$$_AddNewServiceCopyWith<$Res> {
+  __$$_AddNewServiceCopyWithImpl(
+      _$_AddNewService _value, $Res Function(_$_AddNewService) _then)
+      : super(_value, (v) => _then(v as _$_AddNewService));
+
+  @override
+  _$_AddNewService get _value => super._value as _$_AddNewService;
+
+  @override
+  $Res call({
+    Object? currentServiceModel = freezed,
+    Object? newlyAddedServiceModel = freezed,
+  }) {
+    return _then(_$_AddNewService(
+      currentServiceModel: currentServiceModel == freezed
+          ? _value.currentServiceModel
+          : currentServiceModel // ignore: cast_nullable_to_non_nullable
+              as IList<ServiceModel>,
+      newlyAddedServiceModel: newlyAddedServiceModel == freezed
+          ? _value.newlyAddedServiceModel
+          : newlyAddedServiceModel // ignore: cast_nullable_to_non_nullable
+              as IList<PaymentService>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddNewService implements _AddNewService {
+  const _$_AddNewService(
+      {required this.currentServiceModel,
+      required this.newlyAddedServiceModel});
+
+  @override
+  final IList<ServiceModel> currentServiceModel;
+  @override
+  final IList<PaymentService> newlyAddedServiceModel;
+
+  @override
+  String toString() {
+    return 'OrderServiceEvent.addNewService(currentServiceModel: $currentServiceModel, newlyAddedServiceModel: $newlyAddedServiceModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddNewService &&
+            const DeepCollectionEquality()
+                .equals(other.currentServiceModel, currentServiceModel) &&
+            const DeepCollectionEquality()
+                .equals(other.newlyAddedServiceModel, newlyAddedServiceModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(currentServiceModel),
+      const DeepCollectionEquality().hash(newlyAddedServiceModel));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AddNewServiceCopyWith<_$_AddNewService> get copyWith =>
+      __$$_AddNewServiceCopyWithImpl<_$_AddNewService>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)
+        addNewService,
+    required TResult Function(IList<PaymentService> serviceModel) sumbit,
+  }) {
+    return addNewService(currentServiceModel, newlyAddedServiceModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
+  }) {
+    return addNewService?.call(currentServiceModel, newlyAddedServiceModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
+    required TResult orElse(),
+  }) {
+    if (addNewService != null) {
+      return addNewService(currentServiceModel, newlyAddedServiceModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddNewService value) addNewService,
+    required TResult Function(_Submit value) sumbit,
+  }) {
+    return addNewService(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
+  }) {
+    return addNewService?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
+    required TResult orElse(),
+  }) {
+    if (addNewService != null) {
+      return addNewService(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddNewService implements OrderServiceEvent {
+  const factory _AddNewService(
+          {required final IList<ServiceModel> currentServiceModel,
+          required final IList<PaymentService> newlyAddedServiceModel}) =
+      _$_AddNewService;
+
+  IList<ServiceModel> get currentServiceModel;
+  IList<PaymentService> get newlyAddedServiceModel;
+  @JsonKey(ignore: true)
+  _$$_AddNewServiceCopyWith<_$_AddNewService> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SubmitCopyWith<$Res> {
+  factory _$$_SubmitCopyWith(_$_Submit value, $Res Function(_$_Submit) then) =
+      __$$_SubmitCopyWithImpl<$Res>;
+  $Res call({IList<PaymentService> serviceModel});
+}
+
+/// @nodoc
+class __$$_SubmitCopyWithImpl<$Res>
+    extends _$OrderServiceEventCopyWithImpl<$Res>
+    implements _$$_SubmitCopyWith<$Res> {
+  __$$_SubmitCopyWithImpl(_$_Submit _value, $Res Function(_$_Submit) _then)
+      : super(_value, (v) => _then(v as _$_Submit));
+
+  @override
+  _$_Submit get _value => super._value as _$_Submit;
+
+  @override
+  $Res call({
+    Object? serviceModel = freezed,
+  }) {
+    return _then(_$_Submit(
+      serviceModel: serviceModel == freezed
+          ? _value.serviceModel
+          : serviceModel // ignore: cast_nullable_to_non_nullable
+              as IList<PaymentService>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Submit implements _Submit {
+  const _$_Submit({required this.serviceModel});
+
+  @override
+  final IList<PaymentService> serviceModel;
+
+  @override
+  String toString() {
+    return 'OrderServiceEvent.sumbit(serviceModel: $serviceModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submit &&
+            const DeepCollectionEquality()
+                .equals(other.serviceModel, serviceModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(serviceModel));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmitCopyWith<_$_Submit> get copyWith =>
+      __$$_SubmitCopyWithImpl<_$_Submit>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)
+        addNewService,
+    required TResult Function(IList<PaymentService> serviceModel) sumbit,
+  }) {
+    return sumbit(serviceModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
+  }) {
+    return sumbit?.call(serviceModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(IList<ServiceModel> currentServiceModel,
+            IList<PaymentService> newlyAddedServiceModel)?
+        addNewService,
+    TResult Function(IList<PaymentService> serviceModel)? sumbit,
+    required TResult orElse(),
+  }) {
+    if (sumbit != null) {
+      return sumbit(serviceModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddNewService value) addNewService,
+    required TResult Function(_Submit value) sumbit,
+  }) {
+    return sumbit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
+  }) {
+    return sumbit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddNewService value)? addNewService,
+    TResult Function(_Submit value)? sumbit,
+    required TResult orElse(),
+  }) {
+    if (sumbit != null) {
+      return sumbit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submit implements OrderServiceEvent {
+  const factory _Submit({required final IList<PaymentService> serviceModel}) =
+      _$_Submit;
+
+  IList<PaymentService> get serviceModel;
+  @JsonKey(ignore: true)
+  _$$_SubmitCopyWith<_$_Submit> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$OrderServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceModel> services, int totalPrice)
-        success,
+    required TResult Function(
+            IList<ServiceModel> services, int totalPrice, bool ready)
+        loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -181,7 +530,8 @@ mixin _$OrderServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -189,7 +539,8 @@ mixin _$OrderServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,7 +549,7 @@ mixin _$OrderServiceState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -206,7 +557,7 @@ mixin _$OrderServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -214,7 +565,7 @@ mixin _$OrderServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -280,8 +631,9 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceModel> services, int totalPrice)
-        success,
+    required TResult Function(
+            IList<ServiceModel> services, int totalPrice, bool ready)
+        loadDataSuccess,
   }) {
     return initial();
   }
@@ -292,7 +644,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
   }) {
     return initial?.call();
   }
@@ -303,7 +656,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -318,7 +672,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
   }) {
     return initial(this);
   }
@@ -329,7 +683,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
   }) {
     return initial?.call(this);
   }
@@ -340,7 +694,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -397,8 +751,9 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceModel> services, int totalPrice)
-        success,
+    required TResult Function(
+            IList<ServiceModel> services, int totalPrice, bool ready)
+        loadDataSuccess,
   }) {
     return loading();
   }
@@ -409,7 +764,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
   }) {
     return loading?.call();
   }
@@ -420,7 +776,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -435,7 +792,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
   }) {
     return loading(this);
   }
@@ -446,7 +803,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
   }) {
     return loading?.call(this);
   }
@@ -457,7 +814,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -514,8 +871,9 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceModel> services, int totalPrice)
-        success,
+    required TResult Function(
+            IList<ServiceModel> services, int totalPrice, bool ready)
+        loadDataSuccess,
   }) {
     return failure();
   }
@@ -526,7 +884,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
   }) {
     return failure?.call();
   }
@@ -537,7 +896,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -552,7 +912,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
   }) {
     return failure(this);
   }
@@ -563,7 +923,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
   }) {
     return failure?.call(this);
   }
@@ -574,7 +934,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -589,82 +949,87 @@ abstract class _Failure implements OrderServiceState {
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({List<ServiceModel> services, int totalPrice});
+abstract class _$$_LoadDataSuccessCopyWith<$Res> {
+  factory _$$_LoadDataSuccessCopyWith(
+          _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
+      __$$_LoadDataSuccessCopyWithImpl<$Res>;
+  $Res call({IList<ServiceModel> services, int totalPrice, bool ready});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res>
+class __$$_LoadDataSuccessCopyWithImpl<$Res>
     extends _$OrderServiceStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
+    implements _$$_LoadDataSuccessCopyWith<$Res> {
+  __$$_LoadDataSuccessCopyWithImpl(
+      _$_LoadDataSuccess _value, $Res Function(_$_LoadDataSuccess) _then)
+      : super(_value, (v) => _then(v as _$_LoadDataSuccess));
 
   @override
-  _$_Success get _value => super._value as _$_Success;
+  _$_LoadDataSuccess get _value => super._value as _$_LoadDataSuccess;
 
   @override
   $Res call({
     Object? services = freezed,
     Object? totalPrice = freezed,
+    Object? ready = freezed,
   }) {
-    return _then(_$_Success(
-      services == freezed
-          ? _value._services
+    return _then(_$_LoadDataSuccess(
+      services: services == freezed
+          ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ServiceModel>,
-      totalPrice == freezed
+              as IList<ServiceModel>,
+      totalPrice: totalPrice == freezed
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      ready: ready == freezed
+          ? _value.ready
+          : ready // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Success implements _Success {
-  const _$_Success(final List<ServiceModel> services, this.totalPrice)
-      : _services = services;
+class _$_LoadDataSuccess implements _LoadDataSuccess {
+  const _$_LoadDataSuccess(
+      {required this.services, required this.totalPrice, required this.ready});
 
-  final List<ServiceModel> _services;
   @override
-  List<ServiceModel> get services {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_services);
-  }
-
+  final IList<ServiceModel> services;
   @override
   final int totalPrice;
+  @override
+  final bool ready;
 
   @override
   String toString() {
-    return 'OrderServiceState.success(services: $services, totalPrice: $totalPrice)';
+    return 'OrderServiceState.loadDataSuccess(services: $services, totalPrice: $totalPrice, ready: $ready)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Success &&
-            const DeepCollectionEquality().equals(other._services, _services) &&
+            other is _$_LoadDataSuccess &&
+            const DeepCollectionEquality().equals(other.services, services) &&
             const DeepCollectionEquality()
-                .equals(other.totalPrice, totalPrice));
+                .equals(other.totalPrice, totalPrice) &&
+            const DeepCollectionEquality().equals(other.ready, ready));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_services),
-      const DeepCollectionEquality().hash(totalPrice));
+      const DeepCollectionEquality().hash(services),
+      const DeepCollectionEquality().hash(totalPrice),
+      const DeepCollectionEquality().hash(ready));
 
   @JsonKey(ignore: true)
   @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
+      __$$_LoadDataSuccessCopyWithImpl<_$_LoadDataSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -672,10 +1037,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ServiceModel> services, int totalPrice)
-        success,
+    required TResult Function(
+            IList<ServiceModel> services, int totalPrice, bool ready)
+        loadDataSuccess,
   }) {
-    return success(services, totalPrice);
+    return loadDataSuccess(services, totalPrice, ready);
   }
 
   @override
@@ -684,9 +1050,10 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
   }) {
-    return success?.call(services, totalPrice);
+    return loadDataSuccess?.call(services, totalPrice, ready);
   }
 
   @override
@@ -695,11 +1062,12 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ServiceModel> services, int totalPrice)? success,
+    TResult Function(IList<ServiceModel> services, int totalPrice, bool ready)?
+        loadDataSuccess,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(services, totalPrice);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(services, totalPrice, ready);
     }
     return orElse();
   }
@@ -710,9 +1078,9 @@ class _$_Success implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_LoadDataSuccess value) loadDataSuccess,
   }) {
-    return success(this);
+    return loadDataSuccess(this);
   }
 
   @override
@@ -721,9 +1089,9 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
   }) {
-    return success?.call(this);
+    return loadDataSuccess?.call(this);
   }
 
   @override
@@ -732,23 +1100,26 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_LoadDataSuccess value)? loadDataSuccess,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements OrderServiceState {
-  const factory _Success(
-      final List<ServiceModel> services, final int totalPrice) = _$_Success;
+abstract class _LoadDataSuccess implements OrderServiceState {
+  const factory _LoadDataSuccess(
+      {required final IList<ServiceModel> services,
+      required final int totalPrice,
+      required final bool ready}) = _$_LoadDataSuccess;
 
-  List<ServiceModel> get services;
+  IList<ServiceModel> get services;
   int get totalPrice;
+  bool get ready;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+  _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
