@@ -76,6 +76,8 @@ class ChooseServiceView extends StatelessWidget {
                                 serviceData: serviceList[index],
                                 index: index,
                                 selectProMode: false,
+                                providerId: providerId,
+                                categories: categories,
                               );
                             },
                           ),
@@ -102,6 +104,8 @@ class ChooseServiceView extends StatelessWidget {
                                 selectProMode:
                                     boxServiceSelect.containsKey(index),
                                 index: index,
+                                providerId: providerId,
+                                categories: categories,
                               );
                             },
                           ),

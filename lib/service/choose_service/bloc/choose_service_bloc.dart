@@ -113,9 +113,11 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             .getOrElse(() => throw NullThrownError());
         final fromPoint = (maybeProviderData.toJson()['cur_location']
             as Map<String, dynamic>)['geopoint'] as GeoPoint;
+        final rcId = const Uuid().v4();
+        await boxRprRecord.put('id', rcId);
         await _repairRecord.create(
           RepairRecord.pending(
-            id: const Uuid().v4(),
+            id: rcId,
             cid: consumer.uuid,
             pid: providerData.id,
             created: DateTime.now(),

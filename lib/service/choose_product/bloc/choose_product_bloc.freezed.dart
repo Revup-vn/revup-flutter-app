@@ -319,7 +319,7 @@ mixin _$ChooseProductState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ProductData> product) success,
+    required TResult Function(IList<RepairProduct> products) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -327,7 +327,7 @@ mixin _$ChooseProductState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -335,7 +335,7 @@ mixin _$ChooseProductState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -426,7 +426,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ProductData> product) success,
+    required TResult Function(IList<RepairProduct> products) success,
   }) {
     return initial();
   }
@@ -437,7 +437,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
   }) {
     return initial?.call();
   }
@@ -448,7 +448,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -542,7 +542,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ProductData> product) success,
+    required TResult Function(IList<RepairProduct> products) success,
   }) {
     return loading();
   }
@@ -553,7 +553,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
   }) {
     return loading?.call();
   }
@@ -564,7 +564,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -658,7 +658,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ProductData> product) success,
+    required TResult Function(IList<RepairProduct> products) success,
   }) {
     return failure();
   }
@@ -669,7 +669,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
   }) {
     return failure?.call();
   }
@@ -680,7 +680,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -736,7 +736,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({List<ProductData> product});
+  $Res call({IList<RepairProduct> products});
 }
 
 /// @nodoc
@@ -751,13 +751,13 @@ class __$$_SuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? product = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$_Success(
-      product == freezed
-          ? _value._product
-          : product // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>,
+      products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as IList<RepairProduct>,
     ));
   }
 }
@@ -765,18 +765,14 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(final List<ProductData> product) : _product = product;
+  const _$_Success(this.products);
 
-  final List<ProductData> _product;
   @override
-  List<ProductData> get product {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_product);
-  }
+  final IList<RepairProduct> products;
 
   @override
   String toString() {
-    return 'ChooseProductState.success(product: $product)';
+    return 'ChooseProductState.success(products: $products)';
   }
 
   @override
@@ -784,12 +780,12 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other._product, _product));
+            const DeepCollectionEquality().equals(other.products, products));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_product));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(products));
 
   @JsonKey(ignore: true)
   @override
@@ -802,9 +798,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<ProductData> product) success,
+    required TResult Function(IList<RepairProduct> products) success,
   }) {
-    return success(product);
+    return success(products);
   }
 
   @override
@@ -813,9 +809,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
   }) {
-    return success?.call(product);
+    return success?.call(products);
   }
 
   @override
@@ -824,11 +820,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<ProductData> product)? success,
+    TResult Function(IList<RepairProduct> products)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(product);
+      return success(products);
     }
     return orElse();
   }
@@ -872,9 +868,9 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements ChooseProductState {
-  const factory _Success(final List<ProductData> product) = _$_Success;
+  const factory _Success(final IList<RepairProduct> products) = _$_Success;
 
-  List<ProductData> get product;
+  IList<RepairProduct> get products;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

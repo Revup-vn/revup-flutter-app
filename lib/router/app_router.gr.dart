@@ -184,8 +184,14 @@ class AppRouter extends _i35.RootStackRouter {
               categories: args.categories));
     },
     ChooseProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseProductRouteArgs>();
       return _i35.AdaptivePage<void>(
-          routeData: routeData, child: const _i19.ChooseProductPage());
+          routeData: routeData,
+          child: _i19.ChooseProductPage(
+              key: args.key,
+              serviceData: args.serviceData,
+              categories: args.categories,
+              providerId: args.providerId));
     },
     FindNearbyRoute.name: (routeData) {
       final args = routeData.argsAs<FindNearbyRouteArgs>();
@@ -737,11 +743,45 @@ class ServiceDetailRouteArgs {
 
 /// generated route for
 /// [_i19.ChooseProductPage]
-class ChooseProductRoute extends _i35.PageRouteInfo<void> {
-  const ChooseProductRoute()
-      : super(ChooseProductRoute.name, path: '/choose-product-page');
+class ChooseProductRoute extends _i35.PageRouteInfo<ChooseProductRouteArgs> {
+  ChooseProductRoute(
+      {_i36.Key? key,
+      required _i44.ServiceData serviceData,
+      required List<
+              _i45.Tuple2<_i37.RepairCategory, _i45.IList<_i44.ServiceData>>>
+          categories,
+      required String providerId})
+      : super(ChooseProductRoute.name,
+            path: '/choose-product-page',
+            args: ChooseProductRouteArgs(
+                key: key,
+                serviceData: serviceData,
+                categories: categories,
+                providerId: providerId));
 
   static const String name = 'ChooseProductRoute';
+}
+
+class ChooseProductRouteArgs {
+  const ChooseProductRouteArgs(
+      {this.key,
+      required this.serviceData,
+      required this.categories,
+      required this.providerId});
+
+  final _i36.Key? key;
+
+  final _i44.ServiceData serviceData;
+
+  final List<_i45.Tuple2<_i37.RepairCategory, _i45.IList<_i44.ServiceData>>>
+      categories;
+
+  final String providerId;
+
+  @override
+  String toString() {
+    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, categories: $categories, providerId: $providerId}';
+  }
 }
 
 /// generated route for
