@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
@@ -73,41 +74,39 @@ class ChooseServiceView extends StatelessWidget {
                                   ),
                                 ),
                                 serviceData: serviceList[index],
+                                index: index,
                                 selectProMode: false,
                               );
                             },
                           ),
                         );
                       },
-                      // orderModify: (IList<ServiceData> services) {
-                      //   final servicesVector =
-                      //       IVector.from(services.toIterable());
-
-                      //   return Expanded(
-                      //     child: ListView.builder(
-                      //       padding: const EdgeInsets.only(bottom: 100),
-                      //       itemCount: services.length(),
-                      //       itemBuilder: (context, index) {
-                      //         return ServiceCheckboxTile(
-                      //           onTap: () => context.router.push(
-                      //             ServiceDetailsRoute(
-                      //               serviceData: servicesVector
-                      //                   .get(index)
-                      //                   .getOrElse(() => const ServiceData()),
-                      //             ),
-                      //           ),
-                      //           serviceData: servicesVector
-                      //               .get(index)
-                      //               .getOrElse(() => const ServiceData()),
-                      //           selectProMode: servicesVector
-                      //               .get(index)
-                      //               .getOrElse(ServiceData.new)
-                      //               .isSelected,
-                      //         );
-                      //       },
-                      //     ),
-                      //   );
-                      // },
+                      orderModify: (providerId, services, categories) {
+                        final serviceList = services.toList();
+                        final boxServiceSelect =
+                            Hive.box<dynamic>('serviceSelect');
+                        return Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 100),
+                            itemCount: serviceList.length,
+                            itemBuilder: (context, index) {
+                              return ServiceCheckboxTile(
+                                onTap: () => context.router.push(
+                                  ServiceDetailRoute(
+                                    serviceData: serviceList[index],
+                                    categories: categories,
+                                    providerId: providerId,
+                                  ),
+                                ),
+                                serviceData: serviceList[index],
+                                selectProMode:
+                                    boxServiceSelect.containsKey(index),
+                                index: index,
+                              );
+                            },
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

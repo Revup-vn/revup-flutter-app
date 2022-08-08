@@ -31,8 +31,6 @@ class AddMessagePage extends StatelessWidget {
             context.read(),
             context.read(),
             mayBeUser,
-            providerData,
-            movingFee,
           ),
         ),
         BlocProvider(
@@ -46,7 +44,10 @@ class AddMessagePage extends StatelessWidget {
             centerTitle: false,
             title: AutoSizeText(context.l10n.addMessageTitle),
           ),
-          body: const AddMessageView(),
+          body: AddMessageView(
+            providerData: providerData,
+            movingFee: movingFee,
+          ),
         ),
       ),
     );

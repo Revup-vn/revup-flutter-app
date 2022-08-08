@@ -9,6 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../../find_provider/models/provider_data.u.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -18,7 +19,10 @@ import '../bloc/add_message_bloc.dart';
 import '../models/message_data.dart';
 
 class AddMessageView extends StatefulWidget {
-  const AddMessageView({super.key});
+  const AddMessageView(
+      {super.key, required this.providerData, required this.movingFee});
+  final ProviderData providerData;
+  final int movingFee;
 
   @override
   State<AddMessageView> createState() => _AddMessageViewState();
@@ -177,13 +181,13 @@ class _AddMessageViewState extends State<AddMessageView> {
                                 .currentState?.fields['desc']?.value
                                 .toString() ??
                             '';
-                        context.read<AddMessageBloc>().add(
-                              AddMessageEvent.submitted(
-                                messageData:
-                                    MessageData(_image?.path ?? '', desc),
-                              ),
-                            );
-                        context.router.push(const ChooseServiceRoute());
+                        context.router.push(
+                          ChooseServiceRoute(
+                            messageData: MessageData(_image?.path ?? '', desc),
+                            providerData: widget.providerData,
+                            movingFee: widget.movingFee,
+                          ),
+                        );
                       }
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,

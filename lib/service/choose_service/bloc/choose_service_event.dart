@@ -10,7 +10,7 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
   ) = _NewServiceRequested;
   const factory ChooseServiceEvent.serviceSelectChanged({
     required ServiceData serviceData,
-    required bool isSelected,
+    required int index,
   }) = _ServiceSelectChanged;
   const factory ChooseServiceEvent.detailRequestAccepted({
     required String recordId,

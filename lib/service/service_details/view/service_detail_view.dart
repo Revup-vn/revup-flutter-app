@@ -15,12 +15,12 @@ class ServiceDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final bloc = context.read<ServiceDetailsBloc>();
-    context.watch<ServiceDetailsState>().whenOrNull(
-          initial: () => bloc.add(
-            const ServiceDetailsEvent.started(),
-          ),
-        );
+    final bloc = context.watch<ServiceDetailsBloc>();
+    bloc.state.whenOrNull(
+      initial: () => bloc.add(
+        const ServiceDetailsEvent.started(),
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(l10n.serviceDetailsAppBarTitle),

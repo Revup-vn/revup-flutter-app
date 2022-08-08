@@ -8,7 +8,7 @@ import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../repairer_profile/models/service_data.u.dart';
 import '../../router/router.dart';
-import '../choose-service/bloc/choose_service_bloc.dart';
+import '../choose_service/bloc/choose_service_bloc.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
   const ServiceCheckboxTile({
@@ -16,10 +16,12 @@ class ServiceCheckboxTile extends StatefulWidget {
     required this.serviceData,
     this.onTap,
     required this.selectProMode,
+    required this.index,
   });
   final ServiceData serviceData;
   final VoidCallback? onTap;
   final bool selectProMode;
+  final int index;
 
   @override
   State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
@@ -81,7 +83,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 context.read<ChooseServiceBloc>().add(
                       ChooseServiceEvent.serviceSelectChanged(
                         serviceData: widget.serviceData,
-                        isSelected: isChecked ?? false,
+                        index: widget.index,
                       ),
                     );
               },

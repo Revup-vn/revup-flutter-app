@@ -1,5 +1,6 @@
-import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
+
+import 'package:dartz/dartz.dart' hide State;
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';

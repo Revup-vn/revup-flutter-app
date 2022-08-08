@@ -1195,7 +1195,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3603dffcc7f6e8a1f7288179903c6ce810bdc3ca"
+      resolved-ref: "4372404c7440f713b99f0970728aa3f30dd7db69"
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
     version: "4.1.0-dev"

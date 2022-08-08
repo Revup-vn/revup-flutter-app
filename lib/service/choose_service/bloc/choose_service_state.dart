@@ -10,6 +10,9 @@ class ChooseServiceState with _$ChooseServiceState {
     required IList<ServiceData> serviceData,
     required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
   }) = _Success;
-  const factory ChooseServiceState.orderModify(IList<ServiceData> services) =
-      _OrderModify;
+  const factory ChooseServiceState.orderModify({
+    required String providerId,
+    required IList<ServiceData> serviceData,
+    required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
+  }) = _OrderModify;
 }

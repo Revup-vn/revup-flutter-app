@@ -54,7 +54,11 @@ class _RequestProviderViewState extends State<RequestProviderView> {
           success: (directions, fromMaker, toMarker, movingFees) {
             return Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: AppBar(),
+              extendBodyBehindAppBar: true,
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
               body: Stack(
                 children: [
                   GoogleMap(

@@ -14,14 +14,15 @@
 import 'dart:async' as _i40;
 
 import 'package:auto_route/auto_route.dart' as _i35;
-import 'package:dartz/dartz.dart' as _i43;
+import 'package:dartz/dartz.dart' as _i45;
 import 'package:flutter/material.dart' as _i36;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i44;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
 import 'package:revup/account/model/user_model.dart' as _i41;
 import 'package:revup/account/view/account_page.u.dart' as _i34;
+import 'package:revup/add_message/models/message_data.dart' as _i42;
 import 'package:revup/add_message/view/add_message_page.dart' as _i24;
 import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i20;
-import 'package:revup/find_provider/models/provider_data.u.dart' as _i45;
+import 'package:revup/find_provider/models/provider_data.u.dart' as _i43;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/guide-support/view/about_us_page.u.dart' as _i28;
 import 'package:revup/guide-support/view/faqs_page.u.dart' as _i26;
@@ -51,19 +52,19 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i14;
 import 'package:revup/payment/view/payment_page.u.dart' as _i9;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i15;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i11;
-import 'package:revup/repairer_profile/models/service_data.u.dart' as _i42;
+import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
 import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
     as _i6;
-import 'package:revup/service/choose-product/view/choose_product_page.dart'
+import 'package:revup/service/choose_product/view/choose_product_page.dart'
     as _i19;
-import 'package:revup/service/choose-service/view/choose_service_page.dart'
+import 'package:revup/service/choose_service/view/choose_service_page.dart'
     as _i16;
-import 'package:revup/service/new-service/view/new_service_request_page.dart'
+import 'package:revup/service/new_service/view/new_service_request_page.dart'
     as _i17;
-import 'package:revup/service/service-details/view/service_detail_page.dart'
+import 'package:revup/service/service_details/view/service_detail_page.dart'
     as _i18;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i10;
@@ -159,8 +160,14 @@ class AppRouter extends _i35.RootStackRouter {
               key: args.key));
     },
     ChooseServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseServiceRouteArgs>();
       return _i35.AdaptivePage<void>(
-          routeData: routeData, child: const _i16.ChooseServicePage());
+          routeData: routeData,
+          child: _i16.ChooseServicePage(
+              key: args.key,
+              messageData: args.messageData,
+              providerData: args.providerData,
+              movingFee: args.movingFee));
     },
     NewServiceRequestRoute.name: (routeData) {
       return _i35.AdaptivePage<_i37.OptionalService>(
@@ -265,7 +272,7 @@ class AppRouter extends _i35.RootStackRouter {
 
   @override
   List<_i35.RouteConfig> get routes => [
-        _i35.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i35.RouteConfig(SplashRoute.name, path: '/'),
         _i35.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
         _i35.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i35.RouteConfig(ServiceInvoiceRoute.name,
@@ -274,7 +281,7 @@ class AppRouter extends _i35.RootStackRouter {
             path: '/invoice-payment-page'),
         _i35.RouteConfig(ReviewRepairmanRoute.name,
             path: '/review-repairman-page'),
-        _i35.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i35.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i35.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
           _i35.RouteConfig(HistoryConsumerRoute.name,
@@ -319,7 +326,7 @@ class AppRouter extends _i35.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i35.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -443,7 +450,7 @@ class ReviewRepairmanRouteArgs {
 class HomeRoute extends _i35.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({_i36.Key? key, List<_i35.PageRouteInfo>? children})
       : super(HomeRoute.name,
-            path: '/',
+            path: '/home-page',
             args: HomeRouteArgs(key: key),
             initialChildren: children);
 
@@ -638,11 +645,42 @@ class Signup6RouteArgs {
 
 /// generated route for
 /// [_i16.ChooseServicePage]
-class ChooseServiceRoute extends _i35.PageRouteInfo<void> {
-  const ChooseServiceRoute()
-      : super(ChooseServiceRoute.name, path: '/choose-service-page');
+class ChooseServiceRoute extends _i35.PageRouteInfo<ChooseServiceRouteArgs> {
+  ChooseServiceRoute(
+      {_i36.Key? key,
+      required _i42.MessageData messageData,
+      required _i43.ProviderData providerData,
+      required int movingFee})
+      : super(ChooseServiceRoute.name,
+            path: '/choose-service-page',
+            args: ChooseServiceRouteArgs(
+                key: key,
+                messageData: messageData,
+                providerData: providerData,
+                movingFee: movingFee));
 
   static const String name = 'ChooseServiceRoute';
+}
+
+class ChooseServiceRouteArgs {
+  const ChooseServiceRouteArgs(
+      {this.key,
+      required this.messageData,
+      required this.providerData,
+      required this.movingFee});
+
+  final _i36.Key? key;
+
+  final _i42.MessageData messageData;
+
+  final _i43.ProviderData providerData;
+
+  final int movingFee;
+
+  @override
+  String toString() {
+    return 'ChooseServiceRouteArgs{key: $key, messageData: $messageData, providerData: $providerData, movingFee: $movingFee}';
+  }
 }
 
 /// generated route for
@@ -660,9 +698,9 @@ class ServiceDetailRoute extends _i35.PageRouteInfo<ServiceDetailRouteArgs> {
   ServiceDetailRoute(
       {_i36.Key? key,
       required String providerId,
-      required _i42.ServiceData serviceData,
+      required _i44.ServiceData serviceData,
       required List<
-              _i43.Tuple2<_i37.RepairCategory, _i43.IList<_i42.ServiceData>>>
+              _i45.Tuple2<_i37.RepairCategory, _i45.IList<_i44.ServiceData>>>
           categories})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
@@ -686,9 +724,9 @@ class ServiceDetailRouteArgs {
 
   final String providerId;
 
-  final _i42.ServiceData serviceData;
+  final _i44.ServiceData serviceData;
 
-  final List<_i43.Tuple2<_i37.RepairCategory, _i43.IList<_i42.ServiceData>>>
+  final List<_i45.Tuple2<_i37.RepairCategory, _i45.IList<_i44.ServiceData>>>
       categories;
 
   @override
@@ -709,7 +747,7 @@ class ChooseProductRoute extends _i35.PageRouteInfo<void> {
 /// generated route for
 /// [_i20.FindNearbyPage]
 class FindNearbyRoute extends _i35.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i36.Key? key, required _i44.LatLng currentLocation})
+  FindNearbyRoute({_i36.Key? key, required _i46.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -723,7 +761,7 @@ class FindNearbyRouteArgs {
 
   final _i36.Key? key;
 
-  final _i44.LatLng currentLocation;
+  final _i46.LatLng currentLocation;
 
   @override
   String toString() {
@@ -735,7 +773,7 @@ class FindNearbyRouteArgs {
 /// [_i21.RequestProviderPage]
 class RequestProviderRoute
     extends _i35.PageRouteInfo<RequestProviderRouteArgs> {
-  RequestProviderRoute({_i36.Key? key, required _i45.ProviderData providerData})
+  RequestProviderRoute({_i36.Key? key, required _i43.ProviderData providerData})
       : super(RequestProviderRoute.name,
             path: '/request-provider-page',
             args:
@@ -749,7 +787,7 @@ class RequestProviderRouteArgs {
 
   final _i36.Key? key;
 
-  final _i45.ProviderData providerData;
+  final _i43.ProviderData providerData;
 
   @override
   String toString() {
@@ -770,7 +808,7 @@ class ListRepairerRoute extends _i35.PageRouteInfo<void> {
 /// [_i23.RepairerProfilePage]
 class RepairerProfileRoute
     extends _i35.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({_i36.Key? key, required _i45.ProviderData providerData})
+  RepairerProfileRoute({_i36.Key? key, required _i43.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
             args:
@@ -784,7 +822,7 @@ class RepairerProfileRouteArgs {
 
   final _i36.Key? key;
 
-  final _i45.ProviderData providerData;
+  final _i43.ProviderData providerData;
 
   @override
   String toString() {
@@ -797,7 +835,7 @@ class RepairerProfileRouteArgs {
 class AddMessageRoute extends _i35.PageRouteInfo<AddMessageRouteArgs> {
   AddMessageRoute(
       {_i36.Key? key,
-      required _i45.ProviderData providerData,
+      required _i43.ProviderData providerData,
       required int movingFee})
       : super(AddMessageRoute.name,
             path: '/add-message-page',
@@ -813,7 +851,7 @@ class AddMessageRouteArgs {
 
   final _i36.Key? key;
 
-  final _i45.ProviderData providerData;
+  final _i43.ProviderData providerData;
 
   final int movingFee;
 

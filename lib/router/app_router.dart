@@ -30,10 +30,10 @@ import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
 import '../request_provider/view/request_provider_page.dart';
 import '../review-repairman/view/review_repairman_page.u.dart';
-import '../service/choose-product/view/choose_product_page.dart';
-import '../service/choose-service/view/choose_service_page.dart';
-import '../service/new-service/view/new_service_request_page.dart';
-import '../service/service-details/view/service_detail_page.dart';
+import '../service/choose_product/view/choose_product_page.dart';
+import '../service/choose_service/view/choose_service_page.dart';
+import '../service/new_service/view/new_service_request_page.dart';
+import '../service/service_details/view/service_detail_page.dart';
 import '../test/test.dart';
 
 @AdaptiveAutoRouter(
@@ -41,6 +41,7 @@ import '../test/test.dart';
   routes: <AutoRoute>[
     AdaptiveRoute<void>(
       page: SplashPage,
+      initial: true,
     ),
     AdaptiveRoute<void>(page: OrderDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
@@ -49,7 +50,6 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(
       page: HomePage,
-      initial: true,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: HistoryConsumerPage),
