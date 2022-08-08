@@ -207,5 +207,6 @@
   "yourFeedbackLabel": "Your feedback",
   "zaloPayLabel": "ZaloPay",
   "zaloPayLabel": "ZaloPay",
-  "zaloPaymentLabel": "Pay with Zalo Pay"
+  "zaloPaymentLabel": "Pay with Zalo Pay",
+  "cancelUpdateServiceLabel" : "Choosen services will be lost if you cancel. Are you sure?"
 }

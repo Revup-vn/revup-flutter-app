@@ -176,5 +176,6 @@
   "workerRepairLabel": "Thợ đang tiến hành sửa chữa",
   "yourFeedbackLabel": "Phản hồi của bạn",
   "zaloPayLabel": "ZaloPay",
-  "zaloPaymentLabel": "Thanh toán bằng Zalo Pay"
+  "zaloPaymentLabel": "Thanh toán bằng Zalo Pay",
+  "cancelUpdateServiceLabel" : "Dịch vụ sẽ không được chọn nếu bạn huỷ. Bạn có đồng ý?"
 }
