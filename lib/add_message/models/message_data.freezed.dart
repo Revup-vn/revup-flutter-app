@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MessageData {
-  String? get image => throw _privateConstructorUsedError;
+  File? get image => throw _privateConstructorUsedError;
   String? get desc => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +29,7 @@ abstract class $MessageDataCopyWith<$Res> {
   factory $MessageDataCopyWith(
           MessageData value, $Res Function(MessageData) then) =
       _$MessageDataCopyWithImpl<$Res>;
-  $Res call({String? image, String? desc});
+  $Res call({File? image, String? desc});
 }
 
 /// @nodoc
@@ -49,7 +49,7 @@ class _$MessageDataCopyWithImpl<$Res> implements $MessageDataCopyWith<$Res> {
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as File?,
       desc: desc == freezed
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -65,7 +65,7 @@ abstract class _$$_MessageDataCopyWith<$Res>
           _$_MessageData value, $Res Function(_$_MessageData) then) =
       __$$_MessageDataCopyWithImpl<$Res>;
   @override
-  $Res call({String? image, String? desc});
+  $Res call({File? image, String? desc});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class __$$_MessageDataCopyWithImpl<$Res> extends _$MessageDataCopyWithImpl<$Res>
       image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as File?,
       desc == freezed
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ class _$_MessageData implements _MessageData {
   const _$_MessageData(this.image, this.desc);
 
   @override
-  final String? image;
+  final File? image;
   @override
   final String? desc;
 
@@ -133,11 +133,11 @@ class _$_MessageData implements _MessageData {
 }
 
 abstract class _MessageData implements MessageData {
-  const factory _MessageData(final String? image, final String? desc) =
+  const factory _MessageData(final File? image, final String? desc) =
       _$_MessageData;
 
   @override
-  String? get image;
+  File? get image;
   @override
   String? get desc;
   @override

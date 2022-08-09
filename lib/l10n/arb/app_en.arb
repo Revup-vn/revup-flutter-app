@@ -277,5 +277,11 @@
   "optionalAddMsgGuideLabel": "You can make notes for the repairer here.",
   "zaloPayLabel": "ZaloPay",
   "zaloPaymentLabel": "Pay with Zalo Pay",
-  "cancelUpdateServiceLabel" : "Choosen services will be lost if you cancel. Are you sure?"
+  "cancelUpdateServiceLabel": "Choosen services will be lost if you cancel. Are you sure?",
+  "serviceCountLabel": "repair service",
+  "locationDeniedLabel": "Revup needs your location so a repairman can reach it more quickly and accurately",
+  "enableLocationLabel": "Allow location access",
+  "chooseVehicleLabel": "Select vehicle type",
+  "carLabel": "Car",
+  "motorbikeLabel": "Motorbike"
 }

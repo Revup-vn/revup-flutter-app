@@ -328,7 +328,6 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -339,7 +338,6 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -350,7 +348,6 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -362,7 +359,6 @@ mixin _$HomeState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -371,7 +367,6 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -380,7 +375,6 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
@@ -450,7 +444,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -464,7 +457,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -478,7 +470,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -496,7 +487,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return initial(this);
@@ -508,7 +498,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
@@ -520,7 +509,6 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -583,7 +571,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -597,7 +584,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -611,7 +597,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -629,7 +614,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return loading(this);
@@ -641,7 +625,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return loading?.call(this);
@@ -653,7 +636,6 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -716,7 +698,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -730,7 +711,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -744,7 +724,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -762,7 +741,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return failure(this);
@@ -774,7 +752,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return failure?.call(this);
@@ -786,7 +763,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -799,177 +775,6 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
 
 abstract class _Failure implements HomeState {
   const factory _Failure() = _$_Failure;
-}
-
-/// @nodoc
-abstract class _$$_AppServiceSuccessCopyWith<$Res> {
-  factory _$$_AppServiceSuccessCopyWith(_$_AppServiceSuccess value,
-          $Res Function(_$_AppServiceSuccess) then) =
-      __$$_AppServiceSuccessCopyWithImpl<$Res>;
-  $Res call({LatLng currentLocation});
-}
-
-/// @nodoc
-class __$$_AppServiceSuccessCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res>
-    implements _$$_AppServiceSuccessCopyWith<$Res> {
-  __$$_AppServiceSuccessCopyWithImpl(
-      _$_AppServiceSuccess _value, $Res Function(_$_AppServiceSuccess) _then)
-      : super(_value, (v) => _then(v as _$_AppServiceSuccess));
-
-  @override
-  _$_AppServiceSuccess get _value => super._value as _$_AppServiceSuccess;
-
-  @override
-  $Res call({
-    Object? currentLocation = freezed,
-  }) {
-    return _then(_$_AppServiceSuccess(
-      currentLocation: currentLocation == freezed
-          ? _value.currentLocation
-          : currentLocation // ignore: cast_nullable_to_non_nullable
-              as LatLng,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_AppServiceSuccess
-    with DiagnosticableTreeMixin
-    implements _AppServiceSuccess {
-  const _$_AppServiceSuccess({required this.currentLocation});
-
-  @override
-  final LatLng currentLocation;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState.appServiceSuccess(currentLocation: $currentLocation)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'HomeState.appServiceSuccess'))
-      ..add(DiagnosticsProperty('currentLocation', currentLocation));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AppServiceSuccess &&
-            const DeepCollectionEquality()
-                .equals(other.currentLocation, currentLocation));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentLocation));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_AppServiceSuccessCopyWith<_$_AppServiceSuccess> get copyWith =>
-      __$$_AppServiceSuccessCopyWithImpl<_$_AppServiceSuccess>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
-        success,
-  }) {
-    return appServiceSuccess(currentLocation);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
-        success,
-  }) {
-    return appServiceSuccess?.call(currentLocation);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (appServiceSuccess != null) {
-      return appServiceSuccess(currentLocation);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
-    required TResult Function(_Success value) success,
-  }) {
-    return appServiceSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
-    TResult Function(_Success value)? success,
-  }) {
-    return appServiceSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (appServiceSuccess != null) {
-      return appServiceSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AppServiceSuccess implements HomeState {
-  const factory _AppServiceSuccess({required final LatLng currentLocation}) =
-      _$_AppServiceSuccess;
-
-  LatLng get currentLocation;
-  @JsonKey(ignore: true)
-  _$$_AppServiceSuccessCopyWith<_$_AppServiceSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1095,7 +900,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(LatLng currentLocation) appServiceSuccess,
     required TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)
         success,
@@ -1109,7 +913,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -1123,7 +926,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(LatLng currentLocation)? appServiceSuccess,
     TResult Function(ProviderModel provider, IVector<String> imgs,
             String timeRepair, String dayRepair)?
         success,
@@ -1141,7 +943,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
-    required TResult Function(_AppServiceSuccess value) appServiceSuccess,
     required TResult Function(_Success value) success,
   }) {
     return success(this);
@@ -1153,7 +954,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
   }) {
     return success?.call(this);
@@ -1165,7 +965,6 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
-    TResult Function(_AppServiceSuccess value)? appServiceSuccess,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {

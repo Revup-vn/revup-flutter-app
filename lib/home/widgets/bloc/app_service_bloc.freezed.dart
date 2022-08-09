@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'add_message_bloc.dart';
+part of 'app_service_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,127 +15,162 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AddMessageEvent {
+mixin _$AppServiceEvent {
+  String get vehicle => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(MessageData messageData) submitted,
+    required TResult Function(String vehicle) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
+    TResult Function(String vehicle)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
+    TResult Function(String vehicle)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AppServiceEventCopyWith<AppServiceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddMessageEventCopyWith<$Res> {
-  factory $AddMessageEventCopyWith(
-          AddMessageEvent value, $Res Function(AddMessageEvent) then) =
-      _$AddMessageEventCopyWithImpl<$Res>;
+abstract class $AppServiceEventCopyWith<$Res> {
+  factory $AppServiceEventCopyWith(
+          AppServiceEvent value, $Res Function(AppServiceEvent) then) =
+      _$AppServiceEventCopyWithImpl<$Res>;
+  $Res call({String vehicle});
 }
 
 /// @nodoc
-class _$AddMessageEventCopyWithImpl<$Res>
-    implements $AddMessageEventCopyWith<$Res> {
-  _$AddMessageEventCopyWithImpl(this._value, this._then);
+class _$AppServiceEventCopyWithImpl<$Res>
+    implements $AppServiceEventCopyWith<$Res> {
+  _$AppServiceEventCopyWithImpl(this._value, this._then);
 
-  final AddMessageEvent _value;
+  final AppServiceEvent _value;
   // ignore: unused_field
-  final $Res Function(AddMessageEvent) _then;
+  final $Res Function(AppServiceEvent) _then;
+
+  @override
+  $Res call({
+    Object? vehicle = freezed,
+  }) {
+    return _then(_value.copyWith(
+      vehicle: vehicle == freezed
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
+abstract class _$$_StartedCopyWith<$Res>
+    implements $AppServiceEventCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
+  @override
+  $Res call({String vehicle});
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res> extends _$AddMessageEventCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res> extends _$AppServiceEventCopyWithImpl<$Res>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, (v) => _then(v as _$_Started));
 
   @override
   _$_Started get _value => super._value as _$_Started;
+
+  @override
+  $Res call({
+    Object? vehicle = freezed,
+  }) {
+    return _then(_$_Started(
+      vehicle: vehicle == freezed
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Started implements _Started {
-  const _$_Started();
+  const _$_Started({required this.vehicle});
+
+  @override
+  final String vehicle;
 
   @override
   String toString() {
-    return 'AddMessageEvent.started()';
+    return 'AppServiceEvent.started(vehicle: $vehicle)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_Started &&
+            const DeepCollectionEquality().equals(other.vehicle, vehicle));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(vehicle));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      __$$_StartedCopyWithImpl<_$_Started>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(MessageData messageData) submitted,
+    required TResult Function(String vehicle) started,
   }) {
-    return started();
+    return started(vehicle);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
+    TResult Function(String vehicle)? started,
   }) {
-    return started?.call();
+    return started?.call(vehicle);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
+    TResult Function(String vehicle)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started();
+      return started(vehicle);
     }
     return orElse();
   }
@@ -144,7 +179,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -153,7 +187,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -162,7 +195,6 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,186 +204,44 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements AddMessageEvent {
-  const factory _Started() = _$_Started;
-}
-
-/// @nodoc
-abstract class _$$_SubmittedCopyWith<$Res> {
-  factory _$$_SubmittedCopyWith(
-          _$_Submitted value, $Res Function(_$_Submitted) then) =
-      __$$_SubmittedCopyWithImpl<$Res>;
-  $Res call({MessageData messageData});
-
-  $MessageDataCopyWith<$Res> get messageData;
-}
-
-/// @nodoc
-class __$$_SubmittedCopyWithImpl<$Res>
-    extends _$AddMessageEventCopyWithImpl<$Res>
-    implements _$$_SubmittedCopyWith<$Res> {
-  __$$_SubmittedCopyWithImpl(
-      _$_Submitted _value, $Res Function(_$_Submitted) _then)
-      : super(_value, (v) => _then(v as _$_Submitted));
+abstract class _Started implements AppServiceEvent {
+  const factory _Started({required final String vehicle}) = _$_Started;
 
   @override
-  _$_Submitted get _value => super._value as _$_Submitted;
-
+  String get vehicle;
   @override
-  $Res call({
-    Object? messageData = freezed,
-  }) {
-    return _then(_$_Submitted(
-      messageData: messageData == freezed
-          ? _value.messageData
-          : messageData // ignore: cast_nullable_to_non_nullable
-              as MessageData,
-    ));
-  }
-
-  @override
-  $MessageDataCopyWith<$Res> get messageData {
-    return $MessageDataCopyWith<$Res>(_value.messageData, (value) {
-      return _then(_value.copyWith(messageData: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_Submitted implements _Submitted {
-  const _$_Submitted({required this.messageData});
-
-  @override
-  final MessageData messageData;
-
-  @override
-  String toString() {
-    return 'AddMessageEvent.submitted(messageData: $messageData)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Submitted &&
-            const DeepCollectionEquality()
-                .equals(other.messageData, messageData));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(messageData));
-
   @JsonKey(ignore: true)
-  @override
-  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
-      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(MessageData messageData) submitted,
-  }) {
-    return submitted(messageData);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
-  }) {
-    return submitted?.call(messageData);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(MessageData messageData)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(messageData);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
-  }) {
-    return submitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
-  }) {
-    return submitted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Submitted implements AddMessageEvent {
-  const factory _Submitted({required final MessageData messageData}) =
-      _$_Submitted;
-
-  MessageData get messageData;
-  @JsonKey(ignore: true)
-  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$AddMessageState {
+mixin _$AppServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(File? image) success,
+    required TResult Function(LatLng currentLocation, String vehicle) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) =>
@@ -359,7 +249,6 @@ mixin _$AddMessageState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) =>
@@ -367,7 +256,6 @@ mixin _$AddMessageState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -376,20 +264,20 @@ mixin _$AddMessageState {
 }
 
 /// @nodoc
-abstract class $AddMessageStateCopyWith<$Res> {
-  factory $AddMessageStateCopyWith(
-          AddMessageState value, $Res Function(AddMessageState) then) =
-      _$AddMessageStateCopyWithImpl<$Res>;
+abstract class $AppServiceStateCopyWith<$Res> {
+  factory $AppServiceStateCopyWith(
+          AppServiceState value, $Res Function(AppServiceState) then) =
+      _$AppServiceStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AddMessageStateCopyWithImpl<$Res>
-    implements $AddMessageStateCopyWith<$Res> {
-  _$AddMessageStateCopyWithImpl(this._value, this._then);
+class _$AppServiceStateCopyWithImpl<$Res>
+    implements $AppServiceStateCopyWith<$Res> {
+  _$AppServiceStateCopyWithImpl(this._value, this._then);
 
-  final AddMessageState _value;
+  final AppServiceState _value;
   // ignore: unused_field
-  final $Res Function(AddMessageState) _then;
+  final $Res Function(AppServiceState) _then;
 }
 
 /// @nodoc
@@ -400,7 +288,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res> extends _$AppServiceStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -416,7 +304,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AddMessageState.initial()';
+    return 'AppServiceState.initial()';
   }
 
   @override
@@ -432,9 +320,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(File? image) success,
+    required TResult Function(LatLng currentLocation, String vehicle) success,
   }) {
     return initial();
   }
@@ -443,9 +330,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
   }) {
     return initial?.call();
   }
@@ -454,9 +340,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -469,7 +354,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -480,7 +364,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -491,7 +374,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -503,123 +385,8 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AddMessageState {
+abstract class _Initial implements AppServiceState {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
-
-  @override
-  _$_Loading get _value => super._value as _$_Loading;
-}
-
-/// @nodoc
-
-class _$_Loading implements _Loading {
-  const _$_Loading();
-
-  @override
-  String toString() {
-    return 'AddMessageState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(File? image) success,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(File? image)? success,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(File? image)? success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements AddMessageState {
-  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -630,7 +397,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
+class __$$_FailureCopyWithImpl<$Res> extends _$AppServiceStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -646,7 +413,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'AddMessageState.failure()';
+    return 'AppServiceState.failure()';
   }
 
   @override
@@ -662,9 +429,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(File? image) success,
+    required TResult Function(LatLng currentLocation, String vehicle) success,
   }) {
     return failure();
   }
@@ -673,9 +439,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
   }) {
     return failure?.call();
   }
@@ -684,9 +449,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -699,7 +463,6 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -710,7 +473,6 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -721,7 +483,6 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -733,7 +494,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements AddMessageState {
+abstract class _Failure implements AppServiceState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -742,11 +503,11 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({File? image});
+  $Res call({LatLng currentLocation, String vehicle});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
+class __$$_SuccessCopyWithImpl<$Res> extends _$AppServiceStateCopyWithImpl<$Res>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, (v) => _then(v as _$_Success));
@@ -756,13 +517,18 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? image = freezed,
+    Object? currentLocation = freezed,
+    Object? vehicle = freezed,
   }) {
     return _then(_$_Success(
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
+      currentLocation: currentLocation == freezed
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+      vehicle: vehicle == freezed
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -770,14 +536,16 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AddMessageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({this.image});
+  const _$_Success({required this.currentLocation, required this.vehicle});
 
   @override
-  final File? image;
+  final LatLng currentLocation;
+  @override
+  final String vehicle;
 
   @override
   String toString() {
-    return 'AddMessageState.success(image: $image)';
+    return 'AppServiceState.success(currentLocation: $currentLocation, vehicle: $vehicle)';
   }
 
   @override
@@ -785,12 +553,16 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other.image, image));
+            const DeepCollectionEquality()
+                .equals(other.currentLocation, currentLocation) &&
+            const DeepCollectionEquality().equals(other.vehicle, vehicle));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(currentLocation),
+      const DeepCollectionEquality().hash(vehicle));
 
   @JsonKey(ignore: true)
   @override
@@ -801,35 +573,32 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(File? image) success,
+    required TResult Function(LatLng currentLocation, String vehicle) success,
   }) {
-    return success(image);
+    return success(currentLocation, vehicle);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
   }) {
-    return success?.call(image);
+    return success?.call(currentLocation, vehicle);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(File? image)? success,
+    TResult Function(LatLng currentLocation, String vehicle)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(image);
+      return success(currentLocation, vehicle);
     }
     return orElse();
   }
@@ -838,7 +607,6 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -849,7 +617,6 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -860,7 +627,6 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -872,10 +638,13 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements AddMessageState {
-  const factory _Success({final File? image}) = _$_Success;
+abstract class _Success implements AppServiceState {
+  const factory _Success(
+      {required final LatLng currentLocation,
+      required final String vehicle}) = _$_Success;
 
-  File? get image;
+  LatLng get currentLocation;
+  String get vehicle;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../bloc/home_bloc.dart';
 import 'app_service_item.u.dart';
+import 'bloc/app_service_bloc.dart';
 
 class AppServicePanel extends StatelessWidget {
   const AppServicePanel({
@@ -15,8 +17,16 @@ class AppServicePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final bloc = BlocProvider.of<HomeBloc>(context);
-
+    // final bloc = BlocProvider.of<HomeBloc>(context);
+    final bloc = context.watch<HomeBloc>();
+    final blocT = context.watch<AppServiceBloc>();
+    blocT.state.whenOrNull(
+      success: (currentLocation, vehicle) => context.router.popAndPush(
+        FindNearbyRoute(
+          currentLocation: currentLocation,
+        ),
+      ),
+    );
     return Container(
       height: 140,
       color: Theme.of(context).colorScheme.inversePrimary,
@@ -63,18 +73,18 @@ class AppServicePanel extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AutoSizeText(
-                                  'Chọn loại phương tiện',
+                                  l10n.chooseVehicleLabel,
                                   style: Theme.of(context).textTheme.titleLarge,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AppServiceItem(
-                                      name: 'Ô tô',
+                                      name: l10n.carLabel,
                                       icon: const Icon(Icons.car_crash),
-                                      onPressed: () {
-                                        bloc.add(
-                                          const HomeEvent.submitted(
+                                      onPressed: () async {
+                                        blocT.add(
+                                          const AppServiceEvent.started(
                                             vehicle: 'car',
                                           ),
                                         );
@@ -82,11 +92,11 @@ class AppServicePanel extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 32),
                                     AppServiceItem(
-                                      name: 'Xe máy',
+                                      name: l10n.motorbikeLabel,
                                       icon: const Icon(Icons.motorcycle),
-                                      onPressed: () {
-                                        bloc.add(
-                                          const HomeEvent.submitted(
+                                      onPressed: () async {
+                                        blocT.add(
+                                          const AppServiceEvent.started(
                                             vehicle: 'motorbike',
                                           ),
                                         );

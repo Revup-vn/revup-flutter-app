@@ -9,8 +9,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../add_message/models/message_data.dart';
-import '../../../find_provider/models/provider_data.u.dart';
 import '../../../repairer_profile/models/service_data.u.dart';
 
 part 'choose_service_bloc.freezed.dart';
@@ -22,10 +20,8 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     this._userStore,
     this._repairRecord,
     this.storeRepository,
-    this.providerData,
-    this.movingFee,
+    this.providerId,
     this._maybeUser,
-    this.messageData,
   ) : super(const _Initial()) {
     on<ChooseServiceEvent>(_onEvent);
   }
@@ -35,10 +31,8 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   final categoryList = <Tuple2<RepairCategory, IList<ServiceData>>>[];
   final services = <ServiceData>[];
   final servicesSelect = <ServiceData>[];
-  final ProviderData providerData;
-  final int movingFee;
+  final String providerId;
   final Option<AppUser> _maybeUser;
-  final MessageData messageData;
 
   FutureOr<void> _onEvent(
     ChooseServiceEvent event,
@@ -101,11 +95,14 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         emit(const ChooseServiceState.loading());
         final consumer = _maybeUser.getOrElse(() => throw NullThrownError());
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        await boxRprRecord.put('pid', providerData.id);
+        await boxRprRecord.put('pid', providerId);
         final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
+        final msgDesc = boxRprRecord.get('msgDesc', defaultValue: '') as String;
+        final msgImg = boxRprRecord.get('msgImg', defaultValue: '') as String;
+        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
         final toLat = boxRprRecord.get('toLat', defaultValue: 0.0) as double;
         final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
-        final maybeProviderData = (await _userStore.get(providerData.id))
+        final maybeProviderData = (await _userStore.get(providerId))
             .fold<Option<AppUser>>(
               (l) => none(),
               some,
@@ -119,9 +116,9 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           RepairRecord.pending(
             id: rcId,
             cid: consumer.uuid,
-            pid: providerData.id,
+            pid: providerId,
             created: DateTime.now(),
-            desc: messageData.desc ?? '',
+            desc: msgDesc,
             vehicle: vehicle,
             money: movingFee,
             from: GeoFirePoint(fromPoint.latitude, fromPoint.longitude),
@@ -158,7 +155,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         }
         await boxServiceSelect.put(index, serviceData.name);
       },
-      detailRequestAccepted: (String recordId) {
+      detailRequestAccepted: () {
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final pid = boxRprRecord.get('pid', defaultValue: '') as String;
         emit(

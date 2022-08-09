@@ -24,7 +24,7 @@ mixin _$ChooseServiceEvent {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +33,7 @@ mixin _$ChooseServiceEvent {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,7 +42,7 @@ mixin _$ChooseServiceEvent {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,7 +140,7 @@ class _$_Started implements _Started {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) {
     return started();
   }
@@ -152,7 +152,7 @@ class _$_Started implements _Started {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) {
     return started?.call();
   }
@@ -164,7 +164,7 @@ class _$_Started implements _Started {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -266,7 +266,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) {
     return serviceListSubmitted();
   }
@@ -278,7 +278,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) {
     return serviceListSubmitted?.call();
   }
@@ -290,7 +290,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -427,7 +427,7 @@ class _$_NewServiceRequested implements _NewServiceRequested {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) {
     return newServiceRequested(optionalService);
   }
@@ -439,7 +439,7 @@ class _$_NewServiceRequested implements _NewServiceRequested {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) {
     return newServiceRequested?.call(optionalService);
   }
@@ -451,7 +451,7 @@ class _$_NewServiceRequested implements _NewServiceRequested {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (newServiceRequested != null) {
@@ -605,7 +605,7 @@ class _$_ServiceSelectChanged implements _ServiceSelectChanged {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) {
     return serviceSelectChanged(serviceData, index);
   }
@@ -617,7 +617,7 @@ class _$_ServiceSelectChanged implements _ServiceSelectChanged {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) {
     return serviceSelectChanged?.call(serviceData, index);
   }
@@ -629,7 +629,7 @@ class _$_ServiceSelectChanged implements _ServiceSelectChanged {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (serviceSelectChanged != null) {
@@ -697,7 +697,6 @@ abstract class _$$_DetailRequestAcceptedCopyWith<$Res> {
   factory _$$_DetailRequestAcceptedCopyWith(_$_DetailRequestAccepted value,
           $Res Function(_$_DetailRequestAccepted) then) =
       __$$_DetailRequestAcceptedCopyWithImpl<$Res>;
-  $Res call({String recordId});
 }
 
 /// @nodoc
@@ -711,50 +710,26 @@ class __$$_DetailRequestAcceptedCopyWithImpl<$Res>
   @override
   _$_DetailRequestAccepted get _value =>
       super._value as _$_DetailRequestAccepted;
-
-  @override
-  $Res call({
-    Object? recordId = freezed,
-  }) {
-    return _then(_$_DetailRequestAccepted(
-      recordId: recordId == freezed
-          ? _value.recordId
-          : recordId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_DetailRequestAccepted implements _DetailRequestAccepted {
-  const _$_DetailRequestAccepted({required this.recordId});
-
-  @override
-  final String recordId;
+  const _$_DetailRequestAccepted();
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.detailRequestAccepted(recordId: $recordId)';
+    return 'ChooseServiceEvent.detailRequestAccepted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_DetailRequestAccepted &&
-            const DeepCollectionEquality().equals(other.recordId, recordId));
+        (other.runtimeType == runtimeType && other is _$_DetailRequestAccepted);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(recordId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_DetailRequestAcceptedCopyWith<_$_DetailRequestAccepted> get copyWith =>
-      __$$_DetailRequestAcceptedCopyWithImpl<_$_DetailRequestAccepted>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -765,9 +740,9 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
         newServiceRequested,
     required TResult Function(ServiceData serviceData, int index)
         serviceSelectChanged,
-    required TResult Function(String recordId) detailRequestAccepted,
+    required TResult Function() detailRequestAccepted,
   }) {
-    return detailRequestAccepted(recordId);
+    return detailRequestAccepted();
   }
 
   @override
@@ -777,9 +752,9 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
   }) {
-    return detailRequestAccepted?.call(recordId);
+    return detailRequestAccepted?.call();
   }
 
   @override
@@ -789,11 +764,11 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
     TResult Function()? serviceListSubmitted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(ServiceData serviceData, int index)? serviceSelectChanged,
-    TResult Function(String recordId)? detailRequestAccepted,
+    TResult Function()? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (detailRequestAccepted != null) {
-      return detailRequestAccepted(recordId);
+      return detailRequestAccepted();
     }
     return orElse();
   }
@@ -841,13 +816,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
 }
 
 abstract class _DetailRequestAccepted implements ChooseServiceEvent {
-  const factory _DetailRequestAccepted({required final String recordId}) =
-      _$_DetailRequestAccepted;
-
-  String get recordId;
-  @JsonKey(ignore: true)
-  _$$_DetailRequestAcceptedCopyWith<_$_DetailRequestAccepted> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _DetailRequestAccepted() = _$_DetailRequestAccepted;
 }
 
 /// @nodoc

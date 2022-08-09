@@ -182,7 +182,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                         ElevatedButton(
                           onPressed: () {
                             context.read<LocationBloc>().add(
-                                  LocationEvent.saved(
+                                  LocationEvent.savedRepairLoc(
                                     location: currentLocation,
                                   ),
                                 );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/overview_order_bloc.u.dart';
@@ -25,7 +24,10 @@ class OverViewOrderView extends StatelessWidget {
         initial: Container.new,
         failure: Container.new,
         loading: LoadingOverView.new,
-        loadDataSuccess: (data) => OverviewOrderContent(modelData: data),
+        loadDataSuccess: (data, serviceCount) => OverviewOrderContent(
+          modelData: data,
+          serviceCount: serviceCount,
+        ),
       ),
     );
   }

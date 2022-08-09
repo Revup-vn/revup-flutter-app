@@ -1,12 +1,8 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../map/utils/map_utils.dart';
 import '../model/provider_model.dart';
 
 part 'home_bloc.freezed.dart';
@@ -43,16 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ),
         );
       },
-      submitted: (String vehicle) async {
-        final boxRprRecord = await Hive.openBox<dynamic>('repairRecord');
-        await boxRprRecord.put('vehicle', vehicle);
-        final location = await determinePosition()
-            .then((v) => LatLng(v.latitude, v.longitude));
-        final boxLocation = await Hive.openBox<dynamic>('location');
-        await boxLocation.put('currentLat', location.latitude);
-        await boxLocation.put('currentLng', location.longitude);
-        emit(HomeState.appServiceSuccess(currentLocation: location));
-      },
+      submitted: (String vehicle) async {},
     );
   }
 }

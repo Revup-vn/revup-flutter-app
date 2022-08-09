@@ -28,8 +28,7 @@ class ProviderData with _$ProviderData {
     required double rating,
     required int ratingCount,
   }) =>
-      user.map(
-        consumer: (user) => throw NullThrownError(),
+      user.maybeMap(
         provider: (user) => ProviderData(
           id: user.uuid,
           fullName: '${user.firstName} ${user.lastName}',
@@ -44,7 +43,7 @@ class ProviderData with _$ProviderData {
               : user.backgroundUrl,
           profileBio: user.bio,
         ),
-        admin: (user) => throw NullThrownError(),
+        orElse: () => throw NullThrownError(),
       );
 
   factory ProviderData.fromJson(Map<String, dynamic> json) =>

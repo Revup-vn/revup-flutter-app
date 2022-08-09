@@ -257,5 +257,11 @@
   "optionalLocationImgLabel": "Ảnh địa điểm cần cứu hộ (không bắt buộc)",
   "optionalAddMsgGuideLabel": "Bạn có thể ghi chú cho thợ ở đây nhé.",
   "zaloPaymentLabel": "Thanh toán bằng Zalo Pay",
-  "cancelUpdateServiceLabel": "Dịch vụ sẽ không được chọn nếu bạn huỷ. Bạn có đồng ý?"
+  "cancelUpdateServiceLabel": "Dịch vụ sẽ không được chọn nếu bạn huỷ. Bạn có đồng ý?",
+  "serviceCountLabel": "hạng mục",
+  "locationDeniedLabel": "Revup cần vị trí của bạn để thợ sửa có thể tiếp cận nhanh chóng và chính xác hơn",
+  "enableLocationLabel": "Cho phép truy cập vị trí",
+  "chooseVehicleLabel": "Chọn loại phương tiện",
+  "carLabel": "Ô tô",
+  "motorbikeLabel": "Xe máy"
 }

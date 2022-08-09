@@ -11,15 +11,16 @@ class OverviewOrderModel with _$OverviewOrderModel {
     required String proviverPhoneNumber,
     required String videoCallID,
     required String providerName,
-    required String distance,
+    required double distance,
   }) = _OverviewOrderModel;
 
-  factory OverviewOrderModel.fromDto(AppUser user) => user.maybeMap(
+  factory OverviewOrderModel.fromDto(AppUser user, double distance) =>
+      user.maybeMap(
         provider: (value) => OverviewOrderModel(
           providerID: user.uuid,
-          videoCallID: 'videoCallID',
+          videoCallID: value.vac.id,
           providerName: '${user.firstName} ${user.lastName}',
-          distance: '500',
+          distance: distance,
           providerAvatarImg: user.avatarUrl,
           proviverPhoneNumber: user.phone,
         ),

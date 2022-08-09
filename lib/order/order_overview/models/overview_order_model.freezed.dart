@@ -21,7 +21,7 @@ mixin _$OverviewOrderModel {
   String get proviverPhoneNumber => throw _privateConstructorUsedError;
   String get videoCallID => throw _privateConstructorUsedError;
   String get providerName => throw _privateConstructorUsedError;
-  String get distance => throw _privateConstructorUsedError;
+  double get distance => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OverviewOrderModelCopyWith<OverviewOrderModel> get copyWith =>
@@ -39,7 +39,7 @@ abstract class $OverviewOrderModelCopyWith<$Res> {
       String proviverPhoneNumber,
       String videoCallID,
       String providerName,
-      String distance});
+      double distance});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class _$OverviewOrderModelCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ));
   }
 }
@@ -102,7 +102,7 @@ abstract class _$$_OverviewOrderModelCopyWith<$Res>
       String proviverPhoneNumber,
       String videoCallID,
       String providerName,
-      String distance});
+      double distance});
 }
 
 /// @nodoc
@@ -149,7 +149,7 @@ class __$$_OverviewOrderModelCopyWithImpl<$Res>
       distance: distance == freezed
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ));
   }
 }
@@ -176,7 +176,7 @@ class _$_OverviewOrderModel implements _OverviewOrderModel {
   @override
   final String providerName;
   @override
-  final String distance;
+  final double distance;
 
   @override
   String toString() {
@@ -225,7 +225,7 @@ abstract class _OverviewOrderModel implements OverviewOrderModel {
       required final String proviverPhoneNumber,
       required final String videoCallID,
       required final String providerName,
-      required final String distance}) = _$_OverviewOrderModel;
+      required final double distance}) = _$_OverviewOrderModel;
 
   @override
   String get providerID;
@@ -238,7 +238,7 @@ abstract class _OverviewOrderModel implements OverviewOrderModel {
   @override
   String get providerName;
   @override
-  String get distance;
+  double get distance;
   @override
   @JsonKey(ignore: true)
   _$$_OverviewOrderModelCopyWith<_$_OverviewOrderModel> get copyWith =>

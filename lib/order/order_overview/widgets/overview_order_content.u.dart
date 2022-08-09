@@ -1,11 +1,14 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../router/router.dart';
+import '../../../service/choose_service/bloc/choose_service_bloc.dart';
+import '../../../shared/utils.dart';
 import '../bloc/overview_bloc.u.dart';
 import '../models/overview_order_model.dart';
 import 'provider_avatar.u.dart';
@@ -14,11 +17,14 @@ class OverviewOrderContent extends StatelessWidget {
   const OverviewOrderContent({
     super.key,
     required this.modelData,
+    required this.serviceCount,
   });
   final OverviewOrderModel modelData;
+  final int serviceCount;
 
   @override
   Widget build(BuildContext context) {
+    final blocChooseSv = context.watch<ChooseServiceBloc>();
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -83,7 +89,9 @@ class OverviewOrderContent extends StatelessWidget {
                                   ),
                                   child: IconButton(
                                     onPressed: () {
-                                      // TODO(wamynobe): implement call function
+                                      makePhoneCall(
+                                        modelData.proviverPhoneNumber,
+                                      );
                                     },
                                     icon: Icon(
                                       Icons.call,
@@ -153,7 +161,8 @@ class OverviewOrderContent extends StatelessWidget {
                                         Theme.of(context).textTheme.bodyLarge,
                                   ),
                                   TextSpan(
-                                    text: '3 hạng mục',
+                                    text:
+                                        '''$serviceCount ${context.l10n.serviceCountLabel}''',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge
@@ -170,13 +179,19 @@ class OverviewOrderContent extends StatelessWidget {
                       Expanded(
                         child: TextButton(
                           onPressed: () {
-                            context.read<OverviewBloc>().add(
-                                  const OverviewEvent.selectedProduct(
-                                    totalServiceFee: '450.000',
-                                  ),
-                                );
-                            // TODO(wamynobe): route to detail
-                            // service and choose product
+                            // context.read<OverviewBloc>().add(
+                            //       const OverviewEvent.selectedProduct(
+                            //         totalServiceFee: '450.000',
+                            //       ),
+                            //     );
+                            blocChooseSv.add(
+                              const ChooseServiceEvent.detailRequestAccepted(),
+                            );
+                            context.router.push(
+                              ChooseServiceRoute(
+                                providerId: modelData.providerID,
+                              ),
+                            );
                           },
                           child: Text(
                             context.l10n.detailLabel,

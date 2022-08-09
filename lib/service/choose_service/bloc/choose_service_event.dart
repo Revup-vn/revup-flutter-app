@@ -12,7 +12,6 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required ServiceData serviceData,
     required int index,
   }) = _ServiceSelectChanged;
-  const factory ChooseServiceEvent.detailRequestAccepted({
-    required String recordId,
-  }) = _DetailRequestAccepted;
+  const factory ChooseServiceEvent.detailRequestAccepted() =
+      _DetailRequestAccepted;
 }

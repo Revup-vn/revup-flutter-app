@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,6 +13,8 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     Future<void>.delayed(
       const Duration(seconds: 5),
       () {
@@ -30,6 +32,7 @@ class SplashPage extends StatelessWidget {
           },
           orElse: () => unit,
         );
+
         context.router.pushAndPopUntil(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>

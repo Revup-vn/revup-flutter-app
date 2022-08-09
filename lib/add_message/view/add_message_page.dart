@@ -31,6 +31,8 @@ class AddMessagePage extends StatelessWidget {
             context.read(),
             context.read(),
             mayBeUser,
+            providerData,
+            movingFee,
           ),
         ),
         BlocProvider(
@@ -46,7 +48,6 @@ class AddMessagePage extends StatelessWidget {
           ),
           body: AddMessageView(
             providerData: providerData,
-            movingFee: movingFee,
           ),
         ),
       ),
