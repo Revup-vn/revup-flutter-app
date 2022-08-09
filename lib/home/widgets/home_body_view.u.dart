@@ -22,10 +22,8 @@ class HomeBodyView extends StatelessWidget {
     final l10n = context.l10n;
     final blocPage = context.watch<HomeBloc>();
     blocPage.state.maybeWhen(
-      initial: () => blocPage.add(HomeEvent.started()),
-      orElse: () {
-        print(blocPage.state);
-      },
+      initial: () => blocPage.add(const HomeEvent.started()),
+      orElse: () => false,
     );
 
     void _showRequestLocationDialog() {
@@ -40,7 +38,7 @@ class HomeBodyView extends StatelessWidget {
               alignment: Alignment.center,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   width: double.infinity,
                   height: 150,
                   decoration: BoxDecoration(
@@ -151,31 +149,19 @@ class HomeBodyView extends StatelessWidget {
                             () =>
                                 'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
                           ),
-                      progressIndicatorBuilder: (context, url, progress) {
-                        return ColoredBox(
-                          color: Colors.black12,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              value: progress.progress,
-                            ),
-                          ),
-                        );
-                      },
                     );
                   },
                   itemWidth: 400,
                   itemHeight: 100,
                 ),
-                orElse: () {
-                  return Shimmer.fromColors(
-                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
-                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
-                    child: const SizedBox(
-                      width: 400,
-                      height: 100,
-                    ),
-                  );
-                },
+                orElse: () => Shimmer.fromColors(
+                  baseColor: const Color.fromRGBO(224, 224, 224, 1),
+                  highlightColor: const Color.fromRGBO(245, 245, 245, 1),
+                  child: const SizedBox(
+                    width: 400,
+                    height: 100,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -201,31 +187,19 @@ class HomeBodyView extends StatelessWidget {
                             () =>
                                 'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
                           ),
-                      progressIndicatorBuilder: (context, url, progress) {
-                        return ColoredBox(
-                          color: Colors.black12,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              value: progress.progress,
-                            ),
-                          ),
-                        );
-                      },
                     );
                   },
                   itemWidth: 400,
                   itemHeight: 100,
                 ),
-                orElse: () {
-                  return Shimmer.fromColors(
-                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
-                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
-                    child: const SizedBox(
-                      width: 400,
-                      height: 100,
-                    ),
-                  );
-                },
+                orElse: () => Shimmer.fromColors(
+                  baseColor: const Color.fromRGBO(224, 224, 224, 1),
+                  highlightColor: const Color.fromRGBO(245, 245, 245, 1),
+                  child: const SizedBox(
+                    width: 400,
+                    height: 100,
+                  ),
+                ),
               ),
             ],
           ),

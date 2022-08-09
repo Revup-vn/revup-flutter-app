@@ -2,14 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../map_api/map_api.dart';
 import '../../models/directions_model.dart';
 import '../../models/place_details_model.dart';
-import '../../utils/map_utils.dart';
 
 part 'location_bloc.freezed.dart';
 part 'location_event.dart';
@@ -26,7 +24,12 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   ) async {
     await event.when(
       started: () async {
-        final location = await determinePosition();
+        final boxLocation = Hive.box<dynamic>('location');
+        final currentLat =
+            boxLocation.get('currentLat', defaultValue: 0.0) as double;
+        final currentLng =
+            boxLocation.get('currentLng', defaultValue: 0.0) as double;
+        final location = LatLng(currentLat, currentLng);
         emit(LocationState.initial(location: location));
       },
       locationUpdated: (location) async {

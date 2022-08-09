@@ -836,7 +836,7 @@ abstract class _MapLoaded implements LocationEvent {
 mixin _$LocationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -845,7 +845,7 @@ mixin _$LocationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -854,7 +854,7 @@ mixin _$LocationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -914,7 +914,7 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  $Res call({Position location});
+  $Res call({LatLng location});
 }
 
 /// @nodoc
@@ -934,7 +934,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as LatLng,
     ));
   }
 }
@@ -945,7 +945,7 @@ class _$_Initial implements _Initial {
   const _$_Initial({required this.location});
 
   @override
-  final Position location;
+  final LatLng location;
 
   @override
   String toString() {
@@ -972,7 +972,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -984,7 +984,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -996,7 +996,7 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1051,9 +1051,9 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements LocationState {
-  const factory _Initial({required final Position location}) = _$_Initial;
+  const factory _Initial({required final LatLng location}) = _$_Initial;
 
-  Position get location;
+  LatLng get location;
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1098,7 +1098,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -1110,7 +1110,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1122,7 +1122,7 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1245,7 +1245,7 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -1257,7 +1257,7 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1269,7 +1269,7 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1409,7 +1409,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -1421,7 +1421,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1433,7 +1433,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1572,7 +1572,7 @@ class _$_DirectionsLoaded implements _DirectionsLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
@@ -1584,7 +1584,7 @@ class _$_DirectionsLoaded implements _DirectionsLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
@@ -1596,7 +1596,7 @@ class _$_DirectionsLoaded implements _DirectionsLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,

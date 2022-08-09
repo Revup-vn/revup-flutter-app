@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
-import '../bloc/home_bloc.dart';
 import 'app_service_item.u.dart';
-import 'bloc/app_service_bloc.dart';
 
 class AppServicePanel extends StatelessWidget {
   const AppServicePanel({
@@ -17,20 +16,10 @@ class AppServicePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // final bloc = BlocProvider.of<HomeBloc>(context);
-    final bloc = context.watch<HomeBloc>();
-    final blocT = context.watch<AppServiceBloc>();
-    blocT.state.whenOrNull(
-      success: (currentLocation, vehicle) => context.router.popAndPush(
-        FindNearbyRoute(
-          currentLocation: currentLocation,
-        ),
-      ),
-    );
     return Container(
       height: 140,
       color: Theme.of(context).colorScheme.inversePrimary,
-      alignment: Alignment.center, // where to position the child
+      alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -83,9 +72,25 @@ class AppServicePanel extends StatelessWidget {
                                       name: l10n.carLabel,
                                       icon: const Icon(Icons.car_crash),
                                       onPressed: () async {
-                                        blocT.add(
-                                          const AppServiceEvent.started(
-                                            vehicle: 'car',
+                                        final boxRprRecord =
+                                            await Hive.openBox<dynamic>(
+                                          'repairRecord',
+                                        );
+                                        await boxRprRecord.put(
+                                          'vehicle',
+                                          'car',
+                                        );
+                                        final boxLocation =
+                                            Hive.box<dynamic>('location');
+
+                                        await context.router.popAndPush(
+                                          FindNearbyRoute(
+                                            currentLocation: LatLng(
+                                              boxLocation.get('currentLat')
+                                                  as double,
+                                              boxLocation.get('currentLng')
+                                                  as double,
+                                            ),
                                           ),
                                         );
                                       },
@@ -95,9 +100,24 @@ class AppServicePanel extends StatelessWidget {
                                       name: l10n.motorbikeLabel,
                                       icon: const Icon(Icons.motorcycle),
                                       onPressed: () async {
-                                        blocT.add(
-                                          const AppServiceEvent.started(
-                                            vehicle: 'motorbike',
+                                        final boxRprRecord =
+                                            await Hive.openBox<dynamic>(
+                                          'repairRecord',
+                                        );
+                                        await boxRprRecord.put(
+                                          'vehicle',
+                                          'motorbike',
+                                        );
+                                        final boxLocation =
+                                            Hive.box<dynamic>('location');
+                                        await context.router.popAndPush(
+                                          FindNearbyRoute(
+                                            currentLocation: LatLng(
+                                              boxLocation.get('currentLat')
+                                                  as double,
+                                              boxLocation.get('currentLng')
+                                                  as double,
+                                            ),
                                           ),
                                         );
                                       },
