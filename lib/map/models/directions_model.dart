@@ -13,6 +13,8 @@ class Directions with _$Directions {
     required int duration,
   }) = _Directions;
 
+  // factory Directions.getPolylinePointS(Map<String, dynamic> map) =>
+
   factory Directions.fromMap(Map<String, dynamic> map) {
     final data = Map<String, dynamic>.from(
       (map['routes'] as List)[0] as Map<String, dynamic>,

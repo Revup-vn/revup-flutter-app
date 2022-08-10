@@ -10,6 +10,7 @@ import 'package:revup_core/core.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../repairer_profile/models/service_data.u.dart';
+import '../../../shared/push_notification.dart';
 
 part 'choose_service_bloc.freezed.dart';
 part 'choose_service_event.dart';
@@ -22,6 +23,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     this.storeRepository,
     this.providerId,
     this._maybeUser,
+    this.notificationCubit,
   ) : super(const _Initial()) {
     on<ChooseServiceEvent>(_onEvent);
   }
@@ -33,6 +35,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   final servicesSelect = <ServiceData>[];
   final String providerId;
   final Option<AppUser> _maybeUser;
+  final NotificationCubit notificationCubit;
 
   FutureOr<void> _onEvent(
     ChooseServiceEvent event,
@@ -126,6 +129,11 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             services: <OptionalService>[],
           ),
         );
+        final token = (await storeRepository
+                .userNotificationTokenRepo(maybeProviderData)
+                .get(providerId))
+            .getOrElse(() => throw NullThrownError());
+        sendNotificationTo(token.token, rcId);
       },
       newServiceRequested: (optionalService) {
         emit(const ChooseServiceState.loading());

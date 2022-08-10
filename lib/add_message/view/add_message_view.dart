@@ -40,9 +40,6 @@ class _AddMessageViewState extends State<AddMessageView> {
           blocStorage
               .add(StorageEvent.upload(file: StorageFile.profile(file: image)));
         }
-        context.router.push(
-          ChooseServiceRoute(providerId: widget.providerData.id),
-        );
       },
       orElse: () => context.router.pop(),
     );
@@ -181,6 +178,9 @@ class _AddMessageViewState extends State<AddMessageView> {
                     AddMessageEvent.submitted(
                       messageData: MessageData(_image, desc),
                     ),
+                  );
+                  context.router.push(
+                    ChooseServiceRoute(providerId: widget.providerData.id),
                   );
                 }
               },

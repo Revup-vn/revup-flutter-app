@@ -24,6 +24,7 @@ class ChooseServicePage extends StatelessWidget {
         sr,
         providerId,
         mayBeUser,
+        context.read(),
       ),
       child: const ChooseServiceView(),
     );

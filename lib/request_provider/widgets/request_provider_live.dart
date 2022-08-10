@@ -1,0 +1,254 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:revup_core/core.dart';
+
+import '../../find_provider/models/provider_data.u.dart';
+import '../../map/map_api/map_api.dart';
+import '../../map/models/directions_model.dart';
+
+class RequestProviderLive extends StatefulWidget {
+  const RequestProviderLive({
+    super.key,
+    required this.providerData,
+    required this.directions,
+    required this.fromMaker,
+    required this.toMarker,
+    required this.movingFees,
+    required this.userStore,
+  });
+  final ProviderData providerData;
+  final Directions directions;
+  final Marker fromMaker;
+  final Marker toMarker;
+  final int movingFees;
+  final IStore<AppUser> userStore;
+
+  @override
+  State<RequestProviderLive> createState() => _RequestProviderLiveState();
+}
+
+class _RequestProviderLiveState extends State<RequestProviderLive> {
+  late CameraPosition _initialLocation;
+  late GoogleMapController mapController;
+  late String _distance;
+  Set<Marker> markers = {};
+  late LatLng _startCoordinate;
+  Map<PolylineId, Polyline> initialPolylines = {};
+
+  PolylinePoints? polylinePoints;
+  List<LatLng> polylineCoordinates = [];
+
+  double _coordinateDistance(
+      double lat1, double lng1, double lat2, double lng2) {
+    const p = 0.017453292519943295;
+    final a = 0.5 -
+        cos((lat2 - lat1) * p) / 2 +
+        cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lng2 - lng1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
+  }
+
+  Future<Tuple2<Map<PolylineId, Polyline>, List<LatLng>>> _createPolylines(
+    double fromLat,
+    double fromLng,
+    double toLat,
+    double toLng,
+  ) async {
+    polylinePoints = PolylinePoints();
+    final directions =
+        await getDirections(LatLng(fromLat, fromLng), LatLng(toLat, toLng));
+    final polylineCoordinates = <LatLng>[];
+    directions.polylinePoints.forEach((PointLatLng point) {
+      polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+    });
+    const id = PolylineId('polyline');
+    final polyline = Polyline(
+      polylineId: id,
+      color: Colors.red,
+      points: polylineCoordinates,
+      width: 3,
+    );
+    return Tuple2({id: polyline}, polylineCoordinates);
+  }
+
+  Future<Map<PolylineId, Polyline>> _calculateDurationAndDistance({
+    required double fromLat,
+    required double fromLng,
+    required double toLat,
+    required double toLng,
+  }) async {
+    if (markers.isNotEmpty) markers.clear();
+    final fromCoorString = '($fromLat, $fromLng)';
+    final toCoorString = '($toLat, $toLng)';
+    // Start Location Marker
+    var fromMarker = Marker(
+      markerId: MarkerId(fromCoorString),
+      position: LatLng(fromLat, fromLng),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+    );
+
+    var toMarker = Marker(
+      markerId: MarkerId(toCoorString),
+      position: LatLng(toLat, toLng),
+    );
+    markers
+      ..add(fromMarker)
+      ..add(toMarker);
+
+    final miny = (fromLat <= toLat) ? fromLat : toLat;
+    final minx = (fromLng <= toLng) ? fromLng : toLng;
+    final maxy = (fromLat <= toLat) ? toLat : fromLat;
+    final maxx = (fromLng <= toLng) ? toLng : toLat;
+
+    final southWestLatitude = miny;
+    final southWestLongitude = minx;
+
+    final northEastLatitude = maxy;
+    final northEastLongitude = maxx;
+
+    // Accommodate the two locations within the camera view of the map
+    await mapController.animateCamera(
+      CameraUpdate.newLatLngBounds(
+        LatLngBounds(
+          northeast: LatLng(northEastLatitude, northEastLongitude),
+          southwest: LatLng(southWestLatitude, southWestLongitude),
+        ),
+        100,
+      ),
+    );
+
+    final result = await _createPolylines(
+      fromLat,
+      fromLng,
+      toLat,
+      toLng,
+    );
+
+    final polylines = result.value1;
+    final polylineCoordinates = result.value2;
+
+    var totalDistance = 0.0;
+
+    for (var i = 0; i < polylineCoordinates.length - 1; i++) {
+      totalDistance += _coordinateDistance(
+        polylineCoordinates[i].latitude,
+        polylineCoordinates[i].longitude,
+        polylineCoordinates[i + 1].latitude,
+        polylineCoordinates[i + 1].longitude,
+      );
+    }
+    _distance = totalDistance.toStringAsFixed(2);
+    return polylines;
+  }
+
+  void initPolylines() async {
+    final fromLat = widget.fromMaker.position.latitude;
+    final fromLng = widget.fromMaker.position.longitude;
+
+    final toLat = widget.toMarker.position.longitude;
+    final toLng = widget.toMarker.position.longitude;
+    initialPolylines = await _calculateDurationAndDistance(
+      fromLat: fromLat,
+      fromLng: fromLng,
+      toLat: toLat,
+      toLng: toLng,
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void initState() {
+    _startCoordinate = LatLng(
+      widget.fromMaker.position.latitude,
+      widget.fromMaker.position.longitude,
+    );
+    _initialLocation = CameraPosition(target: _startCoordinate, zoom: 15);
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream:
+          widget.userStore.collection().doc(widget.providerData.id).snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return GoogleMap(
+            padding: const EdgeInsets.only(bottom: 320),
+            initialCameraPosition: _initialLocation,
+            onMapCreated: (GoogleMapController controller) {
+              mapController = controller;
+              initPolylines();
+            },
+            markers: Set<Marker>.from(markers),
+            polylines: {
+              Polyline(
+                polylineId: const PolylineId('polyline'),
+                color: Colors.red,
+                width: 5,
+                points: widget.directions.polylinePoints
+                    .map((e) => LatLng(e.latitude, e.longitude))
+                    .toList(),
+              ),
+            },
+          );
+        }
+        final providerLoc = snapshot.data!.data()!['cur_location'] as GeoPoint;
+        return FutureBuilder<Map<PolylineId, Polyline>>(
+          future: _calculateDurationAndDistance(
+            fromLat: providerLoc.latitude,
+            fromLng: providerLoc.longitude,
+            toLat: providerLoc.latitude,
+            toLng: providerLoc.longitude,
+          ),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return GoogleMap(
+                padding: const EdgeInsets.only(bottom: 320),
+                initialCameraPosition: _initialLocation,
+                onMapCreated: (GoogleMapController controller) {
+                  mapController = controller;
+                  initPolylines();
+                },
+                markers: Set<Marker>.from(markers),
+                polylines: {
+                  Polyline(
+                    polylineId: const PolylineId('polyline'),
+                    color: Colors.red,
+                    width: 5,
+                    points: widget.directions.polylinePoints
+                        .map((e) => LatLng(e.latitude, e.longitude))
+                        .toList(),
+                  ),
+                },
+              );
+            }
+            return GoogleMap(
+              markers: Set<Marker>.from(markers),
+              initialCameraPosition: CameraPosition(
+                target: LatLng(
+                  providerLoc.latitude,
+                  providerLoc.longitude,
+                ),
+              ),
+              myLocationEnabled: true,
+              myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
+              polylines: Set<Polyline>.of(snapshot.data!.values),
+              onMapCreated: (GoogleMapController controller) {
+                mapController = controller;
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+}

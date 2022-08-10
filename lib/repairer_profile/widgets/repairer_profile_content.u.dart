@@ -120,6 +120,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                           context.router.push(
                             RequestProviderRoute(
                               providerData: provider,
+                              recordType: 'pending',
                             ),
                           );
                         },

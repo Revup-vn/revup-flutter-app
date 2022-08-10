@@ -1,24 +1,55 @@
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
+import '../../shared/utils.dart';
 import '../bloc/home_bloc.dart';
 import 'app_service_panel.u.dart';
 import 'repair_review_home_page.u.dart';
 
-class HomeBodyView extends StatelessWidget {
+class HomeBodyView extends StatefulWidget {
   const HomeBodyView({super.key});
+
+  @override
+  State<HomeBodyView> createState() => _HomeBodyViewState();
+}
+
+class _HomeBodyViewState extends State<HomeBodyView> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final blocPage = context.watch<HomeBloc>();
+
     blocPage.state.maybeWhen(
-      initial: () => blocPage.add(const HomeEvent.started()),
+      initial: () async {
+        final isGranted = await requestUserLocation();
+        if (!isGranted) {
+          await context.router.push(const PermissionRoute());
+        } else {
+          final position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high,
+          );
+          final boxLocation = await Hive.openBox<dynamic>('location');
+          await boxLocation.put('currentLat', position.latitude);
+          await boxLocation.put('currentLng', position.longitude);
+          blocPage.add(const HomeEvent.started());
+        }
+      },
       orElse: () => false,
     );
 

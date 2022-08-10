@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
 import '../../service/widgets/service_avatar.dart';
 
 class RequestDetailsLive extends StatelessWidget {
@@ -46,7 +45,7 @@ class RequestDetailsLive extends StatelessWidget {
               ),
               Center(
                 child: AutoSizeText(
-                  l10n.paymentFeeOfTransportLabel,
+                  l10n.repairerArrivedLabel,
                   style: Theme.of(context).textTheme.titleLarge ??
                       const TextStyle(
                         fontSize: 22,
@@ -91,6 +90,69 @@ class RequestDetailsLive extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
+                        child: Row(
+                          children: [
+                            SizedBox.square(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.list_alt,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox.square(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.call,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox.square(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.videocam,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
                         child: Column(
                           children: [
                             AutoSizeText(
@@ -109,46 +171,14 @@ class RequestDetailsLive extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AutoSizeText(l10n.movingFeeLabel),
-                  AutoSizeText(movingFees.toString()),
-                ],
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Icon(Icons.paid),
-                          AutoSizeText(l10n.cashLabel),
-                        ],
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Icon(Icons.local_offer),
-                          AutoSizeText(l10n.endowLabel),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               ElevatedButton(
                 onPressed: () {
-                  context.router.push(
-                    AddMessageRoute(
-                      providerData: providerData,
-                      movingFee: movingFees,
-                    ),
-                  );
+                  // context.router.push(
+                  //   AddMessageRoute(
+                  //     providerData: providerData,
+                  //     movingFee: movingFees,
+                  //   ),
+                  // );
                 },
                 child: AutoSizeText(l10n.repairerArrivedLabel),
               ),

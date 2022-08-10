@@ -1,5 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -8,29 +9,8 @@ import '../../router/app_router.gr.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.user});
-  // HomePage({super.key});
 
   final AppUser user;
-  // final user = AppUser.consumer(
-  //   uuid: '1a',
-  //   firstName: 'Nam',
-  //   lastName: 'Ngoc',
-  //   phone: '0866199497',
-  //   dob: DateTime.now(),
-  //   addr: 'Ninh Binh',
-  //   email: 'namngoc231@gmail.com',
-  //   active: true,
-  //   avatarUrl:
-  //       'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  //   createdTime: DateTime.now(),
-  //   lastUpdatedTime: DateTime.now(),
-  //   vac: const VideoCallAccount(
-  //     id: '',
-  //     username: '',
-  //     pwd: '',
-  //     email: '',
-  //   ),
-  // );
 
   @override
   Widget build(BuildContext context) {

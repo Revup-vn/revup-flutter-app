@@ -19,12 +19,16 @@ part 'request_provider_state.dart';
 
 class RequestProviderBloc
     extends Bloc<RequestProviderEvent, RequestProviderState> {
-  RequestProviderBloc(this.providerData, this._userStore)
-      : super(const _Initial()) {
+  RequestProviderBloc(
+    this.providerData,
+    this._userStore,
+    this.recordType,
+  ) : super(const _Initial()) {
     on<RequestProviderEvent>(_onEvent);
   }
   final ProviderData providerData;
   final IStore<AppUser> _userStore;
+  final String recordType;
   FutureOr<void> _onEvent(
     RequestProviderEvent event,
     Emitter<RequestProviderState> emit,
@@ -54,7 +58,6 @@ class RequestProviderBloc
           position: fromLoc,
           icon:
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
-          // TODO(cantgim): custom marker avatar
         );
         emit(
           RequestProviderState.success(
