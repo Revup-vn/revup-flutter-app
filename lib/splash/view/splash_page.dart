@@ -37,7 +37,7 @@ class SplashPage extends StatelessWidget {
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
-            authenticated: (type) => HomeRoute(),
+            authenticated: (type) => HomeRoute(user: type.user),
             orElse: LoginRoute.new,
           ),
           predicate: (_) => true,

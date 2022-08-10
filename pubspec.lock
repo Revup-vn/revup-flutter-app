@@ -762,7 +762,7 @@ packages:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.0"
+    version: "5.4.1"
   google_sign_in_android:
     dependency: transitive
     description:
@@ -1112,7 +1112,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   pedantic:
     dependency: transitive
     description:
@@ -1230,10 +1230,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "4372404c7440f713b99f0970728aa3f30dd7db69"
+      resolved-ref: d390b6c4390edf3ca3f6ad39fe9b3b2b50643d9f
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "4.1.0-dev"
+    version: "5.1.0-dev"
   rxdart:
     dependency: transitive
     description:

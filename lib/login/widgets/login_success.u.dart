@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../router/app_router.gr.dart';
@@ -18,8 +17,8 @@ class LoginSuccess extends StatelessWidget {
     Future<void>.delayed(
       const Duration(seconds: 3),
       () => context.router.pushAndPopUntil(
-        // HomeRoute(user: type.user),
-        HomeRoute(),
+        HomeRoute(user: type.user),
+        // HomeRoute(),
         predicate: (dynamic _) => false,
       ),
     );

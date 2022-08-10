@@ -1,19 +1,101 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
+import '../../../l10n/l10n.dart';
+import '../model/service_model.dart';
 
-import '../../l10n/l10n.dart';
-
-class RepairStatusView extends StatelessWidget {
-  const RepairStatusView({super.key});
-
+class OrderDetailContent extends StatelessWidget {
+  const OrderDetailContent(
+    this.currentListService,
+    this.total, {
+    required this.ready,
+    super.key,
+  });
+  final IList<ServiceModel> currentListService;
+  final int total;
+  final bool ready;
   @override
   Widget build(BuildContext context) {
+    final data = currentListService.toList();
     final l10n = context.l10n;
-
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.close),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            onPressed: ready
+                ? () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  top: 10,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        context.l10n.cancelUpdateServiceLabel,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelLarge,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                right: 1,
+                                bottom: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        var count = 0;
+                                        context.router.popUntil(
+                                          (route) => count++ >= 2,
+                                        );
+                                      },
+                                      child: AutoSizeText(
+                                        context.l10n.confirmLabel,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        context.router.pop();
+                                      },
+                                      child: AutoSizeText(
+                                        context.l10n.cancelLabel,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                : () => context.router.pop(),
+            child: Text(l10n.cancelLabel),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -26,7 +108,7 @@ class RepairStatusView extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         AutoSizeText(
-                          l10n.workerRepairLabel,
+                          l10n.serviceDetailLabel,
                           style: Theme.of(context)
                                   .textTheme
                                   .titleLarge
@@ -52,10 +134,8 @@ class RepairStatusView extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.add_box_outlined),
                           onPressed: () {
-                            // context.router.push(
-                            //   const OrderDetailRoute(),
-                            // );
-                            // TODO(cantgim): push orderdetail page
+                            // TODO(cantgim): route sang chon dich vu
+                            // add event add new service
                           },
                         ),
                       ],
@@ -64,7 +144,7 @@ class RepairStatusView extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 5,
+                    itemCount: data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SizedBox(
                         height: 50,
@@ -72,11 +152,11 @@ class RepairStatusView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             AutoSizeText(
-                              'services.elementAt(index).name',
+                              data[index].name,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              'services.elementAt(index).priceĐ',
+                              '${data[index].price}000đ',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
@@ -119,7 +199,7 @@ class RepairStatusView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            'totalPriceĐ',
+                            '$totalđ',
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -132,7 +212,11 @@ class RepairStatusView extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
-                    onPressed: null,
+                    onPressed: ready
+                        ? () {
+                            // TODO(cantgim): them event submit vao day.
+                          }
+                        : null,
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(
                       l10n.updateLabel,

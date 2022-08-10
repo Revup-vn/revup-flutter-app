@@ -43,8 +43,8 @@ import 'package:revup/login/view/login_page.u.dart' as _i12;
 import 'package:revup/notification_consumer/view/notification_consumer_page.u.dart'
     as _i33;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i13;
-import 'package:revup/order-sevice/view/order_detail_page.u.dart' as _i2;
-import 'package:revup/order-sevice/view/repair_status_page.u.dart' as _i3;
+import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
+import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
 import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
     as _i25;
 import 'package:revup/otp/view/otp_page.u.dart' as _i14;
@@ -111,10 +111,10 @@ class AppRouter extends _i35.RootStackRouter {
               key: args.key));
     },
     HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+      final args = routeData.argsAs<HomeRouteArgs>();
       return _i35.AdaptivePage<void>(
-          routeData: routeData, child: _i7.HomePage(key: args.key));
+          routeData: routeData,
+          child: _i7.HomePage(key: args.key, user: args.user));
     },
     HistoryConsumerDetailRoute.name: (routeData) {
       return _i35.AdaptivePage<void>(
@@ -226,11 +226,8 @@ class AppRouter extends _i35.RootStackRouter {
               movingFee: args.movingFee));
     },
     OverViewOrderRoute.name: (routeData) {
-      final args = routeData.argsAs<OverViewOrderRouteArgs>();
       return _i35.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i25.OverViewOrderPage(
-              key: args.key, providerID: args.providerID));
+          routeData: routeData, child: const _i25.OverViewOrderPage());
     },
     FAQsRoute.name: (routeData) {
       return _i35.AdaptivePage<void>(
@@ -276,7 +273,7 @@ class AppRouter extends _i35.RootStackRouter {
 
   @override
   List<_i35.RouteConfig> get routes => [
-        _i35.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i35.RouteConfig(SplashRoute.name, path: '/'),
         _i35.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
         _i35.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i35.RouteConfig(ServiceInvoiceRoute.name,
@@ -285,7 +282,7 @@ class AppRouter extends _i35.RootStackRouter {
             path: '/invoice-payment-page'),
         _i35.RouteConfig(ReviewRepairmanRoute.name,
             path: '/review-repairman-page'),
-        _i35.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i35.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i35.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
           _i35.RouteConfig(HistoryConsumerRoute.name,
@@ -330,7 +327,7 @@ class AppRouter extends _i35.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i35.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -464,23 +461,28 @@ class ReviewRepairmanRouteArgs {
 /// generated route for
 /// [_i7.HomePage]
 class HomeRoute extends _i35.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i36.Key? key, List<_i35.PageRouteInfo>? children})
+  HomeRoute(
+      {_i36.Key? key,
+      required _i37.AppUser user,
+      List<_i35.PageRouteInfo>? children})
       : super(HomeRoute.name,
-            path: '/',
-            args: HomeRouteArgs(key: key),
+            path: '/home-page',
+            args: HomeRouteArgs(key: key, user: user),
             initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
 class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
+  const HomeRouteArgs({this.key, required this.user});
 
   final _i36.Key? key;
 
+  final _i37.AppUser user;
+
   @override
   String toString() {
-    return 'HomeRouteArgs{key: $key}';
+    return 'HomeRouteArgs{key: $key, user: $user}';
   }
 }
 
@@ -897,26 +899,11 @@ class AddMessageRouteArgs {
 
 /// generated route for
 /// [_i25.OverViewOrderPage]
-class OverViewOrderRoute extends _i35.PageRouteInfo<OverViewOrderRouteArgs> {
-  OverViewOrderRoute({_i36.Key? key, required String providerID})
-      : super(OverViewOrderRoute.name,
-            path: '/over-view-order-page',
-            args: OverViewOrderRouteArgs(key: key, providerID: providerID));
+class OverViewOrderRoute extends _i35.PageRouteInfo<void> {
+  const OverViewOrderRoute()
+      : super(OverViewOrderRoute.name, path: '/over-view-order-page');
 
   static const String name = 'OverViewOrderRoute';
-}
-
-class OverViewOrderRouteArgs {
-  const OverViewOrderRouteArgs({this.key, required this.providerID});
-
-  final _i36.Key? key;
-
-  final String providerID;
-
-  @override
-  String toString() {
-    return 'OverViewOrderRouteArgs{key: $key, providerID: $providerID}';
-  }
 }
 
 /// generated route for

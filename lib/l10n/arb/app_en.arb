@@ -283,5 +283,7 @@
   "enableLocationLabel": "Allow location access",
   "chooseVehicleLabel": "Select vehicle type",
   "carLabel": "Car",
-  "motorbikeLabel": "Motorbike"
+  "motorbikeLabel": "Motorbike",
+  "repairerArrivedLabel": "Repairer arrived",
+  "onGoingRequestLabel": "Repairer is on the way"
 }

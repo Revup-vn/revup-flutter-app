@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -23,8 +22,7 @@ class ServiceAvatar extends StatelessWidget {
             gaplessPlayback: true,
             width: 64,
           ),
-          // ignore: implicit_dynamic_parameter
-          errorWidget: (context, url, error) {
+          errorWidget: (context, url, dynamic error) {
             return Assets.screens.dfAvatar.image(
               fit: BoxFit.cover,
               height: 64,

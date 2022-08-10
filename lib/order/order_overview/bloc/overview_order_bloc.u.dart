@@ -34,16 +34,19 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
     await event.when(
       started: () async {
         emit(const OverviewOrderState.loading());
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        final pid = boxRprRecord.get('pid', defaultValue: '') as String;
-        final maybeProviderData = (await _userStore.get(pid))
+        // final boxRprRecord = Hive.box<dynamic>('repairRecord');
+        // final pid = boxRprRecord.get('pid', defaultValue: '') as String;
+        final maybeProviderData = (await _userStore.get(providerID))
             .fold<Option<AppUser>>(
               (l) => none(),
               some,
             )
             .getOrElse(() => throw NullThrownError());
         OverviewOrderModel.fromDto(maybeProviderData, 100);
-        final boxServiceSelect = Hive.box<dynamic>('serviceSelect');
+        final boxServiceSelect = await Hive.openBox<dynamic>('serviceSelect');
+        await boxServiceSelect.put('1', 2);
+        await boxServiceSelect.put('2', 3);
+        await boxServiceSelect.put('3', 4);
         emit(
           OverviewOrderState.loadDataSuccess(
             overviewOrderData: OverviewOrderModel.fromDto(

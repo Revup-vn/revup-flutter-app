@@ -263,5 +263,7 @@
   "enableLocationLabel": "Cho phép truy cập vị trí",
   "chooseVehicleLabel": "Chọn loại phương tiện",
   "carLabel": "Ô tô",
-  "motorbikeLabel": "Xe máy"
+  "motorbikeLabel": "Xe máy",
+  "repairerArrivedLabel": "Xác nhận thợ sửa đã đến",
+  "onGoingRequestLabel": "Thợ đang trên đường"
 }
