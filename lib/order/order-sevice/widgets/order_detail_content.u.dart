@@ -21,6 +21,7 @@ class OrderDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = currentListService.toList();
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[

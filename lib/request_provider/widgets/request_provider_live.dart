@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:revup_core/core.dart';
 import '../../find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+
+// ignore: unnecessary_import
 
 class RequestProviderLive extends StatefulWidget {
   const RequestProviderLive({
@@ -44,11 +47,16 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
   List<LatLng> polylineCoordinates = [];
 
   double _coordinateDistance(
-      double lat1, double lng1, double lat2, double lng2) {
+    double lat1,
+    double lng1,
+    double lat2,
+    double lng2,
+  ) {
     const p = 0.017453292519943295;
     final a = 0.5 -
         cos((lat2 - lat1) * p) / 2 +
         cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lng2 - lng1) * p)) / 2;
+
     return 12742 * asin(sqrt(a));
   }
 
@@ -62,9 +70,9 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
     final directions =
         await getDirections(LatLng(fromLat, fromLng), LatLng(toLat, toLng));
     final polylineCoordinates = <LatLng>[];
-    directions.polylinePoints.forEach((PointLatLng point) {
+    for (final point in directions.polylinePoints) {
       polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-    });
+    }
     const id = PolylineId('polyline');
     final polyline = Polyline(
       polylineId: id,
@@ -72,6 +80,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
       points: polylineCoordinates,
       width: 3,
     );
+
     return Tuple2({id: polyline}, polylineCoordinates);
   }
 
@@ -85,13 +94,13 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
     final fromCoorString = '($fromLat, $fromLng)';
     final toCoorString = '($toLat, $toLng)';
     // Start Location Marker
-    var fromMarker = Marker(
+    final fromMarker = Marker(
       markerId: MarkerId(fromCoorString),
       position: LatLng(fromLat, fromLng),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
     );
 
-    var toMarker = Marker(
+    final toMarker = Marker(
       markerId: MarkerId(toCoorString),
       position: LatLng(toLat, toLng),
     );
@@ -142,10 +151,11 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
       );
     }
     _distance = totalDistance.toStringAsFixed(2);
+
     return polylines;
   }
 
-  void initPolylines() async {
+  Future<void> initPolylines() async {
     final fromLat = widget.fromMaker.position.latitude;
     final fromLng = widget.fromMaker.position.longitude;
 
@@ -201,6 +211,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
           );
         }
         final providerLoc = snapshot.data!.data()!['cur_location'] as GeoPoint;
+
         return FutureBuilder<Map<PolylineId, Polyline>>(
           future: _calculateDurationAndDistance(
             fromLat: providerLoc.latitude,
@@ -230,6 +241,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
                 },
               );
             }
+
             return GoogleMap(
               markers: Set<Marker>.from(markers),
               initialCameraPosition: CameraPosition(

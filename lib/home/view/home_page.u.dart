@@ -19,11 +19,11 @@ class HomePage extends StatelessWidget {
     return RepositoryProvider.value(
       value: user,
       child: AutoTabsScaffold(
-        routes: const [
-          HomeBodyRoute(),
-          HistoryConsumerRoute(),
-          NotificationConsumerRoute(),
-          AccountRoute(),
+        routes: [
+          const HomeBodyRoute(),
+          HistoryRoute(user: user),
+          const NotificationRoute(),
+          const AccountRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return BottomNavigationBar(

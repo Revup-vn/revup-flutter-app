@@ -92,5 +92,6 @@ Future<String> getDuration(
   );
   final duration =
       response.data!['rows'][0]['elements'][0]['duration']['text'] as String;
+
   return duration;
 }

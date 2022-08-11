@@ -141,7 +141,7 @@
   "homeLabel": "Home",
   "ignoreLabel": "Ignore",
   "imageFromGalleryLabel": "Choose image from gallery",
-  "intoMoneyLabel": "Into Money",
+  "totalMoneyLabel": "Total money",
   "invalidFormatLabel": "Invalid format",
   "invalidOTPLabel": "Invalid OTP code. Please enter again!",
   "invalidPhoneNumberLabel": "Please enter a valid phone number",
@@ -285,5 +285,11 @@
   "carLabel": "Car",
   "motorbikeLabel": "Motorbike",
   "repairerArrivedLabel": "Repairer arrived",
-  "onGoingRequestLabel": "Repairer is on the way"
+  "onGoingRequestLabel": "Repairer is on the way",
+  "newRepairRequestTitle": "New repair request",
+  "newRepairRequestBody": "Location",
+  "needQuotePriceLabel": "Need quote price",
+  "emptyHistoryLabel": "You don't have any repair requests yet",
+  "submitRequestSuccessLabel": "The request has been sent, please wait a moment for the repairer to respond",
+  "backToHomePageLabel": "Back to Home"
 }

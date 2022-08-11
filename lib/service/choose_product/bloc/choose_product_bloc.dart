@@ -72,6 +72,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
         emit(const ChooseProductState.loading());
         if (productData.any((element) => element.name == product)) {
           emit(const ChooseProductState.failure());
+
           return;
         }
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
@@ -84,6 +85,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
 
         if (maybeRecord.isNone()) {
           emit(const ChooseProductState.failure());
+
           return;
         }
 
@@ -94,13 +96,15 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
           PaymentService.pending(
             serviceName: _serviceData.name,
             moneyAmount: _serviceData.serviceFee + selected.price,
-            products: List.from(<PaymentProduct>[
-              PaymentProduct(
-                name: selected.name,
-                unitPrice: selected.price,
-                quantity: 1,
-              )
-            ]),
+            products: List.from(
+              <PaymentProduct>[
+                PaymentProduct(
+                  name: selected.name,
+                  unitPrice: selected.price,
+                  quantity: 1,
+                ),
+              ],
+            ),
           ),
         );
       },

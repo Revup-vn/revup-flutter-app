@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../find_provider/models/provider_data.u.dart';
-import '../../l10n/l10n.dart';
 import '../bloc/request_provider_bloc.dart';
 import '../widgets/request_details_live.dart';
 import '../widgets/request_details_static.dart';
@@ -25,7 +24,6 @@ class RequestProviderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final blocPage = context.watch<RequestProviderBloc>();
     blocPage.state.whenOrNull(
       initial: () => blocPage.add(const RequestProviderEvent.started()),
@@ -38,44 +36,36 @@ class RequestProviderView extends StatelessWidget {
             child: CircularProgressIndicator.adaptive(),
           ),
           success: (directions, fromMaker, toMarker, movingFees) {
-            return Scaffold(
-              resizeToAvoidBottomInset: false,
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-              ),
-              body: Stack(
-                children: <Widget>[
-                  if (recordType == 'pending')
-                    RequestProviderStatic(
-                      providerData: providerData,
-                      directions: directions,
-                      fromMaker: fromMaker,
-                      toMarker: toMarker,
-                      movingFees: movingFees,
-                    )
-                  else
-                    RequestProviderLive(
-                      providerData: providerData,
-                      directions: directions,
-                      fromMaker: fromMaker,
-                      toMarker: toMarker,
-                      movingFees: movingFees,
-                      userStore: userStore,
-                    ),
-                  if (recordType == 'pending')
-                    RequestDetailsStatic(
-                      providerData: providerData,
-                      movingFees: movingFees,
-                    )
-                  else
-                    RequestDetailsLive(
-                      providerData: providerData,
-                      movingFees: movingFees,
-                    ),
-                ],
-              ),
+            return Stack(
+              children: <Widget>[
+                if (recordType == 'pending')
+                  RequestProviderStatic(
+                    providerData: providerData,
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    movingFees: movingFees,
+                  )
+                else
+                  RequestProviderLive(
+                    providerData: providerData,
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    movingFees: movingFees,
+                    userStore: userStore,
+                  ),
+                if (recordType == 'pending')
+                  RequestDetailsStatic(
+                    providerData: providerData,
+                    movingFees: movingFees,
+                  )
+                else
+                  RequestDetailsLive(
+                    providerData: providerData,
+                    movingFees: movingFees,
+                  ),
+              ],
             );
           },
           failure: RequestProviderFailure.new,

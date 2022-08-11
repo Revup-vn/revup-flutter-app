@@ -1,4 +1,4 @@
-part of 'choose_service_bloc.dart';
+part of 'choose_service_bloc.u.dart';
 
 @freezed
 class ChooseServiceState with _$ChooseServiceState {
@@ -15,4 +15,5 @@ class ChooseServiceState with _$ChooseServiceState {
     required IList<ServiceData> serviceData,
     required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
   }) = _OrderModify;
+  const factory ChooseServiceState.submitSuccess() = _SubmitSuccess;
 }

@@ -3,29 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../l10n/l10n.dart';
+import '../model/history_model.dart';
 
-class OrderDetailsItem extends StatelessWidget {
-  const OrderDetailsItem({
-    super.key,
-    required this.vehicleType,
-    required this.serviceName,
-    required this.address,
-    required this.nameVehicleType,
-    required this.totalServiceFee,
-    required this.feeTransport,
-    required this.intoMoney,
-  });
+class OrderDetails extends StatelessWidget {
+  const OrderDetails({super.key, required this.historyModel});
 
-  final String vehicleType;
-  final String serviceName;
-  final String address;
-  final String nameVehicleType;
-  final String totalServiceFee;
-  final String feeTransport;
-  final String intoMoney;
+  final HistoryModel historyModel;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final services = historyModel.services.toList();
 
     return SizedBox(
       height: 235,
@@ -65,21 +52,14 @@ class OrderDetailsItem extends StatelessWidget {
               height: 6,
             ),
             AutoSizeText(
-              '${l10n.serviceLabel}$vehicleType - $serviceName',
+              '${l10n.addressLabel}: ${historyModel.toLocation}',
               style: Theme.of(context).textTheme.labelLarge,
             ),
             const SizedBox(
               height: 6,
             ),
             AutoSizeText(
-              '${l10n.addressLabel}$address',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            AutoSizeText(
-              '${l10n.vehicleTypeLabel}$nameVehicleType',
+              '${l10n.vehicleTypeLabel}${historyModel.vehicleType}',
               style: Theme.of(context).textTheme.labelLarge,
             ),
             const SizedBox(
@@ -92,105 +72,24 @@ class OrderDetailsItem extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            if (historyModel.isComplete)
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: services.length,
+                itemBuilder: (context, index) => Row(
                   children: [
+                    AutoSizeText(services[index].serviceName),
                     AutoSizeText(
-                      l10n.totalServiceFeeLabel,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ) ??
-                          TextStyle(
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    AutoSizeText(
-                      l10n.feeTransportLabel,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ) ??
-                          TextStyle(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    AutoSizeText(
-                      l10n.intoMoneyLabel,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
+                      services[index].map(
+                        pending: (v) => '',
+                        paid: (v) => v.moneyAmount.toString(),
+                        needToVerify: (v) => '',
+                      ),
                     ),
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      totalServiceFee,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ) ??
-                          TextStyle(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    AutoSizeText(
-                      feeTransport,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ) ??
-                          TextStyle(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    AutoSizeText(
-                      intoMoney,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ) ??
-                          const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              ),
           ],
         ),
       ),

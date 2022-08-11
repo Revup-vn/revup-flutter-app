@@ -11,7 +11,7 @@ import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../repairer_profile/models/service_data.u.dart';
 import '../../router/router.dart';
-import '../choose_service/bloc/choose_service_bloc.dart';
+import '../choose_service/bloc/choose_service_bloc.u.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
   const ServiceCheckboxTile({
@@ -76,7 +76,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             title: AutoSizeText(widget.serviceData.name),
             subtitle: AutoSizeText(
               '${l10n.servicePriceLabel}: '
-              '${widget.serviceData.serviceFee}',
+              '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : widget.serviceData.serviceFee}''',
             ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,

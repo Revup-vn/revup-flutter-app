@@ -21,7 +21,13 @@ class RepairerProfilePage extends StatelessWidget {
         sr,
         providerData,
       ),
-      child: const RepairerProfileView(),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
+        extendBodyBehindAppBar: true,
+        body: const RepairerProfileView(),
+      ),
     );
   }
 }

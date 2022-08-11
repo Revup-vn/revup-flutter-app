@@ -11,64 +11,66 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i41;
 
-import 'package:auto_route/auto_route.dart' as _i36;
-import 'package:dartz/dartz.dart' as _i44;
 import 'package:flutter/material.dart' as _i37;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i45;
-import 'package:revup/account/model/user_model.dart' as _i42;
+
+import 'package:auto_route/auto_route.dart' as _i36;
+import 'package:dartz/dartz.dart' as _i45;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
+import 'package:revup_core/core.dart' as _i38;
+
+import 'package:revup/account/model/user_model.dart' as _i43;
 import 'package:revup/account/view/account_page.u.dart' as _i35;
-import 'package:revup/add_message/view/add_message_page.dart' as _i24;
-import 'package:revup/find_nearby/view/find_nearby_page.dart' as _i20;
-import 'package:revup/find_provider/models/provider_data.u.dart' as _i46;
+import 'package:revup/add_message/view/add_message_page.u.dart' as _i24;
+import 'package:revup/find_nearby/view/find_nearby_page.u.dart' as _i20;
+import 'package:revup/find_provider/models/provider_data.u.dart' as _i47;
 import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/guide-support/view/about_us_page.u.dart' as _i28;
 import 'package:revup/guide-support/view/faqs_page.u.dart' as _i26;
 import 'package:revup/guide-support/view/terms_privacy_page.u.dart' as _i29;
 import 'package:revup/guide-support/widgets/faqs_item_otp.u.dart' as _i27;
-import 'package:revup/history_consumer/view/history_consumer_page.u.dart'
-    as _i33;
-import 'package:revup/history_consumer/view/history_detail_consumer_page.u.dart'
-    as _i8;
+import 'package:revup/history_consumer/model/history_model.dart' as _i42;
+import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i8;
+import 'package:revup/history_consumer/view/history_page.u.dart' as _i33;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i32;
 import 'package:revup/invoice/models/provider_data.dart' as _i39;
 import 'package:revup/invoice/models/service_data.dart' as _i40;
 import 'package:revup/invoice/view/service_invoice_page.u.dart' as _i4;
 import 'package:revup/invoice_payment/view/invoice_payment_page.u.dart' as _i5;
-import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i30;
 import 'package:revup/login/view/login_page.u.dart' as _i12;
-import 'package:revup/notification_consumer/view/notification_consumer_page.u.dart'
-    as _i34;
+import 'package:revup/notification_page/view/notification_page.u.dart' as _i34;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i13;
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
-import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
-    as _i25;
 import 'package:revup/otp/view/otp_page.u.dart' as _i14;
 import 'package:revup/payment/view/payment_page.u.dart' as _i9;
 import 'package:revup/permission_page/permission_page.u.dart' as _i31;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i15;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i11;
-import 'package:revup/repairer_profile/models/service_data.u.dart' as _i43;
-import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
-    as _i23;
+import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
 import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
-import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
-    as _i6;
-import 'package:revup/service/choose_product/view/choose_product_page.dart'
-    as _i19;
-import 'package:revup/service/choose_service/view/choose_service_page.dart'
-    as _i16;
-import 'package:revup/service/new_service/view/new_service_request_page.dart'
-    as _i17;
-import 'package:revup/service/service-details/view/service_detail_page.dart'
-    as _i18;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i10;
-import 'package:revup_core/core.dart' as _i38;
+
+import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i30;
+import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
+    as _i25;
+import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
+    as _i23;
+import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
+    as _i6;
+import 'package:revup/service/choose_product/view/choose_product_page.u.dart'
+    as _i19;
+import 'package:revup/service/choose_service/view/choose_service_page.u.dart'
+    as _i16;
+import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
+    as _i17;
+import 'package:revup/service/service-details/view/service_detail_page.u.dart'
+    as _i18;
 
 class AppRouter extends _i36.RootStackRouter {
   AppRouter([_i37.GlobalKey<_i37.NavigatorState>? navigatorKey])
@@ -117,9 +119,12 @@ class AppRouter extends _i36.RootStackRouter {
           routeData: routeData,
           child: _i7.HomePage(key: args.key, user: args.user));
     },
-    HistoryConsumerDetailRoute.name: (routeData) {
+    HistoryDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<HistoryDetailRouteArgs>();
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i8.HistoryConsumerDetailPage());
+          routeData: routeData,
+          child: _i8.HistoryDetailPage(
+              key: args.key, historyModel: args.historyModel));
     },
     PaymentRoute.name: (routeData) {
       final args = routeData.argsAs<PaymentRouteArgs>();
@@ -264,13 +269,15 @@ class AppRouter extends _i36.RootStackRouter {
       return _i36.AdaptivePage<void>(
           routeData: routeData, child: const _i32.HomeBodyPage());
     },
-    HistoryConsumerRoute.name: (routeData) {
+    HistoryRoute.name: (routeData) {
+      final args = routeData.argsAs<HistoryRouteArgs>();
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i33.HistoryConsumerPage());
+          routeData: routeData,
+          child: _i33.HistoryPage(key: args.key, user: args.user));
     },
-    NotificationConsumerRoute.name: (routeData) {
+    NotificationRoute.name: (routeData) {
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i34.NotificationConsumerPage());
+          routeData: routeData, child: const _i34.NotificationPage());
     },
     AccountRoute.name: (routeData) {
       return _i36.AdaptivePage<void>(
@@ -292,15 +299,14 @@ class AppRouter extends _i36.RootStackRouter {
         _i36.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i36.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
-          _i36.RouteConfig(HistoryConsumerRoute.name,
-              path: 'history-consumer-page', parent: HomeRoute.name),
-          _i36.RouteConfig(NotificationConsumerRoute.name,
-              path: 'notification-consumer-page', parent: HomeRoute.name),
+          _i36.RouteConfig(HistoryRoute.name,
+              path: 'history-page', parent: HomeRoute.name),
+          _i36.RouteConfig(NotificationRoute.name,
+              path: 'notification-page', parent: HomeRoute.name),
           _i36.RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
-        _i36.RouteConfig(HistoryConsumerDetailRoute.name,
-            path: '/history-consumer-detail-page'),
+        _i36.RouteConfig(HistoryDetailRoute.name, path: '/history-detail-page'),
         _i36.RouteConfig(PaymentRoute.name, path: '/payment-page'),
         _i36.RouteConfig(TestRoute.name, path: '/test-page'),
         _i36.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
@@ -495,13 +501,27 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i8.HistoryConsumerDetailPage]
-class HistoryConsumerDetailRoute extends _i36.PageRouteInfo<void> {
-  const HistoryConsumerDetailRoute()
-      : super(HistoryConsumerDetailRoute.name,
-            path: '/history-consumer-detail-page');
+/// [_i8.HistoryDetailPage]
+class HistoryDetailRoute extends _i36.PageRouteInfo<HistoryDetailRouteArgs> {
+  HistoryDetailRoute({_i37.Key? key, required _i42.HistoryModel historyModel})
+      : super(HistoryDetailRoute.name,
+            path: '/history-detail-page',
+            args: HistoryDetailRouteArgs(key: key, historyModel: historyModel));
 
-  static const String name = 'HistoryConsumerDetailRoute';
+  static const String name = 'HistoryDetailRoute';
+}
+
+class HistoryDetailRouteArgs {
+  const HistoryDetailRouteArgs({this.key, required this.historyModel});
+
+  final _i37.Key? key;
+
+  final _i42.HistoryModel historyModel;
+
+  @override
+  String toString() {
+    return 'HistoryDetailRouteArgs{key: $key, historyModel: $historyModel}';
+  }
 }
 
 /// generated route for
@@ -546,7 +566,7 @@ class TestRoute extends _i36.PageRouteInfo<void> {
 class UpdateProfileRoute extends _i36.PageRouteInfo<UpdateProfileRouteArgs> {
   UpdateProfileRoute(
       {_i37.Key? key,
-      required _i42.UserModel user,
+      required _i43.UserModel user,
       required _i38.AppUser model})
       : super(UpdateProfileRoute.name,
             path: '/update-profile-page',
@@ -561,7 +581,7 @@ class UpdateProfileRouteArgs {
 
   final _i37.Key? key;
 
-  final _i42.UserModel user;
+  final _i43.UserModel user;
 
   final _i38.AppUser model;
 
@@ -708,9 +728,9 @@ class ServiceDetailRoute extends _i36.PageRouteInfo<ServiceDetailRouteArgs> {
   ServiceDetailRoute(
       {_i37.Key? key,
       required String providerId,
-      required _i43.ServiceData serviceData,
+      required _i44.ServiceData serviceData,
       required List<
-              _i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
+              _i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
           categories})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
@@ -734,9 +754,9 @@ class ServiceDetailRouteArgs {
 
   final String providerId;
 
-  final _i43.ServiceData serviceData;
+  final _i44.ServiceData serviceData;
 
-  final List<_i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
+  final List<_i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
       categories;
 
   @override
@@ -750,9 +770,9 @@ class ServiceDetailRouteArgs {
 class ChooseProductRoute extends _i36.PageRouteInfo<ChooseProductRouteArgs> {
   ChooseProductRoute(
       {_i37.Key? key,
-      required _i43.ServiceData serviceData,
+      required _i44.ServiceData serviceData,
       required List<
-              _i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
+              _i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
           categories,
       required String providerId})
       : super(ChooseProductRoute.name,
@@ -775,9 +795,9 @@ class ChooseProductRouteArgs {
 
   final _i37.Key? key;
 
-  final _i43.ServiceData serviceData;
+  final _i44.ServiceData serviceData;
 
-  final List<_i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
+  final List<_i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
       categories;
 
   final String providerId;
@@ -791,7 +811,7 @@ class ChooseProductRouteArgs {
 /// generated route for
 /// [_i20.FindNearbyPage]
 class FindNearbyRoute extends _i36.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i37.Key? key, required _i45.LatLng currentLocation})
+  FindNearbyRoute({_i37.Key? key, required _i46.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -805,7 +825,7 @@ class FindNearbyRouteArgs {
 
   final _i37.Key? key;
 
-  final _i45.LatLng currentLocation;
+  final _i46.LatLng currentLocation;
 
   @override
   String toString() {
@@ -819,7 +839,7 @@ class RequestProviderRoute
     extends _i36.PageRouteInfo<RequestProviderRouteArgs> {
   RequestProviderRoute(
       {_i37.Key? key,
-      required _i46.ProviderData providerData,
+      required _i47.ProviderData providerData,
       required String recordType})
       : super(RequestProviderRoute.name,
             path: '/request-provider-page',
@@ -835,7 +855,7 @@ class RequestProviderRouteArgs {
 
   final _i37.Key? key;
 
-  final _i46.ProviderData providerData;
+  final _i47.ProviderData providerData;
 
   final String recordType;
 
@@ -858,7 +878,7 @@ class ListRepairerRoute extends _i36.PageRouteInfo<void> {
 /// [_i23.RepairerProfilePage]
 class RepairerProfileRoute
     extends _i36.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({_i37.Key? key, required _i46.ProviderData providerData})
+  RepairerProfileRoute({_i37.Key? key, required _i47.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
             args:
@@ -872,7 +892,7 @@ class RepairerProfileRouteArgs {
 
   final _i37.Key? key;
 
-  final _i46.ProviderData providerData;
+  final _i47.ProviderData providerData;
 
   @override
   String toString() {
@@ -885,7 +905,7 @@ class RepairerProfileRouteArgs {
 class AddMessageRoute extends _i36.PageRouteInfo<AddMessageRouteArgs> {
   AddMessageRoute(
       {_i37.Key? key,
-      required _i46.ProviderData providerData,
+      required _i47.ProviderData providerData,
       required int movingFee})
       : super(AddMessageRoute.name,
             path: '/add-message-page',
@@ -901,7 +921,7 @@ class AddMessageRouteArgs {
 
   final _i37.Key? key;
 
-  final _i46.ProviderData providerData;
+  final _i47.ProviderData providerData;
 
   final int movingFee;
 
@@ -1023,22 +1043,35 @@ class HomeBodyRoute extends _i36.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i33.HistoryConsumerPage]
-class HistoryConsumerRoute extends _i36.PageRouteInfo<void> {
-  const HistoryConsumerRoute()
-      : super(HistoryConsumerRoute.name, path: 'history-consumer-page');
+/// [_i33.HistoryPage]
+class HistoryRoute extends _i36.PageRouteInfo<HistoryRouteArgs> {
+  HistoryRoute({_i37.Key? key, required _i38.AppUser user})
+      : super(HistoryRoute.name,
+            path: 'history-page', args: HistoryRouteArgs(key: key, user: user));
 
-  static const String name = 'HistoryConsumerRoute';
+  static const String name = 'HistoryRoute';
+}
+
+class HistoryRouteArgs {
+  const HistoryRouteArgs({this.key, required this.user});
+
+  final _i37.Key? key;
+
+  final _i38.AppUser user;
+
+  @override
+  String toString() {
+    return 'HistoryRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for
-/// [_i34.NotificationConsumerPage]
-class NotificationConsumerRoute extends _i36.PageRouteInfo<void> {
-  const NotificationConsumerRoute()
-      : super(NotificationConsumerRoute.name,
-            path: 'notification-consumer-page');
+/// [_i34.NotificationPage]
+class NotificationRoute extends _i36.PageRouteInfo<void> {
+  const NotificationRoute()
+      : super(NotificationRoute.name, path: 'notification-page');
 
-  static const String name = 'NotificationConsumerRoute';
+  static const String name = 'NotificationRoute';
 }
 
 /// generated route for

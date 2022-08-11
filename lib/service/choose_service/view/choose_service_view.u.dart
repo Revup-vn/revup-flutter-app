@@ -10,7 +10,8 @@ import '../../../l10n/l10n.dart';
 import '../../../router/app_router.gr.dart';
 import '../../../router/router.dart';
 import '../../widgets/service_checkbox_tile.dart';
-import '../bloc/choose_service_bloc.dart';
+import '../../widgets/submit_request_success.dart';
+import '../bloc/choose_service_bloc.u.dart';
 
 class ChooseServiceView extends StatelessWidget {
   const ChooseServiceView({super.key});
@@ -21,6 +22,7 @@ class ChooseServiceView extends StatelessWidget {
     blocPage.state.whenOrNull(
       initial: () => blocPage.add(const ChooseServiceEvent.started()),
     );
+
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(l10n.addServiceAppBarTitle),
@@ -88,6 +90,7 @@ class ChooseServiceView extends StatelessWidget {
                         final serviceList = services.toList();
                         final boxServiceSelect =
                             Hive.box<dynamic>('serviceSelect');
+
                         return Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.only(bottom: 100),
@@ -112,6 +115,7 @@ class ChooseServiceView extends StatelessWidget {
                           ),
                         );
                       },
+                      submitSuccess: SubmitRequestSuccess.new,
                     );
                   },
                 ),
@@ -126,9 +130,12 @@ class ChooseServiceView extends StatelessWidget {
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               child: ElevatedButton(
                 onPressed: () {
-                  context
-                      .read<ChooseServiceBloc>()
-                      .add(const ChooseServiceEvent.serviceListSubmitted());
+                  context.read<ChooseServiceBloc>().add(
+                        const ChooseServiceEvent.serviceListSubmitted(
+                          notificationTitle: '',
+                          notificationBody: '',
+                        ),
+                      );
                 },
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: AutoSizeText(l10n.confirmLabel),

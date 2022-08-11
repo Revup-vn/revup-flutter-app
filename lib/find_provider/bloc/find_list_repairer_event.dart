@@ -1,4 +1,4 @@
-part of 'find_list_repairer_bloc.dart';
+part of 'find_list_repairer_bloc.u.dart';
 
 @freezed
 class FindListRepairerEvent with _$FindListRepairerEvent {

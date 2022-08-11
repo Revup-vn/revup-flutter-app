@@ -1,4 +1,4 @@
-part of 'image_picker_bloc.dart';
+part of 'image_picker_bloc.u.dart';
 
 @freezed
 class ImagePickerEvent with _$ImagePickerEvent {

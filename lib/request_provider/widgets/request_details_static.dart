@@ -20,6 +20,7 @@ class RequestDetailsStatic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Positioned(
       bottom: 0,
       left: 0,
@@ -79,7 +80,13 @@ class RequestDetailsStatic extends StatelessWidget {
                                 providerData.rating.toString(),
                                 maxLines: 1,
                               ),
-                              const Icon(Icons.star_rate_rounded),
+                              Icon(
+                                Icons.star_rate_rounded,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                size: 16,
+                              ),
                               AutoSizeText(
                                 '''(${providerData.ratingCount.toString()})''',
                                 maxLines: 1,

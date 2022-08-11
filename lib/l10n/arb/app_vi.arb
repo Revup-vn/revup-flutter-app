@@ -265,5 +265,11 @@
   "carLabel": "Ô tô",
   "motorbikeLabel": "Xe máy",
   "repairerArrivedLabel": "Xác nhận thợ sửa đã đến",
-  "onGoingRequestLabel": "Thợ đang trên đường"
+  "onGoingRequestLabel": "Thợ đang trên đường",
+  "newRepairRequestTitle": "Yêu cầu sửa chữa mới",
+  "newRepairRequestBody": "Địa điểm",
+  "needQuotePriceLabel": "Cần thợ báo giá",
+  "emptyHistoryLabel": "Bạn chưa có yêu cầu sửa chữa nào",
+  "submitRequestSuccessLabel": "Yêu cầu đã được gửi, bạn vui lòng chờ xíu để thợ phản hồi nhé",
+  "backToHomePageLabel": "Trở về trang chủ"
 }

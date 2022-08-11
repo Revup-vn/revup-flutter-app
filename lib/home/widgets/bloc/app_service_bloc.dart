@@ -14,7 +14,9 @@ class AppServiceBloc extends Bloc<AppServiceEvent, AppServiceState> {
     on<AppServiceEvent>(_onEvent);
   }
   FutureOr<void> _onEvent(
-      AppServiceEvent event, Emitter<AppServiceState> emit) async {
+    AppServiceEvent event,
+    Emitter<AppServiceState> emit,
+  ) async {
     await event.when(
       started: (vehicle) async {
         final boxRprRecord = await Hive.openBox<dynamic>('repairRecord');

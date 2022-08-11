@@ -44,27 +44,32 @@ class RepairerProfileBloc
               some,
             )
             .getOrElse(() => throw NullThrownError());
+
         final feedbackData = (await _repairRecord.where(providerData.id))
             .map(
               (r) => r.map(
-                (a) => a.maybeMap(
-                  orElse: () => throw NullThrownError(),
-                  finished: (v) async => tuple2(
-                    (await _userStore.get(v.cid)).fold<AppUser>(
-                      (l) => throw NullThrownError(),
-                      (r) => r,
+                (a) => a.maybeMap<Future<Option<Tuple2<AppUser, Feedback>>>>(
+                  orElse: () => Future.value(none()),
+                  finished: (v) async => some(
+                    tuple2(
+                      (await _userStore.get(v.cid)).fold<AppUser>(
+                        (l) => throw NullThrownError(),
+                        (r) => r,
+                      ),
+                      v.feedback,
                     ),
-                    v.feedback,
                   ),
                 ),
               ),
             )
-            .fold<IList<Future<Tuple2<AppUser, Feedback>>>>(
+            .fold<IList<Future<Option<Tuple2<AppUser, Feedback>>>>>(
               (l) => throw NullThrownError(),
               (r) => r,
             );
 
         final feedbacks = (await Future.wait(feedbackData.toIterable()))
+            .where((e) => e.isSome())
+            .map((e) => e.getOrElse(() => throw NullThrownError()))
             .map((e) => RatingData.fromDtos(e.value1, e.value2));
 
         final catData = (await (storeRepository.repairCategoryRepo(

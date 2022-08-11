@@ -5,6 +5,7 @@ extension IListExtension<E> on IList<E> {
         order(
           (p1, p2) {
             final compare = predicate(p1, p2);
+
             return compare == 0
                 ? Ordering.EQ
                 : compare > 0

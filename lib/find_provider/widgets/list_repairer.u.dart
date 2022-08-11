@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/enums.dart';
-import '../bloc/find_list_repairer_bloc.dart';
+import '../bloc/find_list_repairer_bloc.u.dart';
 import '../models/provider_data.u.dart';
 import 'list_repairer_content.u.dart';
 
@@ -92,8 +92,9 @@ class ListRepairer extends StatelessWidget {
                         elevation: 16,
                         style: Theme.of(context).chipTheme.labelStyle,
                         items: RepairerSortType.values
-                            .map<DropdownMenuItem<RepairerSortType>>(
-                                (RepairerSortType value) {
+                            .map<DropdownMenuItem<RepairerSortType>>((
+                          RepairerSortType value,
+                        ) {
                           return DropdownMenuItem<RepairerSortType>(
                             value: value,
                             child: Builder(
@@ -104,6 +105,7 @@ class ListRepairer extends StatelessWidget {
                                 } else if (value == RepairerSortType.rating) {
                                   sortLabel = context.l10n.ratingLabel;
                                 }
+
                                 return Text(
                                   sortLabel,
                                   style: Theme.of(context)

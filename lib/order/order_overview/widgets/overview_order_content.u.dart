@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
-import '../../../service/choose_service/bloc/choose_service_bloc.dart';
+import '../../../service/choose_service/bloc/choose_service_bloc.u.dart';
 import '../../../service/widgets/service_avatar.dart';
 import '../../../shared/utils.dart';
 import '../models/overview_order_model.dart';
@@ -29,6 +29,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
   @override
   Widget build(BuildContext context) {
     final blocChooseSv = context.watch<ChooseServiceBloc>();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -53,7 +54,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                     child: Row(
                       children: [
                         ServiceAvatar(
-                            imageUrl: widget.modelData.providerAvatarImg),
+                          imageUrl: widget.modelData.providerAvatarImg,
+                        ),
                         AutoSizeText(
                           widget.modelData.providerName,
                           style: Theme.of(context).textTheme.bodyLarge,

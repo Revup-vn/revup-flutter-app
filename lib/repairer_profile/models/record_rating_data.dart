@@ -11,12 +11,14 @@ class RecordRatingData with _$RecordRatingData {
     required Feedback feedback,
   }) = _RecordRatingData;
 
-  factory RecordRatingData.fromDtos(RepairRecord record) => record.maybeMap(
-        orElse: () => throw NullThrownError(),
-        finished: (record) => RecordRatingData(
-          id: record.id,
-          cid: record.cid,
-          feedback: record.feedback,
-        ),
-      );
+  factory RecordRatingData.fromDtos(RepairRecord record) {
+    return record.maybeMap(
+      orElse: () => throw NullThrownError(),
+      finished: (record) => RecordRatingData(
+        id: record.id,
+        cid: record.cid,
+        feedback: record.feedback,
+      ),
+    );
+  }
 }

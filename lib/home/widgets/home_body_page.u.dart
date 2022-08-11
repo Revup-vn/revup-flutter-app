@@ -14,7 +14,7 @@ class HomeBodyPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (_) => HomeBloc(),
+          create: (_) => HomeBloc(context.read()),
         ),
         BlocProvider<AppServiceBloc>(
           create: (_) => AppServiceBloc(),

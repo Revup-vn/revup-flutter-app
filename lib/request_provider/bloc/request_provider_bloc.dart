@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -12,6 +11,8 @@ import '../../find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
 import '../../shared/utils.dart';
+
+// ignore: unnecessary_import
 
 part 'request_provider_bloc.freezed.dart';
 part 'request_provider_event.dart';
@@ -40,13 +41,10 @@ class RequestProviderBloc
         final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
         final toLoc = LatLng(toLat, toLng);
 
-        final maybeProviderData = (await _userStore.get(providerData.id))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
-        final fromPoint = (maybeProviderData.toJson()['cur_location']
+        final doc = await _userStore.collection().doc(providerData.id).get();
+        final maybeProviderData = doc.data()!;
+
+        final fromPoint = (maybeProviderData['cur_location']
             as Map<String, dynamic>)['geopoint'] as GeoPoint;
         final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
         final directions = await getDirections(fromLoc, toLoc);

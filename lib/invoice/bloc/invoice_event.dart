@@ -1,4 +1,4 @@
-part of 'invoice_bloc.dart';
+part of 'invoice_bloc.u.dart';
 
 @freezed
 class InvoiceEvent with _$InvoiceEvent {

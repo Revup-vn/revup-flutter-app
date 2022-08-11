@@ -28,12 +28,16 @@ class RequestProviderPage extends StatelessWidget {
             context.read(),
             recordType,
           ),
-        )
+        ),
       ],
-      child: RequestProviderView(
-        providerData: providerData,
-        recordType: recordType,
-        userStore: context.read(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        body: RequestProviderView(
+          providerData: providerData,
+          recordType: recordType,
+          userStore: context.read(),
+        ),
       ),
     );
   }

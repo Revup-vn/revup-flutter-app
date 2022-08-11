@@ -24,86 +24,89 @@ class _ChooseProductViewState extends State<ChooseProductView> {
     bloc.state.whenOrNull(
       initial: () => bloc.add(const ChooseProductEvent.started()),
     );
+
     return BlocBuilder<ChooseProductBloc, ChooseProductState>(
       builder: (context, state) {
         return state.maybeWhen(
-            failure: UnknownFailure.new,
-            orElse: () => const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-            success: (productList) {
-              final products = productList.toList();
-              return Scaffold(
-                appBar: AppBar(
-                  title: AutoSizeText(l10n.chooseProductAppBarTitle),
-                  centerTitle: false,
-                ),
-                body: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              padding: const EdgeInsets.only(bottom: 100),
-                              itemCount: products.length,
-                              itemBuilder: (context, index) {
-                                return Card(
-                                  elevation: 0,
-                                  child: ListTile(
-                                    leading: ServiceAvatar(
-                                      imageUrl: products[index].img,
-                                    ),
-                                    title: AutoSizeText(
-                                      products[index].name,
-                                    ),
-                                    subtitle: AutoSizeText(
-                                      '${l10n.productPriceLabel}: '
-                                      '${products[index].price}',
-                                    ),
-                                    trailing: Radio<String>(
-                                      activeColor:
-                                          Theme.of(context).colorScheme.primary,
-                                      value: products[index].name,
-                                      groupValue: groupValue,
-                                      toggleable: true,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          groupValue = value;
-                                        });
-                                      },
-                                    ),
+          failure: UnknownFailure.new,
+          orElse: () => const Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+          success: (productList) {
+            final products = productList.toList();
+
+            return Scaffold(
+              appBar: AppBar(
+                title: AutoSizeText(l10n.chooseProductAppBarTitle),
+                centerTitle: false,
+              ),
+              body: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 100),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                elevation: 0,
+                                child: ListTile(
+                                  leading: ServiceAvatar(
+                                    imageUrl: products[index].img,
                                   ),
-                                );
-                              },
-                            ),
+                                  title: AutoSizeText(
+                                    products[index].name,
+                                  ),
+                                  subtitle: AutoSizeText(
+                                    '${l10n.productPriceLabel}: '
+                                    '${products[index].price}',
+                                  ),
+                                  trailing: Radio<String>(
+                                    activeColor:
+                                        Theme.of(context).colorScheme.primary,
+                                    value: products[index].name,
+                                    groupValue: groupValue,
+                                    toggleable: true,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        groupValue = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        width: MediaQuery.of(context).size.width,
-                        decoration:
-                            BoxDecoration(color: Theme.of(context).cardColor),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<ChooseProductBloc>()
-                                .add(ChooseProductEvent.submitted(groupValue));
-                          },
-                          style: Theme.of(context).elevatedButtonTheme.style,
-                          child: AutoSizeText(l10n.confirmLabel),
                         ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      width: MediaQuery.of(context).size.width,
+                      decoration:
+                          BoxDecoration(color: Theme.of(context).cardColor),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context
+                              .read<ChooseProductBloc>()
+                              .add(ChooseProductEvent.submitted(groupValue));
+                        },
+                        style: Theme.of(context).elevatedButtonTheme.style,
+                        child: AutoSizeText(l10n.confirmLabel),
                       ),
                     ),
-                  ],
-                ),
-              );
-            });
+                  ),
+                ],
+              ),
+            );
+          },
+        );
       },
     );
   }

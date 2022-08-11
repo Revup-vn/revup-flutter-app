@@ -29,7 +29,6 @@ class RequestProviderStatic extends StatefulWidget {
 class _RequestProviderStaticState extends State<RequestProviderStatic> {
   late CameraPosition _initialLocation;
   late GoogleMapController mapController;
-  String? _distance;
   Set<Marker> markers = {};
   late LatLng _startCoordinate;
 
