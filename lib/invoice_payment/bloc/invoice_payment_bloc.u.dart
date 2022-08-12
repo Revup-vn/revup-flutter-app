@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
-import 'package:uuid/uuid.dart';
 
 part 'invoice_payment_bloc.u.freezed.dart';
 part 'invoice_payment_event.dart';
@@ -26,7 +25,7 @@ class InvoicePaymentBloc
       ),
       sumbitPayment: (isPayOnline, totalAmount, pid, cid, feedback) {
         // TODO(wamynobe): add payment method
-        const uuid = Uuid();
+
         // final recordBox = Hive.box<dynamic>('repairRecord');
         // final tmp = RepairRecord.finished(
         //   id: uuid.v4(),
@@ -44,7 +43,7 @@ class InvoicePaymentBloc
         //       .toString(),
         //   money: totalAmount,
         //   moving:
-        //       recordBox.get('moving', defaultValue: DateTime.now()) as DateTime,
+        //   recordBox.get('moving', defaultValue: DateTime.now()) as DateTime,
         //   started: recordBox.get(
         //     'started',
         //     defaultValue: DateTime.now(),

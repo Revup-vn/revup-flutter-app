@@ -12,9 +12,9 @@ import 'overview_order_view.u.dart';
 class OverViewOrderPage extends StatelessWidget {
   const OverViewOrderPage({
     super.key,
-    // required this.providerID,
+    required this.providerID,
   });
-  final String providerID = 'geCHNSHZ2xg2GfMSfZpxAweWWln2';
+  final String providerID;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -26,9 +26,7 @@ class OverViewOrderPage extends StatelessWidget {
           create: (BuildContext context) => OverviewOrderBloc(
             providerID,
             context.read(),
-            context.read(),
             sr,
-            mayBeUser,
           ),
         ),
         BlocProvider<OverviewBloc>(

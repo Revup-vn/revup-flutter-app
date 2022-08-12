@@ -36,6 +36,7 @@ class Signup6Page extends StatelessWidget {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
     final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
+    // ignore: unused_local_variable
     late AppUser user;
     if (mayBeUser.isSome()) {
       user = mayBeUser.toNullable()!;

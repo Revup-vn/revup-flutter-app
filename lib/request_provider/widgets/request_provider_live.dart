@@ -38,6 +38,7 @@ class RequestProviderLive extends StatefulWidget {
 class _RequestProviderLiveState extends State<RequestProviderLive> {
   late CameraPosition _initialLocation;
   late GoogleMapController mapController;
+  // ignore: unused_field
   late String _distance;
   Set<Marker> markers = {};
   late LatLng _startCoordinate;

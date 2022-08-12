@@ -16,17 +16,13 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
   OverviewOrderBloc(
     this.providerID,
     this._userStore,
-    this._repairRecord,
     this.storeRepository,
-    this._maybeUser,
   ) : super(const _Initial()) {
     on<OverviewOrderEvent>(_onEvent);
   }
   final String providerID;
   final IStore<AppUser> _userStore;
-  final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
-  final Option<AppUser> _maybeUser;
   FutureOr<void> _onEvent(
     OverviewOrderEvent event,
     Emitter<OverviewOrderState> emit,

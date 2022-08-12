@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
-import '../configs/firebase_options.dart';
+import '../configs/firebase_options_pub.dart';
 
 Future<void> sendNotificationTo(
   String deviceToken,
