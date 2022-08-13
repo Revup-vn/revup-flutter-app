@@ -48,8 +48,8 @@ class ListRepairer extends StatelessWidget {
                 context.l10n.repairerAroundLabel,
                 style: Theme.of(context)
                     .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.bold),
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
                 maxLines: 1,
                 textAlign: TextAlign.center,
               ),
@@ -83,8 +83,8 @@ class ListRepairer extends StatelessWidget {
                           context.l10n.sortAsLabel,
                           style: Theme.of(context)
                               .textTheme
-                              .labelLarge!
-                              .copyWith(fontWeight: FontWeight.bold),
+                              .labelLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                         value: state,
@@ -110,8 +110,8 @@ class ListRepairer extends StatelessWidget {
                                   sortLabel,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .labelLarge!
-                                      .copyWith(fontWeight: FontWeight.bold),
+                                      .labelLarge
+                                      ?.copyWith(fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 );
                               },

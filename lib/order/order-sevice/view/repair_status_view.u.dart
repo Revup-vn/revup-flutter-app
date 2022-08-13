@@ -7,6 +7,8 @@ import '../../../l10n/l10n.dart';
 class RepairStatusView extends StatelessWidget {
   const RepairStatusView({super.key});
 
+  // TODO(tcmhoang): this widget did not use, did it?
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -72,11 +74,13 @@ class RepairStatusView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             AutoSizeText(
-                              'services.elementAt(index).name',
+                              'services.elementAt(index).name}',
+
+                              /// Services member does not exist
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              'services.elementAt(index).priceĐ',
+                              'context.formatMoney(services[index].price)',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],

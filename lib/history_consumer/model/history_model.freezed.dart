@@ -21,7 +21,7 @@ mixin _$HistoryModel {
   String get toLocation => throw _privateConstructorUsedError;
   DateTime get completedTime => throw _privateConstructorUsedError;
   AppUser get provider => throw _privateConstructorUsedError;
-  Feedback? get feedback => throw _privateConstructorUsedError;
+  ReportFeedback? get feedback => throw _privateConstructorUsedError;
   IList<PaymentService> get services => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,11 +40,11 @@ abstract class $HistoryModelCopyWith<$Res> {
       String toLocation,
       DateTime completedTime,
       AppUser provider,
-      Feedback? feedback,
+      ReportFeedback? feedback,
       IList<PaymentService> services});
 
   $AppUserCopyWith<$Res> get provider;
-  $FeedbackCopyWith<$Res>? get feedback;
+  $ReportFeedbackCopyWith<$Res>? get feedback;
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class _$HistoryModelCopyWithImpl<$Res> implements $HistoryModelCopyWith<$Res> {
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback?,
+              as ReportFeedback?,
       services: services == freezed
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -105,12 +105,12 @@ class _$HistoryModelCopyWithImpl<$Res> implements $HistoryModelCopyWith<$Res> {
   }
 
   @override
-  $FeedbackCopyWith<$Res>? get feedback {
+  $ReportFeedbackCopyWith<$Res>? get feedback {
     if (_value.feedback == null) {
       return null;
     }
 
-    return $FeedbackCopyWith<$Res>(_value.feedback!, (value) {
+    return $ReportFeedbackCopyWith<$Res>(_value.feedback!, (value) {
       return _then(_value.copyWith(feedback: value));
     });
   }
@@ -129,13 +129,13 @@ abstract class _$$_HistoryConsumerModelCopyWith<$Res>
       String toLocation,
       DateTime completedTime,
       AppUser provider,
-      Feedback? feedback,
+      ReportFeedback? feedback,
       IList<PaymentService> services});
 
   @override
   $AppUserCopyWith<$Res> get provider;
   @override
-  $FeedbackCopyWith<$Res>? get feedback;
+  $ReportFeedbackCopyWith<$Res>? get feedback;
 }
 
 /// @nodoc
@@ -183,7 +183,7 @@ class __$$_HistoryConsumerModelCopyWithImpl<$Res>
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback?,
+              as ReportFeedback?,
       services: services == freezed
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -215,7 +215,7 @@ class _$_HistoryConsumerModel implements _HistoryConsumerModel {
   @override
   final AppUser provider;
   @override
-  final Feedback? feedback;
+  final ReportFeedback? feedback;
   @override
   final IList<PaymentService> services;
 
@@ -267,7 +267,7 @@ abstract class _HistoryConsumerModel implements HistoryModel {
       required final String toLocation,
       required final DateTime completedTime,
       required final AppUser provider,
-      final Feedback? feedback,
+      final ReportFeedback? feedback,
       required final IList<PaymentService> services}) = _$_HistoryConsumerModel;
 
   @override
@@ -281,7 +281,7 @@ abstract class _HistoryConsumerModel implements HistoryModel {
   @override
   AppUser get provider;
   @override
-  Feedback? get feedback;
+  ReportFeedback? get feedback;
   @override
   IList<PaymentService> get services;
   @override

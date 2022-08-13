@@ -11,16 +11,12 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'dart:async' as _i41;
-
-import 'package:flutter/material.dart' as _i37;
 
 import 'package:auto_route/auto_route.dart' as _i36;
 import 'package:dartz/dartz.dart' as _i45;
+import 'package:flutter/material.dart' as _i37;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
-import 'package:revup_core/core.dart' as _i38;
-
 import 'package:revup/account/model/user_model.dart' as _i43;
 import 'package:revup/account/view/account_page.u.dart' as _i35;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i24;
@@ -40,27 +36,24 @@ import 'package:revup/invoice/models/provider_data.dart' as _i39;
 import 'package:revup/invoice/models/service_data.dart' as _i40;
 import 'package:revup/invoice/view/service_invoice_page.u.dart' as _i4;
 import 'package:revup/invoice_payment/view/invoice_payment_page.u.dart' as _i5;
+import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i30;
 import 'package:revup/login/view/login_page.u.dart' as _i12;
 import 'package:revup/notification_page/view/notification_page.u.dart' as _i34;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i13;
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
+import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
+    as _i25;
 import 'package:revup/otp/view/otp_page.u.dart' as _i14;
 import 'package:revup/payment/view/payment_page.u.dart' as _i9;
 import 'package:revup/permission_page/permission_page.u.dart' as _i31;
 import 'package:revup/profile/view/signup6_page.u.dart' as _i15;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i11;
 import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
-import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i10;
-
-import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i30;
-import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
-    as _i25;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
+import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
 import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
     as _i6;
 import 'package:revup/service/choose_product/view/choose_product_page.u.dart'
@@ -71,6 +64,9 @@ import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
     as _i17;
 import 'package:revup/service/service-details/view/service_detail_page.u.dart'
     as _i18;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i10;
+import 'package:revup_core/core.dart' as _i38;
 
 class AppRouter extends _i36.RootStackRouter {
   AppRouter([_i37.GlobalKey<_i37.NavigatorState>? navigatorKey])
@@ -234,8 +230,11 @@ class AppRouter extends _i36.RootStackRouter {
               movingFee: args.movingFee));
     },
     OverViewOrderRoute.name: (routeData) {
+      final args = routeData.argsAs<OverViewOrderRouteArgs>();
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i25.OverViewOrderPage());
+          routeData: routeData,
+          child: _i25.OverViewOrderPage(
+              key: args.key, providerID: args.providerID));
     },
     FAQsRoute.name: (routeData) {
       return _i36.AdaptivePage<void>(
@@ -933,11 +932,26 @@ class AddMessageRouteArgs {
 
 /// generated route for
 /// [_i25.OverViewOrderPage]
-class OverViewOrderRoute extends _i36.PageRouteInfo<void> {
-  const OverViewOrderRoute()
-      : super(OverViewOrderRoute.name, path: '/over-view-order-page');
+class OverViewOrderRoute extends _i36.PageRouteInfo<OverViewOrderRouteArgs> {
+  OverViewOrderRoute({_i37.Key? key, required String providerID})
+      : super(OverViewOrderRoute.name,
+            path: '/over-view-order-page',
+            args: OverViewOrderRouteArgs(key: key, providerID: providerID));
 
   static const String name = 'OverViewOrderRoute';
+}
+
+class OverViewOrderRouteArgs {
+  const OverViewOrderRouteArgs({this.key, required this.providerID});
+
+  final _i37.Key? key;
+
+  final String providerID;
+
+  @override
+  String toString() {
+    return 'OverViewOrderRouteArgs{key: $key, providerID: $providerID}';
+  }
 }
 
 /// generated route for

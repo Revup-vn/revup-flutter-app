@@ -48,7 +48,8 @@ class RepairerProfileBloc
         final feedbackData = (await _repairRecord.where(providerData.id))
             .map(
               (r) => r.map(
-                (a) => a.maybeMap<Future<Option<Tuple2<AppUser, Feedback>>>>(
+                (a) =>
+                    a.maybeMap<Future<Option<Tuple2<AppUser, ReportFeedback>>>>(
                   orElse: () => Future.value(none()),
                   finished: (v) async => some(
                     tuple2(
@@ -62,7 +63,7 @@ class RepairerProfileBloc
                 ),
               ),
             )
-            .fold<IList<Future<Option<Tuple2<AppUser, Feedback>>>>>(
+            .fold<IList<Future<Option<Tuple2<AppUser, ReportFeedback>>>>>(
               (l) => throw NullThrownError(),
               (r) => r,
             );

@@ -8,7 +8,7 @@ import '../../l10n/l10n.dart';
 
 class OrderFeedback extends StatelessWidget {
   const OrderFeedback({super.key, required this.feedback});
-  final Feedback feedback;
+  final ReportFeedback feedback;
 
   @override
   Widget build(BuildContext context) {

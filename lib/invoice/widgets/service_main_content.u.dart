@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
@@ -72,8 +73,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                                     userName: providerData.providerName,
                                   );
                                 },
-                                // ignore: implicit_dynamic_parameter
-                                errorWidget: (context, url, error) {
+                                errorWidget: (context, url, dynamic error) {
                                   return DefaultAvatar(
                                     textSize:
                                         Theme.of(context).textTheme.titleLarge,
@@ -177,7 +177,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              '''${service[index].serviceFee.toString()} 000đ''',
+                              context.formatMoney(service[index].serviceFee),
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
@@ -220,7 +220,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            total != 0 ? '$total 000đ' : '0đ',
+                            context.formatMoney(total ?? 0),
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],

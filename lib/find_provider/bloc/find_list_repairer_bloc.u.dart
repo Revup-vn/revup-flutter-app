@@ -15,8 +15,6 @@ import '../../shared/enums.dart';
 import '../../shared/extension.dart';
 import '../models/provider_data.u.dart';
 
-// ignore: unnecessary_import
-
 part 'find_list_repairer_bloc.u.freezed.dart';
 part 'find_list_repairer_event.dart';
 part 'find_list_repairer_state.dart';

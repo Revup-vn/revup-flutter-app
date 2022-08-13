@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RecordRatingData {
   String get id => throw _privateConstructorUsedError;
   String get cid => throw _privateConstructorUsedError;
-  Feedback get feedback => throw _privateConstructorUsedError;
+  ReportFeedback get feedback => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RecordRatingDataCopyWith<RecordRatingData> get copyWith =>
@@ -30,9 +30,9 @@ abstract class $RecordRatingDataCopyWith<$Res> {
   factory $RecordRatingDataCopyWith(
           RecordRatingData value, $Res Function(RecordRatingData) then) =
       _$RecordRatingDataCopyWithImpl<$Res>;
-  $Res call({String id, String cid, Feedback feedback});
+  $Res call({String id, String cid, ReportFeedback feedback});
 
-  $FeedbackCopyWith<$Res> get feedback;
+  $ReportFeedbackCopyWith<$Res> get feedback;
 }
 
 /// @nodoc
@@ -62,13 +62,13 @@ class _$RecordRatingDataCopyWithImpl<$Res>
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback,
+              as ReportFeedback,
     ));
   }
 
   @override
-  $FeedbackCopyWith<$Res> get feedback {
-    return $FeedbackCopyWith<$Res>(_value.feedback, (value) {
+  $ReportFeedbackCopyWith<$Res> get feedback {
+    return $ReportFeedbackCopyWith<$Res>(_value.feedback, (value) {
       return _then(_value.copyWith(feedback: value));
     });
   }
@@ -81,10 +81,10 @@ abstract class _$$_RecordRatingDataCopyWith<$Res>
           _$_RecordRatingData value, $Res Function(_$_RecordRatingData) then) =
       __$$_RecordRatingDataCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String cid, Feedback feedback});
+  $Res call({String id, String cid, ReportFeedback feedback});
 
   @override
-  $FeedbackCopyWith<$Res> get feedback;
+  $ReportFeedbackCopyWith<$Res> get feedback;
 }
 
 /// @nodoc
@@ -116,7 +116,7 @@ class __$$_RecordRatingDataCopyWithImpl<$Res>
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback,
+              as ReportFeedback,
     ));
   }
 }
@@ -132,7 +132,7 @@ class _$_RecordRatingData implements _RecordRatingData {
   @override
   final String cid;
   @override
-  final Feedback feedback;
+  final ReportFeedback feedback;
 
   @override
   String toString() {
@@ -166,14 +166,14 @@ abstract class _RecordRatingData implements RecordRatingData {
   const factory _RecordRatingData(
       {required final String id,
       required final String cid,
-      required final Feedback feedback}) = _$_RecordRatingData;
+      required final ReportFeedback feedback}) = _$_RecordRatingData;
 
   @override
   String get id;
   @override
   String get cid;
   @override
-  Feedback get feedback;
+  ReportFeedback get feedback;
   @override
   @JsonKey(ignore: true)
   _$$_RecordRatingDataCopyWith<_$_RecordRatingData> get copyWith =>

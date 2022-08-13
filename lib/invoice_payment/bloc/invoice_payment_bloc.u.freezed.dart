@@ -21,7 +21,7 @@ mixin _$InvoicePaymentEvent {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$InvoicePaymentEvent {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$InvoicePaymentEvent {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) =>
@@ -134,7 +134,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return started();
@@ -146,7 +146,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return started?.call();
@@ -158,7 +158,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -288,7 +288,7 @@ class _$_ChangePaymentMethod
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return changePaymentMethod(isPayOnline);
@@ -300,7 +300,7 @@ class _$_ChangePaymentMethod
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return changePaymentMethod?.call(isPayOnline);
@@ -312,7 +312,7 @@ class _$_ChangePaymentMethod
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -377,9 +377,9 @@ abstract class _$$_SubmitPaymentCopyWith<$Res> {
       int totalAmount,
       String pid,
       String cid,
-      Feedback feedback});
+      ReportFeedback feedback});
 
-  $FeedbackCopyWith<$Res> get feedback;
+  $ReportFeedbackCopyWith<$Res> get feedback;
 }
 
 /// @nodoc
@@ -421,13 +421,13 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback,
+              as ReportFeedback,
     ));
   }
 
   @override
-  $FeedbackCopyWith<$Res> get feedback {
-    return $FeedbackCopyWith<$Res>(_value.feedback, (value) {
+  $ReportFeedbackCopyWith<$Res> get feedback {
+    return $ReportFeedbackCopyWith<$Res>(_value.feedback, (value) {
       return _then(_value.copyWith(feedback: value));
     });
   }
@@ -452,7 +452,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
   @override
   final String cid;
   @override
-  final Feedback feedback;
+  final ReportFeedback feedback;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -505,7 +505,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return sumbitPayment(isPayOnline, totalAmount, pid, cid, feedback);
@@ -517,7 +517,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return sumbitPayment?.call(isPayOnline, totalAmount, pid, cid, feedback);
@@ -529,7 +529,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -580,13 +580,13 @@ abstract class _SubmitPayment implements InvoicePaymentEvent {
       required final int totalAmount,
       required final String pid,
       required final String cid,
-      required final Feedback feedback}) = _$_SubmitPayment;
+      required final ReportFeedback feedback}) = _$_SubmitPayment;
 
   bool get isPayOnline;
   int get totalAmount;
   String get pid;
   String get cid;
-  Feedback get feedback;
+  ReportFeedback get feedback;
   @JsonKey(ignore: true)
   _$$_SubmitPaymentCopyWith<_$_SubmitPayment> get copyWith =>
       throw _privateConstructorUsedError;
