@@ -1,4 +1,4 @@
-part of 'find_list_repairer_bloc.dart';
+part of 'find_list_repairer_bloc.u.dart';
 
 @freezed
 class FindListRepairerState with _$FindListRepairerState {
@@ -14,7 +14,7 @@ class FindListRepairerState with _$FindListRepairerState {
 
   const factory FindListRepairerState.dropdownListChangedSuccess({
     required IList<ProviderData> listProvider,
-    required String sortType,
+    required RepairerSortType sortType,
   }) = _DropdownListChangedSuccess;
   const factory FindListRepairerState.loading() = _Loading;
   const factory FindListRepairerState.failure({required String? errorMessage}) =

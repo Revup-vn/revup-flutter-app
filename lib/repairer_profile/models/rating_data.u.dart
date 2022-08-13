@@ -13,7 +13,8 @@ class RatingData with _$RatingData {
     required String consumerName,
     required String imageUrl,
   }) = _RatingData;
-  factory RatingData.fromDtos(Feedback feedback, AppUser user) => RatingData(
+  factory RatingData.fromDtos(AppUser user, ReportFeedback feedback) =>
+      RatingData(
         consumerName: '${user.firstName} ${user.lastName}',
         createdTime: feedback.created,
         description: feedback.desc,

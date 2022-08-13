@@ -9,7 +9,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:revup_core/core.dart' as feedback;
+import 'package:revup_core/core.dart';
 
 import '../../invoice/models/provider_data.dart';
 import '../../invoice/widgets/default_avatar.dart';
@@ -106,8 +106,8 @@ class ReviewRepairmanView extends StatelessWidget {
                                                   providerData.providerName,
                                             );
                                           },
-                                          // ignore: implicit_dynamic_parameter
-                                          errorWidget: (context, url, error) {
+                                          errorWidget:
+                                              (context, url, dynamic error) {
                                             return DefaultAvatar(
                                               textSize: Theme.of(context)
                                                   .textTheme
@@ -256,7 +256,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                     .toString();
                                 log(feedbackString.toString());
                                 completer.complete(
-                                  feedback.Feedback(
+                                  ReportFeedback(
                                     created: DateTime.now(),
                                     desc: feedbackString ?? '',
                                     rating: rating,

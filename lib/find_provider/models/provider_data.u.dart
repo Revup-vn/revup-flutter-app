@@ -27,25 +27,25 @@ class ProviderData with _$ProviderData {
     required double duration,
     required double rating,
     required int ratingCount,
-  }) =>
-      user.map(
-        consumer: (user) => throw NullThrownError(),
-        provider: (user) => ProviderData(
-          id: user.uuid,
-          fullName: '${user.firstName} ${user.lastName}',
-          address: user.addr,
-          avatar: user.avatarUrl.isEmpty ? kFallbackImage : user.avatarUrl,
-          distance: distance / 1000,
-          timeArrivalInMinute: duration / 60,
-          rating: rating,
-          ratingCount: ratingCount,
-          backgroundImg: user.backgroundUrl.isEmpty
-              ? kFallbackBackground
-              : user.backgroundUrl,
-          profileBio: user.bio,
-        ),
-        admin: (user) => throw NullThrownError(),
-      );
+  }) {
+    return user.maybeMap(
+      provider: (user) => ProviderData(
+        id: user.uuid,
+        fullName: '${user.firstName} ${user.lastName}',
+        address: user.addr,
+        avatar: user.avatarUrl.isEmpty ? kFallbackImage : user.avatarUrl,
+        distance: distance / 1000,
+        timeArrivalInMinute: duration / 60,
+        rating: rating,
+        ratingCount: ratingCount,
+        backgroundImg: user.backgroundUrl.isEmpty
+            ? kFallbackBackground
+            : user.backgroundUrl,
+        profileBio: user.bio,
+      ),
+      orElse: () => throw NullThrownError(),
+    );
+  }
 
   factory ProviderData.fromJson(Map<String, dynamic> json) =>
       _$ProviderDataFromJson(json);

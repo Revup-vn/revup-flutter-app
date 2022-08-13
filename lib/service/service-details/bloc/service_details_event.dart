@@ -1,4 +1,4 @@
-part of 'service_details_bloc.dart';
+part of 'service_details_bloc.u.dart';
 
 @freezed
 class ServiceDetailsEvent with _$ServiceDetailsEvent {

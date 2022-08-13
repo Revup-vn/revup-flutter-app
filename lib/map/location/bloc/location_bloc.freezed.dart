@@ -21,7 +21,8 @@ mixin _$LocationEvent {
     required TResult Function() started,
     required TResult Function(LatLng location) locationUpdated,
     required TResult Function(String placeId) placeSearch,
-    required TResult Function(LatLng location) saved,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$LocationEvent {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$LocationEvent {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ mixin _$LocationEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionUpdated value) locationUpdated,
     required TResult Function(_PlaceSearch value) placeSearch,
-    required TResult Function(_LocationSaved value) saved,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +58,8 @@ mixin _$LocationEvent {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +67,8 @@ mixin _$LocationEvent {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +133,8 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(LatLng location) locationUpdated,
     required TResult Function(String placeId) placeSearch,
-    required TResult Function(LatLng location) saved,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
   }) {
     return started();
   }
@@ -138,7 +145,8 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
   }) {
     return started?.call();
   }
@@ -149,7 +157,8 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -164,7 +173,8 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionUpdated value) locationUpdated,
     required TResult Function(_PlaceSearch value) placeSearch,
-    required TResult Function(_LocationSaved value) saved,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
   }) {
     return started(this);
   }
@@ -175,7 +185,8 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
   }) {
     return started?.call(this);
   }
@@ -186,7 +197,8 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -268,7 +280,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     required TResult Function() started,
     required TResult Function(LatLng location) locationUpdated,
     required TResult Function(String placeId) placeSearch,
-    required TResult Function(LatLng location) saved,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
   }) {
     return locationUpdated(location);
   }
@@ -279,7 +292,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
   }) {
     return locationUpdated?.call(location);
   }
@@ -290,7 +304,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
     required TResult orElse(),
   }) {
     if (locationUpdated != null) {
@@ -305,7 +320,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionUpdated value) locationUpdated,
     required TResult Function(_PlaceSearch value) placeSearch,
-    required TResult Function(_LocationSaved value) saved,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
   }) {
     return locationUpdated(this);
   }
@@ -316,7 +332,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
   }) {
     return locationUpdated?.call(this);
   }
@@ -327,7 +344,8 @@ class _$_PositionUpdated implements _PositionUpdated {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
     required TResult orElse(),
   }) {
     if (locationUpdated != null) {
@@ -415,7 +433,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     required TResult Function() started,
     required TResult Function(LatLng location) locationUpdated,
     required TResult Function(String placeId) placeSearch,
-    required TResult Function(LatLng location) saved,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
   }) {
     return placeSearch(placeId);
   }
@@ -426,7 +445,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
   }) {
     return placeSearch?.call(placeId);
   }
@@ -437,7 +457,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
     required TResult orElse(),
   }) {
     if (placeSearch != null) {
@@ -452,7 +473,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionUpdated value) locationUpdated,
     required TResult Function(_PlaceSearch value) placeSearch,
-    required TResult Function(_LocationSaved value) saved,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
   }) {
     return placeSearch(this);
   }
@@ -463,7 +485,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
   }) {
     return placeSearch?.call(this);
   }
@@ -474,7 +497,8 @@ class _$_PlaceSearch implements _PlaceSearch {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
     required TResult orElse(),
   }) {
     if (placeSearch != null) {
@@ -535,7 +559,7 @@ class _$_LocationSaved implements _LocationSaved {
 
   @override
   String toString() {
-    return 'LocationEvent.saved(location: $location)';
+    return 'LocationEvent.savedRepairLoc(location: $location)';
   }
 
   @override
@@ -561,9 +585,10 @@ class _$_LocationSaved implements _LocationSaved {
     required TResult Function() started,
     required TResult Function(LatLng location) locationUpdated,
     required TResult Function(String placeId) placeSearch,
-    required TResult Function(LatLng location) saved,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
   }) {
-    return saved(location);
+    return savedRepairLoc(location);
   }
 
   @override
@@ -572,9 +597,10 @@ class _$_LocationSaved implements _LocationSaved {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
   }) {
-    return saved?.call(location);
+    return savedRepairLoc?.call(location);
   }
 
   @override
@@ -583,11 +609,12 @@ class _$_LocationSaved implements _LocationSaved {
     TResult Function()? started,
     TResult Function(LatLng location)? locationUpdated,
     TResult Function(String placeId)? placeSearch,
-    TResult Function(LatLng location)? saved,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved(location);
+    if (savedRepairLoc != null) {
+      return savedRepairLoc(location);
     }
     return orElse();
   }
@@ -598,9 +625,10 @@ class _$_LocationSaved implements _LocationSaved {
     required TResult Function(_Started value) started,
     required TResult Function(_PositionUpdated value) locationUpdated,
     required TResult Function(_PlaceSearch value) placeSearch,
-    required TResult Function(_LocationSaved value) saved,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
   }) {
-    return saved(this);
+    return savedRepairLoc(this);
   }
 
   @override
@@ -609,9 +637,10 @@ class _$_LocationSaved implements _LocationSaved {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
   }) {
-    return saved?.call(this);
+    return savedRepairLoc?.call(this);
   }
 
   @override
@@ -620,11 +649,12 @@ class _$_LocationSaved implements _LocationSaved {
     TResult Function(_Started value)? started,
     TResult Function(_PositionUpdated value)? locationUpdated,
     TResult Function(_PlaceSearch value)? placeSearch,
-    TResult Function(_LocationSaved value)? saved,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved(this);
+    if (savedRepairLoc != null) {
+      return savedRepairLoc(this);
     }
     return orElse();
   }
@@ -641,29 +671,194 @@ abstract class _LocationSaved implements LocationEvent {
 }
 
 /// @nodoc
+abstract class _$$_MapLoadedCopyWith<$Res> {
+  factory _$$_MapLoadedCopyWith(
+          _$_MapLoaded value, $Res Function(_$_MapLoaded) then) =
+      __$$_MapLoadedCopyWithImpl<$Res>;
+  $Res call({Directions directions});
+
+  $DirectionsCopyWith<$Res> get directions;
+}
+
+/// @nodoc
+class __$$_MapLoadedCopyWithImpl<$Res> extends _$LocationEventCopyWithImpl<$Res>
+    implements _$$_MapLoadedCopyWith<$Res> {
+  __$$_MapLoadedCopyWithImpl(
+      _$_MapLoaded _value, $Res Function(_$_MapLoaded) _then)
+      : super(_value, (v) => _then(v as _$_MapLoaded));
+
+  @override
+  _$_MapLoaded get _value => super._value as _$_MapLoaded;
+
+  @override
+  $Res call({
+    Object? directions = freezed,
+  }) {
+    return _then(_$_MapLoaded(
+      directions: directions == freezed
+          ? _value.directions
+          : directions // ignore: cast_nullable_to_non_nullable
+              as Directions,
+    ));
+  }
+
+  @override
+  $DirectionsCopyWith<$Res> get directions {
+    return $DirectionsCopyWith<$Res>(_value.directions, (value) {
+      return _then(_value.copyWith(directions: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_MapLoaded implements _MapLoaded {
+  const _$_MapLoaded({required this.directions});
+
+  @override
+  final Directions directions;
+
+  @override
+  String toString() {
+    return 'LocationEvent.mapLoaded(directions: $directions)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_MapLoaded &&
+            const DeepCollectionEquality()
+                .equals(other.directions, directions));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(directions));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_MapLoadedCopyWith<_$_MapLoaded> get copyWith =>
+      __$$_MapLoadedCopyWithImpl<_$_MapLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(LatLng location) locationUpdated,
+    required TResult Function(String placeId) placeSearch,
+    required TResult Function(LatLng location) savedRepairLoc,
+    required TResult Function(Directions directions) mapLoaded,
+  }) {
+    return mapLoaded(directions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng location)? locationUpdated,
+    TResult Function(String placeId)? placeSearch,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
+  }) {
+    return mapLoaded?.call(directions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LatLng location)? locationUpdated,
+    TResult Function(String placeId)? placeSearch,
+    TResult Function(LatLng location)? savedRepairLoc,
+    TResult Function(Directions directions)? mapLoaded,
+    required TResult orElse(),
+  }) {
+    if (mapLoaded != null) {
+      return mapLoaded(directions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PositionUpdated value) locationUpdated,
+    required TResult Function(_PlaceSearch value) placeSearch,
+    required TResult Function(_LocationSaved value) savedRepairLoc,
+    required TResult Function(_MapLoaded value) mapLoaded,
+  }) {
+    return mapLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PositionUpdated value)? locationUpdated,
+    TResult Function(_PlaceSearch value)? placeSearch,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
+  }) {
+    return mapLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PositionUpdated value)? locationUpdated,
+    TResult Function(_PlaceSearch value)? placeSearch,
+    TResult Function(_LocationSaved value)? savedRepairLoc,
+    TResult Function(_MapLoaded value)? mapLoaded,
+    required TResult orElse(),
+  }) {
+    if (mapLoaded != null) {
+      return mapLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MapLoaded implements LocationEvent {
+  const factory _MapLoaded({required final Directions directions}) =
+      _$_MapLoaded;
+
+  Directions get directions;
+  @JsonKey(ignore: true)
+  _$$_MapLoadedCopyWith<_$_MapLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$LocationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -673,6 +868,7 @@ mixin _$LocationState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_AddressLoaded value) addressLoaded,
     required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -681,6 +877,7 @@ mixin _$LocationState {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -689,6 +886,7 @@ mixin _$LocationState {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -716,7 +914,7 @@ abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  $Res call({Position location});
+  $Res call({LatLng location});
 }
 
 /// @nodoc
@@ -736,7 +934,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LocationStateCopyWithImpl<$Res>
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Position,
+              as LatLng,
     ));
   }
 }
@@ -747,7 +945,7 @@ class _$_Initial implements _Initial {
   const _$_Initial({required this.location});
 
   @override
-  final Position location;
+  final LatLng location;
 
   @override
   String toString() {
@@ -774,10 +972,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
   }) {
     return initial(location);
   }
@@ -785,10 +984,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
   }) {
     return initial?.call(location);
   }
@@ -796,10 +996,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -815,6 +1016,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_AddressLoaded value) addressLoaded,
     required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
   }) {
     return initial(this);
   }
@@ -826,6 +1028,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
   }) {
     return initial?.call(this);
   }
@@ -837,6 +1040,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -847,9 +1051,9 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements LocationState {
-  const factory _Initial({required final Position location}) = _$_Initial;
+  const factory _Initial({required final LatLng location}) = _$_Initial;
 
-  Position get location;
+  LatLng get location;
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
       throw _privateConstructorUsedError;
@@ -894,10 +1098,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
   }) {
     return loading();
   }
@@ -905,10 +1110,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
   }) {
     return loading?.call();
   }
@@ -916,10 +1122,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -935,6 +1142,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_AddressLoaded value) addressLoaded,
     required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
   }) {
     return loading(this);
   }
@@ -946,6 +1154,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
   }) {
     return loading?.call(this);
   }
@@ -957,6 +1166,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1035,10 +1245,11 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
   }) {
     return addressLoaded(address);
   }
@@ -1046,10 +1257,11 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
   }) {
     return addressLoaded?.call(address);
   }
@@ -1057,10 +1269,11 @@ class _$_AddressLoaded implements _AddressLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (addressLoaded != null) {
@@ -1076,6 +1289,7 @@ class _$_AddressLoaded implements _AddressLoaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_AddressLoaded value) addressLoaded,
     required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
   }) {
     return addressLoaded(this);
   }
@@ -1087,6 +1301,7 @@ class _$_AddressLoaded implements _AddressLoaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
   }) {
     return addressLoaded?.call(this);
   }
@@ -1098,6 +1313,7 @@ class _$_AddressLoaded implements _AddressLoaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (addressLoaded != null) {
@@ -1193,10 +1409,11 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Position location) initial,
+    required TResult Function(LatLng location) initial,
     required TResult Function() loading,
     required TResult Function(String address) addressLoaded,
     required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
   }) {
     return placeDetailsLoaded(placeDetails);
   }
@@ -1204,10 +1421,11 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
   }) {
     return placeDetailsLoaded?.call(placeDetails);
   }
@@ -1215,10 +1433,11 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position location)? initial,
+    TResult Function(LatLng location)? initial,
     TResult Function()? loading,
     TResult Function(String address)? addressLoaded,
     TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (placeDetailsLoaded != null) {
@@ -1234,6 +1453,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_AddressLoaded value) addressLoaded,
     required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
   }) {
     return placeDetailsLoaded(this);
   }
@@ -1245,6 +1465,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
   }) {
     return placeDetailsLoaded?.call(this);
   }
@@ -1256,6 +1477,7 @@ class _$_PlaceDetailsLoaded implements _PlaceDetailsLoaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_AddressLoaded value)? addressLoaded,
     TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
     required TResult orElse(),
   }) {
     if (placeDetailsLoaded != null) {
@@ -1272,5 +1494,168 @@ abstract class _PlaceDetailsLoaded implements LocationState {
   PlaceDetails get placeDetails;
   @JsonKey(ignore: true)
   _$$_PlaceDetailsLoadedCopyWith<_$_PlaceDetailsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DirectionsLoadedCopyWith<$Res> {
+  factory _$$_DirectionsLoadedCopyWith(
+          _$_DirectionsLoaded value, $Res Function(_$_DirectionsLoaded) then) =
+      __$$_DirectionsLoadedCopyWithImpl<$Res>;
+  $Res call({Directions directions});
+
+  $DirectionsCopyWith<$Res> get directions;
+}
+
+/// @nodoc
+class __$$_DirectionsLoadedCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res>
+    implements _$$_DirectionsLoadedCopyWith<$Res> {
+  __$$_DirectionsLoadedCopyWithImpl(
+      _$_DirectionsLoaded _value, $Res Function(_$_DirectionsLoaded) _then)
+      : super(_value, (v) => _then(v as _$_DirectionsLoaded));
+
+  @override
+  _$_DirectionsLoaded get _value => super._value as _$_DirectionsLoaded;
+
+  @override
+  $Res call({
+    Object? directions = freezed,
+  }) {
+    return _then(_$_DirectionsLoaded(
+      directions: directions == freezed
+          ? _value.directions
+          : directions // ignore: cast_nullable_to_non_nullable
+              as Directions,
+    ));
+  }
+
+  @override
+  $DirectionsCopyWith<$Res> get directions {
+    return $DirectionsCopyWith<$Res>(_value.directions, (value) {
+      return _then(_value.copyWith(directions: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_DirectionsLoaded implements _DirectionsLoaded {
+  const _$_DirectionsLoaded({required this.directions});
+
+  @override
+  final Directions directions;
+
+  @override
+  String toString() {
+    return 'LocationState.directionsLoaded(directions: $directions)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DirectionsLoaded &&
+            const DeepCollectionEquality()
+                .equals(other.directions, directions));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(directions));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_DirectionsLoadedCopyWith<_$_DirectionsLoaded> get copyWith =>
+      __$$_DirectionsLoadedCopyWithImpl<_$_DirectionsLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LatLng location) initial,
+    required TResult Function() loading,
+    required TResult Function(String address) addressLoaded,
+    required TResult Function(PlaceDetails placeDetails) placeDetailsLoaded,
+    required TResult Function(Directions directions) directionsLoaded,
+  }) {
+    return directionsLoaded(directions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(LatLng location)? initial,
+    TResult Function()? loading,
+    TResult Function(String address)? addressLoaded,
+    TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
+  }) {
+    return directionsLoaded?.call(directions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LatLng location)? initial,
+    TResult Function()? loading,
+    TResult Function(String address)? addressLoaded,
+    TResult Function(PlaceDetails placeDetails)? placeDetailsLoaded,
+    TResult Function(Directions directions)? directionsLoaded,
+    required TResult orElse(),
+  }) {
+    if (directionsLoaded != null) {
+      return directionsLoaded(directions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_AddressLoaded value) addressLoaded,
+    required TResult Function(_PlaceDetailsLoaded value) placeDetailsLoaded,
+    required TResult Function(_DirectionsLoaded value) directionsLoaded,
+  }) {
+    return directionsLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_AddressLoaded value)? addressLoaded,
+    TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+  }) {
+    return directionsLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_AddressLoaded value)? addressLoaded,
+    TResult Function(_PlaceDetailsLoaded value)? placeDetailsLoaded,
+    TResult Function(_DirectionsLoaded value)? directionsLoaded,
+    required TResult orElse(),
+  }) {
+    if (directionsLoaded != null) {
+      return directionsLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DirectionsLoaded implements LocationState {
+  const factory _DirectionsLoaded({required final Directions directions}) =
+      _$_DirectionsLoaded;
+
+  Directions get directions;
+  @JsonKey(ignore: true)
+  _$$_DirectionsLoadedCopyWith<_$_DirectionsLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:revup_core/core.dart';
 
+import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../models/service_data.u.dart';
 
 class RepairerProfileServices extends StatelessWidget {
@@ -11,25 +15,35 @@ class RepairerProfileServices extends StatelessWidget {
     super.key,
     required this.serviceData,
     required this.providerId,
+    required this.categories,
   });
   final IVector<ServiceData> serviceData;
   final String providerId;
+  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
 
   @override
   Widget build(BuildContext context) {
     final data = serviceData.toIterable().toList();
 
     return ListView.separated(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Card(
+          elevation: 0,
           color: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
             onTap: () {
-              // TODO(cantgim): implement sthg
+              context.router.push(
+                ServiceDetailRoute(
+                  providerId: providerId,
+                  serviceData: data[index],
+                  categories: categories,
+                ),
+              );
             },
             child: ListBody(
               children: [
@@ -62,7 +76,7 @@ class RepairerProfileServices extends StatelessWidget {
                               maxLines: 1,
                             ),
                             subtitle: AutoSizeText(
-                              '''Đơn giá : ${data[index].serviceFee}đ''',
+                              '''${context.l10n.productPriceLabel}: ${context.formatMoney(data[index].serviceFee)}''',
                               style: Theme.of(context).textTheme.bodyMedium,
                               maxLines: 1,
                             ),

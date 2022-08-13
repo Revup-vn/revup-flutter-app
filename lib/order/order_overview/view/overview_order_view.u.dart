@@ -25,7 +25,10 @@ class OverViewOrderView extends StatelessWidget {
         initial: Container.new,
         failure: Container.new,
         loading: LoadingOverView.new,
-        loadDataSuccess: (data) => OverviewOrderContent(modelData: data),
+        loadDataSuccess: (data, serviceCount) => OverviewOrderContent(
+          modelData: data,
+          serviceCount: serviceCount,
+        ),
       ),
     );
   }

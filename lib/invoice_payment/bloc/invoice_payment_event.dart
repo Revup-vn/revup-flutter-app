@@ -11,6 +11,6 @@ class InvoicePaymentEvent with _$InvoicePaymentEvent {
     required int totalAmount,
     required String pid,
     required String cid,
-    required Feedback feedback,
+    required ReportFeedback feedback,
   }) = _SubmitPayment;
 }

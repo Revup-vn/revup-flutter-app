@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/find_list_repairer_bloc.dart';
+import '../bloc/find_list_repairer_bloc.u.dart';
 
 class ListRepairerLoadDataFailure extends StatelessWidget {
   const ListRepairerLoadDataFailure(this.errorMessage, {super.key});

@@ -5,7 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
-import '../bloc/find_list_repairer_bloc.dart';
+import '../../shared/enums.dart';
+import '../bloc/find_list_repairer_bloc.u.dart';
 import '../models/provider_data.u.dart';
 import 'list_repairer_content.u.dart';
 
@@ -22,11 +23,11 @@ class ListRepairer extends StatelessWidget {
   }) =>
       ListRepairer(
         key: key,
-        sortType: '',
+        sortType: RepairerSortType.none,
         listProvider: listProvider,
       );
 
-  final String sortType;
+  final RepairerSortType sortType;
   final IList<ProviderData> listProvider;
   @override
   Widget build(BuildContext context) {
@@ -67,14 +68,14 @@ class ListRepairer extends StatelessWidget {
                   ),
                 ),
                 child: BlocSelector<FindListRepairerBloc, FindListRepairerState,
-                    String>(
+                    RepairerSortType>(
                   selector: (state) => state.maybeMap(
                     dropdownListChangedSuccess: (value) => value.sortType,
-                    orElse: () => context.l10n.sortAsLabel,
+                    orElse: () => RepairerSortType.none,
                   ),
                   builder: (context, state) {
                     return DropdownButtonHideUnderline(
-                      child: DropdownButton(
+                      child: DropdownButton<RepairerSortType>(
                         isDense: true,
                         dropdownColor:
                             Theme.of(context).colorScheme.onSurfaceVariant,
@@ -86,32 +87,41 @@ class ListRepairer extends StatelessWidget {
                               ?.copyWith(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
-                        value:
-                            (state == context.l10n.sortAsLabel) ? null : state,
+                        value: state,
                         icon: const Icon(Icons.arrow_drop_down),
                         elevation: 16,
                         style: Theme.of(context).chipTheme.labelStyle,
-                        items: <String>[
-                          (context.l10n.distanceLabel),
-                          (context.l10n.ratingLabel),
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
+                        items: RepairerSortType.values
+                            .map<DropdownMenuItem<RepairerSortType>>((
+                          RepairerSortType value,
+                        ) {
+                          return DropdownMenuItem<RepairerSortType>(
                             value: value,
-                            child: Text(
-                              value,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                            child: Builder(
+                              builder: (context) {
+                                var sortLabel = context.l10n.sortAsLabel;
+                                if (value == RepairerSortType.distance) {
+                                  sortLabel = context.l10n.distanceLabel;
+                                } else if (value == RepairerSortType.rating) {
+                                  sortLabel = context.l10n.ratingLabel;
+                                }
+
+                                return Text(
+                                  sortLabel,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                );
+                              },
                             ),
                           );
                         }).toList(),
-                        onChanged: (String? sortType) {
+                        onChanged: (RepairerSortType? sortType) {
                           context.read<FindListRepairerBloc>().add(
                                 FindListRepairerEvent.dropdownListChanged(
-                                  sortType:
-                                      sortType ?? context.l10n.sortAsLabel,
+                                  sortType: sortType ?? RepairerSortType.none,
                                 ),
                               );
                         },

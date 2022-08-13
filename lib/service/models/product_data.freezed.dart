@@ -16,12 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductData {
-  String? get id => throw _privateConstructorUsedError;
-  String? get serviceId => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  num? get price => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get productImageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get img => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductDataCopyWith<ProductData> get copyWith =>
@@ -33,13 +31,7 @@ abstract class $ProductDataCopyWith<$Res> {
   factory $ProductDataCopyWith(
           ProductData value, $Res Function(ProductData) then) =
       _$ProductDataCopyWithImpl<$Res>;
-  $Res call(
-      {String? id,
-      String? serviceId,
-      String? name,
-      num? price,
-      String? description,
-      String? productImageUrl});
+  $Res call({String name, int price, String description, String img});
 }
 
 /// @nodoc
@@ -52,38 +44,28 @@ class _$ProductDataCopyWithImpl<$Res> implements $ProductDataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? serviceId = freezed,
     Object? name = freezed,
     Object? price = freezed,
     Object? description = freezed,
-    Object? productImageUrl = freezed,
+    Object? img = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceId: serviceId == freezed
-          ? _value.serviceId
-          : serviceId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      productImageUrl: productImageUrl == freezed
-          ? _value.productImageUrl
-          : productImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -95,13 +77,7 @@ abstract class _$$_ProductDataCopyWith<$Res>
           _$_ProductData value, $Res Function(_$_ProductData) then) =
       __$$_ProductDataCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String? id,
-      String? serviceId,
-      String? name,
-      num? price,
-      String? description,
-      String? productImageUrl});
+  $Res call({String name, int price, String description, String img});
 }
 
 /// @nodoc
@@ -116,38 +92,28 @@ class __$$_ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? serviceId = freezed,
     Object? name = freezed,
     Object? price = freezed,
     Object? description = freezed,
-    Object? productImageUrl = freezed,
+    Object? img = freezed,
   }) {
     return _then(_$_ProductData(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serviceId: serviceId == freezed
-          ? _value.serviceId
-          : serviceId // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as num?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      productImageUrl: productImageUrl == freezed
-          ? _value.productImageUrl
-          : productImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -156,29 +122,23 @@ class __$$_ProductDataCopyWithImpl<$Res> extends _$ProductDataCopyWithImpl<$Res>
 
 class _$_ProductData implements _ProductData {
   const _$_ProductData(
-      {this.id,
-      this.serviceId,
-      this.name,
-      this.price,
-      this.description,
-      this.productImageUrl});
+      {required this.name,
+      required this.price,
+      required this.description,
+      required this.img});
 
   @override
-  final String? id;
+  final String name;
   @override
-  final String? serviceId;
+  final int price;
   @override
-  final String? name;
+  final String description;
   @override
-  final num? price;
-  @override
-  final String? description;
-  @override
-  final String? productImageUrl;
+  final String img;
 
   @override
   String toString() {
-    return 'ProductData(id: $id, serviceId: $serviceId, name: $name, price: $price, description: $description, productImageUrl: $productImageUrl)';
+    return 'ProductData(name: $name, price: $price, description: $description, img: $img)';
   }
 
   @override
@@ -186,25 +146,20 @@ class _$_ProductData implements _ProductData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.serviceId, serviceId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality()
-                .equals(other.productImageUrl, productImageUrl));
+            const DeepCollectionEquality().equals(other.img, img));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(serviceId),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(productImageUrl));
+      const DeepCollectionEquality().hash(img));
 
   @JsonKey(ignore: true)
   @override
@@ -214,25 +169,19 @@ class _$_ProductData implements _ProductData {
 
 abstract class _ProductData implements ProductData {
   const factory _ProductData(
-      {final String? id,
-      final String? serviceId,
-      final String? name,
-      final num? price,
-      final String? description,
-      final String? productImageUrl}) = _$_ProductData;
+      {required final String name,
+      required final int price,
+      required final String description,
+      required final String img}) = _$_ProductData;
 
   @override
-  String? get id;
+  String get name;
   @override
-  String? get serviceId;
+  int get price;
   @override
-  String? get name;
+  String get description;
   @override
-  num? get price;
-  @override
-  String? get description;
-  @override
-  String? get productImageUrl;
+  String get img;
   @override
   @JsonKey(ignore: true)
   _$$_ProductDataCopyWith<_$_ProductData> get copyWith =>

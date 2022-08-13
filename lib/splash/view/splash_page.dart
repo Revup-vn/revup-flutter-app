@@ -30,11 +30,12 @@ class SplashPage extends StatelessWidget {
           },
           orElse: () => unit,
         );
+
         context.router.pushAndPopUntil(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
-            authenticated: (type) => HomeRoute(),
+            authenticated: (type) => HomeRoute(user: type.user),
             orElse: LoginRoute.new,
           ),
           predicate: (_) => true,

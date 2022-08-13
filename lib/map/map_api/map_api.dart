@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -74,4 +76,22 @@ Future<PlaceDetails> getPlaceDetails(String placeId) async {
   final results = response.data!['result'] as Map<String, dynamic>;
 
   return PlaceDetails.fromJson(results);
+}
+
+Future<String> getDuration(
+  double fromLat,
+  double fromLng,
+  double toLat,
+  double toLng,
+) async {
+  final url =
+      'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=$toLat,$toLng&origins=$fromLat,$fromLng&key=$ggMapKey';
+  final response = await Dio().get<Map<String, dynamic>>(
+    url,
+    options: Options(responseType: ResponseType.json),
+  );
+  final duration =
+      response.data!['rows'][0]['elements'][0]['duration']['text'] as String;
+
+  return duration;
 }

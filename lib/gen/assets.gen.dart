@@ -61,6 +61,10 @@ class $AssetsScreensGen {
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');
 
+  /// File path: assets/screens/mechanic.png
+  AssetGenImage get mechanic =>
+      const AssetGenImage('assets/screens/mechanic.png');
+
   /// File path: assets/screens/mission.svg
   SvgGenImage get mission => const SvgGenImage('assets/screens/mission.svg');
 

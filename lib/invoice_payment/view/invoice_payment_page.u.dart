@@ -20,7 +20,7 @@ class InvoicePaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => InvoicePaymentBloc(context.read()),
+      create: (_) => InvoicePaymentBloc(),
       child: InvoicePaymentView(providerData, serviceData, total),
     );
   }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../l10n/l10n.dart';
-import '../bloc/home_bloc.dart';
+import '../../router/router.dart';
 import 'app_service_item.u.dart';
 
 class AppServicePanel extends StatelessWidget {
@@ -15,12 +17,11 @@ class AppServicePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final bloc = BlocProvider.of<HomeBloc>(context);
 
     return Container(
       height: 140,
       color: Theme.of(context).colorScheme.inversePrimary,
-      alignment: Alignment.center, // where to position the child
+      alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -63,31 +64,62 @@ class AppServicePanel extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AutoSizeText(
-                                  'Chọn loại phương tiện',
+                                  l10n.chooseVehicleLabel,
                                   style: Theme.of(context).textTheme.titleLarge,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AppServiceItem(
-                                      name: 'Ô tô',
+                                      name: l10n.carLabel,
                                       icon: const Icon(Icons.car_crash),
-                                      onPressed: () {
-                                        bloc.add(
-                                          const HomeEvent.submitted(
-                                            vehicle: 'car',
+                                      onPressed: () async {
+                                        final boxRprRecord =
+                                            await Hive.openBox<dynamic>(
+                                          'repairRecord',
+                                        );
+                                        await boxRprRecord.put(
+                                          'vehicle',
+                                          'car',
+                                        );
+                                        final boxLocation =
+                                            Hive.box<dynamic>('location');
+
+                                        await context.router.popAndPush(
+                                          FindNearbyRoute(
+                                            currentLocation: LatLng(
+                                              boxLocation.get('currentLat')
+                                                  as double,
+                                              boxLocation.get('currentLng')
+                                                  as double,
+                                            ),
                                           ),
                                         );
                                       },
                                     ),
                                     const SizedBox(width: 32),
                                     AppServiceItem(
-                                      name: 'Xe máy',
+                                      name: l10n.motorbikeLabel,
                                       icon: const Icon(Icons.motorcycle),
-                                      onPressed: () {
-                                        bloc.add(
-                                          const HomeEvent.submitted(
-                                            vehicle: 'motorbike',
+                                      onPressed: () async {
+                                        final boxRprRecord =
+                                            await Hive.openBox<dynamic>(
+                                          'repairRecord',
+                                        );
+                                        await boxRprRecord.put(
+                                          'vehicle',
+                                          'motorbike',
+                                        );
+                                        final boxLocation =
+                                            Hive.box<dynamic>('location');
+                                        await context.router.popAndPush(
+                                          FindNearbyRoute(
+                                            currentLocation: LatLng(
+                                              boxLocation.get('currentLat')
+                                                  as double,
+                                              boxLocation.get('currentLng')
+                                                  as double,
+                                            ),
                                           ),
                                         );
                                       },

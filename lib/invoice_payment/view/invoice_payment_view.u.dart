@@ -7,14 +7,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:revup_core/core.dart' as feedback;
 import 'package:revup_core/core.dart';
 
 import '../../invoice/models/provider_data.dart';
 import '../../invoice/models/service_data.dart';
 import '../../invoice/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
-import '../../router/app_router.gr.dart';
 import '../../router/router.dart';
 import '../../shared/utils.dart';
 import '../bloc/invoice_payment_bloc.u.dart';
@@ -78,8 +76,7 @@ class InvoicePaymentView extends StatelessWidget {
                                     userName: providerData.providerName,
                                   );
                                 },
-                                // ignore: implicit_dynamic_parameter
-                                errorWidget: (context, url, error) {
+                                errorWidget: (context, url, dynamic error) {
                                   return DefaultAvatar(
                                     textSize:
                                         Theme.of(context).textTheme.titleLarge,
@@ -183,7 +180,8 @@ class InvoicePaymentView extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              '${serviceData[index].serviceFee} 000đ',
+                              context
+                                  .formatMoney(serviceData[index].serviceFee),
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
@@ -337,7 +335,7 @@ class InvoicePaymentView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            total != 0 ? '$total 000đ' : '0đ',
+                            context.formatMoney(total),
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -351,7 +349,7 @@ class InvoicePaymentView extends StatelessWidget {
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
                     onPressed: () async {
-                      final completer = Completer<feedback.Feedback>();
+                      final completer = Completer<ReportFeedback>();
                       await context.router.push(
                         ReviewRepairmanRoute(
                           providerData: providerData,

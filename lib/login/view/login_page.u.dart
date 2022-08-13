@@ -11,7 +11,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/app_router.gr.dart';
+import '../../router/router.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
@@ -50,6 +50,13 @@ class LoginPage extends StatelessWidget {
             ),
             authenticated: (authType) {
               context.loaderOverlay.hide();
+
+              // context.read<NotificationCubit>().registerDevice();
+              // context.read<NotificationCubit>().state.whenOrNull(
+              //       registered: _onRegisterNotification,
+              //       failToRegister: () =>
+              //           context.read<NotificationCubit>().registerDevice(),
+              //     );
               showDialog<String>(
                 context: context,
                 builder: (context) {
@@ -88,13 +95,13 @@ class LoginPage extends StatelessWidget {
               );
 
               return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute());
+                context.router.push(HomeRoute(user: authType.user));
               });
             },
             orElse: () => false,
           ),
           builder: (context, state) => state.maybeWhen(
-            //authenticated: (authType) => LoginSuccess(type: authType),
+            // authenticated: (authType) => LoginSuccess(type: authType),
             loading: LoginView.new,
 
             failure: (authFailure) {
@@ -252,4 +259,9 @@ class LoginPage extends StatelessWidget {
         );
     Navigator.of(context, rootNavigator: true).pop();
   }
+
+  // Future<void> _onRegisterNotification(String token) async {
+  //   final boxUser = await Hive.openBox<dynamic>('user');
+  //   await boxUser.put('notifyToken', token);
+  // }
 }

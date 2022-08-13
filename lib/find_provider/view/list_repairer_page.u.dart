@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
-import '../bloc/find_list_repairer_bloc.dart';
+import '../bloc/find_list_repairer_bloc.u.dart';
 import 'list_repairer_view.u.dart';
 
 class ListRepairerPage extends StatelessWidget {

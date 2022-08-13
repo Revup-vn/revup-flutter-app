@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
+import '../../repairer_profile/models/service_data.u.dart';
 import '../../router/router.dart';
-import '../choose-service/bloc/choose_service_bloc.dart';
-import '../models/service_data.dart';
+import '../choose_service/bloc/choose_service_bloc.u.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
   const ServiceCheckboxTile({
@@ -17,10 +19,16 @@ class ServiceCheckboxTile extends StatefulWidget {
     required this.serviceData,
     this.onTap,
     required this.selectProMode,
+    required this.index,
+    required this.providerId,
+    required this.categories,
   });
   final ServiceData serviceData;
   final VoidCallback? onTap;
   final bool selectProMode;
+  final int index;
+  final String providerId;
+  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
 
   @override
   State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
@@ -44,7 +52,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(48),
                 child: CachedNetworkImage(
-                  imageUrl: widget.serviceData.imageUrl ?? '',
+                  imageUrl: widget.serviceData.imageURL,
                   placeholder: (context, url) => Assets.screens.dfAvatar.image(
                     fit: BoxFit.cover,
                     height: 64,
@@ -65,10 +73,10 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 ),
               ),
             ),
-            title: AutoSizeText(widget.serviceData.name ?? ''),
+            title: AutoSizeText(widget.serviceData.name),
             subtitle: AutoSizeText(
               '${l10n.servicePriceLabel}: '
-              '${widget.serviceData.productPriceRange ?? '0'}',
+              '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : widget.serviceData.serviceFee}''',
             ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,
@@ -82,7 +90,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 context.read<ChooseServiceBloc>().add(
                       ChooseServiceEvent.serviceSelectChanged(
                         serviceData: widget.serviceData,
-                        isSelected: isChecked ?? false,
+                        index: widget.index,
                       ),
                     );
               },
@@ -91,7 +99,16 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
           if (widget.selectProMode)
             TextButton(
               onPressed: () {
-                context.router.push(const ChooseProductRoute());
+                context.router.push(
+                  ChooseProductRoute(
+                    providerId: widget.providerId,
+                    serviceData: widget.serviceData,
+                    categories: widget.categories,
+                  ),
+                );
+                // showMaterialModalBottomSheet<Widget>(
+                //     context: context,
+                //     builder: (context) => ChooseServiceView());
               },
               child: AutoSizeText(maxLines: 1, l10n.selectProductLabel),
             ),

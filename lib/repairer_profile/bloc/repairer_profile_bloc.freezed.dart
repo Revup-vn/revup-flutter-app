@@ -87,12 +87,18 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started implements _Started {
+class _$_Started with DiagnosticableTreeMixin implements _Started {
   const _$_Started();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RepairerProfileEvent.started()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'RepairerProfileEvent.started'));
   }
 
   @override
@@ -170,8 +176,11 @@ mixin _$RepairerProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)
+    required TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -180,8 +189,11 @@ mixin _$RepairerProfileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -190,8 +202,11 @@ mixin _$RepairerProfileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -262,12 +277,18 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RepairerProfileState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'RepairerProfileState.initial'));
   }
 
   @override
@@ -283,8 +304,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)
+    required TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -296,8 +320,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -309,8 +336,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -372,7 +402,8 @@ abstract class _$$_DataLoadSuccessCopyWith<$Res> {
   $Res call(
       {IList<ServiceData> serviceData,
       IList<RatingData> ratingData,
-      ProviderData provider});
+      ProviderData provider,
+      List<Tuple2<RepairCategory, IList<ServiceData>>> categories});
 
   $ProviderDataCopyWith<$Res> get provider;
 }
@@ -393,6 +424,7 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
     Object? serviceData = freezed,
     Object? ratingData = freezed,
     Object? provider = freezed,
+    Object? categories = freezed,
   }) {
     return _then(_$_DataLoadSuccess(
       serviceData: serviceData == freezed
@@ -407,6 +439,10 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as ProviderData,
+      categories: categories == freezed
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<Tuple2<RepairCategory, IList<ServiceData>>>,
     ));
   }
 
@@ -420,11 +456,16 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataLoadSuccess implements _DataLoadSuccess {
+class _$_DataLoadSuccess
+    with DiagnosticableTreeMixin
+    implements _DataLoadSuccess {
   const _$_DataLoadSuccess(
       {required this.serviceData,
       required this.ratingData,
-      required this.provider});
+      required this.provider,
+      required final List<Tuple2<RepairCategory, IList<ServiceData>>>
+          categories})
+      : _categories = categories;
 
   @override
   final IList<ServiceData> serviceData;
@@ -432,10 +473,27 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
   final IList<RatingData> ratingData;
   @override
   final ProviderData provider;
+  final List<Tuple2<RepairCategory, IList<ServiceData>>> _categories;
+  @override
+  List<Tuple2<RepairCategory, IList<ServiceData>>> get categories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
 
   @override
-  String toString() {
-    return 'RepairerProfileState.dataLoadSuccess(serviceData: $serviceData, ratingData: $ratingData, provider: $provider)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RepairerProfileState.dataLoadSuccess(serviceData: $serviceData, ratingData: $ratingData, provider: $provider, categories: $categories)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RepairerProfileState.dataLoadSuccess'))
+      ..add(DiagnosticsProperty('serviceData', serviceData))
+      ..add(DiagnosticsProperty('ratingData', ratingData))
+      ..add(DiagnosticsProperty('provider', provider))
+      ..add(DiagnosticsProperty('categories', categories));
   }
 
   @override
@@ -447,7 +505,9 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
                 .equals(other.serviceData, serviceData) &&
             const DeepCollectionEquality()
                 .equals(other.ratingData, ratingData) &&
-            const DeepCollectionEquality().equals(other.provider, provider));
+            const DeepCollectionEquality().equals(other.provider, provider) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
@@ -455,7 +515,8 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
       runtimeType,
       const DeepCollectionEquality().hash(serviceData),
       const DeepCollectionEquality().hash(ratingData),
-      const DeepCollectionEquality().hash(provider));
+      const DeepCollectionEquality().hash(provider),
+      const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -466,41 +527,50 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)
+    required TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
   }) {
-    return dataLoadSuccess(serviceData, ratingData, provider);
+    return dataLoadSuccess(serviceData, ratingData, provider, categories);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
   }) {
-    return dataLoadSuccess?.call(serviceData, ratingData, provider);
+    return dataLoadSuccess?.call(serviceData, ratingData, provider, categories);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (dataLoadSuccess != null) {
-      return dataLoadSuccess(serviceData, ratingData, provider);
+      return dataLoadSuccess(serviceData, ratingData, provider, categories);
     }
     return orElse();
   }
@@ -547,11 +617,14 @@ abstract class _DataLoadSuccess implements RepairerProfileState {
   const factory _DataLoadSuccess(
       {required final IList<ServiceData> serviceData,
       required final IList<RatingData> ratingData,
-      required final ProviderData provider}) = _$_DataLoadSuccess;
+      required final ProviderData provider,
+      required final List<Tuple2<RepairCategory, IList<ServiceData>>>
+          categories}) = _$_DataLoadSuccess;
 
   IList<ServiceData> get serviceData;
   IList<RatingData> get ratingData;
   ProviderData get provider;
+  List<Tuple2<RepairCategory, IList<ServiceData>>> get categories;
   @JsonKey(ignore: true)
   _$$_DataLoadSuccessCopyWith<_$_DataLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -578,12 +651,21 @@ class __$$_DataLoadFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataLoadFailure implements _DataLoadFailure {
+class _$_DataLoadFailure
+    with DiagnosticableTreeMixin
+    implements _DataLoadFailure {
   const _$_DataLoadFailure();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RepairerProfileState.dataLoadFailure()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+        DiagnosticsProperty('type', 'RepairerProfileState.dataLoadFailure'));
   }
 
   @override
@@ -599,8 +681,11 @@ class _$_DataLoadFailure implements _DataLoadFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)
+    required TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -612,8 +697,11 @@ class _$_DataLoadFailure implements _DataLoadFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -625,8 +713,11 @@ class _$_DataLoadFailure implements _DataLoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -700,12 +791,18 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'RepairerProfileState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'RepairerProfileState.loading'));
   }
 
   @override
@@ -721,8 +818,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)
+    required TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -734,8 +834,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -747,8 +850,11 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(IList<ServiceData> serviceData,
-            IList<RatingData> ratingData, ProviderData provider)?
+    TResult Function(
+            IList<ServiceData> serviceData,
+            IList<RatingData> ratingData,
+            ProviderData provider,
+            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
