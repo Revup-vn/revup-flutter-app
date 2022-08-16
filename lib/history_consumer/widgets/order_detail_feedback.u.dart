@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart' hide Feedback;
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
 
@@ -8,7 +7,7 @@ import '../../l10n/l10n.dart';
 
 class OrderFeedback extends StatelessWidget {
   const OrderFeedback({super.key, required this.feedback});
-  final Feedback feedback;
+  final ReportFeedback feedback;
 
   @override
   Widget build(BuildContext context) {

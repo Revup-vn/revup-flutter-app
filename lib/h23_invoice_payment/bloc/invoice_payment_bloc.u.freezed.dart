@@ -21,7 +21,7 @@ mixin _$InvoicePaymentEvent {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$InvoicePaymentEvent {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$InvoicePaymentEvent {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) =>
@@ -105,18 +105,12 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
+class _$_Started implements _Started {
   const _$_Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'InvoicePaymentEvent.started'));
   }
 
   @override
@@ -134,7 +128,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return started();
@@ -146,7 +140,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return started?.call();
@@ -158,7 +152,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -241,26 +235,15 @@ class __$$_ChangePaymentMethodCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangePaymentMethod
-    with DiagnosticableTreeMixin
-    implements _ChangePaymentMethod {
+class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   const _$_ChangePaymentMethod({required this.isPayOnline});
 
   @override
   final bool isPayOnline;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentEvent.changePaymentMethod(isPayOnline: $isPayOnline)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'InvoicePaymentEvent.changePaymentMethod'))
-      ..add(DiagnosticsProperty('isPayOnline', isPayOnline));
   }
 
   @override
@@ -288,7 +271,7 @@ class _$_ChangePaymentMethod
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return changePaymentMethod(isPayOnline);
@@ -300,7 +283,7 @@ class _$_ChangePaymentMethod
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return changePaymentMethod?.call(isPayOnline);
@@ -312,7 +295,7 @@ class _$_ChangePaymentMethod
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -377,9 +360,9 @@ abstract class _$$_SubmitPaymentCopyWith<$Res> {
       int totalAmount,
       String pid,
       String cid,
-      Feedback feedback});
+      ReportFeedback feedback});
 
-  $FeedbackCopyWith<$Res> get feedback;
+  $ReportFeedbackCopyWith<$Res> get feedback;
 }
 
 /// @nodoc
@@ -421,13 +404,13 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
       feedback: feedback == freezed
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
-              as Feedback,
+              as ReportFeedback,
     ));
   }
 
   @override
-  $FeedbackCopyWith<$Res> get feedback {
-    return $FeedbackCopyWith<$Res>(_value.feedback, (value) {
+  $ReportFeedbackCopyWith<$Res> get feedback {
+    return $ReportFeedbackCopyWith<$Res>(_value.feedback, (value) {
       return _then(_value.copyWith(feedback: value));
     });
   }
@@ -435,7 +418,7 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
+class _$_SubmitPayment implements _SubmitPayment {
   const _$_SubmitPayment(
       {required this.isPayOnline,
       required this.totalAmount,
@@ -452,23 +435,11 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
   @override
   final String cid;
   @override
-  final Feedback feedback;
+  final ReportFeedback feedback;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentEvent.sumbitPayment(isPayOnline: $isPayOnline, totalAmount: $totalAmount, pid: $pid, cid: $cid, feedback: $feedback)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'InvoicePaymentEvent.sumbitPayment'))
-      ..add(DiagnosticsProperty('isPayOnline', isPayOnline))
-      ..add(DiagnosticsProperty('totalAmount', totalAmount))
-      ..add(DiagnosticsProperty('pid', pid))
-      ..add(DiagnosticsProperty('cid', cid))
-      ..add(DiagnosticsProperty('feedback', feedback));
   }
 
   @override
@@ -505,7 +476,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
     required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, Feedback feedback)
+            String cid, ReportFeedback feedback)
         sumbitPayment,
   }) {
     return sumbitPayment(isPayOnline, totalAmount, pid, cid, feedback);
@@ -517,7 +488,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
   }) {
     return sumbitPayment?.call(isPayOnline, totalAmount, pid, cid, feedback);
@@ -529,7 +500,7 @@ class _$_SubmitPayment with DiagnosticableTreeMixin implements _SubmitPayment {
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
     TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            Feedback feedback)?
+            ReportFeedback feedback)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -580,13 +551,13 @@ abstract class _SubmitPayment implements InvoicePaymentEvent {
       required final int totalAmount,
       required final String pid,
       required final String cid,
-      required final Feedback feedback}) = _$_SubmitPayment;
+      required final ReportFeedback feedback}) = _$_SubmitPayment;
 
   bool get isPayOnline;
   int get totalAmount;
   String get pid;
   String get cid;
-  Feedback get feedback;
+  ReportFeedback get feedback;
   @JsonKey(ignore: true)
   _$$_SubmitPaymentCopyWith<_$_SubmitPayment> get copyWith =>
       throw _privateConstructorUsedError;
@@ -680,18 +651,12 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'InvoicePaymentState.initial'));
   }
 
   @override
@@ -816,26 +781,15 @@ class __$$_ChangePaymentMethodSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangePaymentMethodSuccess
-    with DiagnosticableTreeMixin
-    implements _ChangePaymentMethodSuccess {
+class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   const _$_ChangePaymentMethodSuccess({required this.isPaymentOnline});
 
   @override
   final bool isPaymentOnline;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentState.changePaymentMethodSuccess(isPaymentOnline: $isPaymentOnline)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'InvoicePaymentState.changePaymentMethodSuccess'))
-      ..add(DiagnosticsProperty('isPaymentOnline', isPaymentOnline));
   }
 
   @override
@@ -973,25 +927,15 @@ class __$$_PaymentSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PaymentSuccess
-    with DiagnosticableTreeMixin
-    implements _PaymentSuccess {
+class _$_PaymentSuccess implements _PaymentSuccess {
   const _$_PaymentSuccess({required this.paymentStatus});
 
   @override
   final String paymentStatus;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'InvoicePaymentState.paymentSuccess(paymentStatus: $paymentStatus)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'InvoicePaymentState.paymentSuccess'))
-      ..add(DiagnosticsProperty('paymentStatus', paymentStatus));
   }
 
   @override

@@ -12,7 +12,7 @@ class HistoryModel with _$HistoryModel {
     required String toLocation,
     required DateTime completedTime,
     required AppUser provider,
-    Feedback? feedback,
+    ReportFeedback? feedback,
     required IList<PaymentService> services,
   }) = _HistoryConsumerModel;
 

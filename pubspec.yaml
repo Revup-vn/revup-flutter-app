@@ -18,6 +18,7 @@ dependencies:
   dio: ^4.0.1
   dotted_border: ^2.0.0+2
   firebase_core: ^1.20.0
+  flash: ^2.0.3+3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
@@ -50,7 +51,9 @@ dependencies:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^6.0.0-dev
+      version: ^6.0.2-dev
+  # revup_core:
+  #   path: ../revup-core
   shimmer: ^2.0.0
   url_launcher: ^6.1.5
   uuid: ^3.0.6

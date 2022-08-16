@@ -271,5 +271,10 @@
   "needQuotePriceLabel": "Cần thợ báo giá",
   "emptyHistoryLabel": "Bạn chưa có yêu cầu sửa chữa nào",
   "submitRequestSuccessLabel": "Yêu cầu đã được gửi, bạn vui lòng chờ xíu để thợ phản hồi nhé",
-  "backToHomePageLabel": "Trở về trang chủ"
+  "backToHomePageLabel": "Trở về trang chủ",
+  "showLabel": "Xem chi tiết",
+  "pendingRepairRecordLabel": "Yêu cầu đã được gửi đến thợ, bạn chờ xíu nhé",
+  "acceptRepairRecordLabel": "Thợ đang trên đường",
+  "arrivedRepairRecordLabel": "Thợ đã đã đến nơi",
+  "startedRepairRecordLabel": "Thợ đang sửa chữa"
 }

@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
@@ -12,9 +10,10 @@ part 'invoice_payment_state.dart';
 
 class InvoicePaymentBloc
     extends Bloc<InvoicePaymentEvent, InvoicePaymentState> {
-  InvoicePaymentBloc() : super(const _Initial()) {
+  InvoicePaymentBloc(this._repairRecord) : super(const _Initial()) {
     on<InvoicePaymentEvent>(_onEvent);
   }
+  final IStore<RepairRecord> _repairRecord;
   FutureOr<void> _onEvent(InvoicePaymentEvent event, Emitter emit) {
     event.when(
       started: () => emit(const InvoicePaymentState.initial()),
@@ -28,7 +27,7 @@ class InvoicePaymentBloc
 
         // final recordBox = Hive.box<dynamic>('repairRecord');
         // final tmp = RepairRecord.finished(
-        //   id: uuid.v4(),
+        //   id: const Uuid().v4(),
         //   cid: cid,
         //   pid: pid,
         //   created: recordBox.get(
@@ -43,7 +42,7 @@ class InvoicePaymentBloc
         //       .toString(),
         //   money: totalAmount,
         //   moving:
-        //   recordBox.get('moving', defaultValue: DateTime.now()) as DateTime,
+        //       recordBox.get('moving', defaultValue: DateTime.now()) as DateTime,
         //   started: recordBox.get(
         //     'started',
         //     defaultValue: DateTime.now(),
@@ -54,10 +53,9 @@ class InvoicePaymentBloc
         //     defaultValue: 'default image',
         //   ) as List<String>,
         //   feedback: feedback,
-        //   from: from,
+        //   from: Location(name: '', long: long, lat: lat),
         //   to: to,
         // );
-        // log(tmp.toString());
         // _repairRecord.create(
         //   tmp,
         // );

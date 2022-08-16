@@ -19,38 +19,32 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String vehicle) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,18 +84,12 @@ class __$$_StartedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
+class _$_Started implements _Started {
   const _$_Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'HomeEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'HomeEvent.started'));
   }
 
   @override
@@ -117,7 +105,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String vehicle) submitted,
   }) {
     return started();
   }
@@ -126,7 +113,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
   }) {
     return started?.call();
   }
@@ -135,7 +121,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -148,7 +133,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -157,7 +141,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -166,7 +149,6 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -181,155 +163,14 @@ abstract class _Started implements HomeEvent {
 }
 
 /// @nodoc
-abstract class _$$_SubmittedCopyWith<$Res> {
-  factory _$$_SubmittedCopyWith(
-          _$_Submitted value, $Res Function(_$_Submitted) then) =
-      __$$_SubmittedCopyWithImpl<$Res>;
-  $Res call({String vehicle});
-}
-
-/// @nodoc
-class __$$_SubmittedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements _$$_SubmittedCopyWith<$Res> {
-  __$$_SubmittedCopyWithImpl(
-      _$_Submitted _value, $Res Function(_$_Submitted) _then)
-      : super(_value, (v) => _then(v as _$_Submitted));
-
-  @override
-  _$_Submitted get _value => super._value as _$_Submitted;
-
-  @override
-  $Res call({
-    Object? vehicle = freezed,
-  }) {
-    return _then(_$_Submitted(
-      vehicle: vehicle == freezed
-          ? _value.vehicle
-          : vehicle // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Submitted with DiagnosticableTreeMixin implements _Submitted {
-  const _$_Submitted({required this.vehicle});
-
-  @override
-  final String vehicle;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeEvent.submitted(vehicle: $vehicle)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'HomeEvent.submitted'))
-      ..add(DiagnosticsProperty('vehicle', vehicle));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Submitted &&
-            const DeepCollectionEquality().equals(other.vehicle, vehicle));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(vehicle));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
-      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String vehicle) submitted,
-  }) {
-    return submitted(vehicle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
-  }) {
-    return submitted?.call(vehicle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String vehicle)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(vehicle);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Submitted value) submitted,
-  }) {
-    return submitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
-  }) {
-    return submitted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Submitted value)? submitted,
-    required TResult orElse(),
-  }) {
-    if (submitted != null) {
-      return submitted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Submitted implements HomeEvent {
-  const factory _Submitted({required final String vehicle}) = _$_Submitted;
-
-  String get vehicle;
-  @JsonKey(ignore: true)
-  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
+    required TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -338,8 +179,8 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -348,8 +189,8 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
     required TResult orElse(),
   }) =>
@@ -415,18 +256,12 @@ class __$$_InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'HomeState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'HomeState.initial'));
   }
 
   @override
@@ -444,8 +279,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
+    required TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
         success,
   }) {
     return initial();
@@ -457,8 +292,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
   }) {
     return initial?.call();
@@ -470,8 +305,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
     required TResult orElse(),
   }) {
@@ -542,18 +377,12 @@ class __$$_LoadingCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'HomeState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'HomeState.loading'));
   }
 
   @override
@@ -571,8 +400,8 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
+    required TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
         success,
   }) {
     return loading();
@@ -584,8 +413,8 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
   }) {
     return loading?.call();
@@ -597,8 +426,8 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
     required TResult orElse(),
   }) {
@@ -669,18 +498,12 @@ class __$$_FailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure with DiagnosticableTreeMixin implements _Failure {
+class _$_Failure implements _Failure {
   const _$_Failure();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'HomeState.failure()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'HomeState.failure'));
   }
 
   @override
@@ -698,8 +521,8 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
+    required TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
         success,
   }) {
     return failure();
@@ -711,8 +534,8 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
   }) {
     return failure?.call();
@@ -724,8 +547,8 @@ class _$_Failure with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
     required TResult orElse(),
   }) {
@@ -782,13 +605,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call(
-      {ProviderModel provider,
-      IVector<String> imgs,
-      String timeRepair,
-      String dayRepair});
-
-  $ProviderModelCopyWith<$Res> get provider;
+  $Res call({IVector<String> ads, Option<RepairRecord> activeRepairRecord});
 }
 
 /// @nodoc
@@ -802,71 +619,35 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? provider = freezed,
-    Object? imgs = freezed,
-    Object? timeRepair = freezed,
-    Object? dayRepair = freezed,
+    Object? ads = freezed,
+    Object? activeRepairRecord = freezed,
   }) {
     return _then(_$_Success(
-      provider: provider == freezed
-          ? _value.provider
-          : provider // ignore: cast_nullable_to_non_nullable
-              as ProviderModel,
-      imgs: imgs == freezed
-          ? _value.imgs
-          : imgs // ignore: cast_nullable_to_non_nullable
+      ads: ads == freezed
+          ? _value.ads
+          : ads // ignore: cast_nullable_to_non_nullable
               as IVector<String>,
-      timeRepair: timeRepair == freezed
-          ? _value.timeRepair
-          : timeRepair // ignore: cast_nullable_to_non_nullable
-              as String,
-      dayRepair: dayRepair == freezed
-          ? _value.dayRepair
-          : dayRepair // ignore: cast_nullable_to_non_nullable
-              as String,
+      activeRepairRecord: activeRepairRecord == freezed
+          ? _value.activeRepairRecord
+          : activeRepairRecord // ignore: cast_nullable_to_non_nullable
+              as Option<RepairRecord>,
     ));
-  }
-
-  @override
-  $ProviderModelCopyWith<$Res> get provider {
-    return $ProviderModelCopyWith<$Res>(_value.provider, (value) {
-      return _then(_value.copyWith(provider: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$_Success with DiagnosticableTreeMixin implements _Success {
-  const _$_Success(
-      {required this.provider,
-      required this.imgs,
-      required this.timeRepair,
-      required this.dayRepair});
+class _$_Success implements _Success {
+  const _$_Success({required this.ads, required this.activeRepairRecord});
 
   @override
-  final ProviderModel provider;
+  final IVector<String> ads;
   @override
-  final IVector<String> imgs;
-  @override
-  final String timeRepair;
-  @override
-  final String dayRepair;
+  final Option<RepairRecord> activeRepairRecord;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState.success(provider: $provider, imgs: $imgs, timeRepair: $timeRepair, dayRepair: $dayRepair)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'HomeState.success'))
-      ..add(DiagnosticsProperty('provider', provider))
-      ..add(DiagnosticsProperty('imgs', imgs))
-      ..add(DiagnosticsProperty('timeRepair', timeRepair))
-      ..add(DiagnosticsProperty('dayRepair', dayRepair));
+  String toString() {
+    return 'HomeState.success(ads: $ads, activeRepairRecord: $activeRepairRecord)';
   }
 
   @override
@@ -874,20 +655,16 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            const DeepCollectionEquality().equals(other.provider, provider) &&
-            const DeepCollectionEquality().equals(other.imgs, imgs) &&
+            const DeepCollectionEquality().equals(other.ads, ads) &&
             const DeepCollectionEquality()
-                .equals(other.timeRepair, timeRepair) &&
-            const DeepCollectionEquality().equals(other.dayRepair, dayRepair));
+                .equals(other.activeRepairRecord, activeRepairRecord));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(provider),
-      const DeepCollectionEquality().hash(imgs),
-      const DeepCollectionEquality().hash(timeRepair),
-      const DeepCollectionEquality().hash(dayRepair));
+      const DeepCollectionEquality().hash(ads),
+      const DeepCollectionEquality().hash(activeRepairRecord));
 
   @JsonKey(ignore: true)
   @override
@@ -900,11 +677,11 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)
+    required TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
         success,
   }) {
-    return success(provider, imgs, timeRepair, dayRepair);
+    return success(ads, activeRepairRecord);
   }
 
   @override
@@ -913,11 +690,11 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
   }) {
-    return success?.call(provider, imgs, timeRepair, dayRepair);
+    return success?.call(ads, activeRepairRecord);
   }
 
   @override
@@ -926,13 +703,13 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderModel provider, IVector<String> imgs,
-            String timeRepair, String dayRepair)?
+    TResult Function(
+            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(provider, imgs, timeRepair, dayRepair);
+      return success(ads, activeRepairRecord);
     }
     return orElse();
   }
@@ -977,15 +754,11 @@ class _$_Success with DiagnosticableTreeMixin implements _Success {
 
 abstract class _Success implements HomeState {
   const factory _Success(
-      {required final ProviderModel provider,
-      required final IVector<String> imgs,
-      required final String timeRepair,
-      required final String dayRepair}) = _$_Success;
+      {required final IVector<String> ads,
+      required final Option<RepairRecord> activeRepairRecord}) = _$_Success;
 
-  ProviderModel get provider;
-  IVector<String> get imgs;
-  String get timeRepair;
-  String get dayRepair;
+  IVector<String> get ads;
+  Option<RepairRecord> get activeRepairRecord;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

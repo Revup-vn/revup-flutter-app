@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
+import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../repairer_profile/models/record_rating_data.dart';
-import '../models/provider_data.dart';
 import '../models/service_data.dart';
 
 part 'invoice_bloc.u.freezed.dart';
@@ -149,8 +149,10 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
               InvoiceState.loadingDataSuccess(
                 data: ProviderData.fromDtos(
                   provider,
-                  double.parse(ratingData['value1'].toString()),
-                  int.parse(ratingData['value2'].toString()),
+                  distance: 0,
+                  duration: 0,
+                  rating: double.parse(ratingData['value1'].toString()),
+                  ratingCount: int.parse(ratingData['value2'].toString()),
                 ),
                 ready: true,
                 total: total,

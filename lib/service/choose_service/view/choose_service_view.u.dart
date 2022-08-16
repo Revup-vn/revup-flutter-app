@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -9,8 +8,8 @@ import 'package:revup_core/core.dart';
 import '../../../l10n/l10n.dart';
 import '../../../router/app_router.gr.dart';
 import '../../../router/router.dart';
+import '../../../shared/utils.dart';
 import '../../widgets/service_checkbox_tile.dart';
-import '../../widgets/submit_request_success.dart';
 import '../bloc/choose_service_bloc.u.dart';
 
 class ChooseServiceView extends StatelessWidget {
@@ -22,6 +21,9 @@ class ChooseServiceView extends StatelessWidget {
     blocPage.state.whenOrNull(
       initial: () => blocPage.add(const ChooseServiceEvent.started()),
     );
+
+    final user = getUser(context.read<AuthenticateBloc>().state)
+        .getOrElse(() => throw NullThrownError());
 
     return Scaffold(
       appBar: AppBar(
@@ -115,7 +117,13 @@ class ChooseServiceView extends StatelessWidget {
                           ),
                         );
                       },
-                      submitSuccess: SubmitRequestSuccess.new,
+                      submitSuccess: () {
+                        // context.router.replaceAll([HomeRoute(user: user)]);
+                        context.router.replace(HomeRoute(user: user));
+                        return const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        );
+                      },
                     );
                   },
                 ),

@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-import '../../find_provider/models/provider_data.u.dart';
+import '../../h2_find_provider/models/provider_data.u.dart';
 import '../models/rating_data.u.dart';
 import '../models/service_data.u.dart';
 
@@ -48,7 +47,8 @@ class RepairerProfileBloc
         final feedbackData = (await _repairRecord.where(providerData.id))
             .map(
               (r) => r.map(
-                (a) => a.maybeMap<Future<Option<Tuple2<AppUser, Feedback>>>>(
+                (a) =>
+                    a.maybeMap<Future<Option<Tuple2<AppUser, ReportFeedback>>>>(
                   orElse: () => Future.value(none()),
                   finished: (v) async => some(
                     tuple2(
@@ -62,7 +62,7 @@ class RepairerProfileBloc
                 ),
               ),
             )
-            .fold<IList<Future<Option<Tuple2<AppUser, Feedback>>>>>(
+            .fold<IList<Future<Option<Tuple2<AppUser, ReportFeedback>>>>>(
               (l) => throw NullThrownError(),
               (r) => r,
             );

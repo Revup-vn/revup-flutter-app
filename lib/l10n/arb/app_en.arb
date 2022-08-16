@@ -291,5 +291,10 @@
   "needQuotePriceLabel": "Need quote price",
   "emptyHistoryLabel": "You don't have any repair requests yet",
   "submitRequestSuccessLabel": "The request has been sent, please wait a moment for the repairer to respond",
-  "backToHomePageLabel": "Back to Home"
+  "backToHomePageLabel": "Back to Home",
+  "showLabel": "Show",
+  "pendingRepairRecordLabel": "The request has been sent to the repairer, please wait a moment",
+  "acceptRepairRecordLabel": "The repairman is on the way",
+  "arrivedRepairRecordLabel": "The repairman has arrived",
+  "startedRepairRecordLabel": "The repairman is repairing"
 }

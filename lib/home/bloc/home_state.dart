@@ -6,9 +6,7 @@ class HomeState with _$HomeState {
   const factory HomeState.loading() = _Loading;
   const factory HomeState.failure() = _Failure;
   const factory HomeState.success({
-    required ProviderModel provider,
-    required IVector<String> imgs,
-    required String timeRepair,
-    required String dayRepair,
+    required IVector<String> ads,
+    required Option<RepairRecord> activeRepairRecord,
   }) = _Success;
 }

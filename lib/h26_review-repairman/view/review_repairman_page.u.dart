@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../invoice/models/provider_data.dart';
+import '../../h2_find_provider/models/provider_data.u.dart';
 import '../bloc/review_repairman_bloc.u.dart';
 import 'review_repairman_view.u.dart';
 

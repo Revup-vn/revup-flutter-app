@@ -1,18 +1,17 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:revup_core/core.dart' as feedback;
+import 'package:revup_core/core.dart';
 
-import '../../invoice/models/provider_data.dart';
-import '../../invoice/widgets/default_avatar.dart';
+import '../../h22_invoice/widgets/default_avatar.dart';
+import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/review_repairman_bloc.u.dart';
@@ -95,15 +94,13 @@ class ReviewRepairmanView extends StatelessWidget {
                                               const Duration(milliseconds: 50),
                                           fadeOutDuration:
                                               const Duration(milliseconds: 50),
-                                          imageUrl:
-                                              providerData.providerUrlAvatar,
+                                          imageUrl: providerData.avatar,
                                           placeholder: (context, url) {
                                             return DefaultAvatar(
                                               textSize: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge,
-                                              userName:
-                                                  providerData.providerName,
+                                              userName: providerData.fullName,
                                             );
                                           },
                                           // ignore: implicit_dynamic_parameter
@@ -112,8 +109,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                               textSize: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge,
-                                              userName:
-                                                  providerData.providerName,
+                                              userName: providerData.fullName,
                                             );
                                           },
                                           height: 64,
@@ -134,7 +130,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                         padding: EdgeInsets.only(left: 16),
                                       ),
                                       AutoSizeText(
-                                        providerData.providerName,
+                                        providerData.fullName,
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelLarge,
@@ -142,7 +138,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                       Row(
                                         children: [
                                           AutoSizeText(
-                                            providerData.ratingStar.toString(),
+                                            providerData.rating.toString(),
                                             style: Theme.of(context)
                                                     .textTheme
                                                     .labelLarge
@@ -162,7 +158,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                                 .inversePrimary,
                                           ),
                                           AutoSizeText(
-                                            '(${providerData.totalStarRating})',
+                                            '(${providerData.ratingCount})',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelLarge,
@@ -256,7 +252,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                     .toString();
                                 log(feedbackString.toString());
                                 completer.complete(
-                                  feedback.Feedback(
+                                  ReportFeedback(
                                     created: DateTime.now(),
                                     desc: feedbackString ?? '',
                                     rating: rating,

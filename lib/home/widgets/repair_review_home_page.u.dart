@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
@@ -97,8 +96,7 @@ class RepairReviewHomePage extends StatelessWidget {
                   ],
                 ),
                 state.maybeWhen(
-                  success: (provider, imageList, timeRepair, dayRepair) =>
-                      Column(
+                  success: (ads, activeRecord) => Column(
                     children: [
                       AutoSizeText(
                         '${l10n.serviceAccountLabel}: ${l10n.autoRepairLabel}',
@@ -114,7 +112,6 @@ class RepairReviewHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // orElse: () => Text('okeee'),
                   orElse: () => Shimmer.fromColors(
                     baseColor: const Color.fromRGBO(224, 224, 224, 1),
                     highlightColor: const Color.fromRGBO(245, 245, 245, 1),
@@ -151,11 +148,10 @@ class RepairReviewHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Center(
                 child: state.maybeWhen(
-                  success: (provider, imageList, timeRepair, dayRepair) =>
-                      Column(
+                  success: (ads, activeRecord) => Column(
                     children: [
                       RatingBar.builder(
-                        initialRating: provider.rating,
+                        initialRating: 4,
                         itemSize: 30,
                         allowHalfRating: true,
                         itemBuilder: (context, _) => Icon(
