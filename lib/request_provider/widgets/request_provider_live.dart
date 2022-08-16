@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
 
-import '../../find_provider/models/provider_data.u.dart';
+import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+
+// ignore: unnecessary_import
 
 class RequestProviderLive extends StatefulWidget {
   const RequestProviderLive({
@@ -34,7 +37,8 @@ class RequestProviderLive extends StatefulWidget {
 class _RequestProviderLiveState extends State<RequestProviderLive> {
   late CameraPosition _initialLocation;
   late GoogleMapController mapController;
-  // late String _distance;
+  // ignore: unused_field
+  late String _distance;
   Set<Marker> markers = {};
   late LatLng _startCoordinate;
   Map<PolylineId, Polyline> initialPolylines = {};
@@ -42,19 +46,19 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
   PolylinePoints? polylinePoints;
   List<LatLng> polylineCoordinates = [];
 
-  // double _coordinateDistance(
-  //   double lat1,
-  //   double lng1,
-  //   double lat2,
-  //   double lng2,
-  // ) {
-  //   const p = 0.017453292519943295;
-  //   final a = 0.5 -
-  //       cos((lat2 - lat1) * p) / 2 +
-  //       cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lng2 - lng1) * p)) / 2;
+  double _coordinateDistance(
+    double lat1,
+    double lng1,
+    double lat2,
+    double lng2,
+  ) {
+    const p = 0.017453292519943295;
+    final a = 0.5 -
+        cos((lat2 - lat1) * p) / 2 +
+        cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lng2 - lng1) * p)) / 2;
 
-  //   return 12742 * asin(sqrt(a));
-  // }
+    return 12742 * asin(sqrt(a));
+  }
 
   Future<Tuple2<Map<PolylineId, Polyline>, List<LatLng>>> _createPolylines(
     double fromLat,
@@ -134,19 +138,19 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
     );
 
     final polylines = result.value1;
-    // final polylineCoordinates = result.value2;
+    final polylineCoordinates = result.value2;
 
-    // var totalDistance = 0.0;
+    var totalDistance = 0.0;
 
-    // for (var i = 0; i < polylineCoordinates.length - 1; i++) {
-    //   totalDistance += _coordinateDistance(
-    //     polylineCoordinates[i].latitude,
-    //     polylineCoordinates[i].longitude,
-    //     polylineCoordinates[i + 1].latitude,
-    //     polylineCoordinates[i + 1].longitude,
-    //   );
-    // }
-    // _distance = totalDistance.toStringAsFixed(2);
+    for (var i = 0; i < polylineCoordinates.length - 1; i++) {
+      totalDistance += _coordinateDistance(
+        polylineCoordinates[i].latitude,
+        polylineCoordinates[i].longitude,
+        polylineCoordinates[i + 1].latitude,
+        polylineCoordinates[i + 1].longitude,
+      );
+    }
+    _distance = totalDistance.toStringAsFixed(2);
 
     return polylines;
   }
@@ -206,7 +210,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
             },
           );
         }
-        final providerLoc = snapshot.data?.data()!['cur_location'] as GeoPoint;
+        final providerLoc = snapshot.data!.data()!['cur_location'] as GeoPoint;
 
         return FutureBuilder<Map<PolylineId, Polyline>>(
           future: _calculateDurationAndDistance(

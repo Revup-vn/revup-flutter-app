@@ -39,7 +39,7 @@ class HistoryDetailPage extends StatelessWidget {
               height: 1,
               thickness: 10,
             ),
-            if (historyModel.isComplete && historyModel.feedback != null)
+            if (historyModel.isComplete)
               OrderFeedback(feedback: historyModel.feedback!),
           ],
         ),

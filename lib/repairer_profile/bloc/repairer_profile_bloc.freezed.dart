@@ -87,18 +87,12 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
+class _$_Started implements _Started {
   const _$_Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RepairerProfileEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'RepairerProfileEvent.started'));
   }
 
   @override
@@ -277,18 +271,12 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RepairerProfileState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'RepairerProfileState.initial'));
   }
 
   @override
@@ -456,9 +444,7 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataLoadSuccess
-    with DiagnosticableTreeMixin
-    implements _DataLoadSuccess {
+class _$_DataLoadSuccess implements _DataLoadSuccess {
   const _$_DataLoadSuccess(
       {required this.serviceData,
       required this.ratingData,
@@ -481,19 +467,8 @@ class _$_DataLoadSuccess
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RepairerProfileState.dataLoadSuccess(serviceData: $serviceData, ratingData: $ratingData, provider: $provider, categories: $categories)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RepairerProfileState.dataLoadSuccess'))
-      ..add(DiagnosticsProperty('serviceData', serviceData))
-      ..add(DiagnosticsProperty('ratingData', ratingData))
-      ..add(DiagnosticsProperty('provider', provider))
-      ..add(DiagnosticsProperty('categories', categories));
   }
 
   @override
@@ -651,21 +626,12 @@ class __$$_DataLoadFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DataLoadFailure
-    with DiagnosticableTreeMixin
-    implements _DataLoadFailure {
+class _$_DataLoadFailure implements _DataLoadFailure {
   const _$_DataLoadFailure();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RepairerProfileState.dataLoadFailure()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(
-        DiagnosticsProperty('type', 'RepairerProfileState.dataLoadFailure'));
   }
 
   @override
@@ -791,18 +757,12 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+class _$_Loading implements _Loading {
   const _$_Loading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'RepairerProfileState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'RepairerProfileState.loading'));
   }
 
   @override

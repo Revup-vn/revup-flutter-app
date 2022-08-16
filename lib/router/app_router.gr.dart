@@ -20,22 +20,24 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
 import 'package:revup/account/model/user_model.dart' as _i43;
 import 'package:revup/account/view/account_page.u.dart' as _i35;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i24;
-import 'package:revup/find_nearby/view/find_nearby_page.u.dart' as _i20;
-import 'package:revup/find_provider/models/provider_data.u.dart' as _i47;
-import 'package:revup/find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/guide-support/view/about_us_page.u.dart' as _i28;
 import 'package:revup/guide-support/view/faqs_page.u.dart' as _i26;
 import 'package:revup/guide-support/view/terms_privacy_page.u.dart' as _i29;
 import 'package:revup/guide-support/widgets/faqs_item_otp.u.dart' as _i27;
+import 'package:revup/h1_find_nearby/view/find_nearby_page.u.dart' as _i20;
+import 'package:revup/h22_invoice/models/service_data.dart' as _i40;
+import 'package:revup/h22_invoice/view/service_invoice_page.u.dart' as _i4;
+import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
+    as _i5;
+import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
+    as _i6;
+import 'package:revup/h2_find_provider/models/provider_data.u.dart' as _i39;
+import 'package:revup/h2_find_provider/view/list_repairer_page.u.dart' as _i22;
 import 'package:revup/history_consumer/model/history_model.dart' as _i42;
 import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i8;
 import 'package:revup/history_consumer/view/history_page.u.dart' as _i33;
 import 'package:revup/home/view/home_page.u.dart' as _i7;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i32;
-import 'package:revup/invoice/models/provider_data.dart' as _i39;
-import 'package:revup/invoice/models/service_data.dart' as _i40;
-import 'package:revup/invoice/view/service_invoice_page.u.dart' as _i4;
-import 'package:revup/invoice_payment/view/invoice_payment_page.u.dart' as _i5;
 import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
     as _i30;
 import 'package:revup/login/view/login_page.u.dart' as _i12;
@@ -54,12 +56,10 @@ import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
 import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
-import 'package:revup/review-repairman/view/review_repairman_page.u.dart'
-    as _i6;
-import 'package:revup/service/choose_product/view/choose_product_page.u.dart'
-    as _i19;
 import 'package:revup/service/choose_service/view/choose_service_page.u.dart'
     as _i16;
+import 'package:revup/service/h11_choose_product/view/choose_product_page.u.dart'
+    as _i19;
 import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
     as _i17;
 import 'package:revup/service/service-details/view/service_detail_page.u.dart'
@@ -265,8 +265,10 @@ class AppRouter extends _i36.RootStackRouter {
           routeData: routeData, child: const _i31.PermissionPage());
     },
     HomeBodyRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeBodyRouteArgs>();
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i32.HomeBodyPage());
+          routeData: routeData,
+          child: _i32.HomeBodyPage(key: args.key, user: args.user));
     },
     HistoryRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryRouteArgs>();
@@ -838,7 +840,7 @@ class RequestProviderRoute
     extends _i36.PageRouteInfo<RequestProviderRouteArgs> {
   RequestProviderRoute(
       {_i37.Key? key,
-      required _i47.ProviderData providerData,
+      required _i39.ProviderData providerData,
       required String recordType})
       : super(RequestProviderRoute.name,
             path: '/request-provider-page',
@@ -854,7 +856,7 @@ class RequestProviderRouteArgs {
 
   final _i37.Key? key;
 
-  final _i47.ProviderData providerData;
+  final _i39.ProviderData providerData;
 
   final String recordType;
 
@@ -877,7 +879,7 @@ class ListRepairerRoute extends _i36.PageRouteInfo<void> {
 /// [_i23.RepairerProfilePage]
 class RepairerProfileRoute
     extends _i36.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({_i37.Key? key, required _i47.ProviderData providerData})
+  RepairerProfileRoute({_i37.Key? key, required _i39.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
             args:
@@ -891,7 +893,7 @@ class RepairerProfileRouteArgs {
 
   final _i37.Key? key;
 
-  final _i47.ProviderData providerData;
+  final _i39.ProviderData providerData;
 
   @override
   String toString() {
@@ -904,7 +906,7 @@ class RepairerProfileRouteArgs {
 class AddMessageRoute extends _i36.PageRouteInfo<AddMessageRouteArgs> {
   AddMessageRoute(
       {_i37.Key? key,
-      required _i47.ProviderData providerData,
+      required _i39.ProviderData providerData,
       required int movingFee})
       : super(AddMessageRoute.name,
             path: '/add-message-page',
@@ -920,7 +922,7 @@ class AddMessageRouteArgs {
 
   final _i37.Key? key;
 
-  final _i47.ProviderData providerData;
+  final _i39.ProviderData providerData;
 
   final int movingFee;
 
@@ -1050,10 +1052,26 @@ class PermissionRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i32.HomeBodyPage]
-class HomeBodyRoute extends _i36.PageRouteInfo<void> {
-  const HomeBodyRoute() : super(HomeBodyRoute.name, path: 'home-body-page');
+class HomeBodyRoute extends _i36.PageRouteInfo<HomeBodyRouteArgs> {
+  HomeBodyRoute({_i37.Key? key, required _i38.AppUser user})
+      : super(HomeBodyRoute.name,
+            path: 'home-body-page',
+            args: HomeBodyRouteArgs(key: key, user: user));
 
   static const String name = 'HomeBodyRoute';
+}
+
+class HomeBodyRouteArgs {
+  const HomeBodyRouteArgs({this.key, required this.user});
+
+  final _i37.Key? key;
+
+  final _i38.AppUser user;
+
+  @override
+  String toString() {
+    return 'HomeBodyRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

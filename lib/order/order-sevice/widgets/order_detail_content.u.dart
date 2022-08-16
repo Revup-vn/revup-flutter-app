@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../model/service_model.dart';
@@ -159,7 +158,7 @@ class OrderDetailContent extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              context.formatMoney(data[index].price),
+                              '${data[index].price}000đ',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
@@ -202,7 +201,7 @@ class OrderDetailContent extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            context.formatMoney(total),
+                            '$totalđ',
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],

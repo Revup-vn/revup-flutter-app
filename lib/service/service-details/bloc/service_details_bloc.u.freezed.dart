@@ -87,18 +87,12 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
+class _$_Started implements _Started {
   const _$_Started();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ServiceDetailsEvent.started()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'ServiceDetailsEvent.started'));
   }
 
   @override
@@ -250,18 +244,12 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+class _$_Initial implements _Initial {
   const _$_Initial();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ServiceDetailsState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'ServiceDetailsState.initial'));
   }
 
   @override
@@ -372,23 +360,15 @@ class __$$_LoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
+class _$_Loaded implements _Loaded {
   const _$_Loaded({required this.products});
 
   @override
   final IList<RepairProduct> products;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ServiceDetailsState.loaded(products: $products)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ServiceDetailsState.loaded'))
-      ..add(DiagnosticsProperty('products', products));
   }
 
   @override

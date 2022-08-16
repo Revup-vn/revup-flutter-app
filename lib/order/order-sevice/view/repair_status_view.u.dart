@@ -74,13 +74,11 @@ class RepairStatusView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             AutoSizeText(
-                              'services.elementAt(index).name}',
-
-                              /// Services member does not exist
+                              'services.elementAt(index).name',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              'context.formatMoney(services[index].price)',
+                              'services.elementAt(index).priceĐ',
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],

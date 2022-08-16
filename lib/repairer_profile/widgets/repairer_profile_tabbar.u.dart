@@ -50,7 +50,7 @@ class _RepairerProfileTabBarState extends State<RepairerProfileTabBar>
             Tab(
               child: Text(
                 context.l10n.ratingLabel,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),

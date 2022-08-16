@@ -76,7 +76,7 @@ class RepairerProfileServices extends StatelessWidget {
                               maxLines: 1,
                             ),
                             subtitle: AutoSizeText(
-                              '''${context.l10n.productPriceLabel}: ${context.formatMoney(data[index].serviceFee)}''',
+                              '''${context.l10n.productPriceLabel}: ${data[index].serviceFee}đ''',
                               style: Theme.of(context).textTheme.bodyMedium,
                               maxLines: 1,
                             ),

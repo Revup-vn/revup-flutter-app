@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 
 import '../../../repairer_profile/models/service_data.u.dart';
 
+// ignore: unnecessary_import
+
 part 'choose_service_bloc.u.freezed.dart';
 part 'choose_service_event.dart';
 part 'choose_service_state.dart';
