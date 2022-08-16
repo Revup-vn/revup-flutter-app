@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
@@ -43,7 +44,10 @@ class RepairerProfileBloc
             )
             .getOrElse(() => throw NullThrownError());
 
-        final feedbackData = (await _repairRecord.where(providerData.id))
+        final feedbackData = (await _repairRecord.where(
+          'pid',
+          isEqualTo: providerData.id,
+        ))
             .map(
               (r) => r.map(
                 (a) =>
@@ -65,7 +69,11 @@ class RepairerProfileBloc
               (l) => throw NullThrownError(),
               (r) => r,
             );
-
+        final boxRprRecord = Hive.box<dynamic>('repairRecord');
+        final vehicle = boxRprRecord
+            .get('vehicle', defaultValue: 'no description yet')
+            .toString();
+        final cate = vehicle == 'car' ? 'Oto' : 'Xe máy';
         final feedbacks = (await Future.wait(feedbackData.toIterable()))
             .where((e) => e.isSome())
             .map((e) => e.getOrElse(() => throw NullThrownError()))
@@ -98,11 +106,17 @@ class RepairerProfileBloc
         final categories =
             (await Future.wait(catData.toIterable())).map((e) => e).toList();
 
-        final svList = categories.map((e) => e.value2).fold<IList<ServiceData>>(
-              ilist(<ServiceData>[]),
-              (previousValue, element) =>
-                  IListMonoid<ServiceData>().append(previousValue, element),
-            );
+        final svList = categories.map((e) {
+          if (e.value1.name == cate) {
+            return e.value2;
+          } else {
+            return nil<ServiceData>();
+          }
+        }).fold<IList<ServiceData>>(
+          ilist(<ServiceData>[]),
+          (previousValue, element) =>
+              IListMonoid<ServiceData>().append(previousValue, element),
+        );
 
         emit(
           RepairerProfileState.dataLoadSuccess(

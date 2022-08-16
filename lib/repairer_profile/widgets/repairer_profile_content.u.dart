@@ -133,11 +133,13 @@ class RepairerProfileMainContent extends StatelessWidget {
           ],
         ),
         Expanded(
-          child: RepairerProfileTabBar(
-            svDataVector,
-            ratingDataVector,
-            providerId: provider.id,
-            categories,
+          child: SingleChildScrollView(
+            child: RepairerProfileTabBar(
+              svDataVector,
+              ratingDataVector,
+              providerId: provider.id,
+              categories,
+            ),
           ),
         ),
       ],
