@@ -51,6 +51,7 @@ dependencies:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
       version: ^6.0.2-dev
+    version: ^6.1.2-dev
   # revup_core:
   #   path: ../revup-core
   shimmer: ^2.0.0
