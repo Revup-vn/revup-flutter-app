@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../shared/fallbacks.dart';
 import '../models/rating_data.u.dart';
 
 class RepairerProfileFeedback extends StatelessWidget {
@@ -35,6 +35,7 @@ class RepairerProfileFeedback extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ListTile(
                           leading: ClipRRect(
@@ -44,7 +45,9 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: data[index].imageUrl,
+                                imageUrl: data[index].imageUrl.isEmpty
+                                    ? kFallbackImage
+                                    : data[index].imageUrl,
                               ),
                             ),
                           ),
@@ -58,25 +61,31 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 ),
                             maxLines: 1,
                           ),
-                          subtitle: RatingBar.builder(
-                            ignoreGestures: true,
-                            initialRating: data[index].rating.toDouble(),
-                            itemSize: 19,
-                            allowHalfRating: true,
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                            ),
-                            onRatingUpdate: (value) {
-                              // TODO(cantgim): implement sthg
-                            },
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              RatingBar.builder(
+                                ignoreGestures: true,
+                                initialRating: data[index].rating.toDouble(),
+                                itemSize: 19,
+                                allowHalfRating: true,
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                                ),
+                                onRatingUpdate: (value) {
+                                  // TODO(cantgim): implement sthg
+                                },
+                              ),
+                              AutoSizeText(
+                                data[index].description,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                maxLines: 2,
+                              ),
+                            ],
                           ),
-                        ),
-                        AutoSizeText(
-                          data[index].description,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          maxLines: 2,
                         ),
                       ],
                     ),
@@ -85,8 +94,8 @@ class RepairerProfileFeedback extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.topCenter,
                       child: AutoSizeText(
-                        data[index].createdTime.day == DateTime.now().day
-                            ? '''${DateTime.now().difference(data[index].createdTime).inDays} ngày trước'''
+                        data[index].createdTime.day != DateTime.now().day
+                            ? '''${DateTime.now().difference(data[index].createdTime).inDays + 1} ngày trước'''
                             : 'Today',
                         style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: 1,

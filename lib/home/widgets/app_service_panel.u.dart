@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -137,7 +136,7 @@ class AppServicePanel extends StatelessWidget {
               },
             ),
             AppServiceItem(
-              name: l10n.sosLabel,
+              name: l10n.vehicleMaintenanceLabel,
               icon: const Icon(
                 Icons.build,
               ),
@@ -146,7 +145,7 @@ class AppServicePanel extends StatelessWidget {
               },
             ),
             AppServiceItem(
-              name: l10n.sosLabel,
+              name: l10n.gasStationLabel,
               icon: const Icon(
                 Icons.local_gas_station,
               ),

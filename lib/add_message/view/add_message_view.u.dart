@@ -169,7 +169,10 @@ class _AddMessageViewState extends State<AddMessageView> {
                       _descFieldKey.currentState?.value.toString() ?? '';
                   final boxRprRecord = Hive.box<dynamic>('repairRecord');
                   await boxRprRecord.put('msgDesc', desc);
-                  await boxRprRecord.put('msgImg', _image?.readAsBytes() ?? '');
+                  await boxRprRecord.put(
+                    'msgImg',
+                    await _image?.readAsBytes() ?? '',
+                  );
                   await boxRprRecord.put('movingFee', widget.movingFee);
                   await context.router.push(
                     ChooseServiceRoute(providerId: widget.providerData.id),
