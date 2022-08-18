@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -12,26 +14,37 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
 import '../../account/widgets/avatar.dart';
+import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
-import '../bloc/bloc/upload_image_bloc.dart';
-import '../bloc/profile_bloc.dart';
+import '../bloc/signup_bloc.u.dart';
+import '../cubit/upload_image_cubit.u.dart';
 
-class UpdateProfileView extends StatelessWidget {
-  const UpdateProfileView({
+class SignupView extends StatelessWidget {
+  const SignupView(
+    this.completer,
+    this.phoneNumber,
+    this.photoURL,
+    this.uid,
+    this.email, {
     super.key,
-    required this.user,
   });
-  final AppUser user;
+  final Completer<AppUser> completer;
+  final String phoneNumber;
+  final String photoURL;
+  final String uid;
+  final String email;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final _formKey = GlobalKey<FormBuilderState>();
-
+    var storageFile = StorageFile.profile(file: File(''));
+    final cubit = context.watch<SignupUploadImageCubit>();
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
-          l10n.editProfileLabel,
+          l10n.completeRegistrationLabel,
           style: Theme.of(context)
               .textTheme
               .headlineSmall
@@ -40,32 +53,35 @@ class UpdateProfileView extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          BlocBuilder<UploadImageBloc, UploadImageState>(
+          BlocBuilder<SignupBloc, SignupState>(
             builder: (context, state) => state.when(
               initial: () => Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
                 child: Avatar(
                   fileImg: File(''),
-                  userName: '${user.firstName} ${user.lastName}',
-                  imageUrl: user.avatarUrl,
+                  imageUrl: photoURL,
+                  userName: 'Default',
                   callback: () {
                     _showModalButtonSheet(context);
                   },
                 ),
               ),
-              choosePhotoSuccess: (file) => Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
-                child: Avatar(
-                  fileImg: file,
-                  userName: '${user.firstName} ${user.lastName}',
-                  imageUrl: user.avatarUrl,
-                  callback: () {
-                    _showModalButtonSheet(context);
-                  },
-                ),
-              ),
+              choosePhotoSuccess: (file) {
+                storageFile = StorageFile.profile(file: file);
+                return Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
+                  child: Avatar(
+                    fileImg: file,
+                    imageUrl: photoURL,
+                    userName: 'Default',
+                    callback: () {
+                      _showModalButtonSheet(context);
+                    },
+                  ),
+                );
+              },
             ),
           ),
           DismissKeyboard(
@@ -101,11 +117,11 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
-                      //initialValue: '${user.firstName} ${user.lastName}',
-                      initialValue: '${user.firstName} ${user.lastName}',
                     ),
                     FormBuilderTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      enabled: email == '',
+                      initialValue: email,
                       style: Theme.of(context).textTheme.labelLarge,
                       decoration: InputDecoration(
                         labelText: l10n.emailLabel,
@@ -127,11 +143,11 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
-                      enabled: user.email == '',
-                      initialValue: user.email,
                     ),
                     FormBuilderTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      enabled: phoneNumber == '',
+                      initialValue: phoneNumber,
                       style: Theme.of(context).textTheme.labelLarge,
                       decoration: InputDecoration(
                         labelText: l10n.phoneLabel,
@@ -154,8 +170,6 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
-                      initialValue: user.phone,
-                      enabled: user.phone == '',
                     ),
                     FormBuilderDateTimePicker(
                       style: Theme.of(context).textTheme.labelLarge,
@@ -172,7 +186,6 @@ class UpdateProfileView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      initialValue: user.dob,
                       initialDate: DateTime.now()
                           .subtract(const Duration(days: 356 * 18)),
                       lastDate: DateTime.now()
@@ -198,46 +211,115 @@ class UpdateProfileView extends StatelessWidget {
                           errorText: l10n.emptyLabel,
                         ),
                       ]),
-                      initialValue: user.addr,
                     ),
                     const SizedBox(
                       height: 160,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        _formKey.currentState?.saveAndValidate();
-                        final data = _formKey.currentState?.value;
-                        final name = data?['fullName'].toString();
-                        final fName = name?.split(' ')[0];
-                        final lName = name?.split(' ')[1];
-                        final email = data?['email'].toString();
-                        final phone = data?['phone'].toString();
-                        final date = data?['date'] as DateTime;
-                        final address = data?['address'].toString();
-                        final submittedUser = AppUser.consumer(
-                          uuid: user.uuid,
-                          firstName: fName ?? '',
-                          lastName: lName ?? '',
-                          phone: phone ?? '',
-                          dob: date,
-                          addr: address ?? '',
-                          email: email ?? '',
-                          active: true,
-                          avatarUrl: user.avatarUrl,
-                          createdTime: user.createdTime,
-                          lastUpdatedTime: DateTime.now(),
-                          vac: user.maybeMap(
-                            consumer: (value) => value.vac,
-                            orElse: () => throw NullThrownError(),
-                          ),
-                        );
-                        context
-                            .read<ProfileBloc>()
-                            .add(ProfileEvent.submitted(user));
+                      onPressed: () async {
+                        if (_formKey.currentState?.saveAndValidate() == true) {
+                          final data = _formKey.currentState?.value;
+                          final fName =
+                              data?['fullName'].toString().split(' ')[0];
+                          final lName = data?['fullName']
+                              .toString()
+                              .split(fName ?? '')[1];
+                          var phoneNumber = data?['phone'].toString();
+                          if (phoneNumber?.substring(0, 3) == '+84') {
+                            phoneNumber = phoneNumber?.substring(
+                              3,
+                              phoneNumber.length,
+                            );
+                          }
+                          if (phoneNumber?.substring(0, 1) == '0') {
+                            phoneNumber = phoneNumber?.substring(
+                              1,
+                              phoneNumber.length,
+                            );
+                          }
+                          if (storageFile.file.path.isNotEmpty) {
+                            await cubit
+                                .uploadImg(file: storageFile)
+                                .whenComplete(() {
+                              context.read<StorageBloc>().state.whenOrNull(
+                                success: (eitherFailuresOrUrls) async {
+                                  final tmp =
+                                      eitherFailuresOrUrls.map<Option<String>>(
+                                    (a) => a.fold(
+                                      (l) => none(),
+                                      some,
+                                    ),
+                                  );
+
+                                  final listLink =
+                                      tmp.filter((a) => a.isSome()).map(
+                                            (a) => a.getOrElse(
+                                              () => throw NullThrownError(),
+                                            ),
+                                          );
+                                  final list = listLink.toList();
+                                  completer.complete(
+                                    AppUser.consumer(
+                                      uuid: uid,
+                                      firstName: fName ?? '',
+                                      lastName: lName ?? '',
+                                      phone: '+84$phoneNumber',
+                                      dob: DateTime.parse(
+                                        data?['date']
+                                                .toString()
+                                                .split(' ')[0] ??
+                                            '',
+                                      ),
+                                      addr: data?['address'].toString() ?? '',
+                                      email: data?['email'].toString() ?? '',
+                                      active: true,
+                                      avatarUrl:
+                                          list[0].isEmpty ? photoURL : list[0],
+                                      createdTime: DateTime.now(),
+                                      lastUpdatedTime: DateTime.now(),
+                                      vac: VideoCallAccount(
+                                        id: uid,
+                                        username: '+84$phoneNumber',
+                                        pwd: DEFAULT_PASS,
+                                        email: data?['email'].toString() ?? '',
+                                      ),
+                                    ),
+                                  );
+                                  await context.router.pop();
+                                },
+                              );
+                            });
+                          } else {
+                            completer.complete(
+                              AppUser.consumer(
+                                uuid: uid,
+                                firstName: fName ?? '',
+                                lastName: lName ?? '',
+                                phone: '+84$phoneNumber',
+                                dob: DateTime.parse(
+                                  data?['date'].toString().split(' ')[0] ?? '',
+                                ),
+                                addr: data?['address'].toString() ?? '',
+                                email: data?['email'].toString() ?? '',
+                                active: true,
+                                avatarUrl: photoURL,
+                                createdTime: DateTime.now(),
+                                lastUpdatedTime: DateTime.now(),
+                                vac: VideoCallAccount(
+                                  id: uid,
+                                  username: '+84$phoneNumber',
+                                  pwd: DEFAULT_PASS,
+                                  email: data?['email'].toString() ?? '',
+                                ),
+                              ),
+                            );
+                            await context.router.pop();
+                          }
+                        }
                       },
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: AutoSizeText(
-                        l10n.updateLabel,
+                        l10n.doneLabel,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
@@ -254,7 +336,7 @@ class UpdateProfileView extends StatelessWidget {
   void _showModalButtonSheet(
     BuildContext context,
   ) {
-    final bloc = context.read<UploadImageBloc>();
+    final bloc = context.read<SignupBloc>();
     showMaterialModalBottomSheet<Widget>(
       context: context,
       builder: (context) => SafeArea(
@@ -267,7 +349,7 @@ class UpdateProfileView extends StatelessWidget {
               leading: const Icon(Icons.photo_library_rounded),
               onTap: () async {
                 bloc.add(
-                  const UploadImageEvent.imageUploadSelected(
+                  const SignupEvent.imageUploadSelected(
                     source: ImageSource.gallery,
                   ),
                 );
@@ -279,7 +361,7 @@ class UpdateProfileView extends StatelessWidget {
               leading: const Icon(Icons.camera_alt_rounded),
               onTap: () async {
                 bloc.add(
-                  const UploadImageEvent.imageUploadSelected(
+                  const SignupEvent.imageUploadSelected(
                     source: ImageSource.camera,
                   ),
                 );

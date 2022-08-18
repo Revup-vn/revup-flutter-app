@@ -379,5 +379,8 @@
   "pendingRepairRecordLabel": "The request has been sent to the repairer, please wait a moment",
   "acceptRepairRecordLabel": "The repairman is on the way",
   "arrivedRepairRecordLabel": "The repairman has arrived",
-  "startedRepairRecordLabel": "The repairman is repairing"
+  "startedRepairRecordLabel": "The repairman is repairing",
+  "loginFailLabel": "Your account is not allowed to login. Please contact care center for more information",
+  "updateProfileFail" : "Update fail"
+
 }

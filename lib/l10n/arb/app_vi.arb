@@ -369,5 +369,8 @@
   "pendingRepairRecordLabel": "Yêu cầu đã được gửi đến thợ, bạn chờ xíu nhé",
   "acceptRepairRecordLabel": "Thợ đang trên đường",
   "arrivedRepairRecordLabel": "Thợ đã đã đến nơi",
-  "startedRepairRecordLabel": "Thợ đang sửa chữa"
+  "startedRepairRecordLabel": "Thợ đang sửa chữa",
+  "loginFailLabel": "Tài khoản của bạn không được phép đăng nhập. Hãy liên hệ cskh để biết thêm thông tin",
+  "updateProfileFail" : "Cập nhật tài khoản lỗi vui lòng thử lại"
+
 }

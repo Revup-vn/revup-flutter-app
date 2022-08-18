@@ -52,53 +52,109 @@ class LoginPage extends StatelessWidget {
             ),
             authenticated: (authType) {
               context.loaderOverlay.hide();
+              authType.user.maybeMap(
+                consumer: (value) {
+                  showDialog<String>(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.done,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onTertiary,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginSuccessLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onTertiary,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
 
+                  return Future.delayed(
+                    const Duration(seconds: 3),
+                    () {
+                      context.router.push(HomeRoute(user: authType.user));
+                    },
+                  );
+                },
+                orElse: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.cancel_outlined,
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+
+                  return Future.delayed(
+                    const Duration(seconds: 3),
+                    () {
+                      context
+                          .read<AuthenticateBloc>()
+                          .add(AuthenticateEvent.signOut(authType: authType));
+                      context.router.pop();
+                    },
+                  );
+                },
+              );
               // context.read<NotificationCubit>().registerDevice();
               // context.read<NotificationCubit>().state.whenOrNull(
               //       registered: _onRegisterNotification,
               //       failToRegister: () =>
               //           context.read<NotificationCubit>().registerDevice(),
               //     );
-              showDialog<String>(
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    backgroundColor: Colors.transparent,
-                    insetPadding: const EdgeInsets.all(10),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.done,
-                                color: Theme.of(context).colorScheme.onTertiary,
-                              ),
-                              AutoSizeText(
-                                context.l10n.loginSuccessLabel,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiary,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-
-              return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute(user: authType.user));
-              });
             },
             orElse: () => false,
           ),
@@ -160,7 +216,7 @@ class LoginPage extends StatelessWidget {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
-                Signup6Route(
+                SignupRoute(
                   completer: completer,
                   phoneNumber: user.phoneNumber ?? '',
                   photoURL: user.photoURL ?? '',
@@ -246,7 +302,7 @@ class LoginPage extends StatelessWidget {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
-                Signup6Route(
+                SignupRoute(
                   completer: completer,
                   phoneNumber: user.phoneNumber ?? '',
                   photoURL: user.photoURL ?? '',

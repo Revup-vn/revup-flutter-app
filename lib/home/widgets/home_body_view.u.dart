@@ -108,6 +108,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
               ),
               state.maybeWhen(
                 success: (ads, activeRecord) => Swiper(
+                  autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),
                   itemBuilder: (context, index) {
@@ -146,6 +147,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
               ),
               state.maybeWhen(
                 success: (ads, activeRepairRecord) => Swiper(
+                  autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),
                   itemBuilder: (context, index) {

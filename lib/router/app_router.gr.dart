@@ -14,10 +14,9 @@
 import 'dart:async' as _i41;
 
 import 'package:auto_route/auto_route.dart' as _i36;
-import 'package:dartz/dartz.dart' as _i45;
+import 'package:dartz/dartz.dart' as _i44;
 import 'package:flutter/material.dart' as _i37;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
-import 'package:revup/account/model/user_model.dart' as _i43;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i45;
 import 'package:revup/account/view/account_page.u.dart' as _i35;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i24;
 import 'package:revup/guide-support/view/about_us_page.u.dart' as _i28;
@@ -50,9 +49,8 @@ import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
 import 'package:revup/otp/view/otp_page.u.dart' as _i14;
 import 'package:revup/payment/view/payment_page.u.dart' as _i9;
 import 'package:revup/permission_page/permission_page.u.dart' as _i31;
-import 'package:revup/profile/view/signup6_page.u.dart' as _i15;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i11;
-import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
+import 'package:revup/repairer_profile/models/service_data.u.dart' as _i43;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i23;
 import 'package:revup/request_provider/view/request_provider_page.dart' as _i21;
@@ -64,6 +62,7 @@ import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
     as _i17;
 import 'package:revup/service/service-details/view/service_detail_page.u.dart'
     as _i18;
+import 'package:revup/signup/view/signup_page.u.dart' as _i15;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i10;
 import 'package:revup_core/core.dart' as _i38;
@@ -137,8 +136,7 @@ class AppRouter extends _i36.RootStackRouter {
       final args = routeData.argsAs<UpdateProfileRouteArgs>();
       return _i36.AdaptivePage<void>(
           routeData: routeData,
-          child: _i11.UpdateProfilePage(
-              key: args.key, user: args.user, model: args.model));
+          child: _i11.UpdateProfilePage(key: args.key, user: args.user));
     },
     LoginRoute.name: (routeData) {
       return _i36.AdaptivePage<void>(
@@ -154,11 +152,11 @@ class AppRouter extends _i36.RootStackRouter {
           routeData: routeData,
           child: _i14.OTPPage(args.phoneNumber, args.completer, key: args.key));
     },
-    Signup6Route.name: (routeData) {
-      final args = routeData.argsAs<Signup6RouteArgs>();
+    SignupRoute.name: (routeData) {
+      final args = routeData.argsAs<SignupRouteArgs>();
       return _i36.AdaptivePage<void>(
           routeData: routeData,
-          child: _i15.Signup6Page(args.completer, args.phoneNumber,
+          child: _i15.SignupPage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
@@ -314,7 +312,7 @@ class AppRouter extends _i36.RootStackRouter {
         _i36.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i36.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
         _i36.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
-        _i36.RouteConfig(Signup6Route.name, path: '/signup6-page'),
+        _i36.RouteConfig(SignupRoute.name, path: '/signup-page'),
         _i36.RouteConfig(ChooseServiceRoute.name, path: '/choose-service-page'),
         _i36.RouteConfig(NewServiceRequestRoute.name,
             path: '/new-service-request-page'),
@@ -565,30 +563,24 @@ class TestRoute extends _i36.PageRouteInfo<void> {
 /// generated route for
 /// [_i11.UpdateProfilePage]
 class UpdateProfileRoute extends _i36.PageRouteInfo<UpdateProfileRouteArgs> {
-  UpdateProfileRoute(
-      {_i37.Key? key,
-      required _i43.UserModel user,
-      required _i38.AppUser model})
+  UpdateProfileRoute({_i37.Key? key, required _i38.AppUser user})
       : super(UpdateProfileRoute.name,
             path: '/update-profile-page',
-            args: UpdateProfileRouteArgs(key: key, user: user, model: model));
+            args: UpdateProfileRouteArgs(key: key, user: user));
 
   static const String name = 'UpdateProfileRoute';
 }
 
 class UpdateProfileRouteArgs {
-  const UpdateProfileRouteArgs(
-      {this.key, required this.user, required this.model});
+  const UpdateProfileRouteArgs({this.key, required this.user});
 
   final _i37.Key? key;
 
-  final _i43.UserModel user;
-
-  final _i38.AppUser model;
+  final _i38.AppUser user;
 
   @override
   String toString() {
-    return 'UpdateProfileRouteArgs{key: $key, user: $user, model: $model}';
+    return 'UpdateProfileRouteArgs{key: $key, user: $user}';
   }
 }
 
@@ -641,18 +633,18 @@ class OTPRouteArgs {
 }
 
 /// generated route for
-/// [_i15.Signup6Page]
-class Signup6Route extends _i36.PageRouteInfo<Signup6RouteArgs> {
-  Signup6Route(
+/// [_i15.SignupPage]
+class SignupRoute extends _i36.PageRouteInfo<SignupRouteArgs> {
+  SignupRoute(
       {required _i41.Completer<_i38.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
       required String email,
       _i37.Key? key})
-      : super(Signup6Route.name,
-            path: '/signup6-page',
-            args: Signup6RouteArgs(
+      : super(SignupRoute.name,
+            path: '/signup-page',
+            args: SignupRouteArgs(
                 completer: completer,
                 phoneNumber: phoneNumber,
                 photoURL: photoURL,
@@ -660,11 +652,11 @@ class Signup6Route extends _i36.PageRouteInfo<Signup6RouteArgs> {
                 email: email,
                 key: key));
 
-  static const String name = 'Signup6Route';
+  static const String name = 'SignupRoute';
 }
 
-class Signup6RouteArgs {
-  const Signup6RouteArgs(
+class SignupRouteArgs {
+  const SignupRouteArgs(
       {required this.completer,
       required this.phoneNumber,
       required this.photoURL,
@@ -686,7 +678,7 @@ class Signup6RouteArgs {
 
   @override
   String toString() {
-    return 'Signup6RouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, email: $email, key: $key}';
+    return 'SignupRouteArgs{completer: $completer, phoneNumber: $phoneNumber, photoURL: $photoURL, uid: $uid, email: $email, key: $key}';
   }
 }
 
@@ -729,9 +721,9 @@ class ServiceDetailRoute extends _i36.PageRouteInfo<ServiceDetailRouteArgs> {
   ServiceDetailRoute(
       {_i37.Key? key,
       required String providerId,
-      required _i44.ServiceData serviceData,
+      required _i43.ServiceData serviceData,
       required List<
-              _i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
+              _i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
           categories})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
@@ -755,9 +747,9 @@ class ServiceDetailRouteArgs {
 
   final String providerId;
 
-  final _i44.ServiceData serviceData;
+  final _i43.ServiceData serviceData;
 
-  final List<_i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
+  final List<_i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
       categories;
 
   @override
@@ -771,9 +763,9 @@ class ServiceDetailRouteArgs {
 class ChooseProductRoute extends _i36.PageRouteInfo<ChooseProductRouteArgs> {
   ChooseProductRoute(
       {_i37.Key? key,
-      required _i44.ServiceData serviceData,
+      required _i43.ServiceData serviceData,
       required List<
-              _i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
+              _i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
           categories,
       required String providerId})
       : super(ChooseProductRoute.name,
@@ -796,9 +788,9 @@ class ChooseProductRouteArgs {
 
   final _i37.Key? key;
 
-  final _i44.ServiceData serviceData;
+  final _i43.ServiceData serviceData;
 
-  final List<_i45.Tuple2<_i38.RepairCategory, _i45.IList<_i44.ServiceData>>>
+  final List<_i44.Tuple2<_i38.RepairCategory, _i44.IList<_i43.ServiceData>>>
       categories;
 
   final String providerId;
@@ -812,7 +804,7 @@ class ChooseProductRouteArgs {
 /// generated route for
 /// [_i20.FindNearbyPage]
 class FindNearbyRoute extends _i36.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i37.Key? key, required _i46.LatLng currentLocation})
+  FindNearbyRoute({_i37.Key? key, required _i45.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -826,7 +818,7 @@ class FindNearbyRouteArgs {
 
   final _i37.Key? key;
 
-  final _i46.LatLng currentLocation;
+  final _i45.LatLng currentLocation;
 
   @override
   String toString() {

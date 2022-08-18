@@ -27,7 +27,6 @@ import '../order/order_overview/view/overview_order_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../permission_page/permission_page.u.dart';
-import '../profile/view/signup6_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
 import '../request_provider/view/request_provider_page.dart';
@@ -35,6 +34,7 @@ import '../service/choose_service/view/choose_service_page.u.dart';
 import '../service/h11_choose_product/view/choose_product_page.u.dart';
 import '../service/new_service/view/new_service_request_page.u.dart';
 import '../service/service-details/view/service_detail_page.u.dart';
+import '../signup/view/signup_page.u.dart';
 import '../test/test.dart';
 
 @AdaptiveAutoRouter(
@@ -62,7 +62,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),
     AdaptiveRoute<void>(page: OTPPage),
-    AdaptiveRoute<void>(page: Signup6Page),
+    AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<OptionalService>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailPage),
