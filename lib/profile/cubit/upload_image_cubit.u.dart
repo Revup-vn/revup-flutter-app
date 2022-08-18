@@ -8,14 +8,15 @@ import 'package:revup_core/core.dart';
 part 'upload_image_cubit.u.freezed.dart';
 part 'upload_image_cubit_state.dart';
 
-class SignupCubit extends Cubit<UploadImageCubitState> {
-  SignupCubit(this._storageBloc) : super(const UploadImageCubitState.initial());
+class UploadImageCubit extends Cubit<UploadImageCubitState> {
+  UploadImageCubit(this._storageBloc)
+      : super(const UploadImageCubitState.initial());
 
   final StorageBloc _storageBloc;
 
-  Future<Unit> uploadImg({required IList<StorageFile> files}) async {
+  Future<Unit> uploadImg({required StorageFile file}) async {
     final isDoneLogin = Completer<Unit>();
-    _storageBloc.add(StorageEvent.uploadMany(files: files));
+    _storageBloc.add(StorageEvent.upload(file: file));
 
     return _listenOnce(
       isDoneLogin,

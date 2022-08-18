@@ -15,7 +15,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc(
     this.providerID,
     this._userRepos,
-    this._repairRecord,
     this.storeRepository,
     this._imagePicker,
     this.storageBloc,
@@ -25,7 +24,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final String providerID;
   final IStore<AppUser> _userRepos;
   final StoreRepository storeRepository;
-  final IStore<RepairRecord> _repairRecord;
   final ImagePicker _imagePicker;
   final StorageBloc storageBloc;
   FutureOr<void> _onEvent(
@@ -35,38 +33,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     await event.when(
       started: () async {
         emit(const AccountState.loading());
-        final feedbackData =
-            (await _repairRecord.where('pid', isEqualTo: providerID))
-                .map(
-                  (r) => r.map(
-                    (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
-                      orElse: () => Future.value(none()),
-                      finished: (v) async => some(
-                        v.feedback,
-                      ),
-                    ),
-                  ),
-                )
-                .fold<IList<Future<Option<ReportFeedback>>>>(
-                  (l) => throw NullThrownError(),
-                  (r) => r,
-                );
-
-        final feedbacksIterable = (await Future.wait(feedbackData.toIterable()))
-            .where((e) => e.isSome())
-            .map((e) => e.getOrElse(() => throw NullThrownError()));
-        final feedbackTotalRating = feedbacksIterable.fold<int>(
-          0,
-          (previousValue, element) => previousValue + element.rating,
-        );
-
-        final everageRating = feedbackTotalRating / feedbacksIterable.length;
 
         (await _userRepos.get(providerID))
             .map(
               (r) => r.maybeMap<Option<AppUser>>(
                 orElse: none,
-                provider: some,
+                consumer: some,
               ),
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r)
@@ -76,7 +48,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             emit(
               AccountState.success(
                 aUser: aUser,
-                rating: everageRating,
                 newImgUrl: '',
               ),
             );
@@ -87,38 +58,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         final pickedImage = await _imagePicker.pickImage(source: source);
         if (pickedImage != null) {
           final _image = File(pickedImage.path);
-          final feedbackData =
-              (await _repairRecord.where('pid', isEqualTo: providerID))
-                  .map(
-                    (r) => r.map(
-                      (a) => a.maybeMap<Future<Option<ReportFeedback>>>(
-                        orElse: () => Future.value(none()),
-                        finished: (v) async => some(
-                          v.feedback,
-                        ),
-                      ),
-                    ),
-                  )
-                  .fold<IList<Future<Option<ReportFeedback>>>>(
-                    (l) => throw NullThrownError(),
-                    (r) => r,
-                  );
-
-          final feedbacksIterable =
-              (await Future.wait(feedbackData.toIterable()))
-                  .where((e) => e.isSome())
-                  .map((e) => e.getOrElse(() => throw NullThrownError()));
-          final feedbackTotalRating = feedbacksIterable.fold<int>(
-            0,
-            (previousValue, element) => previousValue + element.rating,
-          );
-
-          final everageRating = feedbackTotalRating / feedbacksIterable.length;
           (await _userRepos.get(providerID))
               .map(
                 (r) => r.maybeMap<Option<AppUser>>(
                   orElse: none,
-                  provider: some,
+                  consumer: some,
                 ),
               )
               .fold<Option<AppUser>>((l) => none(), (r) => r)
@@ -127,7 +71,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 (aUser) async => uploadImg(
                   file: StorageFile.profile(file: _image),
                   emit: emit,
-                  rating: everageRating,
                 ),
               );
         }
@@ -138,7 +81,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   Future<Unit> uploadImg({
     required StorageFile file,
     required Emitter<AccountState> emit,
-    required double rating,
   }) async {
     storageBloc.add(StorageEvent.upload(file: file));
     await _listenWhen(
@@ -151,15 +93,15 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                   .map(
                     (r) => r.maybeMap<Option<AppUser>>(
                       orElse: none,
-                      provider: some,
+                      consumer: some,
                     ),
                   )
                   .fold<Option<AppUser>>((l) => none(), (r) => r);
               await tmp.fold(
                 () => null,
                 (a) => a.maybeMap(
-                  provider: (value) async {
-                    final tmp = AppUser.provider(
+                  consumer: (value) async {
+                    final tmp = AppUser.consumer(
                       uuid: value.uuid,
                       firstName: value.firstName,
                       lastName: value.lastName,
@@ -171,21 +113,15 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                       avatarUrl: newImgUrl,
                       createdTime: value.createdTime,
                       lastUpdatedTime: value.lastUpdatedTime,
-                      idCardNum: value.idCardNum,
-                      idCardImage: value.idCardImage,
-                      backgroundUrl: value.backgroundUrl,
-                      bio: value.bio,
                       vac: value.vac,
-                      online: value.online,
-                      loc: value.loc,
                     );
-                    final newProvider =
-                        AppUserDummy.dummyProvider(providerID).maybeMap(
+                    final newCons =
+                        AppUserDummy.dummyConsumer(providerID).maybeMap(
                       orElse: () => throw NullThrownError(),
-                      provider: (value) => value.copyWith(avatarUrl: newImgUrl),
+                      consumer: (value) => value.copyWith(avatarUrl: newImgUrl),
                     );
                     final t = await _userRepos.updateFields(
-                      newProvider,
+                      newCons,
                       ilist(
                         [
                           AppUserDummy.field(AppUserFields.AvatarUrl),
@@ -199,7 +135,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                       (r) => emit(
                         AccountState.success(
                           aUser: tmp,
-                          rating: rating,
                           newImgUrl: newImgUrl,
                         ),
                       ),

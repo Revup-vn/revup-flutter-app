@@ -15,6 +15,7 @@ import 'package:revup_core/core.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/widgets/internet_availability_page.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
 import 'login_view.u.dart';
@@ -118,16 +119,18 @@ class LoginPage extends StatelessWidget {
                                     Icons.cancel_outlined,
                                     color: Theme.of(context).colorScheme.error,
                                   ),
-                                  AutoSizeText(
-                                    context.l10n.loginFailLabel,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .error,
-                                        ),
+                                  Center(
+                                    child: AutoSizeText(
+                                      context.l10n.loginFailLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error,
+                                          ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -138,13 +141,16 @@ class LoginPage extends StatelessWidget {
                     },
                   );
 
-                  return Future.delayed(
+                  Future.delayed(
                     const Duration(seconds: 3),
                     () {
+                      var count = 0;
                       context
                           .read<AuthenticateBloc>()
                           .add(AuthenticateEvent.signOut(authType: authType));
-                      context.router.pop();
+                      context.router.popUntil(
+                        (route) => count++ >= 2,
+                      );
                     },
                   );
                 },
@@ -172,6 +178,12 @@ class LoginPage extends StatelessWidget {
                 server: (message) => LoginFailure(
                   errorMessage: message ?? context.l10n.unknowIssuesLabel,
                 ),
+                signOut: () {
+                  context
+                      .read<AuthenticateBloc>()
+                      .add(const AuthenticateEvent.reset());
+                  return const Loading();
+                },
                 orElse: () =>
                     LoginFailure(errorMessage: context.l10n.unknowIssuesLabel),
               );

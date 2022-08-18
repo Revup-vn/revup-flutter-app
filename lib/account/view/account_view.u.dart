@@ -18,12 +18,10 @@ class AccountView extends StatelessWidget {
   const AccountView({
     super.key,
     required this.user,
-    required this.rating,
     required this.newImgPhoto,
   });
 
   final AppUser user;
-  final double rating;
   final String newImgPhoto;
 
   @override
@@ -39,7 +37,7 @@ class AccountView extends StatelessWidget {
             children: <Widget>[
               Avatar(
                 fileImg: File(''),
-                imageUrl: user.avatarUrl,
+                imageUrl: newImgPhoto.isEmpty ? user.avatarUrl : newImgPhoto,
                 userName: '${user.firstName} ${user.lastName}',
                 callback: () {
                   _showModalButtonSheet(context);

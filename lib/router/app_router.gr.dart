@@ -280,7 +280,9 @@ class AppRouter extends _i36.RootStackRouter {
     },
     AccountRoute.name: (routeData) {
       return _i36.AdaptivePage<void>(
-          routeData: routeData, child: const _i35.AccountPage());
+          routeData: routeData,
+          child: const _i35.AccountPage(),
+          maintainState: false);
     }
   };
 

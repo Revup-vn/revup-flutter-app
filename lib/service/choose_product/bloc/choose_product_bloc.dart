@@ -94,6 +94,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
             productData.firstWhere((element) => element.name == product);
         await (storeRepository.repairPaymentRepo(record)).create(
           PaymentService.pending(
+            isOptional: false,
             serviceName: _serviceData.name,
             moneyAmount: _serviceData.serviceFee + selected.price,
             products: List.from(

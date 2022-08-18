@@ -52,7 +52,7 @@ import '../test/test.dart';
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: HistoryPage),
         AdaptiveRoute<void>(page: NotificationPage),
-        AdaptiveRoute<void>(page: AccountPage),
+        AdaptiveRoute<void>(page: AccountPage, maintainState: false),
       ],
     ),
     AdaptiveRoute<void>(page: HistoryDetailPage),

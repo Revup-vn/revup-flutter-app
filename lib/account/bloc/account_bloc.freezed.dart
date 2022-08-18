@@ -318,8 +318,7 @@ mixin _$AccountState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
+    required TResult Function(AppUser aUser, String newImgUrl) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -327,7 +326,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -335,7 +334,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -424,8 +423,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
+    required TResult Function(AppUser aUser, String newImgUrl) success,
   }) {
     return initial();
   }
@@ -436,7 +434,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
   }) {
     return initial?.call();
   }
@@ -447,7 +445,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -540,8 +538,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
+    required TResult Function(AppUser aUser, String newImgUrl) success,
   }) {
     return loading();
   }
@@ -552,7 +549,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
   }) {
     return loading?.call();
   }
@@ -563,7 +560,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -656,8 +653,7 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
+    required TResult Function(AppUser aUser, String newImgUrl) success,
   }) {
     return failure();
   }
@@ -668,7 +664,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
   }) {
     return failure?.call();
   }
@@ -679,7 +675,7 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -735,7 +731,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({AppUser aUser, double rating, String newImgUrl});
+  $Res call({AppUser aUser, String newImgUrl});
 
   $AppUserCopyWith<$Res> get aUser;
 }
@@ -752,7 +748,6 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? aUser = freezed,
-    Object? rating = freezed,
     Object? newImgUrl = freezed,
   }) {
     return _then(_$_Success(
@@ -760,10 +755,6 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
           ? _value.aUser
           : aUser // ignore: cast_nullable_to_non_nullable
               as AppUser,
-      rating: rating == freezed
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
       newImgUrl: newImgUrl == freezed
           ? _value.newImgUrl
           : newImgUrl // ignore: cast_nullable_to_non_nullable
@@ -782,19 +773,16 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(
-      {required this.aUser, required this.rating, required this.newImgUrl});
+  const _$_Success({required this.aUser, required this.newImgUrl});
 
   @override
   final AppUser aUser;
-  @override
-  final double rating;
   @override
   final String newImgUrl;
 
   @override
   String toString() {
-    return 'AccountState.success(aUser: $aUser, rating: $rating, newImgUrl: $newImgUrl)';
+    return 'AccountState.success(aUser: $aUser, newImgUrl: $newImgUrl)';
   }
 
   @override
@@ -803,7 +791,6 @@ class _$_Success implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
             const DeepCollectionEquality().equals(other.aUser, aUser) &&
-            const DeepCollectionEquality().equals(other.rating, rating) &&
             const DeepCollectionEquality().equals(other.newImgUrl, newImgUrl));
   }
 
@@ -811,7 +798,6 @@ class _$_Success implements _Success {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(aUser),
-      const DeepCollectionEquality().hash(rating),
       const DeepCollectionEquality().hash(newImgUrl));
 
   @JsonKey(ignore: true)
@@ -825,10 +811,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(AppUser aUser, double rating, String newImgUrl)
-        success,
+    required TResult Function(AppUser aUser, String newImgUrl) success,
   }) {
-    return success(aUser, rating, newImgUrl);
+    return success(aUser, newImgUrl);
   }
 
   @override
@@ -837,9 +822,9 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
   }) {
-    return success?.call(aUser, rating, newImgUrl);
+    return success?.call(aUser, newImgUrl);
   }
 
   @override
@@ -848,11 +833,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(AppUser aUser, double rating, String newImgUrl)? success,
+    TResult Function(AppUser aUser, String newImgUrl)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(aUser, rating, newImgUrl);
+      return success(aUser, newImgUrl);
     }
     return orElse();
   }
@@ -898,11 +883,9 @@ class _$_Success implements _Success {
 abstract class _Success implements AccountState {
   const factory _Success(
       {required final AppUser aUser,
-      required final double rating,
       required final String newImgUrl}) = _$_Success;
 
   AppUser get aUser;
-  double get rating;
   String get newImgUrl;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>

@@ -10,12 +10,63 @@ import 'update_profile_view.u.dart';
 
 class UpdateProfileBuilder extends StatelessWidget {
   const UpdateProfileBuilder({super.key});
-
   @override
   Widget build(BuildContext context) {
+    context.watch<ProfileBloc>().state.maybeWhen(
+          initial: () {
+            return context
+                .read<ProfileBloc>()
+                .add(const ProfileEvent.started());
+          },
+          orElse: () => false,
+        );
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) => state.maybeWhen(
         orElse: () => false,
+        success: () {
+          showDialog<String>(
+            context: context,
+            builder: (context) {
+              return Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 200,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.done,
+                            color: Theme.of(context).colorScheme.onTertiary,
+                          ),
+                          AutoSizeText(
+                            context.l10n.doneLabel,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
+          return Future.delayed(const Duration(seconds: 3), () {
+            var count = 0;
+            context.router.popUntil(
+              (route) => count++ >= 2,
+            );
+          });
+        },
         failure: () {
           showDialog<String>(
             context: context,
@@ -58,51 +109,10 @@ class UpdateProfileBuilder extends StatelessWidget {
         },
       ),
       builder: (context, state) => state.when(
+        success: Container.new,
         failure: Container.new,
         initial: Container.new,
-        loadDataSuccess: (aUser) {
-          showDialog<String>(
-            context: context,
-            builder: (context) {
-              return Dialog(
-                backgroundColor: Colors.transparent,
-                insetPadding: const EdgeInsets.all(10),
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.done,
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
-                          AutoSizeText(
-                            context.l10n.doneLabel,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onTertiary,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-
-          Future.delayed(const Duration(seconds: 3), () {
-            context.router.pop();
-          });
-
-          return UpdateProfileView(user: aUser);
-        },
+        loadDataSuccess: (aUser) => UpdateProfileView(user: aUser),
         loading: () => const Loading(),
       ),
     );
