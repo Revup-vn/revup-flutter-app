@@ -106,7 +106,7 @@ class UpdateProfileView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-Z ]+$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -206,7 +206,7 @@ class UpdateProfileView extends StatelessWidget {
                         initialValue: user.addr,
                       ),
                       const SizedBox(
-                        height: 160,
+                        height: 40,
                       ),
                       ElevatedButton(
                         onPressed: () async {
@@ -214,6 +214,7 @@ class UpdateProfileView extends StatelessWidget {
 
                           if (_formKey.currentState?.saveAndValidate() ==
                               true) {
+                            context.loaderOverlay.show();
                             final data = _formKey.currentState?.value;
                             final name = data?['fullName'].toString();
                             final fName = name?.split(' ')[0];

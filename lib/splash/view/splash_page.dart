@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -31,14 +30,13 @@ class SplashPage extends StatelessWidget {
           orElse: () => unit,
         );
 
-        context.router.pushAndPopUntil(
+        context.router.replace(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
             authenticated: (type) => HomeRoute(user: type.user),
             orElse: LoginRoute.new,
           ),
-          predicate: (_) => true,
         );
       },
     );

@@ -57,7 +57,7 @@ class SignupView extends StatelessWidget {
           body: ListView(
             children: <Widget>[
               BlocBuilder<SignupBloc, SignupState>(
-                builder: (context, state) => state.when(
+                builder: (contextBuilder, state) => state.when(
                   initial: () => Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.fromLTRB(16, 30, 16, 16),
@@ -115,7 +115,7 @@ class SignupView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-Z ]+$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -215,9 +215,9 @@ class SignupView extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          context.loaderOverlay.show();
                           if (_formKey.currentState?.saveAndValidate() ==
                               true) {
+                            context.loaderOverlay.show();
                             final data = _formKey.currentState?.value;
                             final fName =
                                 data?['fullName'].toString().split(' ')[0];

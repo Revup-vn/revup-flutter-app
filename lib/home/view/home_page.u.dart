@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.restore),
-                label: l10n.activateLabel,
+                label: l10n.actionLabel,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.notifications),

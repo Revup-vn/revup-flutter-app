@@ -4,6 +4,7 @@ import 'package:revup_core/core.dart';
 import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
 import '../add_message/view/add_message_page.u.dart';
+import '../change_language/view/change_language_page.dart';
 import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
 import '../guide-support/view/terms_privacy_page.u.dart';
@@ -46,14 +47,18 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ServiceInvoicePage),
     AdaptiveRoute<void>(page: InvoicePaymentPage),
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
+    AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
         AdaptiveRoute<void>(page: HistoryPage),
         AdaptiveRoute<void>(page: NotificationPage),
-        AdaptiveRoute<void>(page: AccountPage, maintainState: false),
+        AdaptiveRoute<void>(
+          page: AccountPage,
+        ),
       ],
+      maintainState: false,
     ),
     AdaptiveRoute<void>(page: HistoryDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),

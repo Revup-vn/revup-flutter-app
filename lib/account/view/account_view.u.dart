@@ -66,7 +66,7 @@ class AccountView extends StatelessWidget {
                     width: 16,
                   ),
                   AutoSizeText(
-                    l10n.accountLabel,
+                    l10n.myAccountLabel,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],
@@ -104,7 +104,7 @@ class AccountView extends StatelessWidget {
                   IconData(0xe366, fontFamily: 'MaterialIcons'),
                 ),
                 callback: () {
-                  // TODO(namngoc231): Go to Change Language
+                  context.router.push(const ChangeLanguageRoute());
                 },
               ),
               const Divider(
