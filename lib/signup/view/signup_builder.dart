@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'package:revup_core/core.dart';
 
 import 'signup_view.dart';

@@ -169,8 +169,8 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
+    required TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -179,8 +179,8 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -189,8 +189,8 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
     required TResult orElse(),
   }) =>
@@ -279,8 +279,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
+    required TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)
         success,
   }) {
     return initial();
@@ -292,8 +292,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
   }) {
     return initial?.call();
@@ -305,8 +305,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
     required TResult orElse(),
   }) {
@@ -400,8 +400,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
+    required TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)
         success,
   }) {
     return loading();
@@ -413,8 +413,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
   }) {
     return loading?.call();
@@ -426,8 +426,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
     required TResult orElse(),
   }) {
@@ -521,8 +521,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
+    required TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)
         success,
   }) {
     return failure();
@@ -534,8 +534,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
   }) {
     return failure?.call();
@@ -547,8 +547,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
     required TResult orElse(),
   }) {
@@ -605,7 +605,12 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({IVector<String> ads, Option<RepairRecord> activeRepairRecord});
+  $Res call(
+      {IVector<String> ads,
+      Option<RepairRecord> activeRepairRecord,
+      HomeModel homeModel});
+
+  $HomeModelCopyWith<$Res> get homeModel;
 }
 
 /// @nodoc
@@ -621,6 +626,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? ads = freezed,
     Object? activeRepairRecord = freezed,
+    Object? homeModel = freezed,
   }) {
     return _then(_$_Success(
       ads: ads == freezed
@@ -631,23 +637,39 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.activeRepairRecord
           : activeRepairRecord // ignore: cast_nullable_to_non_nullable
               as Option<RepairRecord>,
+      homeModel: homeModel == freezed
+          ? _value.homeModel
+          : homeModel // ignore: cast_nullable_to_non_nullable
+              as HomeModel,
     ));
+  }
+
+  @override
+  $HomeModelCopyWith<$Res> get homeModel {
+    return $HomeModelCopyWith<$Res>(_value.homeModel, (value) {
+      return _then(_value.copyWith(homeModel: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success({required this.ads, required this.activeRepairRecord});
+  const _$_Success(
+      {required this.ads,
+      required this.activeRepairRecord,
+      required this.homeModel});
 
   @override
   final IVector<String> ads;
   @override
   final Option<RepairRecord> activeRepairRecord;
+  @override
+  final HomeModel homeModel;
 
   @override
   String toString() {
-    return 'HomeState.success(ads: $ads, activeRepairRecord: $activeRepairRecord)';
+    return 'HomeState.success(ads: $ads, activeRepairRecord: $activeRepairRecord, homeModel: $homeModel)';
   }
 
   @override
@@ -657,14 +679,16 @@ class _$_Success implements _Success {
             other is _$_Success &&
             const DeepCollectionEquality().equals(other.ads, ads) &&
             const DeepCollectionEquality()
-                .equals(other.activeRepairRecord, activeRepairRecord));
+                .equals(other.activeRepairRecord, activeRepairRecord) &&
+            const DeepCollectionEquality().equals(other.homeModel, homeModel));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(ads),
-      const DeepCollectionEquality().hash(activeRepairRecord));
+      const DeepCollectionEquality().hash(activeRepairRecord),
+      const DeepCollectionEquality().hash(homeModel));
 
   @JsonKey(ignore: true)
   @override
@@ -677,11 +701,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)
+    required TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)
         success,
   }) {
-    return success(ads, activeRepairRecord);
+    return success(ads, activeRepairRecord, homeModel);
   }
 
   @override
@@ -690,11 +714,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
   }) {
-    return success?.call(ads, activeRepairRecord);
+    return success?.call(ads, activeRepairRecord, homeModel);
   }
 
   @override
@@ -703,13 +727,13 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(
-            IVector<String> ads, Option<RepairRecord> activeRepairRecord)?
+    TResult Function(IVector<String> ads,
+            Option<RepairRecord> activeRepairRecord, HomeModel homeModel)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(ads, activeRepairRecord);
+      return success(ads, activeRepairRecord, homeModel);
     }
     return orElse();
   }
@@ -755,10 +779,12 @@ class _$_Success implements _Success {
 abstract class _Success implements HomeState {
   const factory _Success(
       {required final IVector<String> ads,
-      required final Option<RepairRecord> activeRepairRecord}) = _$_Success;
+      required final Option<RepairRecord> activeRepairRecord,
+      required final HomeModel homeModel}) = _$_Success;
 
   IVector<String> get ads;
   Option<RepairRecord> get activeRepairRecord;
+  HomeModel get homeModel;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

@@ -188,9 +188,10 @@
   "acceptRepairRecordLabel": "The repairman is on the way",
   "arrivedRepairRecordLabel": "The repairman has arrived",
   "startedRepairRecordLabel": "The repairman is repairing",
-  "loginFailLabel": "Your account is not allowed to login. Please contact care center for more information",
+  "loginFailLabel": "Your account is not allowed to login.",
   "updateProfileFail" : "Update fail",
   "languageLabel": "Language",
   "vietnameseLabel": "Vietnamese",
-  "englishLabel": "English"
+  "englishLabel": "English",
+  "loginFailDescLabel": "Please contact care center for more information."
 }

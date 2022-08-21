@@ -1,19 +1,26 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
+
+import '../../shared/extension.dart';
+import '../model/home_model.dart';
 
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc(this.sr, this._repairRecord, this.user) : super(const _Initial()) {
+  HomeBloc(this.sr, this._repairRecord, this.user, this._userRepos)
+      : super(const _Initial()) {
     on<HomeEvent>(_onEvent);
   }
   final AppUser user;
   final StoreRepository sr;
   final IStore<RepairRecord> _repairRecord;
+  final IStore<AppUser> _userRepos;
   //final imageList = IVector<String>.emptyVector();
   final imageList = IVector.from([
     'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
@@ -44,17 +51,52 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 )
                 .fold<IList<RepairRecord>>(
                   (l) => ilist([]),
-                  (r) => r.map(
+                  (r) => r
+                      .filter((a) => a.isSome())
+                      .map((a) => a.getOrElse(() => throw NullThrownError())),
+                )
+                .find((a) => true);
+        final completer = Completer<RepairRecord>();
+        final tmp = (await _repairRecord.where('cid', isEqualTo: user.uuid))
+            .map(
+              (r) => r.map(
+                (a) => a.maybeMap<Option<RepairRecord>>(
+                  orElse: none,
+                  finished: (value) => some(a),
+                ),
+              ),
+            )
+            .fold<IList<RepairRecord>>(
+              (l) => nil(),
+              (r) => r.filter((a) => a.isSome()).map(
                     (a) => a.getOrElse(
                       () => throw NullThrownError(),
                     ),
                   ),
-                )
-                .find((a) => true);
-        emit(
-          HomeState.success(
-            ads: imageList,
-            activeRepairRecord: maybeRepairRecord,
+            )
+            .sortByDouble(
+              (e1, e2) => e1.created.millisecondsSinceEpoch
+                  .compareTo(e2.created.millisecondsSinceEpoch),
+            );
+        tmp.headOption.fold(() => null, completer.complete);
+        final latestRepairRecord = await completer.future;
+        final completerUser = Completer<Either<StoreFailure, AppUser>>();
+
+        (await _userRepos.get(latestRepairRecord.pid)).fold(
+          (l) => completerUser.complete(left(l)),
+          (r) => completerUser.complete(
+            right(r),
+          ),
+        );
+        final provider = await completerUser.future;
+        provider.fold(
+          (l) => emit(const HomeState.failure()),
+          (r) => emit(
+            HomeState.success(
+              ads: imageList,
+              activeRepairRecord: maybeRepairRecord,
+              homeModel: HomeModel.fromDTO(r, latestRepairRecord),
+            ),
           ),
         );
       },

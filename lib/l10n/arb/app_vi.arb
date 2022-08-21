@@ -189,9 +189,10 @@
   "acceptRepairRecordLabel": "Thợ đang trên đường",
   "arrivedRepairRecordLabel": "Thợ đã đã đến nơi",
   "startedRepairRecordLabel": "Thợ đang sửa chữa",
-  "loginFailLabel": "Tài khoản của bạn không được phép đăng nhập. Hãy liên hệ cskh để biết thêm thông tin",
+  "loginFailLabel": "Tài khoản của bạn không được phép đăng nhập.",
   "updateProfileFail" : "Cập nhật tài khoản lỗi vui lòng thử lại",
   "languageLabel": "Ngôn ngữ",
   "vietnameseLabel": "Tiếng Việt",
-  "englishLabel": "Tiếng Anh"
+  "englishLabel": "Tiếng Anh",
+  "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin."
 }

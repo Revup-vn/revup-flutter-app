@@ -3,10 +3,11 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -51,11 +52,12 @@ class LoginPage extends StatelessWidget {
               server: (message) => unit,
               orElse: () => false,
             ),
-            authenticated: (authType) {
+            authenticated: (authType) async {
               context.loaderOverlay.hide();
-              authType.user.maybeMap(
+              await authType.user.maybeMap(
                 consumer: (value) {
                   showDialog<String>(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) {
                       return Dialog(
@@ -96,13 +98,31 @@ class LoginPage extends StatelessWidget {
 
                   return Future.delayed(
                     const Duration(seconds: 3),
-                    () {
-                      context.router.push(HomeRoute(user: authType.user));
+                    () async {
+                      final boxAuthType =
+                          await Hive.openBox<dynamic>('authType');
+                      await boxAuthType.put(
+                        'auth',
+                        authType.map(
+                          google: (value) =>
+                              AuthType.google(user: value.user).toJson(),
+                          phone: (value) =>
+                              AuthType.phone(user: value.user).toJson(),
+                          email: (value) =>
+                              AuthType.email(user: value.user).toJson(),
+                        ),
+                      );
+
+                      await context.router.pushAndPopUntil(
+                        HomeRoute(user: authType.user),
+                        predicate: (_) => true,
+                      );
                     },
                   );
                 },
                 orElse: () {
                   showDialog<String>(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) {
                       return Dialog(
@@ -110,27 +130,45 @@ class LoginPage extends StatelessWidget {
                         insetPadding: const EdgeInsets.all(10),
                         child: Stack(
                           children: [
-                            SizedBox(
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inverseSurface,
+                              ),
                               width: double.infinity,
-                              height: 200,
+                              height: 70,
                               child: Column(
                                 children: [
                                   Icon(
                                     Icons.cancel_outlined,
                                     color: Theme.of(context).colorScheme.error,
                                   ),
-                                  Center(
-                                    child: AutoSizeText(
-                                      context.l10n.loginFailLabel,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .error,
-                                          ),
-                                    ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailDescLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
                                   ),
                                 ],
                               ),
@@ -142,15 +180,12 @@ class LoginPage extends StatelessWidget {
                   );
 
                   Future.delayed(
-                    const Duration(seconds: 3),
+                    const Duration(seconds: 5),
                     () {
-                      var count = 0;
                       context
                           .read<AuthenticateBloc>()
                           .add(AuthenticateEvent.signOut(authType: authType));
-                      context.router.popUntil(
-                        (route) => count++ >= 2,
-                      );
+                      context.router.pop();
                     },
                   );
                 },
@@ -165,9 +200,7 @@ class LoginPage extends StatelessWidget {
             orElse: () => false,
           ),
           builder: (context, state) => state.maybeWhen(
-            // authenticated: (authType) => LoginSuccess(type: authType),
-            loading: LoginView.new,
-
+            loading: Loading.new,
             failure: (authFailure) {
               return authFailure.maybeWhen(
                 invalidData: (message) => LoginFailure(

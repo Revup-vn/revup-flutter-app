@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -50,7 +51,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
           blocPage.add(const HomeEvent.started());
         }
       },
-      success: (ads, activeRepairRecord) {
+      success: (ads, activeRepairRecord, homeModel) {
         if (activeRepairRecord.isSome()) {
           // show flash on home screen
           final msg = activeRepairRecord.map(
@@ -62,10 +63,10 @@ class _HomeBodyViewState extends State<HomeBodyView> {
               orElse: () => throw NullThrownError(),
             ),
           );
-          Future.delayed(
-            Duration.zero,
-            () => _showTopFlash(msg: msg.getOrElse(() => '')),
-          );
+          // Future.delayed(
+          //   Duration.zero,
+          //   () => _showTopFlash(msg: msg.getOrElse(() => '')),
+          // );
         }
       },
       orElse: () => false,
@@ -107,7 +108,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
                 ),
               ),
               state.maybeWhen(
-                success: (ads, activeRecord) => Swiper(
+                success: (ads, activeRecord, homeModel) => Swiper(
                   autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),
@@ -146,7 +147,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
                 ),
               ),
               state.maybeWhen(
-                success: (ads, activeRepairRecord) => Swiper(
+                success: (ads, activeRepairRecord, homeModel) => Swiper(
                   autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),

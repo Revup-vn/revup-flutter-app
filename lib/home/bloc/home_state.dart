@@ -8,5 +8,6 @@ class HomeState with _$HomeState {
   const factory HomeState.success({
     required IVector<String> ads,
     required Option<RepairRecord> activeRepairRecord,
+    required HomeModel homeModel,
   }) = _Success;
 }
