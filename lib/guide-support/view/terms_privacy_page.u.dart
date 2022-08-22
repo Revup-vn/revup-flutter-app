@@ -1,5 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:revup_core/core.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 
 class TermsPrivacyPage extends StatelessWidget {
@@ -33,35 +38,35 @@ class TermsPrivacyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    // final content = context.read<LanguageCubit>().state.when(
-    //       system: () => null,
-    //       vietnamese: () => _viHtmlContent,
-    //       english: () => _enHtmlContent,
-    //     );
+    final content = context.read<LanguageCubit>().state.when(
+          system: () => null,
+          vietnamese: () => _viHtmlContent,
+          english: () => _enHtmlContent,
+        );
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: AutoSizeText(
-        //     l10n.termsPrivacyLabel,
-        //     style: Theme.of(context)
-        //         .textTheme
-        //         .headlineSmall
-        //         ?.copyWith(fontWeight: FontWeight.bold),
-        //   ),
-        // ),
-        // body: Padding(
-        //   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-        //   child: SingleChildScrollView(
-        //     child: Column(
-        //       children: <Widget>[
-        //         Assets.screens.termsPrivacy.svg(width: 200, height: 200),
-        //         Html(
-        //           data: content,
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        );
+      appBar: AppBar(
+        title: AutoSizeText(
+          l10n.termsPrivacyLabel,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Assets.screens.termsPrivacy.svg(width: 200, height: 200),
+              Html(
+                data: content,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
