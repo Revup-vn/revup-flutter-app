@@ -175,7 +175,7 @@ class LoginView extends StatelessWidget {
                                           final completer =
                                               Completer<AppUser>();
                                           await context.router.push(
-                                            Signup6Route(
+                                            SignupRoute(
                                               completer: completer,
                                               phoneNumber:
                                                   user.phoneNumber ?? '',
@@ -198,7 +198,6 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
               Row(
                 children: [
                   const Expanded(child: Divider()),

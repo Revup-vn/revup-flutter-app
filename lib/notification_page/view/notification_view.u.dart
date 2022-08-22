@@ -24,7 +24,10 @@ class NotificationView extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: AutoSizeText(l10n.notificationLabel)),
+      appBar: AppBar(
+        title: AutoSizeText(l10n.notificationLabel),
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -14,7 +15,8 @@ class HomeBodyPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(
-          create: (_) => HomeBloc(context.read(), context.read(), user),
+          create: (_) =>
+              HomeBloc(context.read(), context.read(), user, context.read()),
         ),
         BlocProvider<AppServiceBloc>(
           create: (_) => AppServiceBloc(),

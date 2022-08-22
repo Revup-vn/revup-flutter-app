@@ -40,13 +40,7 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final content = context.read<LanguageCubit>().state.when(
-          system: () => context
-                  .read<LanguageCubit>()
-                  .getSystemLocale()
-                  .languageCode
-                  .contains('vi')
-              ? _viHtmlContent
-              : _enHtmlContent,
+          system: () => null,
           vietnamese: () => _viHtmlContent,
           english: () => _enHtmlContent,
         );

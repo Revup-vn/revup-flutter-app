@@ -101,7 +101,9 @@ class RequestDetailsLive extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // TODO(cantgim): do sthg here
+                                  },
                                   icon: Icon(
                                     Icons.list_alt,
                                     color:

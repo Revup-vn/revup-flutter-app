@@ -120,6 +120,7 @@ class ChooseServiceView extends StatelessWidget {
                       submitSuccess: () {
                         // context.router.replaceAll([HomeRoute(user: user)]);
                         context.router.replace(HomeRoute(user: user));
+
                         return const Center(
                           child: CircularProgressIndicator.adaptive(),
                         );

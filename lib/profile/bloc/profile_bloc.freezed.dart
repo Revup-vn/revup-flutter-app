@@ -19,19 +19,19 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel user) submitted,
+    required TResult Function(AppUser user) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,7 +111,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel user) submitted,
+    required TResult Function(AppUser user) submitted,
   }) {
     return started();
   }
@@ -120,7 +120,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
   }) {
     return started?.call();
   }
@@ -129,7 +129,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -179,9 +179,9 @@ abstract class _$$SubmittedCopyWith<$Res> {
   factory _$$SubmittedCopyWith(
           _$Submitted value, $Res Function(_$Submitted) then) =
       __$$SubmittedCopyWithImpl<$Res>;
-  $Res call({UserModel user});
+  $Res call({AppUser user});
 
-  $UserModelCopyWith<$Res> get user;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -202,13 +202,13 @@ class __$$SubmittedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
       user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as AppUser,
     ));
   }
 
   @override
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -220,7 +220,7 @@ class _$Submitted implements Submitted {
   const _$Submitted(this.user);
 
   @override
-  final UserModel user;
+  final AppUser user;
 
   @override
   String toString() {
@@ -248,7 +248,7 @@ class _$Submitted implements Submitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel user) submitted,
+    required TResult Function(AppUser user) submitted,
   }) {
     return submitted(user);
   }
@@ -257,7 +257,7 @@ class _$Submitted implements Submitted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
   }) {
     return submitted?.call(user);
   }
@@ -266,7 +266,7 @@ class _$Submitted implements Submitted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel user)? submitted,
+    TResult Function(AppUser user)? submitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -308,9 +308,9 @@ class _$Submitted implements Submitted {
 }
 
 abstract class Submitted implements ProfileEvent {
-  const factory Submitted(final UserModel user) = _$Submitted;
+  const factory Submitted(final AppUser user) = _$Submitted;
 
-  UserModel get user;
+  AppUser get user;
   @JsonKey(ignore: true)
   _$$SubmittedCopyWith<_$Submitted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -324,9 +324,7 @@ mixin _$ProfileState {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -335,9 +333,7 @@ mixin _$ProfileState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -346,9 +342,7 @@ mixin _$ProfileState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -358,7 +352,7 @@ mixin _$ProfileState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -367,7 +361,7 @@ mixin _$ProfileState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -376,7 +370,7 @@ mixin _$ProfileState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -441,9 +435,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) {
     return initial();
   }
@@ -455,9 +447,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) {
     return initial?.call();
   }
@@ -469,9 +459,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -487,7 +475,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return initial(this);
   }
@@ -499,7 +487,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return initial?.call(this);
   }
@@ -511,7 +499,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -568,9 +556,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) {
     return loading();
   }
@@ -582,9 +568,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) {
     return loading?.call();
   }
@@ -596,9 +580,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -614,7 +596,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return loading(this);
   }
@@ -626,7 +608,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return loading?.call(this);
   }
@@ -638,7 +620,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -695,9 +677,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) {
     return failure();
   }
@@ -709,9 +689,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) {
     return failure?.call();
   }
@@ -723,9 +701,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -741,7 +717,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return failure(this);
   }
@@ -753,7 +729,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return failure?.call(this);
   }
@@ -765,7 +741,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -822,9 +798,7 @@ class _$_Success implements _Success {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) {
     return success();
   }
@@ -836,9 +810,7 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) {
     return success?.call();
   }
@@ -850,9 +822,7 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -868,7 +838,7 @@ class _$_Success implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
     return success(this);
   }
@@ -880,7 +850,7 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
     return success?.call(this);
   }
@@ -892,7 +862,7 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -910,12 +880,9 @@ abstract class _Success implements ProfileState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call(
-      {String fullName,
-      String email,
-      String phone,
-      DateTime date,
-      String address});
+  $Res call({AppUser aUser});
+
+  $AppUserCopyWith<$Res> get aUser;
 }
 
 /// @nodoc
@@ -929,61 +896,35 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? fullName = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? date = freezed,
-    Object? address = freezed,
+    Object? aUser = freezed,
   }) {
     return _then(_$_Loaded(
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
+      aUser: aUser == freezed
+          ? _value.aUser
+          : aUser // ignore: cast_nullable_to_non_nullable
+              as AppUser,
     ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res> get aUser {
+    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
+      return _then(_value.copyWith(aUser: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(
-      {required this.fullName,
-      required this.email,
-      required this.phone,
-      required this.date,
-      required this.address});
+  const _$_Loaded({required this.aUser});
 
   @override
-  final String fullName;
-  @override
-  final String email;
-  @override
-  final String phone;
-  @override
-  final DateTime date;
-  @override
-  final String address;
+  final AppUser aUser;
 
   @override
   String toString() {
-    return 'ProfileState.loaded(fullName: $fullName, email: $email, phone: $phone, date: $date, address: $address)';
+    return 'ProfileState.loadDataSuccess(aUser: $aUser)';
   }
 
   @override
@@ -991,21 +932,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.fullName, fullName) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.address, address));
+            const DeepCollectionEquality().equals(other.aUser, aUser));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(fullName),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(address));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(aUser));
 
   @JsonKey(ignore: true)
   @override
@@ -1019,11 +951,9 @@ class _$_Loaded implements _Loaded {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function() success,
-    required TResult Function(String fullName, String email, String phone,
-            DateTime date, String address)
-        loaded,
+    required TResult Function(AppUser aUser) loadDataSuccess,
   }) {
-    return loaded(fullName, email, phone, date, address);
+    return loadDataSuccess(aUser);
   }
 
   @override
@@ -1033,11 +963,9 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
   }) {
-    return loaded?.call(fullName, email, phone, date, address);
+    return loadDataSuccess?.call(aUser);
   }
 
   @override
@@ -1047,13 +975,11 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function()? success,
-    TResult Function(String fullName, String email, String phone, DateTime date,
-            String address)?
-        loaded,
+    TResult Function(AppUser aUser)? loadDataSuccess,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(fullName, email, phone, date, address);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(aUser);
     }
     return orElse();
   }
@@ -1065,9 +991,9 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) loadDataSuccess,
   }) {
-    return loaded(this);
+    return loadDataSuccess(this);
   }
 
   @override
@@ -1077,9 +1003,9 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
   }) {
-    return loaded?.call(this);
+    return loadDataSuccess?.call(this);
   }
 
   @override
@@ -1089,29 +1015,20 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? loadDataSuccess,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (loadDataSuccess != null) {
+      return loadDataSuccess(this);
     }
     return orElse();
   }
 }
 
 abstract class _Loaded implements ProfileState {
-  const factory _Loaded(
-      {required final String fullName,
-      required final String email,
-      required final String phone,
-      required final DateTime date,
-      required final String address}) = _$_Loaded;
+  const factory _Loaded({required final AppUser aUser}) = _$_Loaded;
 
-  String get fullName;
-  String get email;
-  String get phone;
-  DateTime get date;
-  String get address;
+  AppUser get aUser;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

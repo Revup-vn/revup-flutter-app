@@ -15,6 +15,7 @@ import 'package:revup_core/core.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/widgets/internet_availability_page.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
 import 'login_view.u.dart';
@@ -50,62 +51,156 @@ class LoginPage extends StatelessWidget {
               server: (message) => unit,
               orElse: () => false,
             ),
-            authenticated: (authType) {
+            authenticated: (authType) async {
               context.loaderOverlay.hide();
+              await authType.user.maybeMap(
+                consumer: (value) {
+                  showDialog<String>(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.done,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onTertiary,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginSuccessLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onTertiary,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
 
+                  return Future.delayed(
+                    const Duration(seconds: 3),
+                    () async {
+                      final boxAuthType =
+                          await Hive.openBox<dynamic>('authType');
+                      await boxAuthType.put(
+                        'auth',
+                        authType.map(
+                          google: (value) =>
+                              AuthType.google(user: value.user).toJson(),
+                          phone: (value) =>
+                              AuthType.phone(user: value.user).toJson(),
+                          email: (value) =>
+                              AuthType.email(user: value.user).toJson(),
+                        ),
+                      );
+
+                      await context.router.pushAndPopUntil(
+                        HomeRoute(user: authType.user),
+                        predicate: (_) => true,
+                      );
+                    },
+                  );
+                },
+                orElse: () {
+                  showDialog<String>(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        insetPadding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inverseSurface,
+                              ),
+                              width: double.infinity,
+                              height: 70,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.cancel_outlined,
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                  AutoSizeText(
+                                    context.l10n.loginFailDescLabel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                    maxLines: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+
+                  Future.delayed(
+                    const Duration(seconds: 5),
+                    () {
+                      context
+                          .read<AuthenticateBloc>()
+                          .add(AuthenticateEvent.signOut(authType: authType));
+                      context.router.pop();
+                    },
+                  );
+                },
+              );
+              return unit;
               // context.read<NotificationCubit>().registerDevice();
               // context.read<NotificationCubit>().state.whenOrNull(
               //       registered: _onRegisterNotification,
               //       failToRegister: () =>
               //           context.read<NotificationCubit>().registerDevice(),
               //     );
-              showDialog<String>(
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    backgroundColor: Colors.transparent,
-                    insetPadding: const EdgeInsets.all(10),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.done,
-                                color: Theme.of(context).colorScheme.onTertiary,
-                              ),
-                              AutoSizeText(
-                                context.l10n.loginSuccessLabel,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiary,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-
-              return Future.delayed(const Duration(seconds: 3), () {
-                context.router.push(HomeRoute(user: authType.user));
-              });
             },
             orElse: () => false,
           ),
           builder: (context, state) => state.maybeWhen(
-            // authenticated: (authType) => LoginSuccess(type: authType),
-            loading: LoginView.new,
-
+            loading: Loading.new,
             failure: (authFailure) {
               return authFailure.maybeWhen(
                 invalidData: (message) => LoginFailure(
@@ -116,6 +211,13 @@ class LoginPage extends StatelessWidget {
                 server: (message) => LoginFailure(
                   errorMessage: message ?? context.l10n.unknowIssuesLabel,
                 ),
+                signOut: () {
+                  context
+                      .read<AuthenticateBloc>()
+                      .add(const AuthenticateEvent.reset());
+
+                  return const Loading();
+                },
                 orElse: () =>
                     LoginFailure(errorMessage: context.l10n.unknowIssuesLabel),
               );
@@ -160,7 +262,7 @@ class LoginPage extends StatelessWidget {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
-                Signup6Route(
+                SignupRoute(
                   completer: completer,
                   phoneNumber: user.phoneNumber ?? '',
                   photoURL: user.photoURL ?? '',
@@ -246,7 +348,7 @@ class LoginPage extends StatelessWidget {
               context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
-                Signup6Route(
+                SignupRoute(
                   completer: completer,
                   phoneNumber: user.phoneNumber ?? '',
                   photoURL: user.photoURL ?? '',

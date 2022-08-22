@@ -7,7 +7,6 @@ import 'package:flash/flash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
-import '../../account/model/user_model.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../widgets/payment_item.u.dart';
@@ -16,17 +15,15 @@ class PaymentView extends StatelessWidget {
   const PaymentView({
     super.key,
     required this.user,
-    required this.model,
   });
-  final UserModel user;
-  final AppUser model;
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     final _paymentAccount =
-        context.read<StoreRepository>().paymentAccount(model);
+        context.read<StoreRepository>().paymentAccount(user);
     _paymentAccount.all().then<void>(
           (value) => value.fold(
             (l) => log('error'),

@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +7,7 @@ import 'package:revup_core/core.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../account/widgets/default_avatar.dart';
-import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
-import '../../shared/utils.dart';
 import '../bloc/home_bloc.dart';
 
 class RepairReviewHomePage extends StatelessWidget {
@@ -21,37 +18,19 @@ class RepairReviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final mayBeUser = getUser(context.read<AuthenticateBloc>().state);
-    //late AppUser user ;
-    late var user = AppUser.consumer(
-      uuid: '1a',
-      firstName: 'Nam',
-      lastName: 'Ngoc',
-      phone: '0866199497',
-      dob: DateTime.now(),
-      addr: 'Ninh Binh',
-      email: 'huyxamxi@xamvhon.com',
-      active: true,
-      avatarUrl:
-          'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      createdTime: DateTime.now(),
-      lastUpdatedTime: DateTime.now(),
-      vac: const VideoCallAccount(
-        id: '1a',
-        username: '0866199497',
-        pwd: DEFAULT_PASS,
-        email: 'huyxamxi@xamvhon.com',
-      ),
-    );
-    if (mayBeUser.isSome()) {
-      user = mayBeUser.toNullable()!;
-    } else {
-      context.router.popUntil((route) => true);
-    }
 
     return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        return Column(
+      builder: (context, state) => state.maybeWhen(
+        orElse: () => Shimmer.fromColors(
+          baseColor: const Color.fromRGBO(224, 224, 224, 1),
+          highlightColor: const Color.fromRGBO(245, 245, 245, 1),
+          child: Container(
+            width: double.infinity,
+            height: 16,
+            color: Colors.white,
+          ),
+        ),
+        success: (ads, activeRepairRecord, homeModel) => Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Row(
@@ -67,17 +46,17 @@ class RepairReviewHomePage extends StatelessWidget {
                         child: CachedNetworkImage(
                           fadeInDuration: const Duration(milliseconds: 50),
                           fadeOutDuration: const Duration(milliseconds: 50),
-                          imageUrl: user.avatarUrl,
+                          imageUrl: homeModel.imageUrl,
                           placeholder: (context, url) {
                             return DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: '${user.firstName} ${user.lastName}',
+                              userName: homeModel.providerName,
                             );
                           },
                           errorWidget: (context, url, dynamic error) {
                             return DefaultAvatar(
                               textSize: Theme.of(context).textTheme.titleLarge,
-                              userName: '${user.firstName} ${user.lastName}',
+                              userName: homeModel.providerName,
                             );
                           },
                           height: 64,
@@ -89,94 +68,50 @@ class RepairReviewHomePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       child: AutoSizeText(
-                        '${user.firstName} ${user.lastName}',
+                        homeModel.providerName,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ),
                   ],
                 ),
-                state.maybeWhen(
-                  success: (ads, activeRecord) => Column(
-                    children: [
-                      AutoSizeText(
-                        '${l10n.serviceAccountLabel}: ${l10n.autoRepairLabel}',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                      AutoSizeText(
-                        '${l10n.timeLabel}: ',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                      AutoSizeText(
-                        '${l10n.dayLabel}: ',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ],
-                  ),
-                  orElse: () => Shimmer.fromColors(
-                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
-                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 8,
-                          color: Colors.white,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 2),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 8,
-                          color: Colors.white,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 2),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 8,
-                          color: Colors.white,
-                        ),
-                      ],
+                Column(
+                  children: [
+                    AutoSizeText(
+                      '''${l10n.vehicleTypeLabel}: ${homeModel.serviceType == 0 ? l10n.motorbikeLabel : l10n.carLabel}''',
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
-                  ),
+                    AutoSizeText(
+                      '${l10n.dayLabel}: ${context.formatDate(
+                        homeModel.created,
+                      )}',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
                 ),
               ],
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Center(
-                child: state.maybeWhen(
-                  success: (ads, activeRecord) => Column(
-                    children: [
-                      RatingBar.builder(
-                        initialRating: 4,
-                        itemSize: 30,
-                        allowHalfRating: true,
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                        onRatingUpdate: print,
+                child: Column(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: homeModel.rating.toDouble(),
+                      itemSize: 30,
+                      ignoreGestures: true,
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Theme.of(context).colorScheme.inversePrimary,
                       ),
-                    ],
-                  ),
-                  orElse: () => Shimmer.fromColors(
-                    baseColor: const Color.fromRGBO(224, 224, 224, 1),
-                    highlightColor: const Color.fromRGBO(245, 245, 245, 1),
-                    child: Container(
-                      width: double.infinity,
-                      height: 16,
-                      color: Colors.white,
+                      onRatingUpdate: print,
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }
