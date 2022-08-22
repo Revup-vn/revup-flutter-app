@@ -19,7 +19,9 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
     Emitter<UploadImageState> emit,
   ) async {
     await event.when(
-      started: () {},
+      started: () {
+        // TODO(wamynobe): do sthg here
+      },
       imageUploadSelected: (source) async {
         final pickedImage = await _imagePicker.pickImage(source: source);
 

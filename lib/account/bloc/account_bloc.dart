@@ -150,6 +150,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       ),
       emit,
     );
+
     return unit;
   }
 

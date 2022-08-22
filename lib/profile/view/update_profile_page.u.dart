@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
@@ -28,7 +27,7 @@ class UpdateProfilePage extends StatelessWidget {
         BlocProvider(
           create: (context) => UploadImageCubit(context.read()),
           child: Container(),
-        )
+        ),
       ],
       child: const UpdateProfileBuilder(),
     );

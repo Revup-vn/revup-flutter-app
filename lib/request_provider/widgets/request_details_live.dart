@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
@@ -102,7 +101,9 @@ class RequestDetailsLive extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // TODO(cantgim): do sthg here
+                                  },
                                   icon: Icon(
                                     Icons.list_alt,
                                     color:

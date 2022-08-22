@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/widgets/loading.u.dart';
@@ -19,6 +18,7 @@ class AccountBuilder extends StatelessWidget {
           },
           orElse: () => false,
         );
+
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) => state.maybeWhen(
         orElse: Container.new,
