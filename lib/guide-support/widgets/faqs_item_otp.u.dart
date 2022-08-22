@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:revup_core/core.dart';
+
+import '../../l10n/l10n.dart';
+
 class FAQsItemOTPPage extends StatelessWidget {
   const FAQsItemOTPPage({super.key});
 
@@ -45,39 +52,39 @@ must be the phone number you used to register your REVUP account. Please double 
 
   @override
   Widget build(BuildContext context) {
-    // final l10n = context.l10n;
-    // final content = context.read<LanguageCubit>().state.when(
-    //       system: () => null,
-    //       vietnamese: () => _viHtmlContent,
-    //       english: () => _enHtmlContent,
-    //     );
+    final l10n = context.l10n;
+    final content = context.read<LanguageCubit>().state.when(
+          system: () => null,
+          vietnamese: () => _viHtmlContent,
+          english: () => _enHtmlContent,
+        );
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: AutoSizeText(
-        //     l10n.postLabel,
-        //     style: Theme.of(context)
-        //         .textTheme
-        //         .headlineSmall
-        //         ?.copyWith(fontWeight: FontWeight.bold),
-        //   ),
-        // ),
-        // body: Padding(
-        //   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-        //   child: SingleChildScrollView(
-        //     child: Column(
-        //       children: <Widget>[
-        //         AutoSizeText(
-        //           l10n.questionOTPLabel,
-        //           style: Theme.of(context).textTheme.headline5,
-        //         ),
-        //         Html(
-        //           data: content,
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        );
+      appBar: AppBar(
+        title: AutoSizeText(
+          l10n.postLabel,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              AutoSizeText(
+                l10n.questionOTPLabel,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              Html(
+                data: content,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
