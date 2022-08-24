@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -72,6 +71,15 @@ class AccountView extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],
+              ),
+              AccountItem(
+                accountName: l10n.reportLabel,
+                accountIcon: const Icon(Icons.report_problem),
+                callback: () {
+                  context.router.push(
+                    ReportRoute(cid: user.uuid),
+                  );
+                },
               ),
               AccountItem(
                 accountName: l10n.editProfileLabel,

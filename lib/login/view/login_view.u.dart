@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -184,7 +183,6 @@ class LoginView extends StatelessWidget {
                                               email: user.email ?? '',
                                             ),
                                           );
-
                                           return completer.future;
                                         },
                                       ),
@@ -217,6 +215,7 @@ class LoginView extends StatelessWidget {
                   LoginSsoItem(
                     ssoIcon: Assets.screens.googleOriginal.svg(),
                     onPressed: () {
+                      final routerFake = context.router;
                       context.loaderOverlay.show();
                       context.read<AuthenticateBloc>().add(
                         AuthenticateEvent.loginWithGoogle(
@@ -224,13 +223,13 @@ class LoginView extends StatelessWidget {
                             final completer = Completer<AppUser>();
                             if (user.phoneNumber == null ||
                                 user.phoneNumber == '') {
-                              await context.router.push(
+                              await routerFake.push(
                                 LoginEnterPhoneRoute(
                                   completer: completer,
-                                  email: user.email ?? '',
                                   phoneNumber: user.phoneNumber ?? '',
                                   photoURL: user.photoURL ?? '',
                                   uid: user.uid,
+                                  email: user.email ?? '',
                                 ),
                               );
                             } else {
@@ -256,7 +255,6 @@ class LoginView extends StatelessWidget {
                                 ),
                               );
                             }
-
                             return completer.future;
                           },
                         ),

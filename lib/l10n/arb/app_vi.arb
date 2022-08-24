@@ -194,5 +194,18 @@
   "languageLabel": "Ngôn ngữ",
   "vietnameseLabel": "Tiếng Việt",
   "englishLabel": "Tiếng Anh",
-  "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin."
+  "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin.",
+  "successLabel": "Hoàn thành",
+  "reportLabel": "Báo cáo",
+  "myReportLabel": "Báo cáo của tôi",
+  "resolvedLabel": "Đã giải quyết",
+  "unResolvedLabel": "Chưa giải quyết",
+  "reportType": "Danh mục báo cáo:",
+  "startedLabel": "Bắt đầu",
+  "endedLabel": "Kết thúc",
+  "reportDesLabel": "Nội dung",
+  "reportCategory": "Mục báo cáo",
+  "reportImgLabel": "Cung cấp hình ảnh để chứng minh (optional)",
+  "otherLabel": "Khác",
+  "productLabel": "Sản phẩm"
 }

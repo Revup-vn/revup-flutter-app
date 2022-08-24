@@ -54,6 +54,7 @@ class SignupView extends StatelessWidget {
                   .headlineSmall
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
+            automaticallyImplyLeading: false,
           ),
           body: ListView(
             children: <Widget>[
@@ -239,11 +240,15 @@ class SignupView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
+                            final date = data?['date'].toString().split(' ')[0];
                             if (storageFile.file.path.isNotEmpty) {
                               await cubit
                                   .uploadImg(file: storageFile)
-                                  .whenComplete(() {
-                                context.read<StorageBloc>().state.whenOrNull(
+                                  .then((value) async {
+                                await context
+                                    .read<StorageBloc>()
+                                    .state
+                                    .whenOrNull(
                                   success: (eitherFailuresOrUrls) async {
                                     final tmp = eitherFailuresOrUrls
                                         .map<Option<String>>(
@@ -267,10 +272,7 @@ class SignupView extends StatelessWidget {
                                         lastName: lName ?? '',
                                         phone: '+84$phoneNumber',
                                         dob: DateTime.parse(
-                                          data?['date']
-                                                  .toString()
-                                                  .split(' ')[0] ??
-                                              '',
+                                          date ?? '',
                                         ),
                                         addr: data?['address'].toString() ?? '',
                                         email: data?['email'].toString() ?? '',
@@ -289,6 +291,7 @@ class SignupView extends StatelessWidget {
                                         ),
                                       ),
                                     );
+                                    context.loaderOverlay.hide();
                                     await context.router.pop();
                                   },
                                 );
