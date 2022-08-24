@@ -17,18 +17,25 @@ class ServiceCheckboxGroup extends StatelessWidget {
     required this.catAndSv,
     required this.providerId,
     required this.isSelectProduct,
+    required this.recordId,
   });
   final List<ServiceData> serviceList;
   final List<PendingServiceModel> pendingService;
   final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final String providerId;
   final bool isSelectProduct;
+  final String recordId;
 
   @override
   Widget build(BuildContext context) {
     final lst = <ServiceData>[];
+    final svDataOptional = pendingService
+        .map(
+          ServiceData.fromPendingService,
+        )
+        .toList();
     return FormBuilderField<List<ServiceData>>(
-      initialValue: lst,
+      initialValue: svDataOptional,
       name: 'data',
       builder: (field) => ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
@@ -49,11 +56,13 @@ class ServiceCheckboxGroup extends StatelessWidget {
                     .map((e) => e.name)
                     .contains(serviceList[index].name) ||
                 serviceList[index].isOptional,
-            canSelect: !serviceList[index].isOptional,
+            canSelect: !serviceList[index].isOptional &&
+                serviceList[index].products.isEmpty,
             index: index,
             providerId: providerId,
             catAndSv: catAndSv,
             field: field,
+            recordId: recordId,
           );
         },
       ),

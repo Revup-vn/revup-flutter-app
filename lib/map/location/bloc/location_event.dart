@@ -7,8 +7,10 @@ class LocationEvent with _$LocationEvent {
       _PositionUpdated;
   const factory LocationEvent.placeSearch({required String placeId}) =
       _PlaceSearch;
-  const factory LocationEvent.savedRepairLoc({required LatLng location}) =
-      _LocationSaved;
+  const factory LocationEvent.savedRepairLoc({
+    required LatLng location,
+    required Function0<void> onRoute,
+  }) = _LocationSaved;
   const factory LocationEvent.mapLoaded({
     required Directions directions,
   }) = _MapLoaded;

@@ -167,6 +167,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           serviceFee: -1, // provider give the price
           imageURL: optionalService.img,
           isOptional: true,
+          products: [],
         );
         services.add(newSvData);
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
@@ -276,14 +277,38 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         final svDataOptional = pendingService.map(
           ServiceData.fromPendingService,
         );
+        final lst = catAndSv.value2.toList()
+          ..removeWhere(
+            (e) => svDataOptional.any((a) => a.name == e.name),
+          );
         emit(
           ChooseServiceState.orderModify(
-            serviceData: catAndSv.value2.plus(svDataOptional),
+            serviceData: ilist(lst).plus(svDataOptional),
             catAndSv: catAndSv,
             pendingService: pendingService.toList(),
             providerId: providerId,
           ),
         );
+      },
+      selectProductCompleted: (onRoute, saveLst, recordId) async {
+        // create list pending payment service
+        final _paymentRepo = storeRepository
+            .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
+        final payment = (await _paymentRepo.all())
+            .fold((l) => nil<PaymentService>(), (r) => r)
+            .toList();
+        final paymentNotRm = payment
+            .where(
+              (element) => saveLst.any((e) => e.name == element.serviceName),
+            )
+            .toList();
+        payment.removeWhere(
+          paymentNotRm.contains,
+        );
+        for (var i = 0; i < payment.length; i++) {
+          await _paymentRepo.delete(payment[i].serviceName);
+        }
+        onRoute();
       },
     );
   }

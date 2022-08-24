@@ -8,6 +8,11 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required Function2<String, String, void> sendMessage,
     required List<ServiceData> saveLst,
   }) = _ServiceListSubmitted;
+  const factory ChooseServiceEvent.selectProductCompleted({
+    required Function0<void> onRoute,
+    required List<ServiceData> saveLst,
+    required String recordId,
+  }) = _SelectProductCompleted;
   const factory ChooseServiceEvent.newServiceRequested(
     OptionalService optionalService,
   ) = _NewServiceRequested;

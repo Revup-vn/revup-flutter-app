@@ -24,6 +24,9 @@ mixin _$ChooseServiceEvent {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)
         serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
     required TResult Function(OptionalService optionalService)
         newServiceRequested,
     required TResult Function(String recordId) detailRequestAccepted,
@@ -37,6 +40,9 @@ mixin _$ChooseServiceEvent {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
   }) =>
@@ -49,6 +55,9 @@ mixin _$ChooseServiceEvent {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -58,6 +67,8 @@ mixin _$ChooseServiceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
     required TResult Function(_NewServiceRequested value) newServiceRequested,
     required TResult Function(_DetailRequestAccepted value)
         detailRequestAccepted,
@@ -67,6 +78,7 @@ mixin _$ChooseServiceEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) =>
@@ -75,6 +87,7 @@ mixin _$ChooseServiceEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
@@ -145,6 +158,9 @@ class _$_Started implements _Started {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)
         serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
     required TResult Function(OptionalService optionalService)
         newServiceRequested,
     required TResult Function(String recordId) detailRequestAccepted,
@@ -161,6 +177,9 @@ class _$_Started implements _Started {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -176,6 +195,9 @@ class _$_Started implements _Started {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -191,6 +213,8 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
     required TResult Function(_NewServiceRequested value) newServiceRequested,
     required TResult Function(_DetailRequestAccepted value)
         detailRequestAccepted,
@@ -203,6 +227,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
@@ -214,6 +239,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
@@ -329,6 +355,9 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)
         serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
     required TResult Function(OptionalService optionalService)
         newServiceRequested,
     required TResult Function(String recordId) detailRequestAccepted,
@@ -345,6 +374,9 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -360,6 +392,9 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -375,6 +410,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
     required TResult Function(_NewServiceRequested value) newServiceRequested,
     required TResult Function(_DetailRequestAccepted value)
         detailRequestAccepted,
@@ -387,6 +424,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
@@ -398,6 +436,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
@@ -420,6 +459,215 @@ abstract class _ServiceListSubmitted implements ChooseServiceEvent {
   List<ServiceData> get saveLst;
   @JsonKey(ignore: true)
   _$$_ServiceListSubmittedCopyWith<_$_ServiceListSubmitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SelectProductCompletedCopyWith<$Res> {
+  factory _$$_SelectProductCompletedCopyWith(_$_SelectProductCompleted value,
+          $Res Function(_$_SelectProductCompleted) then) =
+      __$$_SelectProductCompletedCopyWithImpl<$Res>;
+  $Res call(
+      {Function0<void> onRoute, List<ServiceData> saveLst, String recordId});
+}
+
+/// @nodoc
+class __$$_SelectProductCompletedCopyWithImpl<$Res>
+    extends _$ChooseServiceEventCopyWithImpl<$Res>
+    implements _$$_SelectProductCompletedCopyWith<$Res> {
+  __$$_SelectProductCompletedCopyWithImpl(_$_SelectProductCompleted _value,
+      $Res Function(_$_SelectProductCompleted) _then)
+      : super(_value, (v) => _then(v as _$_SelectProductCompleted));
+
+  @override
+  _$_SelectProductCompleted get _value =>
+      super._value as _$_SelectProductCompleted;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+    Object? saveLst = freezed,
+    Object? recordId = freezed,
+  }) {
+    return _then(_$_SelectProductCompleted(
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
+      saveLst: saveLst == freezed
+          ? _value._saveLst
+          : saveLst // ignore: cast_nullable_to_non_nullable
+              as List<ServiceData>,
+      recordId: recordId == freezed
+          ? _value.recordId
+          : recordId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SelectProductCompleted implements _SelectProductCompleted {
+  const _$_SelectProductCompleted(
+      {required this.onRoute,
+      required final List<ServiceData> saveLst,
+      required this.recordId})
+      : _saveLst = saveLst;
+
+  @override
+  final Function0<void> onRoute;
+  final List<ServiceData> _saveLst;
+  @override
+  List<ServiceData> get saveLst {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saveLst);
+  }
+
+  @override
+  final String recordId;
+
+  @override
+  String toString() {
+    return 'ChooseServiceEvent.selectProductCompleted(onRoute: $onRoute, saveLst: $saveLst, recordId: $recordId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectProductCompleted &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            const DeepCollectionEquality().equals(other._saveLst, _saveLst) &&
+            const DeepCollectionEquality().equals(other.recordId, recordId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      onRoute,
+      const DeepCollectionEquality().hash(_saveLst),
+      const DeepCollectionEquality().hash(recordId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SelectProductCompletedCopyWith<_$_SelectProductCompleted> get copyWith =>
+      __$$_SelectProductCompletedCopyWithImpl<_$_SelectProductCompleted>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(
+            Function0<void> onRoute,
+            Function2<String, String, void> sendMessage,
+            List<ServiceData> saveLst)
+        serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
+    required TResult Function(OptionalService optionalService)
+        newServiceRequested,
+    required TResult Function(String recordId) detailRequestAccepted,
+  }) {
+    return selectProductCompleted(onRoute, saveLst, recordId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            Function0<void> onRoute,
+            Function2<String, String, void> sendMessage,
+            List<ServiceData> saveLst)?
+        serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
+    TResult Function(OptionalService optionalService)? newServiceRequested,
+    TResult Function(String recordId)? detailRequestAccepted,
+  }) {
+    return selectProductCompleted?.call(onRoute, saveLst, recordId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            Function0<void> onRoute,
+            Function2<String, String, void> sendMessage,
+            List<ServiceData> saveLst)?
+        serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
+    TResult Function(OptionalService optionalService)? newServiceRequested,
+    TResult Function(String recordId)? detailRequestAccepted,
+    required TResult orElse(),
+  }) {
+    if (selectProductCompleted != null) {
+      return selectProductCompleted(onRoute, saveLst, recordId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
+    required TResult Function(_NewServiceRequested value) newServiceRequested,
+    required TResult Function(_DetailRequestAccepted value)
+        detailRequestAccepted,
+  }) {
+    return selectProductCompleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
+  }) {
+    return selectProductCompleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
+    TResult Function(_NewServiceRequested value)? newServiceRequested,
+    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
+    required TResult orElse(),
+  }) {
+    if (selectProductCompleted != null) {
+      return selectProductCompleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectProductCompleted implements ChooseServiceEvent {
+  const factory _SelectProductCompleted(
+      {required final Function0<void> onRoute,
+      required final List<ServiceData> saveLst,
+      required final String recordId}) = _$_SelectProductCompleted;
+
+  Function0<void> get onRoute;
+  List<ServiceData> get saveLst;
+  String get recordId;
+  @JsonKey(ignore: true)
+  _$$_SelectProductCompletedCopyWith<_$_SelectProductCompleted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -505,6 +753,9 @@ class _$_NewServiceRequested implements _NewServiceRequested {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)
         serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
     required TResult Function(OptionalService optionalService)
         newServiceRequested,
     required TResult Function(String recordId) detailRequestAccepted,
@@ -521,6 +772,9 @@ class _$_NewServiceRequested implements _NewServiceRequested {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -536,6 +790,9 @@ class _$_NewServiceRequested implements _NewServiceRequested {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -551,6 +808,8 @@ class _$_NewServiceRequested implements _NewServiceRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
     required TResult Function(_NewServiceRequested value) newServiceRequested,
     required TResult Function(_DetailRequestAccepted value)
         detailRequestAccepted,
@@ -563,6 +822,7 @@ class _$_NewServiceRequested implements _NewServiceRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
@@ -574,6 +834,7 @@ class _$_NewServiceRequested implements _NewServiceRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
@@ -668,6 +929,9 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)
         serviceListSubmitted,
+    required TResult Function(
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
+        selectProductCompleted,
     required TResult Function(OptionalService optionalService)
         newServiceRequested,
     required TResult Function(String recordId) detailRequestAccepted,
@@ -684,6 +948,9 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -699,6 +966,9 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst)?
         serviceListSubmitted,
+    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
+            String recordId)?
+        selectProductCompleted,
     TResult Function(OptionalService optionalService)? newServiceRequested,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -714,6 +984,8 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
+    required TResult Function(_SelectProductCompleted value)
+        selectProductCompleted,
     required TResult Function(_NewServiceRequested value) newServiceRequested,
     required TResult Function(_DetailRequestAccepted value)
         detailRequestAccepted,
@@ -726,6 +998,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
@@ -737,6 +1010,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
+    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
     TResult Function(_NewServiceRequested value)? newServiceRequested,
     TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),

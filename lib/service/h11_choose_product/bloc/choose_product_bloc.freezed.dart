@@ -19,19 +19,25 @@ mixin _$ChooseProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String? groupValue) submitted,
+    required TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)
+        submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +120,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String? groupValue) submitted,
+    required TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)
+        submitted,
   }) {
     return started();
   }
@@ -123,7 +131,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
   }) {
     return started?.call();
   }
@@ -132,7 +142,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -182,7 +194,7 @@ abstract class _$$_SubmittedCopyWith<$Res> {
   factory _$$_SubmittedCopyWith(
           _$_Submitted value, $Res Function(_$_Submitted) then) =
       __$$_SubmittedCopyWithImpl<$Res>;
-  $Res call({String? groupValue});
+  $Res call({String? groupValue, String recordId, Function0<void> onRoute});
 }
 
 /// @nodoc
@@ -199,12 +211,22 @@ class __$$_SubmittedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groupValue = freezed,
+    Object? recordId = freezed,
+    Object? onRoute = freezed,
   }) {
     return _then(_$_Submitted(
       groupValue == freezed
           ? _value.groupValue
           : groupValue // ignore: cast_nullable_to_non_nullable
               as String?,
+      recordId == freezed
+          ? _value.recordId
+          : recordId // ignore: cast_nullable_to_non_nullable
+              as String,
+      onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
     ));
   }
 }
@@ -212,14 +234,18 @@ class __$$_SubmittedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Submitted implements _Submitted {
-  const _$_Submitted(this.groupValue);
+  const _$_Submitted(this.groupValue, this.recordId, this.onRoute);
 
   @override
   final String? groupValue;
+  @override
+  final String recordId;
+  @override
+  final Function0<void> onRoute;
 
   @override
   String toString() {
-    return 'ChooseProductEvent.submitted(groupValue: $groupValue)';
+    return 'ChooseProductEvent.submitted(groupValue: $groupValue, recordId: $recordId, onRoute: $onRoute)';
   }
 
   @override
@@ -228,12 +254,17 @@ class _$_Submitted implements _Submitted {
         (other.runtimeType == runtimeType &&
             other is _$_Submitted &&
             const DeepCollectionEquality()
-                .equals(other.groupValue, groupValue));
+                .equals(other.groupValue, groupValue) &&
+            const DeepCollectionEquality().equals(other.recordId, recordId) &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(groupValue));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(groupValue),
+      const DeepCollectionEquality().hash(recordId),
+      onRoute);
 
   @JsonKey(ignore: true)
   @override
@@ -244,29 +275,35 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String? groupValue) submitted,
+    required TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)
+        submitted,
   }) {
-    return submitted(groupValue);
+    return submitted(groupValue, recordId, onRoute);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
   }) {
-    return submitted?.call(groupValue);
+    return submitted?.call(groupValue, recordId, onRoute);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String? groupValue)? submitted,
+    TResult Function(
+            String? groupValue, String recordId, Function0<void> onRoute)?
+        submitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
-      return submitted(groupValue);
+      return submitted(groupValue, recordId, onRoute);
     }
     return orElse();
   }
@@ -304,9 +341,12 @@ class _$_Submitted implements _Submitted {
 }
 
 abstract class _Submitted implements ChooseProductEvent {
-  const factory _Submitted(final String? groupValue) = _$_Submitted;
+  const factory _Submitted(final String? groupValue, final String recordId,
+      final Function0<void> onRoute) = _$_Submitted;
 
   String? get groupValue;
+  String get recordId;
+  Function0<void> get onRoute;
   @JsonKey(ignore: true)
   _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
       throw _privateConstructorUsedError;

@@ -9,6 +9,7 @@ class PendingServiceModel with _$PendingServiceModel {
     required String name,
     required int price,
     required bool isOptional,
+    required List<PaymentProduct> products,
   }) = _PendingServiceModel;
 
   factory PendingServiceModel.fromDto({
@@ -19,6 +20,7 @@ class PendingServiceModel with _$PendingServiceModel {
           name: v.serviceName,
           price: v.moneyAmount,
           isOptional: v.isOptional,
+          products: v.products,
         ),
         orElse: () => throw NullThrownError(),
       );

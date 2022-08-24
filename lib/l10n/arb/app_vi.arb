@@ -197,5 +197,6 @@
   "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin.",
   "settingsLabel": "Cài đặt",
   "onRequestLabel": "Bạn có yêu cầu đang được thực hiện",
-  "chooseAtLeastServiceLabel": "Chọn tối thiểu một sản phẩm"
+  "chooseAtLeastServiceLabel": "Chọn tối thiểu một sản phẩm",
+  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm"
 }

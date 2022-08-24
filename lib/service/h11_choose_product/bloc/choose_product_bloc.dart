@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../repairer_profile/models/service_data.u.dart';
@@ -65,17 +64,15 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
 
         emit(ChooseProductState.success(products));
       },
-      submitted: (product) async {
+      submitted: (product, recordId, onRoute) async {
         emit(const ChooseProductState.loading());
-        if (productData.any((element) => element.name == product)) {
+        if (!productData.any((element) => element.name == product)) {
           emit(const ChooseProductState.failure());
 
           return;
         }
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        final rcId = boxRprRecord.get('id', defaultValue: '') as String;
         final maybeRecord =
-            (await _repairRecord.get(rcId)).fold<Option<RepairRecord>>(
+            (await _repairRecord.get(recordId)).fold<Option<RepairRecord>>(
           (l) => none(),
           some,
         );
@@ -89,22 +86,23 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
         final record = maybeRecord.getOrElse(() => throw NullThrownError());
         final selected =
             productData.firstWhere((element) => element.name == product);
-        await (storeRepository.repairPaymentRepo(record)).create(
+
+        await (storeRepository.repairPaymentRepo(record)).update(
           PaymentService.pending(
-            isOptional: false,
             serviceName: _serviceData.name,
-            moneyAmount: _serviceData.serviceFee + selected.price,
-            products: List.from(
-              <PaymentProduct>[
-                PaymentProduct(
-                  name: selected.name,
-                  unitPrice: selected.price,
-                  quantity: 1,
-                ),
-              ],
-            ),
+            moneyAmount: _serviceData.serviceFee,
+            products: [
+              PaymentProduct(
+                name: selected.name,
+                unitPrice: selected.price,
+                quantity: 1,
+              )
+            ],
+            isOptional: _serviceData.isOptional,
           ),
         );
+
+        onRoute();
       },
     );
   }

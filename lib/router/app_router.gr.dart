@@ -174,7 +174,8 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               providerId: args.providerId,
               isSelectProduct: args.isSelectProduct,
-              recordId: args.recordId));
+              recordId: args.recordId),
+          maintainState: false);
     },
     NewServiceRequestRoute.name: (routeData) {
       return _i37.AdaptivePage<_i39.OptionalService>(
@@ -198,7 +199,8 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               serviceData: args.serviceData,
               catAndSv: args.catAndSv,
-              providerId: args.providerId));
+              providerId: args.providerId,
+              recordId: args.recordId));
     },
     FindNearbyRoute.name: (routeData) {
       final args = routeData.argsAs<FindNearbyRouteArgs>();
@@ -803,14 +805,16 @@ class ChooseProductRoute extends _i37.PageRouteInfo<ChooseProductRouteArgs> {
       required _i44.ServiceData serviceData,
       required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
           catAndSv,
-      required String providerId})
+      required String providerId,
+      required String recordId})
       : super(ChooseProductRoute.name,
             path: '/choose-product-page',
             args: ChooseProductRouteArgs(
                 key: key,
                 serviceData: serviceData,
                 catAndSv: catAndSv,
-                providerId: providerId));
+                providerId: providerId,
+                recordId: recordId));
 
   static const String name = 'ChooseProductRoute';
 }
@@ -820,7 +824,8 @@ class ChooseProductRouteArgs {
       {this.key,
       required this.serviceData,
       required this.catAndSv,
-      required this.providerId});
+      required this.providerId,
+      required this.recordId});
 
   final _i38.Key? key;
 
@@ -830,9 +835,11 @@ class ChooseProductRouteArgs {
 
   final String providerId;
 
+  final String recordId;
+
   @override
   String toString() {
-    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, catAndSv: $catAndSv, providerId: $providerId}';
+    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, catAndSv: $catAndSv, providerId: $providerId, recordId: $recordId}';
   }
 }
 

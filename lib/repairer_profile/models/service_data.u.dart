@@ -12,6 +12,7 @@ class ServiceData with _$ServiceData {
     required String name,
     required int serviceFee,
     required String imageURL,
+    required List<PaymentProduct> products,
     required bool isOptional,
   }) = _ServiceData;
 
@@ -20,6 +21,7 @@ class ServiceData with _$ServiceData {
         name: service.name,
         serviceFee: service.fee,
         isOptional: false,
+        products: [],
       );
 
   factory ServiceData.fromPendingService(PendingServiceModel service) =>
@@ -28,5 +30,6 @@ class ServiceData with _$ServiceData {
         name: service.name,
         serviceFee: service.price,
         isOptional: service.isOptional,
+        products: service.products,
       );
 }
