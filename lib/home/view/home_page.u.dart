@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
         child: AutoTabsScaffold(
           routes: [
             HomeBodyRoute(user: user),
-            HistoryRoute(user: user),
+            HistoryProviderRoute(cid: user.uuid),
             const NotificationRoute(),
             const AccountRoute(),
           ],

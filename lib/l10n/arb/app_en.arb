@@ -160,7 +160,7 @@
   "timeBookingLabel": "Service booking time",
   "timeCancelLabel": "Cancellation time",
   "timeComletionLabel": "Completion time",
-  "toomanyReqLabel": "Bạn đã yêu cầu gửi OTP quá nhiều lần, vui lòng đợi thêm",
+  "toomanyReqLabel": "aYou have requested too many times, please wait",
   "total": "Total",
   "totalFeeLabel": "Total Fee",
   "totalLabel": "Total",
@@ -193,5 +193,20 @@
   "languageLabel": "Language",
   "vietnameseLabel": "Vietnamese",
   "englishLabel": "English",
-  "loginFailDescLabel": "Please contact care center for more information."
+  "loginFailDescLabel": "Please contact care center for more information.",
+  "successLabel": "Finished",
+  "reportLabel": "Report",
+  "myReportLabel": "My Report",
+  "resolvedLabel": "Resolved",
+  "unResolvedLabel": "Unresolved",
+  "reportType": "Report Category",
+  "startedLabel": "Started",
+  "endedLabel": "Ended",
+  "reportDesLabel": "Des",
+  "reportCategory": "Report category",
+  "reportImgLabel": "Provide image if you need (optional)",
+  "otherLabel": "Other",
+  "productLabel": "Product",
+  "addReportFailLabel": "Add report fail"
+
 }

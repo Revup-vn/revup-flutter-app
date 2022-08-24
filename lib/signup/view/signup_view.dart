@@ -42,7 +42,6 @@ class SignupView extends StatelessWidget {
     final _formKey = GlobalKey<FormBuilderState>();
     var storageFile = StorageFile.profile(file: File(''));
     final cubit = context.watch<SignupUploadImageCubit>();
-
     return DismissKeyboard(
       child: LoaderOverlay(
         child: Scaffold(
@@ -54,6 +53,7 @@ class SignupView extends StatelessWidget {
                   .headlineSmall
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
+            automaticallyImplyLeading: false,
           ),
           body: ListView(
             children: <Widget>[
@@ -217,6 +217,7 @@ class SignupView extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () async {
+                          final completedSignup = Completer<Unit>();
                           if (_formKey.currentState?.saveAndValidate() ==
                               true) {
                             context.loaderOverlay.show();
@@ -239,11 +240,16 @@ class SignupView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
+
+                            final date = data?['date'].toString().split(' ')[0];
                             if (storageFile.file.path.isNotEmpty) {
                               await cubit
                                   .uploadImg(file: storageFile)
-                                  .whenComplete(() {
-                                context.read<StorageBloc>().state.whenOrNull(
+                                  .whenComplete(() async {
+                                await context
+                                    .read<StorageBloc>()
+                                    .state
+                                    .whenOrNull(
                                   success: (eitherFailuresOrUrls) async {
                                     final tmp = eitherFailuresOrUrls
                                         .map<Option<String>>(
@@ -267,10 +273,7 @@ class SignupView extends StatelessWidget {
                                         lastName: lName ?? '',
                                         phone: '+84$phoneNumber',
                                         dob: DateTime.parse(
-                                          data?['date']
-                                                  .toString()
-                                                  .split(' ')[0] ??
-                                              '',
+                                          date ?? '',
                                         ),
                                         addr: data?['address'].toString() ?? '',
                                         email: data?['email'].toString() ?? '',
@@ -289,7 +292,8 @@ class SignupView extends StatelessWidget {
                                         ),
                                       ),
                                     );
-                                    await context.router.pop();
+                                    context.loaderOverlay.hide();
+                                    completedSignup.complete(unit);
                                   },
                                 );
                               });
@@ -318,8 +322,13 @@ class SignupView extends StatelessWidget {
                                   ),
                                 ),
                               );
-                              await context.router.pop();
+                              completedSignup.complete(unit);
                             }
+                            await completedSignup.future;
+                            var count = 0;
+                            context.router.popUntil(
+                              (_) => count++ == 1,
+                            );
                           }
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,

@@ -184,7 +184,6 @@ class LoginView extends StatelessWidget {
                                               email: user.email ?? '',
                                             ),
                                           );
-
                                           return completer.future;
                                         },
                                       ),
@@ -217,6 +216,7 @@ class LoginView extends StatelessWidget {
                   LoginSsoItem(
                     ssoIcon: Assets.screens.googleOriginal.svg(),
                     onPressed: () {
+                      final routerFake = context.router;
                       context.loaderOverlay.show();
                       context.read<AuthenticateBloc>().add(
                         AuthenticateEvent.loginWithGoogle(
@@ -224,13 +224,13 @@ class LoginView extends StatelessWidget {
                             final completer = Completer<AppUser>();
                             if (user.phoneNumber == null ||
                                 user.phoneNumber == '') {
-                              await context.router.push(
+                              await routerFake.push(
                                 LoginEnterPhoneRoute(
                                   completer: completer,
-                                  email: user.email ?? '',
                                   phoneNumber: user.phoneNumber ?? '',
                                   photoURL: user.photoURL ?? '',
                                   uid: user.uid,
+                                  email: user.email ?? '',
                                 ),
                               );
                             } else {
@@ -256,7 +256,6 @@ class LoginView extends StatelessWidget {
                                 ),
                               );
                             }
-
                             return completer.future;
                           },
                         ),
