@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -12,12 +11,12 @@ class ChooseProductPage extends StatelessWidget {
   const ChooseProductPage({
     super.key,
     required this.serviceData,
-    required this.categories,
+    required this.catAndSv,
     required this.providerId,
   });
   final String providerId;
   final ServiceData serviceData;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -29,7 +28,7 @@ class ChooseProductPage extends StatelessWidget {
         sr,
         context.read(),
         serviceData,
-        categories,
+        catAndSv,
       ),
       child: const ChooseProductView(),
     );

@@ -96,6 +96,7 @@ class FindListRepairerBloc
                   (r) => some(r.toMap()),
                 )
                 .getOrElse(() => <String, dynamic>{});
+            await boxLocation.put('distance', directions.distance.toDouble());
             final provider = ProviderData.fromDtos(
               AppUser.fromJson(providerData),
               distance: directions.distance.toDouble(),
@@ -138,7 +139,8 @@ class FindListRepairerBloc
   Stream<List<DocumentSnapshot>> getNearbyProviders(double lat, double lng) {
     final center = GeoFirePoint(lat, lng);
     final typeRef = _userStore.collection().where('type', isEqualTo: '2');
-    final onlineRef = typeRef.where('online', isEqualTo: true);
+    final activeRef = typeRef.where('active', isEqualTo: true);
+    final onlineRef = activeRef.where('online', isEqualTo: true);
 
     return _geo.collection(collectionRef: onlineRef).within(
           center: center,

@@ -11,16 +11,12 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'dart:async' as _i42;
-
-import 'package:flutter/material.dart' as _i38;
 
 import 'package:auto_route/auto_route.dart' as _i37;
 import 'package:dartz/dartz.dart' as _i45;
+import 'package:flutter/material.dart' as _i38;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
-import 'package:revup_core/core.dart' as _i39;
-
 import 'package:revup/account/view/account_page.u.dart' as _i36;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i25;
 import 'package:revup/change_language/view/change_language_page.dart' as _i7;
@@ -31,16 +27,26 @@ import 'package:revup/guide-support/widgets/faqs_item_otp.u.dart' as _i28;
 import 'package:revup/h1_find_nearby/view/find_nearby_page.u.dart' as _i21;
 import 'package:revup/h22_invoice/models/service_data.dart' as _i41;
 import 'package:revup/h22_invoice/view/service_invoice_page.u.dart' as _i4;
+import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
+    as _i5;
+import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
+    as _i6;
 import 'package:revup/h2_find_provider/models/provider_data.u.dart' as _i40;
 import 'package:revup/h2_find_provider/view/list_repairer_page.u.dart' as _i23;
+import 'package:revup/h6_request_provider/view/request_provider_page.dart'
+    as _i22;
 import 'package:revup/history_consumer/model/history_model.dart' as _i43;
 import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i9;
 import 'package:revup/history_consumer/view/history_page.u.dart' as _i34;
 import 'package:revup/home/view/home_page.u.dart' as _i8;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i33;
+import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i31;
 import 'package:revup/login/view/login_page.u.dart' as _i13;
 import 'package:revup/notification_page/view/notification_page.u.dart' as _i35;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i14;
+import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
+    as _i26;
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
 import 'package:revup/otp/view/otp_page.u.dart' as _i15;
@@ -48,19 +54,6 @@ import 'package:revup/payment/view/payment_page.u.dart' as _i10;
 import 'package:revup/permission_page/permission_page.u.dart' as _i32;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i12;
 import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
-import 'package:revup/request_provider/view/request_provider_page.dart' as _i22;
-import 'package:revup/signup/view/signup_page.u.dart' as _i16;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i11;
-
-import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
-    as _i5;
-import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
-    as _i6;
-import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i31;
-import 'package:revup/order/order_overview/view/overview_order_page.u.dart'
-    as _i26;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i24;
 import 'package:revup/service/choose_service/view/choose_service_page.u.dart'
@@ -71,6 +64,10 @@ import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
     as _i18;
 import 'package:revup/service/service-details/view/service_detail_page.u.dart'
     as _i19;
+import 'package:revup/signup/view/signup_page.u.dart' as _i16;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i11;
+import 'package:revup_core/core.dart' as _i39;
 
 class AppRouter extends _i37.RootStackRouter {
   AppRouter([_i38.GlobalKey<_i38.NavigatorState>? navigatorKey])
@@ -174,7 +171,10 @@ class AppRouter extends _i37.RootStackRouter {
       return _i37.AdaptivePage<void>(
           routeData: routeData,
           child: _i17.ChooseServicePage(
-              key: args.key, providerId: args.providerId));
+              key: args.key,
+              providerId: args.providerId,
+              isSelectProduct: args.isSelectProduct,
+              recordId: args.recordId));
     },
     NewServiceRequestRoute.name: (routeData) {
       return _i37.AdaptivePage<_i39.OptionalService>(
@@ -188,7 +188,7 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               providerId: args.providerId,
               serviceData: args.serviceData,
-              categories: args.categories));
+              catAndSv: args.catAndSv));
     },
     ChooseProductRoute.name: (routeData) {
       final args = routeData.argsAs<ChooseProductRouteArgs>();
@@ -197,7 +197,7 @@ class AppRouter extends _i37.RootStackRouter {
           child: _i20.ChooseProductPage(
               key: args.key,
               serviceData: args.serviceData,
-              categories: args.categories,
+              catAndSv: args.catAndSv,
               providerId: args.providerId));
     },
     FindNearbyRoute.name: (routeData) {
@@ -241,7 +241,10 @@ class AppRouter extends _i37.RootStackRouter {
       return _i37.AdaptivePage<void>(
           routeData: routeData,
           child: _i26.OverViewOrderPage(
-              key: args.key, providerID: args.providerID));
+              key: args.key,
+              providerId: args.providerId,
+              recordId: args.recordId),
+          maintainState: false);
     },
     FAQsRoute.name: (routeData) {
       return _i37.AdaptivePage<void>(
@@ -705,24 +708,40 @@ class SignupRouteArgs {
 /// generated route for
 /// [_i17.ChooseServicePage]
 class ChooseServiceRoute extends _i37.PageRouteInfo<ChooseServiceRouteArgs> {
-  ChooseServiceRoute({_i38.Key? key, required String providerId})
+  ChooseServiceRoute(
+      {_i38.Key? key,
+      required String providerId,
+      required bool isSelectProduct,
+      String? recordId})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
-            args: ChooseServiceRouteArgs(key: key, providerId: providerId));
+            args: ChooseServiceRouteArgs(
+                key: key,
+                providerId: providerId,
+                isSelectProduct: isSelectProduct,
+                recordId: recordId));
 
   static const String name = 'ChooseServiceRoute';
 }
 
 class ChooseServiceRouteArgs {
-  const ChooseServiceRouteArgs({this.key, required this.providerId});
+  const ChooseServiceRouteArgs(
+      {this.key,
+      required this.providerId,
+      required this.isSelectProduct,
+      this.recordId});
 
   final _i38.Key? key;
 
   final String providerId;
 
+  final bool isSelectProduct;
+
+  final String? recordId;
+
   @override
   String toString() {
-    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId}';
+    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, isSelectProduct: $isSelectProduct, recordId: $recordId}';
   }
 }
 
@@ -742,16 +761,15 @@ class ServiceDetailRoute extends _i37.PageRouteInfo<ServiceDetailRouteArgs> {
       {_i38.Key? key,
       required String providerId,
       required _i44.ServiceData serviceData,
-      required List<
-              _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>>
-          categories})
+      required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
+          catAndSv})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
             args: ServiceDetailRouteArgs(
                 key: key,
                 providerId: providerId,
                 serviceData: serviceData,
-                categories: categories));
+                catAndSv: catAndSv));
 
   static const String name = 'ServiceDetailRoute';
 }
@@ -761,7 +779,7 @@ class ServiceDetailRouteArgs {
       {this.key,
       required this.providerId,
       required this.serviceData,
-      required this.categories});
+      required this.catAndSv});
 
   final _i38.Key? key;
 
@@ -769,12 +787,11 @@ class ServiceDetailRouteArgs {
 
   final _i44.ServiceData serviceData;
 
-  final List<_i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>>
-      categories;
+  final _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>> catAndSv;
 
   @override
   String toString() {
-    return 'ServiceDetailRouteArgs{key: $key, providerId: $providerId, serviceData: $serviceData, categories: $categories}';
+    return 'ServiceDetailRouteArgs{key: $key, providerId: $providerId, serviceData: $serviceData, catAndSv: $catAndSv}';
   }
 }
 
@@ -784,16 +801,15 @@ class ChooseProductRoute extends _i37.PageRouteInfo<ChooseProductRouteArgs> {
   ChooseProductRoute(
       {_i38.Key? key,
       required _i44.ServiceData serviceData,
-      required List<
-              _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>>
-          categories,
+      required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
+          catAndSv,
       required String providerId})
       : super(ChooseProductRoute.name,
             path: '/choose-product-page',
             args: ChooseProductRouteArgs(
                 key: key,
                 serviceData: serviceData,
-                categories: categories,
+                catAndSv: catAndSv,
                 providerId: providerId));
 
   static const String name = 'ChooseProductRoute';
@@ -803,21 +819,20 @@ class ChooseProductRouteArgs {
   const ChooseProductRouteArgs(
       {this.key,
       required this.serviceData,
-      required this.categories,
+      required this.catAndSv,
       required this.providerId});
 
   final _i38.Key? key;
 
   final _i44.ServiceData serviceData;
 
-  final List<_i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>>
-      categories;
+  final _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>> catAndSv;
 
   final String providerId;
 
   @override
   String toString() {
-    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, categories: $categories, providerId: $providerId}';
+    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, catAndSv: $catAndSv, providerId: $providerId}';
   }
 }
 
@@ -947,24 +962,29 @@ class AddMessageRouteArgs {
 /// generated route for
 /// [_i26.OverViewOrderPage]
 class OverViewOrderRoute extends _i37.PageRouteInfo<OverViewOrderRouteArgs> {
-  OverViewOrderRoute({_i38.Key? key, required String providerID})
+  OverViewOrderRoute(
+      {_i38.Key? key, required String providerId, required String recordId})
       : super(OverViewOrderRoute.name,
             path: '/over-view-order-page',
-            args: OverViewOrderRouteArgs(key: key, providerID: providerID));
+            args: OverViewOrderRouteArgs(
+                key: key, providerId: providerId, recordId: recordId));
 
   static const String name = 'OverViewOrderRoute';
 }
 
 class OverViewOrderRouteArgs {
-  const OverViewOrderRouteArgs({this.key, required this.providerID});
+  const OverViewOrderRouteArgs(
+      {this.key, required this.providerId, required this.recordId});
 
   final _i38.Key? key;
 
-  final String providerID;
+  final String providerId;
+
+  final String recordId;
 
   @override
   String toString() {
-    return 'OverViewOrderRouteArgs{key: $key, providerID: $providerID}';
+    return 'OverViewOrderRouteArgs{key: $key, providerId: $providerId, recordId: $recordId}';
   }
 }
 

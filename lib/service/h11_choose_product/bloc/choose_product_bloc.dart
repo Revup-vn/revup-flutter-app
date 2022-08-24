@@ -19,13 +19,13 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
     this.storeRepository,
     this._repairRecord,
     this._serviceData,
-    this.categories,
+    this.catAndSv,
   ) : super(const _Initial()) {
     on<ChooseProductEvent>(_onEvent);
   }
   final String providerId;
   final ServiceData _serviceData;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final IStore<RepairRecord> _repairRecord;
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
@@ -44,13 +44,10 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final maybeCat = categories.firstWhere(
-          (element) => element.value2.any((a) => a == _serviceData),
-        );
 
         final maybeService = (await (storeRepository.repairServiceRepo(
           maybeProviderData,
-          maybeCat.value1,
+          catAndSv.value1,
         )).get(_serviceData.name))
             .fold<Option<RepairService>>((l) => none(), some)
             .getOrElse(() => throw NullThrownError());
@@ -58,7 +55,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
         final products = (await storeRepository
                 .repairProductRepo(
                   maybeProviderData,
-                  maybeCat.value1,
+                  catAndSv.value1,
                   maybeService,
                 )
                 .all())

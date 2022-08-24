@@ -1,24 +1,31 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
-import '../../../service/choose_service/bloc/choose_service_bloc.u.dart';
 import '../../../service/widgets/service_avatar.dart';
 import '../../../shared/utils.dart';
+import '../../models/need_to_verify_model.dart';
+import '../../models/pending_repair_request.dart';
+import '../../models/pending_service_model.dart';
 import '../models/overview_order_model.dart';
 
 class OverviewOrderContent extends StatefulWidget {
   const OverviewOrderContent({
     super.key,
-    required this.modelData,
-    required this.serviceCount,
+    required this.overviewOrderData,
+    required this.pendingService,
+    required this.needToVerifyService,
+    required this.total,
+    required this.pendingRequest,
   });
-  final OverviewOrderModel modelData;
-  final int serviceCount;
+  final OverviewOrderModel overviewOrderData;
+  final List<PendingServiceModel> pendingService;
+  final List<NeedToVerifyModel> needToVerifyService;
+  final PendingRepairRequest pendingRequest;
+  final int total;
 
   @override
   State<OverviewOrderContent> createState() => _OverviewOrderContentState();
@@ -28,8 +35,6 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
   bool _expanded = false;
   @override
   Widget build(BuildContext context) {
-    final blocChooseSv = context.watch<ChooseServiceBloc>();
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -54,12 +59,13 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                     child: Row(
                       children: [
                         ServiceAvatar(
-                          imageUrl: widget.modelData.providerAvatarImg,
+                          imageUrl: widget.overviewOrderData.providerAvatarImg,
                         ),
                         AutoSizeText(
-                          widget.modelData.providerName,
+                          widget.overviewOrderData.providerName,
                           style: Theme.of(context).textTheme.bodyLarge,
                           maxLines: 1,
+                          minFontSize: 5,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ],
@@ -78,7 +84,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                     child: IconButton(
                       onPressed: () {
                         makePhoneCall(
-                          widget.modelData.proviverPhoneNumber,
+                          widget.overviewOrderData.proviverPhoneNumber,
                         );
                       },
                       icon: Icon(
@@ -132,7 +138,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                             ),
                             TextSpan(
                               text:
-                                  '''${widget.serviceCount} ${context.l10n.serviceCountLabel}''',
+                                  '''${widget.pendingService.length + widget.needToVerifyService.length} ${context.l10n.serviceCountLabel}''',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
@@ -148,12 +154,11 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                 ),
                 TextButton(
                   onPressed: () {
-                    blocChooseSv.add(
-                      const ChooseServiceEvent.detailRequestAccepted(),
-                    );
                     context.router.push(
                       ChooseServiceRoute(
-                        providerId: widget.modelData.providerID,
+                        providerId: widget.overviewOrderData.providerID,
+                        isSelectProduct: true,
+                        recordId: widget.pendingRequest.id,
                       ),
                     );
                   },
@@ -181,7 +186,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       TextSpan(
-                        text: '${widget.modelData.distance}km',
+                        text: '${widget.overviewOrderData.distance}km',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -215,7 +220,16 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               TextSpan(
-                                text: '15.000đ',
+                                text: context.formatMoney(
+                                  widget.pendingService.isEmpty
+                                      ? 0
+                                      : (widget.pendingService
+                                          .map((e) => e.price)
+                                          .toList()
+                                          .reduce(
+                                            (value, element) => value + element,
+                                          )),
+                                ),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge
@@ -243,7 +257,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                               style: Theme.of(context).textTheme.bodyLarge,
                               children: [
                                 TextSpan(
-                                  text: '15.000đ',
+                                  text: context
+                                      .formatMoney(widget.pendingRequest.money),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyLarge
@@ -271,7 +286,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                               style: Theme.of(context).textTheme.bodyLarge,
                               children: [
                                 TextSpan(
-                                  text: '450.000đ',
+                                  text: '',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyLarge

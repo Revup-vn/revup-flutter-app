@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -11,8 +10,13 @@ class ChooseServicePage extends StatelessWidget {
   const ChooseServicePage({
     super.key,
     required this.providerId,
+    required this.isSelectProduct,
+    this.recordId,
   });
   final String providerId;
+  final bool isSelectProduct;
+  final String? recordId;
+
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -25,9 +29,12 @@ class ChooseServicePage extends StatelessWidget {
         sr,
         providerId,
         mayBeUser,
-        // context.read(),
       ),
-      child: const ChooseServiceView(),
+      child: ChooseServiceView(
+        form: GlobalKey(),
+        isSelectProduct: isSelectProduct,
+        recordId: recordId,
+      ),
     );
   }
 }

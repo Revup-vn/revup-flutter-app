@@ -4,16 +4,14 @@ part of 'choose_service_bloc.u.dart';
 class ChooseServiceEvent with _$ChooseServiceEvent {
   const factory ChooseServiceEvent.started() = _Started;
   const factory ChooseServiceEvent.serviceListSubmitted({
-    required String notificationTitle,
-    required String notificationBody,
+    required Function0<void> onRoute,
+    required Function2<String, String, void> sendMessage,
+    required List<ServiceData> saveLst,
   }) = _ServiceListSubmitted;
   const factory ChooseServiceEvent.newServiceRequested(
     OptionalService optionalService,
   ) = _NewServiceRequested;
-  const factory ChooseServiceEvent.serviceSelectChanged({
-    required ServiceData serviceData,
-    required int index,
-  }) = _ServiceSelectChanged;
-  const factory ChooseServiceEvent.detailRequestAccepted() =
-      _DetailRequestAccepted;
+  const factory ChooseServiceEvent.detailRequestAccepted({
+    required String recordId,
+  }) = _DetailRequestAccepted;
 }

@@ -8,6 +8,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../order/models/pending_repair_request.dart';
+import '../../../order/models/pending_service_model.dart';
 import '../../../repairer_profile/models/service_data.u.dart';
 
 // ignore: unnecessary_import
@@ -23,19 +25,16 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     this.storeRepository,
     this.providerId,
     this._maybeUser,
-    // this.notificationCubit,
   ) : super(const _Initial()) {
     on<ChooseServiceEvent>(_onEvent);
   }
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
-  final categoryList = <Tuple2<RepairCategory, IList<ServiceData>>>[];
   final services = <ServiceData>[];
   final servicesSelect = <ServiceData>[];
   final String providerId;
   final Option<AppUser> _maybeUser;
-  // final NotificationCubit notificationCubit;
 
   FutureOr<void> _onEvent(
     ChooseServiceEvent event,
@@ -52,49 +51,37 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final catData = (await (storeRepository.repairCategoryRepo(
+        final boxRprRecord = Hive.box<dynamic>('repairRecord');
+        final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
+        final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+        final catAndSv = await (await (storeRepository.repairCategoryRepo(
           maybeProviderData,
-        )).all())
+        )).get(catId))
             .map(
-              (r) => r.map(
-                (a) async => tuple2<RepairCategory, IList<ServiceData>>(
-                  a,
-                  (await storeRepository
-                          .repairServiceRepo(maybeProviderData, a)
-                          .all())
-                      .fold<IList<ServiceData>>(
-                    (l) => ilist([]),
-                    (r) => r.map(
-                      ServiceData.fromDtos,
-                    ),
+              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+                a,
+                (await storeRepository
+                        .repairServiceRepo(maybeProviderData, a)
+                        .all())
+                    .fold<IList<ServiceData>>(
+                  (l) => ilist([]),
+                  (r) => r.map(
+                    ServiceData.fromDtos,
                   ),
                 ),
               ),
             )
-            .fold<IList<Future<Tuple2<RepairCategory, IList<ServiceData>>>>>(
-              (l) => throw NullThrownError(),
-              (r) => r,
-            );
-
-        final categories =
-            (await Future.wait(catData.toIterable())).map((e) => e).toList();
-
-        final svList = categories.map((e) => e.value2).fold<IList<ServiceData>>(
-              ilist(<ServiceData>[]),
-              (previousValue, element) =>
-                  IListMonoid<ServiceData>().append(previousValue, element),
-            );
-        services.addAll(svList.toIterable());
+            .fold((l) => throw NullThrownError(), (r) => r);
 
         emit(
           ChooseServiceState.success(
-            serviceData: svList,
-            categories: categories,
+            serviceData: catAndSv.value2,
             providerId: providerId,
+            catAndSv: catAndSv,
           ),
         );
       },
-      serviceListSubmitted: (title, body) async {
+      serviceListSubmitted: (onRoute, sendMessage, saveLst) async {
         emit(const ChooseServiceState.loading());
 
         final consumer = _maybeUser.getOrElse(() => throw NullThrownError());
@@ -128,7 +115,6 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               long: fromPoint.longitude,
               lat: fromPoint.latitude,
             ),
-            // from: GeoFirePoint(fromPoint.latitude, fromPoint.longitude),
             to: Location(
               name: '',
               long: toLng,
@@ -138,59 +124,164 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           ),
         );
 
-        // send notification to provider
-        // final token = (await storeRepository
-        //         .userNotificationTokenRepo(maybeProviderData)
-        //         .get(providerId))
-        //     .where((r) => r.platform == 'fcm', () => throw NullThrownError())
-        //     .fold((l) => emit, (r) => r);
+        // create list pending payment service
+        final _paymentRepo = storeRepository
+            .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
+        for (var i = 0; i < saveLst.length; i++) {
+          await _paymentRepo.create(
+            PaymentService.pending(
+              serviceName: saveLst[i].name,
+              moneyAmount: saveLst[i].serviceFee,
+              products: [],
+              isOptional: false,
+            ),
+          );
+        }
 
-        // .map<Option<String>>((r) => r.platform)
-        // .fold((l) => emit, (r) => r);
-        // .fold((l) => emit(ChooseServiceState.failure()), (r) => r.token);
-        // await sendNotificationTo(token, recordId, title, body);
+        // get latest provider fcm token
+        final provider = (await _userStore.get(providerId))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
 
-        emit(const ChooseServiceState.submitSuccess());
+        final tokens = (await storeRepository
+                .userNotificationTokenRepo(provider)
+                .all())
+            .fold((l) => throw NullThrownError(), (r) => r.toList())
+          ..sort(
+            (a, b) => a.created.compareTo(b.created),
+          );
+
+        // send notify to provider
+        sendMessage(tokens.first.token, recordId);
+
+        // route to home page
+        onRoute();
       },
-      newServiceRequested: (optionalService) {
+      newServiceRequested: (optionalService) async {
         emit(const ChooseServiceState.loading());
         final newSvData = ServiceData(
           name: optionalService.name,
           serviceFee: -1, // provider give the price
           imageURL: optionalService.img,
+          isOptional: true,
         );
         services.add(newSvData);
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final pid = boxRprRecord.get('pid', defaultValue: '') as String;
-
+        final maybeProviderData = (await _userStore.get(providerId))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
         // new service is selected by default
-        Hive.box<dynamic>('serviceSelect')
+        await Hive.box<dynamic>('serviceSelect')
             .put(services.indexOf(newSvData), newSvData.name);
+
+        final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
+        final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+        final catAndSv = await (await (storeRepository.repairCategoryRepo(
+          maybeProviderData,
+        )).get(catId))
+            .map(
+              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+                a,
+                (await storeRepository
+                        .repairServiceRepo(maybeProviderData, a)
+                        .all())
+                    .fold<IList<ServiceData>>(
+                  (l) => ilist([]),
+                  (r) => r.map(
+                    ServiceData.fromDtos,
+                  ),
+                ),
+              ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r);
+
         emit(
           ChooseServiceState.success(
             serviceData: ilist(services),
-            categories: categoryList,
             providerId: pid,
+            catAndSv: catAndSv,
           ),
         );
       },
-      serviceSelectChanged: (serviceData, index) async {
-        final boxServiceSelect = Hive.box<dynamic>('serviceSelect');
-        if (boxServiceSelect.containsKey(index)) {
-          await boxServiceSelect.delete(serviceData.name);
+      detailRequestAccepted: (recordId) async {
+        // get service selected
+        final repairRecord = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                accepted: some,
+                orElse: none,
+              ),
+            )
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            )
+            .getOrElse(() => throw NullThrownError());
+        final pendingRequest =
+            PendingRepairRequest.fromDto(repairRecord: repairRecord);
 
-          return;
-        }
-        await boxServiceSelect.put(index, serviceData.name);
-      },
-      detailRequestAccepted: () {
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        final pid = boxRprRecord.get('pid', defaultValue: '') as String;
+        final pendingService = (await (storeRepository.repairPaymentRepo(
+          RepairRecordDummy.dummyPending(recordId),
+        )).all())
+            .map(
+              (r) => r.map<Option<PendingServiceModel>>(
+                (a) => a.maybeMap(
+                  pending: (v) =>
+                      some(PendingServiceModel.fromDto(paymentService: v)),
+                  orElse: none,
+                ),
+              ),
+            )
+            .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
+            .filter(
+              (a) => a.isSome(),
+            )
+            .map(
+              (a) => a.getOrElse(() => throw NullThrownError()),
+            );
+
+        final maybeProviderData = (await _userStore.get(pendingRequest.pid))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+
+        final catId = pendingRequest.vehicle == 'car' ? 'Oto' : 'Xe máy';
+        final catAndSv = await (await (storeRepository.repairCategoryRepo(
+          maybeProviderData,
+        )).get(catId))
+            .map(
+              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+                a,
+                (await storeRepository
+                        .repairServiceRepo(maybeProviderData, a)
+                        .all())
+                    .fold<IList<ServiceData>>(
+                  (l) => ilist([]),
+                  (r) => r.map(
+                    ServiceData.fromDtos,
+                  ),
+                ),
+              ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r);
+        final svDataOptional = pendingService.map(
+          ServiceData.fromPendingService,
+        );
         emit(
           ChooseServiceState.orderModify(
-            serviceData: ilist(services),
-            categories: categoryList,
-            providerId: pid,
+            serviceData: catAndSv.value2.plus(svDataOptional),
+            catAndSv: catAndSv,
+            pendingService: pendingService.toList(),
+            providerId: providerId,
           ),
         );
       },

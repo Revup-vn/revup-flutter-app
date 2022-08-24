@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -30,6 +31,8 @@ class LoginPage extends StatelessWidget {
           orElse: () => unit,
         );
     log(context.read<ConnectivityBloc>().state.toString());
+    final notifyCubit = context.read<NotificationCubit>();
+    final sr = context.read<StoreRepository>();
 
     return InternetAvailabilityPage(
       child: BlocProvider(
@@ -53,6 +56,24 @@ class LoginPage extends StatelessWidget {
             ),
             authenticated: (authType) async {
               context.loaderOverlay.hide();
+              await notifyCubit.requirePermission();
+              await notifyCubit.registerDevice();
+
+              final token = notifyCubit.state.maybeWhen(
+                registered: (token) => token,
+                failToRegister: () => '',
+                orElse: () => throw NullThrownError(),
+              );
+              final _iuntr = sr.userNotificationTokenRepo(
+                AppUserDummy.dummyConsumer(authType.user.uuid),
+              );
+              await _iuntr.create(
+                Token(
+                  created: DateTime.now(),
+                  platform: Platform.operatingSystem,
+                  token: token,
+                ),
+              );
               await authType.user.maybeMap(
                 consumer: (value) {
                   showDialog<String>(
@@ -190,12 +211,6 @@ class LoginPage extends StatelessWidget {
                 },
               );
               return unit;
-              // context.read<NotificationCubit>().registerDevice();
-              // context.read<NotificationCubit>().state.whenOrNull(
-              //       registered: _onRegisterNotification,
-              //       failToRegister: () =>
-              //           context.read<NotificationCubit>().registerDevice(),
-              //     );
             },
             orElse: () => false,
           ),
@@ -216,7 +231,7 @@ class LoginPage extends StatelessWidget {
                       .read<AuthenticateBloc>()
                       .add(const AuthenticateEvent.reset());
 
-                  return const Loading();
+                  return Container();
                 },
                 orElse: () =>
                     LoginFailure(errorMessage: context.l10n.unknowIssuesLabel),

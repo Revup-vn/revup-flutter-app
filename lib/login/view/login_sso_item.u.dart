@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/svg.dart';
 
 class LoginSsoItem extends StatelessWidget {
@@ -18,7 +17,7 @@ class LoginSsoItem extends StatelessWidget {
         child: IconButton(
           icon: ssoIcon ??
               const Icon(IconData(0xf80c, fontFamily: 'MaterialIcons')),
-          onPressed: onPressed, // TODO(cantgim): emit login with sso event
+          onPressed: onPressed,
         ),
       ),
     );

@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -176,7 +175,10 @@ class _AddMessageViewState extends State<AddMessageView> {
                   );
                   await boxRprRecord.put('movingFee', widget.movingFee);
                   await context.router.push(
-                    ChooseServiceRoute(providerId: widget.providerData.id),
+                    ChooseServiceRoute(
+                      providerId: widget.providerData.id,
+                      isSelectProduct: false,
+                    ),
                   );
                 }
               },

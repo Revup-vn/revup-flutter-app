@@ -171,7 +171,11 @@ mixin _$OverviewOrderState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            OverviewOrderModel overviewOrderData, int serviceCount)
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -180,7 +184,12 @@ mixin _$OverviewOrderState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -189,7 +198,12 @@ mixin _$OverviewOrderState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -282,7 +296,11 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            OverviewOrderModel overviewOrderData, int serviceCount)
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -294,7 +312,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -306,7 +329,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -365,9 +393,15 @@ abstract class _$$_LoadDataSuccessCopyWith<$Res> {
   factory _$$_LoadDataSuccessCopyWith(
           _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
       __$$_LoadDataSuccessCopyWithImpl<$Res>;
-  $Res call({OverviewOrderModel overviewOrderData, int serviceCount});
+  $Res call(
+      {OverviewOrderModel overviewOrderData,
+      List<PendingServiceModel> pendingService,
+      List<NeedToVerifyModel> needToVerifyService,
+      PendingRepairRequest pendingRequest,
+      int total});
 
   $OverviewOrderModelCopyWith<$Res> get overviewOrderData;
+  $PendingRepairRequestCopyWith<$Res> get pendingRequest;
 }
 
 /// @nodoc
@@ -384,16 +418,31 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? overviewOrderData = freezed,
-    Object? serviceCount = freezed,
+    Object? pendingService = freezed,
+    Object? needToVerifyService = freezed,
+    Object? pendingRequest = freezed,
+    Object? total = freezed,
   }) {
     return _then(_$_LoadDataSuccess(
       overviewOrderData: overviewOrderData == freezed
           ? _value.overviewOrderData
           : overviewOrderData // ignore: cast_nullable_to_non_nullable
               as OverviewOrderModel,
-      serviceCount: serviceCount == freezed
-          ? _value.serviceCount
-          : serviceCount // ignore: cast_nullable_to_non_nullable
+      pendingService: pendingService == freezed
+          ? _value._pendingService
+          : pendingService // ignore: cast_nullable_to_non_nullable
+              as List<PendingServiceModel>,
+      needToVerifyService: needToVerifyService == freezed
+          ? _value._needToVerifyService
+          : needToVerifyService // ignore: cast_nullable_to_non_nullable
+              as List<NeedToVerifyModel>,
+      pendingRequest: pendingRequest == freezed
+          ? _value.pendingRequest
+          : pendingRequest // ignore: cast_nullable_to_non_nullable
+              as PendingRepairRequest,
+      total: total == freezed
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -404,22 +453,51 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
       return _then(_value.copyWith(overviewOrderData: value));
     });
   }
+
+  @override
+  $PendingRepairRequestCopyWith<$Res> get pendingRequest {
+    return $PendingRepairRequestCopyWith<$Res>(_value.pendingRequest, (value) {
+      return _then(_value.copyWith(pendingRequest: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_LoadDataSuccess implements _LoadDataSuccess {
   const _$_LoadDataSuccess(
-      {required this.overviewOrderData, required this.serviceCount});
+      {required this.overviewOrderData,
+      required final List<PendingServiceModel> pendingService,
+      required final List<NeedToVerifyModel> needToVerifyService,
+      required this.pendingRequest,
+      required this.total})
+      : _pendingService = pendingService,
+        _needToVerifyService = needToVerifyService;
 
   @override
   final OverviewOrderModel overviewOrderData;
+  final List<PendingServiceModel> _pendingService;
   @override
-  final int serviceCount;
+  List<PendingServiceModel> get pendingService {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pendingService);
+  }
+
+  final List<NeedToVerifyModel> _needToVerifyService;
+  @override
+  List<NeedToVerifyModel> get needToVerifyService {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_needToVerifyService);
+  }
+
+  @override
+  final PendingRepairRequest pendingRequest;
+  @override
+  final int total;
 
   @override
   String toString() {
-    return 'OverviewOrderState.loadDataSuccess(overviewOrderData: $overviewOrderData, serviceCount: $serviceCount)';
+    return 'OverviewOrderState.loadDataSuccess(overviewOrderData: $overviewOrderData, pendingService: $pendingService, needToVerifyService: $needToVerifyService, pendingRequest: $pendingRequest, total: $total)';
   }
 
   @override
@@ -430,14 +508,22 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
             const DeepCollectionEquality()
                 .equals(other.overviewOrderData, overviewOrderData) &&
             const DeepCollectionEquality()
-                .equals(other.serviceCount, serviceCount));
+                .equals(other._pendingService, _pendingService) &&
+            const DeepCollectionEquality()
+                .equals(other._needToVerifyService, _needToVerifyService) &&
+            const DeepCollectionEquality()
+                .equals(other.pendingRequest, pendingRequest) &&
+            const DeepCollectionEquality().equals(other.total, total));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(overviewOrderData),
-      const DeepCollectionEquality().hash(serviceCount));
+      const DeepCollectionEquality().hash(_pendingService),
+      const DeepCollectionEquality().hash(_needToVerifyService),
+      const DeepCollectionEquality().hash(pendingRequest),
+      const DeepCollectionEquality().hash(total));
 
   @JsonKey(ignore: true)
   @override
@@ -449,38 +535,55 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            OverviewOrderModel overviewOrderData, int serviceCount)
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
   }) {
-    return loadDataSuccess(overviewOrderData, serviceCount);
+    return loadDataSuccess(overviewOrderData, pendingService,
+        needToVerifyService, pendingRequest, total);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
   }) {
-    return loadDataSuccess?.call(overviewOrderData, serviceCount);
+    return loadDataSuccess?.call(overviewOrderData, pendingService,
+        needToVerifyService, pendingRequest, total);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (loadDataSuccess != null) {
-      return loadDataSuccess(overviewOrderData, serviceCount);
+      return loadDataSuccess(overviewOrderData, pendingService,
+          needToVerifyService, pendingRequest, total);
     }
     return orElse();
   }
@@ -526,10 +629,16 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
 abstract class _LoadDataSuccess implements OverviewOrderState {
   const factory _LoadDataSuccess(
       {required final OverviewOrderModel overviewOrderData,
-      required final int serviceCount}) = _$_LoadDataSuccess;
+      required final List<PendingServiceModel> pendingService,
+      required final List<NeedToVerifyModel> needToVerifyService,
+      required final PendingRepairRequest pendingRequest,
+      required final int total}) = _$_LoadDataSuccess;
 
   OverviewOrderModel get overviewOrderData;
-  int get serviceCount;
+  List<PendingServiceModel> get pendingService;
+  List<NeedToVerifyModel> get needToVerifyService;
+  PendingRepairRequest get pendingRequest;
+  int get total;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -577,7 +686,11 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            OverviewOrderModel overviewOrderData, int serviceCount)
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -589,7 +702,12 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -601,7 +719,12 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -697,7 +820,11 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            OverviewOrderModel overviewOrderData, int serviceCount)
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -709,7 +836,12 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -721,7 +853,12 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(OverviewOrderModel overviewOrderData, int serviceCount)?
+    TResult Function(
+            OverviewOrderModel overviewOrderData,
+            List<PendingServiceModel> pendingService,
+            List<NeedToVerifyModel> needToVerifyService,
+            PendingRepairRequest pendingRequest,
+            int total)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,

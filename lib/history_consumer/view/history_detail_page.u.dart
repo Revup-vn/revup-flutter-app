@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../model/history_model.dart';
 import '../widgets/order_detail_feedback.u.dart';
-import '../widgets/order_detail_service.u.dart';
 import '../widgets/order_detail_status.u.dart';
 import '../widgets/order_details.u.dart';
+import '../widgets/order_service_infor.u.dart';
 
 class HistoryDetailPage extends StatelessWidget {
   const HistoryDetailPage({super.key, required this.historyModel});

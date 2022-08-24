@@ -18,13 +18,13 @@ class ServiceDetailsBloc
     this._userStore,
     this.storeRepository,
     this._providerId,
-    this.categories,
+    this.catAndSv,
   ) : super(const _Initial()) {
     on<ServiceDetailsEvent>(_onEvent);
   }
 
   final ServiceData _serviceData;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final String _providerId;
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
@@ -41,13 +41,10 @@ class ServiceDetailsBloc
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final maybeCat = categories.firstWhere(
-          (element) => element.value2.any((a) => a == _serviceData),
-        );
 
         final maybeService = (await (storeRepository.repairServiceRepo(
           maybeProviderData,
-          maybeCat.value1,
+          catAndSv.value1,
         )).get(_serviceData.name))
             .fold<Option<RepairService>>((l) => none(), some)
             .getOrElse(() => throw NullThrownError());
@@ -55,7 +52,7 @@ class ServiceDetailsBloc
         final products = (await storeRepository
                 .repairProductRepo(
                   maybeProviderData,
-                  maybeCat.value1,
+                  catAndSv.value1,
                   maybeService,
                 )
                 .all())
