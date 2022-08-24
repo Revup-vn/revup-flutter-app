@@ -26,9 +26,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    final notifyCubit = context.read<NotificationCubit>();
-    final sr = context.read<StoreRepository>();
-    notifyCubit.addBackgroundListener((p0) {
+    context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       print(type);
       switch (type) {
@@ -65,11 +63,35 @@ class _SplashPageState extends State<SplashPage> {
           orElse: () => unit,
         );
 
-        context.router.popUntil(
-          (route) => true,
-        );
+        // context.router.popUntil(
+        //   (route) => true,
+        // );
+        final notifyCubit = context.read<NotificationCubit>();
+        final sr = context.read<StoreRepository>();
+        authBloc.state.maybeWhen(
+          authenticated: (authType) async {
+            await notifyCubit.requirePermission();
+            await notifyCubit.registerDevice();
 
-        context.router.replace(
+            final token = notifyCubit.state.maybeWhen(
+              registered: (token) => token,
+              failToRegister: () => '',
+              orElse: () => throw NullThrownError(),
+            );
+            final _iuntr = sr.userNotificationTokenRepo(
+              AppUserDummy.dummyConsumer(authType.user.uuid),
+            );
+            await _iuntr.create(
+              Token(
+                created: DateTime.now(),
+                platform: Platform.operatingSystem,
+                token: token,
+              ),
+            );
+          },
+          orElse: () => false,
+        );
+        context.router.pushAndPopUntil(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
@@ -94,29 +116,7 @@ class _SplashPageState extends State<SplashPage> {
             },
             orElse: LoginRoute.new,
           ),
-        );
-        authBloc.state.maybeWhen(
-          authenticated: (authType) async {
-            await notifyCubit.requirePermission();
-            await notifyCubit.registerDevice();
-
-            final token = notifyCubit.state.maybeWhen(
-              registered: (token) => token,
-              failToRegister: () => '',
-              orElse: () => throw NullThrownError(),
-            );
-            final _iuntr = sr.userNotificationTokenRepo(
-              AppUserDummy.dummyConsumer(authType.user.uuid),
-            );
-            await _iuntr.create(
-              Token(
-                created: DateTime.now(),
-                platform: Platform.operatingSystem,
-                token: token,
-              ),
-            );
-          },
-          orElse: () => false,
+          predicate: (route) => true,
         );
       },
     );

@@ -24,6 +24,11 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
       started: () {
         emit(const UploadImageState.initial());
       },
+      remove: (currentListStorage, typeUpload) {
+        final list = List<File>.from(currentListStorage);
+        list[typeUpload] = File('');
+        emit(UploadImageState.choosePhotoSuccess(file: list));
+      },
       imageUploadSelected: (source, currentListStorage, typeUpload) async {
         final pickedImage = await _imagePicker.pickImage(source: source);
         final list = List<File>.from(currentListStorage);

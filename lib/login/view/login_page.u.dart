@@ -210,12 +210,6 @@ class LoginPage extends StatelessWidget {
                 },
               );
               return unit;
-              // context.read<NotificationCubit>().registerDevice();
-              // context.read<NotificationCubit>().state.whenOrNull(
-              //       registered: _onRegisterNotification,
-              //       failToRegister: () =>
-              //           context.read<NotificationCubit>().registerDevice(),
-              //     );
             },
             orElse: () => false,
           ),
@@ -290,7 +284,6 @@ class LoginPage extends StatelessWidget {
                   email: user.email ?? '',
                 ),
               );
-
               return completer.future;
             },
           ),

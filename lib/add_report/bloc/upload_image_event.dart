@@ -8,4 +8,8 @@ class UploadImageEvent with _$UploadImageEvent {
     required List<File> currentListStorage,
     required int typeUpload,
   }) = _ImageUploadSelected;
+  const factory UploadImageEvent.remove({
+    required List<File> currentListStorage,
+    required int typeUpload,
+  }) = _Remove;
 }

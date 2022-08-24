@@ -205,7 +205,8 @@
   "endedLabel": "Kết thúc",
   "reportDesLabel": "Nội dung",
   "reportCategory": "Mục báo cáo",
-  "reportImgLabel": "Cung cấp hình ảnh để chứng minh (optional)",
+  "reportImgLabel": "Cung cấp hình ảnh để chứng minh (tuỳ chọn)",
   "otherLabel": "Khác",
-  "productLabel": "Sản phẩm"
+  "productLabel": "Sản phẩm",
+  "addReportFailLabel": "Thêm báo cáo lỗi"
 }

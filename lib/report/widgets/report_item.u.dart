@@ -32,49 +32,26 @@ class ReportItem extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AutoSizeText(
-                  '${l10n.codeOrderLabel} ${data.orderID}',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                AutoSizeText(
-                  '${l10n.reportType} ${data.cate.name}',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                AutoSizeText(
-                  '${l10n.reportDesLabel}: ${data.desc}',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ) ??
-                      TextStyle(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                AutoSizeText(
-                  '${l10n.startedLabel}: ${formatterDate.format(data.created)}',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ) ??
-                      TextStyle(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                ),
-                if (data.status == 1 || data.status == 2)
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   AutoSizeText(
-                    '${l10n.endedLabel}: ${formatterDate.format(data.end)}',
+                    '${l10n.codeOrderLabel} ${data.orderID}',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  AutoSizeText(
+                    '${l10n.reportType} ${data.cate.name}',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  AutoSizeText(
+                    '${l10n.reportDesLabel}: ${data.desc}',
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
@@ -84,17 +61,46 @@ class ReportItem extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                   ),
-                AutoSizeText(
-                  '${data.from} - ${data.to}',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  AutoSizeText(
+                    '${l10n.startedLabel}: ${formatterDate.format(data.created)}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ) ??
+                        TextStyle(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                  if (data.status == 1 || data.status == 2)
+                    AutoSizeText(
+                      '${l10n.endedLabel}: ${formatterDate.format(data.end)}',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ) ??
+                          TextStyle(
                             color:
                                 Theme.of(context).colorScheme.onSurfaceVariant,
-                          ) ??
-                      TextStyle(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                ),
-              ],
+                          ),
+                    ),
+                  AutoSizeText(
+                    '${data.from} - ${data.to}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ) ??
+                        TextStyle(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
             ),
             Row(
               children: [

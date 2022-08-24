@@ -22,6 +22,8 @@ mixin _$UploadImageEvent {
     required TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)
         imageUploadSelected,
+    required TResult Function(List<File> currentListStorage, int typeUpload)
+        remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,7 @@ mixin _$UploadImageEvent {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +41,7 @@ mixin _$UploadImageEvent {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,18 +49,21 @@ mixin _$UploadImageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Remove value) remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +130,8 @@ class _$_Started implements _Started {
     required TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)
         imageUploadSelected,
+    required TResult Function(List<File> currentListStorage, int typeUpload)
+        remove,
   }) {
     return started();
   }
@@ -134,6 +143,7 @@ class _$_Started implements _Started {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
   }) {
     return started?.call();
   }
@@ -145,6 +155,7 @@ class _$_Started implements _Started {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -158,6 +169,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Remove value) remove,
   }) {
     return started(this);
   }
@@ -167,6 +179,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
   }) {
     return started?.call(this);
   }
@@ -176,6 +189,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -290,6 +304,8 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
     required TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)
         imageUploadSelected,
+    required TResult Function(List<File> currentListStorage, int typeUpload)
+        remove,
   }) {
     return imageUploadSelected(source, currentListStorage, typeUpload);
   }
@@ -301,6 +317,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
   }) {
     return imageUploadSelected?.call(source, currentListStorage, typeUpload);
   }
@@ -312,6 +329,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
     TResult Function(
             ImageSource source, List<File> currentListStorage, int typeUpload)?
         imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
     required TResult orElse(),
   }) {
     if (imageUploadSelected != null) {
@@ -325,6 +343,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Remove value) remove,
   }) {
     return imageUploadSelected(this);
   }
@@ -334,6 +353,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
   }) {
     return imageUploadSelected?.call(this);
   }
@@ -343,6 +363,7 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) {
     if (imageUploadSelected != null) {
@@ -363,6 +384,172 @@ abstract class _ImageUploadSelected implements UploadImageEvent {
   int get typeUpload;
   @JsonKey(ignore: true)
   _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveCopyWith<$Res> {
+  factory _$$_RemoveCopyWith(_$_Remove value, $Res Function(_$_Remove) then) =
+      __$$_RemoveCopyWithImpl<$Res>;
+  $Res call({List<File> currentListStorage, int typeUpload});
+}
+
+/// @nodoc
+class __$$_RemoveCopyWithImpl<$Res> extends _$UploadImageEventCopyWithImpl<$Res>
+    implements _$$_RemoveCopyWith<$Res> {
+  __$$_RemoveCopyWithImpl(_$_Remove _value, $Res Function(_$_Remove) _then)
+      : super(_value, (v) => _then(v as _$_Remove));
+
+  @override
+  _$_Remove get _value => super._value as _$_Remove;
+
+  @override
+  $Res call({
+    Object? currentListStorage = freezed,
+    Object? typeUpload = freezed,
+  }) {
+    return _then(_$_Remove(
+      currentListStorage: currentListStorage == freezed
+          ? _value._currentListStorage
+          : currentListStorage // ignore: cast_nullable_to_non_nullable
+              as List<File>,
+      typeUpload: typeUpload == freezed
+          ? _value.typeUpload
+          : typeUpload // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Remove implements _Remove {
+  const _$_Remove(
+      {required final List<File> currentListStorage, required this.typeUpload})
+      : _currentListStorage = currentListStorage;
+
+  final List<File> _currentListStorage;
+  @override
+  List<File> get currentListStorage {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_currentListStorage);
+  }
+
+  @override
+  final int typeUpload;
+
+  @override
+  String toString() {
+    return 'UploadImageEvent.remove(currentListStorage: $currentListStorage, typeUpload: $typeUpload)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Remove &&
+            const DeepCollectionEquality()
+                .equals(other._currentListStorage, _currentListStorage) &&
+            const DeepCollectionEquality()
+                .equals(other.typeUpload, typeUpload));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_currentListStorage),
+      const DeepCollectionEquality().hash(typeUpload));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RemoveCopyWith<_$_Remove> get copyWith =>
+      __$$_RemoveCopyWithImpl<_$_Remove>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(
+            ImageSource source, List<File> currentListStorage, int typeUpload)
+        imageUploadSelected,
+    required TResult Function(List<File> currentListStorage, int typeUpload)
+        remove,
+  }) {
+    return remove(currentListStorage, typeUpload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            ImageSource source, List<File> currentListStorage, int typeUpload)?
+        imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
+  }) {
+    return remove?.call(currentListStorage, typeUpload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            ImageSource source, List<File> currentListStorage, int typeUpload)?
+        imageUploadSelected,
+    TResult Function(List<File> currentListStorage, int typeUpload)? remove,
+    required TResult orElse(),
+  }) {
+    if (remove != null) {
+      return remove(currentListStorage, typeUpload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Remove value) remove,
+  }) {
+    return remove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
+  }) {
+    return remove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Remove value)? remove,
+    required TResult orElse(),
+  }) {
+    if (remove != null) {
+      return remove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Remove implements UploadImageEvent {
+  const factory _Remove(
+      {required final List<File> currentListStorage,
+      required final int typeUpload}) = _$_Remove;
+
+  List<File> get currentListStorage;
+  int get typeUpload;
+  @JsonKey(ignore: true)
+  _$$_RemoveCopyWith<_$_Remove> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

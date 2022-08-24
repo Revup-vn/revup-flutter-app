@@ -84,7 +84,7 @@ class AddReportBuilder extends StatelessWidget {
                             color: Theme.of(context).colorScheme.error,
                           ),
                           AutoSizeText(
-                            context.l10n.doneLabel,
+                            context.l10n.addReportFailLabel,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2

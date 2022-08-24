@@ -19,19 +19,19 @@ mixin _$AddReportEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String recordID) submited,
+    required TResult Function(RepairReport rp) submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String recordID) submited,
+    required TResult Function(RepairReport rp) submited,
   }) {
     return started();
   }
@@ -122,7 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
   }) {
     return started?.call();
   }
@@ -131,7 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -181,7 +181,9 @@ abstract class _$$_SubmitedCopyWith<$Res> {
   factory _$$_SubmitedCopyWith(
           _$_Submited value, $Res Function(_$_Submited) then) =
       __$$_SubmitedCopyWithImpl<$Res>;
-  $Res call({String recordID});
+  $Res call({RepairReport rp});
+
+  $RepairReportCopyWith<$Res> get rp;
 }
 
 /// @nodoc
@@ -196,28 +198,35 @@ class __$$_SubmitedCopyWithImpl<$Res> extends _$AddReportEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? recordID = freezed,
+    Object? rp = freezed,
   }) {
     return _then(_$_Submited(
-      recordID: recordID == freezed
-          ? _value.recordID
-          : recordID // ignore: cast_nullable_to_non_nullable
-              as String,
+      rp: rp == freezed
+          ? _value.rp
+          : rp // ignore: cast_nullable_to_non_nullable
+              as RepairReport,
     ));
+  }
+
+  @override
+  $RepairReportCopyWith<$Res> get rp {
+    return $RepairReportCopyWith<$Res>(_value.rp, (value) {
+      return _then(_value.copyWith(rp: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Submited implements _Submited {
-  const _$_Submited({required this.recordID});
+  const _$_Submited({required this.rp});
 
   @override
-  final String recordID;
+  final RepairReport rp;
 
   @override
   String toString() {
-    return 'AddReportEvent.submited(recordID: $recordID)';
+    return 'AddReportEvent.submited(rp: $rp)';
   }
 
   @override
@@ -225,12 +234,12 @@ class _$_Submited implements _Submited {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Submited &&
-            const DeepCollectionEquality().equals(other.recordID, recordID));
+            const DeepCollectionEquality().equals(other.rp, rp));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(recordID));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(rp));
 
   @JsonKey(ignore: true)
   @override
@@ -241,29 +250,29 @@ class _$_Submited implements _Submited {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String recordID) submited,
+    required TResult Function(RepairReport rp) submited,
   }) {
-    return submited(recordID);
+    return submited(rp);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
   }) {
-    return submited?.call(recordID);
+    return submited?.call(rp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String recordID)? submited,
+    TResult Function(RepairReport rp)? submited,
     required TResult orElse(),
   }) {
     if (submited != null) {
-      return submited(recordID);
+      return submited(rp);
     }
     return orElse();
   }
@@ -301,9 +310,9 @@ class _$_Submited implements _Submited {
 }
 
 abstract class _Submited implements AddReportEvent {
-  const factory _Submited({required final String recordID}) = _$_Submited;
+  const factory _Submited({required final RepairReport rp}) = _$_Submited;
 
-  String get recordID;
+  RepairReport get rp;
   @JsonKey(ignore: true)
   _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
       throw _privateConstructorUsedError;

@@ -206,6 +206,7 @@
   "reportCategory": "Report category",
   "reportImgLabel": "Provide image if you need (optional)",
   "otherLabel": "Other",
-  "productLabel": "Product"
+  "productLabel": "Product",
+  "addReportFailLabel": "Add report fail"
 
 }
