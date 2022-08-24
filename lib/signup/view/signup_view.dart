@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -42,7 +43,7 @@ class SignupView extends StatelessWidget {
     final _formKey = GlobalKey<FormBuilderState>();
     var storageFile = StorageFile.profile(file: File(''));
     final cubit = context.watch<SignupUploadImageCubit>();
-
+    final contextRouter = context.router;
     return DismissKeyboard(
       child: LoaderOverlay(
         child: Scaffold(
@@ -218,6 +219,7 @@ class SignupView extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () async {
+                          final completedSignup = Completer<Unit>();
                           if (_formKey.currentState?.saveAndValidate() ==
                               true) {
                             context.loaderOverlay.show();
@@ -240,11 +242,12 @@ class SignupView extends StatelessWidget {
                                 phoneNumber.length,
                               );
                             }
+
                             final date = data?['date'].toString().split(' ')[0];
                             if (storageFile.file.path.isNotEmpty) {
                               await cubit
                                   .uploadImg(file: storageFile)
-                                  .then((value) async {
+                                  .whenComplete(() async {
                                 await context
                                     .read<StorageBloc>()
                                     .state
@@ -292,7 +295,7 @@ class SignupView extends StatelessWidget {
                                       ),
                                     );
                                     context.loaderOverlay.hide();
-                                    await context.router.pop();
+                                    completedSignup.complete(unit);
                                   },
                                 );
                               });
@@ -321,8 +324,13 @@ class SignupView extends StatelessWidget {
                                   ),
                                 ),
                               );
-                              await context.router.pop();
+                              completedSignup.complete(unit);
                             }
+                            await completedSignup.future;
+                            var count = 0;
+                            context.router.popUntil(
+                              (_) => count++ == 1,
+                            );
                           }
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
