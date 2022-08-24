@@ -115,7 +115,7 @@ class HistoryProviderDetailBloc
             );
           });
         });
-        final cid = await cidFuture.future;
+        await cidFuture.future;
         final res = await completer.future;
 
         res.fold(

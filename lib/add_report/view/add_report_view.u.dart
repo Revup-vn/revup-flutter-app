@@ -1,11 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -40,7 +39,7 @@ class AddReportView extends StatelessWidget {
       File(''),
       File(''),
     ];
-    var map = <ReportCategory, String>{
+    final map = <ReportCategory, String>{
       ReportCategory.Product: l10n.productLabel,
       ReportCategory.Service: l10n.serviceLabel,
       ReportCategory.Unknown: l10n.otherLabel,
@@ -100,7 +99,10 @@ class AddReportView extends StatelessWidget {
                                   child: IconButton(
                                     onPressed: () {
                                       _showModalButtonSheet(
-                                          context, index, list);
+                                        context,
+                                        index,
+                                        list,
+                                      );
                                     },
                                     icon: const Icon(
                                       Icons.add_photo_alternate_outlined,
@@ -148,6 +150,7 @@ class AddReportView extends StatelessWidget {
                                                 },
                                                 icon: const Icon(
                                                   Icons
+                                                      // ignore: lines_longer_than_80_chars
                                                       .add_photo_alternate_outlined,
                                                 ),
                                               ),

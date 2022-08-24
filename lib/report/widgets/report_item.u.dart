@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -66,7 +65,9 @@ class ReportItem extends StatelessWidget {
                     height: 16,
                   ),
                   AutoSizeText(
-                    '${l10n.startedLabel}: ${formatterDate.format(data.created)}',
+                    '${l10n.startedLabel}: ${formatterDate.format(
+                      data.created,
+                    )}',
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                               color: Theme.of(context)
                                   .colorScheme
