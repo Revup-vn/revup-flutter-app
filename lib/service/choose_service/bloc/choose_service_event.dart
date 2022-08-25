@@ -2,7 +2,8 @@ part of 'choose_service_bloc.u.dart';
 
 @freezed
 class ChooseServiceEvent with _$ChooseServiceEvent {
-  const factory ChooseServiceEvent.started() = _Started;
+  const factory ChooseServiceEvent.started(
+      {required List<OptionalService> newService}) = _Started;
   const factory ChooseServiceEvent.serviceListSubmitted({
     required Function0<void> onRoute,
     required Function2<String, String, void> sendMessage,
@@ -13,9 +14,6 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required List<ServiceData> saveLst,
     required String recordId,
   }) = _SelectProductCompleted;
-  const factory ChooseServiceEvent.newServiceRequested(
-    OptionalService optionalService,
-  ) = _NewServiceRequested;
   const factory ChooseServiceEvent.detailRequestAccepted({
     required String recordId,
   }) = _DetailRequestAccepted;

@@ -177,6 +177,7 @@ class _AddMessageViewState extends State<AddMessageView> {
                   await context.router.push(
                     ChooseServiceRoute(
                       providerId: widget.providerData.id,
+                      optionalService: [],
                       isSelectProduct: false,
                     ),
                   );

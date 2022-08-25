@@ -130,7 +130,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
                     OverviewOrderState.loadDataSuccess(
                       overviewOrderData: OverviewOrderModel.fromDto(
                         maybeProviderData,
-                        distance,
+                        distance / 1000,
                       ),
                       pendingService: b.toList().cast<PendingServiceModel>(),
                       needToVerifyService: a.toList().cast<NeedToVerifyModel>(),

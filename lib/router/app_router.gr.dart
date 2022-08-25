@@ -174,12 +174,19 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               providerId: args.providerId,
               isSelectProduct: args.isSelectProduct,
-              recordId: args.recordId),
+              recordId: args.recordId,
+              optionalService: args.optionalService),
           maintainState: false);
     },
     NewServiceRequestRoute.name: (routeData) {
-      return _i37.AdaptivePage<_i39.OptionalService>(
-          routeData: routeData, child: const _i18.NewServiceRequestPage());
+      final args = routeData.argsAs<NewServiceRequestRouteArgs>();
+      return _i37.AdaptivePage<_i39.OptionalService?>(
+          routeData: routeData,
+          child: _i18.NewServiceRequestPage(
+              key: args.key,
+              optionalService: args.optionalService,
+              providerId: args.providerId,
+              isSelectProduct: args.isSelectProduct));
     },
     ServiceDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceDetailRouteArgs>();
@@ -714,14 +721,16 @@ class ChooseServiceRoute extends _i37.PageRouteInfo<ChooseServiceRouteArgs> {
       {_i38.Key? key,
       required String providerId,
       required bool isSelectProduct,
-      String? recordId})
+      String? recordId,
+      required List<_i39.OptionalService> optionalService})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
             args: ChooseServiceRouteArgs(
                 key: key,
                 providerId: providerId,
                 isSelectProduct: isSelectProduct,
-                recordId: recordId));
+                recordId: recordId,
+                optionalService: optionalService));
 
   static const String name = 'ChooseServiceRoute';
 }
@@ -731,7 +740,8 @@ class ChooseServiceRouteArgs {
       {this.key,
       required this.providerId,
       required this.isSelectProduct,
-      this.recordId});
+      this.recordId,
+      required this.optionalService});
 
   final _i38.Key? key;
 
@@ -741,19 +751,53 @@ class ChooseServiceRouteArgs {
 
   final String? recordId;
 
+  final List<_i39.OptionalService> optionalService;
+
   @override
   String toString() {
-    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, isSelectProduct: $isSelectProduct, recordId: $recordId}';
+    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, isSelectProduct: $isSelectProduct, recordId: $recordId, optionalService: $optionalService}';
   }
 }
 
 /// generated route for
 /// [_i18.NewServiceRequestPage]
-class NewServiceRequestRoute extends _i37.PageRouteInfo<void> {
-  const NewServiceRequestRoute()
-      : super(NewServiceRequestRoute.name, path: '/new-service-request-page');
+class NewServiceRequestRoute
+    extends _i37.PageRouteInfo<NewServiceRequestRouteArgs> {
+  NewServiceRequestRoute(
+      {_i38.Key? key,
+      required List<_i39.OptionalService> optionalService,
+      required String providerId,
+      required bool isSelectProduct})
+      : super(NewServiceRequestRoute.name,
+            path: '/new-service-request-page',
+            args: NewServiceRequestRouteArgs(
+                key: key,
+                optionalService: optionalService,
+                providerId: providerId,
+                isSelectProduct: isSelectProduct));
 
   static const String name = 'NewServiceRequestRoute';
+}
+
+class NewServiceRequestRouteArgs {
+  const NewServiceRequestRouteArgs(
+      {this.key,
+      required this.optionalService,
+      required this.providerId,
+      required this.isSelectProduct});
+
+  final _i38.Key? key;
+
+  final List<_i39.OptionalService> optionalService;
+
+  final String providerId;
+
+  final bool isSelectProduct;
+
+  @override
+  String toString() {
+    return 'NewServiceRequestRouteArgs{key: $key, optionalService: $optionalService, providerId: $providerId, isSelectProduct: $isSelectProduct}';
+  }
 }
 
 /// generated route for

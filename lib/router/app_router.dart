@@ -69,7 +69,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: SignupPage),
     AdaptiveRoute<void>(page: ChooseServicePage, maintainState: false),
-    AdaptiveRoute<OptionalService>(page: NewServiceRequestPage),
+    AdaptiveRoute<OptionalService?>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),

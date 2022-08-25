@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../service/widgets/service_avatar.dart';
+import '../../shared/utils.dart';
 
 class RequestDetailsLive extends StatelessWidget {
   const RequestDetailsLive({
@@ -121,7 +122,9 @@ class RequestDetailsLive extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    makePhoneCall(providerData.phone);
+                                  },
                                   icon: Icon(
                                     Icons.call,
                                     color:

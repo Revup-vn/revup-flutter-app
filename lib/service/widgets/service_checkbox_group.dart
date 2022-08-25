@@ -33,7 +33,12 @@ class ServiceCheckboxGroup extends StatelessWidget {
         .map(
           ServiceData.fromPendingService,
         )
-        .toList();
+        .toList()
+      ..addAll(serviceList
+          .where(
+            (element) => element.isOptional,
+          )
+          .toList());
     return FormBuilderField<List<ServiceData>>(
       initialValue: svDataOptional,
       name: 'data',

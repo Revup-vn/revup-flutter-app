@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,8 +32,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
-  final services = <ServiceData>[];
-  final servicesSelect = <ServiceData>[];
+  final optionalService = <ServiceData>[];
   final String providerId;
   final Option<AppUser> _maybeUser;
 
@@ -41,7 +41,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     Emitter<ChooseServiceState> emit,
   ) async {
     await event.when(
-      started: () async {
+      started: (newService) async {
         emit(const ChooseServiceState.loading());
         await Hive.openBox<dynamic>('serviceSelect');
 
@@ -72,10 +72,20 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               ),
             )
             .fold((l) => throw NullThrownError(), (r) => r);
-
+        final tmp = IList.from(
+          newService.map(
+            (e) => ServiceData(
+              name: e.name,
+              serviceFee: -1,
+              imageURL: e.img,
+              products: [],
+              isOptional: true,
+            ),
+          ),
+        );
         emit(
           ChooseServiceState.success(
-            serviceData: catAndSv.value2,
+            serviceData: catAndSv.value2.plus(tmp),
             providerId: providerId,
             catAndSv: catAndSv,
           ),
@@ -128,14 +138,21 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         final _paymentRepo = storeRepository
             .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
         for (var i = 0; i < saveLst.length; i++) {
-          await _paymentRepo.create(
-            PaymentService.pending(
-              serviceName: saveLst[i].name,
-              moneyAmount: saveLst[i].serviceFee,
-              products: [],
-              isOptional: false,
-            ),
-          );
+          saveLst[i].isOptional
+              ? await _paymentRepo.create(
+                  PaymentService.needToVerify(
+                    serviceName: saveLst[i].name,
+                    desc: '',
+                  ),
+                )
+              : await _paymentRepo.create(
+                  PaymentService.pending(
+                    serviceName: saveLst[i].name,
+                    moneyAmount: saveLst[i].serviceFee,
+                    products: [],
+                    isOptional: false,
+                  ),
+                );
         }
 
         // get latest provider fcm token
@@ -146,13 +163,19 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             )
             .getOrElse(() => throw NullThrownError());
 
-        final tokens = (await storeRepository
-                .userNotificationTokenRepo(provider)
-                .all())
-            .fold((l) => throw NullThrownError(), (r) => r.toList())
-          ..sort(
-            (a, b) => a.created.compareTo(b.created),
-          );
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(provider).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        // ..sort(
+        //   (a, b) => a.created.compareTo(b.created),
+        // );
+
+        log('TOKEN:${tokens.first.token}');
 
         // send notify to provider
         sendMessage(tokens.first.token, recordId);
@@ -160,57 +183,59 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         // route to home page
         onRoute();
       },
-      newServiceRequested: (optionalService) async {
-        emit(const ChooseServiceState.loading());
-        final newSvData = ServiceData(
-          name: optionalService.name,
-          serviceFee: -1, // provider give the price
-          imageURL: optionalService.img,
-          isOptional: true,
-          products: [],
-        );
-        services.add(newSvData);
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        final pid = boxRprRecord.get('pid', defaultValue: '') as String;
-        final maybeProviderData = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
-        // new service is selected by default
-        await Hive.box<dynamic>('serviceSelect')
-            .put(services.indexOf(newSvData), newSvData.name);
+      // addedService: (optionalService) async {
+      //   emit(const ChooseServiceState.loading());
 
-        final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
-        final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
-        final catAndSv = await (await (storeRepository.repairCategoryRepo(
-          maybeProviderData,
-        )).get(catId))
-            .map(
-              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
-                a,
-                (await storeRepository
-                        .repairServiceRepo(maybeProviderData, a)
-                        .all())
-                    .fold<IList<ServiceData>>(
-                  (l) => ilist([]),
-                  (r) => r.map(
-                    ServiceData.fromDtos,
-                  ),
-                ),
-              ),
-            )
-            .fold((l) => throw NullThrownError(), (r) => r);
+      //   final newSvData = ServiceData(
+      //     name: optionalService.name,
+      //     serviceFee: -1, // provider give the price
+      //     imageURL: optionalService.img,
+      //     isOptional: true,
+      //     products: [],
+      //   );
 
-        emit(
-          ChooseServiceState.success(
-            serviceData: ilist(services),
-            providerId: pid,
-            catAndSv: catAndSv,
-          ),
-        );
-      },
+      //   final boxRprRecord = Hive.box<dynamic>('repairRecord');
+      //   final pid = boxRprRecord.get('pid', defaultValue: '') as String;
+      //   final maybeProviderData = (await _userStore.get(providerId))
+      //       .fold<Option<AppUser>>(
+      //         (l) => none(),
+      //         some,
+      //       )
+      //       .getOrElse(() => throw NullThrownError());
+      //   // new service is selected by default
+      //   // await Hive.box<dynamic>('serviceSelect')
+      //   //     .put(services.indexOf(newSvData), newSvData.name);
+
+      //   final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
+      //   final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+      //   final catAndSv = await (await (storeRepository.repairCategoryRepo(
+      //     maybeProviderData,
+      //   )).get(catId))
+      //       .map(
+      //         (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+      //           a,
+      //           (await storeRepository
+      //                   .repairServiceRepo(maybeProviderData, a)
+      //                   .all())
+      //               .fold<IList<ServiceData>>(
+      //             (l) => ilist([]),
+      //             (r) => r.map(
+      //               ServiceData.fromDtos,
+      //             ),
+      //           ),
+      //         ),
+      //       )
+      //       .fold((l) => throw NullThrownError(), (r) => r);
+
+      //   emit(
+      //     ChooseServiceState.success(
+      //       serviceData: cons(newSvData,
+      //           state.maybeWhen(orElse: nil, success: (_, d, __) => d)),
+      //       providerId: pid,
+      //       catAndSv: catAndSv,
+      //     ),
+      //   );
+      // },
       detailRequestAccepted: (recordId) async {
         // get service selected
         final repairRecord = (await _repairRecord.get(recordId))
