@@ -60,7 +60,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               (r) => r.map(
                 (a) => a.maybeMap<Option<RepairRecord>>(
                   orElse: none,
-                  finished: (value) => some(a),
+                  started: (value) => some(a),
                 ),
               ),
             )

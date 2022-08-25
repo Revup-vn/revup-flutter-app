@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -24,7 +26,6 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
-      print(type);
       switch (type) {
         case NotificationType.ProviderAccept:
           final providerId = p0.payload.payload['providerId'] as String;
@@ -35,9 +36,30 @@ class _SplashPageState extends State<SplashPage> {
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
           );
           break;
+        case NotificationType.ProviderRepaired:
+          final providerId = p0.payload.payload['providerId'] as String;
+          final recordId = p0.payload.payload['recordId'] as String;
+          _showTopFlash(
+            msg: context.l10n.repairDoneLabel,
+            context: context,
+          );
+          context.router.pushAndPopUntil(
+            ServiceInvoiceRoute(providerID: providerId, id: recordId),
+            predicate: (route) => true,
+          );
+          break;
+        case NotificationType.NormalMessage:
+          final tpyeSub = p0.payload.payload['typeSub'] as String;
+          if (tpyeSub == 'compltedRepair') {
+            final recordId = p0.payload.payload['recordId'] as String;
+            final providerId = p0.payload.payload['providerId'] as String;
+            context.router.push(
+              ReviewRepairmanRoute(providerId: providerId, repairId: recordId),
+            );
+          }
+          break;
         // ignore: no_default_cases
         default:
-          print('aaaa');
           break;
       }
     });
@@ -130,6 +152,49 @@ class _SplashPageState extends State<SplashPage> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showTopFlash({
+    bool persistent = true,
+    EdgeInsets margin = const EdgeInsets.only(left: 20),
+    required String msg,
+    required BuildContext context,
+  }) {
+    showFlash<Unit>(
+      duration: const Duration(seconds: 2),
+      context: context,
+      persistent: persistent,
+      builder: (_, controller) {
+        return Flash<Widget>(
+          controller: controller,
+          margin: margin,
+          behavior: FlashBehavior.floating,
+          position: FlashPosition.top,
+          forwardAnimationCurve: Curves.easeIn,
+          reverseAnimationCurve: Curves.easeOut,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(6),
+            bottomLeft: Radius.circular(6),
+          ),
+          child: FlashBar(
+            content: Text(
+              msg,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
+            indicatorColor: Colors.green,
+            primaryAction: TextButton(
+              onPressed: () {
+                controller.dismiss();
+              },
+              child: Text(context.l10n.hideLabel),
+            ),
+          ),
+        );
+      },
     );
   }
 }

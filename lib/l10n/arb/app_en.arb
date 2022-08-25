@@ -196,5 +196,8 @@
   "loginFailDescLabel": "Please contact care center for more information.",
   "settingsLabel": "Settings",
   "onRequestLabel": "You have a request in progress",
-  "chooseAtLeastServiceLabel": "You must choose at least one service"
+  "chooseAtLeastServiceLabel": "You must choose at least one service",
+  "repairDoneLabel": "Repair completed. Check your invoice and pay for it",
+  "failLabel" : "Fail",
+  "hideLabel" : "Hide"
 }

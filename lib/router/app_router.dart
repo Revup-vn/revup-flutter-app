@@ -58,7 +58,7 @@ import '../test/test.dart';
           page: AccountPage,
         ),
       ],
-      // maintainState: false,
+      maintainState: false,
     ),
     AdaptiveRoute<void>(page: HistoryDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),

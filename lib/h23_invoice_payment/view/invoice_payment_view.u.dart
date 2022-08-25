@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -14,6 +13,7 @@ import '../../h22_invoice/widgets/default_avatar.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 import '../bloc/invoice_payment_bloc.u.dart';
 
@@ -180,9 +180,21 @@ class InvoicePaymentView extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              context
-                                  .formatMoney(serviceData[index].serviceFee),
-                              style: Theme.of(context).textTheme.labelLarge,
+                              serviceData[index].state == 'paid'
+                                  ? context.l10n.paidLabel
+                                  : context.formatMoney(
+                                      serviceData[index].serviceFee,
+                                    ),
+                              style: serviceData[index].state == 'paid'
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      )
+                                  : Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -233,25 +245,6 @@ class InvoicePaymentView extends StatelessWidget {
                               );
                             },
                           );
-                          //test method
-
-                          // final completer = Completer<bool>();
-                          // context.router.push(
-                          //   PaymentRoute(
-                          //     user: user,
-                          //     completer: completer,
-                          //   ),
-                          // );
-                          // completer.future.then(
-                          //   (value) {
-                          //     isPayOnline = value;
-                          //     context.read<InvoicePaymentBloc>().add(
-                          //           InvoicePaymentEvent.changePaymentMethod(
-                          //             isPayOnline: value,
-                          //           ),
-                          //         );
-                          //   },
-                          // );
                         },
                         child: BlocSelector<InvoicePaymentBloc,
                             InvoicePaymentState, bool>(
@@ -349,28 +342,39 @@ class InvoicePaymentView extends StatelessWidget {
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
                     onPressed: () async {
-                      final completer = Completer<ReportFeedback>();
-                      await context.router.push(
-                        ReviewRepairmanRoute(
-                          providerData: providerData,
-                          completer: completer,
-                        ),
-                      );
-                      final feedbackData = completer.future;
-                      await feedbackData.then((value) {
-                        maybeUser.fold(
-                          () => null,
-                          (user) => context.read<InvoicePaymentBloc>().add(
-                                InvoicePaymentEvent.sumbitPayment(
-                                  isPayOnline: isPayOnline,
-                                  totalAmount: total,
-                                  cid: user.uuid,
-                                  pid: providerData.id,
-                                  feedback: value,
-                                ),
+                      maybeUser.fold(
+                        () => null,
+                        (user) => context.read<InvoicePaymentBloc>().add(
+                              InvoicePaymentEvent.sumbitPayment(
+                                isPayOnline: isPayOnline,
+                                totalAmount: total,
+                                cid: user.uuid,
+                                pid: providerData.id,
+                                sendMessage: (
+                                  a,
+                                  b,
+                                ) {
+                                  context
+                                      .read<NotificationCubit>()
+                                      .sendMessageToToken(
+                                        SendMessage(
+                                          title: 'Revup',
+                                          body: 'done',
+                                          token: a,
+                                          icon: kRevupIconApp,
+                                          payload: MessageData(
+                                            type:
+                                                NotificationType.ConsumerBilled,
+                                            payload: <String, dynamic>{
+                                              'providerId': b,
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                },
                               ),
-                        );
-                      });
+                            ),
+                      );
                     },
                     style: Theme.of(context).elevatedButtonTheme.style,
                     child: AutoSizeText(

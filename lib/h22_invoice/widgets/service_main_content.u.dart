@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
@@ -101,7 +100,10 @@ class ServiceInvoiceContent extends StatelessWidget {
                             Row(
                               children: [
                                 AutoSizeText(
-                                  providerData.rating.toString(),
+                                  providerData.rating.isNaN ||
+                                          providerData.rating == 0
+                                      ? '0'
+                                      : providerData.rating.toString(),
                                   style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -136,7 +138,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                   Row(
                     children: [
                       AutoSizeText(
-                        l10n.addressLabel + providerData.address,
+                        '${l10n.addressLabel} ${providerData.address}',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
@@ -178,7 +180,16 @@ class ServiceInvoiceContent extends StatelessWidget {
                             ),
                             AutoSizeText(
                               context.formatMoney(service[index].serviceFee),
-                              style: Theme.of(context).textTheme.labelLarge,
+                              style: service[index].state == 'paid'
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      )
+                                  : Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -239,7 +250,6 @@ class ServiceInvoiceContent extends StatelessWidget {
                               InvoicePaymentRoute(
                                 providerData: providerData,
                                 serviceData: service,
-                                total: total ?? 0,
                               ),
                             );
                           }

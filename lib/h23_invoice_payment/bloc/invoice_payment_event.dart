@@ -9,8 +9,8 @@ class InvoicePaymentEvent with _$InvoicePaymentEvent {
   const factory InvoicePaymentEvent.sumbitPayment({
     required bool isPayOnline,
     required int totalAmount,
-    required String pid,
     required String cid,
-    required ReportFeedback feedback,
+    required String pid,
+    required Function2<String, String, void> sendMessage,
   }) = _SubmitPayment;
 }
