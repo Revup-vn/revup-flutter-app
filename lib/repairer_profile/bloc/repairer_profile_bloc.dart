@@ -105,7 +105,24 @@ class RepairerProfileBloc
 
         final categories =
             (await Future.wait(catData.toIterable())).map((e) => e).toList();
-
+        final catAndSv = await (await (storeRepository.repairCategoryRepo(
+          maybeProviderData,
+        )).get(cate))
+            .map(
+              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+                a,
+                (await storeRepository
+                        .repairServiceRepo(maybeProviderData, a)
+                        .all())
+                    .fold<IList<ServiceData>>(
+                  (l) => ilist([]),
+                  (r) => r.map(
+                    ServiceData.fromDtos,
+                  ),
+                ),
+              ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r);
         final svList = categories.map((e) {
           if (e.value1.name == cate) {
             return e.value2;
@@ -123,7 +140,7 @@ class RepairerProfileBloc
             provider: providerData,
             ratingData: ilist(feedbacks),
             serviceData: svList,
-            categories: categories,
+            categories: catAndSv,
           ),
         );
       },

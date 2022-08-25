@@ -30,6 +30,14 @@ class RepairReviewHomePage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        failure: () => Container(
+          width: double.infinity,
+          height: 16,
+          color: Colors.white,
+          child: Center(
+            child: AutoSizeText(l10n.emptyLabel),
+          ),
+        ),
         success: (ads, activeRepairRecord, homeModel) => Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

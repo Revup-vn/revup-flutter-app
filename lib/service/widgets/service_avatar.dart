@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -18,14 +17,14 @@ class ServiceAvatar extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: imageUrl,
           placeholder: (context, url) => Assets.screens.dfAvatar.image(
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
             height: 64,
             gaplessPlayback: true,
             width: 64,
           ),
           errorWidget: (context, url, dynamic error) {
             return Assets.screens.dfAvatar.image(
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               height: 64,
               gaplessPlayback: true,
               width: 64,
@@ -33,7 +32,7 @@ class ServiceAvatar extends StatelessWidget {
           },
           height: 64,
           width: 64,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         ),
       ),
     );

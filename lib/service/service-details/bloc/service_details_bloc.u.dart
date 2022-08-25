@@ -41,24 +41,23 @@ class ServiceDetailsBloc
               some,
             )
             .getOrElse(() => throw NullThrownError());
-
-        final maybeService = (await (storeRepository.repairServiceRepo(
+        final completer = Completer<IList<RepairProduct>>();
+        (await (storeRepository.repairServiceRepo(
           maybeProviderData,
-          catAndSv.value1,
+          RepairCategoryDummy.dummy(catAndSv.value1.name),
         )).get(_serviceData.name))
-            .fold<Option<RepairService>>((l) => none(), some)
-            .getOrElse(() => throw NullThrownError());
-
-        final products = (await storeRepository
-                .repairProductRepo(
-                  maybeProviderData,
-                  catAndSv.value1,
-                  maybeService,
-                )
-                .all())
-            .fold<IList<RepairProduct>>((l) => ilist([]), (r) => r);
-
-        emit(ServiceDetailsState.loaded(products: products));
+            .fold((l) => completer.complete(nil<RepairProduct>()), (r) async {
+          (await storeRepository
+                  .repairProductRepo(
+                    maybeProviderData,
+                    catAndSv.value1,
+                    r,
+                  )
+                  .all())
+              .fold((l) => completer.complete(nil()), completer.complete);
+        });
+        final res = await completer.future;
+        emit(ServiceDetailsState.loaded(products: res));
       },
     );
   }
