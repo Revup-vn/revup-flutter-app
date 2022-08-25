@@ -201,5 +201,19 @@
   "repairDoneLabel": "Sửa xong rồi. Kiểm tra hoá đơn và thanh toán",
   "failLabel" : "Không thành công",
   "hideLabel" : "Ẩn",
-  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm"
+  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm",
+  "successLabel": "Hoàn thành",
+  "reportLabel": "Báo cáo",
+  "myReportLabel": "Báo cáo của tôi",
+  "resolvedLabel": "Đã giải quyết",
+  "unResolvedLabel": "Chưa giải quyết",
+  "reportType": "Danh mục báo cáo:",
+  "startedLabel": "Bắt đầu",
+  "endedLabel": "Kết thúc",
+  "reportDesLabel": "Nội dung",
+  "reportCategory": "Mục báo cáo",
+  "reportImgLabel": "Cung cấp hình ảnh để chứng minh (tuỳ chọn)",
+  "otherLabel": "Khác",
+  "productLabel": "Sản phẩm",
+  "addReportFailLabel": "Thêm báo cáo lỗi"
 }

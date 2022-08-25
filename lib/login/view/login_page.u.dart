@@ -4,17 +4,18 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../../shared/widgets/loading.u.dart';
 import '../bloc/login_bloc.dart';
@@ -33,7 +34,6 @@ class LoginPage extends StatelessWidget {
     log(context.read<ConnectivityBloc>().state.toString());
     final notifyCubit = context.read<NotificationCubit>();
     final sr = context.read<StoreRepository>();
-
     return InternetAvailabilityPage(
       child: BlocProvider(
         create: (BuildContext context) => LoginBloc(),
@@ -285,7 +285,6 @@ class LoginPage extends StatelessWidget {
                   email: user.email ?? '',
                 ),
               );
-
               return completer.future;
             },
           ),

@@ -1,5 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
         child: AutoTabsScaffold(
           routes: [
             HomeBodyRoute(user: user),
-            HistoryRoute(user: user),
+            HistoryProviderRoute(cid: user.uuid),
             const NotificationRoute(),
             const AccountRoute(),
           ],
