@@ -12,10 +12,12 @@ class ChooseServicePage extends StatelessWidget {
     required this.providerId,
     required this.isSelectProduct,
     this.recordId,
+    required this.optionalService,
   });
   final String providerId;
   final bool isSelectProduct;
   final String? recordId;
+  final List<OptionalService> optionalService;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,8 @@ class ChooseServicePage extends StatelessWidget {
         form: GlobalKey(),
         isSelectProduct: isSelectProduct,
         recordId: recordId,
+        providerId: providerId,
+        optionalService: optionalService,
       ),
     );
   }

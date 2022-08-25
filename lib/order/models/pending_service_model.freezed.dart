@@ -19,6 +19,7 @@ mixin _$PendingServiceModel {
   String get name => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   bool get isOptional => throw _privateConstructorUsedError;
+  List<PaymentProduct> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PendingServiceModelCopyWith<PendingServiceModel> get copyWith =>
@@ -30,7 +31,8 @@ abstract class $PendingServiceModelCopyWith<$Res> {
   factory $PendingServiceModelCopyWith(
           PendingServiceModel value, $Res Function(PendingServiceModel) then) =
       _$PendingServiceModelCopyWithImpl<$Res>;
-  $Res call({String name, int price, bool isOptional});
+  $Res call(
+      {String name, int price, bool isOptional, List<PaymentProduct> products});
 }
 
 /// @nodoc
@@ -47,6 +49,7 @@ class _$PendingServiceModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? price = freezed,
     Object? isOptional = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -61,6 +64,10 @@ class _$PendingServiceModelCopyWithImpl<$Res>
           ? _value.isOptional
           : isOptional // ignore: cast_nullable_to_non_nullable
               as bool,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
     ));
   }
 }
@@ -72,7 +79,8 @@ abstract class _$$_PendingServiceModelCopyWith<$Res>
           $Res Function(_$_PendingServiceModel) then) =
       __$$_PendingServiceModelCopyWithImpl<$Res>;
   @override
-  $Res call({String name, int price, bool isOptional});
+  $Res call(
+      {String name, int price, bool isOptional, List<PaymentProduct> products});
 }
 
 /// @nodoc
@@ -91,6 +99,7 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? price = freezed,
     Object? isOptional = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$_PendingServiceModel(
       name: name == freezed
@@ -105,6 +114,10 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
           ? _value.isOptional
           : isOptional // ignore: cast_nullable_to_non_nullable
               as bool,
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
     ));
   }
 }
@@ -113,7 +126,11 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
 
 class _$_PendingServiceModel implements _PendingServiceModel {
   const _$_PendingServiceModel(
-      {required this.name, required this.price, required this.isOptional});
+      {required this.name,
+      required this.price,
+      required this.isOptional,
+      required final List<PaymentProduct> products})
+      : _products = products;
 
   @override
   final String name;
@@ -121,10 +138,16 @@ class _$_PendingServiceModel implements _PendingServiceModel {
   final int price;
   @override
   final bool isOptional;
+  final List<PaymentProduct> _products;
+  @override
+  List<PaymentProduct> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
 
   @override
   String toString() {
-    return 'PendingServiceModel(name: $name, price: $price, isOptional: $isOptional)';
+    return 'PendingServiceModel(name: $name, price: $price, isOptional: $isOptional, products: $products)';
   }
 
   @override
@@ -135,7 +158,8 @@ class _$_PendingServiceModel implements _PendingServiceModel {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality()
-                .equals(other.isOptional, isOptional));
+                .equals(other.isOptional, isOptional) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
@@ -143,7 +167,8 @@ class _$_PendingServiceModel implements _PendingServiceModel {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(isOptional));
+      const DeepCollectionEquality().hash(isOptional),
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +181,8 @@ abstract class _PendingServiceModel implements PendingServiceModel {
   const factory _PendingServiceModel(
       {required final String name,
       required final int price,
-      required final bool isOptional}) = _$_PendingServiceModel;
+      required final bool isOptional,
+      required final List<PaymentProduct> products}) = _$_PendingServiceModel;
 
   @override
   String get name;
@@ -164,6 +190,8 @@ abstract class _PendingServiceModel implements PendingServiceModel {
   int get price;
   @override
   bool get isOptional;
+  @override
+  List<PaymentProduct> get products;
   @override
   @JsonKey(ignore: true)
   _$$_PendingServiceModelCopyWith<_$_PendingServiceModel> get copyWith =>

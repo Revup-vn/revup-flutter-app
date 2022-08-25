@@ -19,6 +19,7 @@ mixin _$ServiceData {
   String get name => throw _privateConstructorUsedError;
   int get serviceFee => throw _privateConstructorUsedError;
   String get imageURL => throw _privateConstructorUsedError;
+  List<PaymentProduct> get products => throw _privateConstructorUsedError;
   bool get isOptional => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,12 @@ abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
           ServiceData value, $Res Function(ServiceData) then) =
       _$ServiceDataCopyWithImpl<$Res>;
-  $Res call({String name, int serviceFee, String imageURL, bool isOptional});
+  $Res call(
+      {String name,
+      int serviceFee,
+      String imageURL,
+      List<PaymentProduct> products,
+      bool isOptional});
 }
 
 /// @nodoc
@@ -47,6 +53,7 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
     Object? name = freezed,
     Object? serviceFee = freezed,
     Object? imageURL = freezed,
+    Object? products = freezed,
     Object? isOptional = freezed,
   }) {
     return _then(_value.copyWith(
@@ -62,6 +69,10 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
       isOptional: isOptional == freezed
           ? _value.isOptional
           : isOptional // ignore: cast_nullable_to_non_nullable
@@ -77,7 +88,12 @@ abstract class _$$_ServiceDataCopyWith<$Res>
           _$_ServiceData value, $Res Function(_$_ServiceData) then) =
       __$$_ServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call({String name, int serviceFee, String imageURL, bool isOptional});
+  $Res call(
+      {String name,
+      int serviceFee,
+      String imageURL,
+      List<PaymentProduct> products,
+      bool isOptional});
 }
 
 /// @nodoc
@@ -95,6 +111,7 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? serviceFee = freezed,
     Object? imageURL = freezed,
+    Object? products = freezed,
     Object? isOptional = freezed,
   }) {
     return _then(_$_ServiceData(
@@ -110,6 +127,10 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
       isOptional: isOptional == freezed
           ? _value.isOptional
           : isOptional // ignore: cast_nullable_to_non_nullable
@@ -125,7 +146,9 @@ class _$_ServiceData implements _ServiceData {
       {required this.name,
       required this.serviceFee,
       required this.imageURL,
-      required this.isOptional});
+      required final List<PaymentProduct> products,
+      required this.isOptional})
+      : _products = products;
 
   @override
   final String name;
@@ -133,12 +156,19 @@ class _$_ServiceData implements _ServiceData {
   final int serviceFee;
   @override
   final String imageURL;
+  final List<PaymentProduct> _products;
+  @override
+  List<PaymentProduct> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
   @override
   final bool isOptional;
 
   @override
   String toString() {
-    return 'ServiceData(name: $name, serviceFee: $serviceFee, imageURL: $imageURL, isOptional: $isOptional)';
+    return 'ServiceData(name: $name, serviceFee: $serviceFee, imageURL: $imageURL, products: $products, isOptional: $isOptional)';
   }
 
   @override
@@ -150,6 +180,7 @@ class _$_ServiceData implements _ServiceData {
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
             const DeepCollectionEquality().equals(other.imageURL, imageURL) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality()
                 .equals(other.isOptional, isOptional));
   }
@@ -160,6 +191,7 @@ class _$_ServiceData implements _ServiceData {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(serviceFee),
       const DeepCollectionEquality().hash(imageURL),
+      const DeepCollectionEquality().hash(_products),
       const DeepCollectionEquality().hash(isOptional));
 
   @JsonKey(ignore: true)
@@ -173,6 +205,7 @@ abstract class _ServiceData implements ServiceData {
       {required final String name,
       required final int serviceFee,
       required final String imageURL,
+      required final List<PaymentProduct> products,
       required final bool isOptional}) = _$_ServiceData;
 
   @override
@@ -181,6 +214,8 @@ abstract class _ServiceData implements ServiceData {
   int get serviceFee;
   @override
   String get imageURL;
+  @override
+  List<PaymentProduct> get products;
   @override
   bool get isOptional;
   @override

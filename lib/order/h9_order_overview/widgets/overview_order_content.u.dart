@@ -159,6 +159,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                         providerId: widget.overviewOrderData.providerID,
                         isSelectProduct: true,
                         recordId: widget.pendingRequest.id,
+                        optionalService: [],
                       ),
                     );
                   },
@@ -304,6 +305,22 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                   isExpanded: _expanded,
                 ),
               ],
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: widget.pendingService.any(
+                      (e) => e.products.isEmpty,
+                    )
+                        ? null
+                        : () {},
+                    child: Text(context.l10n.confirmLabel),
+                  )
+                ],
+              ),
             ),
           ],
         ),

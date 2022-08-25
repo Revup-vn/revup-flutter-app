@@ -23,6 +23,7 @@ _$_ProviderData _$$_ProviderDataFromJson(Map<String, dynamic> json) =>
           ratingCount: $checkedConvert('rating_count', (v) => v as int),
           backgroundImg: $checkedConvert('background_img', (v) => v as String),
           profileBio: $checkedConvert('profile_bio', (v) => v as String),
+          phone: $checkedConvert('phone', (v) => v as String),
         );
         return val;
       },
@@ -47,4 +48,5 @@ Map<String, dynamic> _$$_ProviderDataToJson(_$_ProviderData instance) =>
       'rating_count': instance.ratingCount,
       'background_img': instance.backgroundImg,
       'profile_bio': instance.profileBio,
+      'phone': instance.phone,
     };

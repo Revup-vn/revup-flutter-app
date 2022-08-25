@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../repairer_profile/models/service_data.u.dart';
@@ -39,7 +39,7 @@ class ServiceDetailView extends StatelessWidget {
               ServiceListTile(
                 title: serviceData.name,
                 subtitle:
-                    '''${l10n.serviceFeeLabel}: ${serviceData.serviceFee.toString()}''',
+                    '''${l10n.serviceFeeLabel}: ${serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(serviceData.serviceFee)}''',
                 imageUrl: serviceData.imageURL.isEmpty
                     ? kFallbackServiceImg
                     : serviceData.imageURL,
@@ -58,7 +58,7 @@ class ServiceDetailView extends StatelessWidget {
                       return ServiceListTile(
                         title: pList[index].name,
                         subtitle:
-                            '${l10n.productPriceLabel}: ${pList[index].price}đ',
+                            '''${l10n.productPriceLabel}: ${context.formatMoney(pList[index].price)}''',
                         imageUrl: pList[index].img.isEmpty
                             ? kFallbackProductImg
                             : pList[index].img,

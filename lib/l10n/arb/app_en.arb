@@ -199,5 +199,6 @@
   "chooseAtLeastServiceLabel": "You must choose at least one service",
   "repairDoneLabel": "Repair completed. Check your invoice and pay for it",
   "failLabel" : "Fail",
-  "hideLabel" : "Hide"
+  "hideLabel" : "Hide",
+  "consumerChooseServiceDoneLabel": "The customer has finished selecting the product"
 }

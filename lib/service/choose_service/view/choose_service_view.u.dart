@@ -20,10 +20,14 @@ class ChooseServiceView extends StatelessWidget {
     required this.isSelectProduct,
     this.recordId,
     required this.form,
+    required this.providerId,
+    required this.optionalService,
   });
   final bool isSelectProduct;
   final GlobalKey<FormBuilderState> form;
   final String? recordId;
+  final String providerId;
+  final List<OptionalService> optionalService;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -35,7 +39,8 @@ class ChooseServiceView extends StatelessWidget {
                 recordId: recordId ?? '',
               ),
             )
-          : blocPage.add(const ChooseServiceEvent.started()),
+          : blocPage
+              .add(ChooseServiceEvent.started(newService: optionalService)),
     );
 
     final user = getUser(context.read<AuthenticateBloc>().state)
@@ -48,16 +53,16 @@ class ChooseServiceView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => context.router
-                .push<OptionalService>(const NewServiceRequestRoute())
+                .popAndPush(
+              NewServiceRequestRoute(
+                optionalService: optionalService,
+                providerId: providerId,
+                isSelectProduct: isSelectProduct,
+              ),
+            )
                 .then(
               (value) {
-                if (value != null) {
-                  context.read<ChooseServiceBloc>().add(
-                        ChooseServiceEvent.newServiceRequested(
-                          value,
-                        ),
-                      );
-                }
+                if (value != null) {}
               },
             ),
             child: Text(l10n.addLabel),
@@ -91,6 +96,7 @@ class ChooseServiceView extends StatelessWidget {
                               catAndSv: catAndSv,
                               providerId: providerId,
                               isSelectProduct: false,
+                              recordId: recordId ?? '',
                             ),
                           );
                         },
@@ -106,6 +112,7 @@ class ChooseServiceView extends StatelessWidget {
                               catAndSv: catAndSv,
                               providerId: providerId,
                               isSelectProduct: true,
+                              recordId: recordId ?? '',
                             ),
                           );
                         },
@@ -126,6 +133,7 @@ class ChooseServiceView extends StatelessWidget {
                 onPressed: () {
                   // get value from form
                   form.currentState?.save();
+                  print(form.currentState?.value);
                   final saveLst =
                       form.currentState?.value['data'] as List<ServiceData>;
 
@@ -139,7 +147,13 @@ class ChooseServiceView extends StatelessWidget {
                   }
 
                   isSelectProduct
-                      ? context.router.pop()
+                      ? context.read<ChooseServiceBloc>().add(
+                            ChooseServiceEvent.selectProductCompleted(
+                              onRoute: () => context.router.pop(),
+                              saveLst: saveLst,
+                              recordId: recordId ?? '',
+                            ),
+                          )
                       : context.read<ChooseServiceBloc>().add(
                             ChooseServiceEvent.serviceListSubmitted(
                               onRoute: () =>

@@ -30,6 +30,7 @@ mixin _$ProviderData {
   int get ratingCount => throw _privateConstructorUsedError;
   String get backgroundImg => throw _privateConstructorUsedError;
   String get profileBio => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +53,8 @@ abstract class $ProviderDataCopyWith<$Res> {
       double rating,
       int ratingCount,
       String backgroundImg,
-      String profileBio});
+      String profileBio,
+      String phone});
 }
 
 /// @nodoc
@@ -75,6 +77,7 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
     Object? ratingCount = freezed,
     Object? backgroundImg = freezed,
     Object? profileBio = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -117,6 +120,10 @@ class _$ProviderDataCopyWithImpl<$Res> implements $ProviderDataCopyWith<$Res> {
           ? _value.profileBio
           : profileBio // ignore: cast_nullable_to_non_nullable
               as String,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -138,7 +145,8 @@ abstract class _$$_ProviderDataCopyWith<$Res>
       double rating,
       int ratingCount,
       String backgroundImg,
-      String profileBio});
+      String profileBio,
+      String phone});
 }
 
 /// @nodoc
@@ -164,6 +172,7 @@ class __$$_ProviderDataCopyWithImpl<$Res>
     Object? ratingCount = freezed,
     Object? backgroundImg = freezed,
     Object? profileBio = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_$_ProviderData(
       id: id == freezed
@@ -206,6 +215,10 @@ class __$$_ProviderDataCopyWithImpl<$Res>
           ? _value.profileBio
           : profileBio // ignore: cast_nullable_to_non_nullable
               as String,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -223,7 +236,8 @@ class _$_ProviderData implements _ProviderData {
       required this.rating,
       required this.ratingCount,
       required this.backgroundImg,
-      required this.profileBio});
+      required this.profileBio,
+      required this.phone});
 
   factory _$_ProviderData.fromJson(Map<String, dynamic> json) =>
       _$$_ProviderDataFromJson(json);
@@ -248,10 +262,12 @@ class _$_ProviderData implements _ProviderData {
   final String backgroundImg;
   @override
   final String profileBio;
+  @override
+  final String phone;
 
   @override
   String toString() {
-    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinute: $timeArrivalInMinute, rating: $rating, ratingCount: $ratingCount, backgroundImg: $backgroundImg, profileBio: $profileBio)';
+    return 'ProviderData(id: $id, fullName: $fullName, address: $address, avatar: $avatar, distance: $distance, timeArrivalInMinute: $timeArrivalInMinute, rating: $rating, ratingCount: $ratingCount, backgroundImg: $backgroundImg, profileBio: $profileBio, phone: $phone)';
   }
 
   @override
@@ -272,7 +288,8 @@ class _$_ProviderData implements _ProviderData {
             const DeepCollectionEquality()
                 .equals(other.backgroundImg, backgroundImg) &&
             const DeepCollectionEquality()
-                .equals(other.profileBio, profileBio));
+                .equals(other.profileBio, profileBio) &&
+            const DeepCollectionEquality().equals(other.phone, phone));
   }
 
   @JsonKey(ignore: true)
@@ -288,7 +305,8 @@ class _$_ProviderData implements _ProviderData {
       const DeepCollectionEquality().hash(rating),
       const DeepCollectionEquality().hash(ratingCount),
       const DeepCollectionEquality().hash(backgroundImg),
-      const DeepCollectionEquality().hash(profileBio));
+      const DeepCollectionEquality().hash(profileBio),
+      const DeepCollectionEquality().hash(phone));
 
   @JsonKey(ignore: true)
   @override
@@ -314,7 +332,8 @@ abstract class _ProviderData implements ProviderData {
       required final double rating,
       required final int ratingCount,
       required final String backgroundImg,
-      required final String profileBio}) = _$_ProviderData;
+      required final String profileBio,
+      required final String phone}) = _$_ProviderData;
 
   factory _ProviderData.fromJson(Map<String, dynamic> json) =
       _$_ProviderData.fromJson;
@@ -339,6 +358,8 @@ abstract class _ProviderData implements ProviderData {
   String get backgroundImg;
   @override
   String get profileBio;
+  @override
+  String get phone;
   @override
   @JsonKey(ignore: true)
   _$$_ProviderDataCopyWith<_$_ProviderData> get copyWith =>

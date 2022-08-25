@@ -200,5 +200,6 @@
   "chooseAtLeastServiceLabel": "Chọn tối thiểu một sản phẩm",
   "repairDoneLabel": "Sửa xong rồi. Kiểm tra hoá đơn và thanh toán",
   "failLabel" : "Không thành công",
-  "hideLabel" : "Ẩn"
+  "hideLabel" : "Ẩn",
+  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm"
 }

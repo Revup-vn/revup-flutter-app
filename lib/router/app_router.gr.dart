@@ -118,7 +118,8 @@ class AppRouter extends _i37.RootStackRouter {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i37.AdaptivePage<void>(
           routeData: routeData,
-          child: _i8.HomePage(key: args.key, user: args.user));
+          child: _i8.HomePage(key: args.key, user: args.user),
+          maintainState: false);
     },
     HistoryDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryDetailRouteArgs>();
@@ -174,11 +175,19 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               providerId: args.providerId,
               isSelectProduct: args.isSelectProduct,
-              recordId: args.recordId));
+              recordId: args.recordId,
+              optionalService: args.optionalService),
+          maintainState: false);
     },
     NewServiceRequestRoute.name: (routeData) {
-      return _i37.AdaptivePage<_i39.OptionalService>(
-          routeData: routeData, child: const _i18.NewServiceRequestPage());
+      final args = routeData.argsAs<NewServiceRequestRouteArgs>();
+      return _i37.AdaptivePage<_i39.OptionalService?>(
+          routeData: routeData,
+          child: _i18.NewServiceRequestPage(
+              key: args.key,
+              optionalService: args.optionalService,
+              providerId: args.providerId,
+              isSelectProduct: args.isSelectProduct));
     },
     ServiceDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceDetailRouteArgs>();
@@ -198,7 +207,8 @@ class AppRouter extends _i37.RootStackRouter {
               key: args.key,
               serviceData: args.serviceData,
               catAndSv: args.catAndSv,
-              providerId: args.providerId));
+              providerId: args.providerId,
+              recordId: args.recordId));
     },
     FindNearbyRoute.name: (routeData) {
       final args = routeData.argsAs<FindNearbyRouteArgs>();
@@ -708,14 +718,16 @@ class ChooseServiceRoute extends _i37.PageRouteInfo<ChooseServiceRouteArgs> {
       {_i38.Key? key,
       required String providerId,
       required bool isSelectProduct,
-      String? recordId})
+      String? recordId,
+      required List<_i39.OptionalService> optionalService})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
             args: ChooseServiceRouteArgs(
                 key: key,
                 providerId: providerId,
                 isSelectProduct: isSelectProduct,
-                recordId: recordId));
+                recordId: recordId,
+                optionalService: optionalService));
 
   static const String name = 'ChooseServiceRoute';
 }
@@ -725,7 +737,8 @@ class ChooseServiceRouteArgs {
       {this.key,
       required this.providerId,
       required this.isSelectProduct,
-      this.recordId});
+      this.recordId,
+      required this.optionalService});
 
   final _i38.Key? key;
 
@@ -735,19 +748,53 @@ class ChooseServiceRouteArgs {
 
   final String? recordId;
 
+  final List<_i39.OptionalService> optionalService;
+
   @override
   String toString() {
-    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, isSelectProduct: $isSelectProduct, recordId: $recordId}';
+    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, isSelectProduct: $isSelectProduct, recordId: $recordId, optionalService: $optionalService}';
   }
 }
 
 /// generated route for
 /// [_i18.NewServiceRequestPage]
-class NewServiceRequestRoute extends _i37.PageRouteInfo<void> {
-  const NewServiceRequestRoute()
-      : super(NewServiceRequestRoute.name, path: '/new-service-request-page');
+class NewServiceRequestRoute
+    extends _i37.PageRouteInfo<NewServiceRequestRouteArgs> {
+  NewServiceRequestRoute(
+      {_i38.Key? key,
+      required List<_i39.OptionalService> optionalService,
+      required String providerId,
+      required bool isSelectProduct})
+      : super(NewServiceRequestRoute.name,
+            path: '/new-service-request-page',
+            args: NewServiceRequestRouteArgs(
+                key: key,
+                optionalService: optionalService,
+                providerId: providerId,
+                isSelectProduct: isSelectProduct));
 
   static const String name = 'NewServiceRequestRoute';
+}
+
+class NewServiceRequestRouteArgs {
+  const NewServiceRequestRouteArgs(
+      {this.key,
+      required this.optionalService,
+      required this.providerId,
+      required this.isSelectProduct});
+
+  final _i38.Key? key;
+
+  final List<_i39.OptionalService> optionalService;
+
+  final String providerId;
+
+  final bool isSelectProduct;
+
+  @override
+  String toString() {
+    return 'NewServiceRequestRouteArgs{key: $key, optionalService: $optionalService, providerId: $providerId, isSelectProduct: $isSelectProduct}';
+  }
 }
 
 /// generated route for
@@ -799,14 +846,16 @@ class ChooseProductRoute extends _i37.PageRouteInfo<ChooseProductRouteArgs> {
       required _i44.ServiceData serviceData,
       required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
           catAndSv,
-      required String providerId})
+      required String providerId,
+      required String recordId})
       : super(ChooseProductRoute.name,
             path: '/choose-product-page',
             args: ChooseProductRouteArgs(
                 key: key,
                 serviceData: serviceData,
                 catAndSv: catAndSv,
-                providerId: providerId));
+                providerId: providerId,
+                recordId: recordId));
 
   static const String name = 'ChooseProductRoute';
 }
@@ -816,7 +865,8 @@ class ChooseProductRouteArgs {
       {this.key,
       required this.serviceData,
       required this.catAndSv,
-      required this.providerId});
+      required this.providerId,
+      required this.recordId});
 
   final _i38.Key? key;
 
@@ -826,9 +876,11 @@ class ChooseProductRouteArgs {
 
   final String providerId;
 
+  final String recordId;
+
   @override
   String toString() {
-    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, catAndSv: $catAndSv, providerId: $providerId}';
+    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, catAndSv: $catAndSv, providerId: $providerId, recordId: $recordId}';
   }
 }
 

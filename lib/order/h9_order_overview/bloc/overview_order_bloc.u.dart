@@ -45,7 +45,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .getOrElse(() => throw NullThrownError());
         final boxLocation = Hive.box<dynamic>('location');
-        final distance = boxLocation.get('distance', defaultValue: 0) as int;
+        final distance = boxLocation.get('distance', defaultValue: 0) as double;
         // get service selected
         final repairRecord = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
@@ -114,6 +114,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
                                       (value, element) => value + element,
                                     )),
                         isOptional: v.isOptional,
+                        products: v.products,
                       ),
                       paid: (v) => throw NullThrownError(),
                       needToVerify: (v) => NeedToVerifyModel(

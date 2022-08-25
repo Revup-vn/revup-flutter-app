@@ -22,6 +22,7 @@ class ServiceCheckboxTile extends StatefulWidget {
     required this.field,
     required this.canSelect,
     required this.isSelectDefault,
+    required this.recordId,
   });
   final ServiceData serviceData;
   final VoidCallback? onTap;
@@ -32,6 +33,7 @@ class ServiceCheckboxTile extends StatefulWidget {
   final String providerId;
   final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final FormFieldState<List<ServiceData>> field;
+  final String recordId;
 
   @override
   State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
@@ -119,6 +121,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                     serviceData: widget.serviceData,
                     catAndSv: widget.catAndSv,
                     providerId: widget.providerId,
+                    recordId: widget.recordId,
                   ),
                 );
                 // showMaterialModalBottomSheet<Widget>(
