@@ -101,7 +101,10 @@ class ServiceInvoiceContent extends StatelessWidget {
                             Row(
                               children: [
                                 AutoSizeText(
-                                  providerData.rating.toString(),
+                                  providerData.rating.isNaN ||
+                                          providerData.rating == 0
+                                      ? '0'
+                                      : providerData.rating.toString(),
                                   style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -136,7 +139,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                   Row(
                     children: [
                       AutoSizeText(
-                        l10n.addressLabel + providerData.address,
+                        '${l10n.addressLabel} ${providerData.address}',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
@@ -178,7 +181,16 @@ class ServiceInvoiceContent extends StatelessWidget {
                             ),
                             AutoSizeText(
                               context.formatMoney(service[index].serviceFee),
-                              style: Theme.of(context).textTheme.labelLarge,
+                              style: service[index].state == 'paid'
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      )
+                                  : Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
                         ),
@@ -239,7 +251,6 @@ class ServiceInvoiceContent extends StatelessWidget {
                               InvoicePaymentRoute(
                                 providerData: providerData,
                                 serviceData: service,
-                                total: total ?? 0,
                               ),
                             );
                           }

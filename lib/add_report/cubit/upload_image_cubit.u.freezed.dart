@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'signup_cubit.u.dart';
+part of 'upload_image_cubit.u.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SignupCubitState {
+mixin _$UploadImageSignupCubitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -75,20 +75,21 @@ mixin _$SignupCubitState {
 }
 
 /// @nodoc
-abstract class $SignupCubitStateCopyWith<$Res> {
-  factory $SignupCubitStateCopyWith(
-          SignupCubitState value, $Res Function(SignupCubitState) then) =
-      _$SignupCubitStateCopyWithImpl<$Res>;
+abstract class $UploadImageSignupCubitStateCopyWith<$Res> {
+  factory $UploadImageSignupCubitStateCopyWith(
+          UploadImageSignupCubitState value,
+          $Res Function(UploadImageSignupCubitState) then) =
+      _$UploadImageSignupCubitStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SignupCubitStateCopyWithImpl<$Res>
-    implements $SignupCubitStateCopyWith<$Res> {
-  _$SignupCubitStateCopyWithImpl(this._value, this._then);
+class _$UploadImageSignupCubitStateCopyWithImpl<$Res>
+    implements $UploadImageSignupCubitStateCopyWith<$Res> {
+  _$UploadImageSignupCubitStateCopyWithImpl(this._value, this._then);
 
-  final SignupCubitState _value;
+  final UploadImageSignupCubitState _value;
   // ignore: unused_field
-  final $Res Function(SignupCubitState) _then;
+  final $Res Function(UploadImageSignupCubitState) _then;
 }
 
 /// @nodoc
@@ -100,7 +101,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$SignupCubitStateCopyWithImpl<$Res>
+    extends _$UploadImageSignupCubitStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -116,7 +117,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'SignupCubitState.initial()';
+    return 'UploadImageSignupCubitState.initial()';
   }
 
   @override
@@ -209,7 +210,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements SignupCubitState {
+abstract class _Initial implements UploadImageSignupCubitState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -223,7 +224,7 @@ abstract class _$$_UploadImageSuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UploadImageSuccessCopyWithImpl<$Res>
-    extends _$SignupCubitStateCopyWithImpl<$Res>
+    extends _$UploadImageSignupCubitStateCopyWithImpl<$Res>
     implements _$$_UploadImageSuccessCopyWith<$Res> {
   __$$_UploadImageSuccessCopyWithImpl(
       _$_UploadImageSuccess _value, $Res Function(_$_UploadImageSuccess) _then)
@@ -255,7 +256,7 @@ class _$_UploadImageSuccess implements _UploadImageSuccess {
 
   @override
   String toString() {
-    return 'SignupCubitState.uploadImageSuccess(eitherFailuresOrUrls: $eitherFailuresOrUrls)';
+    return 'UploadImageSignupCubitState.uploadImageSuccess(eitherFailuresOrUrls: $eitherFailuresOrUrls)';
   }
 
   @override
@@ -358,7 +359,7 @@ class _$_UploadImageSuccess implements _UploadImageSuccess {
   }
 }
 
-abstract class _UploadImageSuccess implements SignupCubitState {
+abstract class _UploadImageSuccess implements UploadImageSignupCubitState {
   const factory _UploadImageSuccess(
       {required final IList<Either<StorageFailure, String>>
           eitherFailuresOrUrls}) = _$_UploadImageSuccess;
@@ -378,7 +379,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$SignupCubitStateCopyWithImpl<$Res>
+    extends _$UploadImageSignupCubitStateCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, (v) => _then(v as _$_Failure));
@@ -394,7 +395,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'SignupCubitState.failure()';
+    return 'UploadImageSignupCubitState.failure()';
   }
 
   @override
@@ -487,7 +488,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements SignupCubitState {
+abstract class _Failure implements UploadImageSignupCubitState {
   const factory _Failure() = _$_Failure;
 }
 
@@ -500,7 +501,7 @@ abstract class _$$_RunningCopyWith<$Res> {
 
 /// @nodoc
 class __$$_RunningCopyWithImpl<$Res>
-    extends _$SignupCubitStateCopyWithImpl<$Res>
+    extends _$UploadImageSignupCubitStateCopyWithImpl<$Res>
     implements _$$_RunningCopyWith<$Res> {
   __$$_RunningCopyWithImpl(_$_Running _value, $Res Function(_$_Running) _then)
       : super(_value, (v) => _then(v as _$_Running));
@@ -516,7 +517,7 @@ class _$_Running implements _Running {
 
   @override
   String toString() {
-    return 'SignupCubitState.running()';
+    return 'UploadImageSignupCubitState.running()';
   }
 
   @override
@@ -609,6 +610,6 @@ class _$_Running implements _Running {
   }
 }
 
-abstract class _Running implements SignupCubitState {
+abstract class _Running implements UploadImageSignupCubitState {
   const factory _Running() = _$_Running;
 }

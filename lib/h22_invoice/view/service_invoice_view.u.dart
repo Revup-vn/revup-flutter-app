@@ -21,6 +21,7 @@ class ServiceInvoiceView extends StatelessWidget {
 
     return BlocBuilder<InvoiceBloc, InvoiceState>(
       builder: (context, state) => state.when(
+        failure: Container.new,
         initial: (_) => Container(),
         loading: InvoiceLoading.new,
         loadingDataSuccess: (data, ready, total, serviceData) =>

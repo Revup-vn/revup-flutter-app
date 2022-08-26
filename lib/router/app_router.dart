@@ -3,7 +3,10 @@ import 'package:revup_core/core.dart';
 
 import '../../splash/splash.dart';
 import '../account/view/account_page.u.dart';
+import '../activate/history/view/view.dart';
+import '../activate/history_provider_detail/history_provider_detail.dart';
 import '../add_message/view/add_message_page.u.dart';
+import '../add_report/view/add_report_page.u.dart';
 import '../change_language/view/change_language_page.dart';
 import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
@@ -17,7 +20,6 @@ import '../h26_review-repairman/view/review_repairman_page.u.dart';
 import '../h2_find_provider/view/list_repairer_page.u.dart';
 import '../h6_request_provider/view/request_provider_page.dart';
 import '../history_consumer/view/history_detail_page.u.dart';
-import '../history_consumer/view/history_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
@@ -32,6 +34,7 @@ import '../payment/view/payment_page.u.dart';
 import '../permission_page/permission_page.u.dart';
 import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
+import '../report/view/report_page.u.dart';
 import '../service/choose_service/view/choose_service_page.u.dart';
 import '../service/h11_choose_product/view/choose_product_page.u.dart';
 import '../service/new_service/view/new_service_request_page.u.dart';
@@ -49,19 +52,21 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: InvoicePaymentPage),
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(page: ChangeLanguagePage),
+    AdaptiveRoute<void>(page: ReportPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
-        AdaptiveRoute<void>(page: HistoryPage),
+        AdaptiveRoute<void>(page: HistoryProviderPage, maintainState: false),
         AdaptiveRoute<void>(page: NotificationPage),
         AdaptiveRoute<void>(
           page: AccountPage,
         ),
       ],
-      // maintainState: false,
+      maintainState: false,
     ),
     AdaptiveRoute<void>(page: HistoryDetailPage),
+    AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),
     AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: UpdateProfilePage),
@@ -86,6 +91,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: PermissionPage),
     AdaptiveRoute<void>(page: MapRoutePage),
+    AdaptiveRoute<void>(page: AddReportPage),
   ],
 )
 class $AppRouter {}

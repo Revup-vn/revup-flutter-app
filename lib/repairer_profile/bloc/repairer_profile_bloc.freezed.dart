@@ -174,7 +174,7 @@ mixin _$RepairerProfileState {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
+            Tuple2<RepairCategory, IList<ServiceData>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -187,7 +187,7 @@ mixin _$RepairerProfileState {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -200,7 +200,7 @@ mixin _$RepairerProfileState {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -296,7 +296,7 @@ class _$_Initial implements _Initial {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
+            Tuple2<RepairCategory, IList<ServiceData>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -312,7 +312,7 @@ class _$_Initial implements _Initial {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -328,7 +328,7 @@ class _$_Initial implements _Initial {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -391,7 +391,7 @@ abstract class _$$_DataLoadSuccessCopyWith<$Res> {
       {IList<ServiceData> serviceData,
       IList<RatingData> ratingData,
       ProviderData provider,
-      List<Tuple2<RepairCategory, IList<ServiceData>>> categories});
+      Tuple2<RepairCategory, IList<ServiceData>> categories});
 
   $ProviderDataCopyWith<$Res> get provider;
 }
@@ -428,9 +428,9 @@ class __$$_DataLoadSuccessCopyWithImpl<$Res>
           : provider // ignore: cast_nullable_to_non_nullable
               as ProviderData,
       categories: categories == freezed
-          ? _value._categories
+          ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<Tuple2<RepairCategory, IList<ServiceData>>>,
+              as Tuple2<RepairCategory, IList<ServiceData>>,
     ));
   }
 
@@ -449,9 +449,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
       {required this.serviceData,
       required this.ratingData,
       required this.provider,
-      required final List<Tuple2<RepairCategory, IList<ServiceData>>>
-          categories})
-      : _categories = categories;
+      required this.categories});
 
   @override
   final IList<ServiceData> serviceData;
@@ -459,12 +457,8 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
   final IList<RatingData> ratingData;
   @override
   final ProviderData provider;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> _categories;
   @override
-  List<Tuple2<RepairCategory, IList<ServiceData>>> get categories {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
+  final Tuple2<RepairCategory, IList<ServiceData>> categories;
 
   @override
   String toString() {
@@ -482,7 +476,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
                 .equals(other.ratingData, ratingData) &&
             const DeepCollectionEquality().equals(other.provider, provider) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other.categories, categories));
   }
 
   @override
@@ -491,7 +485,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
       const DeepCollectionEquality().hash(serviceData),
       const DeepCollectionEquality().hash(ratingData),
       const DeepCollectionEquality().hash(provider),
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(categories));
 
   @JsonKey(ignore: true)
   @override
@@ -506,7 +500,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
+            Tuple2<RepairCategory, IList<ServiceData>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -522,7 +516,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -538,7 +532,7 @@ class _$_DataLoadSuccess implements _DataLoadSuccess {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -593,13 +587,13 @@ abstract class _DataLoadSuccess implements RepairerProfileState {
       {required final IList<ServiceData> serviceData,
       required final IList<RatingData> ratingData,
       required final ProviderData provider,
-      required final List<Tuple2<RepairCategory, IList<ServiceData>>>
+      required final Tuple2<RepairCategory, IList<ServiceData>>
           categories}) = _$_DataLoadSuccess;
 
   IList<ServiceData> get serviceData;
   IList<RatingData> get ratingData;
   ProviderData get provider;
-  List<Tuple2<RepairCategory, IList<ServiceData>>> get categories;
+  Tuple2<RepairCategory, IList<ServiceData>> get categories;
   @JsonKey(ignore: true)
   _$$_DataLoadSuccessCopyWith<_$_DataLoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -651,7 +645,7 @@ class _$_DataLoadFailure implements _DataLoadFailure {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
+            Tuple2<RepairCategory, IList<ServiceData>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -667,7 +661,7 @@ class _$_DataLoadFailure implements _DataLoadFailure {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -683,7 +677,7 @@ class _$_DataLoadFailure implements _DataLoadFailure {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -782,7 +776,7 @@ class _$_Loading implements _Loading {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)
+            Tuple2<RepairCategory, IList<ServiceData>> categories)
         dataLoadSuccess,
     required TResult Function() dataLoadFailure,
     required TResult Function() loading,
@@ -798,7 +792,7 @@ class _$_Loading implements _Loading {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,
@@ -814,7 +808,7 @@ class _$_Loading implements _Loading {
             IList<ServiceData> serviceData,
             IList<RatingData> ratingData,
             ProviderData provider,
-            List<Tuple2<RepairCategory, IList<ServiceData>>> categories)?
+            Tuple2<RepairCategory, IList<ServiceData>> categories)?
         dataLoadSuccess,
     TResult Function()? dataLoadFailure,
     TResult Function()? loading,

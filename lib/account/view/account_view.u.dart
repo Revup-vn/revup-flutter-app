@@ -74,6 +74,15 @@ class AccountView extends StatelessWidget {
                 ],
               ),
               AccountItem(
+                accountName: l10n.reportLabel,
+                accountIcon: const Icon(Icons.report_problem),
+                callback: () {
+                  context.router.push(
+                    ReportRoute(cid: user.uuid),
+                  );
+                },
+              ),
+              AccountItem(
                 accountName: l10n.editProfileLabel,
                 accountIcon: const Icon(Icons.portrait),
                 callback: () {
