@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -167,7 +166,9 @@ class _AddMessageViewState extends State<AddMessageView> {
               onPressed: () async {
                 if (_descFieldKey.currentState?.validate() ?? false) {
                   final desc =
-                      _descFieldKey.currentState?.value.toString() ?? '';
+                      _descFieldKey.currentState?.value.toString() == 'null'
+                          ? ''
+                          : _descFieldKey.currentState?.value.toString();
                   final boxRprRecord = Hive.box<dynamic>('repairRecord');
                   await boxRprRecord.put('msgDesc', desc);
                   await boxRprRecord.put(
