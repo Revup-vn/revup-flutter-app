@@ -20,7 +20,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as _i50;
 import 'package:revup/account/view/account_page.u.dart' as _i40;
 import 'package:revup/activate/history/view/view.dart' as _i38;
 import 'package:revup/activate/history_provider_detail/history_provider_detail.dart'
-    as _i11;
+    as _i12;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i27;
 import 'package:revup/add_report/view/add_report_page.u.dart' as _i36;
 import 'package:revup/change_language/view/change_language_page.dart' as _i7;
@@ -41,8 +41,8 @@ import 'package:revup/h2_find_provider/view/list_repairer_page.u.dart' as _i25;
 import 'package:revup/h6_request_provider/view/request_provider_page.dart'
     as _i24;
 import 'package:revup/history_consumer/model/history_model.dart' as _i46;
-import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i10;
-import 'package:revup/home/view/home_page.u.dart' as _i9;
+import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i11;
+import 'package:revup/home/view/home_page.u.dart' as _i10;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i37;
 import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
     as _i33;
@@ -54,7 +54,7 @@ import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
 import 'package:revup/otp/view/otp_page.u.dart' as _i17;
-import 'package:revup/payment/view/payment_page.u.dart' as _i12;
+import 'package:revup/payment/view/payment_page.u.dart' as _i13;
 import 'package:revup/permission_page/permission_page.u.dart' as _i34;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i14;
 import 'package:revup/repairer_profile/models/service_data.u.dart' as _i48;
@@ -71,7 +71,7 @@ import 'package:revup/service/service-details/view/service_detail_page.u.dart'
     as _i21;
 import 'package:revup/signup/view/signup_page.u.dart' as _i18;
 import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i13;
+import 'package:revup/test/test.dart' as _i9;
 import 'package:revup_core/core.dart' as _i43;
 
 class AppRouter extends _i41.RootStackRouter {
@@ -91,8 +91,10 @@ class AppRouter extends _i41.RootStackRouter {
           routeData: routeData, child: _i2.OrderDetailPage(key: args.key));
     },
     RepairStatusRoute.name: (routeData) {
+      final args = routeData.argsAs<RepairStatusRouteArgs>();
       return _i41.AdaptivePage<void>(
-          routeData: routeData, child: const _i3.RepairStatusPage());
+          routeData: routeData,
+          child: _i3.RepairStatusPage(args.recordId, key: args.key));
     },
     ServiceInvoiceRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceInvoiceRouteArgs>();
@@ -124,36 +126,36 @@ class AppRouter extends _i41.RootStackRouter {
       return _i41.AdaptivePage<void>(
           routeData: routeData, child: _i8.ReportPage(args.cid, key: args.key));
     },
+    TestRoute.name: (routeData) {
+      return _i41.AdaptivePage<void>(
+          routeData: routeData, child: const _i9.TestPage());
+    },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i41.AdaptivePage<void>(
           routeData: routeData,
-          child: _i9.HomePage(key: args.key, user: args.user),
+          child: _i10.HomePage(key: args.key, user: args.user),
           maintainState: false);
     },
     HistoryDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryDetailRouteArgs>();
       return _i41.AdaptivePage<void>(
           routeData: routeData,
-          child: _i10.HistoryDetailPage(
+          child: _i11.HistoryDetailPage(
               key: args.key, historyModel: args.historyModel));
     },
     HistoryProviderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryProviderDetailRouteArgs>();
       return _i41.AdaptivePage<void>(
           routeData: routeData,
-          child: _i11.HistoryProviderDetailPage(args.rpID, key: args.key));
+          child: _i12.HistoryProviderDetailPage(args.rpID, key: args.key));
     },
     PaymentRoute.name: (routeData) {
       final args = routeData.argsAs<PaymentRouteArgs>();
       return _i41.AdaptivePage<void>(
           routeData: routeData,
-          child: _i12.PaymentPage(
+          child: _i13.PaymentPage(
               key: args.key, user: args.user, completer: args.completer));
-    },
-    TestRoute.name: (routeData) {
-      return _i41.AdaptivePage<void>(
-          routeData: routeData, child: const _i13.TestPage());
     },
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>();
@@ -349,6 +351,7 @@ class AppRouter extends _i41.RootStackRouter {
         _i41.RouteConfig(ChangeLanguageRoute.name,
             path: '/change-language-page'),
         _i41.RouteConfig(ReportRoute.name, path: '/report-page'),
+        _i41.RouteConfig(TestRoute.name, path: '/test-page'),
         _i41.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i41.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
@@ -363,7 +366,6 @@ class AppRouter extends _i41.RootStackRouter {
         _i41.RouteConfig(HistoryProviderDetailRoute.name,
             path: '/history-provider-detail-page'),
         _i41.RouteConfig(PaymentRoute.name, path: '/payment-page'),
-        _i41.RouteConfig(TestRoute.name, path: '/test-page'),
         _i41.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
         _i41.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i41.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
@@ -426,11 +428,26 @@ class OrderDetailRouteArgs {
 
 /// generated route for
 /// [_i3.RepairStatusPage]
-class RepairStatusRoute extends _i41.PageRouteInfo<void> {
-  const RepairStatusRoute()
-      : super(RepairStatusRoute.name, path: '/repair-status-page');
+class RepairStatusRoute extends _i41.PageRouteInfo<RepairStatusRouteArgs> {
+  RepairStatusRoute({required String recordId, _i42.Key? key})
+      : super(RepairStatusRoute.name,
+            path: '/repair-status-page',
+            args: RepairStatusRouteArgs(recordId: recordId, key: key));
 
   static const String name = 'RepairStatusRoute';
+}
+
+class RepairStatusRouteArgs {
+  const RepairStatusRouteArgs({required this.recordId, this.key});
+
+  final String recordId;
+
+  final _i42.Key? key;
+
+  @override
+  String toString() {
+    return 'RepairStatusRouteArgs{recordId: $recordId, key: $key}';
+  }
 }
 
 /// generated route for
@@ -558,7 +575,15 @@ class ReportRouteArgs {
 }
 
 /// generated route for
-/// [_i9.HomePage]
+/// [_i9.TestPage]
+class TestRoute extends _i41.PageRouteInfo<void> {
+  const TestRoute() : super(TestRoute.name, path: '/test-page');
+
+  static const String name = 'TestRoute';
+}
+
+/// generated route for
+/// [_i10.HomePage]
 class HomeRoute extends _i41.PageRouteInfo<HomeRouteArgs> {
   HomeRoute(
       {_i42.Key? key,
@@ -586,7 +611,7 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i10.HistoryDetailPage]
+/// [_i11.HistoryDetailPage]
 class HistoryDetailRoute extends _i41.PageRouteInfo<HistoryDetailRouteArgs> {
   HistoryDetailRoute({_i42.Key? key, required _i46.HistoryModel historyModel})
       : super(HistoryDetailRoute.name,
@@ -610,7 +635,7 @@ class HistoryDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i11.HistoryProviderDetailPage]
+/// [_i12.HistoryProviderDetailPage]
 class HistoryProviderDetailRoute
     extends _i41.PageRouteInfo<HistoryProviderDetailRouteArgs> {
   HistoryProviderDetailRoute({required String rpID, _i42.Key? key})
@@ -635,7 +660,7 @@ class HistoryProviderDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i12.PaymentPage]
+/// [_i13.PaymentPage]
 class PaymentRoute extends _i41.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute(
       {_i42.Key? key,
@@ -661,14 +686,6 @@ class PaymentRouteArgs {
   String toString() {
     return 'PaymentRouteArgs{key: $key, user: $user, completer: $completer}';
   }
-}
-
-/// generated route for
-/// [_i13.TestPage]
-class TestRoute extends _i41.PageRouteInfo<void> {
-  const TestRoute() : super(TestRoute.name, path: '/test-page');
-
-  static const String name = 'TestRoute';
 }
 
 /// generated route for

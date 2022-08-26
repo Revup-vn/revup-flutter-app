@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
@@ -39,58 +38,17 @@ class _SplashPageState extends State<SplashPage> {
           break;
         case NotificationType.NormalMessage:
           final subType = p0.payload.payload['subType'] as String;
-          final providerId = p0.payload.payload['providerId'] as String;
           if (subType == 'ProviderDeparted') {
+            final providerId = p0.payload.payload['providerId'] as String;
             context.router.push(MapRouteRoute(providerId: providerId));
           }
-          break;
-        case NotificationType.VerifiedArrival:
-          showDialog<void>(
-            context: context,
-            builder: (context) => Dialog(
-              child: SizedBox(
-                height: 150,
-                width: 150,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        top: 10,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: AutoSizeText(
-                              context.l10n.cancelUpdateServiceLabel,
-                              style: Theme.of(context).textTheme.labelLarge,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      right: 1,
-                      bottom: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              context.router.pop();
-                            },
-                            child: AutoSizeText(
-                              context.l10n.confirmLabel,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+          if (subType == 'compltedRepair') {
+            final recordId = p0.payload.payload['recordId'] as String;
+            final providerId = p0.payload.payload['providerId'] as String;
+            context.router.push(
+              ReviewRepairmanRoute(providerId: providerId, repairId: recordId),
+            );
+          }
           break;
         case NotificationType.ProviderRepaired:
           final providerId = p0.payload.payload['providerId'] as String;
@@ -104,16 +62,7 @@ class _SplashPageState extends State<SplashPage> {
             predicate: (route) => true,
           );
           break;
-        case NotificationType.NormalMessage:
-          final tpyeSub = p0.payload.payload['typeSub'] as String;
-          if (tpyeSub == 'compltedRepair') {
-            final recordId = p0.payload.payload['recordId'] as String;
-            final providerId = p0.payload.payload['providerId'] as String;
-            context.router.push(
-              ReviewRepairmanRoute(providerId: providerId, repairId: recordId),
-            );
-          }
-          break;
+
         // ignore: no_default_cases
         default:
           break;

@@ -215,5 +215,8 @@
   "reportImgLabel": "Provide image if you need (optional)",
   "otherLabel": "Other",
   "productLabel": "Product",
-  "addReportFailLabel": "Add report fail"
+  "addReportFailLabel": "Add report fail",
+  "warningDesLabel": "Make sure you see the repairman before confirming the repairman has arrived",
+  "warningLabel": "Note",
+  "arrivedRepairmanLabel": "Confirmed repairman has arrived. Please confirm the repairman has arrived."
 }

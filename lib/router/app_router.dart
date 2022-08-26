@@ -53,6 +53,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(page: ReportPage),
+    AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [
@@ -68,7 +69,6 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: HistoryDetailPage),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),
-    AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(page: UpdateProfilePage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),

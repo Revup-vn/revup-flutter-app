@@ -22,21 +22,27 @@ class H16MapRoute extends StatelessWidget {
             child: CircularProgressIndicator.adaptive(),
           ),
           success: (directions, fromMaker, toMarker, providerData, movingFees) {
-            return Stack(
-              children: <Widget>[
-                RequestProviderLive(
-                  directions: directions,
-                  fromMaker: fromMaker,
-                  toMarker: toMarker,
-                  providerData: providerData,
-                  movingFees: movingFees,
-                  userStore: context.read(),
-                ),
-                RequestDetailsLive(
-                  providerData: providerData,
-                  movingFees: movingFees,
-                ),
-              ],
+            return Scaffold(
+              body: Stack(
+                clipBehavior: Clip.none,
+                children: <Widget>[
+                  RequestProviderLive(
+                    directions: directions,
+                    fromMaker: fromMaker,
+                    toMarker: toMarker,
+                    providerData: providerData,
+                    movingFees: movingFees,
+                    userStore: context.read(),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: RequestDetailsLive(
+                      providerData: providerData,
+                      movingFees: movingFees,
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         );

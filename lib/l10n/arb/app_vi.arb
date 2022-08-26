@@ -216,5 +216,9 @@
   "reportImgLabel": "Cung cấp hình ảnh để chứng minh (tuỳ chọn)",
   "otherLabel": "Khác",
   "productLabel": "Sản phẩm",
-  "addReportFailLabel": "Thêm báo cáo lỗi"
+  "addReportFailLabel": "Thêm báo cáo lỗi",
+  "warningDesLabel": "Hãy chắc chắn rằng bạn đã gặp thợ sửa trước khi xác nhận thợ sửa đã đến",
+  "warningLabel": "Lưu ý",
+  "arrivedRepairmanLabel": "Thợ sửa xác nhận đã đến. Vui lòng xác nhận thợ sửa đã đến"
+
 }

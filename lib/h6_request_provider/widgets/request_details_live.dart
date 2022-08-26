@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
@@ -13,7 +12,7 @@ import '../../service/widgets/service_avatar.dart';
 import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 
-class RequestDetailsLive extends StatelessWidget {
+class RequestDetailsLive extends StatefulWidget {
   const RequestDetailsLive({
     super.key,
     required this.providerData,
@@ -21,6 +20,91 @@ class RequestDetailsLive extends StatelessWidget {
   });
   final ProviderData providerData;
   final int movingFees;
+
+  @override
+  State<RequestDetailsLive> createState() => _RequestDetailsLiveState();
+}
+
+class _RequestDetailsLiveState extends State<RequestDetailsLive> {
+  late bool isEnable;
+  late String repairRecord;
+  @override
+  void initState() {
+    super.initState();
+    isEnable = false;
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.payload.type;
+      switch (type) {
+        case NotificationType.NormalMessage:
+          final subType = p0.payload.payload['subType'] as String;
+          if (subType == 'StartRepair') {
+            final recordId = p0.payload.payload['recordId'] as String;
+            context.router.push(
+              RepairStatusRoute(recordId: recordId),
+            );
+          }
+          break;
+        case NotificationType.VerifiedArrival:
+          repairRecord = p0.payload.payload['recordId'] as String;
+          showDialog<void>(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => Dialog(
+              child: SizedBox(
+                height: 150,
+                width: 150,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              context.l10n.arrivedRepairmanLabel,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: 1,
+                      bottom: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              if (mounted) {
+                                setState(() {
+                                  isEnable = true;
+                                });
+                              }
+                              context.router.pop();
+                            },
+                            child: AutoSizeText(
+                              context.l10n.confirmLabel,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+          break;
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +127,7 @@ class RequestDetailsLive extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 16,
             right: 16,
-            bottom: 28,
+            bottom: 10,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -67,38 +151,50 @@ class RequestDetailsLive extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AspectRatio(
-                      aspectRatio: 0.7,
-                      child: Column(
-                        children: [
-                          ServiceAvatar(
-                            imageUrl: providerData.avatar,
-                          ),
-                          AutoSizeText(
-                            providerData.fullName,
-                            maxLines: 1,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AutoSizeText(
-                                providerData.rating.toString(),
-                                maxLines: 1,
-                              ),
-                              const Icon(Icons.star_rate_rounded),
-                              AutoSizeText(
-                                '''(${providerData.ratingCount.toString()})''',
-                                maxLines: 1,
-                              ),
-                            ],
-                          ),
-                        ],
+                    Expanded(
+                      child: AspectRatio(
+                        aspectRatio: 0.7,
+                        child: Column(
+                          children: [
+                            ServiceAvatar(
+                              imageUrl: widget.providerData.avatar,
+                            ),
+                            AutoSizeText(
+                              widget.providerData.fullName,
+                              maxLines: 1,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AutoSizeText(
+                                  widget.providerData.rating.isNaN ||
+                                          widget.providerData.rating == 0
+                                      ? '0'
+                                      : widget.providerData.rating.toString(),
+                                  maxLines: 1,
+                                ),
+                                Icon(
+                                  Icons.star_rate_rounded,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                                ),
+                                AutoSizeText(
+                                  '''(${widget.providerData.ratingCount.toString()})''',
+                                  maxLines: 1,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SizedBox.square(
                               child: DecoratedBox(
@@ -120,6 +216,9 @@ class RequestDetailsLive extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             SizedBox.square(
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
@@ -130,7 +229,7 @@ class RequestDetailsLive extends StatelessWidget {
                                 ),
                                 child: IconButton(
                                   onPressed: () {
-                                    makePhoneCall(providerData.phone);
+                                    makePhoneCall(widget.providerData.phone);
                                   },
                                   icon: Icon(
                                     Icons.call,
@@ -139,6 +238,9 @@ class RequestDetailsLive extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                            ),
+                            const SizedBox(
+                              width: 10,
                             ),
                             SizedBox.square(
                               child: DecoratedBox(
@@ -165,29 +267,54 @@ class RequestDetailsLive extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: AutoSizeText.rich(
+                  TextSpan(
+                    text: '${l10n.warningLabel} : ',
+                    children: [
+                      TextSpan(
+                        text: l10n.warningDesLabel,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ],
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               ElevatedButton(
-                onPressed: () {
-                  context.read<H16MapRouteBloc>().add(
-                        H16MapRouteEvent.confirmArrival(
-                          onRoute: () =>
-                              context.router.push(const RepairStatusRoute()),
-                          sendMessage: (token) => context
-                              .read<NotificationCubit>()
-                              .sendMessageToToken(
-                                SendMessage(
-                                  title: 'Revup',
-                                  body: '',
-                                  token: token,
-                                  icon: kRevupIconApp,
-                                  payload: MessageData(
-                                    type: NotificationType.VerifiedArrival,
-                                    payload: <String, dynamic>{},
-                                  ),
-                                ),
+                onPressed: isEnable
+                    ? () {
+                        context.read<H16MapRouteBloc>().add(
+                              H16MapRouteEvent.confirmArrival(
+                                onRoute: () {},
+                                sendMessage: (token) => context
+                                    .read<NotificationCubit>()
+                                    .sendMessageToToken(
+                                      SendMessage(
+                                        title: 'Revup',
+                                        body: '',
+                                        token: token,
+                                        icon: kRevupIconApp,
+                                        payload: MessageData(
+                                          type:
+                                              NotificationType.VerifiedArrival,
+                                          payload: <String, dynamic>{},
+                                        ),
+                                      ),
+                                    ),
                               ),
-                        ),
-                      );
-                },
+                            );
+                      }
+                    : null,
                 child: AutoSizeText(l10n.repairerArrivedLabel),
               ),
             ],
