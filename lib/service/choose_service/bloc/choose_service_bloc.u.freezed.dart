@@ -25,10 +25,7 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst)
         serviceListSubmitted,
     required TResult Function(
-            Function0<void> onRoute,
-            List<ServiceData> saveLst,
-            String recordId,
-            Function2<String, String, void> sendMessage)
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) =>
@@ -42,7 +39,7 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) =>
@@ -56,7 +53,7 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -185,10 +182,7 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst)
         serviceListSubmitted,
     required TResult Function(
-            Function0<void> onRoute,
-            List<ServiceData> saveLst,
-            String recordId,
-            Function2<String, String, void> sendMessage)
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) {
@@ -205,7 +199,7 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -222,7 +216,7 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -384,10 +378,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst)
         serviceListSubmitted,
     required TResult Function(
-            Function0<void> onRoute,
-            List<ServiceData> saveLst,
-            String recordId,
-            Function2<String, String, void> sendMessage)
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) {
@@ -404,7 +395,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -421,7 +412,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
@@ -492,10 +483,7 @@ abstract class _$$_SelectProductCompletedCopyWith<$Res> {
           $Res Function(_$_SelectProductCompleted) then) =
       __$$_SelectProductCompletedCopyWithImpl<$Res>;
   $Res call(
-      {Function0<void> onRoute,
-      List<ServiceData> saveLst,
-      String recordId,
-      Function2<String, String, void> sendMessage});
+      {Function0<void> onRoute, List<ServiceData> saveLst, String recordId});
 }
 
 /// @nodoc
@@ -515,7 +503,6 @@ class __$$_SelectProductCompletedCopyWithImpl<$Res>
     Object? onRoute = freezed,
     Object? saveLst = freezed,
     Object? recordId = freezed,
-    Object? sendMessage = freezed,
   }) {
     return _then(_$_SelectProductCompleted(
       onRoute: onRoute == freezed
@@ -530,10 +517,6 @@ class __$$_SelectProductCompletedCopyWithImpl<$Res>
           ? _value.recordId
           : recordId // ignore: cast_nullable_to_non_nullable
               as String,
-      sendMessage: sendMessage == freezed
-          ? _value.sendMessage
-          : sendMessage // ignore: cast_nullable_to_non_nullable
-              as Function2<String, String, void>,
     ));
   }
 }
@@ -544,8 +527,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
   const _$_SelectProductCompleted(
       {required this.onRoute,
       required final List<ServiceData> saveLst,
-      required this.recordId,
-      required this.sendMessage})
+      required this.recordId})
       : _saveLst = saveLst;
 
   @override
@@ -559,12 +541,10 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
 
   @override
   final String recordId;
-  @override
-  final Function2<String, String, void> sendMessage;
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.selectProductCompleted(onRoute: $onRoute, saveLst: $saveLst, recordId: $recordId, sendMessage: $sendMessage)';
+    return 'ChooseServiceEvent.selectProductCompleted(onRoute: $onRoute, saveLst: $saveLst, recordId: $recordId)';
   }
 
   @override
@@ -574,9 +554,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
             other is _$_SelectProductCompleted &&
             (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
             const DeepCollectionEquality().equals(other._saveLst, _saveLst) &&
-            const DeepCollectionEquality().equals(other.recordId, recordId) &&
-            (identical(other.sendMessage, sendMessage) ||
-                other.sendMessage == sendMessage));
+            const DeepCollectionEquality().equals(other.recordId, recordId));
   }
 
   @override
@@ -584,8 +562,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
       runtimeType,
       onRoute,
       const DeepCollectionEquality().hash(_saveLst),
-      const DeepCollectionEquality().hash(recordId),
-      sendMessage);
+      const DeepCollectionEquality().hash(recordId));
 
   @JsonKey(ignore: true)
   @override
@@ -603,14 +580,11 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
             List<ServiceData> saveLst)
         serviceListSubmitted,
     required TResult Function(
-            Function0<void> onRoute,
-            List<ServiceData> saveLst,
-            String recordId,
-            Function2<String, String, void> sendMessage)
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) {
-    return selectProductCompleted(onRoute, saveLst, recordId, sendMessage);
+    return selectProductCompleted(onRoute, saveLst, recordId);
   }
 
   @override
@@ -623,12 +597,11 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
-    return selectProductCompleted?.call(
-        onRoute, saveLst, recordId, sendMessage);
+    return selectProductCompleted?.call(onRoute, saveLst, recordId);
   }
 
   @override
@@ -641,13 +614,13 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (selectProductCompleted != null) {
-      return selectProductCompleted(onRoute, saveLst, recordId, sendMessage);
+      return selectProductCompleted(onRoute, saveLst, recordId);
     }
     return orElse();
   }
@@ -694,16 +667,13 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
 
 abstract class _SelectProductCompleted implements ChooseServiceEvent {
   const factory _SelectProductCompleted(
-          {required final Function0<void> onRoute,
-          required final List<ServiceData> saveLst,
-          required final String recordId,
-          required final Function2<String, String, void> sendMessage}) =
-      _$_SelectProductCompleted;
+      {required final Function0<void> onRoute,
+      required final List<ServiceData> saveLst,
+      required final String recordId}) = _$_SelectProductCompleted;
 
   Function0<void> get onRoute;
   List<ServiceData> get saveLst;
   String get recordId;
-  Function2<String, String, void> get sendMessage;
   @JsonKey(ignore: true)
   _$$_SelectProductCompletedCopyWith<_$_SelectProductCompleted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -783,10 +753,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             List<ServiceData> saveLst)
         serviceListSubmitted,
     required TResult Function(
-            Function0<void> onRoute,
-            List<ServiceData> saveLst,
-            String recordId,
-            Function2<String, String, void> sendMessage)
+            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) {
@@ -803,7 +770,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
@@ -820,7 +787,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
             List<ServiceData> saveLst)?
         serviceListSubmitted,
     TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId, Function2<String, String, void> sendMessage)?
+            String recordId)?
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),

@@ -13,7 +13,6 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required Function0<void> onRoute,
     required List<ServiceData> saveLst,
     required String recordId,
-    required Function2<String, String, void> sendMessage,
   }) = _SelectProductCompleted;
   const factory ChooseServiceEvent.detailRequestAccepted({
     required String recordId,

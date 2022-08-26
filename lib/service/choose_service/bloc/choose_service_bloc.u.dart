@@ -312,7 +312,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           ),
         );
       },
-      selectProductCompleted: (onRoute, saveLst, recordId, sendMessage) async {
+      selectProductCompleted: (onRoute, saveLst, recordId) async {
         // create list pending payment service
         final _paymentRepo = storeRepository
             .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
@@ -351,7 +351,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         log('TOKEN:${tokens.first.token}');
 
         // send notify to provider
-        sendMessage(tokens.first.token, recordId);
+        // sendMessage(tokens.first.token, recordId);
 
         onRoute();
       },

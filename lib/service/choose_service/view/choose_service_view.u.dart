@@ -152,23 +152,6 @@ class ChooseServiceView extends StatelessWidget {
                               onRoute: () => context.router.pop(),
                               saveLst: saveLst,
                               recordId: recordId ?? '',
-                              sendMessage: (token, recordId) => context
-                                  .read<NotificationCubit>()
-                                  .sendMessageToToken(
-                                    SendMessage(
-                                      title: 'Revup',
-                                      body: l10n.submitRequestSuccessLabel,
-                                      token: token,
-                                      icon: kRevupIconApp,
-                                      payload: MessageData(
-                                        type: NotificationType.NormalMessage,
-                                        payload: <String, dynamic>{
-                                          'subType': 'ConsumerSelected',
-                                          'recordId': recordId,
-                                        },
-                                      ),
-                                    ),
-                                  ),
                             ),
                           )
                       : context.read<ChooseServiceBloc>().add(

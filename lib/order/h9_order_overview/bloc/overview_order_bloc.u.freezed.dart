@@ -19,32 +19,44 @@ mixin _$OverviewOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +120,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        submitted,
   }) {
     return started();
   }
@@ -116,6 +131,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
   }) {
     return started?.call();
   }
@@ -124,6 +142,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -136,6 +157,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return started(this);
   }
@@ -144,6 +166,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
   }) {
     return started?.call(this);
   }
@@ -152,6 +175,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,6 +187,159 @@ class _$_Started implements _Started {
 
 abstract class _Started implements OverviewOrderEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+  $Res call(
+      {Function0<void> onRoute, Function2<String, String, void> sendMessage});
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res>
+    extends _$OverviewOrderEventCopyWithImpl<$Res>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
+
+  @override
+  _$_Submitted get _value => super._value as _$_Submitted;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+    Object? sendMessage = freezed,
+  }) {
+    return _then(_$_Submitted(
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
+      sendMessage: sendMessage == freezed
+          ? _value.sendMessage
+          : sendMessage // ignore: cast_nullable_to_non_nullable
+              as Function2<String, String, void>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Submitted implements _Submitted {
+  const _$_Submitted({required this.onRoute, required this.sendMessage});
+
+  @override
+  final Function0<void> onRoute;
+  @override
+  final Function2<String, String, void> sendMessage;
+
+  @override
+  String toString() {
+    return 'OverviewOrderEvent.submitted(onRoute: $onRoute, sendMessage: $sendMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submitted &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            (identical(other.sendMessage, sendMessage) ||
+                other.sendMessage == sendMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onRoute, sendMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        submitted,
+  }) {
+    return submitted(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
+  }) {
+    return submitted?.call(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(onRoute, sendMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements OverviewOrderEvent {
+  const factory _Submitted(
+          {required final Function0<void> onRoute,
+          required final Function2<String, String, void> sendMessage}) =
+      _$_Submitted;
+
+  Function0<void> get onRoute;
+  Function2<String, String, void> get sendMessage;
+  @JsonKey(ignore: true)
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
