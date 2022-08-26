@@ -7,8 +7,6 @@ import '../../../l10n/l10n.dart';
 class RepairStatusView extends StatelessWidget {
   const RepairStatusView({super.key});
 
-  // TODO(tcmhoang): this widget did not use, did it?
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

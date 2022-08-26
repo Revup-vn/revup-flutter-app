@@ -1,8 +1,5 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/find_list_repairer_bloc.u.dart';
@@ -14,7 +11,6 @@ class ListRepairerLoadDataFailure extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        log('message');
         context.read<FindListRepairerBloc>().add(
               const FindListRepairerEvent.started(),
             );

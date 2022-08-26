@@ -12,6 +12,7 @@ import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
 import '../guide-support/view/terms_privacy_page.u.dart';
 import '../guide-support/widgets/faqs_item_otp.u.dart';
+import '../h16_map_route/view/h16_map_route_page.dart';
 import '../h1_find_nearby/view/find_nearby_page.u.dart';
 import '../h22_invoice/view/service_invoice_page.u.dart';
 import '../h23_invoice_payment/view/invoice_payment_page.u.dart';
@@ -89,6 +90,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: TermsPrivacyPage),
     AdaptiveRoute<void>(page: LoginEnterPhonePage),
     AdaptiveRoute<void>(page: PermissionPage),
+    AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(page: AddReportPage),
   ],
 )

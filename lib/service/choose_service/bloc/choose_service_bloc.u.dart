@@ -171,9 +171,6 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                   ),
                 )
                 .fold((l) => throw NullThrownError(), (r) => r.toList());
-        // ..sort(
-        //   (a, b) => a.created.compareTo(b.created),
-        // );
 
         log('TOKEN:${tokens.first.token}');
 

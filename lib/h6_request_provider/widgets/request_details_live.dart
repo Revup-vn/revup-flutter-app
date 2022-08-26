@@ -1,10 +1,16 @@
-import 'package:flutter/material.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
+import '../../h16_map_route/bloc/h16_map_route_bloc.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../../service/widgets/service_avatar.dart';
+import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 
 class RequestDetailsLive extends StatelessWidget {
@@ -156,35 +162,31 @@ class RequestDetailsLive extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Column(
-                          children: [
-                            AutoSizeText(
-                              '''${l10n.addressLabel}: ${providerData.address}''',
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            AutoSizeText(
-                              '''${l10n.noteLabel}: ${l10n.noteMovingFeeLabel}''',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  // context.router.push(
-                  //   AddMessageRoute(
-                  //     providerData: providerData,
-                  //     movingFee: movingFees,
-                  //   ),
-                  // );
+                  context.read<H16MapRouteBloc>().add(
+                        H16MapRouteEvent.confirmArrival(
+                          onRoute: () =>
+                              context.router.push(const RepairStatusRoute()),
+                          sendMessage: (token) => context
+                              .read<NotificationCubit>()
+                              .sendMessageToToken(
+                                SendMessage(
+                                  title: 'Revup',
+                                  body: '',
+                                  token: token,
+                                  icon: kRevupIconApp,
+                                  payload: MessageData(
+                                    type: NotificationType.VerifiedArrival,
+                                    payload: <String, dynamic>{},
+                                  ),
+                                ),
+                              ),
+                        ),
+                      );
                 },
                 child: AutoSizeText(l10n.repairerArrivedLabel),
               ),

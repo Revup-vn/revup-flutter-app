@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -35,6 +35,61 @@ class _SplashPageState extends State<SplashPage> {
           // route to order overview
           context.router.push(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
+          );
+          break;
+        case NotificationType.NormalMessage:
+          final subType = p0.payload.payload['subType'] as String;
+          final providerId = p0.payload.payload['providerId'] as String;
+          if (subType == 'ProviderDeparted') {
+            context.router.push(MapRouteRoute(providerId: providerId));
+          }
+          break;
+        case NotificationType.VerifiedArrival:
+          showDialog<void>(
+            context: context,
+            builder: (context) => Dialog(
+              child: SizedBox(
+                height: 150,
+                width: 150,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        top: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              context.l10n.cancelUpdateServiceLabel,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: 1,
+                      bottom: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              context.router.pop();
+                            },
+                            child: AutoSizeText(
+                              context.l10n.confirmLabel,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
           break;
         case NotificationType.ProviderRepaired:

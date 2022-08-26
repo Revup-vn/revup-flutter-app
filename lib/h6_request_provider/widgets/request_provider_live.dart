@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -109,25 +108,24 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
       ..add(fromMarker)
       ..add(toMarker);
 
-    final miny = (fromLat <= toLat) ? fromLat : toLat;
-    final minx = (fromLng <= toLng) ? fromLng : toLng;
-    final maxy = (fromLat <= toLat) ? toLat : fromLat;
-    final maxx = (fromLng <= toLng) ? toLng : toLat;
+    final minLat = (fromLat <= toLat) ? fromLat : toLat;
+    final minLng = (fromLng <= toLng) ? fromLng : toLng;
+    final maxLat = (fromLat <= toLat) ? toLat : fromLat;
+    final maxLng = (fromLng <= toLng) ? toLng : fromLng;
 
-    final southWestLatitude = miny;
-    final southWestLongitude = minx;
+    final southWestLatitude = minLat;
+    final southWestLongitude = minLng;
 
-    final northEastLatitude = maxy;
-    final northEastLongitude = maxx;
+    final northEastLatitude = maxLat;
+    final northEastLongitude = maxLng;
 
-    // Accommodate the two locations within the camera view of the map
     await mapController.animateCamera(
       CameraUpdate.newLatLngBounds(
         LatLngBounds(
           northeast: LatLng(northEastLatitude, northEastLongitude),
           southwest: LatLng(southWestLatitude, southWestLongitude),
         ),
-        100,
+        70,
       ),
     );
 
@@ -160,7 +158,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
     final fromLat = widget.fromMaker.position.latitude;
     final fromLng = widget.fromMaker.position.longitude;
 
-    final toLat = widget.toMarker.position.longitude;
+    final toLat = widget.toMarker.position.latitude;
     final toLng = widget.toMarker.position.longitude;
     initialPolylines = await _calculateDurationAndDistance(
       fromLat: fromLat,
@@ -198,6 +196,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
               mapController = controller;
               initPolylines();
             },
+            myLocationEnabled: true,
             markers: Set<Marker>.from(markers),
             polylines: {
               Polyline(
@@ -211,24 +210,32 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
             },
           );
         }
-        final providerLoc = snapshot.data!.data()!['cur_location'] as GeoPoint;
-
+        final maybeProviderData = snapshot.data!.data()!;
+        final providerLoc = (maybeProviderData['cur_location']
+            as Map<String, dynamic>)['geopoint'] as GeoPoint;
         return FutureBuilder<Map<PolylineId, Polyline>>(
           future: _calculateDurationAndDistance(
             fromLat: providerLoc.latitude,
             fromLng: providerLoc.longitude,
-            toLat: providerLoc.latitude,
-            toLng: providerLoc.longitude,
+            toLat: widget.toMarker.position.latitude,
+            toLng: widget.toMarker.position.longitude,
           ),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return GoogleMap(
                 padding: const EdgeInsets.only(bottom: 320),
-                initialCameraPosition: _initialLocation,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(
+                    providerLoc.latitude,
+                    providerLoc.longitude,
+                  ),
+                ),
+                myLocationEnabled: true,
                 onMapCreated: (GoogleMapController controller) {
                   mapController = controller;
                   initPolylines();
                 },
+                zoomControlsEnabled: false,
                 markers: Set<Marker>.from(markers),
                 polylines: {
                   Polyline(
@@ -244,6 +251,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
             }
 
             return GoogleMap(
+              padding: const EdgeInsets.only(bottom: 320),
               markers: Set<Marker>.from(markers),
               initialCameraPosition: CameraPosition(
                 target: LatLng(
@@ -251,9 +259,10 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
                   providerLoc.longitude,
                 ),
               ),
-              myLocationEnabled: true,
               myLocationButtonEnabled: false,
+              myLocationEnabled: true,
               zoomControlsEnabled: false,
+              zoomGesturesEnabled: false,
               polylines: Set<Polyline>.of(snapshot.data!.values),
               onMapCreated: (GoogleMapController controller) {
                 mapController = controller;
