@@ -330,6 +330,29 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         for (var i = 0; i < payment.length; i++) {
           await _paymentRepo.delete(payment[i].serviceName);
         }
+
+        // get latest provider fcm token
+        final provider = (await _userStore.get(providerId))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(provider).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+
+        log('TOKEN:${tokens.first.token}');
+
+        // send notify to provider
+        // sendMessage(tokens.first.token, recordId);
+
         onRoute();
       },
     );

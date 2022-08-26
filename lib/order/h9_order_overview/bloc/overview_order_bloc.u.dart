@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -142,6 +143,31 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
               ),
             );
         // .fold((l) => nil<PaymentService>(), (r) => r);
+      },
+      submitted: (
+        onRoute,
+        sendMessage,
+      ) async {
+        // get latest consumer fcm token
+        final provider = (await _userStore.get(providerId))
+            .fold<Option<AppUser>>(
+              (l) => none(),
+              some,
+            )
+            .getOrElse(() => throw NullThrownError());
+        final tokens =
+            (await storeRepository.userNotificationTokenRepo(provider).all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        log('TOKEN:${tokens.first.token}');
+
+        sendMessage(tokens.first.token, providerId);
+
+        onRoute();
       },
     );
   }
