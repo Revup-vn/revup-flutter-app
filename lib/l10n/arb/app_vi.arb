@@ -198,5 +198,6 @@
   "settingsLabel": "Cài đặt",
   "onRequestLabel": "Bạn có yêu cầu đang được thực hiện",
   "chooseAtLeastServiceLabel": "Chọn tối thiểu một sản phẩm",
-  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm"
+  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm",
+  "confirmArrivalLabel": "Thợ xác nhận đã đến nơi, bạn đã gặp thợ chưa"
 }

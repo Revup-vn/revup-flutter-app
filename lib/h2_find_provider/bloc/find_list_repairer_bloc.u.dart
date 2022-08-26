@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -62,7 +61,6 @@ class FindListRepairerBloc
               LatLng(repairPoint.latitude, repairPoint.longitude),
               LatLng(providerLoc.latitude, providerLoc.longitude),
             );
-            log(directions.toString());
             final ratingData = (await _repairRecord.where(
               'pid',
               isEqualTo: providerData['uuid'] as String,

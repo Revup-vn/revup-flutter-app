@@ -197,5 +197,6 @@
   "settingsLabel": "Settings",
   "onRequestLabel": "You have a request in progress",
   "chooseAtLeastServiceLabel": "You must choose at least one service",
-  "consumerChooseServiceDoneLabel": "The customer has finished selecting the product"
+  "consumerChooseServiceDoneLabel": "The customer has finished selecting the product",
+  "confirmArrivalLabel": "The repairer has confirm arrived, have you met the repairer yet?"
 }

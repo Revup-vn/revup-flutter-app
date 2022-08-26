@@ -11,39 +11,40 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i42;
+import 'dart:async' as _i43;
 
-import 'package:auto_route/auto_route.dart' as _i37;
-import 'package:dartz/dartz.dart' as _i45;
-import 'package:flutter/material.dart' as _i38;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i46;
-import 'package:revup/account/view/account_page.u.dart' as _i36;
+import 'package:auto_route/auto_route.dart' as _i38;
+import 'package:dartz/dartz.dart' as _i46;
+import 'package:flutter/material.dart' as _i39;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i47;
+import 'package:revup/account/view/account_page.u.dart' as _i37;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i25;
 import 'package:revup/change_language/view/change_language_page.dart' as _i7;
 import 'package:revup/guide-support/view/about_us_page.u.dart' as _i29;
 import 'package:revup/guide-support/view/faqs_page.u.dart' as _i27;
 import 'package:revup/guide-support/view/terms_privacy_page.u.dart' as _i30;
 import 'package:revup/guide-support/widgets/faqs_item_otp.u.dart' as _i28;
+import 'package:revup/h16_map_route/view/h16_map_route_page.dart' as _i33;
 import 'package:revup/h1_find_nearby/view/find_nearby_page.u.dart' as _i21;
-import 'package:revup/h22_invoice/models/service_data.dart' as _i41;
+import 'package:revup/h22_invoice/models/service_data.dart' as _i42;
 import 'package:revup/h22_invoice/view/service_invoice_page.u.dart' as _i4;
 import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
     as _i5;
 import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
     as _i6;
-import 'package:revup/h2_find_provider/models/provider_data.u.dart' as _i40;
+import 'package:revup/h2_find_provider/models/provider_data.u.dart' as _i41;
 import 'package:revup/h2_find_provider/view/list_repairer_page.u.dart' as _i23;
 import 'package:revup/h6_request_provider/view/request_provider_page.dart'
     as _i22;
-import 'package:revup/history_consumer/model/history_model.dart' as _i43;
+import 'package:revup/history_consumer/model/history_model.dart' as _i44;
 import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i9;
-import 'package:revup/history_consumer/view/history_page.u.dart' as _i34;
+import 'package:revup/history_consumer/view/history_page.u.dart' as _i35;
 import 'package:revup/home/view/home_page.u.dart' as _i8;
-import 'package:revup/home/widgets/home_body_page.u.dart' as _i33;
+import 'package:revup/home/widgets/home_body_page.u.dart' as _i34;
 import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
     as _i31;
 import 'package:revup/login/view/login_page.u.dart' as _i13;
-import 'package:revup/notification_page/view/notification_page.u.dart' as _i35;
+import 'package:revup/notification_page/view/notification_page.u.dart' as _i36;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i14;
 import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
     as _i26;
@@ -53,7 +54,7 @@ import 'package:revup/otp/view/otp_page.u.dart' as _i15;
 import 'package:revup/payment/view/payment_page.u.dart' as _i10;
 import 'package:revup/permission_page/permission_page.u.dart' as _i32;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i12;
-import 'package:revup/repairer_profile/models/service_data.u.dart' as _i44;
+import 'package:revup/repairer_profile/models/service_data.u.dart' as _i45;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i24;
 import 'package:revup/service/choose_service/view/choose_service_page.u.dart'
@@ -67,37 +68,37 @@ import 'package:revup/service/service-details/view/service_detail_page.u.dart'
 import 'package:revup/signup/view/signup_page.u.dart' as _i16;
 import 'package:revup/splash/splash.dart' as _i1;
 import 'package:revup/test/test.dart' as _i11;
-import 'package:revup_core/core.dart' as _i39;
+import 'package:revup_core/core.dart' as _i40;
 
-class AppRouter extends _i37.RootStackRouter {
-  AppRouter([_i38.GlobalKey<_i38.NavigatorState>? navigatorKey])
+class AppRouter extends _i38.RootStackRouter {
+  AppRouter([_i39.GlobalKey<_i39.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i37.PageFactory> pagesMap = {
+  final Map<String, _i38.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i1.SplashPage());
     },
     OrderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<OrderDetailRouteArgs>(
           orElse: () => const OrderDetailRouteArgs());
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: _i2.OrderDetailPage(key: args.key));
     },
     RepairStatusRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i3.RepairStatusPage());
     },
     ServiceInvoiceRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceInvoiceRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i4.ServiceInvoicePage(args.providerID, key: args.key));
     },
     InvoicePaymentRoute.name: (routeData) {
       final args = routeData.argsAs<InvoicePaymentRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i5.InvoicePaymentPage(
               args.providerData, args.serviceData, args.total,
@@ -105,62 +106,62 @@ class AppRouter extends _i37.RootStackRouter {
     },
     ReviewRepairmanRoute.name: (routeData) {
       final args = routeData.argsAs<ReviewRepairmanRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i6.ReviewRepairmanPage(args.providerData, args.completer,
               key: args.key));
     },
     ChangeLanguageRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i7.ChangeLanguagePage());
     },
     HomeRoute.name: (routeData) {
       final args = routeData.argsAs<HomeRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i8.HomePage(key: args.key, user: args.user));
     },
     HistoryDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryDetailRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i9.HistoryDetailPage(
               key: args.key, historyModel: args.historyModel));
     },
     PaymentRoute.name: (routeData) {
       final args = routeData.argsAs<PaymentRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i10.PaymentPage(
               key: args.key, user: args.user, completer: args.completer));
     },
     TestRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i11.TestPage());
     },
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i12.UpdateProfilePage(key: args.key, user: args.user));
     },
     LoginRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i13.LoginPage());
     },
     OnboardingRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i14.OnboardingPage());
     },
     OTPRoute.name: (routeData) {
       final args = routeData.argsAs<OTPRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i15.OTPPage(args.phoneNumber, args.completer, key: args.key));
     },
     SignupRoute.name: (routeData) {
       final args = routeData.argsAs<SignupRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i16.SignupPage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
@@ -168,7 +169,7 @@ class AppRouter extends _i37.RootStackRouter {
     },
     ChooseServiceRoute.name: (routeData) {
       final args = routeData.argsAs<ChooseServiceRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i17.ChooseServicePage(
               key: args.key,
@@ -180,7 +181,7 @@ class AppRouter extends _i37.RootStackRouter {
     },
     NewServiceRequestRoute.name: (routeData) {
       final args = routeData.argsAs<NewServiceRequestRouteArgs>();
-      return _i37.AdaptivePage<_i39.OptionalService?>(
+      return _i38.AdaptivePage<_i40.OptionalService?>(
           routeData: routeData,
           child: _i18.NewServiceRequestPage(
               key: args.key,
@@ -190,7 +191,7 @@ class AppRouter extends _i37.RootStackRouter {
     },
     ServiceDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceDetailRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i19.ServiceDetailPage(
               key: args.key,
@@ -200,7 +201,7 @@ class AppRouter extends _i37.RootStackRouter {
     },
     ChooseProductRoute.name: (routeData) {
       final args = routeData.argsAs<ChooseProductRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i20.ChooseProductPage(
               key: args.key,
@@ -211,14 +212,14 @@ class AppRouter extends _i37.RootStackRouter {
     },
     FindNearbyRoute.name: (routeData) {
       final args = routeData.argsAs<FindNearbyRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i21.FindNearbyPage(
               key: args.key, currentLocation: args.currentLocation));
     },
     RequestProviderRoute.name: (routeData) {
       final args = routeData.argsAs<RequestProviderRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i22.RequestProviderPage(
               key: args.key,
@@ -226,19 +227,19 @@ class AppRouter extends _i37.RootStackRouter {
               recordType: args.recordType));
     },
     ListRepairerRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i23.ListRepairerPage());
     },
     RepairerProfileRoute.name: (routeData) {
       final args = routeData.argsAs<RepairerProfileRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i24.RepairerProfilePage(
               key: args.key, providerData: args.providerData));
     },
     AddMessageRoute.name: (routeData) {
       final args = routeData.argsAs<AddMessageRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i25.AddMessagePage(
               key: args.key,
@@ -247,7 +248,7 @@ class AppRouter extends _i37.RootStackRouter {
     },
     OverViewOrderRoute.name: (routeData) {
       final args = routeData.argsAs<OverViewOrderRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i26.OverViewOrderPage(
               key: args.key,
@@ -256,113 +257,120 @@ class AppRouter extends _i37.RootStackRouter {
           maintainState: false);
     },
     FAQsRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i27.FAQsPage());
     },
     FAQsItemOTPRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i28.FAQsItemOTPPage());
     },
     AboutUsRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i29.AboutUsPage());
     },
     TermsPrivacyRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i30.TermsPrivacyPage());
     },
     LoginEnterPhoneRoute.name: (routeData) {
       final args = routeData.argsAs<LoginEnterPhoneRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
           child: _i31.LoginEnterPhonePage(args.completer, args.phoneNumber,
               args.photoURL, args.uid, args.email,
               key: args.key));
     },
     PermissionRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData, child: const _i32.PermissionPage());
+    },
+    MapRouteRoute.name: (routeData) {
+      final args = routeData.argsAs<MapRouteRouteArgs>();
+      return _i38.AdaptivePage<void>(
+          routeData: routeData,
+          child: _i33.MapRoutePage(key: args.key, providerId: args.providerId));
     },
     HomeBodyRoute.name: (routeData) {
       final args = routeData.argsAs<HomeBodyRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
-          child: _i33.HomeBodyPage(key: args.key, user: args.user));
+          child: _i34.HomeBodyPage(key: args.key, user: args.user));
     },
     HistoryRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryRouteArgs>();
-      return _i37.AdaptivePage<void>(
+      return _i38.AdaptivePage<void>(
           routeData: routeData,
-          child: _i34.HistoryPage(key: args.key, user: args.user));
+          child: _i35.HistoryPage(key: args.key, user: args.user));
     },
     NotificationRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
-          routeData: routeData, child: const _i35.NotificationPage());
+      return _i38.AdaptivePage<void>(
+          routeData: routeData, child: const _i36.NotificationPage());
     },
     AccountRoute.name: (routeData) {
-      return _i37.AdaptivePage<void>(
-          routeData: routeData, child: const _i36.AccountPage());
+      return _i38.AdaptivePage<void>(
+          routeData: routeData, child: const _i37.AccountPage());
     }
   };
 
   @override
-  List<_i37.RouteConfig> get routes => [
-        _i37.RouteConfig(SplashRoute.name, path: '/'),
-        _i37.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
-        _i37.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
-        _i37.RouteConfig(ServiceInvoiceRoute.name,
+  List<_i38.RouteConfig> get routes => [
+        _i38.RouteConfig(SplashRoute.name, path: '/'),
+        _i38.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
+        _i38.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
+        _i38.RouteConfig(ServiceInvoiceRoute.name,
             path: '/service-invoice-page'),
-        _i37.RouteConfig(InvoicePaymentRoute.name,
+        _i38.RouteConfig(InvoicePaymentRoute.name,
             path: '/invoice-payment-page'),
-        _i37.RouteConfig(ReviewRepairmanRoute.name,
+        _i38.RouteConfig(ReviewRepairmanRoute.name,
             path: '/review-repairman-page'),
-        _i37.RouteConfig(ChangeLanguageRoute.name,
+        _i38.RouteConfig(ChangeLanguageRoute.name,
             path: '/change-language-page'),
-        _i37.RouteConfig(HomeRoute.name, path: '/home-page', children: [
-          _i37.RouteConfig(HomeBodyRoute.name,
+        _i38.RouteConfig(HomeRoute.name, path: '/home-page', children: [
+          _i38.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
-          _i37.RouteConfig(HistoryRoute.name,
+          _i38.RouteConfig(HistoryRoute.name,
               path: 'history-page', parent: HomeRoute.name),
-          _i37.RouteConfig(NotificationRoute.name,
+          _i38.RouteConfig(NotificationRoute.name,
               path: 'notification-page', parent: HomeRoute.name),
-          _i37.RouteConfig(AccountRoute.name,
+          _i38.RouteConfig(AccountRoute.name,
               path: 'account-page', parent: HomeRoute.name)
         ]),
-        _i37.RouteConfig(HistoryDetailRoute.name, path: '/history-detail-page'),
-        _i37.RouteConfig(PaymentRoute.name, path: '/payment-page'),
-        _i37.RouteConfig(TestRoute.name, path: '/test-page'),
-        _i37.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
-        _i37.RouteConfig(LoginRoute.name, path: '/login-page'),
-        _i37.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
-        _i37.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
-        _i37.RouteConfig(SignupRoute.name, path: '/signup-page'),
-        _i37.RouteConfig(ChooseServiceRoute.name, path: '/choose-service-page'),
-        _i37.RouteConfig(NewServiceRequestRoute.name,
+        _i38.RouteConfig(HistoryDetailRoute.name, path: '/history-detail-page'),
+        _i38.RouteConfig(PaymentRoute.name, path: '/payment-page'),
+        _i38.RouteConfig(TestRoute.name, path: '/test-page'),
+        _i38.RouteConfig(UpdateProfileRoute.name, path: '/update-profile-page'),
+        _i38.RouteConfig(LoginRoute.name, path: '/login-page'),
+        _i38.RouteConfig(OnboardingRoute.name, path: '/onboarding-page'),
+        _i38.RouteConfig(OTPRoute.name, path: '/o-tp-page'),
+        _i38.RouteConfig(SignupRoute.name, path: '/signup-page'),
+        _i38.RouteConfig(ChooseServiceRoute.name, path: '/choose-service-page'),
+        _i38.RouteConfig(NewServiceRequestRoute.name,
             path: '/new-service-request-page'),
-        _i37.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
-        _i37.RouteConfig(ChooseProductRoute.name, path: '/choose-product-page'),
-        _i37.RouteConfig(FindNearbyRoute.name, path: '/find-nearby-page'),
-        _i37.RouteConfig(RequestProviderRoute.name,
+        _i38.RouteConfig(ServiceDetailRoute.name, path: '/service-detail-page'),
+        _i38.RouteConfig(ChooseProductRoute.name, path: '/choose-product-page'),
+        _i38.RouteConfig(FindNearbyRoute.name, path: '/find-nearby-page'),
+        _i38.RouteConfig(RequestProviderRoute.name,
             path: '/request-provider-page'),
-        _i37.RouteConfig(ListRepairerRoute.name, path: '/list-repairer-page'),
-        _i37.RouteConfig(RepairerProfileRoute.name,
+        _i38.RouteConfig(ListRepairerRoute.name, path: '/list-repairer-page'),
+        _i38.RouteConfig(RepairerProfileRoute.name,
             path: '/repairer-profile-page'),
-        _i37.RouteConfig(AddMessageRoute.name, path: '/add-message-page'),
-        _i37.RouteConfig(OverViewOrderRoute.name,
+        _i38.RouteConfig(AddMessageRoute.name, path: '/add-message-page'),
+        _i38.RouteConfig(OverViewOrderRoute.name,
             path: '/over-view-order-page'),
-        _i37.RouteConfig(FAQsRoute.name, path: '/f-aqs-page'),
-        _i37.RouteConfig(FAQsItemOTPRoute.name, path: '/f-aqs-item-ot-pPage'),
-        _i37.RouteConfig(AboutUsRoute.name, path: '/about-us-page'),
-        _i37.RouteConfig(TermsPrivacyRoute.name, path: '/terms-privacy-page'),
-        _i37.RouteConfig(LoginEnterPhoneRoute.name,
+        _i38.RouteConfig(FAQsRoute.name, path: '/f-aqs-page'),
+        _i38.RouteConfig(FAQsItemOTPRoute.name, path: '/f-aqs-item-ot-pPage'),
+        _i38.RouteConfig(AboutUsRoute.name, path: '/about-us-page'),
+        _i38.RouteConfig(TermsPrivacyRoute.name, path: '/terms-privacy-page'),
+        _i38.RouteConfig(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page'),
-        _i37.RouteConfig(PermissionRoute.name, path: '/permission-page')
+        _i38.RouteConfig(PermissionRoute.name, path: '/permission-page'),
+        _i38.RouteConfig(MapRouteRoute.name, path: '/map-route-page')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i37.PageRouteInfo<void> {
+class SplashRoute extends _i38.PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
@@ -370,8 +378,8 @@ class SplashRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.OrderDetailPage]
-class OrderDetailRoute extends _i37.PageRouteInfo<OrderDetailRouteArgs> {
-  OrderDetailRoute({_i38.Key? key})
+class OrderDetailRoute extends _i38.PageRouteInfo<OrderDetailRouteArgs> {
+  OrderDetailRoute({_i39.Key? key})
       : super(OrderDetailRoute.name,
             path: '/order-detail-page', args: OrderDetailRouteArgs(key: key));
 
@@ -381,7 +389,7 @@ class OrderDetailRoute extends _i37.PageRouteInfo<OrderDetailRouteArgs> {
 class OrderDetailRouteArgs {
   const OrderDetailRouteArgs({this.key});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -391,7 +399,7 @@ class OrderDetailRouteArgs {
 
 /// generated route for
 /// [_i3.RepairStatusPage]
-class RepairStatusRoute extends _i37.PageRouteInfo<void> {
+class RepairStatusRoute extends _i38.PageRouteInfo<void> {
   const RepairStatusRoute()
       : super(RepairStatusRoute.name, path: '/repair-status-page');
 
@@ -400,8 +408,8 @@ class RepairStatusRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ServiceInvoicePage]
-class ServiceInvoiceRoute extends _i37.PageRouteInfo<ServiceInvoiceRouteArgs> {
-  ServiceInvoiceRoute({required String providerID, _i38.Key? key})
+class ServiceInvoiceRoute extends _i38.PageRouteInfo<ServiceInvoiceRouteArgs> {
+  ServiceInvoiceRoute({required String providerID, _i39.Key? key})
       : super(ServiceInvoiceRoute.name,
             path: '/service-invoice-page',
             args: ServiceInvoiceRouteArgs(providerID: providerID, key: key));
@@ -414,7 +422,7 @@ class ServiceInvoiceRouteArgs {
 
   final String providerID;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -424,12 +432,12 @@ class ServiceInvoiceRouteArgs {
 
 /// generated route for
 /// [_i5.InvoicePaymentPage]
-class InvoicePaymentRoute extends _i37.PageRouteInfo<InvoicePaymentRouteArgs> {
+class InvoicePaymentRoute extends _i38.PageRouteInfo<InvoicePaymentRouteArgs> {
   InvoicePaymentRoute(
-      {required _i40.ProviderData providerData,
-      required List<_i41.ServiceData> serviceData,
+      {required _i41.ProviderData providerData,
+      required List<_i42.ServiceData> serviceData,
       required int total,
-      _i38.Key? key})
+      _i39.Key? key})
       : super(InvoicePaymentRoute.name,
             path: '/invoice-payment-page',
             args: InvoicePaymentRouteArgs(
@@ -448,13 +456,13 @@ class InvoicePaymentRouteArgs {
       required this.total,
       this.key});
 
-  final _i40.ProviderData providerData;
+  final _i41.ProviderData providerData;
 
-  final List<_i41.ServiceData> serviceData;
+  final List<_i42.ServiceData> serviceData;
 
   final int total;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -465,11 +473,11 @@ class InvoicePaymentRouteArgs {
 /// generated route for
 /// [_i6.ReviewRepairmanPage]
 class ReviewRepairmanRoute
-    extends _i37.PageRouteInfo<ReviewRepairmanRouteArgs> {
+    extends _i38.PageRouteInfo<ReviewRepairmanRouteArgs> {
   ReviewRepairmanRoute(
-      {required _i40.ProviderData providerData,
-      required _i42.Completer<dynamic> completer,
-      _i38.Key? key})
+      {required _i41.ProviderData providerData,
+      required _i43.Completer<dynamic> completer,
+      _i39.Key? key})
       : super(ReviewRepairmanRoute.name,
             path: '/review-repairman-page',
             args: ReviewRepairmanRouteArgs(
@@ -482,11 +490,11 @@ class ReviewRepairmanRouteArgs {
   const ReviewRepairmanRouteArgs(
       {required this.providerData, required this.completer, this.key});
 
-  final _i40.ProviderData providerData;
+  final _i41.ProviderData providerData;
 
-  final _i42.Completer<dynamic> completer;
+  final _i43.Completer<dynamic> completer;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -496,7 +504,7 @@ class ReviewRepairmanRouteArgs {
 
 /// generated route for
 /// [_i7.ChangeLanguagePage]
-class ChangeLanguageRoute extends _i37.PageRouteInfo<void> {
+class ChangeLanguageRoute extends _i38.PageRouteInfo<void> {
   const ChangeLanguageRoute()
       : super(ChangeLanguageRoute.name, path: '/change-language-page');
 
@@ -505,11 +513,11 @@ class ChangeLanguageRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.HomePage]
-class HomeRoute extends _i37.PageRouteInfo<HomeRouteArgs> {
+class HomeRoute extends _i38.PageRouteInfo<HomeRouteArgs> {
   HomeRoute(
-      {_i38.Key? key,
-      required _i39.AppUser user,
-      List<_i37.PageRouteInfo>? children})
+      {_i39.Key? key,
+      required _i40.AppUser user,
+      List<_i38.PageRouteInfo>? children})
       : super(HomeRoute.name,
             path: '/home-page',
             args: HomeRouteArgs(key: key, user: user),
@@ -521,9 +529,9 @@ class HomeRoute extends _i37.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, required this.user});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i39.AppUser user;
+  final _i40.AppUser user;
 
   @override
   String toString() {
@@ -533,8 +541,8 @@ class HomeRouteArgs {
 
 /// generated route for
 /// [_i9.HistoryDetailPage]
-class HistoryDetailRoute extends _i37.PageRouteInfo<HistoryDetailRouteArgs> {
-  HistoryDetailRoute({_i38.Key? key, required _i43.HistoryModel historyModel})
+class HistoryDetailRoute extends _i38.PageRouteInfo<HistoryDetailRouteArgs> {
+  HistoryDetailRoute({_i39.Key? key, required _i44.HistoryModel historyModel})
       : super(HistoryDetailRoute.name,
             path: '/history-detail-page',
             args: HistoryDetailRouteArgs(key: key, historyModel: historyModel));
@@ -545,9 +553,9 @@ class HistoryDetailRoute extends _i37.PageRouteInfo<HistoryDetailRouteArgs> {
 class HistoryDetailRouteArgs {
   const HistoryDetailRouteArgs({this.key, required this.historyModel});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i43.HistoryModel historyModel;
+  final _i44.HistoryModel historyModel;
 
   @override
   String toString() {
@@ -557,11 +565,11 @@ class HistoryDetailRouteArgs {
 
 /// generated route for
 /// [_i10.PaymentPage]
-class PaymentRoute extends _i37.PageRouteInfo<PaymentRouteArgs> {
+class PaymentRoute extends _i38.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute(
-      {_i38.Key? key,
-      required _i39.AppUser user,
-      _i42.Completer<dynamic>? completer})
+      {_i39.Key? key,
+      required _i40.AppUser user,
+      _i43.Completer<dynamic>? completer})
       : super(PaymentRoute.name,
             path: '/payment-page',
             args: PaymentRouteArgs(key: key, user: user, completer: completer));
@@ -572,11 +580,11 @@ class PaymentRoute extends _i37.PageRouteInfo<PaymentRouteArgs> {
 class PaymentRouteArgs {
   const PaymentRouteArgs({this.key, required this.user, this.completer});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i39.AppUser user;
+  final _i40.AppUser user;
 
-  final _i42.Completer<dynamic>? completer;
+  final _i43.Completer<dynamic>? completer;
 
   @override
   String toString() {
@@ -586,7 +594,7 @@ class PaymentRouteArgs {
 
 /// generated route for
 /// [_i11.TestPage]
-class TestRoute extends _i37.PageRouteInfo<void> {
+class TestRoute extends _i38.PageRouteInfo<void> {
   const TestRoute() : super(TestRoute.name, path: '/test-page');
 
   static const String name = 'TestRoute';
@@ -594,8 +602,8 @@ class TestRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.UpdateProfilePage]
-class UpdateProfileRoute extends _i37.PageRouteInfo<UpdateProfileRouteArgs> {
-  UpdateProfileRoute({_i38.Key? key, required _i39.AppUser user})
+class UpdateProfileRoute extends _i38.PageRouteInfo<UpdateProfileRouteArgs> {
+  UpdateProfileRoute({_i39.Key? key, required _i40.AppUser user})
       : super(UpdateProfileRoute.name,
             path: '/update-profile-page',
             args: UpdateProfileRouteArgs(key: key, user: user));
@@ -606,9 +614,9 @@ class UpdateProfileRoute extends _i37.PageRouteInfo<UpdateProfileRouteArgs> {
 class UpdateProfileRouteArgs {
   const UpdateProfileRouteArgs({this.key, required this.user});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i39.AppUser user;
+  final _i40.AppUser user;
 
   @override
   String toString() {
@@ -618,7 +626,7 @@ class UpdateProfileRouteArgs {
 
 /// generated route for
 /// [_i13.LoginPage]
-class LoginRoute extends _i37.PageRouteInfo<void> {
+class LoginRoute extends _i38.PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/login-page');
 
   static const String name = 'LoginRoute';
@@ -626,7 +634,7 @@ class LoginRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.OnboardingPage]
-class OnboardingRoute extends _i37.PageRouteInfo<void> {
+class OnboardingRoute extends _i38.PageRouteInfo<void> {
   const OnboardingRoute()
       : super(OnboardingRoute.name, path: '/onboarding-page');
 
@@ -635,11 +643,11 @@ class OnboardingRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.OTPPage]
-class OTPRoute extends _i37.PageRouteInfo<OTPRouteArgs> {
+class OTPRoute extends _i38.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i42.Completer<dynamic> completer,
-      _i38.Key? key})
+      required _i43.Completer<dynamic> completer,
+      _i39.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
             args: OTPRouteArgs(
@@ -654,9 +662,9 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i42.Completer<dynamic> completer;
+  final _i43.Completer<dynamic> completer;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -666,14 +674,14 @@ class OTPRouteArgs {
 
 /// generated route for
 /// [_i16.SignupPage]
-class SignupRoute extends _i37.PageRouteInfo<SignupRouteArgs> {
+class SignupRoute extends _i38.PageRouteInfo<SignupRouteArgs> {
   SignupRoute(
-      {required _i42.Completer<_i39.AppUser> completer,
+      {required _i43.Completer<_i40.AppUser> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
       required String email,
-      _i38.Key? key})
+      _i39.Key? key})
       : super(SignupRoute.name,
             path: '/signup-page',
             args: SignupRouteArgs(
@@ -696,7 +704,7 @@ class SignupRouteArgs {
       required this.email,
       this.key});
 
-  final _i42.Completer<_i39.AppUser> completer;
+  final _i43.Completer<_i40.AppUser> completer;
 
   final String phoneNumber;
 
@@ -706,7 +714,7 @@ class SignupRouteArgs {
 
   final String email;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -716,13 +724,13 @@ class SignupRouteArgs {
 
 /// generated route for
 /// [_i17.ChooseServicePage]
-class ChooseServiceRoute extends _i37.PageRouteInfo<ChooseServiceRouteArgs> {
+class ChooseServiceRoute extends _i38.PageRouteInfo<ChooseServiceRouteArgs> {
   ChooseServiceRoute(
-      {_i38.Key? key,
+      {_i39.Key? key,
       required String providerId,
       required bool isSelectProduct,
       String? recordId,
-      required List<_i39.OptionalService> optionalService})
+      required List<_i40.OptionalService> optionalService})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
             args: ChooseServiceRouteArgs(
@@ -743,7 +751,7 @@ class ChooseServiceRouteArgs {
       this.recordId,
       required this.optionalService});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   final String providerId;
 
@@ -751,7 +759,7 @@ class ChooseServiceRouteArgs {
 
   final String? recordId;
 
-  final List<_i39.OptionalService> optionalService;
+  final List<_i40.OptionalService> optionalService;
 
   @override
   String toString() {
@@ -762,10 +770,10 @@ class ChooseServiceRouteArgs {
 /// generated route for
 /// [_i18.NewServiceRequestPage]
 class NewServiceRequestRoute
-    extends _i37.PageRouteInfo<NewServiceRequestRouteArgs> {
+    extends _i38.PageRouteInfo<NewServiceRequestRouteArgs> {
   NewServiceRequestRoute(
-      {_i38.Key? key,
-      required List<_i39.OptionalService> optionalService,
+      {_i39.Key? key,
+      required List<_i40.OptionalService> optionalService,
       required String providerId,
       required bool isSelectProduct})
       : super(NewServiceRequestRoute.name,
@@ -786,9 +794,9 @@ class NewServiceRequestRouteArgs {
       required this.providerId,
       required this.isSelectProduct});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final List<_i39.OptionalService> optionalService;
+  final List<_i40.OptionalService> optionalService;
 
   final String providerId;
 
@@ -802,12 +810,12 @@ class NewServiceRequestRouteArgs {
 
 /// generated route for
 /// [_i19.ServiceDetailPage]
-class ServiceDetailRoute extends _i37.PageRouteInfo<ServiceDetailRouteArgs> {
+class ServiceDetailRoute extends _i38.PageRouteInfo<ServiceDetailRouteArgs> {
   ServiceDetailRoute(
-      {_i38.Key? key,
+      {_i39.Key? key,
       required String providerId,
-      required _i44.ServiceData serviceData,
-      required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
+      required _i45.ServiceData serviceData,
+      required _i46.Tuple2<_i40.RepairCategory, _i46.IList<_i45.ServiceData>>
           catAndSv})
       : super(ServiceDetailRoute.name,
             path: '/service-detail-page',
@@ -827,13 +835,13 @@ class ServiceDetailRouteArgs {
       required this.serviceData,
       required this.catAndSv});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   final String providerId;
 
-  final _i44.ServiceData serviceData;
+  final _i45.ServiceData serviceData;
 
-  final _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>> catAndSv;
+  final _i46.Tuple2<_i40.RepairCategory, _i46.IList<_i45.ServiceData>> catAndSv;
 
   @override
   String toString() {
@@ -843,11 +851,11 @@ class ServiceDetailRouteArgs {
 
 /// generated route for
 /// [_i20.ChooseProductPage]
-class ChooseProductRoute extends _i37.PageRouteInfo<ChooseProductRouteArgs> {
+class ChooseProductRoute extends _i38.PageRouteInfo<ChooseProductRouteArgs> {
   ChooseProductRoute(
-      {_i38.Key? key,
-      required _i44.ServiceData serviceData,
-      required _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>>
+      {_i39.Key? key,
+      required _i45.ServiceData serviceData,
+      required _i46.Tuple2<_i40.RepairCategory, _i46.IList<_i45.ServiceData>>
           catAndSv,
       required String providerId,
       required String recordId})
@@ -871,11 +879,11 @@ class ChooseProductRouteArgs {
       required this.providerId,
       required this.recordId});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i44.ServiceData serviceData;
+  final _i45.ServiceData serviceData;
 
-  final _i45.Tuple2<_i39.RepairCategory, _i45.IList<_i44.ServiceData>> catAndSv;
+  final _i46.Tuple2<_i40.RepairCategory, _i46.IList<_i45.ServiceData>> catAndSv;
 
   final String providerId;
 
@@ -889,8 +897,8 @@ class ChooseProductRouteArgs {
 
 /// generated route for
 /// [_i21.FindNearbyPage]
-class FindNearbyRoute extends _i37.PageRouteInfo<FindNearbyRouteArgs> {
-  FindNearbyRoute({_i38.Key? key, required _i46.LatLng currentLocation})
+class FindNearbyRoute extends _i38.PageRouteInfo<FindNearbyRouteArgs> {
+  FindNearbyRoute({_i39.Key? key, required _i47.LatLng currentLocation})
       : super(FindNearbyRoute.name,
             path: '/find-nearby-page',
             args: FindNearbyRouteArgs(
@@ -902,9 +910,9 @@ class FindNearbyRoute extends _i37.PageRouteInfo<FindNearbyRouteArgs> {
 class FindNearbyRouteArgs {
   const FindNearbyRouteArgs({this.key, required this.currentLocation});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i46.LatLng currentLocation;
+  final _i47.LatLng currentLocation;
 
   @override
   String toString() {
@@ -915,10 +923,10 @@ class FindNearbyRouteArgs {
 /// generated route for
 /// [_i22.RequestProviderPage]
 class RequestProviderRoute
-    extends _i37.PageRouteInfo<RequestProviderRouteArgs> {
+    extends _i38.PageRouteInfo<RequestProviderRouteArgs> {
   RequestProviderRoute(
-      {_i38.Key? key,
-      required _i40.ProviderData providerData,
+      {_i39.Key? key,
+      required _i41.ProviderData providerData,
       required String recordType})
       : super(RequestProviderRoute.name,
             path: '/request-provider-page',
@@ -932,9 +940,9 @@ class RequestProviderRouteArgs {
   const RequestProviderRouteArgs(
       {this.key, required this.providerData, required this.recordType});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i40.ProviderData providerData;
+  final _i41.ProviderData providerData;
 
   final String recordType;
 
@@ -946,7 +954,7 @@ class RequestProviderRouteArgs {
 
 /// generated route for
 /// [_i23.ListRepairerPage]
-class ListRepairerRoute extends _i37.PageRouteInfo<void> {
+class ListRepairerRoute extends _i38.PageRouteInfo<void> {
   const ListRepairerRoute()
       : super(ListRepairerRoute.name, path: '/list-repairer-page');
 
@@ -956,8 +964,8 @@ class ListRepairerRoute extends _i37.PageRouteInfo<void> {
 /// generated route for
 /// [_i24.RepairerProfilePage]
 class RepairerProfileRoute
-    extends _i37.PageRouteInfo<RepairerProfileRouteArgs> {
-  RepairerProfileRoute({_i38.Key? key, required _i40.ProviderData providerData})
+    extends _i38.PageRouteInfo<RepairerProfileRouteArgs> {
+  RepairerProfileRoute({_i39.Key? key, required _i41.ProviderData providerData})
       : super(RepairerProfileRoute.name,
             path: '/repairer-profile-page',
             args:
@@ -969,9 +977,9 @@ class RepairerProfileRoute
 class RepairerProfileRouteArgs {
   const RepairerProfileRouteArgs({this.key, required this.providerData});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i40.ProviderData providerData;
+  final _i41.ProviderData providerData;
 
   @override
   String toString() {
@@ -981,10 +989,10 @@ class RepairerProfileRouteArgs {
 
 /// generated route for
 /// [_i25.AddMessagePage]
-class AddMessageRoute extends _i37.PageRouteInfo<AddMessageRouteArgs> {
+class AddMessageRoute extends _i38.PageRouteInfo<AddMessageRouteArgs> {
   AddMessageRoute(
-      {_i38.Key? key,
-      required _i40.ProviderData providerData,
+      {_i39.Key? key,
+      required _i41.ProviderData providerData,
       required int movingFee})
       : super(AddMessageRoute.name,
             path: '/add-message-page',
@@ -998,9 +1006,9 @@ class AddMessageRouteArgs {
   const AddMessageRouteArgs(
       {this.key, required this.providerData, required this.movingFee});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i40.ProviderData providerData;
+  final _i41.ProviderData providerData;
 
   final int movingFee;
 
@@ -1012,9 +1020,9 @@ class AddMessageRouteArgs {
 
 /// generated route for
 /// [_i26.OverViewOrderPage]
-class OverViewOrderRoute extends _i37.PageRouteInfo<OverViewOrderRouteArgs> {
+class OverViewOrderRoute extends _i38.PageRouteInfo<OverViewOrderRouteArgs> {
   OverViewOrderRoute(
-      {_i38.Key? key, required String providerId, required String recordId})
+      {_i39.Key? key, required String providerId, required String recordId})
       : super(OverViewOrderRoute.name,
             path: '/over-view-order-page',
             args: OverViewOrderRouteArgs(
@@ -1027,7 +1035,7 @@ class OverViewOrderRouteArgs {
   const OverViewOrderRouteArgs(
       {this.key, required this.providerId, required this.recordId});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   final String providerId;
 
@@ -1041,7 +1049,7 @@ class OverViewOrderRouteArgs {
 
 /// generated route for
 /// [_i27.FAQsPage]
-class FAQsRoute extends _i37.PageRouteInfo<void> {
+class FAQsRoute extends _i38.PageRouteInfo<void> {
   const FAQsRoute() : super(FAQsRoute.name, path: '/f-aqs-page');
 
   static const String name = 'FAQsRoute';
@@ -1049,7 +1057,7 @@ class FAQsRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i28.FAQsItemOTPPage]
-class FAQsItemOTPRoute extends _i37.PageRouteInfo<void> {
+class FAQsItemOTPRoute extends _i38.PageRouteInfo<void> {
   const FAQsItemOTPRoute()
       : super(FAQsItemOTPRoute.name, path: '/f-aqs-item-ot-pPage');
 
@@ -1058,7 +1066,7 @@ class FAQsItemOTPRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i29.AboutUsPage]
-class AboutUsRoute extends _i37.PageRouteInfo<void> {
+class AboutUsRoute extends _i38.PageRouteInfo<void> {
   const AboutUsRoute() : super(AboutUsRoute.name, path: '/about-us-page');
 
   static const String name = 'AboutUsRoute';
@@ -1066,7 +1074,7 @@ class AboutUsRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i30.TermsPrivacyPage]
-class TermsPrivacyRoute extends _i37.PageRouteInfo<void> {
+class TermsPrivacyRoute extends _i38.PageRouteInfo<void> {
   const TermsPrivacyRoute()
       : super(TermsPrivacyRoute.name, path: '/terms-privacy-page');
 
@@ -1076,14 +1084,14 @@ class TermsPrivacyRoute extends _i37.PageRouteInfo<void> {
 /// generated route for
 /// [_i31.LoginEnterPhonePage]
 class LoginEnterPhoneRoute
-    extends _i37.PageRouteInfo<LoginEnterPhoneRouteArgs> {
+    extends _i38.PageRouteInfo<LoginEnterPhoneRouteArgs> {
   LoginEnterPhoneRoute(
-      {required _i42.Completer<dynamic> completer,
+      {required _i43.Completer<dynamic> completer,
       required String phoneNumber,
       required String photoURL,
       required String uid,
       required String email,
-      _i38.Key? key})
+      _i39.Key? key})
       : super(LoginEnterPhoneRoute.name,
             path: '/login-enter-phone-page',
             args: LoginEnterPhoneRouteArgs(
@@ -1106,7 +1114,7 @@ class LoginEnterPhoneRouteArgs {
       required this.email,
       this.key});
 
-  final _i42.Completer<dynamic> completer;
+  final _i43.Completer<dynamic> completer;
 
   final String phoneNumber;
 
@@ -1116,7 +1124,7 @@ class LoginEnterPhoneRouteArgs {
 
   final String email;
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
   @override
   String toString() {
@@ -1126,7 +1134,7 @@ class LoginEnterPhoneRouteArgs {
 
 /// generated route for
 /// [_i32.PermissionPage]
-class PermissionRoute extends _i37.PageRouteInfo<void> {
+class PermissionRoute extends _i38.PageRouteInfo<void> {
   const PermissionRoute()
       : super(PermissionRoute.name, path: '/permission-page');
 
@@ -1134,9 +1142,33 @@ class PermissionRoute extends _i37.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i33.HomeBodyPage]
-class HomeBodyRoute extends _i37.PageRouteInfo<HomeBodyRouteArgs> {
-  HomeBodyRoute({_i38.Key? key, required _i39.AppUser user})
+/// [_i33.MapRoutePage]
+class MapRouteRoute extends _i38.PageRouteInfo<MapRouteRouteArgs> {
+  MapRouteRoute({_i39.Key? key, required String providerId})
+      : super(MapRouteRoute.name,
+            path: '/map-route-page',
+            args: MapRouteRouteArgs(key: key, providerId: providerId));
+
+  static const String name = 'MapRouteRoute';
+}
+
+class MapRouteRouteArgs {
+  const MapRouteRouteArgs({this.key, required this.providerId});
+
+  final _i39.Key? key;
+
+  final String providerId;
+
+  @override
+  String toString() {
+    return 'MapRouteRouteArgs{key: $key, providerId: $providerId}';
+  }
+}
+
+/// generated route for
+/// [_i34.HomeBodyPage]
+class HomeBodyRoute extends _i38.PageRouteInfo<HomeBodyRouteArgs> {
+  HomeBodyRoute({_i39.Key? key, required _i40.AppUser user})
       : super(HomeBodyRoute.name,
             path: 'home-body-page',
             args: HomeBodyRouteArgs(key: key, user: user));
@@ -1147,9 +1179,9 @@ class HomeBodyRoute extends _i37.PageRouteInfo<HomeBodyRouteArgs> {
 class HomeBodyRouteArgs {
   const HomeBodyRouteArgs({this.key, required this.user});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i39.AppUser user;
+  final _i40.AppUser user;
 
   @override
   String toString() {
@@ -1158,9 +1190,9 @@ class HomeBodyRouteArgs {
 }
 
 /// generated route for
-/// [_i34.HistoryPage]
-class HistoryRoute extends _i37.PageRouteInfo<HistoryRouteArgs> {
-  HistoryRoute({_i38.Key? key, required _i39.AppUser user})
+/// [_i35.HistoryPage]
+class HistoryRoute extends _i38.PageRouteInfo<HistoryRouteArgs> {
+  HistoryRoute({_i39.Key? key, required _i40.AppUser user})
       : super(HistoryRoute.name,
             path: 'history-page', args: HistoryRouteArgs(key: key, user: user));
 
@@ -1170,9 +1202,9 @@ class HistoryRoute extends _i37.PageRouteInfo<HistoryRouteArgs> {
 class HistoryRouteArgs {
   const HistoryRouteArgs({this.key, required this.user});
 
-  final _i38.Key? key;
+  final _i39.Key? key;
 
-  final _i39.AppUser user;
+  final _i40.AppUser user;
 
   @override
   String toString() {
@@ -1181,8 +1213,8 @@ class HistoryRouteArgs {
 }
 
 /// generated route for
-/// [_i35.NotificationPage]
-class NotificationRoute extends _i37.PageRouteInfo<void> {
+/// [_i36.NotificationPage]
+class NotificationRoute extends _i38.PageRouteInfo<void> {
   const NotificationRoute()
       : super(NotificationRoute.name, path: 'notification-page');
 
@@ -1190,8 +1222,8 @@ class NotificationRoute extends _i37.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i36.AccountPage]
-class AccountRoute extends _i37.PageRouteInfo<void> {
+/// [_i37.AccountPage]
+class AccountRoute extends _i38.PageRouteInfo<void> {
   const AccountRoute() : super(AccountRoute.name, path: 'account-page');
 
   static const String name = 'AccountRoute';
