@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:revup_core/core.dart';
@@ -153,6 +152,23 @@ class ChooseServiceView extends StatelessWidget {
                               onRoute: () => context.router.pop(),
                               saveLst: saveLst,
                               recordId: recordId ?? '',
+                              sendMessage: (token, recordId) => context
+                                  .read<NotificationCubit>()
+                                  .sendMessageToToken(
+                                    SendMessage(
+                                      title: 'Revup',
+                                      body: l10n.submitRequestSuccessLabel,
+                                      token: token,
+                                      icon: kRevupIconApp,
+                                      payload: MessageData(
+                                        type: NotificationType.NormalMessage,
+                                        payload: <String, dynamic>{
+                                          'subType': 'ConsumerSelected',
+                                          'recordId': recordId,
+                                        },
+                                      ),
+                                    ),
+                                  ),
                             ),
                           )
                       : context.read<ChooseServiceBloc>().add(
