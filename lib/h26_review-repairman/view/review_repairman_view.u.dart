@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,6 +10,7 @@ import 'package:revup_core/core.dart';
 import '../../h22_invoice/widgets/default_avatar.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/review_repairman_bloc.u.dart';
 
@@ -35,6 +35,18 @@ class _ReviewRepairmanViewState extends State<ReviewRepairmanView> {
     return DismissKeyboard(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              context.router.popUntil(
+                (route) => route.settings.name == HomeRoute.name,
+              );
+            },
+            icon: const Icon(
+              Icons.home_outlined,
+            ),
+          ),
+        ),
         body: SafeArea(
           child: Column(
             children: [
