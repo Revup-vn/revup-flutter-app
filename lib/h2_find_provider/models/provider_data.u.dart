@@ -19,6 +19,7 @@ class ProviderData with _$ProviderData {
     required int ratingCount,
     required String backgroundImg,
     required String profileBio,
+    required String phone,
   }) = _ProviderData;
 
   factory ProviderData.fromDtos(
@@ -42,6 +43,7 @@ class ProviderData with _$ProviderData {
             ? kFallbackBackground
             : user.backgroundUrl,
         profileBio: user.bio,
+        phone: user.phone,
       ),
       orElse: () => throw NullThrownError(),
     );

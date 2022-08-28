@@ -19,6 +19,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     this._repairRecord,
     this.providerID,
     this.storeRepository,
+    this.id,
   ) : super(const _Initial(ready: false)) {
     on<InvoiceEvent>(_onEvent);
   }
@@ -85,50 +86,45 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             .getOrElse(() => throw NullThrownError());
 
         //fetch data repairrecord,
-        final maybeRepairRecord = (await _repairRecord.where(
-          'pid',
-          isEqualTo: providerID,
+        final maybeRepairRecord = (await _repairRecord.get(
+          id,
         ))
-            .map<IList<Option<RepairRecord>>>(
-              (r) => r.map(
-                (a) => a.maybeMap<Option<RepairRecord>>(
-                  orElse: none,
-                  started: some,
-                ),
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                orElse: none,
+                started: some,
               ),
             )
-            .map<IList<RepairRecord>>(
-              (r) => r.filter((a) => a.isSome()).map(
-                    (a) => a.getOrElse(
-                      () => throw NullThrownError(),
-                    ),
-                  ),
-            )
-            .fold<IList<RepairRecord>>((l) => nil(), (r) => r);
-
-        final maybePaymentData = maybeRepairRecord.map(
-          storeRepository.repairPaymentRepo,
-        );
-
-        final maybePaymentList = await Future.wait(
-          maybePaymentData.map((a) async => a.all()).toIterable(),
-        );
-
-        final paymentList = IList.from(
-          maybePaymentList.where((element) => element.isRight()).expand(
-                (element) => element
-                    .getOrElse(() => throw NullThrownError())
-                    .toIterable(),
+            .map(
+              (r) => r.getOrElse(
+                () => throw NullThrownError(),
               ),
-        );
+            )
+            .getOrElse(() => throw NullThrownError());
+
+        final maybePaymentData =
+            await storeRepository.repairPaymentRepo(maybeRepairRecord).all();
+
+        final paymentList =
+            maybePaymentData.fold((l) => nil<PaymentService>(), (r) => r);
 
         final listOptionService = paymentList.map<Option<ServiceData>>(
           (a) => a.when(
-            pending: (serviceName, moneyAmount, products, isOptional) =>
-                some(ServiceData.fromDtos(serviceName, moneyAmount, 'pending')),
+            pending: (serviceName, moneyAmount, products, isOptional) => some(
+              ServiceData.fromDtos(
+                serviceName,
+                moneyAmount + products[0].unitPrice,
+                'pending',
+              ),
+            ),
             needToVerify: (serviceName, desc) => none(),
-            paid: (serviceName, moneyAmount, products, paidIn) =>
-                some(ServiceData.fromDtos(serviceName, moneyAmount, 'paid')),
+            paid: (serviceName, moneyAmount, products, paidIn) => some(
+              ServiceData.fromDtos(
+                serviceName,
+                moneyAmount + products[0].unitPrice,
+                'paid',
+              ),
+            ),
           ),
         );
         final listService = listOptionService.filter((a) => a.isSome()).map(
@@ -166,4 +162,5 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   }
 
   final String providerID;
+  final String id;
 }

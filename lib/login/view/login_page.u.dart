@@ -15,7 +15,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../../shared/widgets/loading.u.dart';
 import '../bloc/login_bloc.dart';
@@ -231,7 +231,7 @@ class LoginPage extends StatelessWidget {
                       .read<AuthenticateBloc>()
                       .add(const AuthenticateEvent.reset());
 
-                  return const Loading();
+                  return Container();
                 },
                 orElse: () =>
                     LoginFailure(errorMessage: context.l10n.unknowIssuesLabel),

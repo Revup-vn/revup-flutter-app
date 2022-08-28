@@ -35,7 +35,7 @@ class HistoryItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AutoSizeText(
-                      '${l10n.codeOrderLabel}${data.orderNumber}',
+                      '''${l10n.codeOrderLabel}${data.orderNumber.length >= 7 ? data.orderNumber.substring(0, 8) : data.orderNumber}''',
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const SizedBox(

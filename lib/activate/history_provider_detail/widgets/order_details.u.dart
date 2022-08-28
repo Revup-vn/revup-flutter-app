@@ -18,7 +18,6 @@ class OrderDetailsItem extends StatelessWidget {
     final l10n = context.l10n;
 
     return Container(
-      height: 235,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

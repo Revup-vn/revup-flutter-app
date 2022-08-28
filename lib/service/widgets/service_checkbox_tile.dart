@@ -4,14 +4,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart' hide State;
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../repairer_profile/models/service_data.u.dart';
 import '../../router/router.dart';
-import '../choose_service/bloc/choose_service_bloc.u.dart';
 
 class ServiceCheckboxTile extends StatefulWidget {
   const ServiceCheckboxTile({
@@ -21,21 +19,35 @@ class ServiceCheckboxTile extends StatefulWidget {
     required this.selectProMode,
     required this.index,
     required this.providerId,
-    required this.categories,
+    required this.catAndSv,
+    required this.field,
+    required this.canSelect,
+    required this.isSelectDefault,
+    required this.recordId,
   });
   final ServiceData serviceData;
   final VoidCallback? onTap;
   final bool selectProMode;
+  final bool canSelect;
+  final bool isSelectDefault;
   final int index;
   final String providerId;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
+  final FormFieldState<List<ServiceData>> field;
+  final String recordId;
 
   @override
   State<ServiceCheckboxTile> createState() => _ServiceCheckboxTileState();
 }
 
 class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
-  bool? isChecked = false;
+  bool? isChecked;
+  @override
+  void initState() {
+    super.initState();
+    isChecked = widget.isSelectDefault;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -76,7 +88,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
             title: AutoSizeText(widget.serviceData.name),
             subtitle: AutoSizeText(
               '${l10n.servicePriceLabel}: '
-              '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : widget.serviceData.serviceFee}''',
+              '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(widget.serviceData.serviceFee)}''',
             ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,
@@ -87,23 +99,30 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                   isChecked = value;
                 });
 
-                context.read<ChooseServiceBloc>().add(
-                      ChooseServiceEvent.serviceSelectChanged(
-                        serviceData: widget.serviceData,
-                        index: widget.index,
-                      ),
-                    );
+                if (value ?? false) {
+                  (widget.field.value)?.add(widget.serviceData);
+                } else {
+                  widget.field.value?.remove(widget.serviceData);
+                }
+
+                // context.read<ChooseServiceBloc>().add(
+                //       ChooseServiceEvent.serviceSelectChanged(
+                //         serviceData: widget.serviceData,
+                //         index: widget.index,
+                //       ),
+                //     );
               },
             ),
           ),
-          if (widget.selectProMode)
+          if (widget.selectProMode && widget.canSelect && (isChecked ?? false))
             TextButton(
               onPressed: () {
                 context.router.push(
                   ChooseProductRoute(
-                    providerId: widget.providerId,
                     serviceData: widget.serviceData,
-                    categories: widget.categories,
+                    catAndSv: widget.catAndSv,
+                    providerId: widget.providerId,
+                    recordId: widget.recordId,
                   ),
                 );
                 // showMaterialModalBottomSheet<Widget>(

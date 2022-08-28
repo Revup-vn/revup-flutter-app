@@ -36,7 +36,13 @@ Future<bool> requestUserLocation() async {
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      return Future.value(false);
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          return Future.value(false);
+        }
+      }
     }
   }
 

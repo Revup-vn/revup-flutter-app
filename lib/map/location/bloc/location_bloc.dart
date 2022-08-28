@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -48,13 +49,14 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         );
         emit(LocationState.addressLoaded(address: address));
       },
-      savedRepairLoc: (LatLng location) async {
+      savedRepairLoc: (location, onRoute) async {
         final boxLocation = Hive.box<dynamic>('location');
         await boxLocation.put('repairLat', location.latitude);
         await boxLocation.put('repairLng', location.longitude);
         final boxRprRecord = await Hive.openBox<dynamic>('repairRecord');
         await boxRprRecord.put('toLat', location.latitude);
         await boxRprRecord.put('toLng', location.longitude);
+        onRoute();
       },
       mapLoaded: (Directions directions) {
         emit(LocationState.directionsLoaded(directions: directions));

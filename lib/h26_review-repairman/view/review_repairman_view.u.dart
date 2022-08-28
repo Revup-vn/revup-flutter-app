@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -17,15 +14,20 @@ import '../../l10n/l10n.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/review_repairman_bloc.u.dart';
 
-class ReviewRepairmanView extends StatelessWidget {
-  ReviewRepairmanView(
-    this.providerData,
-    this.completer, {
+class ReviewRepairmanView extends StatefulWidget {
+  const ReviewRepairmanView(
+    this.provider, {
     super.key,
   });
-  final ProviderData providerData;
-  final Completer completer;
+  final ProviderData provider;
+
+  @override
+  State<ReviewRepairmanView> createState() => _ReviewRepairmanViewState();
+}
+
+class _ReviewRepairmanViewState extends State<ReviewRepairmanView> {
   final _formKey = GlobalKey<FormBuilderState>();
+  int rating = 0;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -95,13 +97,14 @@ class ReviewRepairmanView extends StatelessWidget {
                                               const Duration(milliseconds: 50),
                                           fadeOutDuration:
                                               const Duration(milliseconds: 50),
-                                          imageUrl: providerData.avatar,
+                                          imageUrl: widget.provider.avatar,
                                           placeholder: (context, url) {
                                             return DefaultAvatar(
                                               textSize: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge,
-                                              userName: providerData.fullName,
+                                              userName:
+                                                  widget.provider.fullName,
                                             );
                                           },
                                           errorWidget:
@@ -110,7 +113,8 @@ class ReviewRepairmanView extends StatelessWidget {
                                               textSize: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge,
-                                              userName: providerData.fullName,
+                                              userName:
+                                                  widget.provider.fullName,
                                             );
                                           },
                                           height: 64,
@@ -131,7 +135,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                         padding: EdgeInsets.only(left: 16),
                                       ),
                                       AutoSizeText(
-                                        providerData.fullName,
+                                        widget.provider.fullName,
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelLarge,
@@ -139,7 +143,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                       Row(
                                         children: [
                                           AutoSizeText(
-                                            providerData.rating.toString(),
+                                            widget.provider.rating.toString(),
                                             style: Theme.of(context)
                                                     .textTheme
                                                     .labelLarge
@@ -159,7 +163,7 @@ class ReviewRepairmanView extends StatelessWidget {
                                                 .inversePrimary,
                                           ),
                                           AutoSizeText(
-                                            '(${providerData.ratingCount})',
+                                            '(${widget.provider.ratingCount})',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelLarge,
@@ -188,11 +192,9 @@ class ReviewRepairmanView extends StatelessWidget {
                                       .inversePrimary,
                                 ),
                                 onRatingUpdate: (double value) {
-                                  context.read<ReviewRepairmanBloc>().add(
-                                        ReviewRepairmanEvent.fieldFill(
-                                          rating: value.floor(),
-                                        ),
-                                      );
+                                  setState(() {
+                                    rating = value.floor();
+                                  });
                                 },
                               ),
                             ],
@@ -237,39 +239,33 @@ class ReviewRepairmanView extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
-                  child: BlocSelector<ReviewRepairmanBloc, ReviewRepairmanState,
-                      int>(
-                    selector: (state) => state.maybeMap(
-                      ready: (value) => value.rating,
-                      orElse: () => 0,
-                    ),
-                    builder: (context, rating) {
-                      return ElevatedButton(
-                        onPressed: rating != 0
-                            ? () {
-                                _formKey.currentState?.saveAndValidate();
-                                final feedbackString = _formKey
-                                    .currentState?.value['feedback']
-                                    .toString();
-                                log(feedbackString.toString());
-                                completer.complete(
-                                  ReportFeedback(
-                                    created: DateTime.now(),
-                                    desc: feedbackString ?? '',
-                                    rating: rating,
-                                    updated: DateTime.now(),
+                  child: ElevatedButton(
+                    onPressed: rating != 0
+                        ? () {
+                            _formKey.currentState?.saveAndValidate();
+                            final feedbackString = _formKey
+                                .currentState?.value['feedback']
+                                .toString();
+
+                            final tmp = ReportFeedback(
+                              created: DateTime.now(),
+                              desc: feedbackString ?? '',
+                              rating: rating,
+                              updated: DateTime.now(),
+                            );
+                            context.read<ReviewRepairmanBloc>().add(
+                                  ReviewRepairmanEvent.submited(
+                                    feedback: tmp,
                                   ),
                                 );
-                                context.router.pop();
-                              }
-                            : null,
-                        style: Theme.of(context).elevatedButtonTheme.style,
-                        child: AutoSizeText(
-                          l10n.sendLabel,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      );
-                    },
+                            context.router.pop();
+                          }
+                        : null,
+                    style: Theme.of(context).elevatedButtonTheme.style,
+                    child: AutoSizeText(
+                      l10n.sendLabel,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ),
                 ),
               ),

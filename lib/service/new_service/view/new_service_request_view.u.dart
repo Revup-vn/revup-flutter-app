@@ -14,10 +14,19 @@ import 'package:revup_core/core.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
+import '../../../router/router.dart';
+import '../../../shared/fallbacks.dart';
 import '../../image_picker/bloc/image_picker_bloc.u.dart';
 
 class NewServiceRequestView extends StatefulWidget {
-  const NewServiceRequestView({super.key});
+  const NewServiceRequestView(
+      {super.key,
+      required this.optionalService,
+      required this.providerId,
+      required this.isSelectProduct});
+  final List<OptionalService> optionalService;
+  final String providerId;
+  final bool isSelectProduct;
 
   @override
   State<NewServiceRequestView> createState() => _NewServiceRequestViewState();
@@ -25,7 +34,7 @@ class NewServiceRequestView extends StatefulWidget {
 
 class _NewServiceRequestViewState extends State<NewServiceRequestView> {
   final _formKey = GlobalKey<FormBuilderState>();
-  late File _image;
+  File? _image;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -37,7 +46,6 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
         children: [
           GestureDetector(
             onTap: () {
-              // final bloc = BlocProvider.of<NewServiceBloc>(context);
               showMaterialModalBottomSheet<Widget>(
                 context: context,
                 builder: (context) => SafeArea(
@@ -171,11 +179,19 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                       _formKey.currentState?.fields['desc']?.value.toString() ??
                           '';
 
-                  context.router.pop<OptionalService>(
-                    OptionalService(
-                      img: _image.path,
-                      name: name,
-                      desc: desc,
+                  // submit new request service as needToVerify
+                  context.router.popAndPush(
+                    ChooseServiceRoute(
+                      providerId: widget.providerId,
+                      isSelectProduct: widget.isSelectProduct,
+                      optionalService: widget.optionalService
+                        ..add(
+                          OptionalService(
+                            img: _image?.path ?? kFallbackServiceImg,
+                            name: name,
+                            desc: desc,
+                          ),
+                        ),
                     ),
                   );
                 }

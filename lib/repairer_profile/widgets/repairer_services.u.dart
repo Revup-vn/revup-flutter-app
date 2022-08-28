@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
-import '../../router/router.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/fallbacks.dart';
 import '../models/service_data.u.dart';
 
@@ -20,7 +20,7 @@ class RepairerProfileServices extends StatelessWidget {
   });
   final IVector<ServiceData> serviceData;
   final String providerId;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,9 @@ class RepairerProfileServices extends StatelessWidget {
             onTap: () {
               context.router.push(
                 ServiceDetailRoute(
+                  catAndSv: categories,
                   providerId: providerId,
                   serviceData: data[index],
-                  categories: categories,
                 ),
               );
             },
@@ -61,7 +61,7 @@ class RepairerProfileServices extends StatelessWidget {
                                 child: CachedNetworkImage(
                                   height: 64,
                                   width: 64,
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.fill,
                                   imageUrl: data[index].imageURL.isEmpty
                                       ? kFallbackServiceImg
                                       : data[index].imageURL,

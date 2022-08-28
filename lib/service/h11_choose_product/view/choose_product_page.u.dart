@@ -12,12 +12,14 @@ class ChooseProductPage extends StatelessWidget {
   const ChooseProductPage({
     super.key,
     required this.serviceData,
-    required this.categories,
+    required this.catAndSv,
     required this.providerId,
+    required this.recordId,
   });
   final String providerId;
   final ServiceData serviceData;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
+  final String recordId;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -29,9 +31,11 @@ class ChooseProductPage extends StatelessWidget {
         sr,
         context.read(),
         serviceData,
-        categories,
+        catAndSv,
       ),
-      child: const ChooseProductView(),
+      child: ChooseProductView(
+        recordId: recordId,
+      ),
     );
   }
 }

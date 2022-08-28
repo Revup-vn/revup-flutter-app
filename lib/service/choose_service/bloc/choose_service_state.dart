@@ -8,12 +8,12 @@ class ChooseServiceState with _$ChooseServiceState {
   const factory ChooseServiceState.success({
     required String providerId,
     required IList<ServiceData> serviceData,
-    required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
+    required Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
   }) = _Success;
   const factory ChooseServiceState.orderModify({
     required String providerId,
     required IList<ServiceData> serviceData,
-    required List<Tuple2<RepairCategory, IList<ServiceData>>> categories,
+    required List<PendingServiceModel> pendingService,
+    required Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
   }) = _OrderModify;
-  const factory ChooseServiceState.submitSuccess() = _SubmitSuccess;
 }

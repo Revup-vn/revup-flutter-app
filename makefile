@@ -87,7 +87,6 @@ run_stg_mobile: ## Runs the mobile application in dev
 run_prd_mobile: ## Runs the mobile application in dev
 	@echo "╠ Running the app"
 	@flutter run --flavor production -t lib/main_production.dart
-
 build_apk_dev: ## Runs the mobile application in dev
 	@flutter clean
 	@flutter pub get

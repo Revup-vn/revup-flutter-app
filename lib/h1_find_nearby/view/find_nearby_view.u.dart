@@ -45,6 +45,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
         );
     });
     currentLocation = point;
+    print(currentLocation);
     context
         .read<LocationBloc>()
         .add(LocationEvent.locationUpdated(location: point));
@@ -186,9 +187,10 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                             context.read<LocationBloc>().add(
                                   LocationEvent.savedRepairLoc(
                                     location: currentLocation,
+                                    onRoute: () => context.router
+                                        .push(const ListRepairerRoute()),
                                   ),
                                 );
-                            context.router.push(const ListRepairerRoute());
                           },
                           child: AutoSizeText(l10n.lookingForHelpLabel),
                         ),

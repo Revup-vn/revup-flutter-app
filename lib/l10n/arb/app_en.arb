@@ -189,11 +189,19 @@
   "arrivedRepairRecordLabel": "The repairman has arrived",
   "startedRepairRecordLabel": "The repairman is repairing",
   "loginFailLabel": "Your account is not allowed to login.",
-  "updateProfileFail" : "Update fail",
+  "updateProfileFail": "Update fail",
   "languageLabel": "Language",
   "vietnameseLabel": "Vietnamese",
   "englishLabel": "English",
   "loginFailDescLabel": "Please contact care center for more information.",
+  "settingsLabel": "Settings",
+  "onRequestLabel": "You have a request in progress",
+  "chooseAtLeastServiceLabel": "You must choose at least one service",
+  "consumerChooseServiceDoneLabel": "The customer has finished selecting the product",
+  "confirmArrivalLabel": "The repairer has confirm arrived, have you met the repairer yet?",
+  "repairDoneLabel": "Repair completed. Check your invoice and pay for it",
+  "failLabel": "Fail",
+  "hideLabel": "Hide",
   "successLabel": "Finished",
   "reportLabel": "Report",
   "myReportLabel": "My Report",
@@ -207,6 +215,8 @@
   "reportImgLabel": "Provide image if you need (optional)",
   "otherLabel": "Other",
   "productLabel": "Product",
-  "addReportFailLabel": "Add report fail"
-
+  "addReportFailLabel": "Add report fail",
+  "warningDesLabel": "Make sure you see the repairman before confirming the repairman has arrived",
+  "warningLabel": "Note",
+  "arrivedRepairmanLabel": "Confirmed repairman has arrived. Please confirm the repairman has arrived."
 }

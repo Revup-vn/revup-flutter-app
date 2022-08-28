@@ -18,13 +18,13 @@ class ServiceDetailsBloc
     this._userStore,
     this.storeRepository,
     this._providerId,
-    this.categories,
+    this.catAndSv,
   ) : super(const _Initial()) {
     on<ServiceDetailsEvent>(_onEvent);
   }
 
   final ServiceData _serviceData;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final String _providerId;
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
@@ -41,27 +41,23 @@ class ServiceDetailsBloc
               some,
             )
             .getOrElse(() => throw NullThrownError());
-        final maybeCat = categories.firstWhere(
-          (element) => element.value2.any((a) => a == _serviceData),
-        );
-
-        final maybeService = (await (storeRepository.repairServiceRepo(
+        final completer = Completer<IList<RepairProduct>>();
+        (await (storeRepository.repairServiceRepo(
           maybeProviderData,
-          maybeCat.value1,
+          RepairCategoryDummy.dummy(catAndSv.value1.name),
         )).get(_serviceData.name))
-            .fold<Option<RepairService>>((l) => none(), some)
-            .getOrElse(() => throw NullThrownError());
-
-        final products = (await storeRepository
-                .repairProductRepo(
-                  maybeProviderData,
-                  maybeCat.value1,
-                  maybeService,
-                )
-                .all())
-            .fold<IList<RepairProduct>>((l) => ilist([]), (r) => r);
-
-        emit(ServiceDetailsState.loaded(products: products));
+            .fold((l) => completer.complete(nil<RepairProduct>()), (r) async {
+          (await storeRepository
+                  .repairProductRepo(
+                    maybeProviderData,
+                    catAndSv.value1,
+                    r,
+                  )
+                  .all())
+              .fold((l) => completer.complete(nil()), completer.complete);
+        });
+        final res = await completer.future;
+        emit(ServiceDetailsState.loaded(products: res));
       },
     );
   }

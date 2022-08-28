@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -37,7 +38,7 @@ class ReportItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    '${l10n.codeOrderLabel} ${data.orderID}',
+                    '''${l10n.codeOrderLabel} ${data.orderID.length >= 7 ? data.orderID.substring(0, 8) : data.orderID}''',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(

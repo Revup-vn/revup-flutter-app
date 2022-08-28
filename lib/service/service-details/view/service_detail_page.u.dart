@@ -13,11 +13,11 @@ class ServiceDetailPage extends StatelessWidget {
     super.key,
     required this.providerId,
     required this.serviceData,
-    required this.categories,
+    required this.catAndSv,
   });
   final ServiceData serviceData;
   final String providerId;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -28,7 +28,7 @@ class ServiceDetailPage extends StatelessWidget {
         context.read(),
         sr,
         providerId,
-        categories,
+        catAndSv,
       ),
       child: ServiceDetailView(
         serviceData: serviceData,

@@ -190,11 +190,19 @@
   "arrivedRepairRecordLabel": "Thợ đã đã đến nơi",
   "startedRepairRecordLabel": "Thợ đang sửa chữa",
   "loginFailLabel": "Tài khoản của bạn không được phép đăng nhập.",
-  "updateProfileFail" : "Cập nhật tài khoản lỗi vui lòng thử lại",
+  "updateProfileFail": "Cập nhật tài khoản lỗi vui lòng thử lại",
   "languageLabel": "Ngôn ngữ",
   "vietnameseLabel": "Tiếng Việt",
   "englishLabel": "Tiếng Anh",
   "loginFailDescLabel": "Vui lòng liên hệ cskh để biết thêm thông tin.",
+  "settingsLabel": "Cài đặt",
+  "onRequestLabel": "Bạn có yêu cầu đang được thực hiện",
+  "chooseAtLeastServiceLabel": "Chọn tối thiểu một sản phẩm",
+  "consumerChooseServiceDoneLabel": "Khách đã chọn xong sản phẩm",
+  "confirmArrivalLabel": "Thợ xác nhận đã đến nơi, bạn đã gặp thợ chưa",
+  "repairDoneLabel": "Sửa xong rồi. Kiểm tra hoá đơn và thanh toán",
+  "failLabel": "Không thành công",
+  "hideLabel": "Ẩn",
   "successLabel": "Hoàn thành",
   "reportLabel": "Báo cáo",
   "myReportLabel": "Báo cáo của tôi",
@@ -208,5 +216,9 @@
   "reportImgLabel": "Cung cấp hình ảnh để chứng minh (tuỳ chọn)",
   "otherLabel": "Khác",
   "productLabel": "Sản phẩm",
-  "addReportFailLabel": "Thêm báo cáo lỗi"
+  "addReportFailLabel": "Thêm báo cáo lỗi",
+  "warningDesLabel": "Hãy chắc chắn rằng bạn đã gặp thợ sửa trước khi xác nhận thợ sửa đã đến",
+  "warningLabel": "Lưu ý",
+  "arrivedRepairmanLabel": "Thợ sửa xác nhận đã đến. Vui lòng xác nhận thợ sửa đã đến"
+
 }

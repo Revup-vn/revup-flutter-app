@@ -7,13 +7,9 @@ class UnknownFailure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: const [
-          Icon(Icons.refresh),
+    return const Center(
+      child:
           AutoSizeText('Some thing went wrong, please reload or refresh page'),
-        ],
-      ),
     );
   }
 }

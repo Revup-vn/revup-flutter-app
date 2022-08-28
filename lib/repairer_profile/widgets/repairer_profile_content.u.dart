@@ -25,7 +25,7 @@ class RepairerProfileMainContent extends StatelessWidget {
   final IList<ServiceData> serviceData;
   final IList<RatingData> ratingData;
   final ProviderData provider;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> categories;
   @override
   Widget build(BuildContext context) {
     const coverHeight = 150;

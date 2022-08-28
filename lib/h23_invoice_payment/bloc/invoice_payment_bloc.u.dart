@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
-import 'package:uuid/uuid.dart';
 
 part 'invoice_payment_bloc.u.freezed.dart';
 part 'invoice_payment_event.dart';
@@ -12,55 +11,48 @@ part 'invoice_payment_state.dart';
 
 class InvoicePaymentBloc
     extends Bloc<InvoicePaymentEvent, InvoicePaymentState> {
-  InvoicePaymentBloc(this._repairRecord) : super(const _Initial()) {
+  InvoicePaymentBloc(
+    this._userRepos,
+    this.repos,
+  ) : super(const _Initial()) {
     on<InvoicePaymentEvent>(_onEvent);
   }
-  final IStore<RepairRecord> _repairRecord;
-  FutureOr<void> _onEvent(InvoicePaymentEvent event, Emitter emit) {
-    event.when(
-      started: () => emit(const InvoicePaymentState.initial()),
-      changePaymentMethod: (isPayOnline) => emit(
+  final IStore<AppUser> _userRepos;
+  final StoreRepository repos;
+
+  FutureOr<void> _onEvent(InvoicePaymentEvent event, Emitter emit) async {
+    await event.when(
+      started: () async {},
+      changePaymentMethod: (isPayOnline) async => emit(
         InvoicePaymentState.changePaymentMethodSuccess(
           isPaymentOnline: isPayOnline,
         ),
       ),
-      sumbitPayment: (isPayOnline, totalAmount, pid, cid, feedback) {
+      sumbitPayment: (isPayOnline, totalAmount, cid, pid, sendMessage) async {
         // TODO(wamynobe): add payment method
+        emit(
+          const InvoicePaymentState.loading(),
+        );
 
-        final recordBox = Hive.box<dynamic>('repairRecord');
-        final tmp = RepairRecord.finished(
-          id: const Uuid().v4(),
-          cid: cid,
-          pid: pid,
-          created: recordBox.get(
-            'created',
-            defaultValue: DateTime.now(),
-          ) as DateTime,
-          desc: recordBox
-              .get('desc', defaultValue: 'no description yet')
-              .toString(),
-          vehicle: recordBox
-              .get('vehicle', defaultValue: 'no description yet')
-              .toString(),
-          money: totalAmount,
-          moving:
-              recordBox.get('moving', defaultValue: DateTime.now()) as DateTime,
-          started: recordBox.get(
-            'started',
-            defaultValue: DateTime.now(),
-          ) as DateTime,
-          completed: DateTime.now(),
-          imgs: recordBox.get(
-            'imgs',
-            defaultValue: 'default image',
-          ) as List<String>,
-          feedback: feedback,
-          from: const Location(name: '', long: 1, lat: 1),
-          to: const Location(name: '', long: 1, lat: 1),
-        );
-        _repairRecord.create(
-          tmp,
-        );
+        //fetch data provider,
+        final provider = (await _userRepos.get(pid))
+            .map(
+              (aUser) => aUser.map<Option<AppUser>>(
+                provider: some,
+                admin: (value) => none(),
+                consumer: (value) => none(),
+              ),
+            )
+            .fold<Option<AppUser>>((l) => none(), (r) => r)
+            .getOrElse(
+              () => throw NullThrownError(),
+            );
+        final tokens = (await repos.userNotificationTokenRepo(provider).all())
+            .fold((l) => throw NullThrownError(), (r) => r.toList())
+          ..sort(
+            (a, b) => a.created.compareTo(b.created),
+          );
+        sendMessage(tokens.first.token, pid);
         emit(
           const InvoicePaymentState.paymentSuccess(
             paymentStatus: 'success',

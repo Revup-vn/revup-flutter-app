@@ -11,8 +11,15 @@ class ChooseServicePage extends StatelessWidget {
   const ChooseServicePage({
     super.key,
     required this.providerId,
+    required this.isSelectProduct,
+    this.recordId,
+    required this.optionalService,
   });
   final String providerId;
+  final bool isSelectProduct;
+  final String? recordId;
+  final List<OptionalService> optionalService;
+
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -25,9 +32,14 @@ class ChooseServicePage extends StatelessWidget {
         sr,
         providerId,
         mayBeUser,
-        // context.read(),
       ),
-      child: const ChooseServiceView(),
+      child: ChooseServiceView(
+        form: GlobalKey(),
+        isSelectProduct: isSelectProduct,
+        recordId: recordId,
+        providerId: providerId,
+        optionalService: optionalService,
+      ),
     );
   }
 }

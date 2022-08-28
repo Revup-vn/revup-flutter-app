@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/widgets/loading.u.dart';
+import '../bloc/bloc/repair_status_bloc.dart';
 
-class RepairStatusView extends StatelessWidget {
+class RepairStatusView extends StatefulWidget {
   const RepairStatusView({super.key});
 
-  // TODO(tcmhoang): this widget did not use, did it?
+  @override
+  State<RepairStatusView> createState() => _RepairStatusViewState();
+}
+
+class _RepairStatusViewState extends State<RepairStatusView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.close),
-      ),
       body: Stack(
         children: [
           Padding(
@@ -60,28 +70,35 @@ class RepairStatusView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            AutoSizeText(
-                              'services.elementAt(index).name',
-                              style: Theme.of(context).textTheme.labelLarge,
+                  BlocBuilder<RepairStatusBloc, RepairStatusState>(
+                    builder: (context, state) => state.when(
+                      initial: Loading.new,
+                      loading: Loading.new,
+                      failure: () => AutoSizeText(l10n.emptyLabel),
+                      success: (service, total) => ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: service.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                AutoSizeText(
+                                  service[index].value1,
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                                AutoSizeText(
+                                  context.formatMoney(service[index].value2),
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                              ],
                             ),
-                            AutoSizeText(
-                              'services.elementAt(index).priceĐ',
-                              style: Theme.of(context).textTheme.labelLarge,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                          );
+                        },
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 150,
@@ -117,9 +134,18 @@ class RepairStatusView extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
-                          AutoSizeText(
-                            'totalPriceĐ',
-                            style: Theme.of(context).textTheme.labelLarge,
+                          BlocBuilder<RepairStatusBloc, RepairStatusState>(
+                            builder: (context, state) {
+                              return AutoSizeText(
+                                context.formatMoney(
+                                  state.maybeWhen(
+                                    orElse: () => 0,
+                                    success: (service, total) => total,
+                                  ),
+                                ),
+                                style: Theme.of(context).textTheme.labelLarge,
+                              );
+                            },
                           ),
                         ],
                       ),

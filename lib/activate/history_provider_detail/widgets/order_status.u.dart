@@ -43,7 +43,7 @@ class OrderStatusItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 AutoSizeText(
-                  l10n.codeOrderLabel + orderNumber,
+                  '''${l10n.codeOrderLabel} ${orderNumber.length >= 8 ? orderNumber.substring(0, 8) : orderNumber}''',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ) ??

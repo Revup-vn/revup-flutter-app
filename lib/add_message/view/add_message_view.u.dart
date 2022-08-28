@@ -167,7 +167,9 @@ class _AddMessageViewState extends State<AddMessageView> {
               onPressed: () async {
                 if (_descFieldKey.currentState?.validate() ?? false) {
                   final desc =
-                      _descFieldKey.currentState?.value.toString() ?? '';
+                      _descFieldKey.currentState?.value.toString() == 'null'
+                          ? ''
+                          : _descFieldKey.currentState?.value.toString();
                   final boxRprRecord = Hive.box<dynamic>('repairRecord');
                   await boxRprRecord.put('msgDesc', desc);
                   await boxRprRecord.put(
@@ -176,7 +178,11 @@ class _AddMessageViewState extends State<AddMessageView> {
                   );
                   await boxRprRecord.put('movingFee', widget.movingFee);
                   await context.router.push(
-                    ChooseServiceRoute(providerId: widget.providerData.id),
+                    ChooseServiceRoute(
+                      providerId: widget.providerData.id,
+                      optionalService: [],
+                      isSelectProduct: false,
+                    ),
                   );
                 }
               },

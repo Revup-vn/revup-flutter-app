@@ -20,8 +20,8 @@ mixin _$InvoicePaymentEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, ReportFeedback feedback)
+    required TResult Function(bool isPayOnline, int totalAmount, String cid,
+            String pid, Function2<String, String, void> sendMessage)
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +29,8 @@ mixin _$InvoicePaymentEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ mixin _$InvoicePaymentEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
     required TResult orElse(),
   }) =>
@@ -127,8 +127,8 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, ReportFeedback feedback)
+    required TResult Function(bool isPayOnline, int totalAmount, String cid,
+            String pid, Function2<String, String, void> sendMessage)
         sumbitPayment,
   }) {
     return started();
@@ -139,8 +139,8 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
   }) {
     return started?.call();
@@ -151,8 +151,8 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -270,8 +270,8 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, ReportFeedback feedback)
+    required TResult Function(bool isPayOnline, int totalAmount, String cid,
+            String pid, Function2<String, String, void> sendMessage)
         sumbitPayment,
   }) {
     return changePaymentMethod(isPayOnline);
@@ -282,8 +282,8 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
   }) {
     return changePaymentMethod?.call(isPayOnline);
@@ -294,8 +294,8 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -358,11 +358,9 @@ abstract class _$$_SubmitPaymentCopyWith<$Res> {
   $Res call(
       {bool isPayOnline,
       int totalAmount,
-      String pid,
       String cid,
-      ReportFeedback feedback});
-
-  $ReportFeedbackCopyWith<$Res> get feedback;
+      String pid,
+      Function2<String, String, void> sendMessage});
 }
 
 /// @nodoc
@@ -380,9 +378,9 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
   $Res call({
     Object? isPayOnline = freezed,
     Object? totalAmount = freezed,
-    Object? pid = freezed,
     Object? cid = freezed,
-    Object? feedback = freezed,
+    Object? pid = freezed,
+    Object? sendMessage = freezed,
   }) {
     return _then(_$_SubmitPayment(
       isPayOnline: isPayOnline == freezed
@@ -393,26 +391,19 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
           ? _value.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      pid: pid == freezed
-          ? _value.pid
-          : pid // ignore: cast_nullable_to_non_nullable
-              as String,
       cid: cid == freezed
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
               as String,
-      feedback: feedback == freezed
-          ? _value.feedback
-          : feedback // ignore: cast_nullable_to_non_nullable
-              as ReportFeedback,
+      pid: pid == freezed
+          ? _value.pid
+          : pid // ignore: cast_nullable_to_non_nullable
+              as String,
+      sendMessage: sendMessage == freezed
+          ? _value.sendMessage
+          : sendMessage // ignore: cast_nullable_to_non_nullable
+              as Function2<String, String, void>,
     ));
-  }
-
-  @override
-  $ReportFeedbackCopyWith<$Res> get feedback {
-    return $ReportFeedbackCopyWith<$Res>(_value.feedback, (value) {
-      return _then(_value.copyWith(feedback: value));
-    });
   }
 }
 
@@ -422,24 +413,24 @@ class _$_SubmitPayment implements _SubmitPayment {
   const _$_SubmitPayment(
       {required this.isPayOnline,
       required this.totalAmount,
-      required this.pid,
       required this.cid,
-      required this.feedback});
+      required this.pid,
+      required this.sendMessage});
 
   @override
   final bool isPayOnline;
   @override
   final int totalAmount;
   @override
-  final String pid;
-  @override
   final String cid;
   @override
-  final ReportFeedback feedback;
+  final String pid;
+  @override
+  final Function2<String, String, void> sendMessage;
 
   @override
   String toString() {
-    return 'InvoicePaymentEvent.sumbitPayment(isPayOnline: $isPayOnline, totalAmount: $totalAmount, pid: $pid, cid: $cid, feedback: $feedback)';
+    return 'InvoicePaymentEvent.sumbitPayment(isPayOnline: $isPayOnline, totalAmount: $totalAmount, cid: $cid, pid: $pid, sendMessage: $sendMessage)';
   }
 
   @override
@@ -451,9 +442,10 @@ class _$_SubmitPayment implements _SubmitPayment {
                 .equals(other.isPayOnline, isPayOnline) &&
             const DeepCollectionEquality()
                 .equals(other.totalAmount, totalAmount) &&
-            const DeepCollectionEquality().equals(other.pid, pid) &&
             const DeepCollectionEquality().equals(other.cid, cid) &&
-            const DeepCollectionEquality().equals(other.feedback, feedback));
+            const DeepCollectionEquality().equals(other.pid, pid) &&
+            (identical(other.sendMessage, sendMessage) ||
+                other.sendMessage == sendMessage));
   }
 
   @override
@@ -461,9 +453,9 @@ class _$_SubmitPayment implements _SubmitPayment {
       runtimeType,
       const DeepCollectionEquality().hash(isPayOnline),
       const DeepCollectionEquality().hash(totalAmount),
-      const DeepCollectionEquality().hash(pid),
       const DeepCollectionEquality().hash(cid),
-      const DeepCollectionEquality().hash(feedback));
+      const DeepCollectionEquality().hash(pid),
+      sendMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -475,11 +467,11 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String pid,
-            String cid, ReportFeedback feedback)
+    required TResult Function(bool isPayOnline, int totalAmount, String cid,
+            String pid, Function2<String, String, void> sendMessage)
         sumbitPayment,
   }) {
-    return sumbitPayment(isPayOnline, totalAmount, pid, cid, feedback);
+    return sumbitPayment(isPayOnline, totalAmount, cid, pid, sendMessage);
   }
 
   @override
@@ -487,11 +479,11 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
   }) {
-    return sumbitPayment?.call(isPayOnline, totalAmount, pid, cid, feedback);
+    return sumbitPayment?.call(isPayOnline, totalAmount, cid, pid, sendMessage);
   }
 
   @override
@@ -499,13 +491,13 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String pid, String cid,
-            ReportFeedback feedback)?
+    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
+            Function2<String, String, void> sendMessage)?
         sumbitPayment,
     required TResult orElse(),
   }) {
     if (sumbitPayment != null) {
-      return sumbitPayment(isPayOnline, totalAmount, pid, cid, feedback);
+      return sumbitPayment(isPayOnline, totalAmount, cid, pid, sendMessage);
     }
     return orElse();
   }
@@ -547,17 +539,18 @@ class _$_SubmitPayment implements _SubmitPayment {
 
 abstract class _SubmitPayment implements InvoicePaymentEvent {
   const factory _SubmitPayment(
-      {required final bool isPayOnline,
-      required final int totalAmount,
-      required final String pid,
-      required final String cid,
-      required final ReportFeedback feedback}) = _$_SubmitPayment;
+          {required final bool isPayOnline,
+          required final int totalAmount,
+          required final String cid,
+          required final String pid,
+          required final Function2<String, String, void> sendMessage}) =
+      _$_SubmitPayment;
 
   bool get isPayOnline;
   int get totalAmount;
-  String get pid;
   String get cid;
-  ReportFeedback get feedback;
+  String get pid;
+  Function2<String, String, void> get sendMessage;
   @JsonKey(ignore: true)
   _$$_SubmitPaymentCopyWith<_$_SubmitPayment> get copyWith =>
       throw _privateConstructorUsedError;
@@ -568,6 +561,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
     required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
     required TResult Function(String paymentStatus) paymentSuccess,
   }) =>
@@ -575,6 +570,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
   }) =>
@@ -582,6 +579,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
     required TResult orElse(),
@@ -590,6 +589,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
     required TResult Function(_ChangePaymentMethodSuccess value)
         changePaymentMethodSuccess,
     required TResult Function(_PaymentSuccess value) paymentSuccess,
@@ -598,6 +599,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -606,6 +609,8 @@ mixin _$InvoicePaymentState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -672,6 +677,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
     required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
     required TResult Function(String paymentStatus) paymentSuccess,
   }) {
@@ -682,6 +689,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
   }) {
@@ -692,6 +701,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
     required TResult orElse(),
@@ -706,6 +717,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
     required TResult Function(_ChangePaymentMethodSuccess value)
         changePaymentMethodSuccess,
     required TResult Function(_PaymentSuccess value) paymentSuccess,
@@ -717,6 +730,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -728,6 +743,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -742,6 +759,256 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements InvoicePaymentState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$InvoicePaymentStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'InvoicePaymentState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
+    required TResult Function(String paymentStatus) paymentSuccess,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
+    TResult Function(String paymentStatus)? paymentSuccess,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
+    TResult Function(String paymentStatus)? paymentSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ChangePaymentMethodSuccess value)
+        changePaymentMethodSuccess,
+    required TResult Function(_PaymentSuccess value) paymentSuccess,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ChangePaymentMethodSuccess value)?
+        changePaymentMethodSuccess,
+    TResult Function(_PaymentSuccess value)? paymentSuccess,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ChangePaymentMethodSuccess value)?
+        changePaymentMethodSuccess,
+    TResult Function(_PaymentSuccess value)? paymentSuccess,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements InvoicePaymentState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$InvoicePaymentStateCopyWithImpl<$Res>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, (v) => _then(v as _$_Failure));
+
+  @override
+  _$_Failure get _value => super._value as _$_Failure;
+}
+
+/// @nodoc
+
+class _$_Failure implements _Failure {
+  const _$_Failure();
+
+  @override
+  String toString() {
+    return 'InvoicePaymentState.failure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Failure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
+    required TResult Function(String paymentStatus) paymentSuccess,
+  }) {
+    return failure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
+    TResult Function(String paymentStatus)? paymentSuccess,
+  }) {
+    return failure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
+    TResult Function(String paymentStatus)? paymentSuccess,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_ChangePaymentMethodSuccess value)
+        changePaymentMethodSuccess,
+    required TResult Function(_PaymentSuccess value) paymentSuccess,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ChangePaymentMethodSuccess value)?
+        changePaymentMethodSuccess,
+    TResult Function(_PaymentSuccess value)? paymentSuccess,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_ChangePaymentMethodSuccess value)?
+        changePaymentMethodSuccess,
+    TResult Function(_PaymentSuccess value)? paymentSuccess,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements InvoicePaymentState {
+  const factory _Failure() = _$_Failure;
 }
 
 /// @nodoc
@@ -815,6 +1082,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
     required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
     required TResult Function(String paymentStatus) paymentSuccess,
   }) {
@@ -825,6 +1094,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
   }) {
@@ -835,6 +1106,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
     required TResult orElse(),
@@ -849,6 +1122,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
     required TResult Function(_ChangePaymentMethodSuccess value)
         changePaymentMethodSuccess,
     required TResult Function(_PaymentSuccess value) paymentSuccess,
@@ -860,6 +1135,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -871,6 +1148,8 @@ class _$_ChangePaymentMethodSuccess implements _ChangePaymentMethodSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -960,6 +1239,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
     required TResult Function(bool isPaymentOnline) changePaymentMethodSuccess,
     required TResult Function(String paymentStatus) paymentSuccess,
   }) {
@@ -970,6 +1251,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
   }) {
@@ -980,6 +1263,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
     TResult Function(bool isPaymentOnline)? changePaymentMethodSuccess,
     TResult Function(String paymentStatus)? paymentSuccess,
     required TResult orElse(),
@@ -994,6 +1279,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
     required TResult Function(_ChangePaymentMethodSuccess value)
         changePaymentMethodSuccess,
     required TResult Function(_PaymentSuccess value) paymentSuccess,
@@ -1005,6 +1292,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,
@@ -1016,6 +1305,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
     TResult Function(_ChangePaymentMethodSuccess value)?
         changePaymentMethodSuccess,
     TResult Function(_PaymentSuccess value)? paymentSuccess,

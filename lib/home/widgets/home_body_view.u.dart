@@ -50,22 +50,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
         }
       },
       success: (ads, activeRepairRecord, homeModel) {
-        if (activeRepairRecord.isSome()) {
-          // show flash on home screen
-          // final msg = activeRepairRecord.map(
-          //   (a) => a.maybeMap(
-          //     pending: (v) => l10n.pendingRepairRecordLabel,
-          //     accepted: (v) => l10n.acceptRepairRecordLabel,
-          //     arrived: (v) => l10n.arrivedRepairRecordLabel,
-          //     started: (v) => l10n.startedRepairRecordLabel,
-          //     orElse: () => throw NullThrownError(),
-          //   ),
-          // );
-          // Future.delayed(
-          //   Duration.zero,
-          //   () => _showTopFlash(msg: msg.getOrElse(() => '')),
-          // );
-        }
+        if (activeRepairRecord.isSome()) {}
       },
       orElse: () => false,
     );
@@ -176,43 +161,4 @@ class _HomeBodyViewState extends State<HomeBodyView> {
       },
     );
   }
-
-  // void _showTopFlash({
-  //   bool persistent = true,
-  //   EdgeInsets margin = const EdgeInsets.only(left: 20),
-  //   required String msg,
-  // }) {
-  //   showFlash<Unit>(
-  //     context: context,
-  //     persistent: persistent,
-  //     builder: (_, controller) {
-  //       return Flash<Widget>(
-  //         controller: controller,
-  //         margin: margin,
-  //         behavior: FlashBehavior.floating,
-  //         position: FlashPosition.top,
-  //         forwardAnimationCurve: Curves.easeIn,
-  //         reverseAnimationCurve: Curves.easeOut,
-  //         borderRadius: const BorderRadius.only(
-  //           topLeft: Radius.circular(6),
-  //           bottomLeft: Radius.circular(6),
-  //         ),
-  //         child: FlashBar(
-  //           content: Text(
-  //             msg,
-  //             style: Theme.of(context)
-  //                 .textTheme
-  //                 .bodyLarge
-  //                 ?.copyWith(color: Theme.of(context).colorScheme.primary),
-  //           ),
-  //           indicatorColor: Colors.green,
-  //           primaryAction: TextButton(
-  //             onPressed: () => controller.dismiss(),
-  //             child: Text(context.l10n.showLabel),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 }

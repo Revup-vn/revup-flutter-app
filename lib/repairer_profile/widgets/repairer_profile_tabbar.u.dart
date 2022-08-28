@@ -20,7 +20,7 @@ class RepairerProfileTabBar extends StatefulWidget {
   final IVector<ServiceData> serviceData;
   final IVector<RatingData> ratingData;
   final String providerId;
-  final List<Tuple2<RepairCategory, IList<ServiceData>>> categories;
+  final Tuple2<RepairCategory, IList<ServiceData>> categories;
 
   @override
   State<RepairerProfileTabBar> createState() => _RepairerProfileTabBarState();

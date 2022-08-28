@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
-import '../../../shared/widgets/unknown_failure.dart';
 import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
 
 class ChooseProductView extends StatefulWidget {
-  const ChooseProductView({super.key});
+  const ChooseProductView({super.key, required this.recordId});
+  final String recordId;
 
   @override
   State<ChooseProductView> createState() => _ChooseProductViewState();
@@ -28,7 +29,6 @@ class _ChooseProductViewState extends State<ChooseProductView> {
     return BlocBuilder<ChooseProductBloc, ChooseProductState>(
       builder: (context, state) {
         return state.maybeWhen(
-          failure: UnknownFailure.new,
           orElse: () => const Center(
             child: CircularProgressIndicator.adaptive(),
           ),
@@ -93,9 +93,13 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                           BoxDecoration(color: Theme.of(context).cardColor),
                       child: ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<ChooseProductBloc>()
-                              .add(ChooseProductEvent.submitted(groupValue));
+                          context.read<ChooseProductBloc>().add(
+                                ChooseProductEvent.submitted(
+                                  groupValue,
+                                  widget.recordId,
+                                  () => context.router.pop(),
+                                ),
+                              );
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),
