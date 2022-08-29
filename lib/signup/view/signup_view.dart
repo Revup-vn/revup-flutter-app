@@ -229,10 +229,9 @@ class SignupView extends StatelessWidget {
                             final data = _formKey.currentState?.value;
                             final listName =
                                 data?['fullName'].toString().split(' ');
-                            var fName = '';
+                            final fName = listName?[0];
                             var lName = '';
                             if (listName != null && listName.length > 1) {
-                              fName = listName[0];
                               listName.remove(listName[0]);
                               lName = listName.fold<String>(
                                 '',
@@ -283,7 +282,7 @@ class SignupView extends StatelessWidget {
                                     completer.complete(
                                       AppUser.consumer(
                                         uuid: uid,
-                                        firstName: fName,
+                                        firstName: fName ?? '',
                                         lastName: lName,
                                         phone: '+84$phoneNumber',
                                         dob: DateTime.parse(
@@ -315,7 +314,7 @@ class SignupView extends StatelessWidget {
                               completer.complete(
                                 AppUser.consumer(
                                   uuid: uid,
-                                  firstName: fName,
+                                  firstName: fName ?? '',
                                   lastName: lName,
                                   phone: '+84$phoneNumber',
                                   dob: DateTime.parse(
