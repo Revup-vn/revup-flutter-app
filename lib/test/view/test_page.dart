@@ -1,30 +1,163 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
-import '../../h6_request_provider/widgets/request_details_live.dart';
+import '../../l10n/l10n.dart';
+import '../../router/router.dart';
+import '../../shared/fallbacks.dart';
 
 class TestPage extends StatelessWidget {
-  const TestPage({super.key});
+  TestPage({super.key});
 
+  final IList<ProviderData> listProvider = IList.from([
+    ProviderData(
+        id: '1',
+        fullName: 'fullName',
+        address: 'address',
+        avatar: 'avatar',
+        distance: 10,
+        timeArrivalInMinute: 10,
+        rating: 4,
+        ratingCount: 4,
+        backgroundImg: '',
+        profileBio: 'profileBio',
+        phone: '09231121322')
+  ]);
   @override
   Widget build(BuildContext context) {
-    final pData = ProviderData(
-      id: 'asdasacasddddddddasdasdasdasd',
-      fullName: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      address: '22-hsydas-SDasx-ASD',
-      avatar: '',
-      distance: 7,
-      timeArrivalInMinute: 4,
-      rating: 3,
-      ratingCount: 107,
-      backgroundImg: '',
-      profileBio: '',
-      phone: '098323123aaaaaaaaaaaaaaaaaaa',
-    );
-    return Scaffold(
-      appBar: AppBar(),
-      body: Stack(
-        children: [RequestDetailsLive(providerData: pData, movingFees: 50000)],
+    final providers = listProvider.toIterable().toList();
+
+    return ListView.separated(
+      itemBuilder: (BuildContext buildContext, int index) {
+        return Card(
+          color: Theme.of(context).colorScheme.background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ListBody(
+            children: [
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 9,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            context.router.push(
+                              RepairerProfileRoute(
+                                providerData: providers[index],
+                              ),
+                            );
+                          },
+                          leading: SizedBox(
+                            width: 54,
+                            height: 54,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(48),
+                              child: CircleAvatar(
+                                child: CachedNetworkImage(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  fit: BoxFit.fill,
+                                  imageUrl: providers[index].avatar.isEmpty
+                                      ? kFallbackImage
+                                      : providers[index].avatar,
+                                ),
+                              ),
+                            ),
+                          ),
+                          title: AutoSizeText(
+                            providers[index].fullName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          subtitle: AutoSizeText(
+                            providers[index].address,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            maxLines: 1,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              AutoSizeText(
+                                providers[index].rating.toString(),
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                size: 18,
+                              ),
+                              AutoSizeText(
+                                '(${providers[index].ratingCount})',
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Icon(
+                                Icons.location_pin,
+                                size: 18,
+                              ),
+                              AutoSizeText(
+                                '''${double.parse((providers[index].distance).toStringAsFixed(2))} km''',
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Icon(
+                                Icons.timer,
+                                size: 18,
+                              ),
+                              AutoSizeText(
+                                '''
+${providers[index].timeArrivalInMinute.toInt()} ${context.l10n.minutesLabel}''',
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      onPressed: () {
+                        context.router.push(
+                          RepairerProfileRoute(
+                            providerData: providers[index],
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+      itemCount: listProvider.length(),
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(
+        height: 5,
       ),
     );
   }
