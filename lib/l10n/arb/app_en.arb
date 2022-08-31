@@ -225,5 +225,9 @@
   "resultCountLabel": "founds",
   "notFoundLabel": "Not Found",
   "emptyProviderListLabel": "No repairmen available",
-  "unknownFailureLabel": "Sorry, an error occurred"
+  "unknownFailureLabel": "Sorry, an error occurred",
+  "filterLabel": "Filter",
+  "radiusLabel": "Radius",
+  "withinRadiusLabel": "within radius",
+  "noteFilterRadiusLabel": "This is the search radius, the distance traveled may be larger"
 }

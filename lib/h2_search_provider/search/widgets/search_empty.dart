@@ -5,9 +5,14 @@ import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 
 class SearchEmpty extends StatelessWidget {
-  const SearchEmpty(
-      {super.key, required this.keyword, required this.resultCount});
+  const SearchEmpty({
+    super.key,
+    required this.keyword,
+    required this.resultCount,
+    required this.radius,
+  });
   final String keyword;
+  final double radius;
   final int resultCount;
 
   @override
@@ -30,14 +35,24 @@ class SearchEmpty extends StatelessWidget {
                       const TextStyle(fontWeight: FontWeight.bold),
                   children: <TextSpan>[
                     TextSpan(
-                      text: ' "$keyword"',
+                      text: ' "$keyword" ',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                     ),
+                    TextSpan(text: l10n.withinRadiusLabel),
+                    TextSpan(
+                      text: ' $radius km',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    )
                   ],
                 ),
+                maxLines: 1,
+                maxFontSize: 12,
               ),
               Text(
                 '$resultCount ${l10n.resultCountLabel}',

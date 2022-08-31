@@ -50,6 +50,7 @@ class FindProviderCubit extends Cubit<FindProviderState> {
     List<DocumentSnapshot<Object?>> e,
     GeoFirePoint repairPoint,
   ) async {
+    emit(const FindProviderState.loading());
     if (e.isEmpty) {
       emit(const FindProviderState.empty());
     } else {

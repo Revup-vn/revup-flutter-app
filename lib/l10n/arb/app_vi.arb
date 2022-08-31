@@ -226,5 +226,9 @@
   "resultCountLabel": "kết quả",
   "notFoundLabel": "Không tìm thấy",
   "emptyProviderListLabel": "Không tìm thấy thợ sửa chữa nào khả dụng",
-  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra"
+  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra",
+  "filterLabel": "Lọc",
+  "radiusLabel": "Bán kính",
+  "withinRadiusLabel": "trong bán kính",
+  "noteFilterRadiusLabel": "Đây là bán kính tìm kiếm, quãng đường di chuyển có thể sẽ lớn hơn"
 }

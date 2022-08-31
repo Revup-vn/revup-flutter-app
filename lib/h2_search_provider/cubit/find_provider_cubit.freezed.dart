@@ -20,6 +20,7 @@ mixin _$FindProviderState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() empty,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<ProviderRawData> providers) loaded,
   }) =>
@@ -28,6 +29,7 @@ mixin _$FindProviderState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
   }) =>
@@ -36,6 +38,7 @@ mixin _$FindProviderState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$FindProviderState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
   }) =>
@@ -53,6 +57,7 @@ mixin _$FindProviderState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
   }) =>
@@ -61,6 +66,7 @@ mixin _$FindProviderState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -127,6 +133,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() empty,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<ProviderRawData> providers) loaded,
   }) {
@@ -138,6 +145,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
   }) {
@@ -149,6 +157,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
     required TResult orElse(),
@@ -164,6 +173,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -175,6 +185,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
   }) {
@@ -186,6 +197,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -241,6 +253,7 @@ class _$_Empty implements _Empty {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() empty,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<ProviderRawData> providers) loaded,
   }) {
@@ -252,6 +265,7 @@ class _$_Empty implements _Empty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
   }) {
@@ -263,6 +277,7 @@ class _$_Empty implements _Empty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
     required TResult orElse(),
@@ -278,6 +293,7 @@ class _$_Empty implements _Empty {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -289,6 +305,7 @@ class _$_Empty implements _Empty {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
   }) {
@@ -300,6 +317,7 @@ class _$_Empty implements _Empty {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -313,6 +331,128 @@ class _$_Empty implements _Empty {
 
 abstract class _Empty implements FindProviderState {
   const factory _Empty() = _$_Empty;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$FindProviderStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'FindProviderState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(List<ProviderRawData> providers) loaded,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(List<ProviderRawData> providers)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(List<ProviderRawData> providers)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements FindProviderState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -357,6 +497,7 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() empty,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<ProviderRawData> providers) loaded,
   }) {
@@ -368,6 +509,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
   }) {
@@ -379,6 +521,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
     required TResult orElse(),
@@ -394,6 +537,7 @@ class _$_Failure implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -405,6 +549,7 @@ class _$_Failure implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
   }) {
@@ -416,6 +561,7 @@ class _$_Failure implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -502,6 +648,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() empty,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<ProviderRawData> providers) loaded,
   }) {
@@ -513,6 +660,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
   }) {
@@ -524,6 +672,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? empty,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<ProviderRawData> providers)? loaded,
     required TResult orElse(),
@@ -539,6 +688,7 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -550,6 +700,7 @@ class _$_Loaded implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
   }) {
@@ -561,6 +712,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
