@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart' hide showSearch;
+
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../shared/widgets/search_custom.dart';
 import '../../l10n/l10n.dart';
 import '../cubit/find_provider_cubit.dart';
 import '../search/cubit/search_cubit.dart';
@@ -45,6 +47,7 @@ class FindProviderPage extends StatelessWidget {
                       hintText: context.l10n.searchLabel,
                       searchFieldStyle: Theme.of(context).textTheme.bodyMedium,
                     ),
+                    useRootNavigator: false,
                   );
                 },
                 icon: const Icon(Icons.search_rounded),

@@ -19,7 +19,7 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this._userStore, this.sr, this._repairRecord)
-      : super(SearchState.initial());
+      : super(const SearchState.initial());
   final IStore<AppUser> _userStore;
   final StoreRepository sr;
   final IStore<RepairRecord> _repairRecord;
@@ -27,9 +27,10 @@ class SearchCubit extends Cubit<SearchState> {
   StreamSubscription<List<DocumentSnapshot<Object?>>>? _s;
 
   Future<Unit> searchByKeywordWithinRadius(
-    double radius,
     String keyword,
+    double radius,
   ) async {
+    emit(const SearchState.loading());
     final boxLocation = Hive.box<dynamic>('location');
     final repairLat = boxLocation.get('repairLat', defaultValue: 0.0) as double;
     final repairLng = boxLocation.get('repairLng', defaultValue: 0.0) as double;
@@ -48,7 +49,7 @@ class SearchCubit extends Cubit<SearchState> {
           field: 'cur_location',
           strictMode: true,
         )
-        .listen((e) => _onData(e, repairPoint, keyword));
+        .listen((e) => _onData(e, repairPoint, keyword, radius));
     return unit;
   }
 
@@ -56,9 +57,10 @@ class SearchCubit extends Cubit<SearchState> {
     List<DocumentSnapshot<Object?>> e,
     GeoFirePoint repairPoint,
     String keyword,
+    double radius,
   ) async {
     if (e.isEmpty) {
-      emit(SearchState.empty(keyword: keyword, resultCount: 0));
+      emit(SearchState.empty(keyword: keyword, resultCount: 0, radius: radius));
     } else {
       final providers = e
           .map((r) => r as DocumentSnapshot<Map<String, dynamic>>)
@@ -68,7 +70,8 @@ class SearchCubit extends Cubit<SearchState> {
           .fold<IList<ProviderRawData>>(nil(), (p, e) => cons(e, p));
 
       if (providers.isEmpty) {
-        emit(SearchState.empty(keyword: keyword, resultCount: 0));
+        emit(SearchState.empty(
+            keyword: keyword, resultCount: 0, radius: radius));
       } else {
         final providerRating = await Future.wait(
           (await providers
@@ -154,26 +157,36 @@ class SearchCubit extends Cubit<SearchState> {
                   .run())
               .toIterable(),
         );
-        final providerFilter = providerContainSer
-            .where(
-              (e) => e.repairService.isNotEmpty,
-            )
-            .where(
-              (e) => e.repairService.any(
-                (a) => a.name.toLowerCase().contains(keyword.toLowerCase()),
-              ),
-            )
-            .toList();
+        var providerFilter = providerContainSer;
+        if (keyword.isNotEmpty) {
+          providerFilter = providerContainSer
+              .where(
+                (e) => e.repairService.isNotEmpty,
+              )
+              .where(
+                (e) => e.repairService.any(
+                  (a) => a.name.toLowerCase().contains(keyword.toLowerCase()),
+                ),
+              )
+              .toList();
+        }
         log(providerContainSer.toString());
         log(providerFilter.toString());
         if (providerFilter.isEmpty) {
-          emit(SearchState.empty(keyword: keyword, resultCount: 0));
+          emit(
+            SearchState.empty(
+              keyword: keyword,
+              resultCount: 0,
+              radius: radius,
+            ),
+          );
         } else {
           emit(
             SearchState.result(
               keyword: keyword,
               resultCount: providerFilter.length,
               providers: providerFilter,
+              radius: radius,
             ),
           );
         }

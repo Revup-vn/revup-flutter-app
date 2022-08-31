@@ -7,9 +7,10 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
@@ -59,6 +60,12 @@ class $AssetsScreensGen {
   /// File path: assets/screens/icons-zalo.svg
   SvgGenImage get iconsZalo =>
       const SvgGenImage('assets/screens/icons-zalo.svg');
+
+  /// File path: assets/screens/loading.json
+  String get loading => 'assets/screens/loading.json';
+
+  /// File path: assets/screens/loading_primary_color.json
+  String get loadingPrimaryColor => 'assets/screens/loading_primary_color.json';
 
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
