@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -91,94 +90,115 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           ),
         );
       },
-      serviceListSubmitted: (onRoute, sendMessage, saveLst) async {
+      serviceListSubmitted: (onRoute, sendMessage, saveLst, onPop) async {
         emit(const ChooseServiceState.loading());
 
-        final consumer = _maybeUser.getOrElse(() => throw NullThrownError());
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        await boxRprRecord.put('pid', providerId);
-        final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
-        final msgDesc = boxRprRecord.get('msgDesc', defaultValue: '') as String;
-        // final msgImg =
-        //     boxRprRecord.get('msgImg', defaultValue: '') as Uint8List;
-        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
-        final toLat = boxRprRecord.get('toLat', defaultValue: 0.0) as double;
-        final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
-        final doc = await _userStore.collection().doc(providerId).get();
-        final maybeGeopoint = doc.data()!;
-
-        final fromPoint = (maybeGeopoint['cur_location']
-            as Map<String, dynamic>)['geopoint'] as GeoPoint;
-        final recordId = const Uuid().v4();
-        await boxRprRecord.put('id', recordId);
-        await _repairRecord.create(
-          RepairRecord.pending(
-            id: recordId,
-            cid: consumer.uuid,
-            pid: providerId,
-            created: DateTime.now(),
-            desc: msgDesc,
-            vehicle: vehicle,
-            money: movingFee,
-            from: Location(
-              name: '',
-              long: fromPoint.longitude,
-              lat: fromPoint.latitude,
+        if (await _isProviderOnline() && await _hasNotPendingRecord()) {
+          // lock Provider status
+          _userStore.updateFields(
+            AppUserDummy.dummyProvider(providerId).maybeMap(
+              orElse: () => throw NullThrownError(),
+              provider: (p) => p.copyWith(
+                online: false,
+              ),
             ),
-            to: Location(
-              name: '',
-              long: toLng,
-              lat: toLat,
-            ),
-            services: <OptionalService>[],
-          ),
-        );
+            cons(AppUserDummy.field(AppUserFields.Online), nil()),
+          );
 
-        // create list pending payment service
-        final _paymentRepo = storeRepository
-            .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
-        for (var i = 0; i < saveLst.length; i++) {
-          saveLst[i].isOptional
-              ? await _paymentRepo.create(
-                  PaymentService.needToVerify(
-                    serviceName: saveLst[i].name,
-                    desc: '',
-                  ),
-                )
-              : await _paymentRepo.create(
-                  PaymentService.pending(
-                    serviceName: saveLst[i].name,
-                    moneyAmount: saveLst[i].serviceFee,
-                    products: [],
-                    isOptional: false,
-                  ),
-                );
+          final consumer = _maybeUser.getOrElse(() => throw NullThrownError());
+          final boxRprRecord = Hive.box<dynamic>('repairRecord');
+          await boxRprRecord.put('pid', providerId);
+          final vehicle =
+              boxRprRecord.get('vehicle', defaultValue: '') as String;
+          final msgDesc =
+              boxRprRecord.get('msgDesc', defaultValue: '') as String;
+          // final msgImg =
+          //     boxRprRecord.get('msgImg', defaultValue: '') as Uint8List;
+          final movingFee =
+              boxRprRecord.get('movingFee', defaultValue: 0) as int;
+          final toLat = boxRprRecord.get('toLat', defaultValue: 0.0) as double;
+          final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
+          final doc = await _userStore.collection().doc(providerId).get();
+          final maybeGeopoint = doc.data()!;
+
+          final fromPoint = (maybeGeopoint['cur_location']
+              as Map<String, dynamic>)['geopoint'] as GeoPoint;
+          final recordId = const Uuid().v4();
+          await boxRprRecord.put('id', recordId);
+          if (!await _isProviderOnline()) {
+            await _repairRecord.create(
+              RepairRecord.pending(
+                id: recordId,
+                cid: consumer.uuid,
+                pid: providerId,
+                created: DateTime.now(),
+                desc: msgDesc,
+                vehicle: vehicle,
+                money: movingFee,
+                from: Location(
+                  name: '',
+                  long: fromPoint.longitude,
+                  lat: fromPoint.latitude,
+                ),
+                to: Location(
+                  name: '',
+                  long: toLng,
+                  lat: toLat,
+                ),
+                services: <OptionalService>[],
+              ),
+            );
+          } else {
+            return;
+          }
+
+          // create list pending payment service
+          final _paymentRepo = storeRepository
+              .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
+          for (var i = 0; i < saveLst.length; i++) {
+            saveLst[i].isOptional
+                ? await _paymentRepo.create(
+                    PaymentService.needToVerify(
+                      serviceName: saveLst[i].name,
+                      desc: '',
+                    ),
+                  )
+                : await _paymentRepo.create(
+                    PaymentService.pending(
+                      serviceName: saveLst[i].name,
+                      moneyAmount: saveLst[i].serviceFee,
+                      products: [],
+                      isOptional: false,
+                    ),
+                  );
+          }
+
+          // get latest provider fcm token
+          final provider = (await _userStore.get(providerId))
+              .fold<Option<AppUser>>(
+                (l) => none(),
+                some,
+              )
+              .getOrElse(() => throw NullThrownError());
+
+          final tokens = (await storeRepository
+                  .userNotificationTokenRepo(provider)
+                  .all())
+              .map(
+                (r) => r.sort(
+                  orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                ),
+              )
+              .fold((l) => throw NullThrownError(), (r) => r.toList());
+
+          // send notify to provider
+          sendMessage(tokens.first.token, recordId);
+
+          // route to home page
+          onRoute();
+          return;
         }
-
-        // get latest provider fcm token
-        final provider = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
-
-        final tokens =
-            (await storeRepository.userNotificationTokenRepo(provider).all())
-                .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
-                )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
-
-        log('TOKEN:${tokens.first.token}');
-
-        // send notify to provider
-        sendMessage(tokens.first.token, recordId);
-
-        // route to home page
-        onRoute();
+        onPop();
       },
       // addedService: (optionalService) async {
       //   emit(const ChooseServiceState.loading());
@@ -348,8 +368,6 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                 )
                 .fold((l) => throw NullThrownError(), (r) => r.toList());
 
-        log('TOKEN:${tokens.first.token}');
-
         // send notify to provider
         // sendMessage(tokens.first.token, recordId);
 
@@ -357,4 +375,43 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
       },
     );
   }
+
+  // pending => < 12h
+  Future<bool> _hasNotPendingRecord() async => (await _repairRecord.queryTs(
+        (a) => a
+            .where(
+              RepairRecordDummy.field(RepairRecordFields.ProviderId),
+              isEqualTo: providerId,
+            )
+            .orderBy(
+              RepairRecordDummy.field(RepairRecordFields.CreateDate),
+              descending: true,
+            )
+            .limit(1)
+            .get(),
+      ))
+          .map(
+            (r) => r.headOption
+                .map(
+                  (a) => a.maybeMap(
+                    orElse: () => true,
+                    pending: (p) =>
+                        DateTime.now().compareTo(
+                          p.created.add(const Duration(hours: 12)),
+                        ) >=
+                        0,
+                  ),
+                )
+                .getOrElse(() => true),
+          )
+          .getOrElse(() => true);
+
+  Future<bool> _isProviderOnline() async => (await _userStore.get(providerId))
+      .map(
+        (r) => r.maybeMap(
+          orElse: () => false,
+          provider: (p) => p.active,
+        ),
+      )
+      .getOrElse(() => false);
 }

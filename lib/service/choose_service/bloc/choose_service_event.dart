@@ -8,6 +8,7 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required Function0<void> onRoute,
     required Function2<String, String, void> sendMessage,
     required List<ServiceData> saveLst,
+    required Function0<void> onPopBack,
   }) = _ServiceListSubmitted;
   const factory ChooseServiceEvent.selectProductCompleted({
     required Function0<void> onRoute,
