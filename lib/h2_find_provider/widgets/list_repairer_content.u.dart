@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -23,7 +22,7 @@ class ListRepairerContent extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (BuildContext buildContext, int index) {
         return Card(
-          color: Theme.of(context).colorScheme.surface,
+          color: Theme.of(context).colorScheme.background,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

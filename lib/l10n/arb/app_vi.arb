@@ -219,6 +219,12 @@
   "addReportFailLabel": "Thêm báo cáo lỗi",
   "warningDesLabel": "Hãy chắc chắn rằng bạn đã gặp thợ sửa trước khi xác nhận thợ sửa đã đến",
   "warningLabel": "Lưu ý",
-  "arrivedRepairmanLabel": "Thợ sửa xác nhận đã đến. Vui lòng xác nhận thợ sửa đã đến"
-
+  "arrivedRepairmanLabel": "Thợ sửa xác nhận đã đến. Vui lòng xác nhận thợ sửa đã đến",
+  "recentLabel": "Gần đây",
+  "clearAllLabel": "Xoá tất cả",
+  "resultForLabel": "Kết quả cho",
+  "resultCountLabel": "kết quả",
+  "notFoundLabel": "Không tìm thấy",
+  "emptyProviderListLabel": "Không tìm thấy thợ sửa chữa nào khả dụng",
+  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra"
 }

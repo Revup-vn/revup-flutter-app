@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
@@ -21,7 +21,17 @@ class ListRepairerPage extends StatelessWidget {
         ],
       ),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: false,
+          title: AutoSizeText(
+            context.l10n.repairerAroundLabel,
+            maxLines: 1,
+          ),
+          titleTextStyle: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(fontWeight: FontWeight.bold),
+        ),
         body: const ListRepairerView(),
       ),
     );
