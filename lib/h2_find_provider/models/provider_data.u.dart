@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-import '../../h2_search_provider/model/provider_raw_data.dart';
 import '../../shared/fallbacks.dart';
+import 'provider_raw_data.dart';
 
 part 'provider_data.u.freezed.dart';
 part 'provider_data.u.g.dart';

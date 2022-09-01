@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,7 +11,7 @@ import 'package:revup_core/core.dart';
 
 import '../../../map/map_api/map_api.dart';
 import '../../../repairer_profile/models/record_rating_data.dart';
-import '../../model/provider_raw_data.dart';
+import '../../models/provider_raw_data.dart';
 
 part 'search_cubit.freezed.dart';
 part 'search_state.dart';
@@ -29,6 +28,7 @@ class SearchCubit extends Cubit<SearchState> {
   Future<Unit> searchByKeywordWithinRadius(
     String keyword,
     double radius,
+    String price,
   ) async {
     emit(const SearchState.loading());
     final boxLocation = Hive.box<dynamic>('location');
@@ -49,7 +49,7 @@ class SearchCubit extends Cubit<SearchState> {
           field: 'cur_location',
           strictMode: true,
         )
-        .listen((e) => _onData(e, repairPoint, keyword, radius));
+        .listen((e) => _onData(e, repairPoint, keyword, radius, price));
     return unit;
   }
 
@@ -58,6 +58,7 @@ class SearchCubit extends Cubit<SearchState> {
     GeoFirePoint repairPoint,
     String keyword,
     double radius,
+    String priceSort,
   ) async {
     if (e.isEmpty) {
       emit(SearchState.empty(keyword: keyword, resultCount: 0, radius: radius));
@@ -70,8 +71,13 @@ class SearchCubit extends Cubit<SearchState> {
           .fold<IList<ProviderRawData>>(nil(), (p, e) => cons(e, p));
 
       if (providers.isEmpty) {
-        emit(SearchState.empty(
-            keyword: keyword, resultCount: 0, radius: radius));
+        emit(
+          SearchState.empty(
+            keyword: keyword,
+            resultCount: 0,
+            radius: radius,
+          ),
+        );
       } else {
         final providerRating = await Future.wait(
           (await providers
@@ -136,7 +142,7 @@ class SearchCubit extends Cubit<SearchState> {
         final vehicle =
             (boxRR.get('vehicle') as String) == 'car' ? 'Oto' : 'Xe máy';
 
-        final providerContainSer = await Future.wait(
+        final provWithService = await Future.wait(
           (await IList.from(providerSumm)
                   .traverseTask(
                     (a) => Task.value(
@@ -157,9 +163,9 @@ class SearchCubit extends Cubit<SearchState> {
                   .run())
               .toIterable(),
         );
-        var providerFilter = providerContainSer;
+        var filterService = provWithService;
         if (keyword.isNotEmpty) {
-          providerFilter = providerContainSer
+          filterService = provWithService
               .where(
                 (e) => e.repairService.isNotEmpty,
               )
@@ -170,9 +176,101 @@ class SearchCubit extends Cubit<SearchState> {
               )
               .toList();
         }
-        log(providerContainSer.toString());
-        log(providerFilter.toString());
-        if (providerFilter.isEmpty) {
+
+        var filterPrice =
+            <Tuple2<ProviderRawData, List<Tuple3<RepairService, int, int>>>>[];
+
+        filterPrice = await Future.wait(
+          filterService.map((e) => tuple2(e, e.repairService)).toList().map(
+                (e) async => tuple2(
+                  e.value1,
+                  ((await Future.wait(
+                    (await IList.from(e.value2)
+                            .traverseTask(
+                              (a) => Task.value(
+                                (sr
+                                        .repairProductRepo(
+                                          AppUserDummy.dummyProvider(
+                                            e.value1.uuid,
+                                          ),
+                                          RepairCategoryDummy.dummy(vehicle),
+                                          a,
+                                        )
+                                        .all())
+                                    .then(
+                                  (value) => value
+                                      .map(
+                                        (r) => r.sort(
+                                          orderBy(
+                                            IntOrder.reverse(),
+                                            (k) => k.price,
+                                          ),
+                                        ),
+                                      )
+                                      .map(
+                                        (r) => tuple3<RepairService, int, int>(
+                                          a,
+                                          (r.toList().isEmpty
+                                                  ? 0
+                                                  : (r.toList().last.price)) +
+                                              a.fee,
+                                          (r.toList().isEmpty
+                                                  ? 0
+                                                  : (r.toList().first.price)) +
+                                              a.fee,
+                                        ),
+                                      )
+                                      .fold(
+                                        (l) => tuple3(a, 0, 0),
+                                        (r) => r,
+                                      ),
+                                ),
+                              ),
+                            )
+                            .run())
+                        .toIterable(),
+                  ))
+                    ..sort((a, b) => a.value2.compareTo(b.value2))),
+                ),
+              ),
+        );
+
+        final priceLowestRange = filterPrice
+            .map(
+              (e) => tuple2(
+                e.value1,
+                tuple2(
+                  e.value2.isEmpty
+                      ? 0
+                      : (e.value2
+                          .firstWhere(
+                            (element) =>
+                                element.value1.name.toLowerCase() ==
+                                keyword.toLowerCase(),
+                            orElse: () => e.value2.first,
+                          )
+                          .value2),
+                  e.value2.isEmpty
+                      ? 0
+                      : (e.value2
+                          .firstWhere(
+                            (element) =>
+                                element.value1.name.toLowerCase() ==
+                                keyword.toLowerCase(),
+                            orElse: () => e.value2.first,
+                          )
+                          .value3),
+                ),
+              ),
+            )
+            .toList();
+
+        if (priceSort.isNotEmpty && priceSort == 'desc') {
+          priceLowestRange
+              .sort((b, a) => a.value2.value1.compareTo(b.value2.value1));
+        }
+
+        if (filterPrice.isEmpty) {
           emit(
             SearchState.empty(
               keyword: keyword,
@@ -184,8 +282,8 @@ class SearchCubit extends Cubit<SearchState> {
           emit(
             SearchState.result(
               keyword: keyword,
-              resultCount: providerFilter.length,
-              providers: providerFilter,
+              resultCount: priceLowestRange.length,
+              providers: priceLowestRange,
               radius: radius,
             ),
           );
