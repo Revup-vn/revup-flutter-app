@@ -90,7 +90,8 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           ),
         );
       },
-      serviceListSubmitted: (onRoute, sendMessage, saveLst, onPop) async {
+      serviceListSubmitted:
+          (onRouteToTimeOutPage, sendMessage, saveLst, onPop) async {
         emit(const ChooseServiceState.loading());
 
         if (await _isProviderOnline() && await _hasNotPendingRecord()) {
@@ -194,8 +195,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           // send notify to provider
           sendMessage(tokens.first.token, recordId);
 
-          // route to home page
-          onRoute();
+          onRouteToTimeOutPage(tokens.first.token);
           return;
         }
         onPop();

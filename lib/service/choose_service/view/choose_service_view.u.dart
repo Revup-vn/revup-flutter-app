@@ -157,9 +157,10 @@ class ChooseServiceView extends StatelessWidget {
                       : context.read<ChooseServiceBloc>().add(
                             ChooseServiceEvent.serviceListSubmitted(
                               // Go to timeout page
-                              onRoute: () => context.router.replace(
+                              onRouteToTimeOut: (token) =>
+                                  context.router.replace(
                                 CountdownRoute(
-                                  token: providerId,
+                                  token: token,
                                 ),
                               ),
                               sendMessage: (token, recordId) => context

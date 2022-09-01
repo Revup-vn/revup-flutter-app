@@ -20,7 +20,7 @@ mixin _$ChooseServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
@@ -35,7 +35,7 @@ mixin _$ChooseServiceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -50,7 +50,7 @@ mixin _$ChooseServiceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -180,7 +180,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
@@ -198,7 +198,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -216,7 +216,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -289,7 +289,7 @@ abstract class _$$_ServiceListSubmittedCopyWith<$Res> {
           $Res Function(_$_ServiceListSubmitted) then) =
       __$$_ServiceListSubmittedCopyWithImpl<$Res>;
   $Res call(
-      {Function0<void> onRoute,
+      {Function1<String, void> onRouteToTimeOut,
       Function2<String, String, void> sendMessage,
       List<ServiceData> saveLst,
       Function0<void> onPopBack});
@@ -308,16 +308,16 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? onRoute = freezed,
+    Object? onRouteToTimeOut = freezed,
     Object? sendMessage = freezed,
     Object? saveLst = freezed,
     Object? onPopBack = freezed,
   }) {
     return _then(_$_ServiceListSubmitted(
-      onRoute: onRoute == freezed
-          ? _value.onRoute
-          : onRoute // ignore: cast_nullable_to_non_nullable
-              as Function0<void>,
+      onRouteToTimeOut: onRouteToTimeOut == freezed
+          ? _value.onRouteToTimeOut
+          : onRouteToTimeOut // ignore: cast_nullable_to_non_nullable
+              as Function1<String, void>,
       sendMessage: sendMessage == freezed
           ? _value.sendMessage
           : sendMessage // ignore: cast_nullable_to_non_nullable
@@ -338,14 +338,14 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
 class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   const _$_ServiceListSubmitted(
-      {required this.onRoute,
+      {required this.onRouteToTimeOut,
       required this.sendMessage,
       required final List<ServiceData> saveLst,
       required this.onPopBack})
       : _saveLst = saveLst;
 
   @override
-  final Function0<void> onRoute;
+  final Function1<String, void> onRouteToTimeOut;
   @override
   final Function2<String, String, void> sendMessage;
   final List<ServiceData> _saveLst;
@@ -360,7 +360,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceListSubmitted(onRoute: $onRoute, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack)';
+    return 'ChooseServiceEvent.serviceListSubmitted(onRouteToTimeOut: $onRouteToTimeOut, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack)';
   }
 
   @override
@@ -368,7 +368,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ServiceListSubmitted &&
-            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            (identical(other.onRouteToTimeOut, onRouteToTimeOut) ||
+                other.onRouteToTimeOut == onRouteToTimeOut) &&
             (identical(other.sendMessage, sendMessage) ||
                 other.sendMessage == sendMessage) &&
             const DeepCollectionEquality().equals(other._saveLst, _saveLst) &&
@@ -377,7 +378,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, onRoute, sendMessage,
+  int get hashCode => Object.hash(runtimeType, onRouteToTimeOut, sendMessage,
       const DeepCollectionEquality().hash(_saveLst), onPopBack);
 
   @JsonKey(ignore: true)
@@ -391,7 +392,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
@@ -401,7 +402,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
         selectProductCompleted,
     required TResult Function(String recordId) detailRequestAccepted,
   }) {
-    return serviceListSubmitted(onRoute, sendMessage, saveLst, onPopBack);
+    return serviceListSubmitted(
+        onRouteToTimeOut, sendMessage, saveLst, onPopBack);
   }
 
   @override
@@ -409,7 +411,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -419,7 +421,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
         selectProductCompleted,
     TResult Function(String recordId)? detailRequestAccepted,
   }) {
-    return serviceListSubmitted?.call(onRoute, sendMessage, saveLst, onPopBack);
+    return serviceListSubmitted?.call(
+        onRouteToTimeOut, sendMessage, saveLst, onPopBack);
   }
 
   @override
@@ -427,7 +430,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -439,7 +442,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
-      return serviceListSubmitted(onRoute, sendMessage, saveLst, onPopBack);
+      return serviceListSubmitted(
+          onRouteToTimeOut, sendMessage, saveLst, onPopBack);
     }
     return orElse();
   }
@@ -486,12 +490,12 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
 abstract class _ServiceListSubmitted implements ChooseServiceEvent {
   const factory _ServiceListSubmitted(
-      {required final Function0<void> onRoute,
+      {required final Function1<String, void> onRouteToTimeOut,
       required final Function2<String, String, void> sendMessage,
       required final List<ServiceData> saveLst,
       required final Function0<void> onPopBack}) = _$_ServiceListSubmitted;
 
-  Function0<void> get onRoute;
+  Function1<String, void> get onRouteToTimeOut;
   Function2<String, String, void> get sendMessage;
   List<ServiceData> get saveLst;
   Function0<void> get onPopBack;
@@ -598,7 +602,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
@@ -616,7 +620,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -634,7 +638,7 @@ class _$_SelectProductCompleted implements _SelectProductCompleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -774,7 +778,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
@@ -792,7 +796,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
@@ -810,7 +814,7 @@ class _$_DetailRequestAccepted implements _DetailRequestAccepted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
-            Function0<void> onRoute,
+            Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
