@@ -11,18 +11,16 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'dart:async' as _i48;
-
-import 'package:flutter/material.dart' as _i43;
 
 import 'package:auto_route/auto_route.dart' as _i42;
 import 'package:dartz/dartz.dart' as _i50;
+import 'package:flutter/material.dart' as _i43;
 import 'package:google_maps_flutter/google_maps_flutter.dart' as _i51;
-import 'package:revup_core/core.dart' as _i44;
-
 import 'package:revup/account/view/account_page.u.dart' as _i41;
 import 'package:revup/activate/history/view/view.dart' as _i39;
+import 'package:revup/activate/history_provider_detail/history_provider_detail.dart'
+    as _i12;
 import 'package:revup/add_message/view/add_message_page.u.dart' as _i27;
 import 'package:revup/add_report/view/add_report_page.u.dart' as _i36;
 import 'package:revup/change_language/view/change_language_page.dart' as _i7;
@@ -34,16 +32,26 @@ import 'package:revup/h16_map_route/view/h16_map_route_page.dart' as _i35;
 import 'package:revup/h1_find_nearby/view/find_nearby_page.u.dart' as _i23;
 import 'package:revup/h22_invoice/models/service_data.dart' as _i46;
 import 'package:revup/h22_invoice/view/service_invoice_page.u.dart' as _i4;
+import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
+    as _i5;
+import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
+    as _i6;
 import 'package:revup/h2_find_provider/models/provider_data.u.dart' as _i45;
 import 'package:revup/h2_find_provider/view/list_repairer_page.u.dart' as _i25;
 import 'package:revup/h2_search_provider/view/find_provider_page.dart' as _i37;
+import 'package:revup/h6_request_provider/view/request_provider_page.dart'
+    as _i24;
 import 'package:revup/history_consumer/model/history_model.dart' as _i47;
 import 'package:revup/history_consumer/view/history_detail_page.u.dart' as _i11;
 import 'package:revup/home/view/home_page.u.dart' as _i10;
 import 'package:revup/home/widgets/home_body_page.u.dart' as _i38;
+import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
+    as _i33;
 import 'package:revup/login/view/login_page.u.dart' as _i15;
 import 'package:revup/notification_page/view/notification_page.u.dart' as _i40;
 import 'package:revup/onboarding/view/onboarding_page.dart' as _i16;
+import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
+    as _i28;
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/order/order-sevice/view/repair_status_page.u.dart' as _i3;
 import 'package:revup/otp/view/otp_page.u.dart' as _i17;
@@ -51,25 +59,9 @@ import 'package:revup/payment/view/payment_page.u.dart' as _i13;
 import 'package:revup/permission_page/permission_page.u.dart' as _i34;
 import 'package:revup/profile/view/update_profile_page.u.dart' as _i14;
 import 'package:revup/repairer_profile/models/service_data.u.dart' as _i49;
-import 'package:revup/report/view/report_page.u.dart' as _i8;
-import 'package:revup/signup/view/signup_page.u.dart' as _i18;
-import 'package:revup/splash/splash.dart' as _i1;
-import 'package:revup/test/test.dart' as _i9;
-
-import 'package:revup/activate/history_provider_detail/history_provider_detail.dart'
-    as _i12;
-import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
-    as _i5;
-import 'package:revup/h26_review-repairman/view/review_repairman_page.u.dart'
-    as _i6;
-import 'package:revup/h6_request_provider/view/request_provider_page.dart'
-    as _i24;
-import 'package:revup/login/login_enter_phone/view/login_enter_phone_number_page.u.dart'
-    as _i33;
-import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
-    as _i28;
 import 'package:revup/repairer_profile/view/repairer_profile_page.u.dart'
     as _i26;
+import 'package:revup/report/view/report_page.u.dart' as _i8;
 import 'package:revup/service/choose_service/view/choose_service_page.u.dart'
     as _i19;
 import 'package:revup/service/h11_choose_product/view/choose_product_page.u.dart'
@@ -78,6 +70,10 @@ import 'package:revup/service/new_service/view/new_service_request_page.u.dart'
     as _i20;
 import 'package:revup/service/service-details/view/service_detail_page.u.dart'
     as _i21;
+import 'package:revup/signup/view/signup_page.u.dart' as _i18;
+import 'package:revup/splash/splash.dart' as _i1;
+import 'package:revup/test/test.dart' as _i9;
+import 'package:revup_core/core.dart' as _i44;
 
 class AppRouter extends _i42.RootStackRouter {
   AppRouter([_i43.GlobalKey<_i43.NavigatorState>? navigatorKey])

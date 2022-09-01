@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart' hide SearchDelegate;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart' hide SearchDelegate;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:lottie/lottie.dart';
@@ -12,6 +12,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../../shared/widgets/search_custom.dart';
 import '../cubit/search_cubit.dart';
+import '../widgets/form_slider.dart';
 import '../widgets/search_empty.dart';
 import '../widgets/search_initial.dart';
 import '../widgets/search_result.dart';
@@ -27,12 +28,18 @@ class ProviderSearch extends SearchDelegate<String> {
           textInputAction: TextInputAction.search,
         );
   final SearchCubit searchCubit;
-  final _rangeFieldKey =
+  final _radiusFieldKey =
       GlobalKey<FormBuilderFieldState<FormBuilderField<double>, double>>();
+  final _priceFieldKey =
+      GlobalKey<FormBuilderFieldState<FormBuilderField<String>, String>>();
 
   @override
   List<Widget>? buildActions(BuildContext context) {
     final l10n = context.l10n;
+    final priceFilterOptions = <Tuple2<String, String>>[
+      tuple2('asc', l10n.priceAscendingLabel),
+      tuple2('desc', l10n.priceDescendingLabel)
+    ];
     return [
       IconButton(
         onPressed: () {
@@ -47,7 +54,7 @@ class ProviderSearch extends SearchDelegate<String> {
                   topRight: Radius.circular(16),
                 ),
               ),
-              height: 320,
+              height: 370,
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 16,
@@ -74,27 +81,25 @@ class ProviderSearch extends SearchDelegate<String> {
                     const SizedBox(
                       height: 8,
                     ),
-                    FormBuilderSlider(
-                      key: _rangeFieldKey,
-                      name: 'range',
-                      initialValue: 50,
-                      min: 1,
-                      max: 50,
-                      divisions: 49,
+                    FormBuilderChoiceChip(
+                      enabled: query.isNotEmpty,
+                      key: _priceFieldKey,
+                      name: 'price',
+                      options: priceFilterOptions
+                          .map(
+                            (e) => FormBuilderChipOption<String>(
+                              key: Key(e.value1),
+                              value: e.value2,
+                            ),
+                          )
+                          .toList(growable: false),
+                      spacing: 8,
                       decoration: InputDecoration(
-                        labelText: '${l10n.radiusLabel} (km)',
+                        labelText: l10n.servicePriceLabel,
                         border: InputBorder.none,
                       ),
-                      displayValues: DisplayValues.current,
-                      textStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.bold) ??
-                          const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    FormSlider(formKey: _radiusFieldKey),
                     AutoSizeText.rich(
                       TextSpan(
                         text: l10n.noteLabel,
@@ -116,10 +121,8 @@ class ProviderSearch extends SearchDelegate<String> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        _rangeFieldKey.currentState?.save();
-                        log(
-                          _rangeFieldKey.currentState?.value.toString() ?? '',
-                        );
+                        _radiusFieldKey.currentState?.save();
+                        _priceFieldKey.currentState?.save();
                         await context.router.pop();
                       },
                       child: Text(l10n.filterLabel),
@@ -129,8 +132,22 @@ class ProviderSearch extends SearchDelegate<String> {
               ),
             ),
           ).whenComplete(() {
-            final radius = _rangeFieldKey.currentState?.value ?? 50;
-            searchCubit.searchByKeywordWithinRadius(query, radius);
+            final radius = _radiusFieldKey.currentState?.value ?? 50;
+            var priceFilter = '';
+            if (_priceFieldKey.currentState?.value?.isNotEmpty ?? false) {
+              priceFilter = (priceFilterOptions
+                      .where(
+                        (e) => e.value2 == (_priceFieldKey.currentState?.value),
+                      )
+                      .first)
+                  .value1;
+            }
+
+            searchCubit.searchByKeywordWithinRadius(
+              query,
+              radius.roundToDouble(),
+              priceFilter,
+            );
             log('$query and $radius');
             showResults(context);
           });
@@ -153,9 +170,26 @@ class ProviderSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // focusNode?.unfocus();
-    final radius = _rangeFieldKey.currentState?.value ?? 50;
-    searchCubit.searchByKeywordWithinRadius(query, radius);
+    final radius = _radiusFieldKey.currentState?.value ?? 50;
+    final priceFilterOptions = <Tuple2<String, String>>[
+      tuple2('asc', context.l10n.priceAscendingLabel),
+      tuple2('desc', context.l10n.priceDescendingLabel)
+    ];
+    var priceFilter = '';
+    if (_priceFieldKey.currentState?.value?.isNotEmpty ?? false) {
+      priceFilter = (priceFilterOptions
+              .where(
+                (e) => e.value2 == (_priceFieldKey.currentState?.value),
+              )
+              .first)
+          .value1;
+    }
+
+    searchCubit.searchByKeywordWithinRadius(
+      query,
+      radius.roundToDouble(),
+      priceFilter,
+    );
     return BlocBuilder<SearchCubit, SearchState>(
       bloc: searchCubit,
       builder: (context, state) => state.when(
@@ -181,7 +215,7 @@ class ProviderSearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container();
-    // final radius = _rangeFieldKey.currentState?.value ?? 50;
+    // final radius = _radiusFieldKey.currentState?.value ?? 50;
     // searchCubit.searchByKeywordWithinRadius(query, radius);
 
     // return BlocBuilder<SearchCubit, SearchState>(

@@ -230,5 +230,7 @@
   "filterLabel": "Lọc",
   "radiusLabel": "Bán kính",
   "withinRadiusLabel": "trong bán kính",
-  "noteFilterRadiusLabel": "Đây là bán kính tìm kiếm, quãng đường di chuyển có thể sẽ lớn hơn"
+  "noteFilterRadiusLabel": "Đây là bán kính tìm kiếm, quãng đường di chuyển có thể sẽ lớn hơn",
+  "priceAscendingLabel": "Tăng dần",
+  "priceDescendingLabel": "Giảm dần"
 }

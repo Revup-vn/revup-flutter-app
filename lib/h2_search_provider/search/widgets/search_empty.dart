@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
@@ -35,13 +34,14 @@ class SearchEmpty extends StatelessWidget {
                           ?.copyWith(fontWeight: FontWeight.bold) ??
                       const TextStyle(fontWeight: FontWeight.bold),
                   children: <TextSpan>[
-                    TextSpan(
-                      text: ' "$keyword" ',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                    ),
+                    if (keyword.isNotEmpty)
+                      TextSpan(
+                        text: ' "$keyword" ',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
                     TextSpan(text: l10n.withinRadiusLabel),
                     TextSpan(
                       text: ' $radius km',
@@ -53,7 +53,9 @@ class SearchEmpty extends StatelessWidget {
                   ],
                 ),
                 maxLines: 1,
-                maxFontSize: 12,
+                maxFontSize: 11,
+                minFontSize: 8,
+                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 '$resultCount ${l10n.resultCountLabel}',
@@ -68,26 +70,28 @@ class SearchEmpty extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Assets.screens.empty.svg(
-                width: 250,
-                height: 250,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              AutoSizeText(
-                l10n.notFoundLabel,
-                style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onBackground,
-                        ) ??
-                    const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          )
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Assets.screens.empty.svg(
+                  width: 250,
+                  height: 250,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                AutoSizeText(
+                  l10n.notFoundLabel,
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ) ??
+                      const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

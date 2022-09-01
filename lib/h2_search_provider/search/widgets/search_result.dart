@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
+import 'package:revup_core/core.dart';
 
 import '../../../h2_find_provider/models/provider_data.u.dart';
 import '../../../l10n/l10n.dart';
@@ -21,7 +22,7 @@ class SearchResult extends StatelessWidget {
   final String keyword;
   final int resultCount;
   final double radius;
-  final List<ProviderRawData> providers;
+  final List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class SearchResult extends StatelessWidget {
               children: [
                 AutoSizeText.rich(
                   TextSpan(
-                    text: l10n.resultForLabel,
+                    text: '${l10n.resultForLabel} ',
                     style: Theme.of(context)
                             .textTheme
                             .bodyLarge
@@ -46,7 +47,7 @@ class SearchResult extends StatelessWidget {
                     children: <TextSpan>[
                       if (keyword.isNotEmpty)
                         TextSpan(
-                          text: ' "$keyword" ',
+                          text: '"$keyword" ',
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge
@@ -66,7 +67,9 @@ class SearchResult extends StatelessWidget {
                     ],
                   ),
                   maxLines: 1,
-                  maxFontSize: 12,
+                  maxFontSize: 11,
+                  minFontSize: 8,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   '$resultCount ${l10n.resultCountLabel}',
@@ -104,7 +107,8 @@ class SearchResult extends StatelessWidget {
                                     context.router.push(
                                       RepairerProfileRoute(
                                         providerData: ProviderData.fromRawData(
-                                            providers[index]),
+                                          providers[index].value1,
+                                        ),
                                       ),
                                     );
                                   },
@@ -118,16 +122,20 @@ class SearchResult extends StatelessWidget {
                                           height: double.infinity,
                                           width: double.infinity,
                                           fit: BoxFit.fill,
-                                          imageUrl:
-                                              providers[index].avatarUrl.isEmpty
-                                                  ? kFallbackImage
-                                                  : providers[index].avatarUrl,
+                                          imageUrl: providers[index]
+                                                  .value1
+                                                  .avatarUrl
+                                                  .isEmpty
+                                              ? kFallbackImage
+                                              : providers[index]
+                                                  .value1
+                                                  .avatarUrl,
                                         ),
                                       ),
                                     ),
                                   ),
                                   title: AutoSizeText(
-                                    '''${providers[index].firstName}${providers[index].lastName}''',
+                                    '''${providers[index].value1.firstName}${providers[index].value1.lastName}''',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium
@@ -135,11 +143,26 @@ class SearchResult extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
-                                  subtitle: AutoSizeText(
-                                    providers[index].addr,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                    maxLines: 1,
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      AutoSizeText(
+                                        providers[index].value1.addr,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                        maxLines: 1,
+                                      ),
+                                      if (providers[index].value2.value2 != 0)
+                                        AutoSizeText(
+                                          '''${context.formatMoney(providers[index].value2.value1)} - ${context.formatMoney(providers[index].value2.value2)}''',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                          maxLines: 1,
+                                        )
+                                    ],
                                   ),
                                 ),
                                 Container(
@@ -150,7 +173,10 @@ class SearchResult extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       AutoSizeText(
-                                        providers[index].rating.toString(),
+                                        providers[index]
+                                            .value1
+                                            .rating
+                                            .toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -163,7 +189,7 @@ class SearchResult extends StatelessWidget {
                                         size: 18,
                                       ),
                                       AutoSizeText(
-                                        '(${providers[index].ratingCount})',
+                                        '''(${providers[index].value1.ratingCount})''',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -179,7 +205,7 @@ class SearchResult extends StatelessWidget {
                                         size: 18,
                                       ),
                                       AutoSizeText(
-                                        '''${double.parse((providers[index].distance).toStringAsFixed(2))} km''',
+                                        '''${double.parse((providers[index].value1.distance).toStringAsFixed(2))} km''',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -193,7 +219,7 @@ class SearchResult extends StatelessWidget {
                                         size: 18,
                                       ),
                                       AutoSizeText(
-                                        '''${providers[index].timeArrivalInMinute.toInt()} ${l10n.minutesLabel}''',
+                                        '''${providers[index].value1.timeArrivalInMinute.toInt()} ${l10n.minutesLabel}''',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
@@ -210,7 +236,7 @@ class SearchResult extends StatelessWidget {
                                 context.router.push(
                                   RepairerProfileRoute(
                                     providerData: ProviderData.fromRawData(
-                                      providers[index],
+                                      providers[index].value1,
                                     ),
                                   ),
                                 );
