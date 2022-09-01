@@ -11,7 +11,7 @@ import 'package:revup_core/core.dart';
 
 import '../../../map/map_api/map_api.dart';
 import '../../../repairer_profile/models/record_rating_data.dart';
-import '../../model/provider_raw_data.dart';
+import '../../models/provider_raw_data.dart';
 
 part 'search_cubit.freezed.dart';
 part 'search_state.dart';
