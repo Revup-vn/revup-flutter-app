@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
+import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
 import '../bloc/countdown_bloc.dart';
 import '../widgets/countdown_background.dart';
@@ -30,43 +31,41 @@ class CountdownView extends StatelessWidget {
               .then(
                 (_) => _sendMessageToActiveProvider(context)
                     .then((_) async => _updateRecordToAborted(context))
-                    .then((_) => context.router.popUntilRoot()),
+                    .then(
+                      (_) => context.router.popUntil(
+                        (route) => route.settings.name == HomeRoute.name,
+                      ),
+                    ),
               ),
         );
       },
-      child: WillPopScope(
-        onWillPop: () async => context.watch<CountdownEvent>().maybeMap(
-              orElse: () => false,
-              timeout: (_) => true,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            const CountdownBackground(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const LimitedBox(
+                  maxHeight: 70,
+                  child: AutoSizeText(
+                    'Senior huy them cho em cai text va sua '
+                    'cho em design',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 100),
+                  child: Center(
+                    child: BlocSelector<CountdownBloc, CountdownState, int>(
+                      selector: (state) => state.secs,
+                      builder: (context, state) =>
+                          CountdownText(duration: state),
+                    ),
+                  ),
+                ),
+              ],
             ),
-        child: Scaffold(
-          body: Stack(
-            children: [
-              const CountdownBackground(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const LimitedBox(
-                    maxHeight: 70,
-                    child: AutoSizeText(
-                      'Senior huy them cho em cai text va sua '
-                      'cho em design',
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 100),
-                    child: Center(
-                      child: BlocSelector<CountdownBloc, CountdownState, int>(
-                        selector: (state) => state.secs,
-                        builder: (context, state) =>
-                            CountdownText(duration: state),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );

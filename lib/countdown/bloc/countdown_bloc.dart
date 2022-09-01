@@ -4,15 +4,15 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'countdown_bloc.freezed.dart';
 part 'countdown_event.dart';
 part 'countdown_state.dart';
-part 'countdown_bloc.freezed.dart';
 
 class CountdownBloc extends Bloc<CountdownEvent, CountdownState> {
   CountdownBloc() : super(const CountdownState.initial()) {
     _tickerSubscription?.cancel();
     _tickerSubscription = Stream.periodic(
-      const Duration(seconds: kDuration),
+      const Duration(seconds: 1),
       (x) => kDuration - x - 1,
     )
         .take(kDuration)

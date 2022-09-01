@@ -410,7 +410,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
       .map(
         (r) => r.maybeMap(
           orElse: () => false,
-          provider: (p) => p.active,
+          provider: (p) => p.online,
         ),
       )
       .getOrElse(() => false);
