@@ -48,10 +48,12 @@ class InvoicePaymentBloc
               () => throw NullThrownError(),
             );
         final tokens = (await repos.userNotificationTokenRepo(provider).all())
-            .fold((l) => throw NullThrownError(), (r) => r.toList())
-          ..sort(
-            (a, b) => a.created.compareTo(b.created),
-          );
+            .map(
+              (r) => r.sort(
+                orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+              ),
+            )
+            .fold((l) => throw NullThrownError(), (r) => r.toList());
         sendMessage(tokens.first.token, pid);
         emit(
           const InvoicePaymentState.paymentSuccess(

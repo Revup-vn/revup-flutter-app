@@ -46,7 +46,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .getOrElse(() => throw NullThrownError());
         final boxLocation = Hive.box<dynamic>('location');
-        final distance = boxLocation.get('distance', defaultValue: 0) as double;
+        final distance = boxLocation.get('distance', defaultValue: 0) as num;
         // get service selected
         final repairRecord = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
