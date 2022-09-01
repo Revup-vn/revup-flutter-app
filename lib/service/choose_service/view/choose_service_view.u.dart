@@ -134,7 +134,6 @@ class ChooseServiceView extends StatelessWidget {
                 onPressed: () {
                   // get value from form
                   form.currentState?.save();
-                  print(form.currentState?.value);
                   final saveLst =
                       form.currentState?.value['data'] as List<ServiceData>;
 
@@ -157,8 +156,12 @@ class ChooseServiceView extends StatelessWidget {
                           )
                       : context.read<ChooseServiceBloc>().add(
                             ChooseServiceEvent.serviceListSubmitted(
-                              onRoute: () =>
-                                  context.router.replace(HomeRoute(user: user)),
+                              // Go to timeout page
+                              onRoute: () => context.router.replace(
+                                CountdownRoute(
+                                  token: providerId,
+                                ),
+                              ),
                               sendMessage: (token, recordId) => context
                                   .read<NotificationCubit>()
                                   .sendMessageToToken(
@@ -185,11 +188,13 @@ class ChooseServiceView extends StatelessWidget {
                                       'another!',
                                     ),
                                   )
-                                  .then((_) => context.router.popUntil(
-                                        (route) =>
-                                            route.settings.name ==
-                                            const FindProviderRoute().routeName,
-                                      )),
+                                  .then(
+                                    (_) => context.router.popUntil(
+                                      (route) =>
+                                          route.settings.name ==
+                                          const FindProviderRoute().routeName,
+                                    ),
+                                  ),
                             ),
                           );
                 },

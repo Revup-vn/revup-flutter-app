@@ -8,6 +8,7 @@ import '../activate/history_provider_detail/history_provider_detail.dart';
 import '../add_message/view/add_message_page.u.dart';
 import '../add_report/view/add_report_page.u.dart';
 import '../change_language/view/change_language_page.dart';
+import '../countdown/countdown.dart';
 import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
 import '../guide-support/view/terms_privacy_page.u.dart';
@@ -94,6 +95,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(page: AddReportPage),
     AdaptiveRoute<void>(page: FindProviderPage),
+    AdaptiveRoute<void>(page: CountdownPage),
   ],
 )
 class $AppRouter {}
