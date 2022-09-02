@@ -22,8 +22,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
@@ -70,6 +68,7 @@ class _SplashPageState extends State<SplashPage> {
           break;
       }
     });
+    super.initState();
   }
 
   @override

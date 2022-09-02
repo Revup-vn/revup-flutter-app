@@ -223,7 +223,8 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
       //   // await Hive.box<dynamic>('serviceSelect')
       //   //     .put(services.indexOf(newSvData), newSvData.name);
 
-      //   final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
+      //   final vehicle = boxRprRecord.get('vehicle', defaultValue: '')
+      // as String;
       //   final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
       //   final catAndSv = await (await (storeRepository.repairCategoryRepo(
       //     maybeProviderData,
