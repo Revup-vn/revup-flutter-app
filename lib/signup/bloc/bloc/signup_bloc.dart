@@ -25,11 +25,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       submited: (aUser, imgFile, completer) async {
         emit(const SignupState.loading());
         final imgDt = Completer<String>();
-        await uploadImg(
-          file: StorageFile.profile(file: imgFile),
-          emit: emit,
-          completer: imgDt,
-        );
+        if (imgFile.path.isEmpty) {
+          imgDt.complete('');
+        } else {
+          await uploadImg(
+            file: StorageFile.profile(file: imgFile),
+            emit: emit,
+            completer: imgDt,
+          );
+        }
         final imgUrl = await imgDt.future;
 
         completer.complete(
