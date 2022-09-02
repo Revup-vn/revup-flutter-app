@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../shared/widgets/loading.u.dart';
 import '../cubit/find_provider_cubit.dart';
 import '../widgets/find_provider_empty.dart';
 import '../widgets/find_provider_failure.dart';
@@ -14,11 +16,15 @@ class FindProviderView extends StatelessWidget {
     final cubit = context.read<FindProviderCubit>();
     cubit.state.maybeWhen(
       orElse: () => false,
-      initial: () => cubit.watchWithinRadius(50),
+      initial: () {
+        Hive.openBox<String>('filter');
+        return cubit.watchWithinRadius(50);
+      },
     );
     return BlocBuilder<FindProviderCubit, FindProviderState>(
       builder: (_, state) => state.when(
         initial: Container.new,
+        loading: Loading.new,
         empty: FindProviderEmpty.new,
         failure: FindProviderFailure.new,
         loaded: (providers) => FindProviderLoaded(providers: providers),

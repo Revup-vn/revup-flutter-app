@@ -60,6 +60,12 @@ class $AssetsScreensGen {
   SvgGenImage get iconsZalo =>
       const SvgGenImage('assets/screens/icons-zalo.svg');
 
+  /// File path: assets/screens/loading.json
+  String get loading => 'assets/screens/loading.json';
+
+  /// File path: assets/screens/loading_primary_color.json
+  String get loadingPrimaryColor => 'assets/screens/loading_primary_color.json';
+
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');

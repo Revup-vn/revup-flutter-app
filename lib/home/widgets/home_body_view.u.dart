@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -43,7 +42,8 @@ class _HomeBodyViewState extends State<HomeBodyView> {
           final position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
           );
-          final boxLocation = await Hive.openBox<dynamic>('location');
+          final boxLocation = Hive.box<dynamic>('location');
+          // final boxLocation = await Hive.openBox<dynamic>('location');
           await boxLocation.put('currentLat', position.latitude);
           await boxLocation.put('currentLng', position.longitude);
           blocPage.add(const HomeEvent.started());

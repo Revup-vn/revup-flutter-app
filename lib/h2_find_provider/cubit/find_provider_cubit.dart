@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,26 +9,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../map/map_api/map_api.dart';
-import '../../../repairer_profile/models/record_rating_data.dart';
-import '../../model/provider_raw_data.dart';
+import '../../map/map_api/map_api.dart';
+import '../../repairer_profile/models/record_rating_data.dart';
+import '../models/provider_raw_data.dart';
 
-part 'search_cubit.freezed.dart';
-part 'search_state.dart';
+part 'find_provider_cubit.freezed.dart';
+part 'find_provider_state.dart';
 
-class SearchCubit extends Cubit<SearchState> {
-  SearchCubit(this._userStore, this.sr, this._repairRecord)
-      : super(const SearchState.initial());
+class FindProviderCubit extends Cubit<FindProviderState> {
+  FindProviderCubit(this._userStore, this._repairRecord)
+      : super(const FindProviderState.initial());
   final IStore<AppUser> _userStore;
-  final StoreRepository sr;
   final IStore<RepairRecord> _repairRecord;
-
   StreamSubscription<List<DocumentSnapshot<Object?>>>? _s;
 
-  Future<Unit> searchByKeywordWithinRadius(
-    double radius,
-    String keyword,
-  ) async {
+  Future<Unit> watchWithinRadius(double radius) async {
     final boxLocation = Hive.box<dynamic>('location');
     final repairLat = boxLocation.get('repairLat', defaultValue: 0.0) as double;
     final repairLng = boxLocation.get('repairLng', defaultValue: 0.0) as double;
@@ -48,17 +42,17 @@ class SearchCubit extends Cubit<SearchState> {
           field: 'cur_location',
           strictMode: true,
         )
-        .listen((e) => _onData(e, repairPoint, keyword));
+        .listen((e) => _onData(e, repairPoint));
     return unit;
   }
 
   Future<void> _onData(
     List<DocumentSnapshot<Object?>> e,
     GeoFirePoint repairPoint,
-    String keyword,
   ) async {
+    emit(const FindProviderState.loading());
     if (e.isEmpty) {
-      emit(SearchState.empty(keyword: keyword, resultCount: 0));
+      emit(const FindProviderState.empty());
     } else {
       final providers = e
           .map((r) => r as DocumentSnapshot<Map<String, dynamic>>)
@@ -68,7 +62,7 @@ class SearchCubit extends Cubit<SearchState> {
           .fold<IList<ProviderRawData>>(nil(), (p, e) => cons(e, p));
 
       if (providers.isEmpty) {
-        emit(SearchState.empty(keyword: keyword, resultCount: 0));
+        emit(const FindProviderState.empty());
       } else {
         final providerRating = await Future.wait(
           (await providers
@@ -127,56 +121,15 @@ class SearchCubit extends Cubit<SearchState> {
                   .run())
               .toIterable(),
         );
-        final boxRR = Hive.box<dynamic>(
-          'repairRecord',
-        );
-        final vehicle =
-            (boxRR.get('vehicle') as String) == 'car' ? 'Oto' : 'Xe máy';
 
-        final providerContainSer = await Future.wait(
-          (await IList.from(providerSumm)
-                  .traverseTask(
-                    (a) => Task.value(
-                      (sr
-                              .repairServiceRepo(
-                                AppUserDummy.dummyProvider(a.uuid),
-                                RepairCategoryDummy.dummy(vehicle),
-                              )
-                              .all())
-                          .then(
-                        (v) => v.fold(
-                          (l) => a,
-                          (r) => a.copyWith(repairService: r.toList()),
-                        ),
-                      ),
-                    ),
-                  )
-                  .run())
-              .toIterable(),
+        providerSumm.sort(
+          (a, b) {
+            final cmp = a.distance.compareTo(b.distance);
+            if (cmp != 0) return cmp;
+            return b.rating.compareTo(a.rating);
+          },
         );
-        final providerFilter = providerContainSer
-            .where(
-              (e) => e.repairService.isNotEmpty,
-            )
-            .where(
-              (e) => e.repairService.any(
-                (a) => a.name.toLowerCase().contains(keyword.toLowerCase()),
-              ),
-            )
-            .toList();
-        log(providerContainSer.toString());
-        log(providerFilter.toString());
-        if (providerFilter.isEmpty) {
-          emit(SearchState.empty(keyword: keyword, resultCount: 0));
-        } else {
-          emit(
-            SearchState.result(
-              keyword: keyword,
-              resultCount: providerFilter.length,
-              providers: providerFilter,
-            ),
-          );
-        }
+        emit(FindProviderState.loaded(providers: providerSumm));
       }
     }
   }

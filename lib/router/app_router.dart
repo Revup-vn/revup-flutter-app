@@ -18,8 +18,7 @@ import '../h1_find_nearby/view/find_nearby_page.u.dart';
 import '../h22_invoice/view/service_invoice_page.u.dart';
 import '../h23_invoice_payment/view/invoice_payment_page.u.dart';
 import '../h26_review-repairman/view/review_repairman_page.u.dart';
-import '../h2_find_provider/view/list_repairer_page.u.dart';
-import '../h2_search_provider/view/find_provider_page.dart';
+import '../h2_find_provider/view/find_provider_page.dart';
 import '../h6_request_provider/view/request_provider_page.dart';
 import '../history_consumer/view/history_detail_page.u.dart';
 import '../home/view/home_page.u.dart';
@@ -82,7 +81,6 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),
     AdaptiveRoute<void>(page: RequestProviderPage),
-    AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
     AdaptiveRoute<void>(page: AddMessagePage),
     AdaptiveRoute<void>(page: OverViewOrderPage, maintainState: false),

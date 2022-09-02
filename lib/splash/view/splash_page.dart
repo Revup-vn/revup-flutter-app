@@ -136,7 +136,9 @@ class _SplashPageState extends State<SplashPage> {
                   );
                 },
               );
-
+              Hive
+                ..openBox<dynamic>('location')
+                ..openBox<dynamic>('repairRecord');
               return HomeRoute(user: type.user);
             },
             orElse: LoginRoute.new,
