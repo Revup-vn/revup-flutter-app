@@ -73,7 +73,7 @@ class ProviderData with _$ProviderData {
 
   factory ProviderData.fromRawData(ProviderRawData raw) => ProviderData(
         id: raw.uuid,
-        fullName: '${raw.firstName}${raw.lastName}',
+        fullName: '${raw.firstName} ${raw.lastName}',
         address: raw.addr,
         avatar: raw.avatarUrl,
         distance: raw.distance,

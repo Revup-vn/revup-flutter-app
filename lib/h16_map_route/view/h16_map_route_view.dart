@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h6_request_provider/widgets/request_details_live.dart';
 import '../../h6_request_provider/widgets/request_provider_live.dart';
 import '../../l10n/l10n.dart';
+import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
 import '../bloc/h16_map_route_bloc.dart';
 
@@ -127,7 +127,9 @@ class H16MapRoute extends StatelessWidget {
                           content: Text(context.l10n.userAbortTheRequest),
                         )
                         .then(
-                          (value) => context.router.popUntilRoot(),
+                          (value) => context.router.popUntil(
+                            (route) => route.settings.name == HomeRoute.name,
+                          ),
                         ),
                   ),
                 );

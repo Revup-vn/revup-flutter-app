@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -36,6 +35,13 @@ class NewServiceRequestView extends StatefulWidget {
 class _NewServiceRequestViewState extends State<NewServiceRequestView> {
   final _formKey = GlobalKey<FormBuilderState>();
   File? _image;
+  List<OptionalService> optionalService = <OptionalService>[];
+  @override
+  void initState() {
+    super.initState();
+    optionalService.addAll(widget.optionalService);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -185,7 +191,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                     ChooseServiceRoute(
                       providerId: widget.providerId,
                       isSelectProduct: widget.isSelectProduct,
-                      optionalService: widget.optionalService
+                      optionalService: optionalService
                         ..add(
                           OptionalService(
                             img: _image?.path ?? kFallbackServiceImg,
