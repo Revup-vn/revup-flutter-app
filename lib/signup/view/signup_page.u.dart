@@ -1,13 +1,14 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
-import '../bloc/signup_bloc.u.dart';
-import '../cubit/upload_image_cubit.u.dart';
+import '../../shared/widgets/loading.u.dart';
+import '../bloc/bloc/signup_bloc.dart';
+import '../bloc/upload_bloc.u.dart';
 import 'signup_builder.dart';
 
 class SignupPage extends StatelessWidget {
@@ -30,13 +31,23 @@ class SignupPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SignupBloc(ImagePicker()),
+          create: (context) => UploadBloc(ImagePicker()),
         ),
         BlocProvider(
-          create: (context) => SignupUploadImageCubit(context.read()),
+          create: (context) => SignupBloc(context.read()),
         ),
       ],
-      child: SignupBuilder(completer, phoneNumber, photoURL, uid, email),
+      child: BlocConsumer<SignupBloc, SignupState>(
+        builder: (context, state) => state.when(
+          initial: () =>
+              SignupBuilder(completer, phoneNumber, photoURL, uid, email),
+          loading: Loading.new,
+          success: Container.new,
+        ),
+        listener: (context, state) => state.whenOrNull(
+          success: () => context.router.pop(),
+        ),
+      ),
     );
   }
 }

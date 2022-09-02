@@ -89,6 +89,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 
+        // TODO(tcmhoang): why this variable is not used?
         final services = (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),
         )).all())

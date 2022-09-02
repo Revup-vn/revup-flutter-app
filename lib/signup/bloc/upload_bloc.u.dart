@@ -5,29 +5,29 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
-part 'signup_bloc.u.freezed.dart';
-part 'signup_event.dart';
-part 'signup_state.dart';
+part 'upload_bloc.u.freezed.dart';
+part 'upload_event.dart';
+part 'upload_state.dart';
 
-class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  SignupBloc(this._imagePicker) : super(const _Initial()) {
-    on<SignupEvent>(_onEvent);
+class UploadBloc extends Bloc<UploadEvent, UploadState> {
+  UploadBloc(this._imagePicker) : super(const _Initial()) {
+    on<UploadEvent>(_onEvent);
   }
   final ImagePicker _imagePicker;
 
   FutureOr<void> _onEvent(
-    SignupEvent event,
-    Emitter<SignupState> emit,
+    UploadEvent event,
+    Emitter<UploadState> emit,
   ) async {
     await event.when(
       started: () {
-        emit(const SignupState.initial());
+        emit(const UploadState.initial());
       },
       imageUploadSelected: (source) async {
         final pickedImage = await _imagePicker.pickImage(source: source);
         if (pickedImage != null) {
           final _image = File(pickedImage.path);
-          emit(SignupState.choosePhotoSuccess(file: _image));
+          emit(UploadState.choosePhotoSuccess(file: _image));
         }
       },
     );

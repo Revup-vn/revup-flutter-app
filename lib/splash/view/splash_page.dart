@@ -22,8 +22,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
@@ -32,9 +30,11 @@ class _SplashPageState extends State<SplashPage> {
           final recordId = p0.payload.payload['recordId'] as String;
 
           // route to order overview
-          context.router.push(
+          context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
+            predicate: (route) => route.settings.name == HomeRoute.name,
           );
+
           break;
         case NotificationType.NormalMessage:
           final subType = p0.payload.payload['subType'] as String;
@@ -68,6 +68,7 @@ class _SplashPageState extends State<SplashPage> {
           break;
       }
     });
+    super.initState();
   }
 
   @override

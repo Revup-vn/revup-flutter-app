@@ -231,5 +231,10 @@
   "withinRadiusLabel": "within radius",
   "noteFilterRadiusLabel": "This is the search radius, the distance traveled may be larger",
   "priceAscendingLabel": "Ascending",
-  "priceDescendingLabel": "Descending"
+  "priceDescendingLabel": "Descending",
+  "generalRetryError": "An error happened along the way, please try again",
+  "providerBusy": "The provider is currently busy. Choose another!",
+  "orderDismissed": "The order is dismissed. Please select another provider.",
+  "orderVerificationTimeout": "Please wait for 1 minute. If the provider does not accept in time, the request will be automatically dismissed.",
+  "userAbortTheRequest": "Successful abort request. The moving fees are now considered a fine payment"
 }

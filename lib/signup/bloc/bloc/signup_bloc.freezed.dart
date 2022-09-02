@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'signup_bloc.u.dart';
+part of 'signup_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -19,38 +19,42 @@ mixin _$SignupEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(
+            AppUser aUser, File imgFile, Completer<AppUser> completer)
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Submited value) submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +116,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(
+            AppUser aUser, File imgFile, Completer<AppUser> completer)
+        submited,
   }) {
     return started();
   }
@@ -121,7 +127,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
   }) {
     return started?.call();
   }
@@ -130,7 +137,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,7 +151,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Submited value) submited,
   }) {
     return started(this);
   }
@@ -152,7 +160,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
   }) {
     return started?.call(this);
   }
@@ -161,7 +169,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -176,95 +184,126 @@ abstract class _Started implements SignupEvent {
 }
 
 /// @nodoc
-abstract class _$$_ImageUploadSelectedCopyWith<$Res> {
-  factory _$$_ImageUploadSelectedCopyWith(_$_ImageUploadSelected value,
-          $Res Function(_$_ImageUploadSelected) then) =
-      __$$_ImageUploadSelectedCopyWithImpl<$Res>;
-  $Res call({ImageSource source});
+abstract class _$$_SubmitedCopyWith<$Res> {
+  factory _$$_SubmitedCopyWith(
+          _$_Submited value, $Res Function(_$_Submited) then) =
+      __$$_SubmitedCopyWithImpl<$Res>;
+  $Res call({AppUser aUser, File imgFile, Completer<AppUser> completer});
+
+  $AppUserCopyWith<$Res> get aUser;
 }
 
 /// @nodoc
-class __$$_ImageUploadSelectedCopyWithImpl<$Res>
-    extends _$SignupEventCopyWithImpl<$Res>
-    implements _$$_ImageUploadSelectedCopyWith<$Res> {
-  __$$_ImageUploadSelectedCopyWithImpl(_$_ImageUploadSelected _value,
-      $Res Function(_$_ImageUploadSelected) _then)
-      : super(_value, (v) => _then(v as _$_ImageUploadSelected));
+class __$$_SubmitedCopyWithImpl<$Res> extends _$SignupEventCopyWithImpl<$Res>
+    implements _$$_SubmitedCopyWith<$Res> {
+  __$$_SubmitedCopyWithImpl(
+      _$_Submited _value, $Res Function(_$_Submited) _then)
+      : super(_value, (v) => _then(v as _$_Submited));
 
   @override
-  _$_ImageUploadSelected get _value => super._value as _$_ImageUploadSelected;
+  _$_Submited get _value => super._value as _$_Submited;
 
   @override
   $Res call({
-    Object? source = freezed,
+    Object? aUser = freezed,
+    Object? imgFile = freezed,
+    Object? completer = freezed,
   }) {
-    return _then(_$_ImageUploadSelected(
-      source: source == freezed
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ImageSource,
+    return _then(_$_Submited(
+      aUser: aUser == freezed
+          ? _value.aUser
+          : aUser // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+      imgFile: imgFile == freezed
+          ? _value.imgFile
+          : imgFile // ignore: cast_nullable_to_non_nullable
+              as File,
+      completer: completer == freezed
+          ? _value.completer
+          : completer // ignore: cast_nullable_to_non_nullable
+              as Completer<AppUser>,
     ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res> get aUser {
+    return $AppUserCopyWith<$Res>(_value.aUser, (value) {
+      return _then(_value.copyWith(aUser: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$_ImageUploadSelected implements _ImageUploadSelected {
-  const _$_ImageUploadSelected({required this.source});
+class _$_Submited implements _Submited {
+  const _$_Submited(
+      {required this.aUser, required this.imgFile, required this.completer});
 
   @override
-  final ImageSource source;
+  final AppUser aUser;
+  @override
+  final File imgFile;
+  @override
+  final Completer<AppUser> completer;
 
   @override
   String toString() {
-    return 'SignupEvent.imageUploadSelected(source: $source)';
+    return 'SignupEvent.submited(aUser: $aUser, imgFile: $imgFile, completer: $completer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageUploadSelected &&
-            const DeepCollectionEquality().equals(other.source, source));
+            other is _$_Submited &&
+            const DeepCollectionEquality().equals(other.aUser, aUser) &&
+            const DeepCollectionEquality().equals(other.imgFile, imgFile) &&
+            const DeepCollectionEquality().equals(other.completer, completer));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(aUser),
+      const DeepCollectionEquality().hash(imgFile),
+      const DeepCollectionEquality().hash(completer));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
-      __$$_ImageUploadSelectedCopyWithImpl<_$_ImageUploadSelected>(
-          this, _$identity);
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      __$$_SubmitedCopyWithImpl<_$_Submited>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ImageSource source) imageUploadSelected,
+    required TResult Function(
+            AppUser aUser, File imgFile, Completer<AppUser> completer)
+        submited,
   }) {
-    return imageUploadSelected(source);
+    return submited(aUser, imgFile, completer);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
   }) {
-    return imageUploadSelected?.call(source);
+    return submited?.call(aUser, imgFile, completer);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ImageSource source)? imageUploadSelected,
+    TResult Function(AppUser aUser, File imgFile, Completer<AppUser> completer)?
+        submited,
     required TResult orElse(),
   }) {
-    if (imageUploadSelected != null) {
-      return imageUploadSelected(source);
+    if (submited != null) {
+      return submited(aUser, imgFile, completer);
     }
     return orElse();
   }
@@ -273,41 +312,45 @@ class _$_ImageUploadSelected implements _ImageUploadSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_ImageUploadSelected value) imageUploadSelected,
+    required TResult Function(_Submited value) submited,
   }) {
-    return imageUploadSelected(this);
+    return submited(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
   }) {
-    return imageUploadSelected?.call(this);
+    return submited?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_ImageUploadSelected value)? imageUploadSelected,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) {
-    if (imageUploadSelected != null) {
-      return imageUploadSelected(this);
+    if (submited != null) {
+      return submited(this);
     }
     return orElse();
   }
 }
 
-abstract class _ImageUploadSelected implements SignupEvent {
-  const factory _ImageUploadSelected({required final ImageSource source}) =
-      _$_ImageUploadSelected;
+abstract class _Submited implements SignupEvent {
+  const factory _Submited(
+      {required final AppUser aUser,
+      required final File imgFile,
+      required final Completer<AppUser> completer}) = _$_Submited;
 
-  ImageSource get source;
+  AppUser get aUser;
+  File get imgFile;
+  Completer<AppUser> get completer;
   @JsonKey(ignore: true)
-  _$$_ImageUploadSelectedCopyWith<_$_ImageUploadSelected> get copyWith =>
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -316,38 +359,44 @@ mixin _$SignupState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(File file) choosePhotoSuccess,
+    required TResult Function() loading,
+    required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -409,7 +458,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(File file) choosePhotoSuccess,
+    required TResult Function() loading,
+    required TResult Function() success,
   }) {
     return initial();
   }
@@ -418,7 +468,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
   }) {
     return initial?.call();
   }
@@ -427,7 +478,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -440,7 +492,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -449,7 +502,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -458,7 +512,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -473,95 +528,71 @@ abstract class _Initial implements SignupState {
 }
 
 /// @nodoc
-abstract class _$$_ChoosePhotoSuccessCopyWith<$Res> {
-  factory _$$_ChoosePhotoSuccessCopyWith(_$_ChoosePhotoSuccess value,
-          $Res Function(_$_ChoosePhotoSuccess) then) =
-      __$$_ChoosePhotoSuccessCopyWithImpl<$Res>;
-  $Res call({File file});
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ChoosePhotoSuccessCopyWithImpl<$Res>
-    extends _$SignupStateCopyWithImpl<$Res>
-    implements _$$_ChoosePhotoSuccessCopyWith<$Res> {
-  __$$_ChoosePhotoSuccessCopyWithImpl(
-      _$_ChoosePhotoSuccess _value, $Res Function(_$_ChoosePhotoSuccess) _then)
-      : super(_value, (v) => _then(v as _$_ChoosePhotoSuccess));
+class __$$_LoadingCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
   @override
-  _$_ChoosePhotoSuccess get _value => super._value as _$_ChoosePhotoSuccess;
-
-  @override
-  $Res call({
-    Object? file = freezed,
-  }) {
-    return _then(_$_ChoosePhotoSuccess(
-      file: file == freezed
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as File,
-    ));
-  }
+  _$_Loading get _value => super._value as _$_Loading;
 }
 
 /// @nodoc
 
-class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
-  const _$_ChoosePhotoSuccess({required this.file});
-
-  @override
-  final File file;
+class _$_Loading implements _Loading {
+  const _$_Loading();
 
   @override
   String toString() {
-    return 'SignupState.choosePhotoSuccess(file: $file)';
+    return 'SignupState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ChoosePhotoSuccess &&
-            const DeepCollectionEquality().equals(other.file, file));
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(file));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
-      __$$_ChoosePhotoSuccessCopyWithImpl<_$_ChoosePhotoSuccess>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(File file) choosePhotoSuccess,
+    required TResult Function() loading,
+    required TResult Function() success,
   }) {
-    return choosePhotoSuccess(file);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
   }) {
-    return choosePhotoSuccess?.call(file);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(File file)? choosePhotoSuccess,
+    TResult Function()? loading,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
-    if (choosePhotoSuccess != null) {
-      return choosePhotoSuccess(file);
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -570,40 +601,146 @@ class _$_ChoosePhotoSuccess implements _ChoosePhotoSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ChoosePhotoSuccess value) choosePhotoSuccess,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
   }) {
-    return choosePhotoSuccess(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
   }) {
-    return choosePhotoSuccess?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ChoosePhotoSuccess value)? choosePhotoSuccess,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
-    if (choosePhotoSuccess != null) {
-      return choosePhotoSuccess(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
 }
 
-abstract class _ChoosePhotoSuccess implements SignupState {
-  const factory _ChoosePhotoSuccess({required final File file}) =
-      _$_ChoosePhotoSuccess;
+abstract class _Loading implements SignupState {
+  const factory _Loading() = _$_Loading;
+}
 
-  File get file;
-  @JsonKey(ignore: true)
-  _$$_ChoosePhotoSuccessCopyWith<_$_ChoosePhotoSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SuccessCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+      : super(_value, (v) => _then(v as _$_Success));
+
+  @override
+  _$_Success get _value => super._value as _$_Success;
+}
+
+/// @nodoc
+
+class _$_Success implements _Success {
+  const _$_Success();
+
+  @override
+  String toString() {
+    return 'SignupState.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Success);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Success implements SignupState {
+  const factory _Success() = _$_Success;
 }
