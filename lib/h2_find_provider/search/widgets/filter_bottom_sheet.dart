@@ -47,7 +47,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           topRight: Radius.circular(16),
         ),
       ),
-      height: 370,
+      height: 400,
       child: Padding(
         padding: const EdgeInsets.only(
           left: 16,

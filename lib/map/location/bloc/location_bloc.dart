@@ -15,7 +15,7 @@ part 'location_event.dart';
 part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
-  LocationBloc() : super(const LocationState.loading()) {
+  LocationBloc() : super(const LocationState.initial()) {
     on<LocationEvent>(_onEvent);
   }
 
@@ -25,13 +25,14 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   ) async {
     await event.when(
       started: () async {
+        emit(LocationState.loading());
         final boxLocation = Hive.box<dynamic>('location');
         final currentLat =
             boxLocation.get('currentLat', defaultValue: 0.0) as double;
         final currentLng =
             boxLocation.get('currentLng', defaultValue: 0.0) as double;
         final location = LatLng(currentLat, currentLng);
-        emit(LocationState.initial(location: location));
+        emit(LocationState.locationLoaded(location: location));
       },
       locationUpdated: (location) async {
         final address =
@@ -39,6 +40,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         emit(LocationState.addressLoaded(address: address));
       },
       placeSearch: (String placeId) async {
+        emit(LocationState.loading());
         final placeDetails = await getPlaceDetails(placeId);
         emit(LocationState.placeDetailsLoaded(placeDetails: placeDetails));
         final address = await getAddress(

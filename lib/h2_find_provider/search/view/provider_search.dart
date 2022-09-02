@@ -90,6 +90,7 @@ class ProviderSearch extends SearchDelegate<String> {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
+        Hive.box<String>('filter').clear();
         close(context, '');
       },
       icon: const Icon(Icons.arrow_back),

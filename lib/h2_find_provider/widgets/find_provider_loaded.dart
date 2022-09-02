@@ -63,7 +63,7 @@ class FindProviderLoaded extends StatelessWidget {
                               ),
                             ),
                             title: AutoSizeText(
-                              '''${providers[index].firstName}${providers[index].lastName}''',
+                              '''${providers[index].firstName} ${providers[index].lastName}''',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium

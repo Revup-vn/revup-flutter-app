@@ -252,11 +252,10 @@ class SearchCubit extends Cubit<SearchState> {
                                 .contains(keyword.toLowerCase())) {
                               return e.value2.first;
                             }
-                            return e.value2.firstWhere(
-                              (element) => element.value1.name
-                                  .toLowerCase()
-                                  .contains(keyword.toLowerCase()),
-                            );
+                            return e.value2.firstWhere((element) => element
+                                .value1.name
+                                .toLowerCase()
+                                .contains(keyword.toLowerCase()));
                           },
                         ).value2),
                   e.value2.isEmpty

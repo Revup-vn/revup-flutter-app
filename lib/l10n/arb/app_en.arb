@@ -237,5 +237,4 @@
   "orderDismissed": "The order is dismissed. Please select another provider.",
   "orderVerificationTimeout": "Please wait for 1 minute. If the provider does not accept in time, the request will be automatically dismissed.",
   "userAbortTheRequest": "Successful abort request. The moving fees are now considered a fine payment"
-
 }
