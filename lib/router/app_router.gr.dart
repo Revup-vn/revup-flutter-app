@@ -200,7 +200,7 @@ class AppRouter extends _i42.RootStackRouter {
     },
     NewServiceRequestRoute.name: (routeData) {
       final args = routeData.argsAs<NewServiceRequestRouteArgs>();
-      return _i42.AdaptivePage<_i44.OptionalService?>(
+      return _i42.AdaptivePage<List<_i44.OptionalService>>(
           routeData: routeData,
           child: _i20.NewServiceRequestPage(
               key: args.key,

@@ -120,8 +120,10 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           final toLat = boxRprRecord.get('toLat', defaultValue: 0.0) as double;
           final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
           final doc = await _userStore.collection().doc(providerId).get();
-          final maybeGeopoint = doc.data()!;
-
+          final maybeGeopoint = doc.data() ?? <String, dynamic>{};
+          if (maybeGeopoint.isEmpty) {
+            emit(const ChooseServiceState.failure());
+          }
           final fromPoint = (maybeGeopoint['cur_location']
               as Map<String, dynamic>)['geopoint'] as GeoPoint;
           final recordId = const Uuid().v4();

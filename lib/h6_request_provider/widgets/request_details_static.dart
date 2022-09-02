@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../map/models/directions_model.dart';
 import '../../router/router.dart';
 import '../../service/widgets/service_avatar.dart';
 
@@ -14,9 +15,11 @@ class RequestDetailsStatic extends StatelessWidget {
     super.key,
     required this.providerData,
     required this.movingFees,
+    required this.directions,
   });
   final ProviderData providerData;
   final int movingFees;
+  final Directions directions;
 
   @override
   Widget build(BuildContext context) {
@@ -151,8 +154,10 @@ class RequestDetailsStatic extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  context.router.push(
+                onPressed: () async {
+                  await Hive.box<dynamic>('location')
+                      .put('distance', directions.distance);
+                  await context.router.push(
                     AddMessageRoute(
                       providerData: providerData,
                       movingFee: movingFees,
