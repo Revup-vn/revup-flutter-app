@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -221,14 +220,14 @@ class UpdateProfileView extends StatelessWidget {
                             final data = _formKey.currentState?.value;
                             final listName =
                                 data?['fullName'].toString().split(' ');
-                            final fName = listName?[0];
+                            final fName = listName?[0].trim();
                             var lName = '';
                             if (listName != null && listName.length > 1) {
                               listName.remove(listName[0]);
                               lName = listName.fold<String>(
                                 '',
                                 (previousValue, element) =>
-                                    '$previousValue $element',
+                                    '${previousValue.trim()} ${element.trim()}',
                               );
                             }
                             final email = data?['email'].toString();
