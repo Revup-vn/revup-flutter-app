@@ -1,19 +1,17 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart' hide SearchDelegate;
-
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart' hide SearchDelegate;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../../shared/widgets/search_custom.dart';
 import '../cubit/search_cubit.dart';
-import '../widgets/form_slider.dart';
+import '../widgets/filter_bottom_sheet.dart';
 import '../widgets/search_empty.dart';
 import '../widgets/search_initial.dart';
 import '../widgets/search_result.dart';
@@ -45,94 +43,23 @@ class ProviderSearch extends SearchDelegate<String> {
       IconButton(
         onPressed: () {
           focusNode?.unfocus();
-          showModalBottomSheet<int>(
+          showModalBottomSheet<String>(
             context: context,
-            builder: (context) => Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-              ),
-              height: 370,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                  bottom: 28,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Center(
-                      child: AutoSizeText(
-                        l10n.filterLabel,
-                        style: Theme.of(context).textTheme.titleLarge ??
-                            const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ),
-                    const Divider(),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    FormBuilderChoiceChip(
-                      enabled: query.isNotEmpty,
-                      key: _priceFieldKey,
-                      name: 'price',
-                      options: priceFilterOptions
-                          .map(
-                            (e) => FormBuilderChipOption<String>(
-                              key: Key(e.value1),
-                              value: e.value2,
-                            ),
-                          )
-                          .toList(growable: false),
-                      spacing: 8,
-                      decoration: InputDecoration(
-                        labelText: l10n.servicePriceLabel,
-                        border: InputBorder.none,
-                      ),
-                    ),
-                    FormSlider(formKey: _radiusFieldKey),
-                    AutoSizeText.rich(
-                      TextSpan(
-                        text: l10n.noteLabel,
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: ': ${l10n.noteFilterRadiusLabel}',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          )
-                        ],
-                        style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(fontWeight: FontWeight.bold) ??
-                            const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        _radiusFieldKey.currentState?.save();
-                        _priceFieldKey.currentState?.save();
-                        await context.router.pop();
-                      },
-                      child: Text(l10n.filterLabel),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ).whenComplete(() {
+            builder: (context) {
+              final filterPriceValue = Hive.box<String>('filter').get('price');
+              return FilterBottomSheet(
+                radiusFieldKey: _radiusFieldKey,
+                priceFieldKey: _priceFieldKey,
+                query: query,
+                priceFilterOptions: priceFilterOptions,
+                filterPriceValue:
+                    filterPriceValue ?? priceFilterOptions.first.value2,
+              );
+            },
+          ).then((value) {
+            Hive.box<String>('filter')
+                .put('price', value ?? priceFilterOptions.first.value2);
+          }).whenComplete(() {
             final radius = _radiusFieldKey.currentState?.value ?? 50;
             var priceFilter = '';
             if (_priceFieldKey.currentState?.value?.isNotEmpty ?? false) {
