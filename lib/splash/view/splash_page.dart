@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
@@ -23,8 +22,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     context.read<NotificationCubit>().addForegroundListener((p0) {
       final type = p0.payload.type;
       switch (type) {
@@ -33,9 +30,11 @@ class _SplashPageState extends State<SplashPage> {
           final recordId = p0.payload.payload['recordId'] as String;
 
           // route to order overview
-          context.router.push(
+          context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
+            predicate: (route) => route.settings.name == HomeRoute.name,
           );
+
           break;
         case NotificationType.NormalMessage:
           final subType = p0.payload.payload['subType'] as String;
@@ -69,6 +68,7 @@ class _SplashPageState extends State<SplashPage> {
           break;
       }
     });
+    super.initState();
   }
 
   @override
@@ -135,7 +135,9 @@ class _SplashPageState extends State<SplashPage> {
                   );
                 },
               );
-
+              Hive
+                ..openBox<dynamic>('location')
+                ..openBox<dynamic>('repairRecord');
               return HomeRoute(user: type.user);
             },
             orElse: LoginRoute.new,

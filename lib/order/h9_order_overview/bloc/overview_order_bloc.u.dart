@@ -46,7 +46,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .getOrElse(() => throw NullThrownError());
         final boxLocation = Hive.box<dynamic>('location');
-        final distance = boxLocation.get('distance', defaultValue: 0) as double;
+        final distance = boxLocation.get('distance', defaultValue: 0) as num;
         // get service selected
         final repairRecord = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
@@ -89,6 +89,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 
+        // TODO(tcmhoang): why this variable is not used?
         final services = (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),
         )).all())

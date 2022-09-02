@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,8 +12,6 @@ import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
 import '../../shared/utils.dart';
-
-// ignore: unnecessary_import
 
 part 'h16_map_route_bloc.freezed.dart';
 part 'h16_map_route_event.dart';
@@ -102,7 +99,6 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
                   ),
                 )
                 .fold((l) => throw NullThrownError(), (r) => r.toList());
-        log('TOKEN:${tokens.first.token}');
 
         sendMessage(tokens.first.token);
 

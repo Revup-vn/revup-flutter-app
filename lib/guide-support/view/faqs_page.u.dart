@@ -1,3 +1,4 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -36,7 +37,7 @@ class FAQsPage extends StatelessWidget {
                   context.router.push(
                     const FAQsItemOTPRoute(),
                   );
-                }, // TODO(namngoc231): go to faqs detail
+                },
               ),
               FAQsItem(
                 faqsName: l10n.questionCallLabel,
@@ -44,7 +45,7 @@ class FAQsPage extends StatelessWidget {
                   context.router.push(
                     const AboutUsRoute(),
                   );
-                }, // TODO(namngoc231): go to faqs detail
+                },
               ),
               FAQsItem(
                 faqsName: l10n.questionCallLabel,
@@ -52,13 +53,11 @@ class FAQsPage extends StatelessWidget {
                   context.router.push(
                     const TermsPrivacyRoute(),
                   );
-                }, // TODO(namngoc231): go to faqs detail
+                },
               ),
               FAQsItem(
                 faqsName: l10n.questionAccountLabel,
-                callback: () {
-                  // TODO(namngoc231): go to faqs detail
-                },
+                callback: () => context.showToast<void>(l10n.notSupportLabel),
               ),
             ],
           ),

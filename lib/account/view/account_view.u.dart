@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
@@ -105,9 +106,7 @@ class AccountView extends StatelessWidget {
               AccountItem(
                 accountName: l10n.organizationLabel,
                 accountIcon: const Icon(Icons.business),
-                callback: () {
-                  // TODO(namngoc231): Go to Organization account
-                },
+                callback: () => context.showToast<void>(l10n.notSupportLabel),
               ),
               AccountItem(
                 accountName: l10n.changeLanguageLabel,
