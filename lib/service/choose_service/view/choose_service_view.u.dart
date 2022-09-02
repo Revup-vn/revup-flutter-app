@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:revup_core/core.dart';
@@ -11,7 +11,6 @@ import '../../../repairer_profile/models/service_data.u.dart';
 import '../../../router/app_router.gr.dart';
 import '../../../router/router.dart';
 import '../../../shared/fallbacks.dart';
-import '../../../shared/utils.dart';
 import '../../widgets/service_checkbox_group.dart';
 import '../bloc/choose_service_bloc.u.dart';
 
@@ -43,9 +42,6 @@ class ChooseServiceView extends StatelessWidget {
           : blocPage
               .add(ChooseServiceEvent.started(newService: optionalService)),
     );
-
-    final user = getUser(context.read<AuthenticateBloc>().state)
-        .getOrElse(() => throw NullThrownError());
 
     return Scaffold(
       appBar: AppBar(
@@ -134,7 +130,6 @@ class ChooseServiceView extends StatelessWidget {
                 onPressed: () {
                   // get value from form
                   form.currentState?.save();
-                  print(form.currentState?.value);
                   final saveLst =
                       form.currentState?.value['data'] as List<ServiceData>;
 
@@ -157,8 +152,13 @@ class ChooseServiceView extends StatelessWidget {
                           )
                       : context.read<ChooseServiceBloc>().add(
                             ChooseServiceEvent.serviceListSubmitted(
-                              onRoute: () =>
-                                  context.router.replace(HomeRoute(user: user)),
+                              // Go to timeout page
+                              onRouteToTimeOut: (token) =>
+                                  context.router.replace(
+                                CountdownRoute(
+                                  token: token,
+                                ),
+                              ),
                               sendMessage: (token, recordId) => context
                                   .read<NotificationCubit>()
                                   .sendMessageToToken(
@@ -177,6 +177,17 @@ class ChooseServiceView extends StatelessWidget {
                                     ),
                                   ),
                               saveLst: saveLst,
+                              onPopBack: () => context
+                                  .showInfoBar<void>(
+                                    content: Text(context.l10n.providerBusy),
+                                  )
+                                  .then(
+                                    (_) => context.router.popUntil(
+                                      (route) =>
+                                          route.settings.name ==
+                                          const FindProviderRoute().routeName,
+                                    ),
+                                  ),
                             ),
                           );
                 },

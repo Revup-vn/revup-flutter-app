@@ -53,12 +53,16 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
           (a) => a.when(
             pending: (serviceName, moneyAmount, products, isOptional) => some(
               tuple2<String, int>(
-                  serviceName, moneyAmount + products[0].unitPrice),
+                serviceName,
+                moneyAmount + products[0].unitPrice,
+              ),
             ),
             needToVerify: (serviceName, desc) => none(),
             paid: (serviceName, moneyAmount, products, paidIn) => some(
               tuple2<String, int>(
-                  serviceName, moneyAmount + products[0].unitPrice),
+                serviceName,
+                moneyAmount + products[0].unitPrice,
+              ),
             ),
           ),
         );
@@ -71,7 +75,9 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
             listService.foldLeft<int>(0, (previous, a) => previous + a.value2);
         emit(
           RepairStatusState.success(
-              service: listService.toList(), total: total),
+            service: listService.toList(),
+            total: total,
+          ),
         );
       },
     );

@@ -8,6 +8,7 @@ import '../activate/history_provider_detail/history_provider_detail.dart';
 import '../add_message/view/add_message_page.u.dart';
 import '../add_report/view/add_report_page.u.dart';
 import '../change_language/view/change_language_page.dart';
+import '../countdown/countdown.dart';
 import '../guide-support/view/about_us_page.u.dart';
 import '../guide-support/view/faqs_page.u.dart';
 import '../guide-support/view/terms_privacy_page.u.dart';
@@ -17,7 +18,7 @@ import '../h1_find_nearby/view/find_nearby_page.u.dart';
 import '../h22_invoice/view/service_invoice_page.u.dart';
 import '../h23_invoice_payment/view/invoice_payment_page.u.dart';
 import '../h26_review-repairman/view/review_repairman_page.u.dart';
-import '../h2_find_provider/view/list_repairer_page.u.dart';
+import '../h2_find_provider/view/find_provider_page.dart';
 import '../h6_request_provider/view/request_provider_page.dart';
 import '../history_consumer/view/history_detail_page.u.dart';
 import '../home/view/home_page.u.dart';
@@ -80,7 +81,6 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChooseProductPage),
     AdaptiveRoute<void>(page: FindNearbyPage),
     AdaptiveRoute<void>(page: RequestProviderPage),
-    AdaptiveRoute<void>(page: ListRepairerPage),
     AdaptiveRoute<void>(page: RepairerProfilePage),
     AdaptiveRoute<void>(page: AddMessagePage),
     AdaptiveRoute<void>(page: OverViewOrderPage, maintainState: false),
@@ -92,6 +92,8 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: PermissionPage),
     AdaptiveRoute<void>(page: MapRoutePage),
     AdaptiveRoute<void>(page: AddReportPage),
+    AdaptiveRoute<void>(page: FindProviderPage),
+    AdaptiveRoute<void>(page: CountdownPage),
   ],
 )
 class $AppRouter {}

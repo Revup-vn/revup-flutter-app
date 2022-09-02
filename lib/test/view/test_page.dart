@@ -1,31 +1,15 @@
 import 'package:flutter/material.dart';
-
-import '../../h2_find_provider/models/provider_data.u.dart';
-import '../../h6_request_provider/widgets/request_details_live.dart';
+import '../../l10n/l10n.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final pData = ProviderData(
-      id: 'asdasacasddddddddasdasdasdasd',
-      fullName: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      address: '22-hsydas-SDasx-ASD',
-      avatar: '',
-      distance: 7,
-      timeArrivalInMinute: 4,
-      rating: 3,
-      ratingCount: 107,
-      backgroundImg: '',
-      profileBio: '',
-      phone: '098323123aaaaaaaaaaaaaaaaaaa',
-    );
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(),
-      body: Stack(
-        children: [RequestDetailsLive(providerData: pData, movingFees: 50000)],
-      ),
+      appBar: AppBar(title: Text(l10n.revupAppBarTitle)),
+      body: const Center(child: Text('REVUP APP')),
     );
   }
 }

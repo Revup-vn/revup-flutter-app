@@ -21,43 +21,40 @@ class ReviewRepairmanBuilder extends StatelessWidget {
         loadDataSuccess: (value) => ReviewRepairmanView(value.data),
       ),
       listener: (lcontext, state) => state.maybeMap(
-        success: (value) async {
-          await showDialog<String>(
-            context: context,
-            builder: (context) {
-              return Dialog(
-                backgroundColor: Colors.transparent,
-                insetPadding: const EdgeInsets.all(10),
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.done,
-                            color: Theme.of(context).colorScheme.onTertiary,
-                          ),
-                          AutoSizeText(
-                            context.l10n.doneLabel,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onTertiary,
-                                ),
-                          ),
-                        ],
-                      ),
+        success: (value) async => showDialog<String>(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              insetPadding: const EdgeInsets.all(10),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 200,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.done,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                        AutoSizeText(
+                          context.l10n.doneLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onTertiary,
+                              ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
         failure: (value) {
           showDialog<String>(
             barrierDismissible: false,

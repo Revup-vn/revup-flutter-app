@@ -18,7 +18,6 @@ class RepairStatusView extends StatefulWidget {
 class _RepairStatusViewState extends State<RepairStatusView> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

@@ -7,10 +7,9 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsScreensGen {
   const $AssetsScreensGen();
@@ -37,6 +36,9 @@ class $AssetsScreensGen {
   AssetGenImage get dfAvatar =>
       const AssetGenImage('assets/screens/df_avatar.png');
 
+  /// File path: assets/screens/empty.svg
+  SvgGenImage get empty => const SvgGenImage('assets/screens/empty.svg');
+
   /// File path: assets/screens/flag_VietNam.svg
   SvgGenImage get flagVietNam =>
       const SvgGenImage('assets/screens/flag_VietNam.svg');
@@ -58,6 +60,12 @@ class $AssetsScreensGen {
   SvgGenImage get iconsZalo =>
       const SvgGenImage('assets/screens/icons-zalo.svg');
 
+  /// File path: assets/screens/loading.json
+  String get loading => 'assets/screens/loading.json';
+
+  /// File path: assets/screens/loading_primary_color.json
+  String get loadingPrimaryColor => 'assets/screens/loading_primary_color.json';
+
   /// File path: assets/screens/logo_trans.svg
   SvgGenImage get logoTrans =>
       const SvgGenImage('assets/screens/logo_trans.svg');
@@ -76,6 +84,9 @@ class $AssetsScreensGen {
   /// File path: assets/screens/order_confirm.svg
   SvgGenImage get orderConfirm =>
       const SvgGenImage('assets/screens/order_confirm.svg');
+
+  /// File path: assets/screens/sad_mood.svg
+  SvgGenImage get sadMood => const SvgGenImage('assets/screens/sad_mood.svg');
 
   /// File path: assets/screens/sos.svg
   SvgGenImage get sos => const SvgGenImage('assets/screens/sos.svg');

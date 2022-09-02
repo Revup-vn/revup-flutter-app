@@ -218,5 +218,24 @@
   "addReportFailLabel": "Add report fail",
   "warningDesLabel": "Make sure you see the repairman before confirming the repairman has arrived",
   "warningLabel": "Note",
-  "arrivedRepairmanLabel": "Confirmed repairman has arrived. Please confirm the repairman has arrived."
+  "arrivedRepairmanLabel": "Confirmed repairman has arrived. Please confirm the repairman has arrived.",
+  "recentLabel": "Recent",
+  "clearAllLabel": "Clear All",
+  "resultForLabel": "Results for",
+  "resultCountLabel": "found",
+  "notFoundLabel": "Not Found",
+  "emptyProviderListLabel": "No repairmen available",
+  "unknownFailureLabel": "Sorry, an error occurred",
+  "filterLabel": "Filter",
+  "radiusLabel": "Radius",
+  "withinRadiusLabel": "within radius",
+  "noteFilterRadiusLabel": "This is the search radius, the distance traveled may be larger",
+  "priceAscendingLabel": "Ascending",
+  "priceDescendingLabel": "Descending",
+  "generalRetryError": "An error happened along the way, please try again",
+  "providerBusy": "The provider is currently busy. Choose another!",
+  "orderDismissed": "The order is dismissed. Please select another provider.",
+  "orderVerificationTimeout": "Please wait for 1 minute. If the provider does not accept in time, the request will be automatically dismissed.",
+  "userAbortTheRequest": "Successful abort request. The moving fees are now considered a fine payment"
+
 }

@@ -64,7 +64,7 @@ class UpdateProfileBuilder extends StatelessWidget {
           return Future.delayed(const Duration(seconds: 3), () {
             var count = 0;
             context.router.popUntil(
-              (route) => count++ >= 2,
+              (route) => count++ >= 1,
             );
           });
         },
