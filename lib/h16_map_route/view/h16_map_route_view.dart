@@ -78,6 +78,34 @@ class H16MapRoute extends StatelessWidget {
         H16MapRouteEvent.confirmArrival(
           onRoute: () async {
             final _irr = context.read<IStore<RepairRecord>>();
+            final _iau = context.read<IStore<AppUser>>();
+            final uid = context.read<AuthenticateBloc>().state.maybeMap(
+                  orElse: () => throw NullThrownError(),
+                  authenticated: (value) => value.authType.user.uuid,
+                );
+
+            final user = (await _iau.get(uid))
+                .toOption()
+                .getOrElse(() => throw NullThrownError());
+
+            final uUser = user.maybeMap(
+              orElse: () => throw NullThrownError(),
+              consumer: (value) => value.violatedTimes == 0 ||
+                      (value.bannedValidatedDate ?? DateTime.now())
+                              .compareTo(DateTime.now()) >
+                          0
+                  ? value.copyWith(
+                      violatedTimes: 1,
+                      bannedValidatedDate:
+                          DateTime.now().add(const Duration(days: 7)),
+                    )
+                  : value.copyWith(violatedTimes: value.violatedTimes + 1),
+              // guarantee be external invariance
+            );
+
+            if (!(await _iau.update(uUser)).fold((l) => false, (r) => true)) {
+              return;
+            }
 
             final record = (await _irr.queryTs(
               (a) => a

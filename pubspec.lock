@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "43.0.0"
+    version: "46.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.1"
+    version: "4.6.0"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -63,7 +63,7 @@ packages:
       name: auto_route_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -741,14 +741,14 @@ packages:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.12"
+    version: "2.2.0"
   google_maps_flutter_android:
     dependency: transitive
     description:
       name: google_maps_flutter_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.10"
+    version: "2.3.0"
   google_maps_flutter_ios:
     dependency: transitive
     description:
@@ -776,21 +776,21 @@ packages:
       name: google_sign_in_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "6.1.0"
   google_sign_in_ios:
     dependency: transitive
     description:
       name: google_sign_in_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.0"
+    version: "5.5.0"
   google_sign_in_platform_interface:
     dependency: transitive
     description:
       name: google_sign_in_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   google_sign_in_web:
     dependency: transitive
     description:
@@ -881,7 +881,7 @@ packages:
       name: image_picker_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+6"
+    version: "0.8.6"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -1243,8 +1243,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: a4ce52ea32086af3506dc490254baf4933441a99
+      ref: "hotfix/props-service-product"
+      resolved-ref: ab9ff061040646613b5aa8848bff1f6dbc0724ae
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
     version: "6.3.5-dev"
@@ -1539,7 +1539,7 @@ packages:
       name: webkit_inspection_protocol
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   win32:
     dependency: transitive
     description:

@@ -51,7 +51,7 @@ dependencies:
     # path: ../revup-core
     git:
       url: https://github.com/Revup-vn/revup-core.git
-      ref: main
+      ref: hotfix/props-service-product
       version: ^6.2.4-dev
   shimmer: ^2.0.0
   url_launcher: ^6.1.5

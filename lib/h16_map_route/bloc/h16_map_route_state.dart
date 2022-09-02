@@ -10,4 +10,6 @@ class H16MapRouteState with _$H16MapRouteState {
     required ProviderData providerData,
     required int movingFees,
   }) = _Success;
+  // TODO (tcmhoang): Handle failure in view
+  const factory H16MapRouteState.failure() = _Failure;
 }
