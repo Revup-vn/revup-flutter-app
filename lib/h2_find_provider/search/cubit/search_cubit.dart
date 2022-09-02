@@ -242,32 +242,64 @@ class SearchCubit extends Cubit<SearchState> {
                 tuple2(
                   e.value2.isEmpty
                       ? 0
-                      : (e.value2
-                          .firstWhere(
-                            (element) =>
-                                element.value1.name.toLowerCase() ==
-                                keyword.toLowerCase(),
-                            orElse: () => e.value2.first,
-                          )
-                          .value2),
+                      : (e.value2.firstWhere(
+                          (element) =>
+                              element.value1.name.toLowerCase() ==
+                              keyword.toLowerCase(),
+                          orElse: () {
+                            if (e.value2.first.value1.name
+                                .toLowerCase()
+                                .contains(keyword.toLowerCase())) {
+                              return e.value2.first;
+                            }
+                            return e.value2.firstWhere((element) => element
+                                .value1.name
+                                .toLowerCase()
+                                .contains(keyword.toLowerCase()));
+                          },
+                        ).value2),
                   e.value2.isEmpty
                       ? 0
-                      : (e.value2
-                          .firstWhere(
-                            (element) =>
-                                element.value1.name.toLowerCase() ==
-                                keyword.toLowerCase(),
-                            orElse: () => e.value2.first,
-                          )
-                          .value3),
+                      : (e.value2.firstWhere(
+                          (element) =>
+                              element.value1.name.toLowerCase() ==
+                              keyword.toLowerCase(),
+                          orElse: () {
+                            if (e.value2.first.value1.name
+                                .toLowerCase()
+                                .contains(keyword.toLowerCase())) {
+                              return e.value2.first;
+                            }
+                            return e.value2.firstWhere(
+                              (element) => element.value1.name
+                                  .toLowerCase()
+                                  .contains(keyword.toLowerCase()),
+                            );
+                          },
+                        ).value3),
                 ),
               ),
             )
             .toList();
 
         if (priceSort.isNotEmpty && priceSort == 'desc') {
-          priceLowestRange
-              .sort((b, a) => a.value2.value1.compareTo(b.value2.value1));
+          priceLowestRange.sort((b, a) {
+            var cmp = a.value2.value1.compareTo(b.value2.value1);
+            if (cmp != 0) return cmp;
+            cmp = b.value1.distance.compareTo(a.value1.distance);
+            if (cmp != 0) return cmp;
+            return a.value1.rating.compareTo(b.value1.rating);
+          });
+        } else {
+          priceLowestRange.sort(
+            (a, b) {
+              var cmp = a.value2.value1.compareTo(b.value2.value1);
+              if (cmp != 0) return cmp;
+              cmp = a.value1.distance.compareTo(b.value1.distance);
+              if (cmp != 0) return cmp;
+              return b.value1.rating.compareTo(a.value1.rating);
+            },
+          );
         }
 
         if (filterPrice.isEmpty) {
