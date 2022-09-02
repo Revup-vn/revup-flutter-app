@@ -19,7 +19,7 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this._userStore, this.sr, this._repairRecord)
-      : super(SearchState.initial());
+      : super(const SearchState.initial());
   final IStore<AppUser> _userStore;
   final StoreRepository sr;
   final IStore<RepairRecord> _repairRecord;

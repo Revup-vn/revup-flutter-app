@@ -5,8 +5,11 @@ import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 
 class SearchEmpty extends StatelessWidget {
-  const SearchEmpty(
-      {super.key, required this.keyword, required this.resultCount});
+  const SearchEmpty({
+    super.key,
+    required this.keyword,
+    required this.resultCount,
+  });
   final String keyword;
   final int resultCount;
 

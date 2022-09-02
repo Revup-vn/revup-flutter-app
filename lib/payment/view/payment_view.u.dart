@@ -63,9 +63,8 @@ class PaymentView extends StatelessWidget {
                 child: PaymentItem(
                   paymentIcon: Assets.screens.iconsZalo.svg(),
                   paymentName: l10n.zaloPayLabel,
-                  callback: () {
-                    // TODO(namngoc231): payment ZaloPay
-                  },
+                  callback: () =>
+                      context.showToast<void>(context.l10n.notSupportLabel),
                 ),
               ),
               Expanded(

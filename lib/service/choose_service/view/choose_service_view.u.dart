@@ -11,7 +11,6 @@ import '../../../repairer_profile/models/service_data.u.dart';
 import '../../../router/app_router.gr.dart';
 import '../../../router/router.dart';
 import '../../../shared/fallbacks.dart';
-import '../../../shared/utils.dart';
 import '../../widgets/service_checkbox_group.dart';
 import '../bloc/choose_service_bloc.u.dart';
 
@@ -43,9 +42,6 @@ class ChooseServiceView extends StatelessWidget {
           : blocPage
               .add(ChooseServiceEvent.started(newService: optionalService)),
     );
-
-    final user = getUser(context.read<AuthenticateBloc>().state)
-        .getOrElse(() => throw NullThrownError());
 
     return Scaffold(
       appBar: AppBar(
@@ -183,11 +179,7 @@ class ChooseServiceView extends StatelessWidget {
                               saveLst: saveLst,
                               onPopBack: () => context
                                   .showInfoBar<void>(
-                                    content: const Text(
-                                      // TODO(tcmhoang): Intl this line
-                                      'The provider is currently busy. Choose '
-                                      'another!',
-                                    ),
+                                    content: Text(context.l10n.providerBusy),
                                   )
                                   .then(
                                     (_) => context.router.popUntil(

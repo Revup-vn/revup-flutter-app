@@ -226,5 +226,11 @@
   "resultCountLabel": "kết quả",
   "notFoundLabel": "Không tìm thấy",
   "emptyProviderListLabel": "Không tìm thấy thợ sửa chữa nào khả dụng",
-  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra"
+  "unknownFailureLabel": "Rất tiếc, có lỗi xảy ra",
+  "generalRetryError": "Một lỗi đã xảy ra trên đường đi, vui lòng thử lại",
+  "providerBusy": "Nhà cung cấp hiện đang bận. Chọn một cái khác!",
+  "orderDismissed": "Lệnh được bác bỏ. Vui lòng chọn một nhà cung cấp khác.",
+  "orderVerificationTimeout": "Vui lòng đợi trong 1 phút. Nếu nhà cung cấp không chấp nhận kịp thời, yêu cầu sẽ được tự động loại bỏ.",
+  "userAbortTheRequest": "Yêu cầu hủy bỏ thành công. Phí di chuyển hiện được coi là một khoản thanh toán phat"
+
 }

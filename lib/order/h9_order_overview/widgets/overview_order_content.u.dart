@@ -151,7 +151,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                       providerId: widget.overviewOrderData.providerID,
                       isSelectProduct: true,
                       recordId: widget.pendingRequest.id,
-                      optionalService: [],
+                      optionalService: const [],
                     ),
                   );
                 },

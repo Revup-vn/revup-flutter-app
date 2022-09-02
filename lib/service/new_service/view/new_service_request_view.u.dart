@@ -19,11 +19,12 @@ import '../../../shared/fallbacks.dart';
 import '../../image_picker/bloc/image_picker_bloc.u.dart';
 
 class NewServiceRequestView extends StatefulWidget {
-  const NewServiceRequestView(
-      {super.key,
-      required this.optionalService,
-      required this.providerId,
-      required this.isSelectProduct});
+  const NewServiceRequestView({
+    super.key,
+    required this.optionalService,
+    required this.providerId,
+    required this.isSelectProduct,
+  });
   final List<OptionalService> optionalService;
   final String providerId;
   final bool isSelectProduct;

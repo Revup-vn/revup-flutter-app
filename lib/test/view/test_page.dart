@@ -14,17 +14,18 @@ class TestPage extends StatelessWidget {
 
   final IList<ProviderData> listProvider = IList.from([
     ProviderData(
-        id: '1',
-        fullName: 'fullName',
-        address: 'address',
-        avatar: 'avatar',
-        distance: 10,
-        timeArrivalInMinute: 10,
-        rating: 4,
-        ratingCount: 4,
-        backgroundImg: '',
-        profileBio: 'profileBio',
-        phone: '09231121322')
+      id: '1',
+      fullName: 'fullName',
+      address: 'address',
+      avatar: 'avatar',
+      distance: 10,
+      timeArrivalInMinute: 10,
+      rating: 4,
+      ratingCount: 4,
+      backgroundImg: '',
+      profileBio: 'profileBio',
+      phone: '09231121322',
+    )
   ]);
   @override
   Widget build(BuildContext context) {

@@ -44,7 +44,6 @@ class _FindNearbyViewState extends State<FindNearbyView> {
         );
     });
     currentLocation = point;
-    print(currentLocation);
     context
         .read<LocationBloc>()
         .add(LocationEvent.locationUpdated(location: point));

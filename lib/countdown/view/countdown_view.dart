@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
+import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
 import '../bloc/countdown_bloc.dart';
@@ -24,8 +25,8 @@ class CountdownView extends StatelessWidget {
           orElse: () => unit,
           countdownComplete: (_) => context
               .showInfoBar<void>(
-                content: const Text(
-                  'The order is dismissed. Please select another provider.',
+                content: Text(
+                  context.l10n.orderDismissed,
                 ),
               )
               .then(
@@ -46,11 +47,11 @@ class CountdownView extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const LimitedBox(
+                LimitedBox(
                   maxHeight: 70,
                   child: AutoSizeText(
-                    'Senior huy them cho em cai text va sua '
-                    'cho em design',
+                    context.l10n.orderVerificationTimeout,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
                 Padding(

@@ -358,7 +358,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               some,
             )
             .getOrElse(() => throw NullThrownError());
-
+        // TODO(tcmhoang): token is not used?
         final tokens =
             (await storeRepository.userNotificationTokenRepo(provider).all())
                 .map(

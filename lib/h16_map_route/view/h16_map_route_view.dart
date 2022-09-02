@@ -118,21 +118,13 @@ class H16MapRoute extends StatelessWidget {
                   ),
                 )
                 .then(
-                  (value) =>
-                      // TODO(tcmhoang): Intl this line
-                      value.fold(
+                  (value) => value.fold(
                     (_) => context.showErrorBar<void>(
-                      content: const Text('Error happened along the way, '
-                          'please try again'),
+                      content: Text(context.l10n.generalRetryError),
                     ),
                     (_) => context
                         .showInfoBar<void>(
-                          content: const Text(
-                            'Successful abort request. '
-                            'The moving fees is '
-                            'now considered '
-                            'as a fine payment',
-                          ),
+                          content: Text(context.l10n.userAbortTheRequest),
                         )
                         .then(
                           (value) => context.router.popUntilRoot(),

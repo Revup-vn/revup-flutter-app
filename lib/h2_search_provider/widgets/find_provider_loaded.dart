@@ -39,7 +39,8 @@ class FindProviderLoaded extends StatelessWidget {
                               context.router.push(
                                 RepairerProfileRoute(
                                   providerData: ProviderData.fromRawData(
-                                      providers[index]),
+                                    providers[index],
+                                  ),
                                 ),
                               );
                             },

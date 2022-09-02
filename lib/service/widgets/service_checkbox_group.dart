@@ -29,17 +29,18 @@ class ServiceCheckboxGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lst = <ServiceData>[];
     final svDataOptional = pendingService
         .map(
           ServiceData.fromPendingService,
         )
         .toList()
-      ..addAll(serviceList
-          .where(
-            (element) => element.isOptional,
-          )
-          .toList());
+      ..addAll(
+        serviceList
+            .where(
+              (element) => element.isOptional,
+            )
+            .toList(),
+      );
     return FormBuilderField<List<ServiceData>>(
       initialValue: svDataOptional,
       name: 'data',
