@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
@@ -26,45 +25,40 @@ class SearchEmpty extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AutoSizeText.rich(
-                TextSpan(
-                  text: l10n.resultForLabel,
-                  style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.bold) ??
-                      const TextStyle(fontWeight: FontWeight.bold),
-                  children: <TextSpan>[
-                    if (keyword.isNotEmpty)
-                      TextSpan(
-                        text: ' "$keyword" ',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                    TextSpan(text: l10n.withinRadiusLabel),
-                    TextSpan(
-                      text: ' $radius km',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              Expanded(
+                child: AutoSizeText.rich(
+                  TextSpan(
+                    text: l10n.resultForLabel,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    children: <TextSpan>[
+                      if (keyword.isNotEmpty)
+                        TextSpan(
+                          text: ' "$keyword" ',
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.primary,
                           ),
-                    )
-                  ],
+                        ),
+                      TextSpan(text: l10n.withinRadiusLabel),
+                      TextSpan(
+                        text: ' $radius km',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      )
+                    ],
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 1,
-                maxFontSize: 11,
-                minFontSize: 8,
-                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 '$resultCount ${l10n.resultCountLabel}',
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ) ??
-                    const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ],
           ),
