@@ -45,6 +45,7 @@ class ProviderSearch extends SearchDelegate<String> {
           focusNode?.unfocus();
           showModalBottomSheet<String>(
             context: context,
+            isScrollControlled: true,
             builder: (context) {
               final filterPriceValue = Hive.box<String>('filter').get('price');
               return FilterBottomSheet(
