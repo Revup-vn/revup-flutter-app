@@ -129,7 +129,8 @@ class LoginPage extends StatelessWidget {
                               AuthType.email(user: value.user).toJson(),
                         ),
                       );
-
+                      await Hive.openBox<dynamic>('location');
+                      await Hive.openBox<dynamic>('repairRecord');
                       await context.router.pushAndPopUntil(
                         HomeRoute(user: authType.user),
                         predicate: (_) => true,
