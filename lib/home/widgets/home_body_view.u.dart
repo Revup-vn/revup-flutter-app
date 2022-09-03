@@ -107,6 +107,22 @@ class _HomeBodyViewState extends State<HomeBodyView> {
                   itemWidth: 400,
                   itemHeight: 100,
                 ),
+                failure: (ads) => Swiper(
+                  autoplay: true,
+                  layout: SwiperLayout.STACK,
+                  itemCount: ads.length(),
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: ads.get(index).getOrElse(
+                            () =>
+                                'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
+                          ),
+                    );
+                  },
+                  itemWidth: 400,
+                  itemHeight: 100,
+                ),
                 orElse: () => Shimmer.fromColors(
                   baseColor: const Color.fromRGBO(224, 224, 224, 1),
                   highlightColor: const Color.fromRGBO(245, 245, 245, 1),
@@ -131,6 +147,22 @@ class _HomeBodyViewState extends State<HomeBodyView> {
               ),
               state.maybeWhen(
                 success: (ads, activeRepairRecord, homeModel) => Swiper(
+                  autoplay: true,
+                  layout: SwiperLayout.STACK,
+                  itemCount: ads.length(),
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: ads.get(index).getOrElse(
+                            () =>
+                                'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
+                          ),
+                    );
+                  },
+                  itemWidth: 400,
+                  itemHeight: 100,
+                ),
+                failure: (ads) => Swiper(
                   autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),

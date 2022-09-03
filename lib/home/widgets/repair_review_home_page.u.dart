@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:revup_core/core.dart';
@@ -31,7 +30,7 @@ class RepairReviewHomePage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        failure: () => Container(
+        failure: (ads) => Container(
           width: double.infinity,
           height: 16,
           color: Colors.white,

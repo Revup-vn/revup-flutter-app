@@ -742,7 +742,7 @@ class OnboardingRoute extends _i42.PageRouteInfo<void> {
 class OTPRoute extends _i42.PageRouteInfo<OTPRouteArgs> {
   OTPRoute(
       {required String phoneNumber,
-      required _i48.Completer<dynamic> completer,
+      required _i48.Completer<String> completer,
       _i43.Key? key})
       : super(OTPRoute.name,
             path: '/o-tp-page',
@@ -758,7 +758,7 @@ class OTPRouteArgs {
 
   final String phoneNumber;
 
-  final _i48.Completer<dynamic> completer;
+  final _i48.Completer<String> completer;
 
   final _i43.Key? key;
 
