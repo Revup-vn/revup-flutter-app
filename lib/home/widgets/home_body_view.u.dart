@@ -13,16 +13,28 @@ import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/utils.dart';
 import '../bloc/home_bloc.dart';
+import '../cubit/home_record_cubit.dart';
 import 'app_service_panel.u.dart';
 import 'repair_review_home_page.u.dart';
 
-class HomeBodyView extends StatelessWidget {
+class HomeBodyView extends StatefulWidget {
   const HomeBodyView({super.key});
+
+  @override
+  State<HomeBodyView> createState() => _HomeBodyViewState();
+}
+
+class _HomeBodyViewState extends State<HomeBodyView> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final blocPage = context.watch<HomeBloc>();
+    final stsCubit = context.read<HomeRecordCubit>();
     blocPage.state.maybeWhen(
       initial: () async {
         final isGranted = await requestUserLocation();
@@ -36,11 +48,9 @@ class HomeBodyView extends StatelessWidget {
           // final boxLocation = await Hive.openBox<dynamic>('location');
           await boxLocation.put('currentLat', position.latitude);
           await boxLocation.put('currentLng', position.longitude);
+          await stsCubit.watch();
           blocPage.add(const HomeEvent.started());
         }
-      },
-      success: (ads, activeRepairRecord, homeModel) {
-        if (activeRepairRecord.isSome()) {}
       },
       orElse: () => false,
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -35,7 +34,9 @@ class MapRoutePage extends StatelessWidget {
           ),
         ),
       ],
-      child: const H16MapRoute(),
+      child: H16MapRoute(
+        user: user,
+      ),
     );
   }
 }
