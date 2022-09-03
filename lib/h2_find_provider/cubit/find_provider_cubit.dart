@@ -17,10 +17,11 @@ part 'find_provider_cubit.freezed.dart';
 part 'find_provider_state.dart';
 
 class FindProviderCubit extends Cubit<FindProviderState> {
-  FindProviderCubit(this._userStore, this._repairRecord)
+  FindProviderCubit(this._userStore, this._repairRecord, this.sr)
       : super(const FindProviderState.initial());
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
+  final StoreRepository sr;
   StreamSubscription<List<DocumentSnapshot<Object?>>>? _s;
 
   Future<Unit> watchWithinRadius(double radius) async {
@@ -121,15 +122,46 @@ class FindProviderCubit extends Cubit<FindProviderState> {
                   .run())
               .toIterable(),
         );
-
-        providerSumm.sort(
-          (a, b) {
-            final cmp = a.distance.compareTo(b.distance);
-            if (cmp != 0) return cmp;
-            return b.rating.compareTo(a.rating);
-          },
+        final boxRR = Hive.box<dynamic>(
+          'repairRecord',
         );
-        emit(FindProviderState.loaded(providers: providerSumm));
+        final vehicle =
+            (boxRR.get('vehicle') as String) == 'car' ? 'Oto' : 'Xe máy';
+        final provWithService = await Future.wait(
+          (await IList.from(providerSumm)
+                  .traverseTask(
+                    (a) => Task.value(
+                      (sr
+                              .repairServiceRepo(
+                                AppUserDummy.dummyProvider(a.uuid),
+                                RepairCategoryDummy.dummy(vehicle),
+                              )
+                              .all())
+                          .then(
+                        (v) => v.fold(
+                          (l) => a,
+                          (r) => a.copyWith(repairService: r.toList()),
+                        ),
+                      ),
+                    ),
+                  )
+                  .run())
+              .toIterable(),
+        );
+
+        final filterService = provWithService
+            .where(
+              (e) => e.repairService.isNotEmpty,
+            )
+            .toList()
+          ..sort(
+            (a, b) {
+              final cmp = a.distance.compareTo(b.distance);
+              if (cmp != 0) return cmp;
+              return b.rating.compareTo(a.rating);
+            },
+          );
+        emit(FindProviderState.loaded(providers: filterService));
       }
     }
   }

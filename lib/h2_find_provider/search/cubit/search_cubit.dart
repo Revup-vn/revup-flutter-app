@@ -163,12 +163,11 @@ class SearchCubit extends Cubit<SearchState> {
                   .run())
               .toIterable(),
         );
-        var filterService = provWithService;
+        var filterService = provWithService.where(
+          (e) => e.repairService.isNotEmpty,
+        );
         if (keyword.isNotEmpty) {
-          filterService = provWithService
-              .where(
-                (e) => e.repairService.isNotEmpty,
-              )
+          filterService = filterService
               .where(
                 (e) => e.repairService.any(
                   (a) => a.name.toLowerCase().contains(keyword.toLowerCase()),
