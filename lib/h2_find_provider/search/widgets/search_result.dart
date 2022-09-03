@@ -128,7 +128,7 @@ class SearchResult extends StatelessWidget {
                                     ),
                                   ),
                                   title: AutoSizeText(
-                                    '''${providers[index].value1.firstName}${providers[index].value1.lastName}''',
+                                    '''${providers[index].value1.firstName} ${providers[index].value1.lastName}''',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium

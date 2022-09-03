@@ -110,37 +110,33 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                   child: SizedBox(
                     width: 30,
                     height: 30,
-                    child: DecoratedBox(
-                      decoration:
-                          BoxDecoration(color: Theme.of(context).cardColor),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          AutoSizeText(
-                            l10n.total,
-                            style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall
-                                    ?.copyWith(fontWeight: FontWeight.bold) ??
-                                const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        AutoSizeText(
+                          l10n.total,
+                          style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.bold) ??
+                              const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        BlocBuilder<RepairStatusBloc, RepairStatusState>(
+                          builder: (context, state) {
+                            return AutoSizeText(
+                              context.formatMoney(
+                                state.maybeWhen(
+                                  orElse: () => 0,
+                                  success: (service, total) => total,
                                 ),
-                          ),
-                          BlocBuilder<RepairStatusBloc, RepairStatusState>(
-                            builder: (context, state) {
-                              return AutoSizeText(
-                                context.formatMoney(
-                                  state.maybeWhen(
-                                    orElse: () => 0,
-                                    success: (service, total) => total,
-                                  ),
-                                ),
-                                style: Theme.of(context).textTheme.labelLarge,
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                              ),
+                              style: Theme.of(context).textTheme.labelLarge,
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),

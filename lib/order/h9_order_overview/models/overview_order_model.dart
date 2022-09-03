@@ -19,7 +19,7 @@ class OverviewOrderModel with _$OverviewOrderModel {
         provider: (value) => OverviewOrderModel(
           providerID: user.uuid,
           videoCallID: value.vac.id,
-          providerName: '${user.firstName}${user.lastName}',
+          providerName: '${user.firstName} ${user.lastName}',
           distance: distance,
           providerAvatarImg: user.avatarUrl,
           proviverPhoneNumber: user.phone,
