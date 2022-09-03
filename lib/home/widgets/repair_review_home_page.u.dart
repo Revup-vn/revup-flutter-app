@@ -32,7 +32,7 @@ class RepairReviewHomePage extends StatelessWidget {
         ),
         failure: (ads) => Container(
           width: double.infinity,
-          height: 16,
+          height: 140,
           color: Colors.white,
           child: Center(
             child: AutoSizeText(l10n.emptyLabel),
