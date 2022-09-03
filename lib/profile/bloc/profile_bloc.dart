@@ -51,7 +51,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         tmp.fold(
           (l) => emit(const ProfileState.failure()),
           (r) => emit(
-            const ProfileState.success(),
+            ProfileState.success(aUser: user),
           ),
         );
       },
