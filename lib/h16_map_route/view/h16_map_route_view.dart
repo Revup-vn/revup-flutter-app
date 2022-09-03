@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
@@ -12,7 +13,8 @@ import '../../shared/fallbacks.dart';
 import '../bloc/h16_map_route_bloc.dart';
 
 class H16MapRoute extends StatelessWidget {
-  const H16MapRoute({super.key});
+  const H16MapRoute({super.key, required this.user});
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,8 @@ class H16MapRoute extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: MediaQuery.of(context).padding.top + 50,
+                    top: MediaQuery.of(context).padding.top + 30,
+                    left: 16,
                     child: ElevatedButton(
                       onPressed: () async => _onAbortRequest(context),
                       style:
@@ -103,6 +106,7 @@ class H16MapRoute extends StatelessWidget {
                       ),
                 )
                 .getOrElse(() => throw NullThrownError());
+            log('RECORDID :: ${record.id}');
             await _irr
                 .update(
                   RepairRecord.aborted(
@@ -119,34 +123,36 @@ class H16MapRoute extends StatelessWidget {
                 )
                 .then(
                   (value) => value.fold(
-                    (_) => context.showErrorBar<void>(
-                      content: Text(context.l10n.generalRetryError),
-                    ),
-                    (_) => context
-                        .showInfoBar<void>(
-                          content: Text(context.l10n.userAbortTheRequest),
-                        )
-                        .then(
-                          (value) => context.router.popUntil(
-                            (route) => route.settings.name == HomeRoute.name,
-                          ),
-                        ),
-                  ),
+                      (_) => ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(context.l10n.generalRetryError),
+                            ),
+                          ), (_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(context.l10n.userAbortTheRequest),
+                      ),
+                    );
+                    return context.router.popUntil(
+                      (route) => route.settings.name == HomeRoute.name,
+                    );
+                  }),
                 );
           },
-          sendMessage: (token) =>
-              context.read<NotificationCubit>().sendMessageToToken(
-                    SendMessage(
-                      title: 'Revup',
-                      body: '',
-                      token: token,
-                      icon: kRevupIconApp,
-                      payload: MessageData(
-                        type: NotificationType.ProviderDecline,
-                        payload: <String, dynamic>{},
-                      ),
-                    ),
+          sendMessage: (token) => context
+              .read<NotificationCubit>()
+              .sendMessageToToken(
+                SendMessage(
+                  title: 'Revup',
+                  body: '',
+                  token: token,
+                  icon: kRevupIconApp,
+                  payload: MessageData(
+                    type: NotificationType.NormalMessage,
+                    payload: <String, dynamic>{'subType': 'ConsumerCanceled'},
                   ),
+                ),
+              ),
         ),
       );
 }

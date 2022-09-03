@@ -179,7 +179,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     TextSpan(
-                      text: '${widget.overviewOrderData.distance}km',
+                      text:
+                          '''${widget.overviewOrderData.distance.toStringAsFixed(1)}km''',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),

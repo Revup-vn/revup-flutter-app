@@ -234,10 +234,13 @@ class ChooseServiceView extends StatelessWidget {
                                       ChooseServiceEvent.serviceListSubmitted(
                                         // Go to timeout page
                                         onRouteToTimeOut: (token) =>
-                                            context.router.replace(
+                                            context.router.pushAndPopUntil(
                                           CountdownRoute(
                                             token: token,
                                           ),
+                                          predicate: (route) =>
+                                              route.settings.name ==
+                                              HomeRoute.name,
                                         ),
                                         sendMessage: (token, recordId) =>
                                             context

@@ -7,7 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
-import '../bloc/home_bloc.dart';
+import '../cubit/home_record_cubit.dart';
 import 'app_service_item.u.dart';
 
 class AppServicePanel extends StatefulWidget {
@@ -31,20 +31,18 @@ class _AppServicePanelState extends State<AppServicePanel> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final homeBloc = context.watch<HomeBloc>();
-    homeBloc.state.maybeWhen(
-      success: (ads, activeRepairRecord, homeModel) {
-        if (activeRepairRecord.isSome()) {
-          setState(() {
-            onRequest = true;
-          });
-        } else {
-          setState(() {
-            onRequest = false;
-          });
-        }
+    final stsBloc = context.watch<HomeRecordCubit>();
+    stsBloc.state.when(
+      enabled: () {
+        setState(() {
+          onRequest = false;
+        });
       },
-      orElse: () => false,
+      disabled: () {
+        setState(() {
+          onRequest = true;
+        });
+      },
     );
     return Container(
       height: 140,
