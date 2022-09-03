@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
@@ -57,21 +56,22 @@ class _RepairerProfileTabBarState extends State<RepairerProfileTabBar>
             ),
           ],
         ),
-        SizedBox(
-          width: double.maxFinite,
-          height: 300,
-          child: TabBarView(
-            controller: _tabController,
-            children: <Widget>[
-              RepairerProfileServices(
-                serviceData: widget.serviceData,
-                providerId: widget.providerId,
-                categories: widget.categories,
-              ),
-              RepairerProfileFeedback(
-                ratingData: widget.ratingData,
-              ),
-            ],
+        Expanded(
+          child: SizedBox(
+            width: double.maxFinite,
+            child: TabBarView(
+              controller: _tabController,
+              children: <Widget>[
+                RepairerProfileServices(
+                  serviceData: widget.serviceData,
+                  providerId: widget.providerId,
+                  categories: widget.categories,
+                ),
+                RepairerProfileFeedback(
+                  ratingData: widget.ratingData,
+                ),
+              ],
+            ),
           ),
         ),
       ],

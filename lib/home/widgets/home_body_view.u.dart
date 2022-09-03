@@ -16,18 +16,8 @@ import '../bloc/home_bloc.dart';
 import 'app_service_panel.u.dart';
 import 'repair_review_home_page.u.dart';
 
-class HomeBodyView extends StatefulWidget {
+class HomeBodyView extends StatelessWidget {
   const HomeBodyView({super.key});
-
-  @override
-  State<HomeBodyView> createState() => _HomeBodyViewState();
-}
-
-class _HomeBodyViewState extends State<HomeBodyView> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

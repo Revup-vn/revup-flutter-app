@@ -26,7 +26,7 @@ class RepairerProfileServices extends StatelessWidget {
     final data = serviceData.toIterable().toList();
 
     return ListView.separated(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding: const EdgeInsets.only(bottom: 50),
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {

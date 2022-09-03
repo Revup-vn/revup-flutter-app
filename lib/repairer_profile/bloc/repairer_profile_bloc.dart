@@ -44,40 +44,48 @@ class RepairerProfileBloc
             )
             .getOrElse(() => throw NullThrownError());
 
-        final feedbackData = (await _repairRecord.where(
+        final maybeLstRecord = (await _repairRecord.where(
           'pid',
           isEqualTo: providerData.id,
         ))
-            .map(
-              (r) => r.map(
-                (a) =>
-                    a.maybeMap<Future<Option<Tuple2<AppUser, ReportFeedback>>>>(
-                  orElse: () => Future.value(none()),
-                  finished: (v) async => some(
-                    tuple2(
-                      (await _userStore.get(v.cid)).fold<AppUser>(
-                        (l) => throw NullThrownError(),
-                        (r) => r,
+            .fold<IList<RepairRecord>>((l) => nil(), (r) => r);
+
+        final maybeRating = await Future.wait(
+          maybeLstRecord
+              .filter(
+                  (a) => a.maybeMap(orElse: () => false, finished: (v) => true))
+              .map(
+                (a) => a.maybeMap(
+                  finished: (v) async => tuple2(
+                    await Task.value(
+                      (await _userStore.get(v.cid)).fold<Option<AppUser>>(
+                        (l) => none(),
+                        some,
                       ),
-                      v.feedback,
-                    ),
+                    ).run(),
+                    v.feedback,
                   ),
+                  orElse: () => throw NullThrownError(),
                 ),
-              ),
-            )
-            .fold<IList<Future<Option<Tuple2<AppUser, ReportFeedback>>>>>(
-              (l) => throw NullThrownError(),
-              (r) => r,
-            );
+              )
+              .toIterable(),
+        );
+
+        final filterUser =
+            maybeRating.where((element) => element.value1.isSome()).toList();
+
+        final feedbacks = filterUser.map(
+          (e) => RatingData.fromDtos(
+            e.value1.getOrElse(() => throw NullThrownError()),
+            e.value2,
+          ),
+        );
+
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final vehicle = boxRprRecord
             .get('vehicle', defaultValue: 'no description yet')
             .toString();
         final cate = vehicle == 'car' ? 'Oto' : 'Xe máy';
-        final feedbacks = (await Future.wait(feedbackData.toIterable()))
-            .where((e) => e.isSome())
-            .map((e) => e.getOrElse(() => throw NullThrownError()))
-            .map((e) => RatingData.fromDtos(e.value1, e.value2));
 
         final catData = (await (storeRepository.repairCategoryRepo(
           maybeProviderData,

@@ -86,7 +86,7 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
                               context.router.pop();
                             },
                             child: AutoSizeText(
-                              context.l10n.confirmLabel,
+                              context.l10n.understoodLabel,
                             ),
                           ),
                         ],
