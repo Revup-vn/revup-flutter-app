@@ -54,50 +54,54 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                       .map((a) => a.getOrElse(() => throw NullThrownError())),
                 )
                 .find((a) => true);
-        final completer = Completer<RepairRecord>();
-        final tmp = (await _repairRecord.where('cid', isEqualTo: user.uuid))
-            .map(
-              (r) => r.map(
-                (a) => a.maybeMap<Option<RepairRecord>>(
-                  orElse: none,
-                  aborted: (value) => some(a),
-                  finished: (value) => some(a),
-                ),
-              ),
-            )
-            .fold<IList<RepairRecord>>(
-              (l) => nil(),
-              (r) => r.filter((a) => a.isSome()).map(
-                    (a) => a.getOrElse(
-                      () => throw NullThrownError(),
-                    ),
+        if (maybeRepairRecord.isSome()) {
+          final completer = Completer<RepairRecord>();
+          final tmp = (await _repairRecord.where('cid', isEqualTo: user.uuid))
+              .map(
+                (r) => r.map(
+                  (a) => a.maybeMap<Option<RepairRecord>>(
+                    orElse: none,
+                    aborted: (value) => some(a),
+                    finished: (value) => some(a),
                   ),
-            )
-            .sortByDouble(
-              (e1, e2) => e1.created.millisecondsSinceEpoch
-                  .compareTo(e2.created.millisecondsSinceEpoch),
-            );
-        tmp.headOption.fold(() => null, completer.complete);
-        final latestRepairRecord = await completer.future;
-        final completerUser = Completer<Either<StoreFailure, AppUser>>();
+                ),
+              )
+              .fold<IList<RepairRecord>>(
+                (l) => nil(),
+                (r) => r.filter((a) => a.isSome()).map(
+                      (a) => a.getOrElse(
+                        () => throw NullThrownError(),
+                      ),
+                    ),
+              )
+              .sortByDouble(
+                (e1, e2) => e1.created.millisecondsSinceEpoch
+                    .compareTo(e2.created.millisecondsSinceEpoch),
+              );
+          tmp.headOption.fold(() => null, completer.complete);
+          final latestRepairRecord = await completer.future;
+          final completerUser = Completer<Either<StoreFailure, AppUser>>();
 
-        (await _userRepos.get(latestRepairRecord.pid)).fold(
-          (l) => completerUser.complete(left(l)),
-          (r) => completerUser.complete(
-            right(r),
-          ),
-        );
-        final provider = await completerUser.future;
-        provider.fold(
-          (l) => emit(const HomeState.failure()),
-          (r) => emit(
-            HomeState.success(
-              ads: imageList,
-              activeRepairRecord: maybeRepairRecord,
-              homeModel: HomeModel.fromDTO(r, latestRepairRecord),
+          (await _userRepos.get(latestRepairRecord.pid)).fold(
+            (l) => completerUser.complete(left(l)),
+            (r) => completerUser.complete(
+              right(r),
             ),
-          ),
-        );
+          );
+          final provider = await completerUser.future;
+          provider.fold(
+            (l) => emit(HomeState.failure(ads: imageList)),
+            (r) => emit(
+              HomeState.success(
+                ads: imageList,
+                activeRepairRecord: maybeRepairRecord,
+                homeModel: HomeModel.fromDTO(r, latestRepairRecord),
+              ),
+            ),
+          );
+        } else {
+          emit(HomeState.failure(ads: imageList));
+        }
       },
     );
   }

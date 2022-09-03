@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:revup_core/core.dart';
 
+import '../../router/app_router.gr.dart';
 import '../../shared/widgets/loading.u.dart';
 import '../bloc/bloc/signup_bloc.dart';
 import '../bloc/upload_bloc.u.dart';
@@ -45,7 +46,8 @@ class SignupPage extends StatelessWidget {
           success: Container.new,
         ),
         listener: (context, state) => state.whenOrNull(
-          success: () => context.router.pop(),
+          success: () => context.router
+              .popUntil((route) => route.settings.name == LoginRoute.name),
         ),
       ),
     );
