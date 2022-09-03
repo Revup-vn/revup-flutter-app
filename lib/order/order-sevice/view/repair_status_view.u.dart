@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -26,6 +25,19 @@ class _RepairStatusViewState extends State<RepairStatusView> {
     final l10n = context.l10n;
 
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: AutoSizeText(
+          l10n.workerRepairLabel,
+          style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold) ??
+              const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+      ),
       body: Stack(
         children: [
           Padding(
@@ -33,25 +45,6 @@ class _RepairStatusViewState extends State<RepairStatusView> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
-                    child: Row(
-                      children: <Widget>[
-                        AutoSizeText(
-                          l10n.workerRepairLabel,
-                          style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold) ??
-                              const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
                   SizedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +147,6 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
                     onPressed: null,
                     style: Theme.of(context).elevatedButtonTheme.style,
