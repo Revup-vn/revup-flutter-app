@@ -8,6 +8,7 @@ import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
+import 'package:tiengviet/tiengviet.dart';
 
 import '../../../map/map_api/map_api.dart';
 import '../../../repairer_profile/models/record_rating_data.dart';
@@ -170,7 +171,8 @@ class SearchCubit extends Cubit<SearchState> {
           filterService = filterService
               .where(
                 (e) => e.repairService.any(
-                  (a) => a.name.toLowerCase().contains(keyword.toLowerCase()),
+                  (a) => TiengViet.parse(a.name.toLowerCase())
+                      .contains(TiengViet.parse(keyword.toLowerCase())),
                 ),
               )
               .toList();
@@ -243,36 +245,49 @@ class SearchCubit extends Cubit<SearchState> {
                       ? 0
                       : (e.value2.firstWhere(
                           (element) =>
-                              element.value1.name.toLowerCase() ==
-                              keyword.toLowerCase(),
+                              TiengViet.parse(
+                                element.value1.name.toLowerCase(),
+                              ) ==
+                              TiengViet.parse(keyword.toLowerCase()),
                           orElse: () {
-                            if (e.value2.first.value1.name
-                                .toLowerCase()
-                                .contains(keyword.toLowerCase())) {
+                            if (TiengViet.parse(
+                              e.value2.first.value1.name.toLowerCase(),
+                            ).contains(
+                              TiengViet.parse(keyword.toLowerCase()),
+                            )) {
                               return e.value2.first;
                             }
-                            return e.value2.firstWhere((element) => element
-                                .value1.name
-                                .toLowerCase()
-                                .contains(keyword.toLowerCase()));
+                            return e.value2.firstWhere(
+                              (element) => TiengViet.parse(
+                                element.value1.name.toLowerCase(),
+                              ).contains(
+                                TiengViet.parse(keyword.toLowerCase()),
+                              ),
+                            );
                           },
                         ).value2),
                   e.value2.isEmpty
                       ? 0
                       : (e.value2.firstWhere(
                           (element) =>
-                              element.value1.name.toLowerCase() ==
-                              keyword.toLowerCase(),
+                              TiengViet.parse(
+                                element.value1.name.toLowerCase(),
+                              ) ==
+                              TiengViet.parse(keyword.toLowerCase()),
                           orElse: () {
-                            if (e.value2.first.value1.name
-                                .toLowerCase()
-                                .contains(keyword.toLowerCase())) {
+                            if (TiengViet.parse(
+                              e.value2.first.value1.name.toLowerCase(),
+                            ).contains(
+                              TiengViet.parse(keyword.toLowerCase()),
+                            )) {
                               return e.value2.first;
                             }
                             return e.value2.firstWhere(
-                              (element) => element.value1.name
-                                  .toLowerCase()
-                                  .contains(keyword.toLowerCase()),
+                              (element) => TiengViet.parse(
+                                element.value1.name.toLowerCase(),
+                              ).contains(
+                                TiengViet.parse(keyword.toLowerCase()),
+                              ),
                             );
                           },
                         ).value3),
