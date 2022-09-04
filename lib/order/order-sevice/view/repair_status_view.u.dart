@@ -5,6 +5,7 @@ import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../shared/widgets/loading.u.dart';
+import '../../../shared/widgets/unknown_failure.dart';
 import '../bloc/bloc/repair_status_bloc.dart';
 
 class RepairStatusView extends StatefulWidget {
@@ -66,7 +67,7 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                     builder: (context, state) => state.when(
                       initial: Loading.new,
                       loading: Loading.new,
-                      failure: () => AutoSizeText(l10n.emptyLabel),
+                      failure: UnknownFailure.new,
                       success: (service, total) => ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

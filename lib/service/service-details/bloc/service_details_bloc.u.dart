@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../repairer_profile/models/service_data.u.dart';
@@ -18,13 +19,11 @@ class ServiceDetailsBloc
     this._userStore,
     this.storeRepository,
     this._providerId,
-    this.catAndSv,
   ) : super(const _Initial()) {
     on<ServiceDetailsEvent>(_onEvent);
   }
 
   final ServiceData _serviceData;
-  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final String _providerId;
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
@@ -35,22 +34,19 @@ class ServiceDetailsBloc
   ) async {
     await event.when(
       started: () async {
-        final maybeProviderData = (await _userStore.get(_providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
+        final boxRR = Hive.box<dynamic>('repairRecord');
+        final vehicle =
+            (boxRR.get('vehicle') as String) == 'car' ? 'Oto' : 'Xe máy';
         final completer = Completer<IList<RepairProduct>>();
         (await (storeRepository.repairServiceRepo(
-          maybeProviderData,
-          RepairCategoryDummy.dummy(catAndSv.value1.name),
+          AppUserDummy.dummyProvider(_providerId),
+          RepairCategoryDummy.dummy(vehicle),
         )).get(_serviceData.name))
             .fold((l) => completer.complete(nil<RepairProduct>()), (r) async {
           (await storeRepository
                   .repairProductRepo(
-                    maybeProviderData,
-                    catAndSv.value1,
+                    AppUserDummy.dummyProvider(_providerId),
+                    RepairCategoryDummy.dummy(vehicle),
                     r,
                   )
                   .all())

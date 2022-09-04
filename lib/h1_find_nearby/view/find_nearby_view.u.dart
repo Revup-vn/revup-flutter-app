@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -22,18 +24,18 @@ class FindNearbyView extends StatefulWidget {
 }
 
 class _FindNearbyViewState extends State<FindNearbyView> {
-  late GoogleMapController mapController;
+  final _controller = Completer<GoogleMapController>();
 
   late LatLng currentLocation;
 
   final makers = <Marker>[];
 
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    _controller.complete(controller);
     context.read<LocationBloc>().add(const LocationEvent.started());
   }
 
-  void _onTap(LatLng point) {
+  Future<void> _onTap(LatLng point) async {
     setState(() {
       makers
         ..clear()
@@ -50,7 +52,8 @@ class _FindNearbyViewState extends State<FindNearbyView> {
             location: point,
           ),
         );
-    mapController.animateCamera(
+    final mapController = await _controller.future;
+    await mapController.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: LatLng(point.latitude, point.longitude),
@@ -64,7 +67,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
   Widget build(BuildContext context) {
     final bloc = context.watch<LocationBloc>();
     bloc.state.maybeWhen(
-      locationLoaded: (location) {
+      locationLoaded: (location) async {
         currentLocation = LatLng(location.latitude, location.longitude);
         context.read<LocationBloc>().add(
               LocationEvent.locationUpdated(
@@ -74,7 +77,9 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                 ),
               ),
             );
-        mapController.animateCamera(
+        final mapController = await _controller.future;
+
+        await mapController.animateCamera(
           CameraUpdate.newCameraPosition(
             CameraPosition(
               target: LatLng(
@@ -86,7 +91,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
           ),
         );
       },
-      placeDetailsLoaded: (placeDetails) {
+      placeDetailsLoaded: (placeDetails) async {
         makers
           ..clear()
           ..add(
@@ -98,6 +103,7 @@ class _FindNearbyViewState extends State<FindNearbyView> {
               ),
             ),
           );
+        final mapController = await _controller.future;
 
         return mapController.animateCamera(
           CameraUpdate.newLatLng(

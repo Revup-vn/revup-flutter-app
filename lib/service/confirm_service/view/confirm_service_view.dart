@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -8,33 +7,38 @@ import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../repairer_profile/models/service_data.u.dart';
-import '../../../router/app_router.gr.dart';
 import '../../../router/router.dart';
-import '../../../shared/fallbacks.dart';
 import '../../../shared/widgets/loading.u.dart';
 import '../../../shared/widgets/unknown_failure.dart';
 import '../../widgets/service_checkbox_group.dart';
-import '../bloc/choose_service_bloc.u.dart';
+import '../bloc/confirm_service_bloc.dart';
+import '../cubit/select_prod_service_cubit.dart';
 
-class ChooseServiceView extends StatelessWidget {
-  const ChooseServiceView({
+class ConfirmServiceView extends StatelessWidget {
+  const ConfirmServiceView({
     super.key,
-    this.recordId,
+    required this.recordId,
     required this.form,
     required this.providerId,
     required this.optionalService,
   });
   final GlobalKey<FormBuilderState> form;
-  final String? recordId;
+  final String recordId;
   final String providerId;
   final List<OptionalService> optionalService;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final blocPage = context.read<ChooseServiceBloc>();
+    final blocPage = context.read<ConfirmServiceBloc>();
+
     blocPage.state.whenOrNull(
-      initial: () =>
-          blocPage.add(ChooseServiceEvent.started(newService: optionalService)),
+      initial: () => context.read<SelectProdServiceCubit>().watch(),
+      // blocPage.add(
+      //   ConfirmServiceEvent.detailRequestAccepted(
+      //     recordId: recordId,
+      //     optionalService: optionalService,
+      //   ),
+      // ),
     );
 
     return Scaffold(
@@ -48,7 +52,8 @@ class ChooseServiceView extends StatelessWidget {
               NewServiceRequestRoute(
                 optionalService: optionalService,
                 providerId: providerId,
-                isSelectProduct: false,
+                isSelectProduct: true,
+                recordId: recordId,
               ),
               result: optionalService,
             ),
@@ -56,12 +61,16 @@ class ChooseServiceView extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
+      body: BlocBuilder<SelectProdServiceCubit, SelectProdServiceState>(
         builder: (context, state) {
           return state.maybeWhen(
             failure: UnknownFailure.new,
-            success: (providerId, serviceData, catAndSv) {
-              final serviceList = serviceData.toList();
+            success: (
+              providerId,
+              services,
+              pendingService,
+            ) {
+              final serviceList = services.toList();
               return Stack(
                 children: [
                   Padding(
@@ -72,10 +81,10 @@ class ChooseServiceView extends StatelessWidget {
                           key: form,
                           child: ServiceCheckboxGroup(
                             serviceList: serviceList,
-                            pendingService: const [],
+                            pendingService: pendingService,
                             providerId: providerId,
-                            isSelectProduct: false,
-                            recordId: recordId ?? '',
+                            isSelectProduct: true,
+                            recordId: recordId,
                           ),
                         ),
                       ],
@@ -101,46 +110,11 @@ class ChooseServiceView extends StatelessWidget {
                             );
                             return;
                           }
-                          context.read<ChooseServiceBloc>().add(
-                                ChooseServiceEvent.serviceListSubmitted(
-                                  // Go to timeout page
-                                  onRouteToTimeOut: (token) =>
-                                      context.router.replace(
-                                    CountdownRoute(
-                                      token: token,
-                                    ),
-                                  ),
-                                  sendMessage: (token, recordId) => context
-                                      .read<NotificationCubit>()
-                                      .sendMessageToToken(
-                                        SendMessage(
-                                          title: 'Revup',
-                                          body: l10n.submitRequestSuccessLabel,
-                                          token: token,
-                                          icon: kRevupIconApp,
-                                          payload: MessageData(
-                                            type: NotificationType
-                                                .ConsumerRequestRepair,
-                                            payload: <String, dynamic>{
-                                              'recordId': recordId
-                                            },
-                                          ),
-                                        ),
-                                      ),
+                          context.read<ConfirmServiceBloc>().add(
+                                ConfirmServiceEvent.selectProductCompleted(
+                                  onRoute: () => context.router.pop(),
                                   saveLst: saveLst,
-                                  onPopBack: () => context
-                                      .showInfoBar<void>(
-                                        content:
-                                            Text(context.l10n.providerBusy),
-                                      )
-                                      .then(
-                                        (_) => context.router.popUntil(
-                                          (route) =>
-                                              route.settings.name ==
-                                              const FindProviderRoute()
-                                                  .routeName,
-                                        ),
-                                      ),
+                                  recordId: recordId,
                                 ),
                               );
                         },

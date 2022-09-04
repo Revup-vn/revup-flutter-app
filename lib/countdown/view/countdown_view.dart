@@ -91,6 +91,7 @@ class CountdownView extends StatelessWidget {
               RepairRecordDummy.field(
                 RepairRecordFields.CreateDate,
               ),
+              descending: true,
             )
             .limit(1)
             .get(),

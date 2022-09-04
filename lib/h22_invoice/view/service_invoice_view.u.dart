@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/invoice_bloc.u.dart';
-import '../widgets/loading.u.dart';
 import '../widgets/service_main_content.u.dart';
 
 class ServiceInvoiceView extends StatelessWidget {
@@ -23,7 +22,7 @@ class ServiceInvoiceView extends StatelessWidget {
       builder: (context, state) => state.when(
         failure: Container.new,
         initial: (_) => Container(),
-        loading: InvoiceLoading.new,
+        loading: Loading.new,
         loadingDataSuccess: (data, ready, total, serviceData) =>
             ServiceInvoiceContent(total, data, serviceData, ready: ready),
       ),

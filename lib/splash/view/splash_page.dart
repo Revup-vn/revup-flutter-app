@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
             final providerId = p0.payload.payload['providerId'] as String;
             context.router.push(MapRouteRoute(providerId: providerId));
           }
-          if (subType == 'compltedRepair') {
+          if (subType == 'completedRepair') {
             final recordId = p0.payload.payload['recordId'] as String;
             final providerId = p0.payload.payload['providerId'] as String;
             context.router.push(

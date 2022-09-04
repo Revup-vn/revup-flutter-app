@@ -22,6 +22,12 @@ class PendingServiceModel with _$PendingServiceModel {
           isOptional: v.isOptional,
           products: v.products,
         ),
+        needToVerify: (v) => PendingServiceModel(
+          name: v.serviceName,
+          price: -1,
+          isOptional: true,
+          products: [],
+        ),
         orElse: () => throw NullThrownError(),
       );
 }

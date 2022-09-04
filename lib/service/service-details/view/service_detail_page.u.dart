@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -13,11 +11,9 @@ class ServiceDetailPage extends StatelessWidget {
     super.key,
     required this.providerId,
     required this.serviceData,
-    required this.catAndSv,
   });
   final ServiceData serviceData;
   final String providerId;
-  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -28,7 +24,6 @@ class ServiceDetailPage extends StatelessWidget {
         context.read(),
         sr,
         providerId,
-        catAndSv,
       ),
       child: ServiceDetailView(
         serviceData: serviceData,

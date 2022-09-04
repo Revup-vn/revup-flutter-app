@@ -147,11 +147,16 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
               TextButton(
                 onPressed: () {
                   context.router.push(
-                    ChooseServiceRoute(
+                    // ChooseServiceRoute(
+                    //   providerId: widget.overviewOrderData.providerID,
+                    //   isSelectProduct: true,
+                    //   recordId: widget.pendingRequest.id,
+                    //   optionalService: const [],
+                    // ),
+                    ConfirmServiceRoute(
                       providerId: widget.overviewOrderData.providerID,
-                      isSelectProduct: true,
                       recordId: widget.pendingRequest.id,
-                      optionalService: const [],
+                      optionalService: [],
                     ),
                   );
                 },
@@ -317,59 +322,35 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    blogPage.add(
-                      OverviewOrderEvent.submitted(
-                        onRoute: () => context.router.pop(),
-                        sendMessage: (token, recordId) => context
-                            .read<NotificationCubit>()
-                            .sendMessageToToken(
-                              SendMessage(
-                                title: 'Revup',
-                                body: context.l10n.submitRequestSuccessLabel,
-                                token: token,
-                                icon: kRevupIconApp,
-                                payload: MessageData(
-                                  type: NotificationType.NormalMessage,
-                                  payload: <String, dynamic>{
-                                    'subType': 'ConsumerSelected',
-                                    'recordId': recordId,
-                                  },
-                                ),
-                              ),
+                  onPressed: widget.pendingService.any(
+                    (e) => !e.isOptional && e.products.isEmpty,
+                  )
+                      ? null
+                      : () {
+                          blogPage.add(
+                            OverviewOrderEvent.submitted(
+                              onRoute: () => context.router.pop(),
+                              sendMessage: (token, recordId) => context
+                                  .read<NotificationCubit>()
+                                  .sendMessageToToken(
+                                    SendMessage(
+                                      title: 'Revup',
+                                      body: context
+                                          .l10n.submitRequestSuccessLabel,
+                                      token: token,
+                                      icon: kRevupIconApp,
+                                      payload: MessageData(
+                                        type: NotificationType.NormalMessage,
+                                        payload: <String, dynamic>{
+                                          'subType': 'ConsumerSelected',
+                                          'recordId': recordId,
+                                        },
+                                      ),
+                                    ),
+                                  ),
                             ),
-                      ),
-                    );
-                  },
-                  // onPressed: widget.pendingService.any(
-                  //   (e) => e.products.isEmpty,
-                  // )
-                  //     ? null
-                  //     : () {
-                  //         blogPage.add(
-                  //           OverviewOrderEvent.submitted(
-                  //             onRoute: () => context.router.pop(),
-                  //             sendMessage: (token, recordId) => context
-                  //                 .read<NotificationCubit>()
-                  //                 .sendMessageToToken(
-                  //                   SendMessage(
-                  //                     title: 'Revup',
-                  //                     body: context
-                  //                         .l10n.submitRequestSuccessLabel,
-                  //                     token: token,
-                  //                     icon: kRevupIconApp,
-                  //                     payload: MessageData(
-                  //                       type: NotificationType.NormalMessage,
-                  //                       payload: <String, dynamic>{
-                  //                         'subType': 'ConsumerSelected',
-                  //                         'recordId': recordId,
-                  //                       },
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //           ),
-                  //         );
-                  //       },
+                          );
+                        },
                   child: Text(context.l10n.confirmLabel),
                 )
               ],
