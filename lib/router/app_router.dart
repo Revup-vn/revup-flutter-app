@@ -37,6 +37,7 @@ import '../profile/view/update_profile_page.u.dart';
 import '../repairer_profile/view/repairer_profile_page.u.dart';
 import '../report/view/report_page.u.dart';
 import '../service/choose_service/view/choose_service_page.u.dart';
+import '../service/confirm_service/view/confirm_service_page.dart';
 import '../service/h11_choose_product/view/choose_product_page.u.dart';
 import '../service/new_service/view/new_service_request_page.u.dart';
 import '../service/service-details/view/service_detail_page.u.dart';
@@ -75,7 +76,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: OnboardingPage),
     AdaptiveRoute<void>(page: OTPPage),
     AdaptiveRoute<void>(page: SignupPage),
-    AdaptiveRoute<void>(page: ChooseServicePage, maintainState: false),
+    AdaptiveRoute<void>(page: ChooseServicePage),
     AdaptiveRoute<List<OptionalService>>(page: NewServiceRequestPage),
     AdaptiveRoute<void>(page: ServiceDetailPage),
     AdaptiveRoute<void>(page: ChooseProductPage),
@@ -94,6 +95,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: AddReportPage),
     AdaptiveRoute<void>(page: FindProviderPage),
     AdaptiveRoute<void>(page: CountdownPage),
+    AdaptiveRoute<void>(page: ConfirmServicePage, maintainState: false),
   ],
 )
 class $AppRouter {}

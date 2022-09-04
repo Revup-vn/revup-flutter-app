@@ -113,7 +113,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             pending: (serviceName, moneyAmount, products, isOptional) => some(
               ServiceData.fromDtos(
                 serviceName,
-                moneyAmount + products[0].unitPrice,
+                moneyAmount + (products.isNotEmpty ? products[0].unitPrice : 0),
                 'pending',
               ),
             ),
@@ -121,7 +121,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             paid: (serviceName, moneyAmount, products, paidIn) => some(
               ServiceData.fromDtos(
                 serviceName,
-                moneyAmount + products[0].unitPrice,
+                moneyAmount + (products.isNotEmpty ? products[0].unitPrice : 0),
                 'paid',
               ),
             ),

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../l10n/l10n.dart';
 import '../../../router/router.dart';
+import '../../../shared/widgets/loading.u.dart';
 import '../bloc/history_bloc.u.dart';
 import '../widgets/widgets.dart';
 
@@ -52,8 +52,7 @@ class HistoryProviderView extends StatelessWidget {
                 builder: (context, state) {
                   return state.when(
                     initial: Container.new,
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    loading: Loading.new,
                     failure: Container.new,
                     success: (histories) => ListView.builder(
                       shrinkWrap: true,

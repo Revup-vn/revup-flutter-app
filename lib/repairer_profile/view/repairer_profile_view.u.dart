@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/repairer_profile_bloc.dart';
 import '../widgets/repairer_failure.u.dart';
-import '../widgets/repairer_loading.u.dart';
 import '../widgets/repairer_profile_content.u.dart';
 
 class RepairerProfileView extends StatelessWidget {
@@ -23,10 +22,10 @@ class RepairerProfileView extends StatelessWidget {
 
     return BlocBuilder<RepairerProfileBloc, RepairerProfileState>(
       builder: (context, state) => state.when(
-        initial: () => const RepairerLoading(),
+        initial: Loading.new,
         dataLoadSuccess: RepairerProfileMainContent.new,
         dataLoadFailure: () => const RepairerLoadDataFailure(),
-        loading: () => const RepairerLoading(),
+        loading: Loading.new,
       ),
     );
   }

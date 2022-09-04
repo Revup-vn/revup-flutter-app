@@ -44,8 +44,10 @@ class _HomeBodyViewState extends State<HomeBodyView> {
           final position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
           );
+          if (await Hive.boxExists('location')) {
+            await Hive.openBox<dynamic>('location');
+          }
           final boxLocation = Hive.box<dynamic>('location');
-          // final boxLocation = await Hive.openBox<dynamic>('location');
           await boxLocation.put('currentLat', position.latitude);
           await boxLocation.put('currentLng', position.longitude);
           await stsCubit.watch();

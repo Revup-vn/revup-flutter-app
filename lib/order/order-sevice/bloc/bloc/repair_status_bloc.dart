@@ -27,58 +27,60 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
     await event.when(
       started: () async {
         emit(const RepairStatusState.loading());
-        final maybeRepairRecord = (await recordRepos.get(
-          recordId,
-        ))
+        final maybeRepairRecord = (await recordRepos.get(recordId))
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(
                 orElse: none,
                 started: some,
               ),
             )
-            .map(
-              (r) => r.getOrElse(
-                () => throw NullThrownError(),
+            .fold<Option<RepairRecord>>((l) => none(), (r) => r);
+
+        if (maybeRepairRecord.isNone()) {
+          emit(const RepairStatusState.failure());
+        } else {
+          final maybePaymentData = await sr
+              .repairPaymentRepo(
+                maybeRepairRecord.getOrElse(() => throw NullThrownError()),
+              )
+              .all();
+
+          final paymentList =
+              maybePaymentData.fold((l) => nil<PaymentService>(), (r) => r);
+
+          final listOptionService =
+              paymentList.map<Option<Tuple2<String, int>>>(
+            (a) => a.when(
+              pending: (serviceName, moneyAmount, products, isOptional) => some(
+                tuple2<String, int>(
+                  serviceName,
+                  moneyAmount + (isOptional ? 0 : products[0].unitPrice),
+                ),
               ),
-            )
-            .getOrElse(() => throw NullThrownError());
-
-        final maybePaymentData =
-            await sr.repairPaymentRepo(maybeRepairRecord).all();
-
-        final paymentList =
-            maybePaymentData.fold((l) => nil<PaymentService>(), (r) => r);
-
-        final listOptionService = paymentList.map<Option<Tuple2<String, int>>>(
-          (a) => a.when(
-            pending: (serviceName, moneyAmount, products, isOptional) => some(
-              tuple2<String, int>(
-                serviceName,
-                moneyAmount + products[0].unitPrice,
+              needToVerify: (serviceName, desc) => none(),
+              paid: (serviceName, moneyAmount, products, paidIn) => some(
+                tuple2<String, int>(
+                  serviceName,
+                  moneyAmount +
+                      (products.isNotEmpty ? products[0].unitPrice : 0),
+                ),
               ),
             ),
-            needToVerify: (serviceName, desc) => none(),
-            paid: (serviceName, moneyAmount, products, paidIn) => some(
-              tuple2<String, int>(
-                serviceName,
-                moneyAmount + products[0].unitPrice,
-              ),
+          );
+          final listService = listOptionService.filter((a) => a.isSome()).map(
+                (a) => a.getOrElse(
+                  () => throw NullThrownError(),
+                ),
+              );
+          final total = listService.foldLeft<int>(
+              0, (previous, a) => previous + a.value2);
+          emit(
+            RepairStatusState.success(
+              service: listService.toList(),
+              total: total,
             ),
-          ),
-        );
-        final listService = listOptionService.filter((a) => a.isSome()).map(
-              (a) => a.getOrElse(
-                () => throw NullThrownError(),
-              ),
-            );
-        final total =
-            listService.foldLeft<int>(0, (previous, a) => previous + a.value2);
-        emit(
-          RepairStatusState.success(
-            service: listService.toList(),
-            total: total,
-          ),
-        );
+          );
+        }
       },
     );
   }

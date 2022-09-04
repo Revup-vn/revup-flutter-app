@@ -46,57 +46,29 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
           break;
         case NotificationType.VerifiedArrival:
           showDialog<void>(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) => Dialog(
-              child: SizedBox(
-                height: 150,
-                width: 150,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        top: 10,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: AutoSizeText(
-                              context.l10n.arrivedRepairmanLabel,
-                              style: Theme.of(context).textTheme.labelLarge,
-                            ),
-                          ),
-                        ],
-                      ),
+              barrierDismissible: false,
+              context: context,
+              builder: (context) => AlertDialog(
+                    content: AutoSizeText(
+                      context.l10n.arrivedRepairmanLabel,
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
-                    Positioned(
-                      right: 1,
-                      bottom: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              if (mounted) {
-                                setState(() {
-                                  isEnable = true;
-                                });
-                              }
-                              context.router.pop();
-                            },
-                            child: AutoSizeText(
-                              context.l10n.understoodLabel,
-                            ),
-                          ),
-                        ],
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          if (mounted) {
+                            setState(() {
+                              isEnable = true;
+                            });
+                          }
+                          context.router.pop();
+                        },
+                        child: AutoSizeText(
+                          context.l10n.understoodLabel,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+                    ],
+                  ));
           break;
         // ignore: no_default_cases
         default:

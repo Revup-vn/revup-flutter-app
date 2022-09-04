@@ -40,7 +40,6 @@ class RepairerProfileServices extends StatelessWidget {
             onTap: () {
               context.router.push(
                 ServiceDetailRoute(
-                  catAndSv: categories,
                   providerId: providerId,
                   serviceData: data[index],
                 ),

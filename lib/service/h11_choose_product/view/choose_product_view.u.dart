@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/widgets/loading.u.dart';
 import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
 
@@ -28,9 +29,7 @@ class _ChooseProductViewState extends State<ChooseProductView> {
     return BlocBuilder<ChooseProductBloc, ChooseProductState>(
       builder: (context, state) {
         return state.maybeWhen(
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
           success: (productList) {
             final products = productList.toList();
 
