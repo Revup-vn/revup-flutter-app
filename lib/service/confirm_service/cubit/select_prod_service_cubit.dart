@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -33,13 +32,6 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
       if (event.size == 0) {
         emit(const SelectProdServiceState.failure());
       } else {
-        event.docs
-            .map(_paymentService.parseRawData)
-            .fold<IList<PaymentService>>(
-              nil(),
-              (p, e) => e.fold((l) => p, (r) => cons(r, p)),
-            )
-            .map((a) => null);
         final pendingService = (await storeRepository
                 .repairPaymentRepo(RepairRecordDummy.dummyAccepted(recordId))
                 .all())
@@ -84,13 +76,10 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
             (l) => nil(),
             (r) => r.map(ServiceData.fromDtos),
           );
-          log(services.toString());
           final svDataOptional =
               pendingService.map(ServiceData.fromPendingService);
-          log(svDataOptional.toString());
           final lst = services.toList()
             ..removeWhere((e) => svDataOptional.any((a) => a.name == e.name));
-          log(lst.toString());
           emit(
             SelectProdServiceState.success(
               providerId: repairRecord.pid,
