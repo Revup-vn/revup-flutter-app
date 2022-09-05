@@ -72,87 +72,112 @@ class H16MapRoute extends StatelessWidget {
     );
   }
 
-  Future<void> _onAbortRequest(BuildContext context) async {
-    context.read<H16MapRouteBloc>().add(
-          H16MapRouteEvent.confirmArrival(
-            onRoute: () async {
-              final _irr = context.read<IStore<RepairRecord>>();
+  Future<void> _onAbortRequest(BuildContext context) async => context
+      .read<H16MapRouteBloc>()
+      .add(
+        H16MapRouteEvent.confirmArrival(
+          onRoute: () async {
+            final _irr = context.read<IStore<RepairRecord>>();
+            final _iau = context.read<IStore<AppUser>>();
+            final uid = context.read<AuthenticateBloc>().state.maybeMap(
+                  orElse: () => throw NullThrownError(),
+                  authenticated: (value) => value.authType.user.uuid,
+                );
 
-              final record = (await _irr.queryTs(
-                (a) => a
-                    .where(
-                      RepairRecordDummy.field(RepairRecordFields.ConsumerId),
-                      isEqualTo: context
-                          .read<AuthenticateBloc>()
-                          .state
-                          .maybeMap(
-                            orElse: () => throw NullThrownError(),
-                            authenticated: (value) => value.authType.user.uuid,
-                          ),
+            final user = (await _iau.get(uid))
+                .toOption()
+                .getOrElse(() => throw NullThrownError());
+
+            final uUser = user.maybeMap(
+              orElse: () => throw NullThrownError(),
+              consumer: (value) => value.violatedTimes == 0 ||
+                      (value.bannedValidatedDate ?? DateTime.now())
+                              .compareTo(DateTime.now()) <
+                          0
+                  ? value.copyWith(
+                      violatedTimes: 1,
+                      bannedValidatedDate:
+                          DateTime.now().add(const Duration(days: 7)),
                     )
-                    .orderBy(
-                      RepairRecordDummy.field(
-                        RepairRecordFields.CreateDate,
+                  : value.copyWith(violatedTimes: value.violatedTimes + 1),
+              // guarantee be external invariance
+            );
+
+            if (!(await _iau.update(uUser)).fold((l) => false, (r) => true)) {
+              return;
+            }
+
+            final record = (await _irr.queryTs(
+              (a) => a
+                  .where(
+                    RepairRecordDummy.field(RepairRecordFields.ConsumerId),
+                    isEqualTo: context.read<AuthenticateBloc>().state.maybeMap(
+                          orElse: () => throw NullThrownError(),
+                          authenticated: (value) => value.authType.user.uuid,
+                        ),
+                  )
+                  .orderBy(
+                    RepairRecordDummy.field(
+                      RepairRecordFields.CreateDate,
+                    ),
+                    descending: true,
+                  )
+                  .limit(1)
+                  .get(),
+            ))
+                .toOption()
+                .map(
+                  (a) => a.headOption.map((a) => a).getOrElse(
+                        () => throw NullThrownError(),
                       ),
-                      descending: true,
-                    )
-                    .limit(1)
-                    .get(),
-              ))
-                  .toOption()
-                  .map(
-                    (a) => a.headOption.map((a) => a).getOrElse(
-                          () => throw NullThrownError(),
-                        ),
-                  )
-                  .getOrElse(() => throw NullThrownError());
-              await _irr
-                  .update(
-                    RepairRecord.aborted(
-                      id: record.id,
-                      cid: record.cid,
-                      pid: record.pid,
-                      created: record.created,
-                      desc: record.desc,
-                      vehicle: record.vehicle,
-                      money: record.money,
-                      from: record.from,
-                      to: record.to,
-                    ),
-                  )
-                  .then(
-                    (value) => value.fold(
-                        (_) => ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(context.l10n.generalRetryError),
-                              ),
-                            ), (_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(context.l10n.userAbortTheRequest),
-                        ),
-                      );
-                      return context.router.popUntil(
-                        (route) => route.settings.name == HomeRoute.name,
-                      );
-                    }),
-                  );
-            },
-            sendMessage: (token) => context
-                .read<NotificationCubit>()
-                .sendMessageToToken(
-                  SendMessage(
-                    title: 'Revup',
-                    body: '',
-                    token: token,
-                    icon: kRevupIconApp,
-                    payload: MessageData(
-                      type: NotificationType.NormalMessage,
-                      payload: <String, dynamic>{'subType': 'ConsumerCanceled'},
-                    ),
+                )
+                .getOrElse(() => throw NullThrownError());
+            await _irr
+                .update(
+                  RepairRecord.aborted(
+                    id: record.id,
+                    cid: record.cid,
+                    pid: record.pid,
+                    created: record.created,
+                    desc: record.desc,
+                    vehicle: record.vehicle,
+                    money: record.money,
+                    from: record.from,
+                    to: record.to,
+                  ),
+                )
+                .then(
+                  (value) => value.fold(
+                      (_) => ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(context.l10n.generalRetryError),
+                            ),
+                          ), (_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(context.l10n.userAbortTheRequest),
+                      ),
+                    );
+                    return context.router.popUntil(
+                      (route) => route.settings.name == HomeRoute.name,
+                    );
+                  }),
+                );
+          },
+          sendMessage: (token) => context
+              .read<NotificationCubit>()
+              .sendMessageToToken(
+                SendMessage(
+                  title: 'Revup',
+                  body: '',
+                  token: token,
+                  icon: kRevupIconApp,
+                  payload: MessageData(
+                    type: NotificationType.NormalMessage,
+                    payload: <String, dynamic>{'subType': 'ConsumerCanceled'},
                   ),
                 ),
-          ),
-        );
-  }
+              ),
+        ),
+      );
 }

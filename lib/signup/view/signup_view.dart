@@ -13,7 +13,6 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revup_core/core.dart';
 
 import '../../account/widgets/avatar.dart';
-import '../../configs/video_call_config_pub.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/dismiss_keyboard.dart';
 import '../bloc/bloc/signup_bloc.dart';
@@ -260,7 +259,6 @@ class SignupView extends StatelessWidget {
                             vac: VideoCallAccount(
                               id: uid,
                               username: '+84$phoneNumber',
-                              pwd: DEFAULT_PASS,
                               email: data?['email'].toString() ?? '',
                             ),
                           );
