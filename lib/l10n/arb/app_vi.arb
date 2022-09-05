@@ -241,5 +241,6 @@
   "understoodLabel": "Đã hiểu",
   "pendingLabel": "Chưa thanh toán",
   "waitingLabel": "Đang chờ",
-  "noneLabel": "Không"
+  "noneLabel": "Không",
+  "bannedMessage": "Bạn hiện đang bị cấm khỏi hệ thống. Vui lòng liên hệ cskh để biết thêm chi tiết!"
 }

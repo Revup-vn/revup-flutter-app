@@ -29,6 +29,8 @@ class _SplashPageState extends State<SplashPage> {
           final providerId = p0.payload.payload['providerId'] as String;
           final recordId = p0.payload.payload['recordId'] as String;
 
+          context.router
+              .removeWhere((route) => route.name == CountdownRoute.name);
           // route to order overview
           context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
