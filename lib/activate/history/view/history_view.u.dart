@@ -72,9 +72,6 @@ class HistoryProviderView extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(
-                height: 150,
-              ),
             ],
           ),
         ),

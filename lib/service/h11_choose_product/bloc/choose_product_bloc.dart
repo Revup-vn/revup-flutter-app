@@ -40,6 +40,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(
                 accepted: some,
+                started: some,
                 orElse: none,
               ),
             )

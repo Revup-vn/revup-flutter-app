@@ -9,9 +9,8 @@ part 'home_record_cubit.freezed.dart';
 part 'home_record_state.dart';
 
 class HomeRecordCubit extends Cubit<HomeRecordState> {
-  HomeRecordCubit(this._userStore, this._repairRecord, this.user)
+  HomeRecordCubit(this._repairRecord, this.user)
       : super(const HomeRecordState.enabled());
-  final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
   final AppUser user;
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;

@@ -41,6 +41,7 @@ class ServiceCheckboxGroup extends StatelessWidget {
       name: 'data',
       builder: (field) => Expanded(
         child: ListView.builder(
+          padding: const EdgeInsets.only(bottom: 50),
           physics: const BouncingScrollPhysics(),
           itemCount: serviceList.length,
           itemBuilder: (context, index) {

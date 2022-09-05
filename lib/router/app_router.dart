@@ -20,16 +20,15 @@ import '../h23_invoice_payment/view/invoice_payment_page.u.dart';
 import '../h26_review-repairman/view/review_repairman_page.u.dart';
 import '../h2_find_provider/view/find_provider_page.dart';
 import '../h6_request_provider/view/request_provider_page.dart';
-import '../history_consumer/view/history_detail_page.u.dart';
 import '../home/view/home_page.u.dart';
 import '../home/widgets/home_body_page.u.dart';
 import '../login/login_enter_phone/view/login_enter_phone_number_page.u.dart';
 import '../login/view/login_page.u.dart';
 import '../notification_page/view/notification_page.u.dart';
 import '../onboarding/view/onboarding_page.dart';
+import '../order/h17_repair_status/view/repair_status_page.u.dart';
 import '../order/h9_order_overview/view/overview_order_page.u.dart';
 import '../order/order-sevice/view/order_detail_page.u.dart';
-import '../order/order-sevice/view/repair_status_page.u.dart';
 import '../otp/view/otp_page.u.dart';
 import '../payment/view/payment_page.u.dart';
 import '../permission_page/permission_page.u.dart';
@@ -68,7 +67,6 @@ import '../test/test.dart';
       ],
       maintainState: false,
     ),
-    AdaptiveRoute<void>(page: HistoryDetailPage),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),
     AdaptiveRoute<void>(page: UpdateProfilePage),
@@ -95,7 +93,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: AddReportPage),
     AdaptiveRoute<void>(page: FindProviderPage),
     AdaptiveRoute<void>(page: CountdownPage),
-    AdaptiveRoute<void>(page: ConfirmServicePage, maintainState: false),
+    AdaptiveRoute<void>(page: ConfirmServicePage),
   ],
 )
 class $AppRouter {}

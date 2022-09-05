@@ -6,7 +6,7 @@ class RepairStatusState with _$RepairStatusState {
   const factory RepairStatusState.loading() = _Loading;
   const factory RepairStatusState.failure() = _Failure;
   const factory RepairStatusState.success({
-    required List<Tuple2<String, int>> service,
-    required int total,
+    required List<PendingServiceModel> service,
+    required String providerId,
   }) = _Success;
 }

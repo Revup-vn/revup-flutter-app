@@ -27,14 +27,12 @@ class OverViewOrderView extends StatelessWidget {
         loadDataSuccess: (
           overviewOrderData,
           pendingService,
-          needToVerifyService,
           pendingRequest,
           total,
         ) =>
             OverviewOrderContent(
           overviewOrderData: overviewOrderData,
           pendingService: pendingService,
-          needToVerifyService: needToVerifyService,
           total: total,
           pendingRequest: pendingRequest,
         ),
