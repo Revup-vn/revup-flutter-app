@@ -11,7 +11,7 @@ dependencies:
   auto_size_text: ^3.0.0
   bloc: ^8.0.3
   build_runner: ^2.1.11
-  cached_network_image: ^3.2.1
+  cached_network_image: ^3.2.2
   card_swiper: ^2.0.4
   connectivity_plus: ^2.3.6
   dartz: ^0.10.1
