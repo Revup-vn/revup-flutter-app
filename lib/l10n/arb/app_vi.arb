@@ -237,7 +237,7 @@
   "providerBusy": "Nhà cung cấp hiện đang bận. Chọn một cái khác!",
   "orderDismissed": "Lệnh được bác bỏ. Vui lòng chọn một nhà cung cấp khác.",
   "orderVerificationTimeout": "Vui lòng đợi trong 1 phút. Nếu nhà cung cấp không chấp nhận kịp thời, yêu cầu sẽ được tự động loại bỏ.",
-  "userAbortTheRequest": "Yêu cầu hủy bỏ thành công. Phí di chuyển hiện được coi là một khoản thanh toán phat",
-  "bannedMessage": "Bạn hiện đang bị cấm khỏi hệ thống. Vui lòng quay lại lần nữa!"
-
+  "userAbortTheRequest": "Yêu cầu hủy bỏ thành công. Phí di chuyển được thanh toán cho thợ sửa",
+  "bannedMessage": "Bạn hiện đang bị cấm khỏi hệ thống. Vui lòng liên hệ cskh để biết thêm chi tiết!",
+  "understoodLabel": "Đã hiểu"
 }

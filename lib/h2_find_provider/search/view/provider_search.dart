@@ -45,6 +45,7 @@ class ProviderSearch extends SearchDelegate<String> {
           focusNode?.unfocus();
           showModalBottomSheet<String>(
             context: context,
+            isScrollControlled: true,
             builder: (context) {
               final filterPriceValue = Hive.box<String>('filter').get('price');
               return FilterBottomSheet(
@@ -90,6 +91,7 @@ class ProviderSearch extends SearchDelegate<String> {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
+        Hive.box<String>('filter').clear();
         close(context, '');
       },
       icon: const Icon(Icons.arrow_back),

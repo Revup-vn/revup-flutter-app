@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
@@ -134,13 +133,11 @@ class RepairerProfileMainContent extends StatelessWidget {
           ],
         ),
         Expanded(
-          child: SingleChildScrollView(
-            child: RepairerProfileTabBar(
-              svDataVector,
-              ratingDataVector,
-              providerId: provider.id,
-              categories,
-            ),
+          child: RepairerProfileTabBar(
+            svDataVector,
+            ratingDataVector,
+            providerId: provider.id,
+            categories,
           ),
         ),
       ],

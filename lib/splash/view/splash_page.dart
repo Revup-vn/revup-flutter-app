@@ -29,6 +29,8 @@ class _SplashPageState extends State<SplashPage> {
           final providerId = p0.payload.payload['providerId'] as String;
           final recordId = p0.payload.payload['recordId'] as String;
 
+          context.router
+              .removeWhere((route) => route.name == CountdownRoute.name);
           // route to order overview
           context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
@@ -42,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
             final providerId = p0.payload.payload['providerId'] as String;
             context.router.push(MapRouteRoute(providerId: providerId));
           }
-          if (subType == 'compltedRepair') {
+          if (subType == 'completedRepair') {
             final recordId = p0.payload.payload['recordId'] as String;
             final providerId = p0.payload.payload['providerId'] as String;
             context.router.push(
@@ -112,6 +114,21 @@ class _SplashPageState extends State<SplashPage> {
                 token: token,
               ),
             );
+            await Hive.openBox<dynamic>('authType').then(
+              (value) {
+                value.put(
+                  'auth',
+                  authType.map(
+                    google: (value) =>
+                        AuthType.google(user: value.user).toJson(),
+                    phone: (value) => AuthType.phone(user: value.user).toJson(),
+                    email: (value) => AuthType.email(user: value.user).toJson(),
+                  ),
+                );
+              },
+            );
+            await Hive.openBox<dynamic>('location');
+            await Hive.openBox<dynamic>('repairRecord');
           },
           orElse: () => false,
         );
@@ -120,24 +137,6 @@ class _SplashPageState extends State<SplashPage> {
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
             authenticated: (type) {
-              Hive.openBox<dynamic>('authType').then(
-                (value) {
-                  value.put(
-                    'auth',
-                    type.map(
-                      google: (value) =>
-                          AuthType.google(user: value.user).toJson(),
-                      phone: (value) =>
-                          AuthType.phone(user: value.user).toJson(),
-                      email: (value) =>
-                          AuthType.email(user: value.user).toJson(),
-                    ),
-                  );
-                },
-              );
-              Hive
-                ..openBox<dynamic>('location')
-                ..openBox<dynamic>('repairRecord');
               return HomeRoute(user: type.user);
             },
             orElse: LoginRoute.new,

@@ -147,11 +147,16 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
               TextButton(
                 onPressed: () {
                   context.router.push(
-                    ChooseServiceRoute(
+                    // ChooseServiceRoute(
+                    //   providerId: widget.overviewOrderData.providerID,
+                    //   isSelectProduct: true,
+                    //   recordId: widget.pendingRequest.id,
+                    //   optionalService: const [],
+                    // ),
+                    ConfirmServiceRoute(
                       providerId: widget.overviewOrderData.providerID,
-                      isSelectProduct: true,
                       recordId: widget.pendingRequest.id,
-                      optionalService: const [],
+                      optionalService: [],
                     ),
                   );
                 },
@@ -179,7 +184,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     TextSpan(
-                      text: '${widget.overviewOrderData.distance}km',
+                      text:
+                          '''${widget.overviewOrderData.distance.toStringAsFixed(1)}km''',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -214,14 +220,16 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                             ),
                             TextSpan(
                               text: context.formatMoney(
-                                widget.pendingService.isEmpty
-                                    ? 0
-                                    : (widget.pendingService
-                                        .map((e) => e.price)
-                                        .toList()
-                                        .reduce(
-                                          (value, element) => value + element,
-                                        )),
+                                widget.pendingRequest.money +
+                                    (widget.pendingService.isEmpty
+                                        ? 0
+                                        : (widget.pendingService
+                                            .map((e) => e.price)
+                                            .toList()
+                                            .reduce(
+                                              (value, element) =>
+                                                  value + element,
+                                            ))),
                               ),
                               style: Theme.of(context)
                                   .textTheme
@@ -279,7 +287,16 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                             style: Theme.of(context).textTheme.bodyLarge,
                             children: [
                               TextSpan(
-                                text: '',
+                                text: context.formatMoney(
+                                  widget.pendingService.isEmpty
+                                      ? 0
+                                      : (widget.pendingService
+                                          .map((e) => e.price)
+                                          .toList()
+                                          .reduce(
+                                            (value, element) => value + element,
+                                          )),
+                                ),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge
@@ -295,6 +312,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                   ],
                 ),
                 isExpanded: _expanded,
+                backgroundColor: Colors.transparent,
               ),
             ],
           ),
@@ -305,7 +323,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
               children: [
                 ElevatedButton(
                   onPressed: widget.pendingService.any(
-                    (e) => e.products.isEmpty,
+                    (e) => !e.isOptional && e.products.isEmpty,
                   )
                       ? null
                       : () {

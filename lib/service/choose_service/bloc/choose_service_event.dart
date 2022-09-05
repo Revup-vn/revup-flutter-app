@@ -11,12 +11,4 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required List<ServiceData> saveLst,
     required Function0<void> onPopBack,
   }) = _ServiceListSubmitted;
-  const factory ChooseServiceEvent.selectProductCompleted({
-    required Function0<void> onRoute,
-    required List<ServiceData> saveLst,
-    required String recordId,
-  }) = _SelectProductCompleted;
-  const factory ChooseServiceEvent.detailRequestAccepted({
-    required String recordId,
-  }) = _DetailRequestAccepted;
 }

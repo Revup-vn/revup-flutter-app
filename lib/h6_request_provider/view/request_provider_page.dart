@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
@@ -33,6 +32,9 @@ class RequestProviderPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         body: RequestProviderView(
           providerData: providerData,
           recordType: recordType,

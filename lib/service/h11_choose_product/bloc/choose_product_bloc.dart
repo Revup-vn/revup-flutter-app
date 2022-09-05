@@ -14,20 +14,18 @@ part 'choose_product_state.dart';
 class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
   ChooseProductBloc(
     this.providerId,
-    this._userStore,
     this.storeRepository,
     this._repairRecord,
     this._serviceData,
-    this.catAndSv,
+    this.recordId,
   ) : super(const _Initial()) {
     on<ChooseProductEvent>(_onEvent);
   }
   final String providerId;
   final ServiceData _serviceData;
-  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final IStore<RepairRecord> _repairRecord;
-  final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
+  final String recordId;
   final productData = <RepairProduct>[];
 
   FutureOr<void> _onEvent(
@@ -37,32 +35,39 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
     await event.when(
       started: () async {
         emit(const ChooseProductState.loading());
-        final maybeProviderData = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
+
+        final maybeRepairRecord = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                accepted: some,
+                orElse: none,
+              ),
             )
-            .getOrElse(() => throw NullThrownError());
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            );
+        if (maybeRepairRecord.isNone()) {
+          emit(const ChooseProductState.failure());
+        } else {
+          final repairRecord =
+              maybeRepairRecord.getOrElse(() => throw NullThrownError());
 
-        final maybeService = (await (storeRepository.repairServiceRepo(
-          maybeProviderData,
-          catAndSv.value1,
-        )).get(_serviceData.name))
-            .fold<Option<RepairService>>((l) => none(), some)
-            .getOrElse(() => throw NullThrownError());
+          final products = (await storeRepository
+                  .repairProductRepo(
+                    AppUserDummy.dummyProvider(providerId),
+                    RepairCategoryDummy.dummy(
+                      repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                    ),
+                    RepairServiceDummy.dummy(_serviceData.name),
+                  )
+                  .all())
+              .fold<IList<RepairProduct>>((l) => ilist([]), (r) => r);
 
-        final products = (await storeRepository
-                .repairProductRepo(
-                  maybeProviderData,
-                  catAndSv.value1,
-                  maybeService,
-                )
-                .all())
-            .fold<IList<RepairProduct>>((l) => ilist([]), (r) => r);
+          productData.addAll(products.toIterable());
 
-        productData.addAll(products.toIterable());
-
-        emit(ChooseProductState.success(products));
+          emit(ChooseProductState.success(products));
+        }
       },
       submitted: (product, recordId, onRoute) async {
         emit(const ChooseProductState.loading());

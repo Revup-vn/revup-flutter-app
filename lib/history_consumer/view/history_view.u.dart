@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/history_bloc.dart';
 import '../widgets/order_overview.u.dart';
 
@@ -21,8 +21,7 @@ class HistoryView extends StatelessWidget {
               BlocBuilder<HistoryBloc, HistoryState>(
                 builder: (context, state) {
                   return state.maybeWhen(
-                    orElse: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    orElse: Loading.new,
                     success: (histories) {
                       final historyOrders = histories.toList();
 

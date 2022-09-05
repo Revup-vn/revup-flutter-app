@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
@@ -11,12 +10,10 @@ class ChooseServicePage extends StatelessWidget {
   const ChooseServicePage({
     super.key,
     required this.providerId,
-    required this.isSelectProduct,
     this.recordId,
     required this.optionalService,
   });
   final String providerId;
-  final bool isSelectProduct;
   final String? recordId;
   final List<OptionalService> optionalService;
 
@@ -35,7 +32,6 @@ class ChooseServicePage extends StatelessWidget {
       ),
       child: ChooseServiceView(
         form: GlobalKey(),
-        isSelectProduct: isSelectProduct,
         recordId: recordId,
         providerId: providerId,
         optionalService: optionalService,

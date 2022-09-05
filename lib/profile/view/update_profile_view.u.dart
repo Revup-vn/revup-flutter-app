@@ -221,14 +221,14 @@ class UpdateProfileView extends StatelessWidget {
                             final data = _formKey.currentState?.value;
                             final listName =
                                 data?['fullName'].toString().split(' ');
-                            final fName = listName?[0];
+                            final fName = listName?[0].trim();
                             var lName = '';
                             if (listName != null && listName.length > 1) {
                               listName.remove(listName[0]);
                               lName = listName.fold<String>(
                                 '',
                                 (previousValue, element) =>
-                                    '$previousValue $element',
+                                    '${previousValue.trim()} ${element.trim()}',
                               );
                             }
                             final email = data?['email'].toString();

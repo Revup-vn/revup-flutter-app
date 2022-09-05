@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/report_bloc.dart';
 import '../widgets/report_item.u.dart';
 
@@ -45,8 +45,7 @@ class ReportView extends StatelessWidget {
                 builder: (context, state) {
                   return state.maybeWhen(
                     orElse: Container.new,
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    loading: Loading.new,
                     success: (models) => ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

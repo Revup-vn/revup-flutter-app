@@ -4,14 +4,12 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
@@ -55,7 +53,6 @@ class LoginPage extends StatelessWidget {
               orElse: () => false,
             ),
             authenticated: (authType) async {
-              context.loaderOverlay.hide();
               await notifyCubit.requirePermission();
               await notifyCubit.registerDevice();
 
@@ -132,7 +129,8 @@ class LoginPage extends StatelessWidget {
                               AuthType.email(user: value.user).toJson(),
                         ),
                       );
-
+                      await Hive.openBox<dynamic>('location');
+                      await Hive.openBox<dynamic>('repairRecord');
                       await context.router.pushAndPopUntil(
                         HomeRoute(user: authType.user),
                         predicate: (_) => true,
@@ -274,7 +272,6 @@ class LoginPage extends StatelessWidget {
               return completer.future;
             },
             onSignUpSubmit: (user) async {
-              context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
                 SignupRoute(
@@ -310,7 +307,6 @@ class LoginPage extends StatelessWidget {
         phone.length,
       );
     }
-    context.loaderOverlay.hide();
     showDialog<String>(
       context: context,
       builder: (context) {
@@ -359,7 +355,6 @@ class LoginPage extends StatelessWidget {
               return completer.future;
             },
             onSignUpSubmit: (user) async {
-              context.loaderOverlay.show();
               final completer = Completer<AppUser>();
               await context.router.push(
                 SignupRoute(

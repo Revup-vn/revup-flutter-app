@@ -25,10 +25,6 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
         serviceListSubmitted,
-    required TResult Function(
-            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
-        selectProductCompleted,
-    required TResult Function(String recordId) detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,10 +36,6 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,10 +47,6 @@ mixin _$ChooseServiceEvent {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,26 +54,18 @@ mixin _$ChooseServiceEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(_SelectProductCompleted value)
-        selectProductCompleted,
-    required TResult Function(_DetailRequestAccepted value)
-        detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -185,10 +165,6 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
         serviceListSubmitted,
-    required TResult Function(
-            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
-        selectProductCompleted,
-    required TResult Function(String recordId) detailRequestAccepted,
   }) {
     return started(newService);
   }
@@ -203,10 +179,6 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
   }) {
     return started?.call(newService);
   }
@@ -221,10 +193,6 @@ class _$_Started implements _Started {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -238,10 +206,6 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(_SelectProductCompleted value)
-        selectProductCompleted,
-    required TResult Function(_DetailRequestAccepted value)
-        detailRequestAccepted,
   }) {
     return started(this);
   }
@@ -251,8 +215,6 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
     return started?.call(this);
   }
@@ -262,8 +224,6 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -397,10 +357,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)
         serviceListSubmitted,
-    required TResult Function(
-            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
-        selectProductCompleted,
-    required TResult Function(String recordId) detailRequestAccepted,
   }) {
     return serviceListSubmitted(
         onRouteToTimeOut, sendMessage, saveLst, onPopBack);
@@ -416,10 +372,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
   }) {
     return serviceListSubmitted?.call(
         onRouteToTimeOut, sendMessage, saveLst, onPopBack);
@@ -435,10 +387,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             List<ServiceData> saveLst,
             Function0<void> onPopBack)?
         serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -453,10 +401,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(_SelectProductCompleted value)
-        selectProductCompleted,
-    required TResult Function(_DetailRequestAccepted value)
-        detailRequestAccepted,
   }) {
     return serviceListSubmitted(this);
   }
@@ -466,8 +410,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
   }) {
     return serviceListSubmitted?.call(this);
   }
@@ -477,8 +419,6 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
@@ -505,383 +445,6 @@ abstract class _ServiceListSubmitted implements ChooseServiceEvent {
 }
 
 /// @nodoc
-abstract class _$$_SelectProductCompletedCopyWith<$Res> {
-  factory _$$_SelectProductCompletedCopyWith(_$_SelectProductCompleted value,
-          $Res Function(_$_SelectProductCompleted) then) =
-      __$$_SelectProductCompletedCopyWithImpl<$Res>;
-  $Res call(
-      {Function0<void> onRoute, List<ServiceData> saveLst, String recordId});
-}
-
-/// @nodoc
-class __$$_SelectProductCompletedCopyWithImpl<$Res>
-    extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$_SelectProductCompletedCopyWith<$Res> {
-  __$$_SelectProductCompletedCopyWithImpl(_$_SelectProductCompleted _value,
-      $Res Function(_$_SelectProductCompleted) _then)
-      : super(_value, (v) => _then(v as _$_SelectProductCompleted));
-
-  @override
-  _$_SelectProductCompleted get _value =>
-      super._value as _$_SelectProductCompleted;
-
-  @override
-  $Res call({
-    Object? onRoute = freezed,
-    Object? saveLst = freezed,
-    Object? recordId = freezed,
-  }) {
-    return _then(_$_SelectProductCompleted(
-      onRoute: onRoute == freezed
-          ? _value.onRoute
-          : onRoute // ignore: cast_nullable_to_non_nullable
-              as Function0<void>,
-      saveLst: saveLst == freezed
-          ? _value._saveLst
-          : saveLst // ignore: cast_nullable_to_non_nullable
-              as List<ServiceData>,
-      recordId: recordId == freezed
-          ? _value.recordId
-          : recordId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SelectProductCompleted implements _SelectProductCompleted {
-  const _$_SelectProductCompleted(
-      {required this.onRoute,
-      required final List<ServiceData> saveLst,
-      required this.recordId})
-      : _saveLst = saveLst;
-
-  @override
-  final Function0<void> onRoute;
-  final List<ServiceData> _saveLst;
-  @override
-  List<ServiceData> get saveLst {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_saveLst);
-  }
-
-  @override
-  final String recordId;
-
-  @override
-  String toString() {
-    return 'ChooseServiceEvent.selectProductCompleted(onRoute: $onRoute, saveLst: $saveLst, recordId: $recordId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SelectProductCompleted &&
-            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
-            const DeepCollectionEquality().equals(other._saveLst, _saveLst) &&
-            const DeepCollectionEquality().equals(other.recordId, recordId));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      onRoute,
-      const DeepCollectionEquality().hash(_saveLst),
-      const DeepCollectionEquality().hash(recordId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SelectProductCompletedCopyWith<_$_SelectProductCompleted> get copyWith =>
-      __$$_SelectProductCompletedCopyWithImpl<_$_SelectProductCompleted>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<OptionalService> newService) started,
-    required TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)
-        serviceListSubmitted,
-    required TResult Function(
-            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
-        selectProductCompleted,
-    required TResult Function(String recordId) detailRequestAccepted,
-  }) {
-    return selectProductCompleted(onRoute, saveLst, recordId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<OptionalService> newService)? started,
-    TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
-        serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
-  }) {
-    return selectProductCompleted?.call(onRoute, saveLst, recordId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<OptionalService> newService)? started,
-    TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
-        serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
-    required TResult orElse(),
-  }) {
-    if (selectProductCompleted != null) {
-      return selectProductCompleted(onRoute, saveLst, recordId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(_SelectProductCompleted value)
-        selectProductCompleted,
-    required TResult Function(_DetailRequestAccepted value)
-        detailRequestAccepted,
-  }) {
-    return selectProductCompleted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
-  }) {
-    return selectProductCompleted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
-    required TResult orElse(),
-  }) {
-    if (selectProductCompleted != null) {
-      return selectProductCompleted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectProductCompleted implements ChooseServiceEvent {
-  const factory _SelectProductCompleted(
-      {required final Function0<void> onRoute,
-      required final List<ServiceData> saveLst,
-      required final String recordId}) = _$_SelectProductCompleted;
-
-  Function0<void> get onRoute;
-  List<ServiceData> get saveLst;
-  String get recordId;
-  @JsonKey(ignore: true)
-  _$$_SelectProductCompletedCopyWith<_$_SelectProductCompleted> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_DetailRequestAcceptedCopyWith<$Res> {
-  factory _$$_DetailRequestAcceptedCopyWith(_$_DetailRequestAccepted value,
-          $Res Function(_$_DetailRequestAccepted) then) =
-      __$$_DetailRequestAcceptedCopyWithImpl<$Res>;
-  $Res call({String recordId});
-}
-
-/// @nodoc
-class __$$_DetailRequestAcceptedCopyWithImpl<$Res>
-    extends _$ChooseServiceEventCopyWithImpl<$Res>
-    implements _$$_DetailRequestAcceptedCopyWith<$Res> {
-  __$$_DetailRequestAcceptedCopyWithImpl(_$_DetailRequestAccepted _value,
-      $Res Function(_$_DetailRequestAccepted) _then)
-      : super(_value, (v) => _then(v as _$_DetailRequestAccepted));
-
-  @override
-  _$_DetailRequestAccepted get _value =>
-      super._value as _$_DetailRequestAccepted;
-
-  @override
-  $Res call({
-    Object? recordId = freezed,
-  }) {
-    return _then(_$_DetailRequestAccepted(
-      recordId: recordId == freezed
-          ? _value.recordId
-          : recordId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_DetailRequestAccepted implements _DetailRequestAccepted {
-  const _$_DetailRequestAccepted({required this.recordId});
-
-  @override
-  final String recordId;
-
-  @override
-  String toString() {
-    return 'ChooseServiceEvent.detailRequestAccepted(recordId: $recordId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_DetailRequestAccepted &&
-            const DeepCollectionEquality().equals(other.recordId, recordId));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(recordId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_DetailRequestAcceptedCopyWith<_$_DetailRequestAccepted> get copyWith =>
-      __$$_DetailRequestAcceptedCopyWithImpl<_$_DetailRequestAccepted>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<OptionalService> newService) started,
-    required TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)
-        serviceListSubmitted,
-    required TResult Function(
-            Function0<void> onRoute, List<ServiceData> saveLst, String recordId)
-        selectProductCompleted,
-    required TResult Function(String recordId) detailRequestAccepted,
-  }) {
-    return detailRequestAccepted(recordId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<OptionalService> newService)? started,
-    TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
-        serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
-  }) {
-    return detailRequestAccepted?.call(recordId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<OptionalService> newService)? started,
-    TResult Function(
-            Function1<String, void> onRouteToTimeOut,
-            Function2<String, String, void> sendMessage,
-            List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
-        serviceListSubmitted,
-    TResult Function(Function0<void> onRoute, List<ServiceData> saveLst,
-            String recordId)?
-        selectProductCompleted,
-    TResult Function(String recordId)? detailRequestAccepted,
-    required TResult orElse(),
-  }) {
-    if (detailRequestAccepted != null) {
-      return detailRequestAccepted(recordId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_ServiceListSubmitted value) serviceListSubmitted,
-    required TResult Function(_SelectProductCompleted value)
-        selectProductCompleted,
-    required TResult Function(_DetailRequestAccepted value)
-        detailRequestAccepted,
-  }) {
-    return detailRequestAccepted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
-  }) {
-    return detailRequestAccepted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_ServiceListSubmitted value)? serviceListSubmitted,
-    TResult Function(_SelectProductCompleted value)? selectProductCompleted,
-    TResult Function(_DetailRequestAccepted value)? detailRequestAccepted,
-    required TResult orElse(),
-  }) {
-    if (detailRequestAccepted != null) {
-      return detailRequestAccepted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DetailRequestAccepted implements ChooseServiceEvent {
-  const factory _DetailRequestAccepted({required final String recordId}) =
-      _$_DetailRequestAccepted;
-
-  String get recordId;
-  @JsonKey(ignore: true)
-  _$$_DetailRequestAcceptedCopyWith<_$_DetailRequestAccepted> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$ChooseServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -891,12 +454,6 @@ mixin _$ChooseServiceState {
     required TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
         success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -907,12 +464,6 @@ mixin _$ChooseServiceState {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -923,12 +474,6 @@ mixin _$ChooseServiceState {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -938,7 +483,6 @@ mixin _$ChooseServiceState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -947,7 +491,6 @@ mixin _$ChooseServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -956,7 +499,6 @@ mixin _$ChooseServiceState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1025,12 +567,6 @@ class _$_Initial implements _Initial {
     required TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
         success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
   }) {
     return initial();
   }
@@ -1044,12 +580,6 @@ class _$_Initial implements _Initial {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
   }) {
     return initial?.call();
   }
@@ -1063,12 +593,6 @@ class _$_Initial implements _Initial {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1084,7 +608,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
   }) {
     return initial(this);
   }
@@ -1096,7 +619,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
   }) {
     return initial?.call(this);
   }
@@ -1108,7 +630,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1168,12 +689,6 @@ class _$_Loading implements _Loading {
     required TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
         success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
   }) {
     return loading();
   }
@@ -1187,12 +702,6 @@ class _$_Loading implements _Loading {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
   }) {
     return loading?.call();
   }
@@ -1206,12 +715,6 @@ class _$_Loading implements _Loading {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1227,7 +730,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
   }) {
     return loading(this);
   }
@@ -1239,7 +741,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
   }) {
     return loading?.call(this);
   }
@@ -1251,7 +752,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1311,12 +811,6 @@ class _$_Failure implements _Failure {
     required TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
         success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
   }) {
     return failure();
   }
@@ -1330,12 +824,6 @@ class _$_Failure implements _Failure {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
   }) {
     return failure?.call();
   }
@@ -1349,12 +837,6 @@ class _$_Failure implements _Failure {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1370,7 +852,6 @@ class _$_Failure implements _Failure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
   }) {
     return failure(this);
   }
@@ -1382,7 +863,6 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
   }) {
     return failure?.call(this);
   }
@@ -1394,7 +874,6 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1505,12 +984,6 @@ class _$_Success implements _Success {
     required TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
         success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
   }) {
     return success(providerId, serviceData, catAndSv);
   }
@@ -1524,12 +997,6 @@ class _$_Success implements _Success {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
   }) {
     return success?.call(providerId, serviceData, catAndSv);
   }
@@ -1543,12 +1010,6 @@ class _$_Success implements _Success {
     TResult Function(String providerId, IList<ServiceData> serviceData,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
         success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1564,7 +1025,6 @@ class _$_Success implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
   }) {
     return success(this);
   }
@@ -1576,7 +1036,6 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
   }) {
     return success?.call(this);
   }
@@ -1588,7 +1047,6 @@ class _$_Success implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1610,231 +1068,5 @@ abstract class _Success implements ChooseServiceState {
   Tuple2<RepairCategory, IList<ServiceData>> get catAndSv;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_OrderModifyCopyWith<$Res> {
-  factory _$$_OrderModifyCopyWith(
-          _$_OrderModify value, $Res Function(_$_OrderModify) then) =
-      __$$_OrderModifyCopyWithImpl<$Res>;
-  $Res call(
-      {String providerId,
-      IList<ServiceData> serviceData,
-      List<PendingServiceModel> pendingService,
-      Tuple2<RepairCategory, IList<ServiceData>> catAndSv});
-}
-
-/// @nodoc
-class __$$_OrderModifyCopyWithImpl<$Res>
-    extends _$ChooseServiceStateCopyWithImpl<$Res>
-    implements _$$_OrderModifyCopyWith<$Res> {
-  __$$_OrderModifyCopyWithImpl(
-      _$_OrderModify _value, $Res Function(_$_OrderModify) _then)
-      : super(_value, (v) => _then(v as _$_OrderModify));
-
-  @override
-  _$_OrderModify get _value => super._value as _$_OrderModify;
-
-  @override
-  $Res call({
-    Object? providerId = freezed,
-    Object? serviceData = freezed,
-    Object? pendingService = freezed,
-    Object? catAndSv = freezed,
-  }) {
-    return _then(_$_OrderModify(
-      providerId: providerId == freezed
-          ? _value.providerId
-          : providerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      serviceData: serviceData == freezed
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceData>,
-      pendingService: pendingService == freezed
-          ? _value._pendingService
-          : pendingService // ignore: cast_nullable_to_non_nullable
-              as List<PendingServiceModel>,
-      catAndSv: catAndSv == freezed
-          ? _value.catAndSv
-          : catAndSv // ignore: cast_nullable_to_non_nullable
-              as Tuple2<RepairCategory, IList<ServiceData>>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_OrderModify implements _OrderModify {
-  const _$_OrderModify(
-      {required this.providerId,
-      required this.serviceData,
-      required final List<PendingServiceModel> pendingService,
-      required this.catAndSv})
-      : _pendingService = pendingService;
-
-  @override
-  final String providerId;
-  @override
-  final IList<ServiceData> serviceData;
-  final List<PendingServiceModel> _pendingService;
-  @override
-  List<PendingServiceModel> get pendingService {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pendingService);
-  }
-
-  @override
-  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
-
-  @override
-  String toString() {
-    return 'ChooseServiceState.orderModify(providerId: $providerId, serviceData: $serviceData, pendingService: $pendingService, catAndSv: $catAndSv)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_OrderModify &&
-            const DeepCollectionEquality()
-                .equals(other.providerId, providerId) &&
-            const DeepCollectionEquality()
-                .equals(other.serviceData, serviceData) &&
-            const DeepCollectionEquality()
-                .equals(other._pendingService, _pendingService) &&
-            const DeepCollectionEquality().equals(other.catAndSv, catAndSv));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(providerId),
-      const DeepCollectionEquality().hash(serviceData),
-      const DeepCollectionEquality().hash(_pendingService),
-      const DeepCollectionEquality().hash(catAndSv));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_OrderModifyCopyWith<_$_OrderModify> get copyWith =>
-      __$$_OrderModifyCopyWithImpl<_$_OrderModify>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        success,
-    required TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
-        orderModify,
-  }) {
-    return orderModify(providerId, serviceData, pendingService, catAndSv);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
-  }) {
-    return orderModify?.call(providerId, serviceData, pendingService, catAndSv);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        success,
-    TResult Function(
-            String providerId,
-            IList<ServiceData> serviceData,
-            List<PendingServiceModel> pendingService,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
-        orderModify,
-    required TResult orElse(),
-  }) {
-    if (orderModify != null) {
-      return orderModify(providerId, serviceData, pendingService, catAndSv);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
-    required TResult Function(_OrderModify value) orderModify,
-  }) {
-    return orderModify(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
-  }) {
-    return orderModify?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
-    TResult Function(_OrderModify value)? orderModify,
-    required TResult orElse(),
-  }) {
-    if (orderModify != null) {
-      return orderModify(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OrderModify implements ChooseServiceState {
-  const factory _OrderModify(
-          {required final String providerId,
-          required final IList<ServiceData> serviceData,
-          required final List<PendingServiceModel> pendingService,
-          required final Tuple2<RepairCategory, IList<ServiceData>> catAndSv}) =
-      _$_OrderModify;
-
-  String get providerId;
-  IList<ServiceData> get serviceData;
-  List<PendingServiceModel> get pendingService;
-  Tuple2<RepairCategory, IList<ServiceData>> get catAndSv;
-  @JsonKey(ignore: true)
-  _$$_OrderModifyCopyWith<_$_OrderModify> get copyWith =>
       throw _privateConstructorUsedError;
 }

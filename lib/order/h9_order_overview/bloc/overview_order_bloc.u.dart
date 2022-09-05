@@ -39,16 +39,21 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
       started: () async {
         emit(const OverviewOrderState.loading());
         // get provider data
-        final maybeProviderData = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
+        final maybeProviderData =
+            (await _userStore.get(providerId)).fold<Option<AppUser>>(
+          (l) => none(),
+          some,
+        );
+        if (maybeProviderData.isNone()) {
+          emit(const OverviewOrderState.failure());
+        }
+        final provData =
+            maybeProviderData.getOrElse(() => throw NullThrownError());
+
         final boxLocation = Hive.box<dynamic>('location');
         final distance = boxLocation.get('distance', defaultValue: 0) as num;
         // get service selected
-        final repairRecord = (await _repairRecord.get(recordId))
+        final maybeRepairRecord = (await _repairRecord.get(recordId))
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(
                 accepted: some,
@@ -58,8 +63,12 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             .fold<Option<RepairRecord>>(
               (l) => none(),
               (r) => r,
-            )
-            .getOrElse(() => throw NullThrownError());
+            );
+        if (maybeRepairRecord.isNone()) {
+          emit(const OverviewOrderState.failure());
+        }
+        final repairRecord =
+            maybeRepairRecord.getOrElse(() => throw NullThrownError());
         final pendingRequest =
             PendingRepairRequest.fromDto(repairRecord: repairRecord);
 
@@ -89,8 +98,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             )
             .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
 
-        // TODO(tcmhoang): why this variable is not used?
-        final services = (await (storeRepository.repairPaymentRepo(
+        (await (storeRepository.repairPaymentRepo(
           RepairRecordDummy.dummyPending(recordId),
         )).all())
             .map<IList<PaymentService>>(
@@ -131,7 +139,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
                   emit(
                     OverviewOrderState.loadDataSuccess(
                       overviewOrderData: OverviewOrderModel.fromDto(
-                        maybeProviderData,
+                        provData,
                         distance / 1000,
                       ),
                       pendingService: b.toList().cast<PendingServiceModel>(),

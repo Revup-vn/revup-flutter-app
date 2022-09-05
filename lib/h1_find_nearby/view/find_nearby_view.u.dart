@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:lottie/lottie.dart' hide Marker;
 
+import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../map/location/bloc/location_bloc.dart';
 import '../../router/router.dart';
@@ -22,18 +24,18 @@ class FindNearbyView extends StatefulWidget {
 }
 
 class _FindNearbyViewState extends State<FindNearbyView> {
-  late GoogleMapController mapController;
+  final _controller = Completer<GoogleMapController>();
 
   late LatLng currentLocation;
 
   final makers = <Marker>[];
 
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    _controller.complete(controller);
     context.read<LocationBloc>().add(const LocationEvent.started());
   }
 
-  void _onTap(LatLng point) {
+  Future<void> _onTap(LatLng point) async {
     setState(() {
       makers
         ..clear()
@@ -45,62 +47,78 @@ class _FindNearbyViewState extends State<FindNearbyView> {
         );
     });
     currentLocation = point;
-    context
-        .read<LocationBloc>()
-        .add(LocationEvent.locationUpdated(location: point));
+    context.read<LocationBloc>().add(
+          LocationEvent.locationUpdated(
+            location: point,
+          ),
+        );
+    final mapController = await _controller.future;
+    await mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(point.latitude, point.longitude),
+          zoom: 14,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LocationBloc, LocationState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          initial: (location) {
-            currentLocation = LatLng(location.latitude, location.longitude);
-            mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                  target: LatLng(location.latitude, location.longitude),
-                  zoom: 14,
+    final bloc = context.watch<LocationBloc>();
+    bloc.state.maybeWhen(
+      locationLoaded: (location) async {
+        currentLocation = LatLng(location.latitude, location.longitude);
+        context.read<LocationBloc>().add(
+              LocationEvent.locationUpdated(
+                location: LatLng(
+                  location.latitude,
+                  location.longitude,
                 ),
               ),
             );
-            context.read<LocationBloc>().add(
-                  LocationEvent.locationUpdated(
-                    location: LatLng(
-                      location.latitude,
-                      location.longitude,
-                    ),
-                  ),
-                );
-          },
-          placeDetailsLoaded: (placeDetails) {
-            makers
-              ..clear()
-              ..add(
-                Marker(
-                  markerId: MarkerId(placeDetails.placeId),
-                  position: LatLng(
-                    placeDetails.geometry.location.lat,
-                    placeDetails.geometry.location.lng,
-                  ),
-                ),
-              );
+        final mapController = await _controller.future;
 
-            return mapController.animateCamera(
-              CameraUpdate.newLatLng(
-                LatLng(
-                  placeDetails.geometry.location.lat,
-                  placeDetails.geometry.location.lng,
-                ),
+        await mapController.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target: LatLng(
+                location.latitude,
+                location.longitude,
               ),
-            );
-          },
+              zoom: 14,
+            ),
+          ),
         );
       },
+      placeDetailsLoaded: (placeDetails) async {
+        makers
+          ..clear()
+          ..add(
+            Marker(
+              markerId: MarkerId(placeDetails.placeId),
+              position: LatLng(
+                placeDetails.geometry.location.lat,
+                placeDetails.geometry.location.lng,
+              ),
+            ),
+          );
+        final mapController = await _controller.future;
+
+        return mapController.animateCamera(
+          CameraUpdate.newLatLng(
+            LatLng(
+              placeDetails.geometry.location.lat,
+              placeDetails.geometry.location.lng,
+            ),
+          ),
+        );
+      },
+      orElse: () => false,
+    );
+    return BlocBuilder<LocationBloc, LocationState>(
       builder: (context, state) {
         final l10n = context.l10n;
-
         return Scaffold(
           resizeToAvoidBottomInset: false,
           extendBodyBehindAppBar: true,
@@ -112,8 +130,10 @@ class _FindNearbyViewState extends State<FindNearbyView> {
             children: [
               GoogleMap(
                 padding: const EdgeInsets.only(bottom: 250),
-                initialCameraPosition:
-                    CameraPosition(target: widget.initCameraPosition, zoom: 15),
+                initialCameraPosition: CameraPosition(
+                  target: widget.initCameraPosition,
+                  zoom: 15,
+                ),
                 onMapCreated: _onMapCreated,
                 myLocationEnabled: true,
                 markers: Set.from(makers),
@@ -170,13 +190,11 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                             ),
                           ),
                           orElse: () => Expanded(
-                            child: Shimmer.fromColors(
-                              baseColor: const Color.fromRGBO(224, 224, 224, 1),
-                              highlightColor:
-                                  const Color.fromRGBO(245, 245, 245, 1),
-                              child: const SizedBox(
-                                width: 50,
-                                height: 50,
+                            child: Center(
+                              child: LottieBuilder.asset(
+                                Assets.screens.loading,
+                                height: 100,
+                                width: 100,
                               ),
                             ),
                           ),

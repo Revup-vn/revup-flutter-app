@@ -13,6 +13,7 @@ import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/utils.dart';
 import '../bloc/home_bloc.dart';
+import '../cubit/home_record_cubit.dart';
 import 'app_service_panel.u.dart';
 import 'repair_review_home_page.u.dart';
 
@@ -33,6 +34,7 @@ class _HomeBodyViewState extends State<HomeBodyView> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final blocPage = context.watch<HomeBloc>();
+    final stsCubit = context.read<HomeRecordCubit>();
     blocPage.state.maybeWhen(
       initial: () async {
         final isGranted = await requestUserLocation();
@@ -42,15 +44,15 @@ class _HomeBodyViewState extends State<HomeBodyView> {
           final position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high,
           );
+          if (await Hive.boxExists('location')) {
+            await Hive.openBox<dynamic>('location');
+          }
           final boxLocation = Hive.box<dynamic>('location');
-          // final boxLocation = await Hive.openBox<dynamic>('location');
           await boxLocation.put('currentLat', position.latitude);
           await boxLocation.put('currentLng', position.longitude);
+          await stsCubit.watch();
           blocPage.add(const HomeEvent.started());
         }
-      },
-      success: (ads, activeRepairRecord, homeModel) {
-        if (activeRepairRecord.isSome()) {}
       },
       orElse: () => false,
     );
@@ -107,6 +109,22 @@ class _HomeBodyViewState extends State<HomeBodyView> {
                   itemWidth: 400,
                   itemHeight: 100,
                 ),
+                failure: (ads) => Swiper(
+                  autoplay: true,
+                  layout: SwiperLayout.STACK,
+                  itemCount: ads.length(),
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: ads.get(index).getOrElse(
+                            () =>
+                                'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
+                          ),
+                    );
+                  },
+                  itemWidth: 400,
+                  itemHeight: 100,
+                ),
                 orElse: () => Shimmer.fromColors(
                   baseColor: const Color.fromRGBO(224, 224, 224, 1),
                   highlightColor: const Color.fromRGBO(245, 245, 245, 1),
@@ -131,6 +149,22 @@ class _HomeBodyViewState extends State<HomeBodyView> {
               ),
               state.maybeWhen(
                 success: (ads, activeRepairRecord, homeModel) => Swiper(
+                  autoplay: true,
+                  layout: SwiperLayout.STACK,
+                  itemCount: ads.length(),
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: ads.get(index).getOrElse(
+                            () =>
+                                'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
+                          ),
+                    );
+                  },
+                  itemWidth: 400,
+                  itemHeight: 100,
+                ),
+                failure: (ads) => Swiper(
                   autoplay: true,
                   layout: SwiperLayout.STACK,
                   itemCount: ads.length(),

@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dartz/dartz.dart' hide State;
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
@@ -19,7 +17,6 @@ class ServiceCheckboxTile extends StatefulWidget {
     required this.selectProMode,
     required this.index,
     required this.providerId,
-    required this.catAndSv,
     required this.field,
     required this.canSelect,
     required this.isSelectDefault,
@@ -32,7 +29,6 @@ class ServiceCheckboxTile extends StatefulWidget {
   final bool isSelectDefault;
   final int index;
   final String providerId;
-  final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   final FormFieldState<List<ServiceData>> field;
   final String recordId;
 
@@ -104,13 +100,6 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 } else {
                   widget.field.value?.remove(widget.serviceData);
                 }
-
-                // context.read<ChooseServiceBloc>().add(
-                //       ChooseServiceEvent.serviceSelectChanged(
-                //         serviceData: widget.serviceData,
-                //         index: widget.index,
-                //       ),
-                //     );
               },
             ),
           ),
@@ -120,14 +109,10 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 context.router.push(
                   ChooseProductRoute(
                     serviceData: widget.serviceData,
-                    catAndSv: widget.catAndSv,
                     providerId: widget.providerId,
                     recordId: widget.recordId,
                   ),
                 );
-                // showMaterialModalBottomSheet<Widget>(
-                //     context: context,
-                //     builder: (context) => ChooseServiceView());
               },
               child: AutoSizeText(maxLines: 1, l10n.selectProductLabel),
             ),

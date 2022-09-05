@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
+import '../../shared/widgets/loading.u.dart';
 import '../bloc/request_provider_bloc.dart';
 import '../widgets/request_details_live.dart';
 import '../widgets/request_details_static.dart';
@@ -32,9 +32,7 @@ class RequestProviderView extends StatelessWidget {
     return BlocBuilder<RequestProviderBloc, RequestProviderState>(
       builder: (context, state) {
         return state.when(
-          initial: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          initial: Loading.new,
           success: (directions, fromMaker, toMarker, movingFees) {
             return Stack(
               children: <Widget>[
@@ -59,6 +57,7 @@ class RequestProviderView extends StatelessWidget {
                   RequestDetailsStatic(
                     providerData: providerData,
                     movingFees: movingFees,
+                    directions: directions,
                   )
                 else
                   RequestDetailsLive(
@@ -69,9 +68,7 @@ class RequestProviderView extends StatelessWidget {
             );
           },
           failure: RequestProviderFailure.new,
-          loading: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          loading: Loading.new,
         );
       },
     );

@@ -2,10 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// ignore_for_file: prefer_asserts_with_message
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// Shows a full screen search page and returns the search result selected by
 /// the user when the page is closed.
@@ -53,14 +50,15 @@ Future<T?> showSearch<T>({
   String? query = '',
   bool useRootNavigator = false,
 }) {
-  delegate
-    ..query = query ?? delegate.query
-    .._currentBody = _SearchBody.suggestions;
-  return Navigator.of(context, rootNavigator: useRootNavigator).push(
-    _SearchPageRoute<T>(
-      delegate: delegate,
-    ),
-  );
+  assert(delegate != null);
+  assert(context != null);
+  assert(useRootNavigator != null);
+  delegate.query = query ?? delegate.query;
+  delegate._currentBody = _SearchBody.suggestions;
+  return Navigator.of(context, rootNavigator: useRootNavigator)
+      .push(_SearchPageRoute<T>(
+    delegate: delegate,
+  ));
 }
 
 /// Delegate for [showSearch] to define the content of the search page.
@@ -72,8 +70,7 @@ Future<T?> showSearch<T>({
 /// across the bottom of the [AppBar] via [SearchDelegate.buildBottom].
 ///
 /// The body below the [AppBar] can either show suggested queries (returned by
-/// [SearchDelegate.buildSuggestions]) or - once the user submits a search
-///   - the
+/// [SearchDelegate.buildSuggestions]) or - once the user submits a search  - the
 /// results of the search as returned by [SearchDelegate.buildResults].
 ///
 /// [SearchDelegate.query] always contains the current query entered by the user
@@ -95,8 +92,7 @@ Future<T?> showSearch<T>({
 /// {@macro flutter.widgets.EditableText.onChanged}
 abstract class SearchDelegate<T> {
   /// Constructor to be called by subclasses which may specify
-  /// [searchFieldLabel], either [searchFieldStyle] or
-  /// [searchFieldDecorationTheme],
+  /// [searchFieldLabel], either [searchFieldStyle] or [searchFieldDecorationTheme],
   /// [keyboardType] and/or [textInputAction]. Only one of [searchFieldLabel]
   /// and [searchFieldDecorationTheme] may be non-null.
   ///
@@ -122,8 +118,7 @@ abstract class SearchDelegate<T> {
   ///   }
   ///
   ///   @override
-  ///   Widget buildSuggestions(BuildContext context) =>
-  ///  const Text('suggestions');
+  ///   Widget buildSuggestions(BuildContext context) => const Text('suggestions');
   ///
   ///   @override
   ///   Widget buildResults(BuildContext context) => const Text('results');
@@ -145,8 +140,7 @@ abstract class SearchDelegate<T> {
   /// query into the search field.
   ///
   /// The delegate method is called whenever the content of [query] changes.
-  /// The suggestions should be based on the current [query] string.
-  ///  If the query
+  /// The suggestions should be based on the current [query] string. If the query
   /// string is empty, it is good practice to show suggested queries based on
   /// past queries or the current context.
   ///
@@ -215,8 +209,7 @@ abstract class SearchDelegate<T> {
   /// theme properties.
   ///
   /// Unless overridden, the default theme will configure the AppBar containing
-  /// the search input text field with a white background and black text
-  ///  on light
+  /// the search input text field with a white background and black text on light
   /// themes. For dark themes the default is a dark grey background with light
   /// color text.
   ///
@@ -226,19 +219,18 @@ abstract class SearchDelegate<T> {
   ///  * [InputDecorationTheme], which configures the appearance of the search
   ///    text field.
   ThemeData appBarTheme(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    assert(theme != null);
     return theme.copyWith(
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: colorScheme.brightness == Brightness.dark
-            ? SystemUiOverlayStyle.dark
-            : SystemUiOverlayStyle.light,
+        brightness: colorScheme.brightness,
         backgroundColor: colorScheme.brightness == Brightness.dark
             ? Colors.grey[900]
             : Colors.white,
         iconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
-        toolbarTextStyle: theme.textTheme.bodyText2,
-        titleTextStyle: theme.textTheme.headline6,
+        textTheme: theme.textTheme,
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
           InputDecorationTheme(
@@ -258,14 +250,13 @@ abstract class SearchDelegate<T> {
 
   /// Changes the current query string.
   ///
-  /// Setting the query string programmatically moves the cursor
-  ///  to the end of the text field.
+  /// Setting the query string programmatically moves the cursor to the end of the text field.
   set query(String value) {
+    assert(query != null);
     _queryTextController.text = value;
     if (_queryTextController.text.isNotEmpty) {
       _queryTextController.selection = TextSelection.fromPosition(
-        TextPosition(offset: _queryTextController.text.length),
-      );
+          TextPosition(offset: _queryTextController.text.length));
     }
   }
 
@@ -298,10 +289,8 @@ abstract class SearchDelegate<T> {
   ///
   ///  * [showResults] to show the search results.
   void showSuggestions(BuildContext context) {
-    assert(
-      focusNode != null,
-      'focusNode must be set by route before showSuggestions is called.',
-    );
+    assert(focusNode != null,
+        'focusNode must be set by route before showSuggestions is called.');
     // focusNode!.requestFocus();
     _currentBody = _SearchBody.suggestions;
   }
@@ -395,13 +384,11 @@ enum _SearchBody {
 class _SearchPageRoute<T> extends PageRoute<T> {
   _SearchPageRoute({
     required this.delegate,
-  }) {
+  }) : assert(delegate != null) {
     assert(
       delegate._route == null,
-      'The ${delegate.runtimeType} instance is currently used by '
-      'another active '
-      'search. Please close that search by calling close() on the '
-      'SearchDelegate '
+      'The ${delegate.runtimeType} instance is currently used by another active '
+      'search. Please close that search by calling close() on the SearchDelegate '
       'before opening another search with the same delegate instance.',
     );
     delegate._route = this;
@@ -436,7 +423,7 @@ class _SearchPageRoute<T> extends PageRoute<T> {
 
   @override
   Animation<double> createAnimation() {
-    final animation = super.createAnimation();
+    final Animation<double> animation = super.createAnimation();
     delegate._proxyAnimation.parent = animation;
     return animation;
   }
@@ -457,9 +444,8 @@ class _SearchPageRoute<T> extends PageRoute<T> {
   void didComplete(T? result) {
     super.didComplete(result);
     assert(delegate._route == this);
-    delegate
-      .._route = null
-      .._currentBody = null;
+    delegate._route = null;
+    delegate._currentBody = null;
   }
 }
 
@@ -547,8 +533,8 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
-    final theme = widget.delegate.appBarTheme(context);
-    final searchFieldLabel = widget.delegate.searchFieldLabel ??
+    final ThemeData theme = widget.delegate.appBarTheme(context);
+    final String searchFieldLabel = widget.delegate.searchFieldLabel ??
         MaterialLocalizations.of(context).searchFieldLabel;
     Widget? body;
     switch (widget.delegate._currentBody) {

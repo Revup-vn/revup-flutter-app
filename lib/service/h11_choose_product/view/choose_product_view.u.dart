@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/widgets/loading.u.dart';
 import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
 
@@ -29,9 +29,7 @@ class _ChooseProductViewState extends State<ChooseProductView> {
     return BlocBuilder<ChooseProductBloc, ChooseProductState>(
       builder: (context, state) {
         return state.maybeWhen(
-          orElse: () => const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+          orElse: Loading.new,
           success: (productList) {
             final products = productList.toList();
 
@@ -89,10 +87,17 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       width: MediaQuery.of(context).size.width,
-                      decoration:
-                          BoxDecoration(color: Theme.of(context).cardColor),
                       child: ElevatedButton(
                         onPressed: () {
+                          if (groupValue?.isEmpty ?? false) {
+                            context.router.pop();
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   SnackBar(
+                            //     content: Text(l10n.chooseAtLeastServiceLabel),
+                            //   ),
+                            // );
+                            return;
+                          }
                           context.read<ChooseProductBloc>().add(
                                 ChooseProductEvent.submitted(
                                   groupValue,

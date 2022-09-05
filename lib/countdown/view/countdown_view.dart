@@ -40,33 +40,36 @@ class CountdownView extends StatelessWidget {
               ),
         );
       },
-      child: Scaffold(
-        body: Stack(
-          children: [
-            const CountdownBackground(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                LimitedBox(
-                  maxHeight: 70,
-                  child: AutoSizeText(
-                    context.l10n.orderVerificationTimeout,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 100),
-                  child: Center(
-                    child: BlocSelector<CountdownBloc, CountdownState, int>(
-                      selector: (state) => state.secs,
-                      builder: (context, state) =>
-                          CountdownText(duration: state),
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          body: Stack(
+            children: [
+              const CountdownBackground(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  LimitedBox(
+                    maxHeight: 70,
+                    child: AutoSizeText(
+                      context.l10n.orderVerificationTimeout,
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 100),
+                    child: Center(
+                      child: BlocSelector<CountdownBloc, CountdownState, int>(
+                        selector: (state) => state.secs,
+                        builder: (context, state) =>
+                            CountdownText(duration: state),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -91,6 +94,7 @@ class CountdownView extends StatelessWidget {
               RepairRecordDummy.field(
                 RepairRecordFields.CreateDate,
               ),
+              descending: true,
             )
             .limit(1)
             .get(),
