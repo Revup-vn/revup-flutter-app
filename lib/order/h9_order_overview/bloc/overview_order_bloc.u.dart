@@ -7,7 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
-import '../../models/need_to_verify_model.dart';
 import '../../models/pending_repair_request.dart';
 import '../../models/pending_service_model.dart';
 import '../models/overview_order_model.dart';
@@ -25,12 +24,22 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
     this.recordId,
   ) : super(const _Initial()) {
     on<OverviewOrderEvent>(_onEvent);
+    _s = _repairRecord
+        .collection()
+        .doc(recordId)
+        .collection('payment')
+        .snapshots()
+        .listen((event) {
+      add(const OverviewOrderEvent.started());
+    });
   }
   final String providerId;
   final IStore<AppUser> _userStore;
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
   final String recordId;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
+
   FutureOr<void> _onEvent(
     OverviewOrderEvent event,
     Emitter<OverviewOrderState> emit,
@@ -46,112 +55,77 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
         );
         if (maybeProviderData.isNone()) {
           emit(const OverviewOrderState.failure());
-        }
-        final provData =
-            maybeProviderData.getOrElse(() => throw NullThrownError());
+        } else {
+          final provData =
+              maybeProviderData.getOrElse(() => throw NullThrownError());
 
-        final boxLocation = Hive.box<dynamic>('location');
-        final distance = boxLocation.get('distance', defaultValue: 0) as num;
-        // get service selected
-        final maybeRepairRecord = (await _repairRecord.get(recordId))
-            .map<Option<RepairRecord>>(
-              (r) => r.maybeMap(
-                accepted: some,
-                orElse: none,
-              ),
-            )
-            .fold<Option<RepairRecord>>(
-              (l) => none(),
-              (r) => r,
-            );
-        if (maybeRepairRecord.isNone()) {
-          emit(const OverviewOrderState.failure());
-        }
-        final repairRecord =
-            maybeRepairRecord.getOrElse(() => throw NullThrownError());
-        final pendingRequest =
-            PendingRepairRequest.fromDto(repairRecord: repairRecord);
-
-        final pendingService = (await (storeRepository.repairPaymentRepo(
-          RepairRecordDummy.dummyPending(recordId),
-        )).all())
-            .map(
-              (r) => r.map<Option<PendingServiceModel>>(
-                (a) => a.maybeMap(
-                  pending: (v) =>
-                      some(PendingServiceModel.fromDto(paymentService: v)),
+          final boxLocation = Hive.box<dynamic>('location');
+          final distance = boxLocation.get('distance', defaultValue: 0) as num;
+          // get service selected
+          final maybeRepairRecord = (await _repairRecord.get(recordId))
+              .map<Option<RepairRecord>>(
+                (r) => r.maybeMap(
+                  accepted: some,
                   orElse: none,
                 ),
-              ),
-            )
-            .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
-            .filter(
-              (a) => a.isSome(),
-            )
-            .map(
-              (a) => a.getOrElse(() => throw NullThrownError()),
-            );
+              )
+              .fold<Option<RepairRecord>>(
+                (l) => none(),
+                (r) => r,
+              );
+          if (maybeRepairRecord.isNone()) {
+            emit(const OverviewOrderState.failure());
+          } else {
+            final repairRecord =
+                maybeRepairRecord.getOrElse(() => throw NullThrownError());
+            final pendingRequest =
+                PendingRepairRequest.fromDto(repairRecord: repairRecord);
 
-        final pendingAmount = pendingService
-            .map(
-              (a) => a.price,
-            )
-            .foldLeft(pendingRequest.money, (int previous, a) => previous + a);
+            final pendingService = (await (storeRepository.repairPaymentRepo(
+              RepairRecordDummy.dummyPending(recordId),
+            )).all())
+                .map(
+                  (r) => r.map<Option<PendingServiceModel>>(
+                    (a) => a.maybeMap(
+                      pending: (v) =>
+                          some(PendingServiceModel.fromDto(paymentService: v)),
+                      needToVerify: (v) =>
+                          some(PendingServiceModel.fromDto(paymentService: v)),
+                      orElse: none,
+                    ),
+                  ),
+                )
+                .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
+                .filter(
+                  (a) => a.isSome(),
+                )
+                .map(
+                  (a) => a.getOrElse(() => throw NullThrownError()),
+                );
 
-        (await (storeRepository.repairPaymentRepo(
-          RepairRecordDummy.dummyPending(recordId),
-        )).all())
-            .map<IList<PaymentService>>(
-              (r) => r.filter(
-                (a) => a.maybeMap(
-                  paid: (_) => false,
-                  orElse: () => true,
+            final pendingAmount = pendingService
+                .map(
+                  (a) => a.price,
+                )
+                .foldLeft(
+                  pendingRequest.money,
+                  (int previous, a) => previous + a,
+                );
+
+            emit(
+              OverviewOrderState.loadDataSuccess(
+                overviewOrderData: OverviewOrderModel.fromDto(
+                  provData,
+                  distance / 1000,
                 ),
-              ),
-            )
-            .map(
-              (r) => r
-                  .map(
-                    (a) => a.map(
-                      pending: (v) => PendingServiceModel(
-                        name: v.serviceName,
-                        price: v.moneyAmount +
-                            (v.products.isEmpty
-                                ? 0
-                                : v.products
-                                    .map((e) => e.quantity * e.unitPrice)
-                                    .reduce(
-                                      (value, element) => value + element,
-                                    )),
-                        isOptional: v.isOptional,
-                        products: v.products,
-                      ),
-                      paid: (v) => throw NullThrownError(),
-                      needToVerify: (v) => NeedToVerifyModel(
-                        serviceName: v.serviceName,
-                        desc: v.desc,
-                      ),
-                    ),
-                  )
-                  .partition((a) => a is NeedToVerifyModel)
-                  .apply(
-                (a, b) {
-                  emit(
-                    OverviewOrderState.loadDataSuccess(
-                      overviewOrderData: OverviewOrderModel.fromDto(
-                        provData,
-                        distance / 1000,
-                      ),
-                      pendingService: b.toList().cast<PendingServiceModel>(),
-                      needToVerifyService: a.toList().cast<NeedToVerifyModel>(),
-                      pendingRequest: pendingRequest,
-                      total: pendingAmount,
-                    ),
-                  );
-                },
+                pendingService: pendingService.toList(),
+                //     a.toList().cast<NeedToVerifyModel>(),
+                pendingRequest: pendingRequest,
+                total: pendingAmount,
               ),
             );
-        // .fold((l) => nil<PaymentService>(), (r) => r);
+          }
+        }
       },
       submitted: (
         onRoute,
@@ -179,5 +153,11 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
         onRoute();
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s?.cancel();
+    return super.close();
   }
 }

@@ -22,7 +22,7 @@ class HomeBodyPage extends StatelessWidget {
           create: (_) => AppServiceBloc(),
         ),
         BlocProvider<HomeRecordCubit>(
-          create: (_) => HomeRecordCubit(context.read(), context.read(), user),
+          create: (_) => HomeRecordCubit(context.read(), user),
         ),
       ],
       child: const HomeBodyView(),

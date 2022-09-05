@@ -172,7 +172,8 @@ mixin _$RepairStatusState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<Tuple2<String, int>> service, int total)
+    required TResult Function(
+            List<PendingServiceModel> service, String providerId)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -181,7 +182,8 @@ mixin _$RepairStatusState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -189,7 +191,8 @@ mixin _$RepairStatusState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -280,7 +283,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<Tuple2<String, int>> service, int total)
+    required TResult Function(
+            List<PendingServiceModel> service, String providerId)
         success,
   }) {
     return initial();
@@ -292,7 +296,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
   }) {
     return initial?.call();
   }
@@ -303,7 +308,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -397,7 +403,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<Tuple2<String, int>> service, int total)
+    required TResult Function(
+            List<PendingServiceModel> service, String providerId)
         success,
   }) {
     return loading();
@@ -409,7 +416,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
   }) {
     return loading?.call();
   }
@@ -420,7 +428,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -514,7 +523,8 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<Tuple2<String, int>> service, int total)
+    required TResult Function(
+            List<PendingServiceModel> service, String providerId)
         success,
   }) {
     return failure();
@@ -526,7 +536,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
   }) {
     return failure?.call();
   }
@@ -537,7 +548,8 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -593,7 +605,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({List<Tuple2<String, int>> service, int total});
+  $Res call({List<PendingServiceModel> service, String providerId});
 }
 
 /// @nodoc
@@ -609,17 +621,17 @@ class __$$_SuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? service = freezed,
-    Object? total = freezed,
+    Object? providerId = freezed,
   }) {
     return _then(_$_Success(
       service: service == freezed
           ? _value._service
           : service // ignore: cast_nullable_to_non_nullable
-              as List<Tuple2<String, int>>,
-      total: total == freezed
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as List<PendingServiceModel>,
+      providerId: providerId == freezed
+          ? _value.providerId
+          : providerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -628,22 +640,23 @@ class __$$_SuccessCopyWithImpl<$Res>
 
 class _$_Success implements _Success {
   const _$_Success(
-      {required final List<Tuple2<String, int>> service, required this.total})
+      {required final List<PendingServiceModel> service,
+      required this.providerId})
       : _service = service;
 
-  final List<Tuple2<String, int>> _service;
+  final List<PendingServiceModel> _service;
   @override
-  List<Tuple2<String, int>> get service {
+  List<PendingServiceModel> get service {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_service);
   }
 
   @override
-  final int total;
+  final String providerId;
 
   @override
   String toString() {
-    return 'RepairStatusState.success(service: $service, total: $total)';
+    return 'RepairStatusState.success(service: $service, providerId: $providerId)';
   }
 
   @override
@@ -652,14 +665,15 @@ class _$_Success implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
             const DeepCollectionEquality().equals(other._service, _service) &&
-            const DeepCollectionEquality().equals(other.total, total));
+            const DeepCollectionEquality()
+                .equals(other.providerId, providerId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_service),
-      const DeepCollectionEquality().hash(total));
+      const DeepCollectionEquality().hash(providerId));
 
   @JsonKey(ignore: true)
   @override
@@ -672,10 +686,11 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(List<Tuple2<String, int>> service, int total)
+    required TResult Function(
+            List<PendingServiceModel> service, String providerId)
         success,
   }) {
-    return success(service, total);
+    return success(service, providerId);
   }
 
   @override
@@ -684,9 +699,10 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
   }) {
-    return success?.call(service, total);
+    return success?.call(service, providerId);
   }
 
   @override
@@ -695,11 +711,12 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(List<Tuple2<String, int>> service, int total)? success,
+    TResult Function(List<PendingServiceModel> service, String providerId)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(service, total);
+      return success(service, providerId);
     }
     return orElse();
   }
@@ -744,11 +761,11 @@ class _$_Success implements _Success {
 
 abstract class _Success implements RepairStatusState {
   const factory _Success(
-      {required final List<Tuple2<String, int>> service,
-      required final int total}) = _$_Success;
+      {required final List<PendingServiceModel> service,
+      required final String providerId}) = _$_Success;
 
-  List<Tuple2<String, int>> get service;
-  int get total;
+  List<PendingServiceModel> get service;
+  String get providerId;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

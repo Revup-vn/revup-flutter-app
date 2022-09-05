@@ -88,6 +88,9 @@ class $AssetsScreensGen {
   /// File path: assets/screens/sad_mood.svg
   SvgGenImage get sadMood => const SvgGenImage('assets/screens/sad_mood.svg');
 
+  /// File path: assets/screens/setting.svg
+  SvgGenImage get setting => const SvgGenImage('assets/screens/setting.svg');
+
   /// File path: assets/screens/sos.svg
   SvgGenImage get sos => const SvgGenImage('assets/screens/sos.svg');
 

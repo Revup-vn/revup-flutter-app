@@ -54,6 +54,7 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
             .map<Option<RepairRecord>>(
               (r) => r.maybeMap(
                 accepted: some,
+                started: some,
                 orElse: none,
               ),
             )
@@ -69,7 +70,8 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
                   .repairServiceRepo(
                     AppUserDummy.dummyProvider(repairRecord.pid),
                     RepairCategoryDummy.dummy(
-                        repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy'),
+                      repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                    ),
                   )
                   .all())
               .fold<IList<ServiceData>>(

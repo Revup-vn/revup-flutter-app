@@ -6,7 +6,7 @@ class OverviewOrderState with _$OverviewOrderState {
   const factory OverviewOrderState.loadDataSuccess({
     required OverviewOrderModel overviewOrderData,
     required List<PendingServiceModel> pendingService,
-    required List<NeedToVerifyModel> needToVerifyService,
+    // required List<NeedToVerifyModel> needToVerifyService,
     required PendingRepairRequest pendingRequest,
     required int total,
   }) = _LoadDataSuccess;
