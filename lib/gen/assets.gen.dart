@@ -25,6 +25,9 @@ class $AssetsScreensGen {
   /// File path: assets/screens/add_image.svg
   SvgGenImage get addImage => const SvgGenImage('assets/screens/add_image.svg');
 
+  /// File path: assets/screens/brgimg.jpg
+  AssetGenImage get brgimg => const AssetGenImage('assets/screens/brgimg.jpg');
+
   /// File path: assets/screens/castrol.svg
   SvgGenImage get castrol => const SvgGenImage('assets/screens/castrol.svg');
 
@@ -49,6 +52,9 @@ class $AssetsScreensGen {
   /// File path: assets/screens/gas_station.svg
   SvgGenImage get gasStation =>
       const SvgGenImage('assets/screens/gas_station.svg');
+
+  /// File path: assets/screens/icon_app.svg
+  SvgGenImage get iconApp => const SvgGenImage('assets/screens/icon_app.svg');
 
   /// File path: assets/screens/icon_cash.svg
   SvgGenImage get iconCash => const SvgGenImage('assets/screens/icon_cash.svg');
