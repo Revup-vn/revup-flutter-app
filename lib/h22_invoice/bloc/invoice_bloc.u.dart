@@ -154,7 +154,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
                   maybeProviderData.getOrElse(() => throw NullThrownError()),
                 )
                 .get(
-                  maybeRepairRecord.vehicle == 'mortobike' ? 'Xe máy' : 'Oto',
+                  maybeRepairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
                 ))
             .getOrElse(() => throw NullThrownError());
         final listSvProvider = (await storeRepository

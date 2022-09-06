@@ -19,10 +19,19 @@ class HistoryProviderBloc
     this.recordRepos,
   ) : super(const _Initial()) {
     on<HistoryProviderEvent>(_onEventHistory);
+
+    _s = recordRepos
+        .collection()
+        .where('cid', isEqualTo: cid)
+        .snapshots()
+        .listen((event) {
+      add(const HistoryProviderEvent.started());
+    });
   }
   final String cid;
   final IStore<AppUser> userRepos;
   final IStore<RepairRecord> recordRepos;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
   Future<void> _onEventHistory(
     HistoryProviderEvent event,
     Emitter<HistoryProviderState> emit,
@@ -69,11 +78,20 @@ class HistoryProviderBloc
 
         final listData =
             await Future.wait(listModel.map((a) async => a).toIterable());
-
+        listData.sort(
+          (a, b) => b.timeCreated.millisecondsSinceEpoch
+              .compareTo(a.timeCreated.millisecondsSinceEpoch),
+        );
         emit(
           HistoryProviderState.success(listData),
         );
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
   }
 }

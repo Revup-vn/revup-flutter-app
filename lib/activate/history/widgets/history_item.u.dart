@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../l10n/l10n.dart';
@@ -20,7 +19,7 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final formatterDate = DateFormat('dd/MM/yyyy hh:mm');
+    final formatterDate = DateFormat('dd/MM/yyyy HH:mm');
     final listLabel = <String>[l10n.canceledLabel, l10n.successLabel];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

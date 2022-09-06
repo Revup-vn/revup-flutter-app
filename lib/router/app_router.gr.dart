@@ -135,8 +135,7 @@ class AppRouter extends _i42.RootStackRouter {
       final args = routeData.argsAs<HomeRouteArgs>();
       return _i42.AdaptivePage<void>(
           routeData: routeData,
-          child: _i10.HomePage(key: args.key, user: args.user),
-          maintainState: false);
+          child: _i10.HomePage(key: args.key, user: args.user));
     },
     HistoryProviderDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HistoryProviderDetailRouteArgs>();
@@ -331,8 +330,7 @@ class AppRouter extends _i42.RootStackRouter {
       final args = routeData.argsAs<HistoryProviderRouteArgs>();
       return _i42.AdaptivePage<void>(
           routeData: routeData,
-          child: _i39.HistoryProviderPage(args.cid, key: args.key),
-          maintainState: false);
+          child: _i39.HistoryProviderPage(args.cid, key: args.key));
     },
     NotificationRoute.name: (routeData) {
       return _i42.AdaptivePage<void>(
