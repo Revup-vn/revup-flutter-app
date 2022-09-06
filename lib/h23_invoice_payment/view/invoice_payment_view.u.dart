@@ -8,25 +8,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
-import '../../h22_invoice/models/service_data.dart';
 import '../../h22_invoice/widgets/default_avatar.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../order/models/pending_service_model.dart';
 import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 import '../bloc/invoice_payment_bloc.u.dart';
 
 class InvoicePaymentView extends StatelessWidget {
-  const InvoicePaymentView(
-    this.providerData,
-    this.serviceData,
-    this.total, {
+  const InvoicePaymentView({
     super.key,
+    required this.providerData,
+    required this.services,
   });
   final ProviderData providerData;
-  final List<ServiceData> serviceData;
-  final int total;
+  final List<PendingServiceModel> services;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -104,7 +102,7 @@ class InvoicePaymentView extends StatelessWidget {
                             Row(
                               children: [
                                 AutoSizeText(
-                                  providerData.rating.toString(),
+                                  providerData.rating.toStringAsFixed(1),
                                   style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -168,7 +166,7 @@ class InvoicePaymentView extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: serviceData.length,
+                    itemCount: services.length,
                     itemBuilder: (BuildContext context, int index) {
                       return SizedBox(
                         height: 50,
@@ -176,16 +174,24 @@ class InvoicePaymentView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             AutoSizeText(
-                              serviceData[index].serviceName,
+                              services[index].name,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             AutoSizeText(
-                              serviceData[index].state == 'paid'
+                              services[index].status == 'paid'
                                   ? context.l10n.paidLabel
                                   : context.formatMoney(
-                                      serviceData[index].serviceFee,
+                                      services[index].price +
+                                          (services[index].products.isEmpty
+                                              ? 0
+                                              : services[index].products.fold(
+                                                  0,
+                                                  (p, e) =>
+                                                      p +
+                                                      e.unitPrice *
+                                                          e.quantity)),
                                     ),
-                              style: serviceData[index].state == 'paid'
+                              style: services[index].status == 'paid'
                                   ? Theme.of(context)
                                       .textTheme
                                       .labelLarge
@@ -327,7 +333,15 @@ class InvoicePaymentView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            context.formatMoney(total),
+                            context.formatMoney(services.fold(
+                                0,
+                                (p, e) =>
+                                    p +
+                                    (e.price == -1 ? 0 : e.price) +
+                                    (e.products.isEmpty
+                                        ? 0
+                                        : e.products.first.unitPrice *
+                                            e.products.first.quantity))),
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -345,7 +359,19 @@ class InvoicePaymentView extends StatelessWidget {
                         (user) => context.read<InvoicePaymentBloc>().add(
                               InvoicePaymentEvent.sumbitPayment(
                                 isPayOnline: isPayOnline,
-                                totalAmount: total,
+                                totalAmount: services.fold(
+                                  0,
+                                  (p, e) =>
+                                      p +
+                                      (e.isComplete
+                                          ? (e.price +
+                                              (e.products.isEmpty
+                                                  ? 0
+                                                  : e.products.first.unitPrice *
+                                                      e.products.first
+                                                          .quantity))
+                                          : 0),
+                                ),
                                 cid: user.uuid,
                                 pid: providerData.id,
                                 sendMessage: (

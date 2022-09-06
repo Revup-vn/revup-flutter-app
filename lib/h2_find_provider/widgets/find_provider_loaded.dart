@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -84,7 +83,7 @@ class FindProviderLoaded extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 AutoSizeText(
-                                  providers[index].rating.toString(),
+                                  providers[index].rating.toStringAsFixed(1),
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 Icon(

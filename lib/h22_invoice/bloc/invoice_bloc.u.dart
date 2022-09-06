@@ -6,8 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
 import '../../h2_find_provider/models/provider_data.u.dart';
+import '../../order/models/pending_service_model.dart';
 import '../../repairer_profile/models/record_rating_data.dart';
-import '../models/service_data.dart';
+import '../../shared/fallbacks.dart';
 
 part 'invoice_bloc.u.freezed.dart';
 part 'invoice_event.dart';
@@ -35,7 +36,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
       started: () async {
         emit(const InvoiceState.loading());
 
-        //fetch data provider,
+        //fetch data provider
         final maybeProviderData = (await _userStore.get(providerID))
             .map(
               (aUser) => aUser.map<Option<AppUser>>(
@@ -46,7 +47,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r);
 
-        //fetch data rating,
+        //fetch data rating
         final ratingData = (await _repairRecord.where(
           'pid',
           isEqualTo: providerID,
@@ -83,7 +84,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             )
             .getOrElse(() => throw NullThrownError());
 
-        //fetch data repairrecord,
+        //fetch data repairrecord
         final maybeRepairRecord = (await _repairRecord.get(
           id,
         ))
@@ -106,79 +107,98 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
         final paymentList =
             maybePaymentData.fold((l) => nil<PaymentService>(), (r) => r);
 
-        final listOptionService = paymentList.map<Option<ServiceData>>(
-          (a) => a.when(
-            pending:
-                (serviceName, moneyAmount, products, isOptional, isCompleted) =>
-                    some(
-              ServiceData.fromDtos(
-                serviceName,
-                moneyAmount +
-                    (products.isNotEmpty
-                        ? products[0].unitPrice * products[0].quantity
-                        : 0),
-                'pending',
-                isCompleted: isCompleted,
-                '',
-                products: products,
+        final listService = paymentList
+            .filter(
+              (a) => a.maybeMap(
+                needToVerify: (v) => false,
+                orElse: () => true,
               ),
-            ),
-            needToVerify: (serviceName, desc, imgUrl) => none(),
-            paid: (serviceName, moneyAmount, products, paidIn) => some(
-              ServiceData.fromDtos(
-                serviceName,
-                moneyAmount +
-                    (products.isNotEmpty
-                        ? products[0].unitPrice * products[0].quantity
-                        : 0),
-                'paid',
-                isCompleted: true,
-                '',
-                products: products,
-              ),
-            ),
-          ),
-        );
-        final listService = listOptionService.filter((a) => a.isSome()).map(
-              (a) => a.getOrElse(
-                () => throw NullThrownError(),
-              ),
-            );
-        final total = listOptionService
-            .map((a) => a.fold(() => 0, (a) => a.serviceFee))
-            .foldLeft<int>(0, (previous, a) => previous + a);
-        final cate = (await storeRepository
-                .repairCategoryRepo(
-                  maybeProviderData.getOrElse(() => throw NullThrownError()),
-                )
-                .get(
-                  maybeRepairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
-                ))
-            .getOrElse(() => throw NullThrownError());
-        final listSvProvider = (await storeRepository
+            )
+            .map((a) => PendingServiceModel.fromDto(paymentService: a));
+
+        // final listOptionService = paymentList.map<Option<ServiceData>>(
+        //   (a) => a.when(
+        //     pending:
+        //         (serviceName, moneyAmount, products, isOptional, isCompleted) =>
+        //             some(
+        //       ServiceData.fromDtos(
+        //         serviceName,
+        //         moneyAmount +
+        //             (products.isNotEmpty
+        //                 ? products[0].unitPrice * products[0].quantity
+        //                 : 0),
+        //         'pending',
+        //         isCompleted: isCompleted,
+        //         '',
+        //         products: products,
+        //       ),
+        //     ),
+        //     needToVerify: (serviceName, desc, imgUrl) => none(),
+        //     paid: (serviceName, moneyAmount, products, paidIn) => some(
+        //       ServiceData.fromDtos(
+        //         serviceName,
+        //         moneyAmount +
+        //             (products.isNotEmpty
+        //                 ? products[0].unitPrice * products[0].quantity
+        //                 : 0),
+        //         'paid',
+        //         isCompleted: true,
+        //         '',
+        //         products: products,
+        //       ),
+        //     ),
+        //   ),
+        // );
+        // final listService = listOptionService.filter((a) => a.isSome()).map(
+        //       (a) => a.getOrElse(
+        //         () => throw NullThrownError(),
+        //       ),
+        //     );
+        // final total = listOptionService
+        //     .map((a) => a.fold(() => 0, (a) => a.serviceFee))
+        //     .foldLeft<int>(0, (previous, a) => previous + a);
+        final svProvider = (await storeRepository
                 .repairServiceRepo(
-                  maybeProviderData.getOrElse(() => throw NullThrownError()),
-                  cate,
+                  AppUserDummy.dummyProvider(providerID),
+                  RepairCategoryDummy.dummy(
+                    maybeRepairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                  ),
                 )
                 .all())
-            .fold<IList<RepairService>>((l) => nil<RepairService>(), (r) => r);
-        final listSvDataWithImg = listService
-            .map(
-              (a) => listSvProvider.where((b) => a.serviceName == b.name).map(
-                    (c) => ServiceData.fromDtos(
-                      a.serviceName,
-                      a.serviceFee,
-                      a.state,
-                      c.img,
-                      isCompleted: a.isCompleted,
-                      products: a.products,
-                    ),
+            .fold<IList<RepairService>>((l) => nil(), (r) => r);
+
+        final listServiceImg = listService.map(
+          (e) => e.copyWith(
+            imageUrl: svProvider
+                .find((a) => a.name == e.name)
+                .getOrElse(
+                  () => const RepairService(
+                    name: '',
+                    fee: 0,
+                    img: kFallbackServiceImg,
                   ),
-            )
-            .foldLeft<IList<ServiceData>>(
-              nil<ServiceData>(),
-              (previous, a) => previous.plus(a),
-            );
+                )
+                .img,
+          ),
+        );
+
+        // final listSvDataWithImg = listService
+        //     .map(
+        //       (a) => listSvProvider.where((b) => a.serviceName == b.name).map(
+        //             (c) => ServiceData.fromDtos(
+        //               a.serviceName,
+        //               a.serviceFee,
+        //               a.state,
+        //               c.img,
+        //               isCompleted: a.isCompleted,
+        //               products: a.products,
+        //             ),
+        //           ),
+        //     )
+        //     .foldLeft<IList<ServiceData>>(
+        //       nil<ServiceData>(),
+        //       (previous, a) => previous.plus(a),
+        //     );
         maybeProviderData.fold(
           () => emit(
             const InvoiceState.loading(),
@@ -194,8 +214,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
                   ratingCount: int.parse(ratingData['value2'].toString()),
                 ),
                 ready: true,
-                total: total,
-                service: listSvDataWithImg,
+                services: listServiceImg.toList(),
               ),
             );
           },

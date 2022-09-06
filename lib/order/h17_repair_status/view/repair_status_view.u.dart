@@ -217,7 +217,7 @@ class RepairStatusView extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: SizedBox(
                       width: 30,
-                      height: 30,
+                      height: 60,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -232,7 +232,8 @@ class RepairStatusView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            context.formatMoney(services.fold(
+                            context.formatMoney(
+                              services.fold(
                                 0,
                                 (p, e) =>
                                     p +
@@ -240,7 +241,9 @@ class RepairStatusView extends StatelessWidget {
                                     (e.products.isEmpty
                                         ? 0
                                         : e.products.first.unitPrice *
-                                            e.products.first.quantity))),
+                                            e.products.first.quantity),
+                              ),
+                            ),
                             style: Theme.of(context).textTheme.labelLarge,
                           )
                         ],

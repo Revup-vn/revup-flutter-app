@@ -30,7 +30,6 @@ import 'package:revup/guide-support/view/terms_privacy_page.u.dart' as _i30;
 import 'package:revup/guide-support/widgets/faqs_item_otp.u.dart' as _i28;
 import 'package:revup/h16_map_route/view/h16_map_route_page.dart' as _i33;
 import 'package:revup/h1_find_nearby/view/find_nearby_page.u.dart' as _i22;
-import 'package:revup/h22_invoice/models/service_data.dart' as _i46;
 import 'package:revup/h22_invoice/view/service_invoice_page.u.dart' as _i4;
 import 'package:revup/h23_invoice_payment/view/invoice_payment_page.u.dart'
     as _i5;
@@ -51,6 +50,7 @@ import 'package:revup/order/h17_repair_status/view/repair_status_page.u.dart'
     as _i3;
 import 'package:revup/order/h9_order_overview/view/overview_order_page.u.dart'
     as _i26;
+import 'package:revup/order/models/pending_service_model.dart' as _i46;
 import 'package:revup/order/order-sevice/view/order_detail_page.u.dart' as _i2;
 import 'package:revup/otp/view/otp_page.u.dart' as _i16;
 import 'package:revup/payment/view/payment_page.u.dart' as _i12;
@@ -108,8 +108,10 @@ class AppRouter extends _i42.RootStackRouter {
       final args = routeData.argsAs<InvoicePaymentRouteArgs>();
       return _i42.AdaptivePage<void>(
           routeData: routeData,
-          child: _i5.InvoicePaymentPage(args.providerData, args.serviceData,
-              key: args.key));
+          child: _i5.InvoicePaymentPage(
+              key: args.key,
+              providerData: args.providerData,
+              services: args.services));
     },
     ReviewRepairmanRoute.name: (routeData) {
       final args = routeData.argsAs<ReviewRepairmanRouteArgs>();
@@ -490,32 +492,30 @@ class ServiceInvoiceRouteArgs {
 /// [_i5.InvoicePaymentPage]
 class InvoicePaymentRoute extends _i42.PageRouteInfo<InvoicePaymentRouteArgs> {
   InvoicePaymentRoute(
-      {required _i45.ProviderData providerData,
-      required List<_i46.ServiceData> serviceData,
-      _i43.Key? key})
+      {_i43.Key? key,
+      required _i45.ProviderData providerData,
+      required List<_i46.PendingServiceModel> services})
       : super(InvoicePaymentRoute.name,
             path: '/invoice-payment-page',
             args: InvoicePaymentRouteArgs(
-                providerData: providerData,
-                serviceData: serviceData,
-                key: key));
+                key: key, providerData: providerData, services: services));
 
   static const String name = 'InvoicePaymentRoute';
 }
 
 class InvoicePaymentRouteArgs {
   const InvoicePaymentRouteArgs(
-      {required this.providerData, required this.serviceData, this.key});
-
-  final _i45.ProviderData providerData;
-
-  final List<_i46.ServiceData> serviceData;
+      {this.key, required this.providerData, required this.services});
 
   final _i43.Key? key;
 
+  final _i45.ProviderData providerData;
+
+  final List<_i46.PendingServiceModel> services;
+
   @override
   String toString() {
-    return 'InvoicePaymentRouteArgs{providerData: $providerData, serviceData: $serviceData, key: $key}';
+    return 'InvoicePaymentRouteArgs{key: $key, providerData: $providerData, services: $services}';
   }
 }
 

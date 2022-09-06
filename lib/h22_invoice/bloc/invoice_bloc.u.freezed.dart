@@ -170,8 +170,8 @@ mixin _$InvoiceState {
     required TResult Function(bool ready) initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)
+    required TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)
         loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -180,8 +180,8 @@ mixin _$InvoiceState {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -190,8 +190,8 @@ mixin _$InvoiceState {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
     required TResult orElse(),
   }) =>
@@ -305,8 +305,8 @@ class _$_Initial implements _Initial {
     required TResult Function(bool ready) initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)
+    required TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)
         loadingDataSuccess,
   }) {
     return initial(ready);
@@ -318,8 +318,8 @@ class _$_Initial implements _Initial {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
   }) {
     return initial?.call(ready);
@@ -331,8 +331,8 @@ class _$_Initial implements _Initial {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
     required TResult orElse(),
   }) {
@@ -431,8 +431,8 @@ class _$_Loading implements _Loading {
     required TResult Function(bool ready) initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)
+    required TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)
         loadingDataSuccess,
   }) {
     return loading();
@@ -444,8 +444,8 @@ class _$_Loading implements _Loading {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
   }) {
     return loading?.call();
@@ -457,8 +457,8 @@ class _$_Loading implements _Loading {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
     required TResult orElse(),
   }) {
@@ -552,8 +552,8 @@ class _$_Failure implements _Failure {
     required TResult Function(bool ready) initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)
+    required TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)
         loadingDataSuccess,
   }) {
     return failure();
@@ -565,8 +565,8 @@ class _$_Failure implements _Failure {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
   }) {
     return failure?.call();
@@ -578,8 +578,8 @@ class _$_Failure implements _Failure {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
     required TResult orElse(),
   }) {
@@ -637,7 +637,7 @@ abstract class _$$_LoadDataSuccessCopyWith<$Res> {
           _$_LoadDataSuccess value, $Res Function(_$_LoadDataSuccess) then) =
       __$$_LoadDataSuccessCopyWithImpl<$Res>;
   $Res call(
-      {ProviderData data, bool ready, int total, IList<ServiceData> service});
+      {ProviderData data, bool ready, List<PendingServiceModel> services});
 
   $ProviderDataCopyWith<$Res> get data;
 }
@@ -657,8 +657,7 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
   $Res call({
     Object? data = freezed,
     Object? ready = freezed,
-    Object? total = freezed,
-    Object? service = freezed,
+    Object? services = freezed,
   }) {
     return _then(_$_LoadDataSuccess(
       data: data == freezed
@@ -669,14 +668,10 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
           ? _value.ready
           : ready // ignore: cast_nullable_to_non_nullable
               as bool,
-      total: total == freezed
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-      service: service == freezed
-          ? _value.service
-          : service // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceData>,
+      services: services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<PendingServiceModel>,
     ));
   }
 
@@ -694,21 +689,23 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   const _$_LoadDataSuccess(
       {required this.data,
       required this.ready,
-      required this.total,
-      required this.service});
+      required final List<PendingServiceModel> services})
+      : _services = services;
 
   @override
   final ProviderData data;
   @override
   final bool ready;
+  final List<PendingServiceModel> _services;
   @override
-  final int total;
-  @override
-  final IList<ServiceData> service;
+  List<PendingServiceModel> get services {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
 
   @override
   String toString() {
-    return 'InvoiceState.loadingDataSuccess(data: $data, ready: $ready, total: $total, service: $service)';
+    return 'InvoiceState.loadingDataSuccess(data: $data, ready: $ready, services: $services)';
   }
 
   @override
@@ -718,8 +715,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
             other is _$_LoadDataSuccess &&
             const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality().equals(other.ready, ready) &&
-            const DeepCollectionEquality().equals(other.total, total) &&
-            const DeepCollectionEquality().equals(other.service, service));
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @override
@@ -727,8 +723,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
       runtimeType,
       const DeepCollectionEquality().hash(data),
       const DeepCollectionEquality().hash(ready),
-      const DeepCollectionEquality().hash(total),
-      const DeepCollectionEquality().hash(service));
+      const DeepCollectionEquality().hash(_services));
 
   @JsonKey(ignore: true)
   @override
@@ -741,11 +736,11 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     required TResult Function(bool ready) initial,
     required TResult Function() loading,
     required TResult Function() failure,
-    required TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)
+    required TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)
         loadingDataSuccess,
   }) {
-    return loadingDataSuccess(data, ready, total, service);
+    return loadingDataSuccess(data, ready, services);
   }
 
   @override
@@ -754,11 +749,11 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
   }) {
-    return loadingDataSuccess?.call(data, ready, total, service);
+    return loadingDataSuccess?.call(data, ready, services);
   }
 
   @override
@@ -767,13 +762,13 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
     TResult Function(bool ready)? initial,
     TResult Function()? loading,
     TResult Function()? failure,
-    TResult Function(ProviderData data, bool ready, int total,
-            IList<ServiceData> service)?
+    TResult Function(
+            ProviderData data, bool ready, List<PendingServiceModel> services)?
         loadingDataSuccess,
     required TResult orElse(),
   }) {
     if (loadingDataSuccess != null) {
-      return loadingDataSuccess(data, ready, total, service);
+      return loadingDataSuccess(data, ready, services);
     }
     return orElse();
   }
@@ -820,13 +815,11 @@ abstract class _LoadDataSuccess implements InvoiceState {
   const factory _LoadDataSuccess(
       {required final ProviderData data,
       required final bool ready,
-      required final int total,
-      required final IList<ServiceData> service}) = _$_LoadDataSuccess;
+      required final List<PendingServiceModel> services}) = _$_LoadDataSuccess;
 
   ProviderData get data;
   bool get ready;
-  int get total;
-  IList<ServiceData> get service;
+  List<PendingServiceModel> get services;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;

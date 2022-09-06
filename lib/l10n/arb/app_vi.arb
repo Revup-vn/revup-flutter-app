@@ -136,7 +136,7 @@
   "servicePriceLabel": "Giá",
   "breakdownLocationLabel": "Địa điểm hỏng xe của bạn",
   "lookingForHelpLabel": "Tìm kiếm trợ giúp",
-  "searchLabel": "Tìm kiếm...",
+  "searchLabel": "Tìm kiếm dịch vụ...",
   "paymentFeeOfTransportLabel": "Thanh toán phí di chuyển",
   "callForHelpLabel": "Gọi trợ giúp",
   "serviceRequestLabel": "Dịch vụ yêu cầu",
@@ -245,5 +245,6 @@
   "bannedMessage": "Bạn hiện đang bị cấm khỏi hệ thống. Vui lòng liên hệ cskh để biết thêm chi tiết!",
   "errLoadAddressLabel": "Không thể lấy dữ liệu địa chỉ",
   "uncompletedLabel": "Không hoàn thành",
-  "completedLabel": "Đã hoàn thành"
+  "completedLabel": "Đã hoàn thành",
+  "addressNormalLabel": "Địa chỉ"
 }
