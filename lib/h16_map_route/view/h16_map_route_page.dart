@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
-import '../../map/location/bloc/location_bloc.dart';
 import '../../shared/utils.dart';
 import '../bloc/h16_map_route_bloc.dart';
 import '../cubit/realtime_location_cubit.dart';
@@ -17,9 +16,6 @@ class MapRoutePage extends StatelessWidget {
         .getOrElse(() => throw NullThrownError());
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => LocationBloc(),
-        ),
         BlocProvider(
           create: (context) => RealtimeLocationCubit(
             context.read(),

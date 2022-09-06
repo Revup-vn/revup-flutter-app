@@ -33,9 +33,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   ) async {
     await event.when(
       started: () async {
-        emit(
-          const InvoiceState.loading(),
-        );
+        emit(const InvoiceState.loading());
 
         //fetch data provider,
         final maybeProviderData = (await _userStore.get(providerID))

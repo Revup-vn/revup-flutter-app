@@ -82,10 +82,17 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
               pendingService.map(ServiceData.fromPendingService);
           final lst = services.toList()
             ..removeWhere((e) => svDataOptional.any((a) => a.name == e.name));
+          final isStarted = mbRR.any(
+            (a) => a.maybeMap(
+              started: (v) => true,
+              orElse: () => false,
+            ),
+          );
           emit(
             SelectProdServiceState.success(
               providerId: repairRecord.pid,
-              serviceData: ilist(lst).plus(svDataOptional),
+              serviceData:
+                  isStarted ? ilist(lst) : ilist(lst).plus(svDataOptional),
               pendingService: pendingService.toList(),
             ),
           );

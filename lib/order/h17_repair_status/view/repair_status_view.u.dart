@@ -193,8 +193,9 @@ class RepairStatusView extends StatelessWidget {
                                             '''${l10n.productLabel}: ${services[index].products.isEmpty ? l10n.noneLabel : ('${services[index].products.first.name} x ${services[index].products.first.quantity}')}''',
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.normal),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -231,22 +232,18 @@ class RepairStatusView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            '''${services.fold<num>(0, (p, e) => p + (e.price == -1 ? 0 : e.price) + (e.products.isEmpty ? 0 : e.products.first.unitPrice * e.products.first.quantity))}''',
+                            context.formatMoney(services.fold(
+                                0,
+                                (p, e) =>
+                                    p +
+                                    (e.price == -1 ? 0 : e.price) +
+                                    (e.products.isEmpty
+                                        ? 0
+                                        : e.products.first.unitPrice *
+                                            e.products.first.quantity))),
                             style: Theme.of(context).textTheme.labelLarge,
                           )
                         ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                      onPressed: null,
-                      style: Theme.of(context).elevatedButtonTheme.style,
-                      child: AutoSizeText(
-                        l10n.updateLabel,
-                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                   ),

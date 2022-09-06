@@ -231,15 +231,17 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 TextSpan(
                                   text: context.formatMoney(
                                     widget.pendingRequest.money +
-                                        (widget.pendingService.isEmpty
-                                            ? 0
-                                            : (widget.pendingService
-                                                .map((e) => e.price)
-                                                .toList()
-                                                .reduce(
-                                                  (value, element) =>
-                                                      value + element,
-                                                ))),
+                                        widget.pendingService.fold(
+                                          0,
+                                          (p, e) =>
+                                              p +
+                                              (e.price == -1 ? 0 : e.price) +
+                                              (e.products.isEmpty
+                                                  ? 0
+                                                  : e.products.first.unitPrice *
+                                                      e.products.first
+                                                          .quantity),
+                                        ),
                                   ),
                                   style: Theme.of(context)
                                       .textTheme

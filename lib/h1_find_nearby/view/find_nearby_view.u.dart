@@ -9,10 +9,11 @@ import 'package:lottie/lottie.dart' hide Marker;
 
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
-import '../../map/location/bloc/location_bloc.dart';
 import '../../router/router.dart';
-
-// import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import '../../shared/widgets/loading.u.dart';
+import '../../shared/widgets/unknown_failure.dart';
+import '../bloc/find_nearby_bloc.dart';
+import '../cubit/address_cubit.dart';
 
 class FindNearbyView extends StatefulWidget {
   const FindNearbyView({super.key, required this.initCameraPosition});
@@ -26,280 +27,185 @@ class FindNearbyView extends StatefulWidget {
 class _FindNearbyViewState extends State<FindNearbyView> {
   final _controller = Completer<GoogleMapController>();
 
-  late LatLng currentLocation;
+  late LatLng currentLoc;
+  @override
+  void initState() {
+    super.initState();
+    currentLoc = widget.initCameraPosition;
+  }
 
   final makers = <Marker>[];
 
-  void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
-    context.read<LocationBloc>().add(const LocationEvent.started());
-  }
-
-  Future<void> _onTap(LatLng point) async {
-    setState(() {
-      makers
-        ..clear()
-        ..add(
-          Marker(
-            markerId: MarkerId(point.toString()),
-            position: point,
-          ),
-        );
-    });
-    currentLocation = point;
-    context.read<LocationBloc>().add(
-          LocationEvent.locationUpdated(
-            location: point,
-          ),
-        );
-    final mapController = await _controller.future;
-    await mapController.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(point.latitude, point.longitude),
-          zoom: 14,
+  Future<void> _onTap(LatLng point, AddressCubit addrCubit) async {
+    makers
+      ..clear()
+      ..add(
+        Marker(
+          markerId: MarkerId(point.toString()),
+          position: point,
         ),
-      ),
+      );
+    currentLoc = point;
+    setState(() {});
+    await _onLocationChanged(
+      currentLoc.latitude,
+      currentLoc.longitude,
     );
+    await addrCubit.loadAddress(currentLoc.latitude, currentLoc.longitude);
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<LocationBloc>();
+    final bloc = context.watch<FindNearbyBloc>();
+    final addrCubit = context.watch<AddressCubit>();
     bloc.state.maybeWhen(
-      locationLoaded: (location) async {
-        currentLocation = LatLng(location.latitude, location.longitude);
-        context.read<LocationBloc>().add(
-              LocationEvent.locationUpdated(
-                location: LatLng(
-                  location.latitude,
-                  location.longitude,
-                ),
-              ),
-            );
-        final mapController = await _controller.future;
-
-        await mapController.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: LatLng(
-                location.latitude,
-                location.longitude,
-              ),
-              zoom: 14,
-            ),
+      initial: () {
+        bloc.add(
+          FindNearbyEvent.started(
+            currentLoc.latitude,
+            currentLoc.longitude,
           ),
         );
-      },
-      placeDetailsLoaded: (placeDetails) async {
-        makers
-          ..clear()
-          ..add(
-            Marker(
-              markerId: MarkerId(placeDetails.placeId),
-              position: LatLng(
-                placeDetails.geometry.location.lat,
-                placeDetails.geometry.location.lng,
-              ),
-            ),
-          );
-        final mapController = await _controller.future;
-
-        return mapController.animateCamera(
-          CameraUpdate.newLatLng(
-            LatLng(
-              placeDetails.geometry.location.lat,
-              placeDetails.geometry.location.lng,
-            ),
-          ),
-        );
+        addrCubit.loadAddress(currentLoc.latitude, currentLoc.longitude);
       },
       orElse: () => false,
     );
-    return BlocBuilder<LocationBloc, LocationState>(
+    return BlocBuilder<FindNearbyBloc, FindNearbyState>(
       builder: (context, state) {
         final l10n = context.l10n;
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          body: Stack(
-            children: [
-              GoogleMap(
-                padding: const EdgeInsets.only(bottom: 250),
-                initialCameraPosition: CameraPosition(
-                  target: widget.initCameraPosition,
-                  zoom: 15,
+        return state.when(
+            initial: Container.new,
+            loading: Loading.new,
+            failure: UnknownFailure.new,
+            loaded: (addr) {
+              return Scaffold(
+                resizeToAvoidBottomInset: false,
+                extendBodyBehindAppBar: true,
+                appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
                 ),
-                onMapCreated: _onMapCreated,
-                myLocationEnabled: true,
-                markers: Set.from(makers),
-                onTap: _onTap,
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 250,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
+                body: Stack(
+                  children: [
+                    GoogleMap(
+                      padding: const EdgeInsets.only(bottom: 250),
+                      initialCameraPosition: CameraPosition(
+                        target: widget.initCameraPosition,
+                        zoom: 15,
+                      ),
+                      onMapCreated: _controller.complete,
+                      myLocationEnabled: true,
+                      markers: Set.from(makers),
+                      onTap: (v) => _onTap(v, addrCubit),
                     ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 28),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Center(
-                          child: AutoSizeText(
-                            l10n.breakdownLocationLabel,
-                            style: Theme.of(context).textTheme.titleLarge ??
-                                const TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.background,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
                           ),
                         ),
-                        const Divider(),
-                        state.maybeWhen(
-                          addressLoaded: (address) => Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: ListTile(
-                                title: AutoSizeText(
-                                  address,
-                                  maxLines: 3,
-                                ),
-                                leading: const Icon(
-                                  Icons.place,
-                                  size: 32,
-                                  color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            bottom: 28,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Center(
+                                child: AutoSizeText(
+                                  l10n.breakdownLocationLabel,
+                                  style:
+                                      Theme.of(context).textTheme.titleLarge ??
+                                          const TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                 ),
                               ),
-                            ),
-                          ),
-                          orElse: () => Expanded(
-                            child: Center(
-                              child: LottieBuilder.asset(
-                                Assets.screens.loading,
-                                height: 100,
-                                width: 100,
-                              ),
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<LocationBloc>().add(
-                                  LocationEvent.savedRepairLoc(
-                                    location: currentLocation,
-                                    onRoute: () => context.router
-                                        .push(const FindProviderRoute()),
+                              const Divider(),
+                              addrCubit.state.when(
+                                initial: Container.new,
+                                loading: () => Expanded(
+                                  child: Center(
+                                    child: LottieBuilder.asset(
+                                      Assets.screens.loading,
+                                      height: 100,
+                                      width: 100,
+                                    ),
                                   ),
-                                );
-                          },
-                          child: AutoSizeText(l10n.lookingForHelpLabel),
+                                ),
+                                failure: () => Expanded(
+                                  child: Center(
+                                    child:
+                                        AutoSizeText(l10n.errLoadAddressLabel),
+                                  ),
+                                ),
+                                success: (addr) => Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 16),
+                                    child: ListTile(
+                                      title: AutoSizeText(
+                                        addr,
+                                        maxLines: 3,
+                                      ),
+                                      leading: const Icon(
+                                        Icons.place,
+                                        size: 32,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  bloc.add(
+                                    FindNearbyEvent.submitted(
+                                      lat: currentLoc.latitude,
+                                      lng: currentLoc.longitude,
+                                      onRoute: () => context.router
+                                          .push(const FindProviderRoute()),
+                                    ),
+                                  );
+                                },
+                                child: AutoSizeText(l10n.lookingForHelpLabel),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ),
-              // FloatingSearchBar(
-              //   hint: l10n.searchLabel,
-              //   scrollPadding: const EdgeInsets.only(bottom: 56),
-              //   transitionDuration: const Duration(milliseconds: 800),
-              //   transitionCurve: Curves.easeInOut,
-              //   physics: const BouncingScrollPhysics(),
-              //   openAxisAlignment: 0,
-              //   width: 600,
-              //   debounceDelay: const Duration(milliseconds: 500),
-              //   onQueryChanged: (query) {
-              //     context.read<AutocompleteBloc>().add(
-              //           AutocompleteEvent.started(
-              //             searchInput: query,
-              //             location: currentLocation,
-              //           ),
-              //         );
-              //   },
-              //   transition: CircularFloatingSearchBarTransition(),
-              //   actions: [
-              //     FloatingSearchBarAction(
-              //       child: CircularButton(
-              //         icon: const Icon(Icons.place),
-              //         onPressed: () {},
-              //       ),
-              //     ),
-              //     FloatingSearchBarAction.searchToClear(
-              //       showIfClosed: false,
-              //     ),
-              //   ],
-              //   builder: (context, transition) {
-              //     return BlocBuilder<AutocompleteBloc, AutocompleteState>(
-              //       builder: (context, state) {
-              //         return state.when(
-              //           loading: SizedBox.new,
-              //           loaded: (autocomplete) {
-              //             return Material(
-              //               color: Colors.white,
-              //               elevation: 4,
-              //               child: ListView.builder(
-              //                 padding: EdgeInsets.zero,
-              //                 shrinkWrap: true,
-              //                 itemCount: autocomplete.length,
-              //                 itemBuilder: (context, index) => Column(
-              //                   children: [
-              //                     ListTile(
-              //                       title: AutoSizeText(
-              //                         autocomplete[index].description,
-              //                       ),
-              //                       onTap: () {
-              //                         context.read<LocationBloc>().add(
-              //                               LocationEvent.placeSearch(
-              //                                 placeId:
-              //                                     autocomplete[
-              // index,
-              // ].placeId,
-              //                               ),
-              //                             );
-              //                         FloatingSearchBar.of(context)?.close();
-              //                         context
-              //                             .read<AutocompleteBloc>()
-              //                         .add(const AutocompleteEvent.clear());
-              //                       },
-              //                     ),
-              //                     if (autocomplete[index]
-              //                             .description
-              //                             .isNotEmpty &&
-              //              autocomplete[index] != autocomplete.last)
-              //                       const Divider(height: 0),
-              //                   ],
-              //                 ),
-              //               ),
-              //             );
-              //           },
-              //           failure: () =>
-              //        Center(child: AutoSizeText(l10n.commonErrorLabel)),
-              //         );
-              //       },
-              //     );
-              //   },
-              // ),
-            ],
-          ),
-        );
+              );
+            });
       },
+    );
+  }
+
+  Future<void> _onLocationChanged(double lat, double lng) async {
+    final mapController = await _controller.future;
+
+    // ignore: unawaited_futures
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(lat, lng),
+          zoom: 14,
+        ),
+      ),
     );
   }
 }

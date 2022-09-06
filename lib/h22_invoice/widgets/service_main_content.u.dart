@@ -282,32 +282,27 @@ class ServiceInvoiceContent extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: SizedBox(
                     width: 30,
                     height: 30,
-                    child: DecoratedBox(
-                      decoration:
-                          BoxDecoration(color: Theme.of(context).cardColor),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          AutoSizeText(
-                            l10n.total,
-                            style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall
-                                    ?.copyWith(fontWeight: FontWeight.bold) ??
-                                const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          AutoSizeText(
-                            context.formatMoney(total ?? 0),
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        AutoSizeText(
+                          l10n.total,
+                          style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.bold) ??
+                              const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        AutoSizeText(
+                          context.formatMoney(total ?? 0),
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -61,31 +61,66 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 borderRadius: BorderRadius.circular(48),
                 child: CachedNetworkImage(
                   imageUrl: widget.serviceData.imageURL,
-                  placeholder: (context, url) => Assets.screens.dfAvatar.image(
-                    fit: BoxFit.cover,
+                  placeholder: (context, url) => Assets.screens.setting.svg(
+                    fit: BoxFit.fill,
                     height: 64,
-                    gaplessPlayback: true,
                     width: 64,
                   ),
-                  errorWidget: (context, url, dynamic error) {
-                    return Assets.screens.dfAvatar.image(
-                      fit: BoxFit.cover,
-                      height: 64,
-                      gaplessPlayback: true,
-                      width: 64,
-                    );
-                  },
+                  errorWidget: (context, url, dynamic error) =>
+                      Assets.screens.setting.svg(
+                    fit: BoxFit.fill,
+                    height: 64,
+                    width: 64,
+                  ),
                   height: 64,
                   width: 64,
                   fit: BoxFit.fitWidth,
                 ),
               ),
             ),
-            title: AutoSizeText(widget.serviceData.name),
-            subtitle: AutoSizeText(
-              '${l10n.servicePriceLabel}: '
-              '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(widget.serviceData.serviceFee)}''',
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AutoSizeText(
+                  widget.serviceData.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                AutoSizeText(
+                  widget.serviceData.serviceFee == -1
+                      ? l10n.needQuotePriceLabel
+                      : context.formatMoney(
+                          widget.serviceData.serviceFee +
+                              (widget.serviceData.products.isEmpty
+                                  ? 0
+                                  : widget.serviceData.products.fold(0,
+                                      (p, e) => p + e.unitPrice * e.quantity)),
+                        ),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                if (widget.selectProMode)
+                  AutoSizeText(
+                    '''${l10n.productLabel}: ${widget.serviceData.products.isEmpty ? l10n.noneLabel : ('${widget.serviceData.products.first.name} x ${widget.serviceData.products.first.quantity}')}''',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+              ],
             ),
+            // subtitle: AutoSizeText(
+            //   '${l10n.servicePriceLabel}: '
+            //   '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(widget.serviceData.serviceFee)}''',
+            // ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,
               activeColor: Theme.of(context).colorScheme.primary,

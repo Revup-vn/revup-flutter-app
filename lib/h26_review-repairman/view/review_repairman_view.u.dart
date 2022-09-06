@@ -244,6 +244,7 @@ class _ReviewRepairmanViewState extends State<ReviewRepairmanView> {
                             keyboardType: TextInputType.multiline,
                             maxLines: 5,
                             maxLength: 1000,
+                            textInputAction: TextInputAction.done,
                           ),
                         ),
                       ],

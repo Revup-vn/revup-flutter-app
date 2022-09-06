@@ -26,7 +26,7 @@ class ServiceData with _$ServiceData {
 
   factory ServiceData.fromPendingService(PendingServiceModel service) =>
       ServiceData(
-        imageURL: kFallbackImage,
+        imageURL: service.imageUrl ?? kFallbackServiceImg,
         name: service.name,
         serviceFee: service.price,
         isOptional: service.isOptional,

@@ -30,7 +30,7 @@ class H16MapRoute extends StatelessWidget {
             return Scaffold(
               body: Stack(
                 clipBehavior: Clip.none,
-                children: <Widget>[
+                children: [
                   RequestProviderLive(
                     directions: directions,
                     fromMaker: fromMaker,
@@ -39,28 +39,29 @@ class H16MapRoute extends StatelessWidget {
                     movingFees: movingFees,
                     userStore: context.read(),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: RequestDetailsLive(
-                      providerData: providerData,
-                      movingFees: movingFees,
-                    ),
+                  RequestDetailsLive(
+                    providerData: providerData,
+                    movingFees: movingFees,
                   ),
                   Positioned(
-                    top: MediaQuery.of(context).padding.top + 30,
-                    left: 16,
-                    child: ElevatedButton(
-                      onPressed: () async => _onAbortRequest(context),
-                      style:
-                          Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                                backgroundColor: MaterialStateColor.resolveWith(
-                                  (_) => Colors.red,
-                                ),
-                                foregroundColor: MaterialStateColor.resolveWith(
-                                  (_) => Colors.white,
-                                ),
+                    top: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: ElevatedButton(
+                        onPressed: () async => _onAbortRequest(context),
+                        style: Theme.of(context)
+                            .elevatedButtonTheme
+                            .style
+                            ?.copyWith(
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                (_) => Colors.red,
                               ),
-                      child: Text(context.l10n.cancelLabel),
+                              foregroundColor: MaterialStateColor.resolveWith(
+                                (_) => Colors.white,
+                              ),
+                            ),
+                        child: Text(context.l10n.cancelLabel),
+                      ),
                     ),
                   ),
                 ],
@@ -152,7 +153,7 @@ class H16MapRoute extends StatelessWidget {
                             SnackBar(
                               content: Text(context.l10n.generalRetryError),
                             ),
-                          ), (_) {
+                          ), (_) async {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(context.l10n.userAbortTheRequest),
