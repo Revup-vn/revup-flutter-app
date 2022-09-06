@@ -27,6 +27,7 @@ class ReviewRepairmanBuilder extends StatelessWidget {
         success: (value) async {
           unawaited(
             showDialog<String>(
+              barrierDismissible: false,
               context: context,
               builder: (context) {
                 return Dialog(

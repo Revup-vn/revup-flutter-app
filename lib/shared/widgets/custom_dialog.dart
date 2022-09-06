@@ -27,7 +27,7 @@ class SimpleDialogCustom extends StatelessWidget {
         width: width?.toDouble(),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: theme.backgroundColor,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
           boxShadow: const [
             BoxShadow(
