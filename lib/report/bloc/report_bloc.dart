@@ -18,10 +18,18 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
     this.recordRepos,
   ) : super(const _Initial()) {
     on<ReportEvent>(_onEvent);
+    _s = recordRepos
+        .collection()
+        .where('cid', isEqualTo: cid)
+        .snapshots()
+        .listen((event) {
+      add(const ReportEvent.started());
+    });
   }
   final String cid;
   final IStore<AppUser> userRepos;
   final IStore<RepairRecord> recordRepos;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
 
   FutureOr<void> _onEvent(
     ReportEvent event,
@@ -146,5 +154,11 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
         emit(ReportState.success(tmp));
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
   }
 }

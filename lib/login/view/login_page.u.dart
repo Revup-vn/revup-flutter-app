@@ -308,6 +308,7 @@ class LoginPage extends StatelessWidget {
       );
     }
     showDialog<String>(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return Dialog(
