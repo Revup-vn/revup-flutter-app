@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import '../../gen/assets.gen.dart';
 
 class RepairerProfileCoverImage extends StatelessWidget {
   const RepairerProfileCoverImage(
@@ -18,6 +19,8 @@ class RepairerProfileCoverImage extends StatelessWidget {
         width: double.infinity,
         height: coverHeight,
         imageUrl: backgroundImg,
+        errorWidget: (context, url, dynamic error) =>
+            Assets.screens.brgimg.image(fit: BoxFit.fitWidth),
       ),
     );
   }
