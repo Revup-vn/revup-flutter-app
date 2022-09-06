@@ -193,8 +193,9 @@ class RepairStatusView extends StatelessWidget {
                                             '''${l10n.productLabel}: ${services[index].products.isEmpty ? l10n.noneLabel : ('${services[index].products.first.name} x ${services[index].products.first.quantity}')}''',
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.normal),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
                                         ],
                                       ),

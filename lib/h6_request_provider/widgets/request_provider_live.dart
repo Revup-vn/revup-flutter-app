@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -37,6 +38,7 @@ class RequestProviderLive extends StatefulWidget {
 class _RequestProviderLiveState extends State<RequestProviderLive> {
   late CameraPosition _initialLocation;
   late GoogleMapController mapController;
+  // final _controller = Completer<GoogleMapController>();
   // ignore: unused_field
   late String _distance;
   Set<Marker> markers = {};
@@ -118,7 +120,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
 
     final northEastLatitude = maxLat;
     final northEastLongitude = maxLng;
-
+    // final mapController = await _controller.future;
     await mapController.animateCamera(
       CameraUpdate.newLatLngBounds(
         LatLngBounds(
@@ -194,6 +196,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
             initialCameraPosition: _initialLocation,
             onMapCreated: (GoogleMapController controller) {
               mapController = controller;
+              // _controller.complete(controller);
               initPolylines();
             },
             myLocationEnabled: true,
@@ -233,7 +236,11 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
                 myLocationEnabled: true,
                 onMapCreated: (GoogleMapController controller) {
                   mapController = controller;
-                  initPolylines();
+                  // _controller.complete(controller);
+
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    initPolylines();
+                  });
                 },
                 zoomControlsEnabled: false,
                 markers: Set<Marker>.from(markers),
@@ -266,6 +273,7 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
               polylines: Set<Polyline>.of(snapshot.data!.values),
               onMapCreated: (GoogleMapController controller) {
                 mapController = controller;
+                // _controller.complete(controller);
               },
             );
           },

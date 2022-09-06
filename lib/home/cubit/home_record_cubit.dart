@@ -15,6 +15,7 @@ class HomeRecordCubit extends Cubit<HomeRecordState> {
   final AppUser user;
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
   Future<Unit> watch() async {
+    if (isClosed) return unit;
     _s = _repairRecord
         .collection()
         .where('cid', isEqualTo: user.uuid)
