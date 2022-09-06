@@ -8,7 +8,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../configs/video_call_config_pub.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../bloc/login_bloc.dart';
@@ -172,7 +171,6 @@ class LoginEnterPhoneView extends StatelessWidget {
                                     email: email,
                                     id: uid,
                                     username: phoneNumber,
-                                    pwd: DEFAULT_PASS,
                                   ),
                                 ),
                               );
