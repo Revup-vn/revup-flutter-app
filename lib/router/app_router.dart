@@ -59,13 +59,14 @@ import '../test/test.dart';
       page: HomePage,
       children: [
         AdaptiveRoute<void>(page: HomeBodyPage),
-        AdaptiveRoute<void>(page: HistoryProviderPage, maintainState: false),
+        AdaptiveRoute<void>(
+          page: HistoryProviderPage,
+        ),
         AdaptiveRoute<void>(page: NotificationPage),
         AdaptiveRoute<void>(
           page: AccountPage,
         ),
       ],
-      maintainState: false,
     ),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
     AdaptiveRoute<void>(page: PaymentPage),

@@ -4,8 +4,14 @@ class SimpleDialogCustom extends StatelessWidget {
   const SimpleDialogCustom({
     super.key,
     required this.content,
+    required this.button,
+    this.height,
+    this.width,
   });
   final List<Widget> content;
+  final List<Widget> button;
+  final int? height;
+  final int? width;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +23,8 @@ class SimpleDialogCustom extends StatelessWidget {
         ),
       ),
       child: Container(
+        height: height?.toDouble(),
+        width: width?.toDouble(),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: theme.backgroundColor,
@@ -32,7 +40,17 @@ class SimpleDialogCustom extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: content,
+          children: [
+            Expanded(
+              child: Column(
+                children: content,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: button,
+            ),
+          ],
         ),
       ),
     );

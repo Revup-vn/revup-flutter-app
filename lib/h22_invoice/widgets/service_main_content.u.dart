@@ -5,9 +5,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
+import '../../shared/fallbacks.dart';
 import '../models/service_data.dart';
 import '../widgets/default_avatar.dart';
 
@@ -169,29 +171,99 @@ class ServiceInvoiceContent extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: service.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            AutoSizeText(
-                              service[index].serviceName,
-                              style: Theme.of(context).textTheme.labelLarge,
+                      var statusLabel = l10n.completedLabel;
+                      var statusColor = Colors.blueAccent;
+                      if (service[index].state == 'paid') {
+                        statusLabel = l10n.paidLabel;
+                        statusColor = Colors.greenAccent;
+                      } else if (service[index].state == 'pending') {
+                        if (!service[index].isCompleted) {
+                          statusLabel = l10n.uncompletedLabel;
+                          statusColor = Colors.orangeAccent;
+                        } else {
+                          statusLabel = l10n.completedLabel;
+                          statusColor = Colors.blueAccent;
+                        }
+                      }
+                      return Card(
+                        elevation: 0,
+                        child: SizedBox(
+                          height: 96,
+                          child: ListTile(
+                            leading: SizedBox(
+                              height: 64,
+                              width: 64,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: CachedNetworkImage(
+                                  imageUrl: service[index].imgUrl ??
+                                      kFallbackServiceImg,
+                                  //todo change to defaul service avt
+                                  errorWidget: (context, url, dynamic error) {
+                                    return Assets.screens.dfAvatar.image(
+                                      fit: BoxFit.fill,
+                                      height: 64,
+                                      gaplessPlayback: true,
+                                      width: 64,
+                                    );
+                                  },
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                             ),
-                            AutoSizeText(
-                              context.formatMoney(service[index].serviceFee),
-                              style: service[index].state == 'paid'
-                                  ? Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      )
-                                  : Theme.of(context).textTheme.labelLarge,
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AutoSizeText(
+                                  service[index].serviceName,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        context.formatMoney(
+                                          service[index].serviceFee,
+                                        ),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    AutoSizeText(
+                                      statusLabel,
+                                      style: TextStyle(
+                                        color: statusColor,
+                                      ),
+                                      maxFontSize: 12,
+                                      minFontSize: 8,
+                                    ),
+                                  ],
+                                ),
+                                AutoSizeText(
+                                  '''${l10n.productLabel}: ${service[index].products.isEmpty ? l10n.noneLabel : ('${service[index].products.first.name} x ${service[index].products.first.quantity}')}''',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       );
                     },
