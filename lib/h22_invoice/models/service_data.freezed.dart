@@ -19,6 +19,9 @@ mixin _$ServiceData {
   String get serviceName => throw _privateConstructorUsedError;
   int get serviceFee => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
+  bool get isCompleted => throw _privateConstructorUsedError;
+  List<PaymentProduct> get products => throw _privateConstructorUsedError;
+  String? get imgUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ServiceDataCopyWith<ServiceData> get copyWith =>
@@ -30,7 +33,13 @@ abstract class $ServiceDataCopyWith<$Res> {
   factory $ServiceDataCopyWith(
           ServiceData value, $Res Function(ServiceData) then) =
       _$ServiceDataCopyWithImpl<$Res>;
-  $Res call({String serviceName, int serviceFee, String state});
+  $Res call(
+      {String serviceName,
+      int serviceFee,
+      String state,
+      bool isCompleted,
+      List<PaymentProduct> products,
+      String? imgUrl});
 }
 
 /// @nodoc
@@ -46,6 +55,9 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
     Object? state = freezed,
+    Object? isCompleted = freezed,
+    Object? products = freezed,
+    Object? imgUrl = freezed,
   }) {
     return _then(_value.copyWith(
       serviceName: serviceName == freezed
@@ -60,6 +72,18 @@ class _$ServiceDataCopyWithImpl<$Res> implements $ServiceDataCopyWith<$Res> {
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String,
+      isCompleted: isCompleted == freezed
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
+      imgUrl: imgUrl == freezed
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -71,7 +95,13 @@ abstract class _$$_ServiceDataCopyWith<$Res>
           _$_ServiceData value, $Res Function(_$_ServiceData) then) =
       __$$_ServiceDataCopyWithImpl<$Res>;
   @override
-  $Res call({String serviceName, int serviceFee, String state});
+  $Res call(
+      {String serviceName,
+      int serviceFee,
+      String state,
+      bool isCompleted,
+      List<PaymentProduct> products,
+      String? imgUrl});
 }
 
 /// @nodoc
@@ -89,6 +119,9 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
     Object? serviceName = freezed,
     Object? serviceFee = freezed,
     Object? state = freezed,
+    Object? isCompleted = freezed,
+    Object? products = freezed,
+    Object? imgUrl = freezed,
   }) {
     return _then(_$_ServiceData(
       serviceName: serviceName == freezed
@@ -103,6 +136,18 @@ class __$$_ServiceDataCopyWithImpl<$Res> extends _$ServiceDataCopyWithImpl<$Res>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String,
+      isCompleted: isCompleted == freezed
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<PaymentProduct>,
+      imgUrl: imgUrl == freezed
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,7 +158,11 @@ class _$_ServiceData implements _ServiceData {
   _$_ServiceData(
       {required this.serviceName,
       required this.serviceFee,
-      required this.state});
+      required this.state,
+      required this.isCompleted,
+      required final List<PaymentProduct> products,
+      this.imgUrl})
+      : _products = products;
 
   @override
   final String serviceName;
@@ -121,10 +170,21 @@ class _$_ServiceData implements _ServiceData {
   final int serviceFee;
   @override
   final String state;
+  @override
+  final bool isCompleted;
+  final List<PaymentProduct> _products;
+  @override
+  List<PaymentProduct> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  final String? imgUrl;
 
   @override
   String toString() {
-    return 'ServiceData(serviceName: $serviceName, serviceFee: $serviceFee, state: $state)';
+    return 'ServiceData(serviceName: $serviceName, serviceFee: $serviceFee, state: $state, isCompleted: $isCompleted, products: $products, imgUrl: $imgUrl)';
   }
 
   @override
@@ -136,7 +196,11 @@ class _$_ServiceData implements _ServiceData {
                 .equals(other.serviceName, serviceName) &&
             const DeepCollectionEquality()
                 .equals(other.serviceFee, serviceFee) &&
-            const DeepCollectionEquality().equals(other.state, state));
+            const DeepCollectionEquality().equals(other.state, state) &&
+            const DeepCollectionEquality()
+                .equals(other.isCompleted, isCompleted) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality().equals(other.imgUrl, imgUrl));
   }
 
   @override
@@ -144,7 +208,10 @@ class _$_ServiceData implements _ServiceData {
       runtimeType,
       const DeepCollectionEquality().hash(serviceName),
       const DeepCollectionEquality().hash(serviceFee),
-      const DeepCollectionEquality().hash(state));
+      const DeepCollectionEquality().hash(state),
+      const DeepCollectionEquality().hash(isCompleted),
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(imgUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +223,10 @@ abstract class _ServiceData implements ServiceData {
   factory _ServiceData(
       {required final String serviceName,
       required final int serviceFee,
-      required final String state}) = _$_ServiceData;
+      required final String state,
+      required final bool isCompleted,
+      required final List<PaymentProduct> products,
+      final String? imgUrl}) = _$_ServiceData;
 
   @override
   String get serviceName;
@@ -164,6 +234,12 @@ abstract class _ServiceData implements ServiceData {
   int get serviceFee;
   @override
   String get state;
+  @override
+  bool get isCompleted;
+  @override
+  List<PaymentProduct> get products;
+  @override
+  String? get imgUrl;
   @override
   @JsonKey(ignore: true)
   _$$_ServiceDataCopyWith<_$_ServiceData> get copyWith =>

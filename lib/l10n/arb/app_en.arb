@@ -241,5 +241,7 @@
   "pendingLabel": "Unpaid",
   "waitingLabel": "Waiting",
   "noneLabel": "None",
-  "bannedMessage": "You are currently banned from the system. Please contact care center for more infomation!"
+  "bannedMessage": "You are currently banned from the system. Please contact care center for more infomation!",
+  "uncompletedLabel": "Uncomplted",
+  "completedLabel":"Completed"
 }
