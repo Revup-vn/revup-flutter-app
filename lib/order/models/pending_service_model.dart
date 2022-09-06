@@ -7,27 +7,37 @@ part 'pending_service_model.freezed.dart';
 class PendingServiceModel with _$PendingServiceModel {
   const factory PendingServiceModel({
     required String name,
+    String? imageUrl,
     required int price,
     required bool isOptional,
     required List<PaymentProduct> products,
+    String? status,
   }) = _PendingServiceModel;
 
   factory PendingServiceModel.fromDto({
     required PaymentService paymentService,
   }) =>
-      paymentService.maybeMap(
+      paymentService.map(
         pending: (v) => PendingServiceModel(
           name: v.serviceName,
           price: v.moneyAmount,
           isOptional: v.isOptional,
           products: v.products,
+          status: 'pending',
         ),
         needToVerify: (v) => PendingServiceModel(
           name: v.serviceName,
           price: -1,
           isOptional: true,
           products: [],
+          status: 'waiting',
         ),
-        orElse: () => throw NullThrownError(),
+        paid: (v) => PendingServiceModel(
+          name: v.serviceName,
+          price: v.moneyAmount,
+          isOptional: false,
+          products: v.products,
+          status: 'paid',
+        ),
       );
 }

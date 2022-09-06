@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
@@ -109,33 +111,8 @@ class _AppServicePanelState extends State<AppServicePanel> {
                                             AppServiceItem(
                                               name: l10n.carLabel,
                                               icon: const Icon(Icons.car_crash),
-                                              onPressed: () async {
-                                                final boxRprRecord =
-                                                    Hive.box<dynamic>(
-                                                  'repairRecord',
-                                                );
-                                                await boxRprRecord.put(
-                                                  'vehicle',
-                                                  'car',
-                                                );
-                                                final boxLocation =
-                                                    Hive.box<dynamic>(
-                                                  'location',
-                                                );
-
-                                                await context.router.popAndPush(
-                                                  FindNearbyRoute(
-                                                    currentLocation: LatLng(
-                                                      boxLocation.get(
-                                                        'currentLat',
-                                                      ) as double,
-                                                      boxLocation.get(
-                                                        'currentLng',
-                                                      ) as double,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
+                                              onPressed: () async =>
+                                                  _guardBannedUser(context, 0),
                                             ),
                                             const SizedBox(width: 32),
                                             AppServiceItem(
@@ -143,32 +120,8 @@ class _AppServicePanelState extends State<AppServicePanel> {
                                               icon: const Icon(
                                                 Icons.motorcycle,
                                               ),
-                                              onPressed: () async {
-                                                final boxRprRecord =
-                                                    Hive.box<dynamic>(
-                                                  'repairRecord',
-                                                );
-                                                await boxRprRecord.put(
-                                                  'vehicle',
-                                                  'motorbike',
-                                                );
-                                                final boxLocation =
-                                                    Hive.box<dynamic>(
-                                                  'location',
-                                                );
-                                                await context.router.popAndPush(
-                                                  FindNearbyRoute(
-                                                    currentLocation: LatLng(
-                                                      boxLocation.get(
-                                                        'currentLat',
-                                                      ) as double,
-                                                      boxLocation.get(
-                                                        'currentLng',
-                                                      ) as double,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
+                                              onPressed: () async =>
+                                                  _guardBannedUser(context, 1),
                                             ),
                                           ],
                                         ),
@@ -206,6 +159,89 @@ class _AppServicePanelState extends State<AppServicePanel> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onSelectMotorbike(BuildContext context) async {
+    final boxRprRecord = Hive.box<dynamic>(
+      'repairRecord',
+    );
+    await boxRprRecord.put(
+      'vehicle',
+      'motorbike',
+    );
+    final boxLocation = Hive.box<dynamic>(
+      'location',
+    );
+    await context.router.popAndPush(
+      FindNearbyRoute(
+        currentLocation: LatLng(
+          boxLocation.get(
+            'currentLat',
+          ) as double,
+          boxLocation.get(
+            'currentLng',
+          ) as double,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _guardBannedUser(BuildContext context, int type) async {
+    try {
+      final _iau = context.read<IStore<AppUser>>();
+      final uid = context.read<AuthenticateBloc>().state.maybeMap(
+            orElse: () => throw NullThrownError(),
+            authenticated: (value) => value.authType.user.uuid,
+          );
+      if ((await _iau.get(uid)).toOption().fold(
+            () => false,
+            (a) => a.maybeMap(
+              orElse: () => false,
+              consumer: (value) => !(value.violatedTimes >= 3 &&
+                  (value.bannedValidatedDate ?? DateTime.now())
+                          .compareTo(DateTime.now()) >=
+                      0),
+            ),
+          )) {
+        if (type == 0) {
+          await _onSelectCarService(context);
+        } else {
+          await _onSelectMotorbike(context);
+        }
+      } else {
+        throw Exception();
+      }
+    } catch (_) {
+      await context.showInfoBar<void>(
+        content: Text(context.l10n.bannedMessage),
+      );
+    }
+  }
+
+  Future<void> _onSelectCarService(BuildContext context) async {
+    final boxRprRecord = Hive.box<dynamic>(
+      'repairRecord',
+    );
+    await boxRprRecord.put(
+      'vehicle',
+      'car',
+    );
+    final boxLocation = Hive.box<dynamic>(
+      'location',
+    );
+
+    await context.router.popAndPush(
+      FindNearbyRoute(
+        currentLocation: LatLng(
+          boxLocation.get(
+            'currentLat',
+          ) as double,
+          boxLocation.get(
+            'currentLng',
+          ) as double,
         ),
       ),
     );

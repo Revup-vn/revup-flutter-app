@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/bloc/repair_status_bloc.dart';
+import '../bloc/repair_status_bloc.dart';
 import 'repair_status_view.u.dart';
 
 class RepairStatusPage extends StatelessWidget {
@@ -14,8 +14,10 @@ class RepairStatusPage extends StatelessWidget {
         recordId,
         context.read(),
         context.read(),
-      )..add(const RepairStatusEvent.started()),
-      child: const RepairStatusView(),
+      ),
+      child: RepairStatusView(
+        recordId: recordId,
+      ),
     );
   }
 }

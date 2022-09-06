@@ -348,6 +348,7 @@ mixin _$H16MapRouteState {
     required TResult Function(Directions directions, Marker fromMarker,
             Marker toMarker, ProviderData providerData, int movingFees)
         success,
+    required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -356,6 +357,7 @@ mixin _$H16MapRouteState {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -364,6 +366,7 @@ mixin _$H16MapRouteState {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -371,18 +374,21 @@ mixin _$H16MapRouteState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -449,6 +455,7 @@ class _$_Initial implements _Initial {
     required TResult Function(Directions directions, Marker fromMarker,
             Marker toMarker, ProviderData providerData, int movingFees)
         success,
+    required TResult Function() failure,
   }) {
     return initial();
   }
@@ -460,6 +467,7 @@ class _$_Initial implements _Initial {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
   }) {
     return initial?.call();
   }
@@ -471,6 +479,7 @@ class _$_Initial implements _Initial {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -484,6 +493,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
   }
@@ -493,6 +503,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -502,6 +513,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -651,6 +663,7 @@ class _$_Success implements _Success {
     required TResult Function(Directions directions, Marker fromMarker,
             Marker toMarker, ProviderData providerData, int movingFees)
         success,
+    required TResult Function() failure,
   }) {
     return success(directions, fromMarker, toMarker, providerData, movingFees);
   }
@@ -662,6 +675,7 @@ class _$_Success implements _Success {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
   }) {
     return success?.call(
         directions, fromMarker, toMarker, providerData, movingFees);
@@ -674,6 +688,7 @@ class _$_Success implements _Success {
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
             ProviderData providerData, int movingFees)?
         success,
+    TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -688,6 +703,7 @@ class _$_Success implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
   }) {
     return success(this);
   }
@@ -697,6 +713,7 @@ class _$_Success implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -706,6 +723,7 @@ class _$_Success implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -731,4 +749,120 @@ abstract class _Success implements H16MapRouteState {
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$H16MapRouteStateCopyWithImpl<$Res>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, (v) => _then(v as _$_Failure));
+
+  @override
+  _$_Failure get _value => super._value as _$_Failure;
+}
+
+/// @nodoc
+
+class _$_Failure implements _Failure {
+  const _$_Failure();
+
+  @override
+  String toString() {
+    return 'H16MapRouteState.failure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Failure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Directions directions, Marker fromMarker,
+            Marker toMarker, ProviderData providerData, int movingFees)
+        success,
+    required TResult Function() failure,
+  }) {
+    return failure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            ProviderData providerData, int movingFees)?
+        success,
+    TResult Function()? failure,
+  }) {
+    return failure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
+            ProviderData providerData, int movingFees)?
+        success,
+    TResult Function()? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements H16MapRouteState {
+  const factory _Failure() = _$_Failure;
 }

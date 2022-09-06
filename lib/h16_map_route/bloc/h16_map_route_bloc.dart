@@ -84,25 +84,30 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
         );
       },
       confirmArrival: (onRoute, sendMessage) async {
-        // get latest consumer fcm token
-        final provider = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
-        final tokens =
-            (await storeRepository.userNotificationTokenRepo(provider).all())
-                .map(
-                  (r) => r.sort(
-                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                  ),
-                )
-                .fold((l) => throw NullThrownError(), (r) => r.toList());
+        try {
+          // get latest consumer fcm token
+          final provider = (await _userStore.get(providerId))
+              .fold<Option<AppUser>>(
+                (l) => none(),
+                some,
+              )
+              .getOrElse(() => throw NullThrownError());
+          final tokens = (await storeRepository
+                  .userNotificationTokenRepo(provider)
+                  .all())
+              .map(
+                (r) => r.sort(
+                  orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                ),
+              )
+              .fold((l) => throw NullThrownError(), (r) => r.toList());
 
-        sendMessage(tokens.first.token);
+          sendMessage(tokens.first.token);
 
-        onRoute();
+          onRoute();
+        } catch (_) {
+          emit(const H16MapRouteState.failure());
+        }
       },
     );
   }
