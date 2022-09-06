@@ -50,7 +50,7 @@ class _RequestProviderStaticState extends State<RequestProviderStatic> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      padding: const EdgeInsets.only(bottom: 320),
+      padding: const EdgeInsets.only(bottom: 400),
       initialCameraPosition: _initialLocation,
       onMapCreated: (GoogleMapController controller) {
         fitPolylineToView(widget.directions.polylinePoints, controller);

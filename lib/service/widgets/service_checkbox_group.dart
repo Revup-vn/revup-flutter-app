@@ -53,14 +53,12 @@ class ServiceCheckboxGroup extends StatelessWidget {
                 ),
               ),
               serviceData: serviceList[index],
-              selectProMode:
-                  isSelectProduct && serviceList[index].products.isEmpty,
+              selectProMode: isSelectProduct,
               isSelectDefault: pendingService
                       .map((e) => e.name)
                       .contains(serviceList[index].name) ||
                   serviceList[index].isOptional,
-              canSelect: !serviceList[index].isOptional &&
-                  serviceList[index].products.isEmpty,
+              canSelect: !serviceList[index].isOptional,
               index: index,
               providerId: providerId,
               field: field,

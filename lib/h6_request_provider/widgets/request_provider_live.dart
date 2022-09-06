@@ -197,7 +197,9 @@ class _RequestProviderLiveState extends State<RequestProviderLive> {
             onMapCreated: (GoogleMapController controller) {
               mapController = controller;
               // _controller.complete(controller);
-              initPolylines();
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                initPolylines();
+              });
             },
             myLocationEnabled: true,
             markers: Set<Marker>.from(markers),

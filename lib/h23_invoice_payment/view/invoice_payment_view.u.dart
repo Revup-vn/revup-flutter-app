@@ -307,7 +307,6 @@ class InvoicePaymentView extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: SizedBox(
                     width: 30,
                     height: 30,
@@ -339,7 +338,6 @@ class InvoicePaymentView extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: ElevatedButton(
                     onPressed: () async {
                       maybeUser.fold(

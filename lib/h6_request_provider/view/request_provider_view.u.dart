@@ -37,21 +37,27 @@ class RequestProviderView extends StatelessWidget {
             return Stack(
               children: <Widget>[
                 if (recordType == 'pending')
-                  RequestProviderStatic(
-                    providerData: providerData,
-                    directions: directions,
-                    fromMaker: fromMaker,
-                    toMarker: toMarker,
-                    movingFees: movingFees,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: RequestProviderStatic(
+                      providerData: providerData,
+                      directions: directions,
+                      fromMaker: fromMaker,
+                      toMarker: toMarker,
+                      movingFees: movingFees,
+                    ),
                   )
                 else
-                  RequestProviderLive(
-                    providerData: providerData,
-                    directions: directions,
-                    fromMaker: fromMaker,
-                    toMarker: toMarker,
-                    movingFees: movingFees,
-                    userStore: userStore,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: RequestProviderLive(
+                      providerData: providerData,
+                      directions: directions,
+                      fromMaker: fromMaker,
+                      toMarker: toMarker,
+                      movingFees: movingFees,
+                      userStore: userStore,
+                    ),
                   ),
                 if (recordType == 'pending')
                   RequestDetailsStatic(
