@@ -20,12 +20,20 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     this.storageBloc,
   ) : super(const _Initial()) {
     on<AccountEvent>(_onEvent);
+    _s = _userRepos
+        .collection()
+        .where('uuid', isEqualTo: providerID)
+        .snapshots()
+        .listen((event) {
+      add(const AccountEvent.started());
+    });
   }
   final String providerID;
   final IStore<AppUser> _userRepos;
   final StoreRepository storeRepository;
   final ImagePicker _imagePicker;
   final StorageBloc storageBloc;
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
   FutureOr<void> _onEvent(
     AccountEvent event,
     Emitter<AccountState> emit,
@@ -164,5 +172,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     );
 
     return unit;
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
   }
 }

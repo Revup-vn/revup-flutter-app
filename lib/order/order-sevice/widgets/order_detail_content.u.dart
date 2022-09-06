@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../shared/widgets/custom_dialog.dart';
 import '../model/service_model.dart';
 
 class OrderDetailContent extends StatelessWidget {
@@ -36,61 +36,35 @@ class OrderDetailContent extends StatelessWidget {
                 ? () {
                     showDialog<void>(
                       context: context,
-                      builder: (context) => Dialog(
-                        child: SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10,
-                                  top: 10,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: AutoSizeText(
-                                        context.l10n.cancelUpdateServiceLabel,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                right: 1,
-                                bottom: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        var count = 0;
-                                        context.router.popUntil(
-                                          (route) => count++ >= 2,
-                                        );
-                                      },
-                                      child: AutoSizeText(
-                                        context.l10n.confirmLabel,
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        context.router.pop();
-                                      },
-                                      child: AutoSizeText(
-                                        context.l10n.cancelLabel,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                      builder: (context) => SimpleDialogCustom(
+                        height: 200,
+                        content: [
+                          AutoSizeText(
+                            context.l10n.cancelUpdateServiceLabel,
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
-                        ),
+                        ],
+                        button: [
+                          TextButton(
+                            onPressed: () {
+                              var count = 0;
+                              context.router.popUntil(
+                                (route) => count++ >= 2,
+                              );
+                            },
+                            child: AutoSizeText(
+                              context.l10n.confirmLabel,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              context.router.pop();
+                            },
+                            child: AutoSizeText(
+                              context.l10n.cancelLabel,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   }
