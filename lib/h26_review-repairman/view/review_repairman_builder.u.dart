@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/loading.u.dart';
+import '../../shared/widgets/unknown_failure.dart';
 import '../bloc/review_repairman_bloc.u.dart';
 import 'review_repairman_view.u.dart';
 
@@ -17,11 +18,12 @@ class ReviewRepairmanBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ReviewRepairmanBloc, ReviewRepairmanState>(
       builder: (context, state) => state.maybeMap(
+        failure: (value) => const Scaffold(body: UnknownFailure()),
         orElse: Container.new,
         loading: (value) => const Loading(),
         loadDataSuccess: (value) => ReviewRepairmanView(value.data),
       ),
-      listener: (lcontext, state) => state.maybeMap(
+      listener: (context, state) => state.maybeMap(
         success: (value) async {
           unawaited(
             showDialog<String>(
@@ -65,54 +67,6 @@ class ReviewRepairmanBuilder extends StatelessWidget {
             const Duration(seconds: 3),
             () async {
               return context.router.pop();
-            },
-          );
-        },
-        failure: (value) {
-          showDialog<String>(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return Dialog(
-                backgroundColor: Colors.transparent,
-                insetPadding: const EdgeInsets.all(10),
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.cancel,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                          AutoSizeText(
-                            context.l10n.failLabel,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onTertiary,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-
-          return Future.delayed(
-            const Duration(seconds: 3),
-            () async {
-              var count = 0;
-              context.router.popUntil(
-                (route) => count++ == 2,
-              );
             },
           );
         },

@@ -80,7 +80,7 @@ class ReviewRepairmanBloc
             .getOrElse(() => throw NullThrownError());
         maybeProviderData.fold(
           () => emit(
-            const ReviewRepairmanState.loading(),
+            const ReviewRepairmanState.failure(),
           ),
           (provider) {
             emit(
