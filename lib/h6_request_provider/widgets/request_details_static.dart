@@ -81,7 +81,7 @@ class RequestDetailsStatic extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AutoSizeText(
-                                providerData.rating.toString(),
+                                providerData.rating.toStringAsFixed(1),
                                 maxLines: 1,
                               ),
                               Icon(
@@ -104,9 +104,10 @@ class RequestDetailsStatic extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              '''${l10n.addressLabel}: ${providerData.address}''',
+                              '''${l10n.addressNormalLabel}: ${providerData.address}''',
                             ),
                             const SizedBox(
                               height: 16,

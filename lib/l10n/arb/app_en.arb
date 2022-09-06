@@ -85,7 +85,7 @@
   "servicePriceLabel": "Price",
   "breakdownLocationLabel": "Your vehicle breakdown location",
   "lookingForHelpLabel": "Looking for help",
-  "searchLabel": "Search...",
+  "searchLabel": "Search service...",
   "paymentFeeOfTransportLabel": "Payment of transportation fees",
   "callForHelpLabel": "Call for help",
   "enableLocationLabel": "Allow location access",
@@ -244,5 +244,6 @@
   "bannedMessage": "You are currently banned from the system. Please contact care center for more infomation!",
   "errLoadAddressLabel": "Cannot load adderss information",
   "uncompletedLabel": "Uncompleted",
-  "completedLabel": "Completed"
+  "completedLabel": "Completed",
+  "addressNormalLabel": "Address"
 }

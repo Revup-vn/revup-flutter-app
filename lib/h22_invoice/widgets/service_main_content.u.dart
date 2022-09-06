@@ -1,35 +1,31 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../order/models/pending_service_model.dart';
 import '../../router/app_router.gr.dart';
 import '../../shared/fallbacks.dart';
-import '../models/service_data.dart';
 import '../widgets/default_avatar.dart';
 
 class ServiceInvoiceContent extends StatelessWidget {
   const ServiceInvoiceContent(
-    this.total,
     this.providerData,
-    this.serviceData, {
+    this.services, {
     super.key,
     required this.ready,
   });
   final ProviderData providerData;
-  final IList<ServiceData> serviceData;
+  final List<PendingServiceModel> services;
   final bool ready;
-  final int? total;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final service = serviceData.toIterable().toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -105,7 +101,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                                   providerData.rating.isNaN ||
                                           providerData.rating == 0
                                       ? '0'
-                                      : providerData.rating.toString(),
+                                      : providerData.rating.toStringAsFixed(1),
                                   style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -140,7 +136,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                   Row(
                     children: [
                       AutoSizeText(
-                        '${l10n.addressLabel} ${providerData.address}',
+                        '${l10n.addressNormalLabel} ${providerData.address}',
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
@@ -169,15 +165,15 @@ class ServiceInvoiceContent extends StatelessWidget {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: service.length,
+                    itemCount: services.length,
                     itemBuilder: (BuildContext context, int index) {
                       var statusLabel = l10n.completedLabel;
                       var statusColor = Colors.blueAccent;
-                      if (service[index].state == 'paid') {
+                      if (services[index].status == 'paid') {
                         statusLabel = l10n.paidLabel;
                         statusColor = Colors.greenAccent;
-                      } else if (service[index].state == 'pending') {
-                        if (!service[index].isCompleted) {
+                      } else if (services[index].status == 'pending') {
+                        if (!services[index].isComplete) {
                           statusLabel = l10n.uncompletedLabel;
                           statusColor = Colors.orangeAccent;
                         } else {
@@ -196,14 +192,12 @@ class ServiceInvoiceContent extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: CachedNetworkImage(
-                                  imageUrl: service[index].imgUrl ??
+                                  imageUrl: services[index].imageUrl ??
                                       kFallbackServiceImg,
-                                  //todo change to defaul service avt
                                   errorWidget: (context, url, dynamic error) {
-                                    return Assets.screens.dfAvatar.image(
+                                    return Assets.screens.setting.svg(
                                       fit: BoxFit.fill,
                                       height: 64,
-                                      gaplessPlayback: true,
                                       width: 64,
                                     );
                                   },
@@ -218,7 +212,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AutoSizeText(
-                                  service[index].serviceName,
+                                  services[index].name,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -232,7 +226,17 @@ class ServiceInvoiceContent extends StatelessWidget {
                                     Expanded(
                                       child: AutoSizeText(
                                         context.formatMoney(
-                                          service[index].serviceFee,
+                                          services[index].price +
+                                              (services[index].products.isEmpty
+                                                  ? 0
+                                                  : services[index]
+                                                      .products
+                                                      .fold(
+                                                          0,
+                                                          (p, e) =>
+                                                              p +
+                                                              e.unitPrice *
+                                                                  e.quantity)),
                                         ),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -254,7 +258,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                                   ],
                                 ),
                                 AutoSizeText(
-                                  '''${l10n.productLabel}: ${service[index].products.isEmpty ? l10n.noneLabel : ('${service[index].products.first.name} x ${service[index].products.first.quantity}')}''',
+                                  '''${l10n.productLabel}: ${services[index].products.isEmpty ? l10n.noneLabel : ('${services[index].products.first.name} x ${services[index].products.first.quantity}')}''',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -299,7 +303,20 @@ class ServiceInvoiceContent extends StatelessWidget {
                               ),
                         ),
                         AutoSizeText(
-                          context.formatMoney(total ?? 0),
+                          context.formatMoney(
+                            services.fold(
+                              0,
+                              (p, e) =>
+                                  p +
+                                  (e.isComplete
+                                      ? (e.price +
+                                          (e.products.isEmpty
+                                              ? 0
+                                              : e.products.first.unitPrice *
+                                                  e.products.first.quantity))
+                                      : 0),
+                            ),
+                          ),
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                       ],
@@ -315,7 +332,9 @@ class ServiceInvoiceContent extends StatelessWidget {
                             context.router.push(
                               InvoicePaymentRoute(
                                 providerData: providerData,
-                                serviceData: service,
+                                services: services
+                                    .where((e) => e.isComplete)
+                                    .toList(),
                               ),
                             );
                           }

@@ -22,6 +22,7 @@ mixin _$PendingServiceModel {
   bool get isOptional => throw _privateConstructorUsedError;
   List<PaymentProduct> get products => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
+  bool get isComplete => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PendingServiceModelCopyWith<PendingServiceModel> get copyWith =>
@@ -39,7 +40,8 @@ abstract class $PendingServiceModelCopyWith<$Res> {
       int price,
       bool isOptional,
       List<PaymentProduct> products,
-      String? status});
+      String? status,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$PendingServiceModelCopyWithImpl<$Res>
     Object? isOptional = freezed,
     Object? products = freezed,
     Object? status = freezed,
+    Object? isComplete = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -85,6 +88,10 @@ class _$PendingServiceModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      isComplete: isComplete == freezed
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -102,7 +109,8 @@ abstract class _$$_PendingServiceModelCopyWith<$Res>
       int price,
       bool isOptional,
       List<PaymentProduct> products,
-      String? status});
+      String? status,
+      bool isComplete});
 }
 
 /// @nodoc
@@ -124,6 +132,7 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
     Object? isOptional = freezed,
     Object? products = freezed,
     Object? status = freezed,
+    Object? isComplete = freezed,
   }) {
     return _then(_$_PendingServiceModel(
       name: name == freezed
@@ -150,6 +159,10 @@ class __$$_PendingServiceModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      isComplete: isComplete == freezed
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -163,7 +176,8 @@ class _$_PendingServiceModel implements _PendingServiceModel {
       required this.price,
       required this.isOptional,
       required final List<PaymentProduct> products,
-      this.status})
+      this.status,
+      this.isComplete = false})
       : _products = products;
 
   @override
@@ -183,10 +197,13 @@ class _$_PendingServiceModel implements _PendingServiceModel {
 
   @override
   final String? status;
+  @override
+  @JsonKey()
+  final bool isComplete;
 
   @override
   String toString() {
-    return 'PendingServiceModel(name: $name, imageUrl: $imageUrl, price: $price, isOptional: $isOptional, products: $products, status: $status)';
+    return 'PendingServiceModel(name: $name, imageUrl: $imageUrl, price: $price, isOptional: $isOptional, products: $products, status: $status, isComplete: $isComplete)';
   }
 
   @override
@@ -200,7 +217,9 @@ class _$_PendingServiceModel implements _PendingServiceModel {
             const DeepCollectionEquality()
                 .equals(other.isOptional, isOptional) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.isComplete, isComplete));
   }
 
   @override
@@ -211,7 +230,8 @@ class _$_PendingServiceModel implements _PendingServiceModel {
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(isOptional),
       const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(isComplete));
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +247,8 @@ abstract class _PendingServiceModel implements PendingServiceModel {
       required final int price,
       required final bool isOptional,
       required final List<PaymentProduct> products,
-      final String? status}) = _$_PendingServiceModel;
+      final String? status,
+      final bool isComplete}) = _$_PendingServiceModel;
 
   @override
   String get name;
@@ -241,6 +262,8 @@ abstract class _PendingServiceModel implements PendingServiceModel {
   List<PaymentProduct> get products;
   @override
   String? get status;
+  @override
+  bool get isComplete;
   @override
   @JsonKey(ignore: true)
   _$$_PendingServiceModelCopyWith<_$_PendingServiceModel> get copyWith =>

@@ -23,8 +23,8 @@ class ServiceInvoiceView extends StatelessWidget {
         failure: Container.new,
         initial: (_) => Container(),
         loading: Loading.new,
-        loadingDataSuccess: (data, ready, total, serviceData) =>
-            ServiceInvoiceContent(total, data, serviceData, ready: ready),
+        loadingDataSuccess: (data, ready, services) =>
+            ServiceInvoiceContent(data, services, ready: ready),
       ),
     );
   }

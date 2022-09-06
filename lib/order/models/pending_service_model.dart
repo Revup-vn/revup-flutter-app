@@ -12,6 +12,7 @@ class PendingServiceModel with _$PendingServiceModel {
     required bool isOptional,
     required List<PaymentProduct> products,
     String? status,
+    @Default(false) bool isComplete,
   }) = _PendingServiceModel;
 
   factory PendingServiceModel.fromDto({
@@ -24,6 +25,7 @@ class PendingServiceModel with _$PendingServiceModel {
           isOptional: v.isOptional,
           products: v.products,
           status: 'pending',
+          isComplete: v.isComplete,
         ),
         needToVerify: (v) => PendingServiceModel(
           name: v.serviceName,

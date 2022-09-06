@@ -146,7 +146,8 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
                                   widget.providerData.rating.isNaN ||
                                           widget.providerData.rating == 0
                                       ? '0'
-                                      : widget.providerData.rating.toString(),
+                                      : widget.providerData.rating
+                                          .toStringAsFixed(1),
                                   maxLines: 1,
                                 ),
                                 Icon(

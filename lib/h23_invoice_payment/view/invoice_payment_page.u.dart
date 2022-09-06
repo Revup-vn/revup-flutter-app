@@ -1,30 +1,26 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../h22_invoice/models/service_data.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
+import '../../order/models/pending_service_model.dart';
 import '../../router/router.dart';
 import '../bloc/invoice_payment_bloc.u.dart';
 import 'invoice_payment_view.u.dart';
 
 class InvoicePaymentPage extends StatelessWidget {
-  const InvoicePaymentPage(
-    this.providerData,
-    this.serviceData, {
+  const InvoicePaymentPage({
     super.key,
+    required this.providerData,
+    required this.services,
   });
   final ProviderData providerData;
-  final List<ServiceData> serviceData;
+  final List<PendingServiceModel> services;
   @override
   Widget build(BuildContext context) {
-    final total = serviceData.map((e) {
-      return e.state == 'pending' ? e.serviceFee : 0;
-    }).fold<int>(0, (previousValue, element) => previousValue + element);
     return BlocProvider(
       create: (_) => InvoicePaymentBloc(
         context.read(),
@@ -83,9 +79,8 @@ class InvoicePaymentPage extends StatelessWidget {
           },
         ),
         child: InvoicePaymentView(
-          providerData,
-          serviceData,
-          total,
+          providerData: providerData,
+          services: services,
         ),
       ),
     );

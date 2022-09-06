@@ -78,7 +78,10 @@ class RepairerProfileMainContent extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Icon(Icons.location_on_outlined),
+                      const Icon(
+                        Icons.location_pin,
+                        color: Colors.red,
+                      ),
                       Expanded(
                         child: AutoSizeText(
                           provider.address,
@@ -97,7 +100,7 @@ class RepairerProfileMainContent extends StatelessWidget {
                       ),
                       Expanded(
                         child: AutoSizeText(
-                          '''${provider.rating} | ${provider.ratingCount} ${l10n.starRatingCountLabel}''',
+                          '''${provider.rating.toStringAsFixed(1)} | ${provider.ratingCount} ${l10n.starRatingCountLabel}''',
                           style: Theme.of(context).textTheme.labelLarge,
                           maxLines: 1,
                         ),

@@ -8,7 +8,6 @@ class InvoiceState with _$InvoiceState {
   const factory InvoiceState.loadingDataSuccess({
     required ProviderData data,
     required bool ready,
-    required int total,
-    required IList<ServiceData> service,
+    required List<PendingServiceModel> services,
   }) = _LoadDataSuccess;
 }
