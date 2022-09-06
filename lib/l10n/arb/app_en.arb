@@ -242,5 +242,7 @@
   "waitingLabel": "Waiting",
   "noneLabel": "None",
   "bannedMessage": "You are currently banned from the system. Please contact care center for more infomation!",
-  "errLoadAddressLabel": "Cannot load adderss information"
+  "errLoadAddressLabel": "Cannot load adderss information",
+  "uncompletedLabel": "Uncomplted",
+  "completedLabel": "Completed"
 }

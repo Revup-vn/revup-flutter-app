@@ -11,6 +11,7 @@ import '../../router/router.dart';
 import '../../service/widgets/service_avatar.dart';
 import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
+import '../../shared/widgets/custom_dialog.dart';
 
 class RequestDetailsLive extends StatefulWidget {
   const RequestDetailsLive({
@@ -46,29 +47,33 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
           break;
         case NotificationType.VerifiedArrival:
           showDialog<void>(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) => AlertDialog(
-                    content: AutoSizeText(
-                      context.l10n.arrivedRepairmanLabel,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          if (mounted) {
-                            setState(() {
-                              isEnable = true;
-                            });
-                          }
-                          context.router.pop();
-                        },
-                        child: AutoSizeText(
-                          context.l10n.understoodLabel,
-                        ),
-                      ),
-                    ],
-                  ));
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => SimpleDialogCustom(
+              height: 150,
+              content: [
+                AutoSizeText(
+                  context.l10n.arrivedRepairmanLabel,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ],
+              button: [
+                TextButton(
+                  onPressed: () {
+                    if (mounted) {
+                      setState(() {
+                        isEnable = true;
+                      });
+                    }
+                    context.router.pop();
+                  },
+                  child: AutoSizeText(
+                    context.l10n.understoodLabel,
+                  ),
+                ),
+              ],
+            ),
+          );
           break;
         // ignore: no_default_cases
         default:

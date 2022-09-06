@@ -243,5 +243,7 @@
   "waitingLabel": "Đang chờ",
   "noneLabel": "Không",
   "bannedMessage": "Bạn hiện đang bị cấm khỏi hệ thống. Vui lòng liên hệ cskh để biết thêm chi tiết!",
-  "errLoadAddressLabel": "Không thể lấy dữ liệu địa chỉ"
+  "errLoadAddressLabel": "Không thể lấy dữ liệu địa chỉ",
+  "uncompletedLabel": "Không hoàn thành",
+  "completedLabel": "Đã hoàn thành"
 }
