@@ -16,6 +16,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.sr, this._repairRecord, this.user, this._userRepos)
       : super(const _Initial()) {
     on<HomeEvent>(_onEvent);
+    _s = _repairRecord
+        .collection()
+        .where('cid', isEqualTo: user.uuid)
+        .snapshots()
+        .listen((event) {
+      add(const HomeEvent.started());
+    });
   }
   final AppUser user;
   final StoreRepository sr;
@@ -27,6 +34,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     'https://www.tiendauroi.com/wp-content/uploads/2020/02/shopee-freeship-xtra-750x233.jpg',
     'https://e-magazine.asiamedia.vn/wp-content/uploads/2021/07/top-10-hang-dau-nhot-noi-tieng-nhat-tai-viet-nam-21.jpg',
   ]);
+  late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>> _s;
   Future<void> _onEvent(
     HomeEvent event,
     Emitter<HomeState> emit,
@@ -34,16 +42,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await event.when(
       started: () async {
         emit(const HomeState.loading());
-        // get repair record
-        // get latest repair record
         final maybeRepairRecord =
             (await _repairRecord.where('cid', isEqualTo: user.uuid))
                 .map(
                   (r) => r.map<Option<RepairRecord>>(
                     (a) => a.maybeMap(
-                      aborted: (v) => none(),
-                      finished: (v) => none(),
-                      orElse: () => some(a),
+                      aborted: (v) => some(a),
+                      finished: (v) => some(a),
+                      orElse: none,
                     ),
                   ),
                 )
@@ -104,5 +110,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _s.cancel();
+    return super.close();
   }
 }

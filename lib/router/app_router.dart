@@ -46,7 +46,7 @@ import '../test/test.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AdaptiveRoute<void>(page: SplashPage),
+    AdaptiveRoute<void>(page: SplashPage, initial: true),
     AdaptiveRoute<void>(page: OrderDetailPage),
     AdaptiveRoute<void>(page: RepairStatusPage),
     AdaptiveRoute<void>(page: ServiceInvoicePage),
@@ -54,7 +54,7 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ReviewRepairmanPage),
     AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(page: ReportPage),
-    AdaptiveRoute<void>(page: TestPage, initial: true),
+    AdaptiveRoute<void>(page: TestPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

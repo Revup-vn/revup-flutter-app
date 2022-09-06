@@ -346,7 +346,7 @@ class AppRouter extends _i42.RootStackRouter {
 
   @override
   List<_i42.RouteConfig> get routes => [
-        _i42.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i42.RouteConfig(SplashRoute.name, path: '/'),
         _i42.RouteConfig(OrderDetailRoute.name, path: '/order-detail-page'),
         _i42.RouteConfig(RepairStatusRoute.name, path: '/repair-status-page'),
         _i42.RouteConfig(ServiceInvoiceRoute.name,
@@ -358,7 +358,7 @@ class AppRouter extends _i42.RootStackRouter {
         _i42.RouteConfig(ChangeLanguageRoute.name,
             path: '/change-language-page'),
         _i42.RouteConfig(ReportRoute.name, path: '/report-page'),
-        _i42.RouteConfig(TestRoute.name, path: '/'),
+        _i42.RouteConfig(TestRoute.name, path: '/test-page'),
         _i42.RouteConfig(HomeRoute.name, path: '/home-page', children: [
           _i42.RouteConfig(HomeBodyRoute.name,
               path: 'home-body-page', parent: HomeRoute.name),
@@ -409,7 +409,7 @@ class AppRouter extends _i42.RootStackRouter {
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i42.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -586,7 +586,7 @@ class ReportRouteArgs {
 /// generated route for
 /// [_i9.TestPage]
 class TestRoute extends _i42.PageRouteInfo<void> {
-  const TestRoute() : super(TestRoute.name, path: '/');
+  const TestRoute() : super(TestRoute.name, path: '/test-page');
 
   static const String name = 'TestRoute';
 }
