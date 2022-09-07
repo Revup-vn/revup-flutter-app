@@ -246,5 +246,8 @@
   "errLoadAddressLabel": "Không thể lấy dữ liệu địa chỉ",
   "uncompletedLabel": "Không hoàn thành",
   "completedLabel": "Đã hoàn thành",
-  "addressNormalLabel": "Địa chỉ"
+  "addressNormalLabel": "Địa chỉ",
+  "hoursAgoLabel" : "giờ trước",
+  "todayLabel":"hôm nay",
+  "yesterdayLabel": "ngày trước"
 }

@@ -161,7 +161,11 @@ class FindProviderCubit extends Cubit<FindProviderState> {
               return b.rating.compareTo(a.rating);
             },
           );
-        emit(FindProviderState.loaded(providers: filterService));
+        if (filterService.isEmpty) {
+          emit(const FindProviderState.empty());
+        } else {
+          emit(FindProviderState.loaded(providers: filterService));
+        }
       }
     }
   }
