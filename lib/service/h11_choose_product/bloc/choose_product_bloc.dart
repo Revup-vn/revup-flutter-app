@@ -62,7 +62,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
                     ),
                     RepairServiceDummy.dummy(_serviceData.name),
                   )
-                  .all())
+                  .where('active', isEqualTo: true))
               .fold<IList<RepairProduct>>((l) => ilist([]), (r) => r);
 
           productData.addAll(products.toIterable());

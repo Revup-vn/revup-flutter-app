@@ -64,6 +64,7 @@ class HistoryProviderDetailBloc
             final listServiceName =
                 listPaymentService.map((a) => a.serviceName).toList();
             final listFee = listPaymentService
+                .where((a) => a.serviceName != 'transFee')
                 .map(
                   (a) => a.maybeMap<Option<int>>(
                     orElse: none,
@@ -76,6 +77,16 @@ class HistoryProviderDetailBloc
                     () => throw NullThrownError(),
                   ),
                 );
+            final transitFee = listPaymentService
+                .where((a) => a.serviceName == 'transFee')
+                .map(
+                  (a) => a.maybeMap(
+                    orElse: () => 0,
+                    paid: (value) => value.moneyAmount,
+                    pending: (value) => value.moneyAmount,
+                  ),
+                )
+                .toList();
             final totalFee = listFee.toIterable().fold<int>(
                   0,
                   (previousValue, element) => previousValue + element,
@@ -95,11 +106,11 @@ class HistoryProviderDetailBloc
                     finished: (value) => value.completed,
                   ),
                   orderDetailModel: OrderDetailModel(
-                    vehicleType: repairRecord.vehicle == 'motorbike' ? 0 : 1,
+                    vehicleType: repairRecord.vehicle == 'car' ? 1 : 0,
                     serviceName: listServiceName,
                     address: appUser.addr,
                     totalServiceFee: totalFee,
-                    feeTransport: repairRecord.money,
+                    feeTransport: transitFee.isNotEmpty ? transitFee[0] : 0,
                   ),
                   rating: repairRecord.maybeMap(
                     orElse: () => 0,
