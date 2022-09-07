@@ -245,5 +245,8 @@
   "errLoadAddressLabel": "Cannot load adderss information",
   "uncompletedLabel": "Uncompleted",
   "completedLabel": "Completed",
-  "addressNormalLabel": "Address"
+  "addressNormalLabel": "Address",
+  "hoursAgoLabel" : "hours ago",
+  "todayLabel":"today",
+  "yesterdayLabel": "days ago"
 }

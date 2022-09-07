@@ -4,7 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../shared/fallbacks.dart';
+import '../../account/widgets/default_avatar.dart';
+import '../../l10n/l10n.dart';
 import '../models/rating_data.u.dart';
 
 class RepairerProfileFeedback extends StatelessWidget {
@@ -46,9 +47,13 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 height: 64,
                                 width: 64,
                                 fit: BoxFit.fitWidth,
-                                imageUrl: data[index].imageUrl.isEmpty
-                                    ? kFallbackImage
-                                    : data[index].imageUrl,
+                                imageUrl: data[index].imageUrl,
+                                errorWidget: (context, url, dynamic error) =>
+                                    DefaultAvatar(
+                                  textSize:
+                                      Theme.of(context).textTheme.headline1,
+                                  userName: data[index].consumerName,
+                                ),
                               ),
                             ),
                           ),
@@ -95,11 +100,41 @@ class RepairerProfileFeedback extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.topCenter,
                       child: AutoSizeText(
-                        data[index].createdTime.day != DateTime.now().day
-                            ? '''${DateTime.now().difference(data[index].createdTime).inDays + 1} ngày trước'''
-                            : 'Today',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        maxLines: 1,
+                        (Duration(
+                                      milliseconds: DateTime.now()
+                                              .millisecondsSinceEpoch -
+                                          data[index]
+                                              .createdTime
+                                              .millisecondsSinceEpoch,
+                                    ).inHours) /
+                                    24 <
+                                1
+                            ? Duration(
+                                      milliseconds: DateTime.now()
+                                              .millisecondsSinceEpoch -
+                                          data[index]
+                                              .createdTime
+                                              .millisecondsSinceEpoch,
+                                    ).inHours >
+                                    1
+                                ? '''
+${Duration(
+                                    milliseconds:
+                                        DateTime.now().millisecondsSinceEpoch -
+                                            data[index]
+                                                .createdTime
+                                                .millisecondsSinceEpoch,
+                                  ).inHours} ${context.l10n.hoursAgoLabel}'''
+                                : context.l10n.todayLabel
+                            : '''
+${((Duration(
+                                  milliseconds:
+                                      DateTime.now().millisecondsSinceEpoch -
+                                          data[index]
+                                              .createdTime
+                                              .millisecondsSinceEpoch,
+                                ).inHours) / 24).floor()} ${context.l10n.yesterdayLabel}''',
+                        style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ),
                   ),
