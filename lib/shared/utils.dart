@@ -15,9 +15,11 @@ Option<AppUser> getUser(AuthenticateState state) =>
 
 int calculateMovingFees(int distance, int baseFees, int increaseFees) {
   const baseDistance = 3;
-  final movingFees = distance <= baseDistance
+  final movingFees = (distance / 1000) <= baseDistance
       ? baseFees
-      : (baseFees + (distance - baseDistance) * increaseFees).ceil();
+      : (baseFees +
+          (double.parse((distance / 1000 - baseDistance).toString()).ceil() *
+              increaseFees));
 
   return movingFees;
 }

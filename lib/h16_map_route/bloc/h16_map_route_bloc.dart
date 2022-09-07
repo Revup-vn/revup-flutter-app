@@ -58,7 +58,7 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
             as Map<String, dynamic>)['geopoint'] as GeoPoint;
         final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
         final directions = await getDirections(fromLoc, toLoc);
-        final movingFee = calculateMovingFees(directions.distance, 15000, 5);
+        final movingFee = calculateMovingFees(directions.distance, 15000, 5000);
         final toMarker =
             Marker(markerId: const MarkerId('_to'), position: toLoc);
         final fromMarker = Marker(
