@@ -73,7 +73,7 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
                       repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
                     ),
                   )
-                  .all())
+                  .where('active', isEqualTo: true))
               .fold<IList<ServiceData>>(
             (l) => nil(),
             (r) => r.map(ServiceData.fromDtos),
@@ -88,11 +88,27 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
               orElse: () => false,
             ),
           );
+          final finalListSvOptional = svDataOptional
+              .map(
+                (svModel) => services.where((a) => svModel.name == a.name).map(
+                      (a) => ServiceData(
+                        name: svModel.name,
+                        serviceFee: svModel.serviceFee,
+                        imageURL: a.imageURL,
+                        products: svModel.products,
+                        isOptional: svModel.isOptional,
+                      ),
+                    ),
+              )
+              .foldLeft<IList<ServiceData>>(
+                nil<ServiceData>(),
+                (previous, a) => previous.plus(a),
+              );
           emit(
             SelectProdServiceState.success(
               providerId: repairRecord.pid,
               serviceData:
-                  isStarted ? ilist(lst) : ilist(lst).plus(svDataOptional),
+                  isStarted ? ilist(lst) : ilist(lst).plus(finalListSvOptional),
               pendingService: pendingService.toList(),
             ),
           );

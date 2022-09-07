@@ -74,7 +74,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                   ),
                   height: 64,
                   width: 64,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),

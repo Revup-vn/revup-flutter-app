@@ -58,6 +58,7 @@ class _AddMessageViewState extends State<AddMessageView> {
             height: 8,
           ),
           SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

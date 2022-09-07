@@ -44,7 +44,10 @@ class RepairerProfileMainContent extends StatelessWidget {
             Positioned(
               left: 16,
               top: coverHeight - 124 / 2,
-              child: RepairerProfileAvatarImage(provider.avatar),
+              child: RepairerProfileAvatarImage(
+                provider.avatar,
+                provider.fullName,
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(

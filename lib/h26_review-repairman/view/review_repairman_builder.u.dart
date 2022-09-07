@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
+import '../../router/app_router.gr.dart';
 import '../../shared/widgets/loading.u.dart';
 import '../../shared/widgets/unknown_failure.dart';
 import '../bloc/review_repairman_bloc.u.dart';
@@ -67,7 +68,8 @@ class ReviewRepairmanBuilder extends StatelessWidget {
           return Future.delayed(
             const Duration(seconds: 3),
             () async {
-              return context.router.pop();
+              return context.router
+                  .popUntil((route) => route.settings.name == HomeRoute.name);
             },
           );
         },

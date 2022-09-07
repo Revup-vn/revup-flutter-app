@@ -249,5 +249,8 @@
   "addressNormalLabel": "Địa chỉ",
   "acceptTransportPaymentLabel": "Bạn cần thanh toán phí di chuyển trước",
   "paymentDescriptionLabel": "Thanh toán phí di chuyển",
-  "failurePaymentLabel": "Có lỗi xảy ra, thanh toán thất bại"
+  "failurePaymentLabel": "Có lỗi xảy ra, thanh toán thất bại",
+  "hoursAgoLabel": "giờ trước",
+  "todayLabel": "hôm nay",
+  "yesterdayLabel": "ngày trước"
 }

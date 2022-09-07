@@ -3,9 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../account/widgets/default_avatar.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
-import '../../shared/fallbacks.dart';
 import '../models/provider_data.u.dart';
 import '../models/provider_raw_data.dart';
 
@@ -54,9 +54,14 @@ class FindProviderLoaded extends StatelessWidget {
                                     height: double.infinity,
                                     width: double.infinity,
                                     fit: BoxFit.fill,
-                                    imageUrl: providers[index].avatarUrl.isEmpty
-                                        ? kFallbackImage
-                                        : providers[index].avatarUrl,
+                                    imageUrl: providers[index].avatarUrl,
+                                    errorWidget:
+                                        (context, url, dynamic error) =>
+                                            DefaultAvatar(
+                                      textSize:
+                                          Theme.of(context).textTheme.headline5,
+                                      userName: providers[index].firstName,
+                                    ),
                                   ),
                                 ),
                               ),

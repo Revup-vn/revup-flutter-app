@@ -248,5 +248,8 @@
   "addressNormalLabel": "Address",
   "acceptTransportPaymentLabel": "You need to pay the transportation fee first",
   "paymentDescriptionLabel": "Payment of moving fees for repairer",
-  "failurePaymentLabel": "Error occurred, payment failed"
+  "failurePaymentLabel": "Error occurred, payment failed",
+  "hoursAgoLabel": "hours ago",
+  "todayLabel": "today",
+  "yesterdayLabel": "days ago"
 }
