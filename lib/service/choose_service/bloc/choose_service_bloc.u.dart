@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,6 +24,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     this.storeRepository,
     this.providerId,
     this._maybeUser,
+    this.momoVn,
   ) : super(const _Initial()) {
     on<ChooseServiceEvent>(_onEvent);
   }
@@ -32,6 +34,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   final optionalService = <ServiceData>[];
   final String providerId;
   final Option<AppUser> _maybeUser;
+  final MomoCubit momoVn;
 
   FutureOr<void> _onEvent(
     ChooseServiceEvent event,
@@ -51,6 +54,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
         final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
         final catAndSv = await (await (storeRepository.repairCategoryRepo(
           maybeProviderData,
         )).get(catId))
@@ -85,13 +89,20 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             serviceData: catAndSv.value2.plus(tmp),
             providerId: providerId,
             catAndSv: catAndSv,
+            movingFee: movingFee,
           ),
         );
       },
-      serviceListSubmitted:
-          (onRouteToTimeOutPage, sendMessage, saveLst, onPop) async {
+      serviceListSubmitted: (
+        isPaymentOnline,
+        onRouteToTimeOut,
+        sendMessage,
+        saveLst,
+        onPopBack,
+        pay,
+      ) async {
         emit(const ChooseServiceState.loading());
-
+        log('PAYMENT ONLINE :: ${isPaymentOnline.toString()}');
         if (await _isProviderOnline() && await _hasNotPendingRecord()) {
           // lock Provider status
           _userStore.updateFields(
@@ -174,31 +185,41 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                   );
           }
 
-          // get latest provider fcm token
-          final provider = (await _userStore.get(providerId))
-              .fold<Option<AppUser>>(
-                (l) => none(),
-                some,
-              )
-              .getOrElse(() => throw NullThrownError());
+          if (isPaymentOnline) {
+            pay(
+              movingFee,
+              recordId,
+              'Revup',
+              '${consumer.firstName} ${consumer.lastName}',
+            );
+          } else {
+            // get latest provider fcm token
+            final provider = (await _userStore.get(providerId))
+                .fold<Option<AppUser>>(
+                  (l) => none(),
+                  some,
+                )
+                .getOrElse(() => throw NullThrownError());
 
-          final tokens = (await storeRepository
-                  .userNotificationTokenRepo(provider)
-                  .all())
-              .map(
-                (r) => r.sort(
-                  orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                ),
-              )
-              .fold((l) => throw NullThrownError(), (r) => r.toList());
+            final tokens = (await storeRepository
+                    .userNotificationTokenRepo(provider)
+                    .all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
 
-          // send notify to provider
-          sendMessage(tokens.first.token, recordId);
+            // send notify to provider
+            sendMessage(tokens.first.token, recordId);
 
-          onRouteToTimeOutPage(tokens.first.token);
+            onRouteToTimeOut(tokens.first.token);
+          }
           return;
         }
-        onPop();
+
+        onPopBack();
       },
     );
   }

@@ -414,6 +414,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0+2"
+  eventify:
+    dependency: transitive
+    description:
+      name: eventify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -867,7 +874,7 @@ packages:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+2"
+    version: "0.8.5+3"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -1015,6 +1022,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  momo_vn:
+    dependency: transitive
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "45642adbaa8a66b6c1da6fa1e3d9441629057df3"
+      url: "https://github.com/minhvn/momo.vn.git"
+    source: git
+    version: "2.0.2"
   nested:
     dependency: transitive
     description:
@@ -1242,11 +1258,9 @@ packages:
   revup_core:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "93cf73cd134b29850aea1809d3a81d3f4316b843"
-      url: "https://github.com/Revup-vn/revup-core.git"
-    source: git
+      path: "../revup-core"
+      relative: true
+    source: path
     version: "6.3.7-dev+1"
   rxdart:
     dependency: transitive
@@ -1455,7 +1469,7 @@ packages:
       name: url_launcher_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.17"
+    version: "6.0.18"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -1525,7 +1539,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.3.0"
+    version: "9.4.0"
   watcher:
     dependency: transitive
     description:

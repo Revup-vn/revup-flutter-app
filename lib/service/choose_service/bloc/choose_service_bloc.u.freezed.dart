@@ -20,10 +20,12 @@ mixin _$ChooseServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)
         serviceListSubmitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,10 +33,12 @@ mixin _$ChooseServiceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,10 +46,12 @@ mixin _$ChooseServiceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
     required TResult orElse(),
   }) =>
@@ -160,10 +166,12 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)
         serviceListSubmitted,
   }) {
     return started(newService);
@@ -174,10 +182,12 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
   }) {
     return started?.call(newService);
@@ -188,10 +198,12 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
     required TResult orElse(),
   }) {
@@ -249,10 +261,12 @@ abstract class _$$_ServiceListSubmittedCopyWith<$Res> {
           $Res Function(_$_ServiceListSubmitted) then) =
       __$$_ServiceListSubmittedCopyWithImpl<$Res>;
   $Res call(
-      {Function1<String, void> onRouteToTimeOut,
+      {bool isPaymentOnline,
+      Function1<String, void> onRouteToTimeOut,
       Function2<String, String, void> sendMessage,
       List<ServiceData> saveLst,
-      Function0<void> onPopBack});
+      Function0<void> onPopBack,
+      Function4<int, String, String, String, void> pay});
 }
 
 /// @nodoc
@@ -268,12 +282,18 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isPaymentOnline = freezed,
     Object? onRouteToTimeOut = freezed,
     Object? sendMessage = freezed,
     Object? saveLst = freezed,
     Object? onPopBack = freezed,
+    Object? pay = freezed,
   }) {
     return _then(_$_ServiceListSubmitted(
+      isPaymentOnline: isPaymentOnline == freezed
+          ? _value.isPaymentOnline
+          : isPaymentOnline // ignore: cast_nullable_to_non_nullable
+              as bool,
       onRouteToTimeOut: onRouteToTimeOut == freezed
           ? _value.onRouteToTimeOut
           : onRouteToTimeOut // ignore: cast_nullable_to_non_nullable
@@ -290,6 +310,10 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
           ? _value.onPopBack
           : onPopBack // ignore: cast_nullable_to_non_nullable
               as Function0<void>,
+      pay: pay == freezed
+          ? _value.pay
+          : pay // ignore: cast_nullable_to_non_nullable
+              as Function4<int, String, String, String, void>,
     ));
   }
 }
@@ -298,12 +322,16 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
 class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   const _$_ServiceListSubmitted(
-      {required this.onRouteToTimeOut,
+      {required this.isPaymentOnline,
+      required this.onRouteToTimeOut,
       required this.sendMessage,
       required final List<ServiceData> saveLst,
-      required this.onPopBack})
+      required this.onPopBack,
+      required this.pay})
       : _saveLst = saveLst;
 
+  @override
+  final bool isPaymentOnline;
   @override
   final Function1<String, void> onRouteToTimeOut;
   @override
@@ -317,10 +345,12 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
   @override
   final Function0<void> onPopBack;
+  @override
+  final Function4<int, String, String, String, void> pay;
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceListSubmitted(onRouteToTimeOut: $onRouteToTimeOut, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack)';
+    return 'ChooseServiceEvent.serviceListSubmitted(isPaymentOnline: $isPaymentOnline, onRouteToTimeOut: $onRouteToTimeOut, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack, pay: $pay)';
   }
 
   @override
@@ -328,18 +358,27 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ServiceListSubmitted &&
+            const DeepCollectionEquality()
+                .equals(other.isPaymentOnline, isPaymentOnline) &&
             (identical(other.onRouteToTimeOut, onRouteToTimeOut) ||
                 other.onRouteToTimeOut == onRouteToTimeOut) &&
             (identical(other.sendMessage, sendMessage) ||
                 other.sendMessage == sendMessage) &&
             const DeepCollectionEquality().equals(other._saveLst, _saveLst) &&
             (identical(other.onPopBack, onPopBack) ||
-                other.onPopBack == onPopBack));
+                other.onPopBack == onPopBack) &&
+            (identical(other.pay, pay) || other.pay == pay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, onRouteToTimeOut, sendMessage,
-      const DeepCollectionEquality().hash(_saveLst), onPopBack);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isPaymentOnline),
+      onRouteToTimeOut,
+      sendMessage,
+      const DeepCollectionEquality().hash(_saveLst),
+      onPopBack,
+      pay);
 
   @JsonKey(ignore: true)
   @override
@@ -352,14 +391,16 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)
         serviceListSubmitted,
   }) {
-    return serviceListSubmitted(
-        onRouteToTimeOut, sendMessage, saveLst, onPopBack);
+    return serviceListSubmitted(isPaymentOnline, onRouteToTimeOut, sendMessage,
+        saveLst, onPopBack, pay);
   }
 
   @override
@@ -367,14 +408,16 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
   }) {
-    return serviceListSubmitted?.call(
-        onRouteToTimeOut, sendMessage, saveLst, onPopBack);
+    return serviceListSubmitted?.call(isPaymentOnline, onRouteToTimeOut,
+        sendMessage, saveLst, onPopBack, pay);
   }
 
   @override
@@ -382,16 +425,18 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
-            Function0<void> onPopBack)?
+            Function0<void> onPopBack,
+            Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
-      return serviceListSubmitted(
-          onRouteToTimeOut, sendMessage, saveLst, onPopBack);
+      return serviceListSubmitted(isPaymentOnline, onRouteToTimeOut,
+          sendMessage, saveLst, onPopBack, pay);
     }
     return orElse();
   }
@@ -430,15 +475,20 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
 abstract class _ServiceListSubmitted implements ChooseServiceEvent {
   const factory _ServiceListSubmitted(
-      {required final Function1<String, void> onRouteToTimeOut,
-      required final Function2<String, String, void> sendMessage,
-      required final List<ServiceData> saveLst,
-      required final Function0<void> onPopBack}) = _$_ServiceListSubmitted;
+          {required final bool isPaymentOnline,
+          required final Function1<String, void> onRouteToTimeOut,
+          required final Function2<String, String, void> sendMessage,
+          required final List<ServiceData> saveLst,
+          required final Function0<void> onPopBack,
+          required final Function4<int, String, String, String, void> pay}) =
+      _$_ServiceListSubmitted;
 
+  bool get isPaymentOnline;
   Function1<String, void> get onRouteToTimeOut;
   Function2<String, String, void> get sendMessage;
   List<ServiceData> get saveLst;
   Function0<void> get onPopBack;
+  Function4<int, String, String, String, void> get pay;
   @JsonKey(ignore: true)
   _$$_ServiceListSubmittedCopyWith<_$_ServiceListSubmitted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -451,8 +501,9 @@ mixin _$ChooseServiceState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
     required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -461,8 +512,9 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -471,8 +523,9 @@ mixin _$ChooseServiceState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) =>
@@ -482,6 +535,7 @@ mixin _$ChooseServiceState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
     required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -490,6 +544,7 @@ mixin _$ChooseServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -498,6 +553,7 @@ mixin _$ChooseServiceState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
@@ -564,8 +620,9 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
     required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
     return initial();
@@ -577,8 +634,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
     return initial?.call();
@@ -590,8 +648,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) {
@@ -607,6 +666,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
     required TResult Function(_Success value) success,
   }) {
     return initial(this);
@@ -618,6 +678,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
   }) {
     return initial?.call(this);
@@ -629,6 +690,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -686,8 +748,9 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
     required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
     return loading();
@@ -699,8 +762,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
     return loading?.call();
@@ -712,8 +776,9 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) {
@@ -729,6 +794,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
     required TResult Function(_Success value) success,
   }) {
     return loading(this);
@@ -740,6 +806,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
   }) {
     return loading?.call(this);
@@ -751,6 +818,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -808,8 +876,9 @@ class _$_Failure implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
     required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
     return failure();
@@ -821,8 +890,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
     return failure?.call();
@@ -834,8 +904,9 @@ class _$_Failure implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) {
@@ -851,6 +922,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
     required TResult Function(_Success value) success,
   }) {
     return failure(this);
@@ -862,6 +934,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
   }) {
     return failure?.call(this);
@@ -873,6 +946,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -888,6 +962,164 @@ abstract class _Failure implements ChooseServiceState {
 }
 
 /// @nodoc
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+  $Res call({String recordId});
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res>
+    extends _$ChooseServiceStateCopyWithImpl<$Res>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, (v) => _then(v as _$_Submitted));
+
+  @override
+  _$_Submitted get _value => super._value as _$_Submitted;
+
+  @override
+  $Res call({
+    Object? recordId = freezed,
+  }) {
+    return _then(_$_Submitted(
+      recordId: recordId == freezed
+          ? _value.recordId
+          : recordId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Submitted implements _Submitted {
+  const _$_Submitted({required this.recordId});
+
+  @override
+  final String recordId;
+
+  @override
+  String toString() {
+    return 'ChooseServiceState.submitted(recordId: $recordId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submitted &&
+            const DeepCollectionEquality().equals(other.recordId, recordId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(recordId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      __$$_SubmittedCopyWithImpl<_$_Submitted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
+    required TResult Function(String providerId, IList<ServiceData> serviceData,
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
+        success,
+  }) {
+    return submitted(recordId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
+    TResult Function(String providerId, IList<ServiceData> serviceData,
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
+        success,
+  }) {
+    return submitted?.call(recordId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
+    TResult Function(String providerId, IList<ServiceData> serviceData,
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
+        success,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(recordId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_Success value) success,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_Success value)? success,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements ChooseServiceState {
+  const factory _Submitted({required final String recordId}) = _$_Submitted;
+
+  String get recordId;
+  @JsonKey(ignore: true)
+  _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$_SuccessCopyWith<$Res> {
   factory _$$_SuccessCopyWith(
           _$_Success value, $Res Function(_$_Success) then) =
@@ -895,7 +1127,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
   $Res call(
       {String providerId,
       IList<ServiceData> serviceData,
-      Tuple2<RepairCategory, IList<ServiceData>> catAndSv});
+      Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
+      int movingFee});
 }
 
 /// @nodoc
@@ -913,6 +1146,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? providerId = freezed,
     Object? serviceData = freezed,
     Object? catAndSv = freezed,
+    Object? movingFee = freezed,
   }) {
     return _then(_$_Success(
       providerId: providerId == freezed
@@ -927,6 +1161,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.catAndSv
           : catAndSv // ignore: cast_nullable_to_non_nullable
               as Tuple2<RepairCategory, IList<ServiceData>>,
+      movingFee: movingFee == freezed
+          ? _value.movingFee
+          : movingFee // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -937,7 +1175,8 @@ class _$_Success implements _Success {
   const _$_Success(
       {required this.providerId,
       required this.serviceData,
-      required this.catAndSv});
+      required this.catAndSv,
+      required this.movingFee});
 
   @override
   final String providerId;
@@ -945,10 +1184,12 @@ class _$_Success implements _Success {
   final IList<ServiceData> serviceData;
   @override
   final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
+  @override
+  final int movingFee;
 
   @override
   String toString() {
-    return 'ChooseServiceState.success(providerId: $providerId, serviceData: $serviceData, catAndSv: $catAndSv)';
+    return 'ChooseServiceState.success(providerId: $providerId, serviceData: $serviceData, catAndSv: $catAndSv, movingFee: $movingFee)';
   }
 
   @override
@@ -960,7 +1201,8 @@ class _$_Success implements _Success {
                 .equals(other.providerId, providerId) &&
             const DeepCollectionEquality()
                 .equals(other.serviceData, serviceData) &&
-            const DeepCollectionEquality().equals(other.catAndSv, catAndSv));
+            const DeepCollectionEquality().equals(other.catAndSv, catAndSv) &&
+            const DeepCollectionEquality().equals(other.movingFee, movingFee));
   }
 
   @override
@@ -968,7 +1210,8 @@ class _$_Success implements _Success {
       runtimeType,
       const DeepCollectionEquality().hash(providerId),
       const DeepCollectionEquality().hash(serviceData),
-      const DeepCollectionEquality().hash(catAndSv));
+      const DeepCollectionEquality().hash(catAndSv),
+      const DeepCollectionEquality().hash(movingFee));
 
   @JsonKey(ignore: true)
   @override
@@ -981,11 +1224,12 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
+    required TResult Function(String recordId) submitted,
     required TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
-    return success(providerId, serviceData, catAndSv);
+    return success(providerId, serviceData, catAndSv, movingFee);
   }
 
   @override
@@ -994,11 +1238,12 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
-    return success?.call(providerId, serviceData, catAndSv);
+    return success?.call(providerId, serviceData, catAndSv, movingFee);
   }
 
   @override
@@ -1007,13 +1252,14 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
+    TResult Function(String recordId)? submitted,
     TResult Function(String providerId, IList<ServiceData> serviceData,
-            Tuple2<RepairCategory, IList<ServiceData>> catAndSv)?
+            Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(providerId, serviceData, catAndSv);
+      return success(providerId, serviceData, catAndSv, movingFee);
     }
     return orElse();
   }
@@ -1024,6 +1270,7 @@ class _$_Success implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
+    required TResult Function(_Submitted value) submitted,
     required TResult Function(_Success value) success,
   }) {
     return success(this);
@@ -1035,6 +1282,7 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
   }) {
     return success?.call(this);
@@ -1046,6 +1294,7 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
+    TResult Function(_Submitted value)? submitted,
     TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
@@ -1058,14 +1307,15 @@ class _$_Success implements _Success {
 
 abstract class _Success implements ChooseServiceState {
   const factory _Success(
-          {required final String providerId,
-          required final IList<ServiceData> serviceData,
-          required final Tuple2<RepairCategory, IList<ServiceData>> catAndSv}) =
-      _$_Success;
+      {required final String providerId,
+      required final IList<ServiceData> serviceData,
+      required final Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
+      required final int movingFee}) = _$_Success;
 
   String get providerId;
   IList<ServiceData> get serviceData;
   Tuple2<RepairCategory, IList<ServiceData>> get catAndSv;
+  int get movingFee;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;

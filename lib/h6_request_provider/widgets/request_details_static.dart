@@ -30,7 +30,7 @@ class RequestDetailsStatic extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        height: 320,
+        height: 300,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
           borderRadius: const BorderRadius.only(
@@ -122,35 +122,24 @@ class RequestDetailsStatic extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AutoSizeText(l10n.movingFeeLabel),
-                  AutoSizeText(context.formatMoney(movingFees)),
-                ],
-              ),
               Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Icon(Icons.paid),
-                          AutoSizeText(l10n.cashLabel),
-                        ],
-                      ),
+                    AutoSizeText(
+                      l10n.transitFeeLabel,
+                      style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.normal) ??
+                          const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Icon(Icons.local_offer),
-                          AutoSizeText(l10n.endowLabel),
-                        ],
-                      ),
-                    ),
+                    Text(
+                      context.formatMoney(movingFees),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
                   ],
                 ),
               ),

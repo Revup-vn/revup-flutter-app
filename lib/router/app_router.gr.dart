@@ -101,8 +101,8 @@ class AppRouter extends _i42.RootStackRouter {
       final args = routeData.argsAs<ServiceInvoiceRouteArgs>();
       return _i42.AdaptivePage<void>(
           routeData: routeData,
-          child:
-              _i4.ServiceInvoicePage(args.providerID, args.id, key: args.key));
+          child: _i4.ServiceInvoicePage(args.providerID, args.recordId,
+              key: args.key));
     },
     InvoicePaymentRoute.name: (routeData) {
       final args = routeData.argsAs<InvoicePaymentRouteArgs>();
@@ -111,7 +111,8 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i5.InvoicePaymentPage(
               key: args.key,
               providerData: args.providerData,
-              services: args.services));
+              services: args.services,
+              recordId: args.recordId));
     },
     ReviewRepairmanRoute.name: (routeData) {
       final args = routeData.argsAs<ReviewRepairmanRouteArgs>();
@@ -146,11 +147,8 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i11.HistoryProviderDetailPage(args.rpID, key: args.key));
     },
     PaymentRoute.name: (routeData) {
-      final args = routeData.argsAs<PaymentRouteArgs>();
-      return _i42.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i12.PaymentPage(
-              key: args.key, user: args.user, completer: args.completer));
+      return _i42.AdaptivePage<bool>(
+          routeData: routeData, child: const _i12.PaymentPage());
     },
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>();
@@ -187,7 +185,6 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i18.ChooseServicePage(
               key: args.key,
               providerId: args.providerId,
-              recordId: args.recordId,
               optionalService: args.optionalService));
     },
     NewServiceRequestRoute.name: (routeData) {
@@ -463,28 +460,28 @@ class RepairStatusRouteArgs {
 /// [_i4.ServiceInvoicePage]
 class ServiceInvoiceRoute extends _i42.PageRouteInfo<ServiceInvoiceRouteArgs> {
   ServiceInvoiceRoute(
-      {required String providerID, required String id, _i43.Key? key})
+      {required String providerID, required String recordId, _i43.Key? key})
       : super(ServiceInvoiceRoute.name,
             path: '/service-invoice-page',
             args: ServiceInvoiceRouteArgs(
-                providerID: providerID, id: id, key: key));
+                providerID: providerID, recordId: recordId, key: key));
 
   static const String name = 'ServiceInvoiceRoute';
 }
 
 class ServiceInvoiceRouteArgs {
   const ServiceInvoiceRouteArgs(
-      {required this.providerID, required this.id, this.key});
+      {required this.providerID, required this.recordId, this.key});
 
   final String providerID;
 
-  final String id;
+  final String recordId;
 
   final _i43.Key? key;
 
   @override
   String toString() {
-    return 'ServiceInvoiceRouteArgs{providerID: $providerID, id: $id, key: $key}';
+    return 'ServiceInvoiceRouteArgs{providerID: $providerID, recordId: $recordId, key: $key}';
   }
 }
 
@@ -494,18 +491,25 @@ class InvoicePaymentRoute extends _i42.PageRouteInfo<InvoicePaymentRouteArgs> {
   InvoicePaymentRoute(
       {_i43.Key? key,
       required _i45.ProviderData providerData,
-      required List<_i46.PendingServiceModel> services})
+      required List<_i46.PendingServiceModel> services,
+      required String recordId})
       : super(InvoicePaymentRoute.name,
             path: '/invoice-payment-page',
             args: InvoicePaymentRouteArgs(
-                key: key, providerData: providerData, services: services));
+                key: key,
+                providerData: providerData,
+                services: services,
+                recordId: recordId));
 
   static const String name = 'InvoicePaymentRoute';
 }
 
 class InvoicePaymentRouteArgs {
   const InvoicePaymentRouteArgs(
-      {this.key, required this.providerData, required this.services});
+      {this.key,
+      required this.providerData,
+      required this.services,
+      required this.recordId});
 
   final _i43.Key? key;
 
@@ -513,9 +517,11 @@ class InvoicePaymentRouteArgs {
 
   final List<_i46.PendingServiceModel> services;
 
+  final String recordId;
+
   @override
   String toString() {
-    return 'InvoicePaymentRouteArgs{key: $key, providerData: $providerData, services: $services}';
+    return 'InvoicePaymentRouteArgs{key: $key, providerData: $providerData, services: $services, recordId: $recordId}';
   }
 }
 
@@ -644,31 +650,10 @@ class HistoryProviderDetailRouteArgs {
 
 /// generated route for
 /// [_i12.PaymentPage]
-class PaymentRoute extends _i42.PageRouteInfo<PaymentRouteArgs> {
-  PaymentRoute(
-      {_i43.Key? key,
-      required _i44.AppUser user,
-      _i47.Completer<dynamic>? completer})
-      : super(PaymentRoute.name,
-            path: '/payment-page',
-            args: PaymentRouteArgs(key: key, user: user, completer: completer));
+class PaymentRoute extends _i42.PageRouteInfo<void> {
+  const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
 
   static const String name = 'PaymentRoute';
-}
-
-class PaymentRouteArgs {
-  const PaymentRouteArgs({this.key, required this.user, this.completer});
-
-  final _i43.Key? key;
-
-  final _i44.AppUser user;
-
-  final _i47.Completer<dynamic>? completer;
-
-  @override
-  String toString() {
-    return 'PaymentRouteArgs{key: $key, user: $user, completer: $completer}';
-  }
 }
 
 /// generated route for
@@ -799,14 +784,12 @@ class ChooseServiceRoute extends _i42.PageRouteInfo<ChooseServiceRouteArgs> {
   ChooseServiceRoute(
       {_i43.Key? key,
       required String providerId,
-      String? recordId,
       required List<_i44.OptionalService> optionalService})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
             args: ChooseServiceRouteArgs(
                 key: key,
                 providerId: providerId,
-                recordId: recordId,
                 optionalService: optionalService));
 
   static const String name = 'ChooseServiceRoute';
@@ -814,22 +797,17 @@ class ChooseServiceRoute extends _i42.PageRouteInfo<ChooseServiceRouteArgs> {
 
 class ChooseServiceRouteArgs {
   const ChooseServiceRouteArgs(
-      {this.key,
-      required this.providerId,
-      this.recordId,
-      required this.optionalService});
+      {this.key, required this.providerId, required this.optionalService});
 
   final _i43.Key? key;
 
   final String providerId;
 
-  final String? recordId;
-
   final List<_i44.OptionalService> optionalService;
 
   @override
   String toString() {
-    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, recordId: $recordId, optionalService: $optionalService}';
+    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, optionalService: $optionalService}';
   }
 }
 

@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flash/flash.dart';
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -97,9 +96,7 @@ class AccountView extends StatelessWidget {
                 accountIcon: const Icon(Icons.payment),
                 callback: () {
                   context.router.push(
-                    PaymentRoute(
-                      user: user,
-                    ),
+                    const PaymentRoute(),
                   );
                 },
               ),

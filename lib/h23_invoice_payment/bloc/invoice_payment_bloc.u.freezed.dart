@@ -20,8 +20,14 @@ mixin _$InvoicePaymentEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String cid,
-            String pid, Function2<String, String, void> sendMessage)
+    required TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +35,14 @@ mixin _$InvoicePaymentEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +50,14 @@ mixin _$InvoicePaymentEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
     required TResult orElse(),
   }) =>
@@ -127,8 +145,14 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String cid,
-            String pid, Function2<String, String, void> sendMessage)
+    required TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)
         sumbitPayment,
   }) {
     return started();
@@ -139,8 +163,14 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
   }) {
     return started?.call();
@@ -151,8 +181,14 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -270,8 +306,14 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String cid,
-            String pid, Function2<String, String, void> sendMessage)
+    required TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)
         sumbitPayment,
   }) {
     return changePaymentMethod(isPayOnline);
@@ -282,8 +324,14 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
   }) {
     return changePaymentMethod?.call(isPayOnline);
@@ -294,8 +342,14 @@ class _$_ChangePaymentMethod implements _ChangePaymentMethod {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
     required TResult orElse(),
   }) {
@@ -358,9 +412,11 @@ abstract class _$$_SubmitPaymentCopyWith<$Res> {
   $Res call(
       {bool isPayOnline,
       int totalAmount,
+      List<PendingServiceModel> services,
       String cid,
       String pid,
-      Function2<String, String, void> sendMessage});
+      Function2<String, String, void> sendMessage,
+      Function3<String, String, String, void> pay});
 }
 
 /// @nodoc
@@ -378,9 +434,11 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
   $Res call({
     Object? isPayOnline = freezed,
     Object? totalAmount = freezed,
+    Object? services = freezed,
     Object? cid = freezed,
     Object? pid = freezed,
     Object? sendMessage = freezed,
+    Object? pay = freezed,
   }) {
     return _then(_$_SubmitPayment(
       isPayOnline: isPayOnline == freezed
@@ -391,6 +449,10 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
           ? _value.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      services: services == freezed
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<PendingServiceModel>,
       cid: cid == freezed
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
@@ -403,6 +465,10 @@ class __$$_SubmitPaymentCopyWithImpl<$Res>
           ? _value.sendMessage
           : sendMessage // ignore: cast_nullable_to_non_nullable
               as Function2<String, String, void>,
+      pay: pay == freezed
+          ? _value.pay
+          : pay // ignore: cast_nullable_to_non_nullable
+              as Function3<String, String, String, void>,
     ));
   }
 }
@@ -413,24 +479,36 @@ class _$_SubmitPayment implements _SubmitPayment {
   const _$_SubmitPayment(
       {required this.isPayOnline,
       required this.totalAmount,
+      required final List<PendingServiceModel> services,
       required this.cid,
       required this.pid,
-      required this.sendMessage});
+      required this.sendMessage,
+      required this.pay})
+      : _services = services;
 
   @override
   final bool isPayOnline;
   @override
   final int totalAmount;
+  final List<PendingServiceModel> _services;
+  @override
+  List<PendingServiceModel> get services {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_services);
+  }
+
   @override
   final String cid;
   @override
   final String pid;
   @override
   final Function2<String, String, void> sendMessage;
+  @override
+  final Function3<String, String, String, void> pay;
 
   @override
   String toString() {
-    return 'InvoicePaymentEvent.sumbitPayment(isPayOnline: $isPayOnline, totalAmount: $totalAmount, cid: $cid, pid: $pid, sendMessage: $sendMessage)';
+    return 'InvoicePaymentEvent.sumbitPayment(isPayOnline: $isPayOnline, totalAmount: $totalAmount, services: $services, cid: $cid, pid: $pid, sendMessage: $sendMessage, pay: $pay)';
   }
 
   @override
@@ -442,10 +520,12 @@ class _$_SubmitPayment implements _SubmitPayment {
                 .equals(other.isPayOnline, isPayOnline) &&
             const DeepCollectionEquality()
                 .equals(other.totalAmount, totalAmount) &&
+            const DeepCollectionEquality().equals(other._services, _services) &&
             const DeepCollectionEquality().equals(other.cid, cid) &&
             const DeepCollectionEquality().equals(other.pid, pid) &&
             (identical(other.sendMessage, sendMessage) ||
-                other.sendMessage == sendMessage));
+                other.sendMessage == sendMessage) &&
+            (identical(other.pay, pay) || other.pay == pay));
   }
 
   @override
@@ -453,9 +533,11 @@ class _$_SubmitPayment implements _SubmitPayment {
       runtimeType,
       const DeepCollectionEquality().hash(isPayOnline),
       const DeepCollectionEquality().hash(totalAmount),
+      const DeepCollectionEquality().hash(_services),
       const DeepCollectionEquality().hash(cid),
       const DeepCollectionEquality().hash(pid),
-      sendMessage);
+      sendMessage,
+      pay);
 
   @JsonKey(ignore: true)
   @override
@@ -467,11 +549,18 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(bool isPayOnline) changePaymentMethod,
-    required TResult Function(bool isPayOnline, int totalAmount, String cid,
-            String pid, Function2<String, String, void> sendMessage)
+    required TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)
         sumbitPayment,
   }) {
-    return sumbitPayment(isPayOnline, totalAmount, cid, pid, sendMessage);
+    return sumbitPayment(
+        isPayOnline, totalAmount, services, cid, pid, sendMessage, pay);
   }
 
   @override
@@ -479,11 +568,18 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
   }) {
-    return sumbitPayment?.call(isPayOnline, totalAmount, cid, pid, sendMessage);
+    return sumbitPayment?.call(
+        isPayOnline, totalAmount, services, cid, pid, sendMessage, pay);
   }
 
   @override
@@ -491,13 +587,20 @@ class _$_SubmitPayment implements _SubmitPayment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(bool isPayOnline)? changePaymentMethod,
-    TResult Function(bool isPayOnline, int totalAmount, String cid, String pid,
-            Function2<String, String, void> sendMessage)?
+    TResult Function(
+            bool isPayOnline,
+            int totalAmount,
+            List<PendingServiceModel> services,
+            String cid,
+            String pid,
+            Function2<String, String, void> sendMessage,
+            Function3<String, String, String, void> pay)?
         sumbitPayment,
     required TResult orElse(),
   }) {
     if (sumbitPayment != null) {
-      return sumbitPayment(isPayOnline, totalAmount, cid, pid, sendMessage);
+      return sumbitPayment(
+          isPayOnline, totalAmount, services, cid, pid, sendMessage, pay);
     }
     return orElse();
   }
@@ -541,16 +644,20 @@ abstract class _SubmitPayment implements InvoicePaymentEvent {
   const factory _SubmitPayment(
           {required final bool isPayOnline,
           required final int totalAmount,
+          required final List<PendingServiceModel> services,
           required final String cid,
           required final String pid,
-          required final Function2<String, String, void> sendMessage}) =
+          required final Function2<String, String, void> sendMessage,
+          required final Function3<String, String, String, void> pay}) =
       _$_SubmitPayment;
 
   bool get isPayOnline;
   int get totalAmount;
+  List<PendingServiceModel> get services;
   String get cid;
   String get pid;
   Function2<String, String, void> get sendMessage;
+  Function3<String, String, String, void> get pay;
   @JsonKey(ignore: true)
   _$$_SubmitPaymentCopyWith<_$_SubmitPayment> get copyWith =>
       throw _privateConstructorUsedError;

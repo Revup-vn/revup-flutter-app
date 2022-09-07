@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../h22_invoice/widgets/default_avatar.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../l10n/l10n.dart';
 import '../../order/models/pending_service_model.dart';
 import '../../router/router.dart';
+import '../../service/choose_service/cubit/payment_cubit.dart';
 import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 import '../bloc/invoice_payment_bloc.u.dart';
@@ -22,14 +22,129 @@ class InvoicePaymentView extends StatelessWidget {
     super.key,
     required this.providerData,
     required this.services,
+    required this.recordId,
   });
   final ProviderData providerData;
   final List<PendingServiceModel> services;
+  final String recordId;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final maybeUser = getUser(context.read<AuthenticateBloc>().state);
     var isPayOnline = false;
+    final blocPage = context.read<InvoicePaymentBloc>();
+    final paymentCubit = context.watch<PaymentCubit>();
+    blocPage.state.maybeWhen(
+      initial: paymentCubit.watch,
+      orElse: () => false,
+    );
+    paymentCubit.state.when(
+      initial: () => false,
+      failure: (recordId) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Future<dynamic>.delayed(const Duration(seconds: 2), () {
+            showFlash<void>(
+              duration: const Duration(seconds: 2),
+              context: context,
+              builder: (_, controller) {
+                return Flash<Widget>(
+                  controller: controller,
+                  margin: const EdgeInsets.only(left: 20),
+                  behavior: FlashBehavior.floating,
+                  position: FlashPosition.top,
+                  forwardAnimationCurve: Curves.easeIn,
+                  reverseAnimationCurve: Curves.easeOut,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(6),
+                    bottomLeft: Radius.circular(6),
+                  ),
+                  child: FlashBar(
+                    content: Text(
+                      l10n.failurePaymentLabel,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    ),
+                    indicatorColor: Theme.of(context).colorScheme.error,
+                    primaryAction: TextButton(
+                      onPressed: () {
+                        controller.dismiss();
+                      },
+                      child: Text(context.l10n.hideLabel),
+                    ),
+                  ),
+                );
+              },
+            );
+          });
+        });
+      },
+      success: (token, recordId) {
+        context
+            .read<NotificationCubit>()
+            .sendMessageToToken(
+              SendMessage(
+                title: 'Revup',
+                body: 'done',
+                token: token,
+                icon: kRevupIconApp,
+                payload: MessageData(
+                  type: NotificationType.ConsumerBilled,
+                  payload: <String, dynamic>{
+                    'providerId': providerData.id,
+                  },
+                ),
+              ),
+            )
+            .then((value) {
+          showDialog<String>(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(10),
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 200,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.done,
+                            color: Theme.of(context).colorScheme.onTertiary,
+                          ),
+                          AutoSizeText(
+                            context.l10n.doneLabel,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
+          return Future.delayed(
+            const Duration(seconds: 3),
+            () async {
+              context.router.popUntil(
+                (route) => route.settings.name == HomeRoute.name,
+              );
+            },
+          );
+        });
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -229,26 +344,14 @@ class InvoicePaymentView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          maybeUser.fold(
-                            () => null,
-                            (user) {
-                              final completer = Completer<bool>();
-                              context.router.push(
-                                PaymentRoute(
-                                  user: user,
-                                  completer: completer,
-                                ),
-                              );
-                              completer.future.then(
-                                (value) {
-                                  isPayOnline = value;
-                                  context.read<InvoicePaymentBloc>().add(
-                                        InvoicePaymentEvent.changePaymentMethod(
-                                          isPayOnline: value,
-                                        ),
-                                      );
-                                },
-                              );
+                          context.router.push<bool>(const PaymentRoute()).then(
+                            (value) {
+                              isPayOnline = value ?? false;
+                              context.read<InvoicePaymentBloc>().add(
+                                    InvoicePaymentEvent.changePaymentMethod(
+                                      isPayOnline: isPayOnline,
+                                    ),
+                                  );
                             },
                           );
                         },
@@ -268,7 +371,10 @@ class InvoicePaymentView extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               leading: isPaymentOnline
-                                  ? const Icon(Icons.payment)
+                                  ? Assets.screens.momo.image(
+                                      width: 24,
+                                      height: 24,
+                                    )
                                   : const Icon(Icons.money),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             );
@@ -372,6 +478,7 @@ class InvoicePaymentView extends StatelessWidget {
                                                           .quantity))
                                           : 0),
                                 ),
+                                services: services,
                                 cid: user.uuid,
                                 pid: providerData.id,
                                 sendMessage: (
@@ -396,6 +503,37 @@ class InvoicePaymentView extends StatelessWidget {
                                         ),
                                       );
                                 },
+                                pay: (
+                                  recordId,
+                                  displayRecordName,
+                                  consumerName,
+                                ) =>
+                                    context.read<MomoCubit>().pay(
+                                          PaymentInfo(
+                                            amount: services.fold(
+                                              0,
+                                              (p, e) =>
+                                                  p +
+                                                  (e.isComplete
+                                                      ? (e.price +
+                                                          (e.products.isEmpty
+                                                              ? 0
+                                                              : e.products.first
+                                                                      .unitPrice *
+                                                                  e
+                                                                      .products
+                                                                      .first
+                                                                      .quantity))
+                                                      : 0),
+                                            ),
+                                            recordId: recordId,
+                                            displayRecordName:
+                                                displayRecordName,
+                                            consumerName: consumerName,
+                                            description:
+                                                l10n.paymentDescriptionLabel,
+                                          ),
+                                        ),
                               ),
                             ),
                       );

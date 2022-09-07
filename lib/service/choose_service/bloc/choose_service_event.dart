@@ -6,9 +6,11 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required List<OptionalService> newService,
   }) = _Started;
   const factory ChooseServiceEvent.serviceListSubmitted({
+    required bool isPaymentOnline,
     required Function1<String, void> onRouteToTimeOut,
     required Function2<String, String, void> sendMessage,
     required List<ServiceData> saveLst,
     required Function0<void> onPopBack,
+    required Function4<int, String, String, String, void> pay,
   }) = _ServiceListSubmitted;
 }
