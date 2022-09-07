@@ -59,7 +59,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                 a,
                 (await storeRepository
                         .repairServiceRepo(maybeProviderData, a)
-                        .all())
+                        .where('active', isEqualTo: true))
                     .fold<IList<ServiceData>>(
                   (l) => ilist([]),
                   (r) => r.map(

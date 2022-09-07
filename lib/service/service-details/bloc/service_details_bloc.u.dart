@@ -49,7 +49,7 @@ class ServiceDetailsBloc
                     RepairCategoryDummy.dummy(vehicle),
                     r,
                   )
-                  .all())
+                  .where('active', isEqualTo: true))
               .fold((l) => completer.complete(nil()), completer.complete);
         });
         final res = await completer.future;
