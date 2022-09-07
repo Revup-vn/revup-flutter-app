@@ -10,5 +10,6 @@ class ChooseServiceEvent with _$ChooseServiceEvent {
     required Function2<String, String, void> sendMessage,
     required List<ServiceData> saveLst,
     required Function0<void> onPopBack,
+    required Function4<int, String, String, String, void> pay,
   }) = _ServiceListSubmitted;
 }

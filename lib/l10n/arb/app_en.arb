@@ -245,5 +245,8 @@
   "errLoadAddressLabel": "Cannot load adderss information",
   "uncompletedLabel": "Uncompleted",
   "completedLabel": "Completed",
-  "addressNormalLabel": "Address"
+  "addressNormalLabel": "Address",
+  "acceptTransportPaymentLabel": "You need to pay the transportation fee first",
+  "paymentDescriptionLabel": "Payment of moving fees for repairer",
+  "failurePaymentLabel": "Error occurred, payment failed"
 }

@@ -246,5 +246,8 @@
   "errLoadAddressLabel": "Không thể lấy dữ liệu địa chỉ",
   "uncompletedLabel": "Không hoàn thành",
   "completedLabel": "Đã hoàn thành",
-  "addressNormalLabel": "Địa chỉ"
+  "addressNormalLabel": "Địa chỉ",
+  "acceptTransportPaymentLabel": "Bạn cần thanh toán phí di chuyển trước",
+  "paymentDescriptionLabel": "Thanh toán phí di chuyển",
+  "failurePaymentLabel": "Có lỗi xảy ra, thanh toán thất bại"
 }

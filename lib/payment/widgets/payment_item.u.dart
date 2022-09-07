@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/material.dart';
 
 class PaymentItem extends StatelessWidget {
   const PaymentItem({
@@ -10,7 +8,7 @@ class PaymentItem extends StatelessWidget {
     required this.paymentName,
     required this.callback,
   });
-  final SvgPicture paymentIcon;
+  final Widget paymentIcon;
   final String paymentName;
   final VoidCallback callback;
   @override

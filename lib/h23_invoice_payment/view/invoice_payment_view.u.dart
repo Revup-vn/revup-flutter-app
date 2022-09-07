@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -229,26 +227,14 @@ class InvoicePaymentView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          maybeUser.fold(
-                            () => null,
-                            (user) {
-                              final completer = Completer<bool>();
-                              context.router.push(
-                                PaymentRoute(
-                                  user: user,
-                                  completer: completer,
-                                ),
-                              );
-                              completer.future.then(
-                                (value) {
-                                  isPayOnline = value;
-                                  context.read<InvoicePaymentBloc>().add(
-                                        InvoicePaymentEvent.changePaymentMethod(
-                                          isPayOnline: value,
-                                        ),
-                                      );
-                                },
-                              );
+                          context.router.push<bool>(const PaymentRoute()).then(
+                            (value) {
+                              isPayOnline = value ?? false;
+                              context.read<InvoicePaymentBloc>().add(
+                                    InvoicePaymentEvent.changePaymentMethod(
+                                      isPayOnline: isPayOnline,
+                                    ),
+                                  );
                             },
                           );
                         },

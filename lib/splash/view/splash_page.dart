@@ -32,6 +32,14 @@ class _SplashPageState extends State<SplashPage> {
           context.router.removeWhere(
             (route) => route.name == CountdownRoute.name,
           );
+          // showDialog(
+          //     context: context,
+          //     builder: (context) =>
+          //         SimpleDialogCustom(content: [
+          //           AutoSizeText(context.l10n.)
+          //         ], button: [
+
+          //         ]));
           // route to order overview
           context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),

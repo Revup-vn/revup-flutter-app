@@ -69,7 +69,7 @@ import '../test/test.dart';
       ],
     ),
     AdaptiveRoute<void>(page: HistoryProviderDetailPage),
-    AdaptiveRoute<void>(page: PaymentPage),
+    AdaptiveRoute<bool>(page: PaymentPage),
     AdaptiveRoute<void>(page: UpdateProfilePage),
     AdaptiveRoute<void>(page: LoginPage),
     AdaptiveRoute<void>(page: OnboardingPage),

@@ -146,11 +146,8 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i11.HistoryProviderDetailPage(args.rpID, key: args.key));
     },
     PaymentRoute.name: (routeData) {
-      final args = routeData.argsAs<PaymentRouteArgs>();
-      return _i42.AdaptivePage<void>(
-          routeData: routeData,
-          child: _i12.PaymentPage(
-              key: args.key, user: args.user, completer: args.completer));
+      return _i42.AdaptivePage<bool>(
+          routeData: routeData, child: const _i12.PaymentPage());
     },
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>();
@@ -187,7 +184,6 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i18.ChooseServicePage(
               key: args.key,
               providerId: args.providerId,
-              recordId: args.recordId,
               optionalService: args.optionalService));
     },
     NewServiceRequestRoute.name: (routeData) {
@@ -644,31 +640,10 @@ class HistoryProviderDetailRouteArgs {
 
 /// generated route for
 /// [_i12.PaymentPage]
-class PaymentRoute extends _i42.PageRouteInfo<PaymentRouteArgs> {
-  PaymentRoute(
-      {_i43.Key? key,
-      required _i44.AppUser user,
-      _i47.Completer<dynamic>? completer})
-      : super(PaymentRoute.name,
-            path: '/payment-page',
-            args: PaymentRouteArgs(key: key, user: user, completer: completer));
+class PaymentRoute extends _i42.PageRouteInfo<void> {
+  const PaymentRoute() : super(PaymentRoute.name, path: '/payment-page');
 
   static const String name = 'PaymentRoute';
-}
-
-class PaymentRouteArgs {
-  const PaymentRouteArgs({this.key, required this.user, this.completer});
-
-  final _i43.Key? key;
-
-  final _i44.AppUser user;
-
-  final _i47.Completer<dynamic>? completer;
-
-  @override
-  String toString() {
-    return 'PaymentRouteArgs{key: $key, user: $user, completer: $completer}';
-  }
 }
 
 /// generated route for
@@ -799,14 +774,12 @@ class ChooseServiceRoute extends _i42.PageRouteInfo<ChooseServiceRouteArgs> {
   ChooseServiceRoute(
       {_i43.Key? key,
       required String providerId,
-      String? recordId,
       required List<_i44.OptionalService> optionalService})
       : super(ChooseServiceRoute.name,
             path: '/choose-service-page',
             args: ChooseServiceRouteArgs(
                 key: key,
                 providerId: providerId,
-                recordId: recordId,
                 optionalService: optionalService));
 
   static const String name = 'ChooseServiceRoute';
@@ -814,22 +787,17 @@ class ChooseServiceRoute extends _i42.PageRouteInfo<ChooseServiceRouteArgs> {
 
 class ChooseServiceRouteArgs {
   const ChooseServiceRouteArgs(
-      {this.key,
-      required this.providerId,
-      this.recordId,
-      required this.optionalService});
+      {this.key, required this.providerId, required this.optionalService});
 
   final _i43.Key? key;
 
   final String providerId;
 
-  final String? recordId;
-
   final List<_i44.OptionalService> optionalService;
 
   @override
   String toString() {
-    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, recordId: $recordId, optionalService: $optionalService}';
+    return 'ChooseServiceRouteArgs{key: $key, providerId: $providerId, optionalService: $optionalService}';
   }
 }
 

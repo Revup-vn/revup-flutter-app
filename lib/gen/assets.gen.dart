@@ -87,6 +87,9 @@ class $AssetsScreensGen {
   SvgGenImage get mobilePay =>
       const SvgGenImage('assets/screens/mobile_pay.svg');
 
+  /// File path: assets/screens/momo.png
+  AssetGenImage get momo => const AssetGenImage('assets/screens/momo.png');
+
   /// File path: assets/screens/order_confirm.svg
   SvgGenImage get orderConfirm =>
       const SvgGenImage('assets/screens/order_confirm.svg');

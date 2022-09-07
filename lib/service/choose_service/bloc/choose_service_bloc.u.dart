@@ -23,6 +23,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
     this.storeRepository,
     this.providerId,
     this._maybeUser,
+    this.momoVn,
   ) : super(const _Initial()) {
     on<ChooseServiceEvent>(_onEvent);
   }
@@ -32,6 +33,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
   final optionalService = <ServiceData>[];
   final String providerId;
   final Option<AppUser> _maybeUser;
+  final MomoCubit momoVn;
 
   FutureOr<void> _onEvent(
     ChooseServiceEvent event,
@@ -51,6 +53,7 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
         final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
         final catAndSv = await (await (storeRepository.repairCategoryRepo(
           maybeProviderData,
         )).get(catId))
@@ -85,11 +88,12 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             serviceData: catAndSv.value2.plus(tmp),
             providerId: providerId,
             catAndSv: catAndSv,
+            movingFee: movingFee,
           ),
         );
       },
       serviceListSubmitted:
-          (onRouteToTimeOutPage, sendMessage, saveLst, onPop) async {
+          (onRouteToTimeOutPage, sendMessage, saveLst, onPopBack, pay) async {
         emit(const ChooseServiceState.loading());
 
         if (await _isProviderOnline() && await _hasNotPendingRecord()) {
@@ -192,13 +196,20 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               )
               .fold((l) => throw NullThrownError(), (r) => r.toList());
 
+          pay(
+            movingFee,
+            recordId,
+            'Revup',
+            '${consumer.firstName} ${consumer.lastName}',
+          );
           // send notify to provider
-          sendMessage(tokens.first.token, recordId);
+          // sendMessage(tokens.first.token, recordId);
 
-          onRouteToTimeOutPage(tokens.first.token);
+          // onRouteToTimeOutPage(tokens.first.token);
           return;
         }
-        onPop();
+
+        onPopBack();
       },
     );
   }
