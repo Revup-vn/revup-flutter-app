@@ -69,7 +69,7 @@ class _SplashPageState extends State<SplashPage> {
             context: context,
           );
           context.router.pushAndPopUntil(
-            ServiceInvoiceRoute(providerID: providerId, id: recordId),
+            ServiceInvoiceRoute(providerID: providerId, recordId: recordId),
             predicate: (route) => true,
           );
           break;

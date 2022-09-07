@@ -18,10 +18,12 @@ class ServiceInvoiceContent extends StatelessWidget {
     this.services, {
     super.key,
     required this.ready,
+    required this.recordId,
   });
   final ProviderData providerData;
   final List<PendingServiceModel> services;
   final bool ready;
+  final String recordId;
 
   @override
   Widget build(BuildContext context) {
@@ -331,6 +333,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                         ? () {
                             context.router.push(
                               InvoicePaymentRoute(
+                                recordId: recordId,
                                 providerData: providerData,
                                 services: services
                                     .where((e) => e.isComplete)

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -92,10 +93,16 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
           ),
         );
       },
-      serviceListSubmitted:
-          (onRouteToTimeOutPage, sendMessage, saveLst, onPopBack, pay) async {
+      serviceListSubmitted: (
+        isPaymentOnline,
+        onRouteToTimeOut,
+        sendMessage,
+        saveLst,
+        onPopBack,
+        pay,
+      ) async {
         emit(const ChooseServiceState.loading());
-
+        log('PAYMENT ONLINE :: ${isPaymentOnline.toString()}');
         if (await _isProviderOnline() && await _hasNotPendingRecord()) {
           // lock Provider status
           _userStore.updateFields(
@@ -178,34 +185,37 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
                   );
           }
 
-          // get latest provider fcm token
-          final provider = (await _userStore.get(providerId))
-              .fold<Option<AppUser>>(
-                (l) => none(),
-                some,
-              )
-              .getOrElse(() => throw NullThrownError());
+          if (isPaymentOnline) {
+            pay(
+              movingFee,
+              recordId,
+              'Revup',
+              '${consumer.firstName} ${consumer.lastName}',
+            );
+          } else {
+            // get latest provider fcm token
+            final provider = (await _userStore.get(providerId))
+                .fold<Option<AppUser>>(
+                  (l) => none(),
+                  some,
+                )
+                .getOrElse(() => throw NullThrownError());
 
-          final tokens = (await storeRepository
-                  .userNotificationTokenRepo(provider)
-                  .all())
-              .map(
-                (r) => r.sort(
-                  orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                ),
-              )
-              .fold((l) => throw NullThrownError(), (r) => r.toList());
+            final tokens = (await storeRepository
+                    .userNotificationTokenRepo(provider)
+                    .all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
 
-          pay(
-            movingFee,
-            recordId,
-            'Revup',
-            '${consumer.firstName} ${consumer.lastName}',
-          );
-          // send notify to provider
-          // sendMessage(tokens.first.token, recordId);
+            // send notify to provider
+            sendMessage(tokens.first.token, recordId);
 
-          // onRouteToTimeOutPage(tokens.first.token);
+            onRouteToTimeOut(tokens.first.token);
+          }
           return;
         }
 

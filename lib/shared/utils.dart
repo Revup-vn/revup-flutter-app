@@ -17,7 +17,7 @@ int calculateMovingFees(int distance, int baseFees, int increaseFees) {
   const baseDistance = 3;
   final movingFees = distance <= baseDistance
       ? baseFees
-      : baseFees + (distance - baseDistance) * increaseFees;
+      : (baseFees + (distance - baseDistance) * increaseFees).ceil();
 
   return movingFees;
 }

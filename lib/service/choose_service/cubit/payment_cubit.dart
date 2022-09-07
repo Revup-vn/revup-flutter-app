@@ -10,9 +10,13 @@ part 'payment_cubit.freezed.dart';
 part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-  PaymentCubit(this.momoVn, this._userStore, this._repairRecord,
-      this.storeRepository, this.providerId)
-      : super(const PaymentState.initial());
+  PaymentCubit(
+    this.momoVn,
+    this._userStore,
+    this._repairRecord,
+    this.storeRepository,
+    this.providerId,
+  ) : super(const PaymentState.initial());
   final MomoCubit momoVn;
   late final StreamSubscription<MomoState> _s;
   final IStore<AppUser> _userStore;
@@ -43,8 +47,12 @@ class PaymentCubit extends Cubit<PaymentState> {
                 ),
               )
               .fold((l) => throw NullThrownError(), (r) => r.toList());
-          emit(PaymentState.success(
-              token: tokens.first.token, recordId: recordId));
+          emit(
+            PaymentState.success(
+              token: tokens.first.token,
+              recordId: recordId,
+            ),
+          );
         },
         error: (res) async {
           final boxRprRecord = Hive.box<dynamic>('repairRecord');

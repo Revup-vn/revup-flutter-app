@@ -20,6 +20,7 @@ mixin _$ChooseServiceEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -32,6 +33,7 @@ mixin _$ChooseServiceEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -44,6 +46,7 @@ mixin _$ChooseServiceEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -163,6 +166,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -178,6 +182,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -193,6 +198,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -255,7 +261,8 @@ abstract class _$$_ServiceListSubmittedCopyWith<$Res> {
           $Res Function(_$_ServiceListSubmitted) then) =
       __$$_ServiceListSubmittedCopyWithImpl<$Res>;
   $Res call(
-      {Function1<String, void> onRouteToTimeOut,
+      {bool isPaymentOnline,
+      Function1<String, void> onRouteToTimeOut,
       Function2<String, String, void> sendMessage,
       List<ServiceData> saveLst,
       Function0<void> onPopBack,
@@ -275,6 +282,7 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isPaymentOnline = freezed,
     Object? onRouteToTimeOut = freezed,
     Object? sendMessage = freezed,
     Object? saveLst = freezed,
@@ -282,6 +290,10 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
     Object? pay = freezed,
   }) {
     return _then(_$_ServiceListSubmitted(
+      isPaymentOnline: isPaymentOnline == freezed
+          ? _value.isPaymentOnline
+          : isPaymentOnline // ignore: cast_nullable_to_non_nullable
+              as bool,
       onRouteToTimeOut: onRouteToTimeOut == freezed
           ? _value.onRouteToTimeOut
           : onRouteToTimeOut // ignore: cast_nullable_to_non_nullable
@@ -310,13 +322,16 @@ class __$$_ServiceListSubmittedCopyWithImpl<$Res>
 
 class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   const _$_ServiceListSubmitted(
-      {required this.onRouteToTimeOut,
+      {required this.isPaymentOnline,
+      required this.onRouteToTimeOut,
       required this.sendMessage,
       required final List<ServiceData> saveLst,
       required this.onPopBack,
       required this.pay})
       : _saveLst = saveLst;
 
+  @override
+  final bool isPaymentOnline;
   @override
   final Function1<String, void> onRouteToTimeOut;
   @override
@@ -335,7 +350,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
   @override
   String toString() {
-    return 'ChooseServiceEvent.serviceListSubmitted(onRouteToTimeOut: $onRouteToTimeOut, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack, pay: $pay)';
+    return 'ChooseServiceEvent.serviceListSubmitted(isPaymentOnline: $isPaymentOnline, onRouteToTimeOut: $onRouteToTimeOut, sendMessage: $sendMessage, saveLst: $saveLst, onPopBack: $onPopBack, pay: $pay)';
   }
 
   @override
@@ -343,6 +358,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ServiceListSubmitted &&
+            const DeepCollectionEquality()
+                .equals(other.isPaymentOnline, isPaymentOnline) &&
             (identical(other.onRouteToTimeOut, onRouteToTimeOut) ||
                 other.onRouteToTimeOut == onRouteToTimeOut) &&
             (identical(other.sendMessage, sendMessage) ||
@@ -354,8 +371,14 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, onRouteToTimeOut, sendMessage,
-      const DeepCollectionEquality().hash(_saveLst), onPopBack, pay);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isPaymentOnline),
+      onRouteToTimeOut,
+      sendMessage,
+      const DeepCollectionEquality().hash(_saveLst),
+      onPopBack,
+      pay);
 
   @JsonKey(ignore: true)
   @override
@@ -368,6 +391,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult when<TResult extends Object?>({
     required TResult Function(List<OptionalService> newService) started,
     required TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -375,8 +399,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             Function4<int, String, String, String, void> pay)
         serviceListSubmitted,
   }) {
-    return serviceListSubmitted(
-        onRouteToTimeOut, sendMessage, saveLst, onPopBack, pay);
+    return serviceListSubmitted(isPaymentOnline, onRouteToTimeOut, sendMessage,
+        saveLst, onPopBack, pay);
   }
 
   @override
@@ -384,6 +408,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -391,8 +416,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
             Function4<int, String, String, String, void> pay)?
         serviceListSubmitted,
   }) {
-    return serviceListSubmitted?.call(
-        onRouteToTimeOut, sendMessage, saveLst, onPopBack, pay);
+    return serviceListSubmitted?.call(isPaymentOnline, onRouteToTimeOut,
+        sendMessage, saveLst, onPopBack, pay);
   }
 
   @override
@@ -400,6 +425,7 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<OptionalService> newService)? started,
     TResult Function(
+            bool isPaymentOnline,
             Function1<String, void> onRouteToTimeOut,
             Function2<String, String, void> sendMessage,
             List<ServiceData> saveLst,
@@ -409,8 +435,8 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
     required TResult orElse(),
   }) {
     if (serviceListSubmitted != null) {
-      return serviceListSubmitted(
-          onRouteToTimeOut, sendMessage, saveLst, onPopBack, pay);
+      return serviceListSubmitted(isPaymentOnline, onRouteToTimeOut,
+          sendMessage, saveLst, onPopBack, pay);
     }
     return orElse();
   }
@@ -449,13 +475,15 @@ class _$_ServiceListSubmitted implements _ServiceListSubmitted {
 
 abstract class _ServiceListSubmitted implements ChooseServiceEvent {
   const factory _ServiceListSubmitted(
-          {required final Function1<String, void> onRouteToTimeOut,
+          {required final bool isPaymentOnline,
+          required final Function1<String, void> onRouteToTimeOut,
           required final Function2<String, String, void> sendMessage,
           required final List<ServiceData> saveLst,
           required final Function0<void> onPopBack,
           required final Function4<int, String, String, String, void> pay}) =
       _$_ServiceListSubmitted;
 
+  bool get isPaymentOnline;
   Function1<String, void> get onRouteToTimeOut;
   Function2<String, String, void> get sendMessage;
   List<ServiceData> get saveLst;

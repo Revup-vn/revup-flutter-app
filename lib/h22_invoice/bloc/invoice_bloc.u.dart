@@ -115,48 +115,6 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
               ),
             )
             .map((a) => PendingServiceModel.fromDto(paymentService: a));
-
-        // final listOptionService = paymentList.map<Option<ServiceData>>(
-        //   (a) => a.when(
-        //     pending:
-        //         (serviceName, moneyAmount, products, isOptional, isCompleted) =>
-        //             some(
-        //       ServiceData.fromDtos(
-        //         serviceName,
-        //         moneyAmount +
-        //             (products.isNotEmpty
-        //                 ? products[0].unitPrice * products[0].quantity
-        //                 : 0),
-        //         'pending',
-        //         isCompleted: isCompleted,
-        //         '',
-        //         products: products,
-        //       ),
-        //     ),
-        //     needToVerify: (serviceName, desc, imgUrl) => none(),
-        //     paid: (serviceName, moneyAmount, products, paidIn) => some(
-        //       ServiceData.fromDtos(
-        //         serviceName,
-        //         moneyAmount +
-        //             (products.isNotEmpty
-        //                 ? products[0].unitPrice * products[0].quantity
-        //                 : 0),
-        //         'paid',
-        //         isCompleted: true,
-        //         '',
-        //         products: products,
-        //       ),
-        //     ),
-        //   ),
-        // );
-        // final listService = listOptionService.filter((a) => a.isSome()).map(
-        //       (a) => a.getOrElse(
-        //         () => throw NullThrownError(),
-        //       ),
-        //     );
-        // final total = listOptionService
-        //     .map((a) => a.fold(() => 0, (a) => a.serviceFee))
-        //     .foldLeft<int>(0, (previous, a) => previous + a);
         final svProvider = (await storeRepository
                 .repairServiceRepo(
                   AppUserDummy.dummyProvider(providerID),
@@ -181,24 +139,6 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
                 .img,
           ),
         );
-
-        // final listSvDataWithImg = listService
-        //     .map(
-        //       (a) => listSvProvider.where((b) => a.serviceName == b.name).map(
-        //             (c) => ServiceData.fromDtos(
-        //               a.serviceName,
-        //               a.serviceFee,
-        //               a.state,
-        //               c.img,
-        //               isCompleted: a.isCompleted,
-        //               products: a.products,
-        //             ),
-        //           ),
-        //     )
-        //     .foldLeft<IList<ServiceData>>(
-        //       nil<ServiceData>(),
-        //       (previous, a) => previous.plus(a),
-        //     );
         maybeProviderData.fold(
           () => emit(
             const InvoiceState.loading(),

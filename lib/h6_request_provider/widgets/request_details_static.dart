@@ -30,7 +30,7 @@ class RequestDetailsStatic extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        height: 320,
+        height: 300,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
           borderRadius: const BorderRadius.only(

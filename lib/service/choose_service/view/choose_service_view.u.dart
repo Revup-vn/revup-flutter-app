@@ -4,6 +4,7 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -40,6 +41,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
     final l10n = context.l10n;
     final blocPage = context.watch<ChooseServiceBloc>();
     final paymentCubit = context.watch<PaymentCubit>();
+    final notify = context.read<NotificationCubit>();
     blocPage.state.whenOrNull(
       initial: () {
         blocPage.add(
@@ -95,17 +97,31 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
         });
       },
       success: (token, recordId) {
-        context
-            .read<NotificationCubit>()
-            .sendMessageToToken(
-              SendMessage(
-                title: 'Revup',
-                body: l10n.submitRequestSuccessLabel,
-                token: token,
-                icon: kRevupIconApp,
-                payload: MessageData(
-                  type: NotificationType.ConsumerRequestRepair,
-                  payload: <String, dynamic>{'recordId': recordId},
+        final _paymentRepo = context
+            .read<StoreRepository>()
+            .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
+        final boxRprRecord = Hive.box<dynamic>('repairRecord');
+        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
+        _paymentRepo
+            .create(
+              PaymentService.paid(
+                serviceName: 'transFee',
+                moneyAmount: movingFee,
+                products: [],
+                paidIn: DateTime.now(),
+              ),
+            )
+            .then(
+              (value) => notify.sendMessageToToken(
+                SendMessage(
+                  title: 'Revup',
+                  body: l10n.submitRequestSuccessLabel,
+                  token: token,
+                  icon: kRevupIconApp,
+                  payload: MessageData(
+                    type: NotificationType.ConsumerRequestRepair,
+                    payload: <String, dynamic>{'recordId': recordId},
+                  ),
                 ),
               ),
             )
@@ -273,6 +289,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                               context.read<ChooseServiceBloc>().add(
                                     ChooseServiceEvent.serviceListSubmitted(
                                       // Go to timeout page
+                                      isPaymentOnline: _isPayOnline,
                                       onRouteToTimeOut: (token) =>
                                           context.router.replace(
                                         CountdownRoute(
