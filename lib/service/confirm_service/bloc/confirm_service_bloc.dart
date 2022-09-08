@@ -135,12 +135,12 @@ class ConfirmServiceBloc
             .toList();
         final paymentNotRm = payment
             .where(
-              (element) => saveLst.any((e) => e.name == element.serviceName),
+              (element) =>
+                  saveLst.any((e) => e.name == element.serviceName) ||
+                  element.serviceName == 'transFee',
             )
             .toList();
-        payment.removeWhere(
-          paymentNotRm.contains,
-        );
+        payment.removeWhere(paymentNotRm.contains);
         for (var i = 0; i < payment.length; i++) {
           await _paymentRepo.delete(payment[i].serviceName);
         }

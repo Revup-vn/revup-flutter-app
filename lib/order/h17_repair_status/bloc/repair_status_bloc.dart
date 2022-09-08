@@ -76,20 +76,22 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
                   .all())
               .fold<IList<RepairService>>((l) => nil(), (r) => r);
 
-          final listServiceImg = listService.map(
-            (e) => e.copyWith(
-              imageUrl: svProvider
-                  .find((a) => a.name == e.name)
-                  .getOrElse(
-                    () => const RepairService(
-                      name: '',
-                      fee: 0,
-                      img: kFallbackServiceImg,
-                    ),
-                  )
-                  .img,
-            ),
-          );
+          final listServiceImg = listService
+              .map(
+                (e) => e.copyWith(
+                  imageUrl: svProvider
+                      .find((a) => a.name == e.name)
+                      .getOrElse(
+                        () => const RepairService(
+                          name: '',
+                          fee: 0,
+                          img: kFallbackServiceImg,
+                        ),
+                      )
+                      .img,
+                ),
+              )
+              .sort(orderBy(StringOrder.reverse(), (a) => a.status));
 
           emit(
             RepairStatusState.success(

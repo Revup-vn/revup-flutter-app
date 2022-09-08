@@ -439,15 +439,20 @@ class InvoicePaymentView extends StatelessWidget {
                                 ),
                           ),
                           AutoSizeText(
-                            context.formatMoney(services.fold(
+                            context.formatMoney(
+                              services.fold(
                                 0,
                                 (p, e) =>
                                     p +
-                                    (e.price == -1 ? 0 : e.price) +
-                                    (e.products.isEmpty
-                                        ? 0
-                                        : e.products.first.unitPrice *
-                                            e.products.first.quantity))),
+                                    (e.status != 'paid'
+                                        ? (e.price == -1 ? 0 : e.price) +
+                                            (e.products.isEmpty
+                                                ? 0
+                                                : e.products.first.unitPrice *
+                                                    e.products.first.quantity)
+                                        : -e.price),
+                              ),
+                            ),
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
