@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -15,9 +17,11 @@ class ServiceCheckboxGroup extends StatelessWidget {
     required this.providerId,
     required this.isSelectProduct,
     required this.recordId,
+    required this.form,
   });
   final List<ServiceData> serviceList;
   final List<PendingServiceModel> pendingService;
+  final GlobalKey<FormBuilderState> form;
   final String providerId;
   final bool isSelectProduct;
   final String recordId;
@@ -28,21 +32,28 @@ class ServiceCheckboxGroup extends StatelessWidget {
         .map(
           ServiceData.fromPendingService,
         )
-        .toList()
-      ..addAll(
-        serviceList
-            .where(
-              (element) => element.isOptional,
-            )
-            .toList(),
-      );
+        .toList();
+    // svDataOptional.addAll(
+    //   serviceList
+    //       .where(
+    //         (element) =>
+    //             !svDataOptional.contains(element) && element.isOptional,
+    //       )
+    //       .toList(),
+    // );
+    log('SV OPTIONAL :: $svDataOptional');
     return FormBuilderField<List<ServiceData>>(
       initialValue: svDataOptional,
       name: 'data',
-      builder: (field) => Expanded(
-        child: ListView.builder(
-          padding: const EdgeInsets.only(bottom: 50),
-          physics: const BouncingScrollPhysics(),
+      builder: (field) {
+        return ListView.builder(
+          shrinkWrap: true,
+          padding: !isSelectProduct
+              ? const EdgeInsets.only(bottom: 200)
+              : const EdgeInsets.only(bottom: 70),
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
           itemCount: serviceList.length,
           itemBuilder: (context, index) {
             return ServiceCheckboxTile(
@@ -65,8 +76,8 @@ class ServiceCheckboxGroup extends StatelessWidget {
               recordId: recordId,
             );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }

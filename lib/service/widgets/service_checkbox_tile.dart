@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -42,12 +45,21 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
   void initState() {
     super.initState();
     isChecked = widget.isSelectDefault;
+    log('FORM :: ${widget.field.value.toString()}');
+
+    // if (widget.isSelectDefault) {
+    //   widget.field.value?.add(widget.serviceData);
+    // }
+    log('FORM :: ${widget.field.value.toString()}');
+    // if ((isChecked ?? false) &&
+    //     !(widget.field.value?.contains(widget.serviceData) ?? false)) {
+    //   widget.field.value?.add(widget.serviceData);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Card(
       elevation: 0,
       child: Column(
@@ -59,23 +71,38 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
               width: 48,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(48),
-                child: CachedNetworkImage(
-                  imageUrl: widget.serviceData.imageURL,
-                  placeholder: (context, url) => Assets.screens.setting.svg(
-                    fit: BoxFit.fill,
-                    height: 64,
-                    width: 64,
-                  ),
-                  errorWidget: (context, url, dynamic error) =>
-                      Assets.screens.setting.svg(
-                    fit: BoxFit.fill,
-                    height: 64,
-                    width: 64,
-                  ),
-                  height: 64,
-                  width: 64,
-                  fit: BoxFit.fill,
-                ),
+                child: widget.selectProMode
+                    ? CachedNetworkImage(
+                        imageUrl: widget.serviceData.imageURL,
+                        errorWidget: (context, url, dynamic error) =>
+                            Assets.screens.setting.svg(
+                          fit: BoxFit.fill,
+                          height: 64,
+                          width: 64,
+                        ),
+                        height: 64,
+                        width: 64,
+                        fit: BoxFit.fill,
+                      )
+                    : widget.serviceData.imageURL.isEmpty
+                        ? Assets.screens.setting.svg(
+                            fit: BoxFit.fill,
+                            height: 64,
+                            width: 64,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: widget.serviceData.imageURL,
+                            errorWidget: (context, url, dynamic error) =>
+                                Image.file(
+                              File(widget.serviceData.imageURL),
+                              fit: BoxFit.fill,
+                              height: 64,
+                              width: 64,
+                            ),
+                            height: 64,
+                            width: 64,
+                            fit: BoxFit.fill,
+                          ),
               ),
             ),
             title: Column(
@@ -97,8 +124,10 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                           widget.serviceData.serviceFee +
                               (widget.serviceData.products.isEmpty
                                   ? 0
-                                  : widget.serviceData.products.fold(0,
-                                      (p, e) => p + e.unitPrice * e.quantity)),
+                                  : widget.serviceData.products.fold(
+                                      0,
+                                      (p, e) => p + e.unitPrice * e.quantity,
+                                    )),
                         ),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -117,10 +146,6 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                   ),
               ],
             ),
-            // subtitle: AutoSizeText(
-            //   '${l10n.servicePriceLabel}: '
-            //   '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(widget.serviceData.serviceFee)}''',
-            // ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,
               activeColor: Theme.of(context).colorScheme.primary,
@@ -135,6 +160,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 } else {
                   widget.field.value?.remove(widget.serviceData);
                 }
+                log('FORM :: ${widget.field.value.toString()}');
               },
             ),
           ),

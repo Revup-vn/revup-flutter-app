@@ -193,7 +193,6 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               '${consumer.firstName} ${consumer.lastName}',
             );
           } else {
-            //
             await _paymentRepo.create(
               PaymentService.pending(
                 serviceName: 'transFee',

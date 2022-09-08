@@ -47,15 +47,13 @@ class ConfirmServiceView extends StatelessWidget {
         centerTitle: false,
         actions: [
           TextButton(
-            onPressed: () => context.router
-                .popAndPush<List<OptionalService>, List<OptionalService>>(
+            onPressed: () => context.router.push<List<OptionalService>>(
               NewServiceRequestRoute(
                 optionalService: optionalService,
                 providerId: providerId,
                 isSelectProduct: true,
                 recordId: recordId,
               ),
-              result: optionalService,
             ),
             child: Text(l10n.addLabel),
           ),
@@ -74,17 +72,20 @@ class ConfirmServiceView extends StatelessWidget {
               return Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 50),
                     child: Column(
                       children: [
-                        FormBuilder(
-                          key: form,
-                          child: ServiceCheckboxGroup(
-                            serviceList: serviceList,
-                            pendingService: pendingService,
-                            providerId: providerId,
-                            isSelectProduct: true,
-                            recordId: recordId,
+                        Expanded(
+                          child: FormBuilder(
+                            key: form,
+                            child: ServiceCheckboxGroup(
+                              serviceList: serviceList,
+                              pendingService: pendingService,
+                              providerId: providerId,
+                              isSelectProduct: true,
+                              recordId: recordId,
+                              form: form,
+                            ),
                           ),
                         ),
                       ],
@@ -93,16 +94,16 @@ class ConfirmServiceView extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     child: Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {
                           // get value from form
                           form.currentState?.save();
-                          final saveLst = form.currentState?.value['data']
+                          final completedLst = form.currentState?.value['data']
                               as List<ServiceData>;
 
-                          if (saveLst.isEmpty) {
+                          if (completedLst.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(l10n.chooseAtLeastServiceLabel),
@@ -113,10 +114,11 @@ class ConfirmServiceView extends StatelessWidget {
                           context.read<ConfirmServiceBloc>().add(
                                 ConfirmServiceEvent.selectProductCompleted(
                                   onRoute: () => context.router.pop(),
-                                  saveLst: saveLst,
+                                  saveLst: completedLst,
                                   recordId: recordId,
                                 ),
                               );
+                          form.currentState?.reset();
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),

@@ -166,14 +166,17 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                     child: Column(
                       children: [
-                        FormBuilder(
-                          key: widget.form,
-                          child: ServiceCheckboxGroup(
-                            serviceList: serviceList,
-                            pendingService: const [],
-                            providerId: providerId,
-                            isSelectProduct: false,
-                            recordId: '',
+                        Expanded(
+                          child: FormBuilder(
+                            key: widget.form,
+                            child: ServiceCheckboxGroup(
+                              serviceList: serviceList,
+                              pendingService: const [],
+                              providerId: providerId,
+                              isSelectProduct: false,
+                              recordId: '',
+                              form: widget.form,
+                            ),
                           ),
                         ),
                       ],
@@ -182,6 +185,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                   Positioned(
                     bottom: 0,
                     child: Container(
+                      color: Theme.of(context).colorScheme.surface,
                       padding: const EdgeInsets.all(16),
                       width: MediaQuery.of(context).size.width,
                       child: Column(
@@ -203,7 +207,8 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                                         .textTheme
                                         .titleMedium
                                         ?.copyWith(
-                                            fontWeight: FontWeight.normal) ??
+                                          fontWeight: FontWeight.normal,
+                                        ) ??
                                     const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -349,6 +354,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                                               ),
                                     ),
                                   );
+                              // widget.form.currentState?.reset();
                             },
                             style: Theme.of(context).elevatedButtonTheme.style,
                             child: AutoSizeText(l10n.confirmLabel),

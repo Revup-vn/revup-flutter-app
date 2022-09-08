@@ -40,7 +40,7 @@ class NewServiceRequestView extends StatefulWidget {
 
 class _NewServiceRequestViewState extends State<NewServiceRequestView> {
   final _formKey = GlobalKey<FormBuilderState>();
-  File? _image;
+  var _image = File('');
   List<OptionalService> optionalService = <OptionalService>[];
   @override
   void initState() {
@@ -59,16 +59,18 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
         appBar: AppBar(
           title: AutoSizeText(context.l10n.newRequestServiceAppBarTitle),
           centerTitle: false,
-          leading: BackButton(
-            onPressed: () {
-              context.router.popAndPush(
-                ChooseServiceRoute(
-                  providerId: widget.providerId,
-                  optionalService: optionalService,
+          leading: widget.isSelectProduct
+              ? null
+              : BackButton(
+                  onPressed: () {
+                    context.router.popAndPush(
+                      ChooseServiceRoute(
+                        providerId: widget.providerId,
+                        optionalService: optionalService,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
         body: BlocBuilder<NewServiceBloc, NewServiceState>(
           builder: (context, state) {
@@ -155,12 +157,30 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                           choosePhotoSuccess: (image) {
                             _image = image;
 
-                            return SizedBox(
-                              height: 120,
-                              child: Image.file(
-                                image,
-                                fit: BoxFit.fitHeight,
-                              ),
+                            return Stack(
+                              children: [
+                                SizedBox(
+                                  height: 120,
+                                  child: Image.file(
+                                    image,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                ),
+                                Positioned(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      context.read<ImagePickerBloc>().add(
+                                            const ImagePickerEvent.started(),
+                                          );
+                                    },
+                                    icon: Icon(
+                                      Icons.cancel,
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         ),
@@ -228,8 +248,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                                     NewServiceEvent.submitted(
                                       onRoute: () => context.router.pop(),
                                       optionalService: OptionalService(
-                                        img:
-                                            _image?.path ?? kFallbackServiceImg,
+                                        img: _image.path,
                                         name: name,
                                         desc: desc,
                                       ),
@@ -241,8 +260,9 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                                       optionalService: optionalService
                                         ..add(
                                           OptionalService(
-                                            img: _image?.path ??
-                                                kFallbackServiceImg,
+                                            img: _image.path.isEmpty
+                                                ? kFallbackServiceImg
+                                                : _image.path,
                                             name: name,
                                             desc: desc,
                                           ),

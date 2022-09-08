@@ -28,7 +28,11 @@ class ServiceInvoiceContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final transFee = services.firstWhere(
+      (e) => e.name == 'transFee',
+    );
+    final serviceWithoutTransFee =
+        services.where((element) => element.name != 'transFee').toList();
     return Scaffold(
       appBar: AppBar(
         title: AutoSizeText(
@@ -153,29 +157,55 @@ class ServiceInvoiceContent extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
+                  AutoSizeText(
+                    l10n.invoiceDetailsLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
                   SizedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         AutoSizeText(
-                          l10n.invoiceDetailsLabel,
-                          style: Theme.of(context).textTheme.labelLarge,
+                          l10n.serviceFeeLabel,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
+                        AutoSizeText(
+                          context.formatMoney(transFee.price),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  AutoSizeText(
+                    l10n.serviceLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: services.length,
+                    itemCount: serviceWithoutTransFee.length,
                     itemBuilder: (BuildContext context, int index) {
                       var statusLabel = l10n.completedLabel;
                       var statusColor = Colors.blueAccent;
-                      if (services[index].status == 'paid') {
+                      if (serviceWithoutTransFee[index].status == 'paid') {
                         statusLabel = l10n.paidLabel;
                         statusColor = Colors.greenAccent;
-                      } else if (services[index].status == 'pending') {
-                        if (!services[index].isComplete) {
+                      } else if (serviceWithoutTransFee[index].status ==
+                          'pending') {
+                        if (!serviceWithoutTransFee[index].isComplete) {
                           statusLabel = l10n.uncompletedLabel;
                           statusColor = Colors.orangeAccent;
                         } else {
@@ -194,8 +224,9 @@ class ServiceInvoiceContent extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: CachedNetworkImage(
-                                  imageUrl: services[index].imageUrl ??
-                                      kFallbackServiceImg,
+                                  imageUrl:
+                                      serviceWithoutTransFee[index].imageUrl ??
+                                          kFallbackServiceImg,
                                   errorWidget: (context, url, dynamic error) {
                                     return Assets.screens.setting.svg(
                                       fit: BoxFit.fill,
@@ -214,7 +245,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AutoSizeText(
-                                  services[index].name,
+                                  serviceWithoutTransFee[index].name,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -228,10 +259,13 @@ class ServiceInvoiceContent extends StatelessWidget {
                                     Expanded(
                                       child: AutoSizeText(
                                         context.formatMoney(
-                                          services[index].price +
-                                              (services[index].products.isEmpty
+                                          serviceWithoutTransFee[index].price +
+                                              (serviceWithoutTransFee[index]
+                                                      .products
+                                                      .isEmpty
                                                   ? 0
-                                                  : services[index]
+                                                  : serviceWithoutTransFee[
+                                                          index]
                                                       .products
                                                       .fold(
                                                           0,
@@ -260,7 +294,7 @@ class ServiceInvoiceContent extends StatelessWidget {
                                   ],
                                 ),
                                 AutoSizeText(
-                                  '''${l10n.productLabel}: ${services[index].products.isEmpty ? l10n.noneLabel : ('${services[index].products.first.name} x ${services[index].products.first.quantity}')}''',
+                                  '''${l10n.productLabel}: ${serviceWithoutTransFee[index].products.isEmpty ? l10n.noneLabel : ('${serviceWithoutTransFee[index].products.first.name} x ${serviceWithoutTransFee[index].products.first.quantity}')}''',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(

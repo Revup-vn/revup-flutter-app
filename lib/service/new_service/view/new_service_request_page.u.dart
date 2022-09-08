@@ -33,6 +33,7 @@ class NewServiceRequestPage extends StatelessWidget {
             context.read(),
             context.read(),
             recordId ?? '',
+            context.read(),
           ),
         ),
       ],
