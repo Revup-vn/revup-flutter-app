@@ -20,7 +20,9 @@ class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
     Emitter<ImagePickerState> emit,
   ) async {
     await event.when(
-      started: () {},
+      started: () {
+        emit(const ImagePickerState.initial());
+      },
       imageUploadSelected: (source) async {
         final pickedImage = await _imagePicker.pickImage(source: source);
         if (pickedImage != null) {
