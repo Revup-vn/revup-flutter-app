@@ -74,11 +74,15 @@ class RepairerProfileBloc
         final filterUser =
             maybeRating.where((element) => element.value1.isSome()).toList();
 
-        final feedbacks = filterUser.map(
-          (e) => RatingData.fromDtos(
-            e.value1.getOrElse(() => throw NullThrownError()),
-            e.value2,
-          ),
+        final feedbacks = filterUser.map<Option<RatingData>>(
+          (e) => e.value2 != null
+              ? some(
+                  RatingData.fromDtos(
+                    e.value1.getOrElse(() => throw NullThrownError()),
+                    e.value2!,
+                  ),
+                )
+              : none(),
         );
 
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
@@ -142,11 +146,13 @@ class RepairerProfileBloc
           (previousValue, element) =>
               IListMonoid<ServiceData>().append(previousValue, element),
         );
-
+        final ilistFeedback = ilist(feedbacks)
+            .filter((a) => a.isSome())
+            .map((a) => a.getOrElse(() => throw NullThrownError()));
         emit(
           RepairerProfileState.dataLoadSuccess(
             provider: providerData,
-            ratingData: ilist(feedbacks),
+            ratingData: ilistFeedback,
             serviceData: svList,
             categories: catAndSv,
           ),

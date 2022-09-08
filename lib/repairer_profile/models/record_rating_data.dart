@@ -8,7 +8,7 @@ class RecordRatingData with _$RecordRatingData {
   const factory RecordRatingData({
     required String id,
     required String cid,
-    required ReportFeedback feedback,
+    required ReportFeedback? feedback,
   }) = _RecordRatingData;
 
   factory RecordRatingData.fromDtos(RepairRecord record) {

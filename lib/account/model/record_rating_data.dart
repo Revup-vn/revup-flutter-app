@@ -8,7 +8,7 @@ class RecordRatingData with _$RecordRatingData {
   const factory RecordRatingData({
     required String id,
     required String cid,
-    required ReportFeedback feedback,
+    ReportFeedback? feedback,
   }) = _RecordRatingData;
 
   factory RecordRatingData.fromDtos(RepairRecord record) => record.maybeMap(

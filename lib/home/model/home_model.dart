@@ -22,7 +22,7 @@ class HomeModel with _$HomeModel {
         created: rp.created,
         rating: rp.maybeMap(
           orElse: () => 0,
-          finished: (value) => value.feedback.rating,
+          finished: (value) => value.feedback?.rating ?? 0,
         ),
         serviceType: rp.vehicle == 'motorbike' ? 0 : 1,
       );
