@@ -72,7 +72,8 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
             .map(
               (r) => tuple2(
                 r
-                        .map((a) => a.feedback.rating)
+                        .map((a) => a.feedback?.rating ?? 0)
+                        .where((a) => a != 0)
                         .foldLeft<int>(0, (previous, a) => previous + a) /
                     (r.isEmpty ? 1 : r.length()),
                 r.length(),

@@ -99,10 +99,21 @@ class SearchCubit extends Cubit<SearchState> {
                                 .map(
                                   (r) => tuple2<double, int>(
                                     r
-                                            .map((a) => a.feedback.rating)
+                                            .map((a) => a.feedback?.rating ?? 0)
+                                            .where((a) => a != 0)
                                             .foldLeft<int>(0, (p, a) => p + a) /
-                                        (r.isEmpty ? 1 : r.length()),
-                                    r.length(),
+                                        (r.isEmpty
+                                            ? 1
+                                            : r
+                                                .filter(
+                                                  (a) => a.feedback != null,
+                                                )
+                                                .length()),
+                                    r
+                                        .filter(
+                                          (a) => a.feedback != null,
+                                        )
+                                        .length(),
                                   ),
                                 )
                                 .map(

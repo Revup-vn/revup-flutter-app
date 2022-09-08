@@ -67,7 +67,8 @@ class ReviewRepairmanBloc
             .map(
               (r) => tuple2(
                 r
-                        .map((a) => a.feedback.rating)
+                        .map((a) => a.feedback?.rating ?? 0)
+                        .where((a) => a != 0)
                         .foldLeft<int>(0, (previous, a) => previous + a) /
                     r.length(),
                 r.length(),
