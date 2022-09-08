@@ -74,17 +74,19 @@ class ConfirmServiceView extends StatelessWidget {
               return Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 50),
                     child: Column(
                       children: [
-                        FormBuilder(
-                          key: form,
-                          child: ServiceCheckboxGroup(
-                            serviceList: serviceList,
-                            pendingService: pendingService,
-                            providerId: providerId,
-                            isSelectProduct: true,
-                            recordId: recordId,
+                        Expanded(
+                          child: FormBuilder(
+                            key: form,
+                            child: ServiceCheckboxGroup(
+                              serviceList: serviceList,
+                              pendingService: pendingService,
+                              providerId: providerId,
+                              isSelectProduct: true,
+                              recordId: recordId,
+                            ),
                           ),
                         ),
                       ],
@@ -93,7 +95,7 @@ class ConfirmServiceView extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     child: Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {
