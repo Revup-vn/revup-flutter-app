@@ -48,11 +48,11 @@ dependencies:
   permission_handler: ^10.0.0
   pin_code_fields: ^7.4.0
   revup_core:
-    # path: ../revup-core
-    git:
-      url: https://github.com/Revup-vn/revup-core.git
-      ref: main
-      version: ^6.3.9-dev
+    path: ../revup-core
+    # git:
+    #   url: https://github.com/Revup-vn/revup-core.git
+    #   ref: main
+    #   version: ^6.3.9-dev
   shimmer: ^2.0.0
   tiengviet: ^0.5.0
   url_launcher: ^6.1.5

@@ -48,6 +48,16 @@ class _ReviewRepairmanViewState extends State<ReviewRepairmanView> {
             ),
             leading: IconButton(
               onPressed: () {
+                context.read<ReviewRepairmanBloc>().add(
+                      ReviewRepairmanEvent.submited(
+                        feedback: ReportFeedback(
+                          rating: 3,
+                          created: DateTime.now(),
+                          updated: DateTime.now(),
+                          desc: '',
+                        ),
+                      ),
+                    );
                 context.router.popUntil(
                   (route) => route.settings.name == HomeRoute.name,
                 );
