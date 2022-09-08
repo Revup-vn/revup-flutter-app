@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/widgets/loading.u.dart';
+import '../../../shared/widgets/unknown_failure.dart';
 import '../bloc/overview_order_bloc.u.dart';
 import '../widgets/overview_order_content.u.dart';
 
@@ -22,7 +23,7 @@ class OverViewOrderView extends StatelessWidget {
     return BlocBuilder<OverviewOrderBloc, OverviewOrderState>(
       builder: (context, state) => state.when(
         initial: Container.new,
-        failure: Container.new,
+        failure: UnknownFailure.new,
         loading: Loading.new,
         loadDataSuccess: (
           overviewOrderData,

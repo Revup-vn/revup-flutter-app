@@ -128,24 +128,46 @@ class ConfirmServiceBloc
       },
       selectProductCompleted: (onRoute, saveLst, recordId) async {
         // create list pending payment service
-        final _paymentRepo = storeRepository
-            .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
-        final payment = (await _paymentRepo.all())
-            .fold((l) => nil<PaymentService>(), (r) => r)
-            .toList();
-        final paymentNotRm = payment
-            .where(
-              (element) => saveLst.any((e) => e.name == element.serviceName),
+        final mbRR = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                accepted: some,
+                started: some,
+                orElse: none,
+              ),
             )
-            .toList();
-        payment.removeWhere(
-          paymentNotRm.contains,
-        );
-        for (var i = 0; i < payment.length; i++) {
-          await _paymentRepo.delete(payment[i].serviceName);
-        }
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            );
+        if (mbRR.isNone()) {
+          emit(ConfirmServiceState.failure());
+        } else {
+          final _paymentRepo = storeRepository
+              .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
+          final payment = (await _paymentRepo.all())
+              .fold((l) => nil<PaymentService>(), (r) => r)
+              .toList();
+          final paymentNotRm = payment
+              .where(
+                (element) =>
+                    saveLst.any((e) => e.name == element.serviceName) ||
+                    element.serviceName == 'transFee',
+              )
+              .toList();
+          final isStarted = mbRR.any(
+            (a) => a.maybeMap(
+              started: (v) => true,
+              orElse: () => false,
+            ),
+          );
+          payment.removeWhere(paymentNotRm.contains);
+          for (var i = 0; i < payment.length; i++) {
+            await _paymentRepo.delete(payment[i].serviceName);
+          }
 
-        onRoute();
+          onRoute();
+        }
       },
     );
   }

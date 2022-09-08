@@ -144,8 +144,9 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               TextSpan(
+                                // exclude transit fee
                                 text:
-                                    '''${widget.pendingService.length} ${context.l10n.serviceCountLabel}''',
+                                    '''${widget.pendingService.length - 1} ${context.l10n.serviceCountLabel}''',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge
@@ -338,7 +339,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                     ElevatedButton(
                       onPressed: widget.pendingService.any(
                         (e) =>
-                            (!e.isOptional && e.products.isEmpty) ||
+                            (e.name != 'transFee' &&
+                                (!e.isOptional && e.products.isEmpty)) ||
                             e.status == 'waiting',
                       )
                           ? null

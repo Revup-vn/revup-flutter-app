@@ -96,13 +96,13 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
           });
         });
       },
-      success: (token, recordId) {
+      success: (token, recordId) async {
         final _paymentRepo = context
             .read<StoreRepository>()
             .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
-        _paymentRepo
+        await _paymentRepo
             .create(
               PaymentService.paid(
                 serviceName: 'transFee',
@@ -175,6 +175,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                               providerId: providerId,
                               isSelectProduct: false,
                               recordId: '',
+                              form: widget.form,
                             ),
                           ),
                         ),
@@ -353,6 +354,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                                               ),
                                     ),
                                   );
+                              // widget.form.currentState?.reset();
                             },
                             style: Theme.of(context).elevatedButtonTheme.style,
                             child: AutoSizeText(l10n.confirmLabel),

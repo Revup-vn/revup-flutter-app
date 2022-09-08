@@ -47,15 +47,13 @@ class ConfirmServiceView extends StatelessWidget {
         centerTitle: false,
         actions: [
           TextButton(
-            onPressed: () => context.router
-                .popAndPush<List<OptionalService>, List<OptionalService>>(
+            onPressed: () => context.router.push<List<OptionalService>>(
               NewServiceRequestRoute(
                 optionalService: optionalService,
                 providerId: providerId,
                 isSelectProduct: true,
                 recordId: recordId,
               ),
-              result: optionalService,
             ),
             child: Text(l10n.addLabel),
           ),
@@ -86,6 +84,7 @@ class ConfirmServiceView extends StatelessWidget {
                               providerId: providerId,
                               isSelectProduct: true,
                               recordId: recordId,
+                              form: form,
                             ),
                           ),
                         ),
@@ -101,10 +100,10 @@ class ConfirmServiceView extends StatelessWidget {
                         onPressed: () {
                           // get value from form
                           form.currentState?.save();
-                          final saveLst = form.currentState?.value['data']
+                          final completedLst = form.currentState?.value['data']
                               as List<ServiceData>;
 
-                          if (saveLst.isEmpty) {
+                          if (completedLst.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(l10n.chooseAtLeastServiceLabel),
@@ -115,10 +114,11 @@ class ConfirmServiceView extends StatelessWidget {
                           context.read<ConfirmServiceBloc>().add(
                                 ConfirmServiceEvent.selectProductCompleted(
                                   onRoute: () => context.router.pop(),
-                                  saveLst: saveLst,
+                                  saveLst: completedLst,
                                   recordId: recordId,
                                 ),
                               );
+                          form.currentState?.reset();
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),

@@ -138,7 +138,9 @@ class RepairStatusView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           AutoSizeText(
-                                            services[index].name,
+                                            services[index].name == 'transFee'
+                                                ? l10n.feeTransportLabel
+                                                : services[index].name,
                                             style: const TextStyle(
                                               fontWeight: FontWeight.normal,
                                             ),

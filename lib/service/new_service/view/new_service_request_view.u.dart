@@ -53,23 +53,24 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
     final l10n = context.l10n;
     final blocImgPicker = context.watch<ImagePickerBloc>();
     final blogPage = context.watch<NewServiceBloc>();
-    final contextFake = context.router;
 
     return DismissKeyboard(
       child: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(context.l10n.newRequestServiceAppBarTitle),
           centerTitle: false,
-          leading: BackButton(
-            onPressed: () {
-              context.router.popAndPush(
-                ChooseServiceRoute(
-                  providerId: widget.providerId,
-                  optionalService: optionalService,
+          leading: widget.isSelectProduct
+              ? null
+              : BackButton(
+                  onPressed: () {
+                    context.router.popAndPush(
+                      ChooseServiceRoute(
+                        providerId: widget.providerId,
+                        optionalService: optionalService,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
         body: BlocBuilder<NewServiceBloc, NewServiceState>(
           builder: (context, state) {

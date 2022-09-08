@@ -193,6 +193,14 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
               '${consumer.firstName} ${consumer.lastName}',
             );
           } else {
+            await _paymentRepo.create(
+              PaymentService.pending(
+                serviceName: 'transFee',
+                moneyAmount: movingFee,
+                products: [],
+                isOptional: false,
+              ),
+            );
             // get latest provider fcm token
             final provider = (await _userStore.get(providerId))
                 .fold<Option<AppUser>>(

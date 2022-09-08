@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -15,9 +17,11 @@ class ServiceCheckboxGroup extends StatelessWidget {
     required this.providerId,
     required this.isSelectProduct,
     required this.recordId,
+    required this.form,
   });
   final List<ServiceData> serviceList;
   final List<PendingServiceModel> pendingService;
+  final GlobalKey<FormBuilderState> form;
   final String providerId;
   final bool isSelectProduct;
   final String recordId;
@@ -28,48 +32,52 @@ class ServiceCheckboxGroup extends StatelessWidget {
         .map(
           ServiceData.fromPendingService,
         )
-        .toList()
-      ..addAll(
-        serviceList
-            .where(
-              (element) => element.isOptional,
-            )
-            .toList(),
-      );
+        .toList();
+    // svDataOptional.addAll(
+    //   serviceList
+    //       .where(
+    //         (element) =>
+    //             !svDataOptional.contains(element) && element.isOptional,
+    //       )
+    //       .toList(),
+    // );
+    log('SV OPTIONAL :: $svDataOptional');
     return FormBuilderField<List<ServiceData>>(
       initialValue: svDataOptional,
       name: 'data',
-      builder: (field) => ListView.builder(
-        shrinkWrap: true,
-        padding: !isSelectProduct
-            ? const EdgeInsets.only(bottom: 200)
-            : const EdgeInsets.only(bottom: 70),
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
-        itemCount: serviceList.length,
-        itemBuilder: (context, index) {
-          return ServiceCheckboxTile(
-            onTap: () => context.router.push(
-              ServiceDetailRoute(
-                serviceData: serviceList[index],
-                providerId: providerId,
+      builder: (field) {
+        return ListView.builder(
+          shrinkWrap: true,
+          padding: !isSelectProduct
+              ? const EdgeInsets.only(bottom: 200)
+              : const EdgeInsets.only(bottom: 70),
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
+          itemCount: serviceList.length,
+          itemBuilder: (context, index) {
+            return ServiceCheckboxTile(
+              onTap: () => context.router.push(
+                ServiceDetailRoute(
+                  serviceData: serviceList[index],
+                  providerId: providerId,
+                ),
               ),
-            ),
-            serviceData: serviceList[index],
-            selectProMode: isSelectProduct,
-            isSelectDefault: pendingService
-                    .map((e) => e.name)
-                    .contains(serviceList[index].name) ||
-                serviceList[index].isOptional,
-            canSelect: !serviceList[index].isOptional,
-            index: index,
-            providerId: providerId,
-            field: field,
-            recordId: recordId,
-          );
-        },
-      ),
+              serviceData: serviceList[index],
+              selectProMode: isSelectProduct,
+              isSelectDefault: pendingService
+                      .map((e) => e.name)
+                      .contains(serviceList[index].name) ||
+                  serviceList[index].isOptional,
+              canSelect: !serviceList[index].isOptional,
+              index: index,
+              providerId: providerId,
+              field: field,
+              recordId: recordId,
+            );
+          },
+        );
+      },
     );
   }
 }

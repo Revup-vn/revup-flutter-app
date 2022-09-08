@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
 
-import '../../../shared/fallbacks.dart';
 import '../../models/pending_service_model.dart';
 
 part 'repair_status_bloc.freezed.dart';
@@ -76,20 +75,15 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
                   .all())
               .fold<IList<RepairService>>((l) => nil(), (r) => r);
 
-          final listServiceImg = listService.map(
-            (e) => e.copyWith(
-              imageUrl: svProvider
-                  .find((a) => a.name == e.name)
-                  .getOrElse(
-                    () => const RepairService(
-                      name: '',
-                      fee: 0,
-                      img: kFallbackServiceImg,
-                    ),
-                  )
-                  .img,
-            ),
-          );
+          final listServiceImg = listService
+              .map(
+                (e) => e.copyWith(
+                  imageUrl: svProvider
+                      .find((a) => a.name == e.name)
+                      .fold(() => e.imageUrl, (a) => a.img),
+                ),
+              )
+              .sort(orderBy(StringOrder.reverse(), (a) => a.status));
 
           emit(
             RepairStatusState.success(

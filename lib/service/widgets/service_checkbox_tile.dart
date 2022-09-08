@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -44,12 +45,21 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
   void initState() {
     super.initState();
     isChecked = widget.isSelectDefault;
+    log('FORM :: ${widget.field.value.toString()}');
+
+    // if (widget.isSelectDefault) {
+    //   widget.field.value?.add(widget.serviceData);
+    // }
+    log('FORM :: ${widget.field.value.toString()}');
+    // if ((isChecked ?? false) &&
+    //     !(widget.field.value?.contains(widget.serviceData) ?? false)) {
+    //   widget.field.value?.add(widget.serviceData);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     return Card(
       elevation: 0,
       child: Column(
@@ -136,10 +146,6 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                   ),
               ],
             ),
-            // subtitle: AutoSizeText(
-            //   '${l10n.servicePriceLabel}: '
-            //   '''${widget.serviceData.serviceFee == -1 ? l10n.needQuotePriceLabel : context.formatMoney(widget.serviceData.serviceFee)}''',
-            // ),
             trailing: Checkbox(
               checkColor: Theme.of(context).colorScheme.onPrimary,
               activeColor: Theme.of(context).colorScheme.primary,
@@ -154,6 +160,7 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
                 } else {
                   widget.field.value?.remove(widget.serviceData);
                 }
+                log('FORM :: ${widget.field.value.toString()}');
               },
             ),
           ),

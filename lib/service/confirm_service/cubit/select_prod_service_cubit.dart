@@ -38,7 +38,7 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
             .map(
               (r) => r.filter(
                 (a) => a.maybeMap(
-                  pending: (v) => true,
+                  pending: (v) => v.serviceName != 'transFee',
                   needToVerify: (v) => true,
                   orElse: () => false,
                 ),
@@ -88,27 +88,20 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
               orElse: () => false,
             ),
           );
-          final finalListSvOptional = svDataOptional
-              .map(
-                (svModel) => services.where((a) => svModel.name == a.name).map(
-                      (a) => ServiceData(
-                        name: svModel.name,
-                        serviceFee: svModel.serviceFee,
-                        imageURL: a.imageURL,
-                        products: svModel.products,
-                        isOptional: svModel.isOptional,
-                      ),
-                    ),
-              )
-              .foldLeft<IList<ServiceData>>(
-                nil<ServiceData>(),
-                (previous, a) => previous.plus(a),
-              );
+          final finalListSvOptional = svDataOptional.map(
+            (a) => a.copyWith(
+              imageURL: services
+                  .find((e) => e.name == a.name)
+                  .fold(() => a.imageURL, (t) => t.imageURL),
+            ),
+          );
           emit(
             SelectProdServiceState.success(
               providerId: repairRecord.pid,
-              serviceData:
-                  isStarted ? ilist(lst) : ilist(lst).plus(finalListSvOptional),
+              serviceData: isStarted
+                  ? ilist(lst)
+                      .plus(finalListSvOptional.where((a) => a.isOptional))
+                  : ilist(lst).plus(finalListSvOptional),
               pendingService: pendingService.toList(),
             ),
           );
