@@ -306,23 +306,22 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 ),
                                 TextSpan(
                                   text: context.formatMoney(
-                                    widget.pendingRequest.money +
-                                        widget.pendingService.fold(
-                                          0,
-                                          (p, e) =>
-                                              p +
-                                              (e.name == 'transFee'
-                                                  ? (e.status == 'pending'
-                                                      ? e.price
-                                                      : -e.price)
-                                                  : (e.price +
-                                                      (e.products.isEmpty
-                                                          ? 0
-                                                          : e.products.first
-                                                                  .unitPrice *
-                                                              e.products.first
-                                                                  .quantity))),
-                                        ),
+                                    widget.pendingService.fold(
+                                      0,
+                                      (p, e) =>
+                                          p +
+                                          (e.name == 'transFee'
+                                              ? (e.status == 'pending'
+                                                  ? e.price
+                                                  : -e.price)
+                                              : (e.price +
+                                                  (e.products.isEmpty
+                                                      ? 0
+                                                      : e.products.first
+                                                              .unitPrice *
+                                                          e.products.first
+                                                              .quantity))),
+                                    ),
                                   ),
                                   style: Theme.of(context)
                                       .textTheme
