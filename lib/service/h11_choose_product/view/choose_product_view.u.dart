@@ -54,6 +54,7 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                                 child: ListTile(
                                   leading: ServiceAvatar(
                                     imageUrl: products[index].img,
+                                    userName: 'Service',
                                   ),
                                   title: AutoSizeText(
                                     products[index].name,

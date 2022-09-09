@@ -43,6 +43,9 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
             context.router.push(
               RepairStatusRoute(recordId: recordId),
             );
+            context.router.removeWhere(
+              (route) => route.name == MapRouteRoute.name,
+            );
           }
           break;
         case NotificationType.VerifiedArrival:
@@ -134,6 +137,7 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
                           children: [
                             ServiceAvatar(
                               imageUrl: widget.providerData.avatar,
+                              userName: widget.providerData.fullName,
                             ),
                             AutoSizeText(
                               widget.providerData.fullName,

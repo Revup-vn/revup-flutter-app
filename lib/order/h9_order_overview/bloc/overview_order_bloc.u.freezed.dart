@@ -22,6 +22,9 @@ mixin _$OverviewOrderEvent {
     required TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)
         submitted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        cancel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +33,9 @@ mixin _$OverviewOrderEvent {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +44,9 @@ mixin _$OverviewOrderEvent {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,18 +54,21 @@ mixin _$OverviewOrderEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_Cancel value) cancel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +135,9 @@ class _$_Started implements _Started {
     required TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)
         submitted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        cancel,
   }) {
     return started();
   }
@@ -134,6 +149,9 @@ class _$_Started implements _Started {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
   }) {
     return started?.call();
   }
@@ -145,6 +163,9 @@ class _$_Started implements _Started {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -158,6 +179,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_Cancel value) cancel,
   }) {
     return started(this);
   }
@@ -167,6 +189,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
   }) {
     return started?.call(this);
   }
@@ -176,6 +199,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -267,6 +291,9 @@ class _$_Submitted implements _Submitted {
     required TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)
         submitted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        cancel,
   }) {
     return submitted(onRoute, sendMessage);
   }
@@ -278,6 +305,9 @@ class _$_Submitted implements _Submitted {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
   }) {
     return submitted?.call(onRoute, sendMessage);
   }
@@ -289,6 +319,9 @@ class _$_Submitted implements _Submitted {
     TResult Function(Function0<void> onRoute,
             Function2<String, String, void> sendMessage)?
         submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -302,6 +335,7 @@ class _$_Submitted implements _Submitted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_Cancel value) cancel,
   }) {
     return submitted(this);
   }
@@ -311,6 +345,7 @@ class _$_Submitted implements _Submitted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
   }) {
     return submitted?.call(this);
   }
@@ -320,6 +355,7 @@ class _$_Submitted implements _Submitted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -339,6 +375,168 @@ abstract class _Submitted implements OverviewOrderEvent {
   Function2<String, String, void> get sendMessage;
   @JsonKey(ignore: true)
   _$$_SubmittedCopyWith<_$_Submitted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CancelCopyWith<$Res> {
+  factory _$$_CancelCopyWith(_$_Cancel value, $Res Function(_$_Cancel) then) =
+      __$$_CancelCopyWithImpl<$Res>;
+  $Res call(
+      {Function0<void> onRoute, Function2<String, String, void> sendMessage});
+}
+
+/// @nodoc
+class __$$_CancelCopyWithImpl<$Res>
+    extends _$OverviewOrderEventCopyWithImpl<$Res>
+    implements _$$_CancelCopyWith<$Res> {
+  __$$_CancelCopyWithImpl(_$_Cancel _value, $Res Function(_$_Cancel) _then)
+      : super(_value, (v) => _then(v as _$_Cancel));
+
+  @override
+  _$_Cancel get _value => super._value as _$_Cancel;
+
+  @override
+  $Res call({
+    Object? onRoute = freezed,
+    Object? sendMessage = freezed,
+  }) {
+    return _then(_$_Cancel(
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function0<void>,
+      sendMessage: sendMessage == freezed
+          ? _value.sendMessage
+          : sendMessage // ignore: cast_nullable_to_non_nullable
+              as Function2<String, String, void>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Cancel implements _Cancel {
+  const _$_Cancel({required this.onRoute, required this.sendMessage});
+
+  @override
+  final Function0<void> onRoute;
+  @override
+  final Function2<String, String, void> sendMessage;
+
+  @override
+  String toString() {
+    return 'OverviewOrderEvent.cancel(onRoute: $onRoute, sendMessage: $sendMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Cancel &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute) &&
+            (identical(other.sendMessage, sendMessage) ||
+                other.sendMessage == sendMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onRoute, sendMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CancelCopyWith<_$_Cancel> get copyWith =>
+      __$$_CancelCopyWithImpl<_$_Cancel>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        submitted,
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
+        cancel,
+  }) {
+    return cancel(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
+  }) {
+    return cancel?.call(onRoute, sendMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        submitted,
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
+        cancel,
+    required TResult orElse(),
+  }) {
+    if (cancel != null) {
+      return cancel(onRoute, sendMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_Cancel value) cancel,
+  }) {
+    return cancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
+  }) {
+    return cancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_Cancel value)? cancel,
+    required TResult orElse(),
+  }) {
+    if (cancel != null) {
+      return cancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Cancel implements OverviewOrderEvent {
+  const factory _Cancel(
+      {required final Function0<void> onRoute,
+      required final Function2<String, String, void> sendMessage}) = _$_Cancel;
+
+  Function0<void> get onRoute;
+  Function2<String, String, void> get sendMessage;
+  @JsonKey(ignore: true)
+  _$$_CancelCopyWith<_$_Cancel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

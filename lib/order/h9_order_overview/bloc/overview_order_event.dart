@@ -7,4 +7,8 @@ class OverviewOrderEvent with _$OverviewOrderEvent {
     required Function0<void> onRoute,
     required Function2<String, String, void> sendMessage,
   }) = _Submitted;
+  const factory OverviewOrderEvent.cancel({
+    required Function0<void> onRoute,
+    required Function2<String, String, void> sendMessage,
+  }) = _Cancel;
 }

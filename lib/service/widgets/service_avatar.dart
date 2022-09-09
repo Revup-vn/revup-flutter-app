@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
+import '../../account/widgets/default_avatar.dart';
 import '../../gen/assets.gen.dart';
 
 class ServiceAvatar extends StatelessWidget {
-  const ServiceAvatar({super.key, required this.imageUrl});
+  const ServiceAvatar(
+      {super.key, required this.imageUrl, required this.userName});
   final String imageUrl;
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,9 @@ class ServiceAvatar extends StatelessWidget {
             width: 64,
           ),
           errorWidget: (context, url, dynamic error) {
-            return Assets.screens.dfAvatar.image(
-              fit: BoxFit.fill,
-              height: 64,
-              gaplessPlayback: true,
-              width: 64,
+            return DefaultAvatar(
+              textSize: Theme.of(context).textTheme.headline1,
+              userName: userName,
             );
           },
           height: 64,

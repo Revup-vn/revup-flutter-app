@@ -1259,11 +1259,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "9739faf14dda27812c57d2c2a846746d703e45ed"
+      ref: "hotfix/feedback"
+      resolved-ref: c3e01519ca1ffd5049f44fbe6b54a5aa306e8014
       url: "https://github.com/Revup-vn/revup-core.git"
     source: git
-    version: "6.3.9-dev"
+    version: "6.3.10-dev"
   rxdart:
     dependency: transitive
     description:
