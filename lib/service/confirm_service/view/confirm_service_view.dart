@@ -96,28 +96,32 @@ class ConfirmServiceView extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // get value from form
-                          form.currentState?.save();
-                          final completedLst = form.currentState?.value['data']
-                              as List<ServiceData>;
+                        onPressed: services.isEmpty
+                            ? null
+                            : () {
+                                // get value from form
+                                form.currentState?.save();
+                                final completedLst = form.currentState
+                                    ?.value['data'] as List<ServiceData>;
 
-                          if (completedLst.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(l10n.chooseAtLeastServiceLabel),
-                              ),
-                            );
-                            return;
-                          }
-                          context.read<ConfirmServiceBloc>().add(
-                                ConfirmServiceEvent.selectProductCompleted(
-                                  onRoute: () => context.router.pop(),
-                                  saveLst: completedLst,
-                                  recordId: recordId,
-                                ),
-                              );
-                        },
+                                if (completedLst.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content:
+                                          Text(l10n.chooseAtLeastServiceLabel),
+                                    ),
+                                  );
+                                  return;
+                                }
+                                context.read<ConfirmServiceBloc>().add(
+                                      ConfirmServiceEvent
+                                          .selectProductCompleted(
+                                        onRoute: () => context.router.pop(),
+                                        saveLst: completedLst,
+                                        recordId: recordId,
+                                      ),
+                                    );
+                              },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),
                       ),

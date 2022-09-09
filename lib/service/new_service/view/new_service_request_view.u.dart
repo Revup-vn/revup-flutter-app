@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -230,7 +231,7 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                       padding: const EdgeInsets.all(16),
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState?.saveAndValidate() ??
                               false) {
                             final name = _formKey
@@ -241,12 +242,39 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                                     .currentState?.fields['desc']?.value
                                     .toString() ??
                                 '';
-
+                            var isStarted = false;
+                            if (widget.recordId?.isNotEmpty ?? false) {
+                              isStarted = (await context
+                                      .read<IStore<RepairRecord>>()
+                                      .get(widget.recordId ?? ''))
+                                  .map<Option<RepairRecord>>(
+                                    (r) => r.maybeMap(
+                                      accepted: some,
+                                      started: some,
+                                      orElse: none,
+                                    ),
+                                  )
+                                  .fold<Option<RepairRecord>>(
+                                    (l) => none(),
+                                    (r) => r,
+                                  )
+                                  .any(
+                                    (a) => a.maybeMap(
+                                        started: (v) => true,
+                                        orElse: () => false),
+                                  );
+                            }
                             // submit new request service as needToVerify
                             widget.isSelectProduct
                                 ? blogPage.add(
                                     NewServiceEvent.submitted(
-                                      onRoute: () => context.router.pop(),
+                                      onRoute: () => isStarted
+                                          ? context.router.popUntil(
+                                              (route) =>
+                                                  route.settings.name ==
+                                                  RepairStatusRoute.name,
+                                            )
+                                          : context.router.pop(),
                                       optionalService: OptionalService(
                                         img: _image.path,
                                         name: name,

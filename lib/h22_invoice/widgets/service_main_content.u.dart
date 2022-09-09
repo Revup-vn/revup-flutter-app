@@ -321,6 +321,9 @@ class ServiceInvoiceContent extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                  ),
                   width: MediaQuery.of(context).size.width,
                   child: SizedBox(
                     width: 30,

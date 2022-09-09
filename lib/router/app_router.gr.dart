@@ -215,7 +215,8 @@ class AppRouter extends _i42.RootStackRouter {
               key: args.key,
               serviceData: args.serviceData,
               providerId: args.providerId,
-              recordId: args.recordId));
+              recordId: args.recordId,
+              isStarted: args.isStarted));
     },
     FindNearbyRoute.name: (routeData) {
       final args = routeData.argsAs<FindNearbyRouteArgs>();
@@ -895,14 +896,16 @@ class ChooseProductRoute extends _i42.PageRouteInfo<ChooseProductRouteArgs> {
       {_i43.Key? key,
       required _i48.ServiceData serviceData,
       required String providerId,
-      required String recordId})
+      required String recordId,
+      required bool isStarted})
       : super(ChooseProductRoute.name,
             path: '/choose-product-page',
             args: ChooseProductRouteArgs(
                 key: key,
                 serviceData: serviceData,
                 providerId: providerId,
-                recordId: recordId));
+                recordId: recordId,
+                isStarted: isStarted));
 
   static const String name = 'ChooseProductRoute';
 }
@@ -912,7 +915,8 @@ class ChooseProductRouteArgs {
       {this.key,
       required this.serviceData,
       required this.providerId,
-      required this.recordId});
+      required this.recordId,
+      required this.isStarted});
 
   final _i43.Key? key;
 
@@ -922,9 +926,11 @@ class ChooseProductRouteArgs {
 
   final String recordId;
 
+  final bool isStarted;
+
   @override
   String toString() {
-    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, providerId: $providerId, recordId: $recordId}';
+    return 'ChooseProductRouteArgs{key: $key, serviceData: $serviceData, providerId: $providerId, recordId: $recordId, isStarted: $isStarted}';
   }
 }
 
