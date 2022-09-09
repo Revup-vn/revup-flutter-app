@@ -35,7 +35,7 @@ class H16MapRoute extends StatelessWidget {
           success: (directions, fromMaker, toMarker, providerData, movingFees) {
             return WillPopScope(
               onWillPop: () async {
-                var isPop = true;
+                var isPop = false;
                 if (willPop) {
                   isPop = true;
                 } else {
