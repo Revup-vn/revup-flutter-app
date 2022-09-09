@@ -9,6 +9,7 @@ class OverviewOrderState with _$OverviewOrderState {
     // required List<NeedToVerifyModel> needToVerifyService,
     required PendingRepairRequest pendingRequest,
     required int total,
+    required int len,
   }) = _LoadDataSuccess;
   const factory OverviewOrderState.loading() = _Loading;
   const factory OverviewOrderState.failure() = _Failure;

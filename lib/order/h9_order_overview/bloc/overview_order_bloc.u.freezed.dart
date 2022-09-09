@@ -549,7 +549,8 @@ mixin _$OverviewOrderState {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)
+            int total,
+            int len)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -562,7 +563,8 @@ mixin _$OverviewOrderState {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -575,7 +577,8 @@ mixin _$OverviewOrderState {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -671,7 +674,8 @@ class _$_Initial implements _Initial {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)
+            int total,
+            int len)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -687,7 +691,8 @@ class _$_Initial implements _Initial {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -703,7 +708,8 @@ class _$_Initial implements _Initial {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -766,7 +772,8 @@ abstract class _$$_LoadDataSuccessCopyWith<$Res> {
       {OverviewOrderModel overviewOrderData,
       List<PendingServiceModel> pendingService,
       PendingRepairRequest pendingRequest,
-      int total});
+      int total,
+      int len});
 
   $OverviewOrderModelCopyWith<$Res> get overviewOrderData;
   $PendingRepairRequestCopyWith<$Res> get pendingRequest;
@@ -789,6 +796,7 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
     Object? pendingService = freezed,
     Object? pendingRequest = freezed,
     Object? total = freezed,
+    Object? len = freezed,
   }) {
     return _then(_$_LoadDataSuccess(
       overviewOrderData: overviewOrderData == freezed
@@ -806,6 +814,10 @@ class __$$_LoadDataSuccessCopyWithImpl<$Res>
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      len: len == freezed
+          ? _value.len
+          : len // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -832,7 +844,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
       {required this.overviewOrderData,
       required final List<PendingServiceModel> pendingService,
       required this.pendingRequest,
-      required this.total})
+      required this.total,
+      required this.len})
       : _pendingService = pendingService;
 
   @override
@@ -849,10 +862,12 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   final PendingRepairRequest pendingRequest;
   @override
   final int total;
+  @override
+  final int len;
 
   @override
   String toString() {
-    return 'OverviewOrderState.loadDataSuccess(overviewOrderData: $overviewOrderData, pendingService: $pendingService, pendingRequest: $pendingRequest, total: $total)';
+    return 'OverviewOrderState.loadDataSuccess(overviewOrderData: $overviewOrderData, pendingService: $pendingService, pendingRequest: $pendingRequest, total: $total, len: $len)';
   }
 
   @override
@@ -866,7 +881,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
                 .equals(other._pendingService, _pendingService) &&
             const DeepCollectionEquality()
                 .equals(other.pendingRequest, pendingRequest) &&
-            const DeepCollectionEquality().equals(other.total, total));
+            const DeepCollectionEquality().equals(other.total, total) &&
+            const DeepCollectionEquality().equals(other.len, len));
   }
 
   @override
@@ -875,7 +891,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
       const DeepCollectionEquality().hash(overviewOrderData),
       const DeepCollectionEquality().hash(_pendingService),
       const DeepCollectionEquality().hash(pendingRequest),
-      const DeepCollectionEquality().hash(total));
+      const DeepCollectionEquality().hash(total),
+      const DeepCollectionEquality().hash(len));
 
   @JsonKey(ignore: true)
   @override
@@ -890,13 +907,14 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)
+            int total,
+            int len)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
   }) {
     return loadDataSuccess(
-        overviewOrderData, pendingService, pendingRequest, total);
+        overviewOrderData, pendingService, pendingRequest, total, len);
   }
 
   @override
@@ -907,13 +925,14 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
   }) {
     return loadDataSuccess?.call(
-        overviewOrderData, pendingService, pendingRequest, total);
+        overviewOrderData, pendingService, pendingRequest, total, len);
   }
 
   @override
@@ -924,7 +943,8 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -932,7 +952,7 @@ class _$_LoadDataSuccess implements _LoadDataSuccess {
   }) {
     if (loadDataSuccess != null) {
       return loadDataSuccess(
-          overviewOrderData, pendingService, pendingRequest, total);
+          overviewOrderData, pendingService, pendingRequest, total, len);
     }
     return orElse();
   }
@@ -980,13 +1000,15 @@ abstract class _LoadDataSuccess implements OverviewOrderState {
       {required final OverviewOrderModel overviewOrderData,
       required final List<PendingServiceModel> pendingService,
       required final PendingRepairRequest pendingRequest,
-      required final int total}) = _$_LoadDataSuccess;
+      required final int total,
+      required final int len}) = _$_LoadDataSuccess;
 
   OverviewOrderModel get overviewOrderData;
   List<PendingServiceModel>
       get pendingService; // required List<NeedToVerifyModel> needToVerifyService,
   PendingRepairRequest get pendingRequest;
   int get total;
+  int get len;
   @JsonKey(ignore: true)
   _$$_LoadDataSuccessCopyWith<_$_LoadDataSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1037,7 +1059,8 @@ class _$_Loading implements _Loading {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)
+            int total,
+            int len)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -1053,7 +1076,8 @@ class _$_Loading implements _Loading {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -1069,7 +1093,8 @@ class _$_Loading implements _Loading {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -1168,7 +1193,8 @@ class _$_Failure implements _Failure {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)
+            int total,
+            int len)
         loadDataSuccess,
     required TResult Function() loading,
     required TResult Function() failure,
@@ -1184,7 +1210,8 @@ class _$_Failure implements _Failure {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
@@ -1200,7 +1227,8 @@ class _$_Failure implements _Failure {
             OverviewOrderModel overviewOrderData,
             List<PendingServiceModel> pendingService,
             PendingRepairRequest pendingRequest,
-            int total)?
+            int total,
+            int len)?
         loadDataSuccess,
     TResult Function()? loading,
     TResult Function()? failure,
