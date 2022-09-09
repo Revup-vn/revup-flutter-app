@@ -45,16 +45,13 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
   void initState() {
     super.initState();
     isChecked = widget.isSelectDefault;
-    log('FORM :: ${widget.field.value.toString()}');
+    widget.field.value
+        ?.removeWhere((element) => element.name == widget.serviceData.name);
 
-    // if (widget.isSelectDefault) {
-    //   widget.field.value?.add(widget.serviceData);
-    // }
+    if (widget.isSelectDefault) {
+      widget.field.value?.add(widget.serviceData);
+    }
     log('FORM :: ${widget.field.value.toString()}');
-    // if ((isChecked ?? false) &&
-    //     !(widget.field.value?.contains(widget.serviceData) ?? false)) {
-    //   widget.field.value?.add(widget.serviceData);
-    // }
   }
 
   @override

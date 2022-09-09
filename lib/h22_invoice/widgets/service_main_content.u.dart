@@ -344,13 +344,18 @@ class ServiceInvoiceContent extends StatelessWidget {
                               0,
                               (p, e) =>
                                   p +
-                                  (e.isComplete
-                                      ? (e.price +
-                                          (e.products.isEmpty
-                                              ? 0
-                                              : e.products.first.unitPrice *
-                                                  e.products.first.quantity))
-                                      : 0),
+                                  (e.name == 'transFee'
+                                      ? (e.status == 'pending'
+                                          ? e.price
+                                          : -e.price)
+                                      : (e.isComplete
+                                          ? (e.price +
+                                              (e.products.isEmpty
+                                                  ? 0
+                                                  : e.products.first.unitPrice *
+                                                      e.products.first
+                                                          .quantity))
+                                          : 0)),
                             ),
                           ),
                           style: Theme.of(context).textTheme.labelLarge,
@@ -362,6 +367,9 @@ class ServiceInvoiceContent extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                   width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                  ),
                   child: ElevatedButton(
                     onPressed: ready
                         ? () {

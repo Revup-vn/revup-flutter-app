@@ -444,13 +444,19 @@ class InvoicePaymentView extends StatelessWidget {
                                 0,
                                 (p, e) =>
                                     p +
-                                    (e.status != 'paid'
-                                        ? (e.price == -1 ? 0 : e.price) +
-                                            (e.products.isEmpty
-                                                ? 0
-                                                : e.products.first.unitPrice *
-                                                    e.products.first.quantity)
-                                        : -e.price),
+                                    (e.name == 'transFee'
+                                        ? (e.status == 'pending'
+                                            ? e.price
+                                            : -e.price)
+                                        : (e.isComplete
+                                            ? (e.price +
+                                                (e.products.isEmpty
+                                                    ? 0
+                                                    : e.products.first
+                                                            .unitPrice *
+                                                        e.products.first
+                                                            .quantity))
+                                            : 0)),
                               ),
                             ),
                             style: Theme.of(context).textTheme.labelLarge,
@@ -519,17 +525,24 @@ class InvoicePaymentView extends StatelessWidget {
                                               0,
                                               (p, e) =>
                                                   p +
-                                                  (e.isComplete
-                                                      ? (e.price +
-                                                          (e.products.isEmpty
-                                                              ? 0
-                                                              : e.products.first
-                                                                      .unitPrice *
-                                                                  e
-                                                                      .products
-                                                                      .first
-                                                                      .quantity))
-                                                      : 0),
+                                                  (e.name == 'transFee'
+                                                      ? (e.status == 'pending'
+                                                          ? e.price
+                                                          : -e.price)
+                                                      : (e.isComplete
+                                                          ? (e.price +
+                                                              (e.products
+                                                                      .isEmpty
+                                                                  ? 0
+                                                                  : e
+                                                                          .products
+                                                                          .first
+                                                                          .unitPrice *
+                                                                      e
+                                                                          .products
+                                                                          .first
+                                                                          .quantity))
+                                                          : 0)),
                                             ),
                                             recordId: recordId,
                                             displayRecordName:
