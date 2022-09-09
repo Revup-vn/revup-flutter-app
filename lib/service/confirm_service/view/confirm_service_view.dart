@@ -33,12 +33,6 @@ class ConfirmServiceView extends StatelessWidget {
 
     blocPage.state.whenOrNull(
       initial: () => context.read<SelectProdServiceCubit>().watch(),
-      // blocPage.add(
-      //   ConfirmServiceEvent.detailRequestAccepted(
-      //     recordId: recordId,
-      //     optionalService: optionalService,
-      //   ),
-      // ),
     );
 
     return Scaffold(
@@ -85,6 +79,11 @@ class ConfirmServiceView extends StatelessWidget {
                               isSelectProduct: true,
                               recordId: recordId,
                               form: form,
+                              initialList: pendingService
+                                  .map(
+                                    ServiceData.fromPendingService,
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ),
@@ -118,7 +117,6 @@ class ConfirmServiceView extends StatelessWidget {
                                   recordId: recordId,
                                 ),
                               );
-                          form.currentState?.reset();
                         },
                         style: Theme.of(context).elevatedButtonTheme.style,
                         child: AutoSizeText(l10n.confirmLabel),

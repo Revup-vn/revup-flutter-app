@@ -158,8 +158,7 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
         builder: (context, state) {
           return state.maybeWhen(
             failure: UnknownFailure.new,
-            success: (providerId, serviceData, catAndSv, movingFee) {
-              final serviceList = serviceData.toList();
+            success: (providerId, serviceList, catAndSv, movingFee) {
               return Stack(
                 children: [
                   Padding(
@@ -176,6 +175,9 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
                               isSelectProduct: false,
                               recordId: '',
                               form: widget.form,
+                              initialList: serviceList
+                                  .where((e) => e.isOptional)
+                                  .toList(),
                             ),
                           ),
                         ),

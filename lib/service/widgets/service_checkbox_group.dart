@@ -18,6 +18,7 @@ class ServiceCheckboxGroup extends StatelessWidget {
     required this.isSelectProduct,
     required this.recordId,
     required this.form,
+    required this.initialList,
   });
   final List<ServiceData> serviceList;
   final List<PendingServiceModel> pendingService;
@@ -25,6 +26,7 @@ class ServiceCheckboxGroup extends StatelessWidget {
   final String providerId;
   final bool isSelectProduct;
   final String recordId;
+  final List<ServiceData> initialList;
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +34,17 @@ class ServiceCheckboxGroup extends StatelessWidget {
         .map(
           ServiceData.fromPendingService,
         )
-        .toList();
-    // svDataOptional.addAll(
-    //   serviceList
-    //       .where(
-    //         (element) =>
-    //             !svDataOptional.contains(element) && element.isOptional,
-    //       )
-    //       .toList(),
-    // );
+        .toList()
+      ..addAll(
+        serviceList
+            .where(
+              (element) => element.isOptional,
+            )
+            .toList(),
+      );
     log('SV OPTIONAL :: $svDataOptional');
     return FormBuilderField<List<ServiceData>>(
-      initialValue: svDataOptional,
+      initialValue: initialList,
       name: 'data',
       builder: (field) {
         return ListView.builder(
@@ -57,6 +58,7 @@ class ServiceCheckboxGroup extends StatelessWidget {
           itemCount: serviceList.length,
           itemBuilder: (context, index) {
             return ServiceCheckboxTile(
+              key: UniqueKey(),
               onTap: () => context.router.push(
                 ServiceDetailRoute(
                   serviceData: serviceList[index],

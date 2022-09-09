@@ -20,7 +20,7 @@ mixin _$SelectProdServiceState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() failure,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
         success,
   }) =>
@@ -29,7 +29,7 @@ mixin _$SelectProdServiceState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
   }) =>
@@ -38,7 +38,7 @@ mixin _$SelectProdServiceState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
     required TResult orElse(),
@@ -127,7 +127,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() failure,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
         success,
   }) {
@@ -139,7 +139,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
   }) {
@@ -151,7 +151,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
     required TResult orElse(),
@@ -243,7 +243,7 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() failure,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
         success,
   }) {
@@ -255,7 +255,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
   }) {
@@ -267,7 +267,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
     required TResult orElse(),
@@ -324,7 +324,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
       __$$_SuccessCopyWithImpl<$Res>;
   $Res call(
       {String providerId,
-      IList<ServiceData> serviceData,
+      List<ServiceData> serviceList,
       List<PendingServiceModel> pendingService});
 }
 
@@ -341,7 +341,7 @@ class __$$_SuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? providerId = freezed,
-    Object? serviceData = freezed,
+    Object? serviceList = freezed,
     Object? pendingService = freezed,
   }) {
     return _then(_$_Success(
@@ -349,10 +349,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.providerId
           : providerId // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceData: serviceData == freezed
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceData>,
+      serviceList: serviceList == freezed
+          ? _value._serviceList
+          : serviceList // ignore: cast_nullable_to_non_nullable
+              as List<ServiceData>,
       pendingService: pendingService == freezed
           ? _value._pendingService
           : pendingService // ignore: cast_nullable_to_non_nullable
@@ -366,14 +366,20 @@ class __$$_SuccessCopyWithImpl<$Res>
 class _$_Success implements _Success {
   const _$_Success(
       {required this.providerId,
-      required this.serviceData,
+      required final List<ServiceData> serviceList,
       required final List<PendingServiceModel> pendingService})
-      : _pendingService = pendingService;
+      : _serviceList = serviceList,
+        _pendingService = pendingService;
 
   @override
   final String providerId;
+  final List<ServiceData> _serviceList;
   @override
-  final IList<ServiceData> serviceData;
+  List<ServiceData> get serviceList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceList);
+  }
+
   final List<PendingServiceModel> _pendingService;
   @override
   List<PendingServiceModel> get pendingService {
@@ -383,7 +389,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'SelectProdServiceState.success(providerId: $providerId, serviceData: $serviceData, pendingService: $pendingService)';
+    return 'SelectProdServiceState.success(providerId: $providerId, serviceList: $serviceList, pendingService: $pendingService)';
   }
 
   @override
@@ -394,7 +400,7 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other.providerId, providerId) &&
             const DeepCollectionEquality()
-                .equals(other.serviceData, serviceData) &&
+                .equals(other._serviceList, _serviceList) &&
             const DeepCollectionEquality()
                 .equals(other._pendingService, _pendingService));
   }
@@ -403,7 +409,7 @@ class _$_Success implements _Success {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(providerId),
-      const DeepCollectionEquality().hash(serviceData),
+      const DeepCollectionEquality().hash(_serviceList),
       const DeepCollectionEquality().hash(_pendingService));
 
   @JsonKey(ignore: true)
@@ -416,11 +422,11 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() failure,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
         success,
   }) {
-    return success(providerId, serviceData, pendingService);
+    return success(providerId, serviceList, pendingService);
   }
 
   @override
@@ -428,11 +434,11 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
   }) {
-    return success?.call(providerId, serviceData, pendingService);
+    return success?.call(providerId, serviceList, pendingService);
   }
 
   @override
@@ -440,13 +446,13 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? failure,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(providerId, serviceData, pendingService);
+      return success(providerId, serviceList, pendingService);
     }
     return orElse();
   }
@@ -489,11 +495,11 @@ class _$_Success implements _Success {
 abstract class _Success implements SelectProdServiceState {
   const factory _Success(
       {required final String providerId,
-      required final IList<ServiceData> serviceData,
+      required final List<ServiceData> serviceList,
       required final List<PendingServiceModel> pendingService}) = _$_Success;
 
   String get providerId;
-  IList<ServiceData> get serviceData;
+  List<ServiceData> get serviceList;
   List<PendingServiceModel> get pendingService;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>

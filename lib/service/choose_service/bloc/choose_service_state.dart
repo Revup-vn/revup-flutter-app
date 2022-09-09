@@ -9,7 +9,7 @@ class ChooseServiceState with _$ChooseServiceState {
       _Submitted;
   const factory ChooseServiceState.success({
     required String providerId,
-    required IList<ServiceData> serviceData,
+    required List<ServiceData> serviceList,
     required Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
     required int movingFee,
   }) = _Success;
