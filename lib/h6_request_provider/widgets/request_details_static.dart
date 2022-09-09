@@ -72,6 +72,7 @@ class RequestDetailsStatic extends StatelessWidget {
                         children: [
                           ServiceAvatar(
                             imageUrl: providerData.avatar,
+                            userName: providerData.fullName,
                           ),
                           AutoSizeText(
                             providerData.fullName,

@@ -51,7 +51,10 @@ class _SplashPageState extends State<SplashPage> {
           final subType = p0.payload.payload['subType'] as String;
           if (subType == 'ProviderDeparted') {
             final providerId = p0.payload.payload['providerId'] as String;
-            context.router.push(MapRouteRoute(providerId: providerId));
+            context.router.pushAndPopUntil(
+              MapRouteRoute(providerId: providerId),
+              predicate: (route) => route.settings.name == HomeRoute.name,
+            );
           }
           if (subType == 'completedRepair') {
             final recordId = p0.payload.payload['recordId'] as String;
