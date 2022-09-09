@@ -502,7 +502,7 @@ mixin _$ChooseServiceState {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) =>
@@ -513,7 +513,7 @@ mixin _$ChooseServiceState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) =>
@@ -524,7 +524,7 @@ mixin _$ChooseServiceState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
@@ -621,7 +621,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
@@ -635,7 +635,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
@@ -649,7 +649,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
@@ -749,7 +749,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
@@ -763,7 +763,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
@@ -777,7 +777,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
@@ -877,7 +877,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
@@ -891,7 +891,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
@@ -905,7 +905,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
@@ -1030,7 +1030,7 @@ class _$_Submitted implements _Submitted {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
@@ -1044,7 +1044,7 @@ class _$_Submitted implements _Submitted {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
@@ -1058,7 +1058,7 @@ class _$_Submitted implements _Submitted {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
@@ -1126,7 +1126,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
       __$$_SuccessCopyWithImpl<$Res>;
   $Res call(
       {String providerId,
-      IList<ServiceData> serviceData,
+      List<ServiceData> serviceList,
       Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
       int movingFee});
 }
@@ -1144,7 +1144,7 @@ class __$$_SuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object? providerId = freezed,
-    Object? serviceData = freezed,
+    Object? serviceList = freezed,
     Object? catAndSv = freezed,
     Object? movingFee = freezed,
   }) {
@@ -1153,10 +1153,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.providerId
           : providerId // ignore: cast_nullable_to_non_nullable
               as String,
-      serviceData: serviceData == freezed
-          ? _value.serviceData
-          : serviceData // ignore: cast_nullable_to_non_nullable
-              as IList<ServiceData>,
+      serviceList: serviceList == freezed
+          ? _value._serviceList
+          : serviceList // ignore: cast_nullable_to_non_nullable
+              as List<ServiceData>,
       catAndSv: catAndSv == freezed
           ? _value.catAndSv
           : catAndSv // ignore: cast_nullable_to_non_nullable
@@ -1174,14 +1174,20 @@ class __$$_SuccessCopyWithImpl<$Res>
 class _$_Success implements _Success {
   const _$_Success(
       {required this.providerId,
-      required this.serviceData,
+      required final List<ServiceData> serviceList,
       required this.catAndSv,
-      required this.movingFee});
+      required this.movingFee})
+      : _serviceList = serviceList;
 
   @override
   final String providerId;
+  final List<ServiceData> _serviceList;
   @override
-  final IList<ServiceData> serviceData;
+  List<ServiceData> get serviceList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceList);
+  }
+
   @override
   final Tuple2<RepairCategory, IList<ServiceData>> catAndSv;
   @override
@@ -1189,7 +1195,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'ChooseServiceState.success(providerId: $providerId, serviceData: $serviceData, catAndSv: $catAndSv, movingFee: $movingFee)';
+    return 'ChooseServiceState.success(providerId: $providerId, serviceList: $serviceList, catAndSv: $catAndSv, movingFee: $movingFee)';
   }
 
   @override
@@ -1200,7 +1206,7 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other.providerId, providerId) &&
             const DeepCollectionEquality()
-                .equals(other.serviceData, serviceData) &&
+                .equals(other._serviceList, _serviceList) &&
             const DeepCollectionEquality().equals(other.catAndSv, catAndSv) &&
             const DeepCollectionEquality().equals(other.movingFee, movingFee));
   }
@@ -1209,7 +1215,7 @@ class _$_Success implements _Success {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(providerId),
-      const DeepCollectionEquality().hash(serviceData),
+      const DeepCollectionEquality().hash(_serviceList),
       const DeepCollectionEquality().hash(catAndSv),
       const DeepCollectionEquality().hash(movingFee));
 
@@ -1225,11 +1231,11 @@ class _$_Success implements _Success {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String recordId) submitted,
-    required TResult Function(String providerId, IList<ServiceData> serviceData,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)
         success,
   }) {
-    return success(providerId, serviceData, catAndSv, movingFee);
+    return success(providerId, serviceList, catAndSv, movingFee);
   }
 
   @override
@@ -1239,11 +1245,11 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
   }) {
-    return success?.call(providerId, serviceData, catAndSv, movingFee);
+    return success?.call(providerId, serviceList, catAndSv, movingFee);
   }
 
   @override
@@ -1253,13 +1259,13 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String recordId)? submitted,
-    TResult Function(String providerId, IList<ServiceData> serviceData,
+    TResult Function(String providerId, List<ServiceData> serviceList,
             Tuple2<RepairCategory, IList<ServiceData>> catAndSv, int movingFee)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(providerId, serviceData, catAndSv, movingFee);
+      return success(providerId, serviceList, catAndSv, movingFee);
     }
     return orElse();
   }
@@ -1308,12 +1314,12 @@ class _$_Success implements _Success {
 abstract class _Success implements ChooseServiceState {
   const factory _Success(
       {required final String providerId,
-      required final IList<ServiceData> serviceData,
+      required final List<ServiceData> serviceList,
       required final Tuple2<RepairCategory, IList<ServiceData>> catAndSv,
       required final int movingFee}) = _$_Success;
 
   String get providerId;
-  IList<ServiceData> get serviceData;
+  List<ServiceData> get serviceList;
   Tuple2<RepairCategory, IList<ServiceData>> get catAndSv;
   int get movingFee;
   @JsonKey(ignore: true)

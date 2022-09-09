@@ -140,8 +140,9 @@ class ConfirmServiceBloc
               (l) => none(),
               (r) => r,
             );
+        final setSaveLst = saveLst.toSet().toList();
         if (mbRR.isNone()) {
-          emit(ConfirmServiceState.failure());
+          emit(const ConfirmServiceState.failure());
         } else {
           final _paymentRepo = storeRepository
               .repairPaymentRepo(RepairRecordDummy.dummyPending(recordId));
@@ -151,17 +152,11 @@ class ConfirmServiceBloc
           final paymentNotRm = payment
               .where(
                 (element) =>
-                    saveLst.any((e) => e.name == element.serviceName) ||
+                    setSaveLst.any((e) => e.name == element.serviceName) ||
                     element.serviceName == 'transFee',
               )
               .toList();
-          final isStarted = mbRR.any(
-            (a) => a.maybeMap(
-              started: (v) => true,
-              orElse: () => false,
-            ),
-          );
-          payment.removeWhere(paymentNotRm.contains);
+          payment.removeWhere((a) => paymentNotRm.contains(a));
           for (var i = 0; i < payment.length; i++) {
             await _paymentRepo.delete(payment[i].serviceName);
           }

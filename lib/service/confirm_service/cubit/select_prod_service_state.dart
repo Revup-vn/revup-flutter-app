@@ -6,7 +6,7 @@ class SelectProdServiceState with _$SelectProdServiceState {
   const factory SelectProdServiceState.failure() = _Failure;
   const factory SelectProdServiceState.success({
     required String providerId,
-    required IList<ServiceData> serviceData,
+    required List<ServiceData> serviceList,
     required List<PendingServiceModel> pendingService,
   }) = _Success;
 }

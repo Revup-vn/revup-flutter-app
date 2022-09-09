@@ -95,13 +95,16 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
                   .fold(() => a.imageURL, (t) => t.imageURL),
             ),
           );
+          final serviceList = isStarted
+              ? ilist(lst)
+                  .plus(finalListSvOptional
+                      .where((a) => a.isOptional && a.serviceFee == -1))
+                  .toList()
+              : ilist(lst).plus(finalListSvOptional).toList();
           emit(
             SelectProdServiceState.success(
               providerId: repairRecord.pid,
-              serviceData: isStarted
-                  ? ilist(lst)
-                      .plus(finalListSvOptional.where((a) => a.isOptional))
-                  : ilist(lst).plus(finalListSvOptional),
+              serviceList: serviceList,
               pendingService: pendingService.toList(),
             ),
           );

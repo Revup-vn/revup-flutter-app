@@ -84,9 +84,10 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
             ),
           ),
         );
+        final serviceList = catAndSv.value2.plus(tmp).toList();
         emit(
           ChooseServiceState.success(
-            serviceData: catAndSv.value2.plus(tmp),
+            serviceList: serviceList,
             providerId: providerId,
             catAndSv: catAndSv,
             movingFee: movingFee,
