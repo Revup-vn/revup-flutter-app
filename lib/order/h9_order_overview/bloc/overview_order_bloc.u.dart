@@ -138,6 +138,16 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
                   (a) => a.getOrElse(() => throw NullThrownError()),
                 );
 
+            final len = (await (storeRepository.repairPaymentRepo(
+              RepairRecordDummy.dummyPending(recordId),
+            )).all())
+                .map((r) => r.filter((a) => a.map(
+                    pending: (v) => true,
+                    paid: (v) => false,
+                    needToVerify: (v) => true)))
+                .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
+                .length();
+
             final pendingAmount = pendingService
                 .map(
                   (a) => a.price,
@@ -154,9 +164,9 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
                   distance / 1000,
                 ),
                 pendingService: pendingService.toList(),
-                //     a.toList().cast<NeedToVerifyModel>(),
                 pendingRequest: pendingRequest,
                 total: pendingAmount,
+                len: len,
               ),
             );
           }
