@@ -144,7 +144,7 @@ class _SplashPageState extends State<SplashPage> {
           },
           orElse: () => false,
         );
-        context.router.pushAndPopUntil(
+        context.router.push(
           authBloc.state.maybeWhen(
             empty: (isFirstTime) =>
                 isFirstTime ? const OnboardingRoute() : const LoginRoute(),
@@ -153,7 +153,6 @@ class _SplashPageState extends State<SplashPage> {
             },
             orElse: LoginRoute.new,
           ),
-          predicate: (_) => true,
         );
       },
     );

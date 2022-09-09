@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +86,15 @@ class H16MapRoute extends StatelessWidget {
                                   TextButton(
                                     onPressed: () async {
                                       await _onAbortRequest(
-                                          context, cubit, routerFake);
+                                        context,
+                                        cubit,
+                                        routerFake,
+                                        context.read(),
+                                        context.read(),
+                                        context.read(),
+                                        ScaffoldMessenger.of(context),
+                                        context.l10n,
+                                      );
                                       await bcontext.router.pop();
                                       willPop = true;
                                       context.router.popUntil(
@@ -138,16 +148,19 @@ class H16MapRoute extends StatelessWidget {
     BuildContext context,
     NotificationCubit cubit,
     StackRouter router,
+    IStore<RepairRecord> _irr,
+    IStore<AppUser> _iau,
+    AuthenticateBloc aubloc,
+    ScaffoldMessengerState csfm,
+    AppLocalizations l10n,
   ) async =>
       context.read<H16MapRouteBloc>().add(
             H16MapRouteEvent.confirmArrival(
               onRoute: () async {
-                final _irr = context.read<IStore<RepairRecord>>();
-                final _iau = context.read<IStore<AppUser>>();
-                final uid = context.read<AuthenticateBloc>().state.maybeMap(
-                      orElse: () => throw NullThrownError(),
-                      authenticated: (value) => value.authType.user.uuid,
-                    );
+                final uid = aubloc.state.maybeMap(
+                  orElse: () => throw NullThrownError(),
+                  authenticated: (value) => value.authType.user.uuid,
+                );
 
                 final user = (await _iau.get(uid))
                     .toOption()
@@ -167,7 +180,6 @@ class H16MapRoute extends StatelessWidget {
                       : value.copyWith(violatedTimes: value.violatedTimes + 1),
                   // guarantee be external invariance
                 );
-
                 if (!(await _iau.update(uUser))
                     .fold((l) => false, (r) => true)) {
                   return;
@@ -177,12 +189,10 @@ class H16MapRoute extends StatelessWidget {
                   (a) => a
                       .where(
                         RepairRecordDummy.field(RepairRecordFields.ConsumerId),
-                        isEqualTo:
-                            context.read<AuthenticateBloc>().state.maybeMap(
-                                  orElse: () => throw NullThrownError(),
-                                  authenticated: (value) =>
-                                      value.authType.user.uuid,
-                                ),
+                        isEqualTo: aubloc.state.maybeMap(
+                          orElse: () => throw NullThrownError(),
+                          authenticated: (value) => value.authType.user.uuid,
+                        ),
                       )
                       .orderBy(
                         RepairRecordDummy.field(
@@ -216,23 +226,20 @@ class H16MapRoute extends StatelessWidget {
                     )
                     .then(
                       (value) => value.fold(
-                          (_) => ScaffoldMessenger.of(context).showSnackBar(
+                          (_) => csfm.showSnackBar(
                                 SnackBar(
-                                  content: Text(context.l10n.generalRetryError),
+                                  content: Text(l10n.generalRetryError),
                                 ),
                               ), (_) async {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                        csfm.showSnackBar(
                           SnackBar(
-                            content: Text(context.l10n.userAbortTheRequest),
+                            content: Text(l10n.userAbortTheRequest),
                           ),
-                        );
-                        return context.router.popUntil(
-                          (route) => route.settings.name == HomeRoute.name,
                         );
                       }),
                     );
               },
-              sendMessage: (token) => cubit.sendMessageToToken(
+              sendMessage: (token, pid) => cubit.sendMessageToToken(
                 SendMessage(
                   title: 'Revup',
                   body: '',
@@ -240,7 +247,10 @@ class H16MapRoute extends StatelessWidget {
                   icon: kRevupIconApp,
                   payload: MessageData(
                     type: NotificationType.NormalMessage,
-                    payload: <String, dynamic>{'subType': 'ConsumerCanceled'},
+                    payload: <String, dynamic>{
+                      'subType': 'ConsumerCanceled',
+                      'providerId': pid
+                    },
                   ),
                 ),
               ),

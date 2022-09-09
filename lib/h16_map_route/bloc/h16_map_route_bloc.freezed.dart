@@ -19,24 +19,24 @@ mixin _$H16MapRouteEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
         confirmArrival,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
     required TResult orElse(),
   }) =>
@@ -120,8 +120,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
         confirmArrival,
   }) {
     return started();
@@ -131,8 +131,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
   }) {
     return started?.call();
@@ -142,8 +142,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
     required TResult orElse(),
   }) {
@@ -194,7 +194,8 @@ abstract class _$$_ConfirmArrivalCopyWith<$Res> {
   factory _$$_ConfirmArrivalCopyWith(
           _$_ConfirmArrival value, $Res Function(_$_ConfirmArrival) then) =
       __$$_ConfirmArrivalCopyWithImpl<$Res>;
-  $Res call({Function0<void> onRoute, Function1<String, void> sendMessage});
+  $Res call(
+      {Function0<void> onRoute, Function2<String, String, void> sendMessage});
 }
 
 /// @nodoc
@@ -221,7 +222,7 @@ class __$$_ConfirmArrivalCopyWithImpl<$Res>
       sendMessage: sendMessage == freezed
           ? _value.sendMessage
           : sendMessage // ignore: cast_nullable_to_non_nullable
-              as Function1<String, void>,
+              as Function2<String, String, void>,
     ));
   }
 }
@@ -234,7 +235,7 @@ class _$_ConfirmArrival implements _ConfirmArrival {
   @override
   final Function0<void> onRoute;
   @override
-  final Function1<String, void> sendMessage;
+  final Function2<String, String, void> sendMessage;
 
   @override
   String toString() {
@@ -263,8 +264,8 @@ class _$_ConfirmArrival implements _ConfirmArrival {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)
+    required TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)
         confirmArrival,
   }) {
     return confirmArrival(onRoute, sendMessage);
@@ -274,8 +275,8 @@ class _$_ConfirmArrival implements _ConfirmArrival {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
   }) {
     return confirmArrival?.call(onRoute, sendMessage);
@@ -285,8 +286,8 @@ class _$_ConfirmArrival implements _ConfirmArrival {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            Function0<void> onRoute, Function1<String, void> sendMessage)?
+    TResult Function(Function0<void> onRoute,
+            Function2<String, String, void> sendMessage)?
         confirmArrival,
     required TResult orElse(),
   }) {
@@ -330,11 +331,12 @@ class _$_ConfirmArrival implements _ConfirmArrival {
 
 abstract class _ConfirmArrival implements H16MapRouteEvent {
   const factory _ConfirmArrival(
-      {required final Function0<void> onRoute,
-      required final Function1<String, void> sendMessage}) = _$_ConfirmArrival;
+          {required final Function0<void> onRoute,
+          required final Function2<String, String, void> sendMessage}) =
+      _$_ConfirmArrival;
 
   Function0<void> get onRoute;
-  Function1<String, void> get sendMessage;
+  Function2<String, String, void> get sendMessage;
   @JsonKey(ignore: true)
   _$$_ConfirmArrivalCopyWith<_$_ConfirmArrival> get copyWith =>
       throw _privateConstructorUsedError;
