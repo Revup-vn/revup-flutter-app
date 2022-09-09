@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../gen/assets.gen.dart';
@@ -163,12 +165,31 @@ class _ServiceCheckboxTileState extends State<ServiceCheckboxTile> {
           ),
           if (widget.selectProMode && widget.canSelect && (isChecked ?? false))
             TextButton(
-              onPressed: () {
-                context.router.push(
+              onPressed: () async {
+                final isStarted = (await context
+                        .read<IStore<RepairRecord>>()
+                        .get(widget.recordId))
+                    .map<Option<RepairRecord>>(
+                      (r) => r.maybeMap(
+                        accepted: some,
+                        started: some,
+                        orElse: none,
+                      ),
+                    )
+                    .fold<Option<RepairRecord>>(
+                      (l) => none(),
+                      (r) => r,
+                    )
+                    .any(
+                      (a) =>
+                          a.maybeMap(started: (v) => true, orElse: () => false),
+                    );
+                await context.router.push(
                   ChooseProductRoute(
                     serviceData: widget.serviceData,
                     providerId: widget.providerId,
                     recordId: widget.recordId,
+                    isStarted: isStarted,
                   ),
                 );
               },

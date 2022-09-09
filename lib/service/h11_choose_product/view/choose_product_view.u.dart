@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../router/router.dart';
 import '../../../shared/widgets/loading.u.dart';
 import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
 
 class ChooseProductView extends StatefulWidget {
-  const ChooseProductView({super.key, required this.recordId});
+  const ChooseProductView(
+      {super.key, required this.recordId, required this.isStarted});
   final String recordId;
+  final bool isStarted;
 
   @override
   State<ChooseProductView> createState() => _ChooseProductViewState();
@@ -103,7 +106,13 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                                 ChooseProductEvent.submitted(
                                   groupValue,
                                   widget.recordId,
-                                  () => context.router.pop(),
+                                  () => widget.isStarted
+                                      ? context.router.popUntil(
+                                          (route) =>
+                                              route.settings.name ==
+                                              RepairStatusRoute.name,
+                                        )
+                                      : context.router.pop(),
                                 ),
                               );
                         },

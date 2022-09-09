@@ -12,10 +12,12 @@ class ChooseProductPage extends StatelessWidget {
     required this.serviceData,
     required this.providerId,
     required this.recordId,
+    required this.isStarted,
   });
   final String providerId;
   final ServiceData serviceData;
   final String recordId;
+  final bool isStarted;
   @override
   Widget build(BuildContext context) {
     final sr = context.read<StoreRepository>();
@@ -30,6 +32,7 @@ class ChooseProductPage extends StatelessWidget {
       ),
       child: ChooseProductView(
         recordId: recordId,
+        isStarted: isStarted,
       ),
     );
   }

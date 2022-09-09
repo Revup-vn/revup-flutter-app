@@ -306,18 +306,22 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 ),
                                 TextSpan(
                                   text: context.formatMoney(
-                                    widget.pendingRequest.money +
-                                        widget.pendingService.fold(
-                                          0,
-                                          (p, e) =>
-                                              p +
-                                              (e.price == -1 ? 0 : e.price) +
-                                              (e.products.isEmpty
-                                                  ? 0
-                                                  : e.products.first.unitPrice *
-                                                      e.products.first
-                                                          .quantity),
-                                        ),
+                                    widget.pendingService.fold(
+                                      0,
+                                      (p, e) =>
+                                          p +
+                                          (e.name == 'transFee'
+                                              ? (e.status == 'pending'
+                                                  ? e.price
+                                                  : -e.price)
+                                              : (e.price +
+                                                  (e.products.isEmpty
+                                                      ? 0
+                                                      : e.products.first
+                                                              .unitPrice *
+                                                          e.products.first
+                                                              .quantity))),
+                                    ),
                                   ),
                                   style: Theme.of(context)
                                       .textTheme
@@ -380,11 +384,17 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                         0,
                                         (p, e) =>
                                             p +
-                                            (e.price == -1 ? 0 : e.price) +
-                                            (e.products.isEmpty
-                                                ? 0
-                                                : e.products.first.unitPrice *
-                                                    e.products.first.quantity),
+                                            (e.name != 'transFee'
+                                                ? (e.price == -1
+                                                        ? 0
+                                                        : e.price) +
+                                                    (e.products.isEmpty
+                                                        ? 0
+                                                        : e.products.first
+                                                                .unitPrice *
+                                                            e.products.first
+                                                                .quantity)
+                                                : 0),
                                       ),
                                     ),
                                     style: Theme.of(context)
