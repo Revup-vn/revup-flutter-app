@@ -22,12 +22,14 @@ class OverviewOrderContent extends StatefulWidget {
     // required this.needToVerifyService,
     required this.total,
     required this.pendingRequest,
+    required this.len,
   });
   final OverviewOrderModel overviewOrderData;
   final List<PendingServiceModel> pendingService;
   // final List<NeedToVerifyModel> needToVerifyService;
   final PendingRepairRequest pendingRequest;
   final int total;
+  final int len;
 
   @override
   State<OverviewOrderContent> createState() => _OverviewOrderContentState();
@@ -221,7 +223,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                               TextSpan(
                                 // exclude transit fee
                                 text:
-                                    '''${widget.pendingService.length - 1} ${context.l10n.serviceCountLabel}''',
+                                    '''${widget.len} ${context.l10n.serviceCountLabel}''',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge

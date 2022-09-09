@@ -169,7 +169,7 @@ class SearchResult extends StatelessWidget {
                                         providers[index]
                                             .value1
                                             .rating
-                                            .toString(),
+                                            .toStringAsFixed(1),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
