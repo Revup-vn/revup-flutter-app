@@ -277,7 +277,7 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
                         context.read<H16MapRouteBloc>().add(
                               H16MapRouteEvent.confirmArrival(
                                 onRoute: () {},
-                                sendMessage: (token) => context
+                                sendMessage: (token, pid) => context
                                     .read<NotificationCubit>()
                                     .sendMessageToToken(
                                       SendMessage(
