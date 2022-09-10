@@ -86,8 +86,9 @@ class RepairerProfileFeedback extends StatelessWidget {
                                 },
                               ),
                               AutoSizeText(
-                                data[index].description.isEmpty
-                                    ? ''
+                                data[index].description.isEmpty ||
+                                        data[index].description == 'null'
+                                    ? ' '
                                     : data[index].description,
                                 style: Theme.of(context).textTheme.bodyMedium,
                                 maxLines: 2,
