@@ -148,9 +148,7 @@ class SearchCubit extends Cubit<SearchState> {
                   .run())
               .toIterable(),
         );
-        final boxRR = Hive.box<dynamic>(
-          'repairRecord',
-        );
+        final boxRR = Hive.box<dynamic>('repairRecord');
         final vehicle =
             (boxRR.get('vehicle') as String) == 'car' ? 'Oto' : 'Xe máy';
 
@@ -233,7 +231,7 @@ class SearchCubit extends Cubit<SearchState> {
                                         ),
                                       )
                                       .fold(
-                                        (l) => tuple3(a, 0, 0),
+                                        (l) => tuple3(a, -1, -1),
                                         (r) => r,
                                       ),
                                 ),
@@ -247,69 +245,46 @@ class SearchCubit extends Cubit<SearchState> {
               ),
         );
 
-        final priceLowestRange = filterPrice
-            .map(
-              (e) => tuple2(
-                e.value1,
-                tuple2(
-                  e.value2.isEmpty
-                      ? 0
-                      : (e.value2.firstWhere(
-                          (element) =>
-                              TiengViet.parse(
-                                element.value1.name.toLowerCase(),
-                              ) ==
-                              TiengViet.parse(keyword.toLowerCase()),
-                          orElse: () {
-                            if (TiengViet.parse(
-                              e.value2.first.value1.name.toLowerCase(),
-                            ).contains(
-                              TiengViet.parse(keyword.toLowerCase()),
-                            )) {
-                              return e.value2.first;
-                            }
-                            return e.value2.firstWhere(
-                              (element) => TiengViet.parse(
-                                element.value1.name.toLowerCase(),
-                              ).contains(
-                                TiengViet.parse(keyword.toLowerCase()),
-                              ),
-                            );
-                          },
-                        ).value2),
-                  e.value2.isEmpty
-                      ? 0
-                      : (e.value2.firstWhere(
-                          (element) =>
-                              TiengViet.parse(
-                                element.value1.name.toLowerCase(),
-                              ) ==
-                              TiengViet.parse(keyword.toLowerCase()),
-                          orElse: () {
-                            if (TiengViet.parse(
-                              e.value2.first.value1.name.toLowerCase(),
-                            ).contains(
-                              TiengViet.parse(keyword.toLowerCase()),
-                            )) {
-                              return e.value2.first;
-                            }
-                            return e.value2.firstWhere(
-                              (element) => TiengViet.parse(
-                                element.value1.name.toLowerCase(),
-                              ).contains(
-                                TiengViet.parse(keyword.toLowerCase()),
-                              ),
-                            );
-                          },
-                        ).value3),
-                ),
+        final priceLowestRange =
+            filterPrice.where((r) => r.value2.isNotEmpty).map(
+          (e) {
+            final rs = e.value2.firstWhere(
+              (element) =>
+                  TiengViet.parse(
+                    element.value1.name.toLowerCase(),
+                  ) ==
+                  TiengViet.parse(keyword.toLowerCase()),
+              orElse: () {
+                if (TiengViet.parse(
+                  e.value2.first.value1.name.toLowerCase(),
+                ).contains(
+                  TiengViet.parse(keyword.toLowerCase()),
+                )) {
+                  return e.value2.first;
+                }
+                return e.value2.firstWhere(
+                  (element) => TiengViet.parse(
+                    element.value1.name.toLowerCase(),
+                  ).contains(
+                    TiengViet.parse(keyword.toLowerCase()),
+                  ),
+                );
+              },
+            );
+            return tuple2(
+              e.value1,
+              tuple3<RepairService, int, int>(
+                rs.value1,
+                rs.value2,
+                rs.value3,
               ),
-            )
-            .toList();
+            );
+          },
+        ).toList();
 
         if (priceSort.isNotEmpty && priceSort == 'desc') {
           priceLowestRange.sort((b, a) {
-            var cmp = a.value2.value1.compareTo(b.value2.value1);
+            var cmp = a.value2.value2.compareTo(b.value2.value2);
             if (cmp != 0) return cmp;
             cmp = b.value1.distance.compareTo(a.value1.distance);
             if (cmp != 0) return cmp;
@@ -318,7 +293,7 @@ class SearchCubit extends Cubit<SearchState> {
         } else {
           priceLowestRange.sort(
             (a, b) {
-              var cmp = a.value2.value1.compareTo(b.value2.value1);
+              var cmp = a.value2.value2.compareTo(b.value2.value2);
               if (cmp != 0) return cmp;
               cmp = a.value1.distance.compareTo(b.value1.distance);
               if (cmp != 0) return cmp;

@@ -22,8 +22,12 @@ mixin _$SearchState {
     required TResult Function() loading,
     required TResult Function(String keyword, int resultCount, double radius)
         empty,
-    required TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)
+    required TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)
         result,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,8 +36,12 @@ mixin _$SearchState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,8 +50,12 @@ mixin _$SearchState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
     required TResult orElse(),
   }) =>
@@ -134,8 +146,12 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function(String keyword, int resultCount, double radius)
         empty,
-    required TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)
+    required TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)
         result,
   }) {
     return initial();
@@ -147,8 +163,12 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
   }) {
     return initial?.call();
@@ -160,8 +180,12 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
     required TResult orElse(),
   }) {
@@ -256,8 +280,12 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function(String keyword, int resultCount, double radius)
         empty,
-    required TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)
+    required TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)
         result,
   }) {
     return loading();
@@ -269,8 +297,12 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
   }) {
     return loading?.call();
@@ -282,8 +314,12 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
     required TResult orElse(),
   }) {
@@ -422,8 +458,12 @@ class _$_Empty implements _Empty {
     required TResult Function() loading,
     required TResult Function(String keyword, int resultCount, double radius)
         empty,
-    required TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)
+    required TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)
         result,
   }) {
     return empty(keyword, resultCount, radius);
@@ -435,8 +475,12 @@ class _$_Empty implements _Empty {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
   }) {
     return empty?.call(keyword, resultCount, radius);
@@ -448,8 +492,12 @@ class _$_Empty implements _Empty {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
     required TResult orElse(),
   }) {
@@ -520,7 +568,8 @@ abstract class _$$_SuccessCopyWith<$Res> {
       {String keyword,
       int resultCount,
       double radius,
-      List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers});
+      List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+          providers});
 }
 
 /// @nodoc
@@ -555,7 +604,7 @@ class __$$_SuccessCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
       providers: providers == freezed
           ? _value._providers
           : providers // ignore: cast_nullable_to_non_nullable
-              as List<Tuple2<ProviderRawData, Tuple2<int, int>>>,
+              as List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>,
     ));
   }
 }
@@ -567,7 +616,9 @@ class _$_Success implements _Success {
       {required this.keyword,
       required this.resultCount,
       required this.radius,
-      required final List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers})
+      required final List<
+              Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+          providers})
       : _providers = providers;
 
   @override
@@ -576,9 +627,10 @@ class _$_Success implements _Success {
   final int resultCount;
   @override
   final double radius;
-  final List<Tuple2<ProviderRawData, Tuple2<int, int>>> _providers;
+  final List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+      _providers;
   @override
-  List<Tuple2<ProviderRawData, Tuple2<int, int>>> get providers {
+  List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>> get providers {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_providers);
   }
@@ -621,8 +673,12 @@ class _$_Success implements _Success {
     required TResult Function() loading,
     required TResult Function(String keyword, int resultCount, double radius)
         empty,
-    required TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)
+    required TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)
         result,
   }) {
     return result(keyword, resultCount, radius, providers);
@@ -634,8 +690,12 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
   }) {
     return result?.call(keyword, resultCount, radius, providers);
@@ -647,8 +707,12 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String keyword, int resultCount, double radius)? empty,
-    TResult Function(String keyword, int resultCount, double radius,
-            List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers)?
+    TResult Function(
+            String keyword,
+            int resultCount,
+            double radius,
+            List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+                providers)?
         result,
     required TResult orElse(),
   }) {
@@ -701,13 +765,14 @@ abstract class _Success implements SearchState {
       {required final String keyword,
       required final int resultCount,
       required final double radius,
-      required final List<Tuple2<ProviderRawData, Tuple2<int, int>>>
+      required final List<
+              Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
           providers}) = _$_Success;
 
   String get keyword;
   int get resultCount;
   double get radius;
-  List<Tuple2<ProviderRawData, Tuple2<int, int>>> get providers;
+  List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>> get providers;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
