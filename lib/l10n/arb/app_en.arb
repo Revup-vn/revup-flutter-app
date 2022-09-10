@@ -253,11 +253,13 @@
   "todayLabel": "today",
   "yesterdayLabel": "days ago",
   "repairerCancelOrderLabel": "Provider canceled this order. We are very sorry for that.",
-  "refundLabel":"If you paid the transit fee we will refund within 48 hours",
+  "refundLabel": "If you paid the transit fee we will refund within 48 hours",
   "cancelThisLabel": "If you cancel this order your transit fee will not be refunded. When you cancel too much you maybe ban from our system",
   "sureLabel": "Are you sure?",
   "yesLabel": "Yes",
   "forgotSomthingLabel": "If your want to add more services go to 'Detail' button",
-  "sentRequestToProviderLabel":"Request has been sent to provider. Please wait",
-  "takeLongLabel":"Provider maybe need to prepare items, it may take long"
+  "sentRequestToProviderLabel": "Request has been sent to provider. Please wait",
+  "takeLongLabel": "Provider maybe need to prepare items, it may take long",
+  "paymentRequestDescriptionLabel": "Payment of repair costs",
+  "placesNoteLabel": "You can add the address details for the repairman in the next step"
 }

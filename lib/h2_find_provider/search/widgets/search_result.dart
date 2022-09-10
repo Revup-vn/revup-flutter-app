@@ -64,6 +64,9 @@ class SearchResult extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                const SizedBox(
+                  width: 4,
+                ),
                 Text(
                   '$resultCount ${l10n.resultCountLabel}',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(

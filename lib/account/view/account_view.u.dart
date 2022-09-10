@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -103,7 +102,9 @@ class AccountView extends StatelessWidget {
               AccountItem(
                 accountName: l10n.organizationLabel,
                 accountIcon: const Icon(Icons.business),
-                callback: () => context.showToast<void>(l10n.notSupportLabel),
+                callback: () => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.notSupportLabel)),
+                ),
               ),
               AccountItem(
                 accountName: l10n.changeLanguageLabel,

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -38,8 +37,8 @@ class OnboardingPage extends StatelessWidget {
         onDone: () => context.router.push(const LoginRoute()),
         onSkip: () => context.router.push(const LoginRoute()),
         skip: AutoSizeText(l10n.skipLabel),
-        done: AutoSizeText(l10n.nextLabel),
-        next: AutoSizeText(l10n.doneLabel),
+        done: AutoSizeText(l10n.doneLabel),
+        next: AutoSizeText(l10n.nextLabel),
         controlsPadding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).colorScheme.primary,

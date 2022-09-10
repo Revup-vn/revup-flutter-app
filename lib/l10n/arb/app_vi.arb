@@ -254,11 +254,13 @@
   "todayLabel": "hôm nay",
   "yesterdayLabel": "ngày trước",
   "repairerCancelOrderLabel": "Nhà cung cấp đã huỷ đơn hàng. Chúng tôi rất xin lỗi vì sự bất tiện này.",
-  "refundLabel":"Nếu bạn đã thanh toán phí di chuyển chúng tôi sẽ hoàn lại trong vòng 48 giờ",
+  "refundLabel": "Nếu bạn đã thanh toán phí di chuyển chúng tôi sẽ hoàn lại trong vòng 48 giờ",
   "cancelThisLabel": "Nếu bạn huỷ đơn này bạn sẽ không được hoàn lại tiền phí di chuyển đã thanh toán. Nếu huỷ quá nhiều bạn sẽ bị hạn chế sử dụng các chắc năng của hệ thống",
   "sureLabel": "Are you sure?",
   "yesLabel": "Đồng ý",
   "forgotSomthingLabel": "Nếu bạn quên dịch vụ nào đó hãy nhấn nút 'Chi tiết' để thêm",
-  "sentRequestToProviderLabel":"Yêu cầu đã được gửi. Vui lòng chờ thợ sửa xác nhận",
-  "takeLongLabel":"Thợ sửa chuẩn bị trang thiết bị, điều này có thể mất thời gian"
+  "sentRequestToProviderLabel": "Yêu cầu đã được gửi. Vui lòng chờ thợ sửa xác nhận",
+  "takeLongLabel": "Thợ sửa chuẩn bị trang thiết bị, điều này có thể mất thời gian",
+  "paymentRequestDescriptionLabel": "Thanh toán chi phí sửa chữa",
+  "placesNoteLabel": "Bạn có thể thêm chi tiết địa chỉ cho thợ sửa ở bước sau nhé"
 }
