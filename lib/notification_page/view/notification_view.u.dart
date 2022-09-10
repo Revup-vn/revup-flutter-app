@@ -23,24 +23,34 @@ class NotificationView extends StatelessWidget {
       orElse: () => false,
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: AutoSizeText(l10n.notificationLabel),
-        automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              BlocBuilder<NotificationPageBloc, NotificationPageState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    failure: UnknownFailure.new,
-                    success: (notifications) {
-                      final noti = notifications.toList();
-
-                      return ListView.builder(
+    return BlocBuilder<NotificationPageBloc, NotificationPageState>(
+      builder: (context, state) {
+        return state.when(
+          initial: Container.new,
+          loading: Loading.new,
+          failure: UnknownFailure.new,
+          success: (notifications) {
+            final noti = notifications.toList();
+            return Scaffold(
+              appBar: AppBar(
+                title: AutoSizeText(
+                  l10n.notificationLabel,
+                  style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold) ??
+                      const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                automaticallyImplyLeading: false,
+              ),
+              body: Container(
+                padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: noti.length,
@@ -50,16 +60,15 @@ class NotificationView extends StatelessWidget {
                           body: noti[index].body,
                           time: noti[index].time,
                         ),
-                      );
-                    },
-                    orElse: Loading.new,
-                  );
-                },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }

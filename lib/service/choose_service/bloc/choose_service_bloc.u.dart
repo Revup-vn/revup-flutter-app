@@ -11,8 +11,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../../repairer_profile/models/service_data.u.dart';
 
-// ignore: unnecessary_import
-
 part 'choose_service_bloc.u.freezed.dart';
 part 'choose_service_event.dart';
 part 'choose_service_state.dart';
@@ -45,54 +43,70 @@ class ChooseServiceBloc extends Bloc<ChooseServiceEvent, ChooseServiceState> {
         emit(const ChooseServiceState.loading());
         await Hive.openBox<dynamic>('serviceSelect');
 
-        final maybeProviderData = (await _userStore.get(providerId))
-            .fold<Option<AppUser>>(
-              (l) => none(),
-              some,
-            )
-            .getOrElse(() => throw NullThrownError());
-        final boxRprRecord = Hive.box<dynamic>('repairRecord');
-        final vehicle = boxRprRecord.get('vehicle', defaultValue: '') as String;
-        final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
-        final movingFee = boxRprRecord.get('movingFee', defaultValue: 0) as int;
-        final catAndSv = await (await (storeRepository.repairCategoryRepo(
-          maybeProviderData,
-        )).get(catId))
-            .map(
-              (a) async => tuple2<RepairCategory, IList<ServiceData>>(
-                a,
-                (await storeRepository
-                        .repairServiceRepo(maybeProviderData, a)
-                        .where('active', isEqualTo: true))
-                    .fold<IList<ServiceData>>(
-                  (l) => ilist([]),
-                  (r) => r.map(
-                    ServiceData.fromDtos,
+        final maybeProviderData =
+            (await _userStore.get(providerId)).fold<Option<AppUser>>(
+          (l) => none(),
+          some,
+        );
+        if (maybeProviderData.isNone()) {
+          emit(const ChooseServiceState.failure());
+        } else {
+          final providerData =
+              maybeProviderData.getOrElse(() => throw NullThrownError());
+          final boxRprRecord = Hive.box<dynamic>('repairRecord');
+          final vehicle =
+              boxRprRecord.get('vehicle', defaultValue: '') as String;
+          final catId = vehicle == 'car' ? 'Oto' : 'Xe máy';
+          final movingFee =
+              boxRprRecord.get('movingFee', defaultValue: 0) as int;
+          final maybeCatAndSv = (await (storeRepository.repairCategoryRepo(
+            providerData,
+          )).get(catId))
+              .map(
+                (a) async => tuple2<RepairCategory, IList<ServiceData>>(
+                  a,
+                  (await storeRepository
+                          .repairServiceRepo(providerData, a)
+                          .where('active', isEqualTo: true))
+                      .fold<IList<ServiceData>>(
+                    (l) => ilist([]),
+                    (r) => r.map(
+                      ServiceData.fromDtos,
+                    ),
                   ),
                 ),
+              )
+              .fold<Option<Future<Tuple2<RepairCategory, IList<ServiceData>>>>>(
+                (l) => none(),
+                some,
+              );
+          if (maybeCatAndSv.isNone()) {
+            emit(const ChooseServiceState.failure());
+          } else {
+            final catAndSv =
+                await maybeCatAndSv.getOrElse(() => throw NullThrownError());
+            final tmp = IList.from(
+              newService.map(
+                (e) => ServiceData(
+                  name: e.name,
+                  serviceFee: -1,
+                  imageURL: e.img,
+                  products: [],
+                  isOptional: true,
+                ),
               ),
-            )
-            .fold((l) => throw NullThrownError(), (r) => r);
-        final tmp = IList.from(
-          newService.map(
-            (e) => ServiceData(
-              name: e.name,
-              serviceFee: -1,
-              imageURL: e.img,
-              products: [],
-              isOptional: true,
-            ),
-          ),
-        );
-        final serviceList = catAndSv.value2.plus(tmp).toList();
-        emit(
-          ChooseServiceState.success(
-            serviceList: serviceList,
-            providerId: providerId,
-            catAndSv: catAndSv,
-            movingFee: movingFee,
-          ),
-        );
+            );
+            final serviceList = catAndSv.value2.plus(tmp).toList();
+            emit(
+              ChooseServiceState.success(
+                serviceList: serviceList,
+                providerId: providerId,
+                catAndSv: catAndSv,
+                movingFee: movingFee,
+              ),
+            );
+          }
+        }
       },
       serviceListSubmitted: (
         isPaymentOnline,

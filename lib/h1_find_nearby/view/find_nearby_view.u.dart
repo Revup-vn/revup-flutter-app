@@ -135,39 +135,54 @@ class _FindNearbyViewState extends State<FindNearbyView> {
                                 ),
                               ),
                               const Divider(),
-                              addrCubit.state.when(
-                                initial: Container.new,
-                                loading: () => Expanded(
-                                  child: Center(
-                                    child: LottieBuilder.asset(
-                                      Assets.screens.loading,
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  ),
-                                ),
-                                failure: () => Expanded(
-                                  child: Center(
-                                    child:
-                                        AutoSizeText(l10n.errLoadAddressLabel),
-                                  ),
-                                ),
-                                success: (addr) => Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 16),
-                                    child: ListTile(
-                                      title: AutoSizeText(
-                                        addr,
-                                        maxLines: 3,
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    addrCubit.state.when(
+                                      initial: Container.new,
+                                      loading: () => Expanded(
+                                        child: Center(
+                                          child: LottieBuilder.asset(
+                                            Assets.screens.loading,
+                                            height: 100,
+                                            width: 100,
+                                          ),
+                                        ),
                                       ),
-                                      leading: const Icon(
-                                        Icons.place,
-                                        size: 32,
-                                        color: Colors.red,
+                                      failure: () => Expanded(
+                                        child: Center(
+                                          child: AutoSizeText(
+                                              l10n.errLoadAddressLabel),
+                                        ),
+                                      ),
+                                      success: (addr) => Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 16),
+                                          child: ListTile(
+                                            title: AutoSizeText(
+                                              addr,
+                                              maxLines: 3,
+                                            ),
+                                            leading: const Icon(
+                                              Icons.place,
+                                              size: 32,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    AutoSizeText(
+                                      l10n.placesNoteLabel,
+                                      style:
+                                          Theme.of(context).textTheme.caption,
+                                    ),
+                                  ],
                                 ),
+                              ),
+                              const SizedBox(
+                                height: 4,
                               ),
                               ElevatedButton(
                                 onPressed: () {

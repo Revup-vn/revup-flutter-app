@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../l10n/l10n.dart';
@@ -25,6 +24,7 @@ class _FormSliderState extends State<FormSlider> {
       max: 50,
       label: _value?.round().toString() ?? '50',
       divisions: 49,
+      displayValues: DisplayValues.current,
       onChanged: (v) {
         setState(() {
           _value = v;
@@ -34,7 +34,6 @@ class _FormSliderState extends State<FormSlider> {
         labelText: '${context.l10n.radiusLabel} (km)',
         border: InputBorder.none,
       ),
-      displayValues: DisplayValues.none,
       textStyle: Theme.of(context)
               .textTheme
               .bodyMedium

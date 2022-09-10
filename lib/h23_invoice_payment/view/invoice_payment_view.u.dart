@@ -551,8 +551,8 @@ class InvoicePaymentView extends StatelessWidget {
                                             displayRecordName:
                                                 displayRecordName,
                                             consumerName: consumerName,
-                                            description:
-                                                l10n.paymentDescriptionLabel,
+                                            description: l10n
+                                                .paymentRequestDescriptionLabel,
                                           ),
                                         ),
                               ),

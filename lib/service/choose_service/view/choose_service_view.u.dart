@@ -135,242 +135,234 @@ class _ChooseServiceViewState extends State<ChooseServiceView> {
       },
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: AutoSizeText(l10n.addServiceAppBarTitle),
-        centerTitle: false,
-        actions: [
-          TextButton(
-            onPressed: () => context.router
-                .popAndPush<List<OptionalService>, List<OptionalService>>(
-              NewServiceRequestRoute(
-                optionalService: widget.optionalService,
-                providerId: widget.providerId,
-                isSelectProduct: false,
-              ),
-              result: widget.optionalService,
-            ),
-            child: Text(l10n.addLabel),
-          ),
-        ],
-      ),
-      body: BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
-        builder: (context, state) {
-          return state.maybeWhen(
-            failure: UnknownFailure.new,
-            success: (providerId, serviceList, catAndSv, movingFee) {
-              return Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: FormBuilder(
-                            key: widget.form,
-                            child: ServiceCheckboxGroup(
-                              serviceList: serviceList,
-                              pendingService: const [],
-                              providerId: providerId,
-                              isSelectProduct: false,
-                              recordId: '',
-                              form: widget.form,
-                              initialList: serviceList
-                                  .where((e) => e.isOptional)
-                                  .toList(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+    return BlocBuilder<ChooseServiceBloc, ChooseServiceState>(
+      builder: (context, state) => state.maybeWhen(
+        loading: Loading.new,
+        failure: UnknownFailure.new,
+        success: (providerId, serviceList, catAndSv, movingFee) => Scaffold(
+          appBar: AppBar(
+            title: AutoSizeText(l10n.addServiceAppBarTitle),
+            centerTitle: false,
+            actions: [
+              TextButton(
+                onPressed: () => context.router
+                    .popAndPush<List<OptionalService>, List<OptionalService>>(
+                  NewServiceRequestRoute(
+                    optionalService: widget.optionalService,
+                    providerId: widget.providerId,
+                    isSelectProduct: false,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      color: Theme.of(context).colorScheme.surface,
-                      padding: const EdgeInsets.all(16),
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AutoSizeText(
-                            l10n.acceptTransportPaymentLabel,
-                            style: Theme.of(context).textTheme.labelSmall,
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                l10n.transitFeeLabel,
-                                style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.normal,
-                                        ) ??
-                                    const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                context.formatMoney(movingFee),
-                                style: Theme.of(context).textTheme.titleMedium,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    context.router
-                                        .push<bool>(const PaymentRoute())
-                                        .then(
-                                      (value) {
-                                        setState(() {
-                                          _isPayOnline = value ?? false;
-                                        });
-                                      },
-                                    );
-                                  },
-                                  child: Row(
-                                    children: [
-                                      if (_isPayOnline)
-                                        Assets.screens.momo.image(
-                                          width: 24,
-                                          height: 24,
-                                        )
-                                      else
-                                        const Icon(Icons.money),
-                                      AutoSizeText(
-                                        _isPayOnline
-                                            ? l10n.momoLabel
-                                            : l10n.cashLabel,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.local_offer,
-                                        color: Colors.deepOrange,
-                                      ),
-                                      AutoSizeText(
-                                        l10n.endowLabel,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              widget.form.currentState?.save();
-                              final saveLst = widget.form.currentState
-                                  ?.value['data'] as List<ServiceData>;
-
-                              if (saveLst.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content:
-                                        Text(l10n.chooseAtLeastServiceLabel),
-                                  ),
-                                );
-                                return;
-                              }
-                              context.read<ChooseServiceBloc>().add(
-                                    ChooseServiceEvent.serviceListSubmitted(
-                                      // Go to timeout page
-                                      isPaymentOnline: _isPayOnline,
-                                      onRouteToTimeOut: (token) =>
-                                          context.router.replace(
-                                        CountdownRoute(
-                                          token: token,
-                                        ),
-                                      ),
-                                      sendMessage: (token, recordId) => context
-                                          .read<NotificationCubit>()
-                                          .sendMessageToToken(
-                                            SendMessage(
-                                              title: 'Revup',
-                                              body: l10n
-                                                  .submitRequestSuccessLabel,
-                                              token: token,
-                                              icon: kRevupIconApp,
-                                              payload: MessageData(
-                                                type: NotificationType
-                                                    .ConsumerRequestRepair,
-                                                payload: <String, dynamic>{
-                                                  'recordId': recordId
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                      saveLst: widget.form.currentState
-                                          ?.value['data'] as List<ServiceData>,
-                                      onPopBack: () => context
-                                          .showInfoBar<void>(
-                                            content: Text(
-                                              context.l10n.providerBusy,
-                                            ),
-                                          )
-                                          .then(
-                                            (_) => context.router.popUntil(
-                                              (route) =>
-                                                  route.settings.name ==
-                                                  const FindProviderRoute()
-                                                      .routeName,
-                                            ),
-                                          ),
-                                      pay: (
-                                        movingFee,
-                                        recordId,
-                                        displayRecordName,
-                                        consumerName,
-                                      ) =>
-                                          context.read<MomoCubit>().pay(
-                                                PaymentInfo(
-                                                  amount: movingFee,
-                                                  recordId: recordId,
-                                                  displayRecordName:
-                                                      displayRecordName,
-                                                  consumerName: consumerName,
-                                                  description: l10n
-                                                      .paymentDescriptionLabel,
-                                                ),
-                                              ),
-                                    ),
-                                  );
-                              // widget.form.currentState?.reset();
-                            },
-                            style: Theme.of(context).elevatedButtonTheme.style,
-                            child: AutoSizeText(l10n.confirmLabel),
-                          ),
-                        ],
+                  result: widget.optionalService,
+                ),
+                child: Text(l10n.addLabel),
+              ),
+            ],
+          ),
+          body: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: FormBuilder(
+                        key: widget.form,
+                        child: ServiceCheckboxGroup(
+                          serviceList: serviceList,
+                          pendingService: const [],
+                          providerId: providerId,
+                          isSelectProduct: false,
+                          recordId: '',
+                          form: widget.form,
+                          initialList:
+                              serviceList.where((e) => e.isOptional).toList(),
+                        ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  color: Theme.of(context).colorScheme.surface,
+                  padding: const EdgeInsets.all(16),
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AutoSizeText(
+                        l10n.acceptTransportPaymentLabel,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(
+                            l10n.transitFeeLabel,
+                            style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.normal,
+                                    ) ??
+                                const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          Text(
+                            context.formatMoney(movingFee),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                context.router
+                                    .push<bool>(const PaymentRoute())
+                                    .then(
+                                  (value) {
+                                    setState(() {
+                                      _isPayOnline = value ?? false;
+                                    });
+                                  },
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  if (_isPayOnline)
+                                    Assets.screens.momo.image(
+                                      width: 24,
+                                      height: 24,
+                                    )
+                                  else
+                                    const Icon(Icons.money),
+                                  AutoSizeText(
+                                    _isPayOnline
+                                        ? l10n.momoLabel
+                                        : l10n.cashLabel,
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.local_offer,
+                                    color: Colors.deepOrange,
+                                  ),
+                                  AutoSizeText(
+                                    l10n.endowLabel,
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          widget.form.currentState?.save();
+                          final saveLst = widget.form.currentState
+                              ?.value['data'] as List<ServiceData>;
+
+                          if (saveLst.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(l10n.chooseAtLeastServiceLabel),
+                              ),
+                            );
+                            return;
+                          }
+                          context.read<ChooseServiceBloc>().add(
+                                ChooseServiceEvent.serviceListSubmitted(
+                                  // Go to timeout page
+                                  isPaymentOnline: _isPayOnline,
+                                  onRouteToTimeOut: (token) =>
+                                      context.router.replace(
+                                    CountdownRoute(
+                                      token: token,
+                                    ),
+                                  ),
+                                  sendMessage: (token, recordId) => context
+                                      .read<NotificationCubit>()
+                                      .sendMessageToToken(
+                                        SendMessage(
+                                          title: 'Revup',
+                                          body: l10n.submitRequestSuccessLabel,
+                                          token: token,
+                                          icon: kRevupIconApp,
+                                          payload: MessageData(
+                                            type: NotificationType
+                                                .ConsumerRequestRepair,
+                                            payload: <String, dynamic>{
+                                              'recordId': recordId
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                  saveLst: widget.form.currentState
+                                      ?.value['data'] as List<ServiceData>,
+                                  onPopBack: () => context
+                                      .showInfoBar<void>(
+                                        content: Text(
+                                          context.l10n.providerBusy,
+                                        ),
+                                      )
+                                      .then(
+                                        (_) => context.router.popUntil(
+                                          (route) =>
+                                              route.settings.name ==
+                                              const FindProviderRoute()
+                                                  .routeName,
+                                        ),
+                                      ),
+                                  pay: (
+                                    movingFee,
+                                    recordId,
+                                    displayRecordName,
+                                    consumerName,
+                                  ) =>
+                                      context.read<MomoCubit>().pay(
+                                            PaymentInfo(
+                                              amount: movingFee,
+                                              recordId: recordId,
+                                              displayRecordName:
+                                                  displayRecordName,
+                                              consumerName: consumerName,
+                                              description:
+                                                  l10n.paymentDescriptionLabel,
+                                            ),
+                                          ),
+                                ),
+                              );
+                          // widget.form.currentState?.reset();
+                        },
+                        style: Theme.of(context).elevatedButtonTheme.style,
+                        child: AutoSizeText(l10n.confirmLabel),
+                      ),
+                    ],
                   ),
-                ],
-              );
-            },
-            orElse: Loading.new,
-          );
-        },
+                ),
+              ),
+            ],
+          ),
+        ),
+        orElse: Container.new,
       ),
     );
   }
