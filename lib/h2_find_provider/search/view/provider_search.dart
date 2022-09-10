@@ -145,26 +145,5 @@ class ProviderSearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container();
-    // final radius = _radiusFieldKey.currentState?.value ?? 50;
-    // searchCubit.searchByKeywordWithinRadius(query, radius);
-
-    // return BlocBuilder<SearchCubit, SearchState>(
-    //   bloc: searchCubit,
-    //   builder: (context, state) => state.when(
-    //     initial: SearchInitial.new,
-    //     loading: () => Center(
-    //       child: LottieBuilder.asset(Assets.screens.loading),
-    //     ),
-    //     empty: (keyword, resultCount) => SearchEmpty(
-    //       keyword: keyword,
-    //       resultCount: resultCount,
-    //     ),
-    //     result: (keyword, resultCount, providers) => SearchResult(
-    //       keyword: keyword,
-    //       resultCount: resultCount,
-    //       providers: providers,
-    //     ),
-    //   ),
-    // );
   }
 }

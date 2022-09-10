@@ -13,6 +13,7 @@ class SearchState with _$SearchState {
     required String keyword,
     required int resultCount,
     required double radius,
-    required List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers,
+    required List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+        providers,
   }) = _Success;
 }

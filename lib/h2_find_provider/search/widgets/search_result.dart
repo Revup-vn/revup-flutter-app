@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
+import '../../../account/widgets/default_avatar.dart';
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
-import '../../../shared/fallbacks.dart';
 import '../../models/provider_data.u.dart';
 import '../../models/provider_raw_data.dart';
 
@@ -22,7 +22,8 @@ class SearchResult extends StatelessWidget {
   final String keyword;
   final int resultCount;
   final double radius;
-  final List<Tuple2<ProviderRawData, Tuple2<int, int>>> providers;
+  final List<Tuple2<ProviderRawData, Tuple3<RepairService, int, int>>>
+      providers;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,7 @@ class SearchResult extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext buildContext, int index) {
                 return Card(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -118,48 +119,85 @@ class SearchResult extends StatelessWidget {
                                           height: double.infinity,
                                           width: double.infinity,
                                           fit: BoxFit.fill,
-                                          imageUrl: providers[index]
-                                                  .value1
-                                                  .avatarUrl
-                                                  .isEmpty
-                                              ? kFallbackImage
-                                              : providers[index]
-                                                  .value1
-                                                  .avatarUrl,
+                                          imageUrl:
+                                              providers[index].value1.avatarUrl,
+                                          errorWidget:
+                                              (context, url, dynamic error) =>
+                                                  DefaultAvatar(
+                                            textSize: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                            userName: providers[index]
+                                                .value1
+                                                .firstName,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                   title: AutoSizeText(
                                     '''${providers[index].value1.firstName} ${providers[index].value1.lastName}''',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      AutoSizeText(
-                                        providers[index].value1.addr,
-                                        style: Theme.of(context)
+                                    style: keyword.isEmpty
+                                        ? Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            )
+                                        : Theme.of(context)
                                             .textTheme
                                             .bodyMedium,
-                                        maxLines: 1,
-                                      ),
-                                      if (providers[index].value2.value2 != 0)
-                                        AutoSizeText(
-                                          '''${context.formatMoney(providers[index].value2.value1)} - ${context.formatMoney(providers[index].value2.value2)}''',
+                                  ),
+                                  subtitle: (keyword.isEmpty)
+                                      ? AutoSizeText(
+                                          providers[index].value1.addr,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
                                           maxLines: 1,
                                         )
-                                    ],
-                                  ),
+                                      : Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (providers[index]
+                                                    .value2
+                                                    .value2 !=
+                                                -1)
+                                              AutoSizeText(
+                                                providers[index]
+                                                    .value2
+                                                    .value1
+                                                    .name,
+                                                style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge
+                                                        ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ) ??
+                                                    const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                maxLines: 1,
+                                              ),
+                                            const SizedBox(
+                                              height: 4,
+                                            ),
+                                            if (providers[index]
+                                                    .value2
+                                                    .value2 !=
+                                                -1)
+                                              AutoSizeText(
+                                                '''${context.formatMoney(providers[index].value2.value2)} - ${context.formatMoney(providers[index].value2.value3)}''',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                                maxLines: 1,
+                                              )
+                                          ],
+                                        ),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(bottom: 8),
