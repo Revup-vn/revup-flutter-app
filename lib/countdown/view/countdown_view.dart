@@ -9,6 +9,7 @@ import 'package:revup_core/core.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/fallbacks.dart';
+import '../../shared/widgets/custom_dialog.dart';
 import '../bloc/countdown_bloc.dart';
 import '../widgets/countdown_background.dart';
 import '../widgets/countdown_text.dart';
@@ -47,13 +48,18 @@ class CountdownView extends StatelessWidget {
             children: [
               const CountdownBackground(),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   LimitedBox(
                     maxHeight: 70,
-                    child: AutoSizeText(
-                      context.l10n.orderVerificationTimeout,
-                      style: Theme.of(context).textTheme.headline6,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: AutoSizeText(
+                        context.l10n.orderVerificationTimeout,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
                     ),
                   ),
                   Padding(
@@ -66,6 +72,65 @@ class CountdownView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            await showDialog<void>(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (bcontext) => SimpleDialogCustom(
+                                height: 100,
+                                content: [
+                                  Center(
+                                    child: AutoSizeText(
+                                      context.l10n.sureLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge,
+                                    ),
+                                  ),
+                                ],
+                                button: [
+                                  TextButton(
+                                    onPressed: () async =>
+                                        _sendMessageToActiveProvider(context)
+                                            .then(
+                                              (_) async =>
+                                                  _updateRecordToAborted(
+                                                      context),
+                                            )
+                                            .then(
+                                              (_) => context.router.popUntil(
+                                                (route) =>
+                                                    route.settings.name ==
+                                                    HomeRoute.name,
+                                              ),
+                                            ),
+                                    child: AutoSizeText(
+                                      context.l10n.yesLabel,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      bcontext.router.pop();
+                                    },
+                                    child: AutoSizeText(
+                                      context.l10n.cancelLabel,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          child: Text(context.l10n.cancelLabel),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],
