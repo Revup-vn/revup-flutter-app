@@ -71,12 +71,15 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                             ),
                           ],
                         ),
-                        Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             AutoSizeText(context.l10n.totalFeeLabel),
-                            AutoSizeText(context.formatMoney(total.toInt()),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
+                            AutoSizeText(
+                              context.formatMoney(total.toInt()),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                       ],
@@ -100,6 +103,7 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                                 productName: productName,
                               ),
                             );
+                        bcontext.router.pop();
                       },
                       child: AutoSizeText(
                         context.l10n.confirmLabel,
