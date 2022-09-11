@@ -108,7 +108,7 @@ class UpdateProfileView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -203,6 +203,10 @@ class UpdateProfileView extends StatelessWidget {
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(
                             errorText: l10n.emptyLabel,
+                          ),
+                          FormBuilderValidators.match(
+                            r'^{1,50}$',
+                            errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
                         initialValue: user.addr,

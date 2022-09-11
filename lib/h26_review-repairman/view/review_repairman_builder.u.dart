@@ -30,7 +30,7 @@ class ReviewRepairmanBuilder extends StatelessWidget {
             showDialog<String>(
               barrierDismissible: false,
               context: context,
-              builder: (context) {
+              builder: (bcontext) {
                 return Dialog(
                   backgroundColor: Colors.transparent,
                   insetPadding: const EdgeInsets.all(10),
@@ -65,13 +65,16 @@ class ReviewRepairmanBuilder extends StatelessWidget {
               },
             ),
           );
-          return Future.delayed(
+
+          Future.delayed(
             const Duration(seconds: 3),
             () async {
+              await context.router.pop();
               return context.router
                   .popUntil((route) => route.settings.name == HomeRoute.name);
             },
           );
+          return true;
         },
         orElse: () => false,
       ),
