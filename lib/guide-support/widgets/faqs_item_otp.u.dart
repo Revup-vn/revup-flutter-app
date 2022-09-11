@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:revup_core/core.dart';
@@ -54,7 +53,7 @@ must be the phone number you used to register your REVUP account. Please double 
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final content = context.read<LanguageCubit>().state.when(
-          system: () => null,
+          system: () => _viHtmlContent,
           vietnamese: () => _viHtmlContent,
           english: () => _enHtmlContent,
         );
