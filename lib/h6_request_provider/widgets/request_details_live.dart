@@ -47,6 +47,41 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
               (route) => route.name == MapRouteRoute.name,
             );
           }
+          if (subType == 'Canceled') {
+            showDialog<void>(
+              barrierDismissible: false,
+              context: context,
+              builder: (bcontext) => SimpleDialogCustom(
+                height: 250,
+                content: [
+                  AutoSizeText(
+                    context.l10n.repairerCancelOrderLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  AutoSizeText(
+                    context.l10n.refundLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
+                button: [
+                  TextButton(
+                    onPressed: () {
+                      bcontext.router.pop();
+                      context.router.popUntil(
+                        (route) => route.settings.name == HomeRoute.name,
+                      );
+                      context.router.removeWhere(
+                        (route) => route.name == MapRouteRoute.name,
+                      );
+                    },
+                    child: AutoSizeText(
+                      context.l10n.understoodLabel,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
           break;
         case NotificationType.VerifiedArrival:
           showDialog<void>(
