@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:revup_core/core.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../../shared/widgets/custom_dialog.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -28,19 +30,9 @@ class _SplashPageState extends State<SplashPage> {
         case NotificationType.ProviderAccept:
           final providerId = p0.payload.payload['providerId'] as String;
           final recordId = p0.payload.payload['recordId'] as String;
-
           context.router.removeWhere(
             (route) => route.name == CountdownRoute.name,
           );
-          // showDialog(
-          //     context: context,
-          //     builder: (context) =>
-          //         SimpleDialogCustom(content: [
-          //           AutoSizeText(context.l10n.)
-          //         ], button: [
-
-          //         ]));
-          // route to order overview
           context.router.pushAndPopUntil(
             OverViewOrderRoute(providerId: providerId, recordId: recordId),
             predicate: (route) => route.settings.name == HomeRoute.name,
@@ -76,7 +68,37 @@ class _SplashPageState extends State<SplashPage> {
             predicate: (route) => true,
           );
           break;
-
+        case NotificationType.ProviderDecline:
+          showDialog<void>(
+            barrierDismissible: false,
+            context: context,
+            builder: (bcontext) => SimpleDialogCustom(
+              height: 150,
+              content: [
+                AutoSizeText(
+                  context.l10n.providerBusy,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ],
+              button: [
+                TextButton(
+                  onPressed: () {
+                    bcontext.router.pop();
+                    context.router.popUntil(
+                      (route) => route.settings.name == HomeRoute.name,
+                    );
+                    context.router.removeWhere(
+                      (route) => route.name == CountdownRoute.name,
+                    );
+                  },
+                  child: AutoSizeText(
+                    context.l10n.understoodLabel,
+                  ),
+                ),
+              ],
+            ),
+          );
+          break;
         // ignore: no_default_cases
         default:
           break;
