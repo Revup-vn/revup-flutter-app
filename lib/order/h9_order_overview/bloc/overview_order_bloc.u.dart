@@ -22,6 +22,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
     this.storeRepository,
     this._repairRecord,
     this.recordId,
+    this.userid,
   ) : super(const _Initial()) {
     on<OverviewOrderEvent>(_onEvent);
     _s = _repairRecord
@@ -38,6 +39,7 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
   final IStore<RepairRecord> _repairRecord;
   final StoreRepository storeRepository;
   final String recordId;
+  final String userid;
   late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
 
   FutureOr<void> _onEvent(
@@ -50,6 +52,26 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
         final record = (await _repairRecord.get(recordId)).getOrElse(
           () => throw NullThrownError(),
         );
+        final user = (await _userStore.get(userid))
+            .toOption()
+            .getOrElse(() => throw NullThrownError());
+        final uUser = user.maybeMap(
+          orElse: () => throw NullThrownError(),
+          consumer: (value) => value.violatedTimes == 0 ||
+                  (value.bannedValidatedDate ?? DateTime.now())
+                          .compareTo(DateTime.now()) <
+                      0
+              ? value.copyWith(
+                  violatedTimes: 1,
+                  bannedValidatedDate:
+                      DateTime.now().add(const Duration(days: 7)),
+                )
+              : value.copyWith(violatedTimes: value.violatedTimes + 1),
+          // guarantee be external invariance
+        );
+        if (!(await _userStore.update(uUser)).fold((l) => false, (r) => true)) {
+          return;
+        }
         await _repairRecord.update(
           RepairRecord.aborted(
             id: recordId,

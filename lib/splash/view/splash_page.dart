@@ -67,10 +67,13 @@ class _SplashPageState extends State<SplashPage> {
             msg: context.l10n.repairDoneLabel,
             context: context,
           );
+
           context.router.pushAndPopUntil(
             ServiceInvoiceRoute(providerID: providerId, recordId: recordId),
             predicate: (route) => true,
           );
+          context.router
+              .removeWhere((route) => route.name == RepairStatusRoute.name);
           break;
         case NotificationType.ProviderDecline:
           showDialog<void>(
