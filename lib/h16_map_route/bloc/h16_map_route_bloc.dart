@@ -52,36 +52,40 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
         final toLoc = LatLng(toLat, toLng);
 
         final doc = await _userStore.collection().doc(providerId).get();
-        final maybeProviderData = doc.data()!;
-
-        final fromPoint = (maybeProviderData['cur_location']
-            as Map<String, dynamic>)['geopoint'] as GeoPoint;
-        final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
-        final directions = await getDirections(fromLoc, toLoc);
-        final movingFee = calculateMovingFees(directions.distance, 15000, 5000);
-        final toMarker =
-            Marker(markerId: const MarkerId('_to'), position: toLoc);
-        final fromMarker = Marker(
-          markerId: const MarkerId('_from'),
-          position: fromLoc,
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
-        );
-        emit(
-          H16MapRouteState.success(
-            directions: directions,
-            fromMarker: fromMarker,
-            toMarker: toMarker,
-            providerData: ProviderData.fromDtos(
-              providerData,
-              distance: 0,
-              duration: 0,
-              rating: 0,
-              ratingCount: 0,
+        final maybeProviderData = doc.data() ?? <String, dynamic>{};
+        if (maybeProviderData.isEmpty) {
+          emit(const H16MapRouteState.failure());
+        } else {
+          final fromPoint = (maybeProviderData['cur_location']
+              as Map<String, dynamic>)['geopoint'] as GeoPoint;
+          final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
+          final directions = await getDirections(fromLoc, toLoc);
+          final movingFee =
+              calculateMovingFees(directions.distance, 15000, 5000);
+          final toMarker =
+              Marker(markerId: const MarkerId('_to'), position: toLoc);
+          final fromMarker = Marker(
+            markerId: const MarkerId('_from'),
+            position: fromLoc,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueYellow),
+          );
+          emit(
+            H16MapRouteState.success(
+              directions: directions,
+              fromMarker: fromMarker,
+              toMarker: toMarker,
+              providerData: ProviderData.fromDtos(
+                providerData,
+                distance: 0,
+                duration: 0,
+                rating: 0,
+                ratingCount: 0,
+              ),
+              movingFees: movingFee,
             ),
-            movingFees: movingFee,
-          ),
-        );
+          );
+        }
       },
       confirmArrival: (onRoute, sendMessage) async {
         try {

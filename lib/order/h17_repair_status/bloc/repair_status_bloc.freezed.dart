@@ -19,32 +19,39 @@ mixin _$RepairStatusEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String serviceName, String productName)
+        confirmService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ConfirmService value) confirmService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +115,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String serviceName, String productName)
+        confirmService,
   }) {
     return started();
   }
@@ -116,6 +125,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
   }) {
     return started?.call();
   }
@@ -124,6 +134,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -136,6 +147,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ConfirmService value) confirmService,
   }) {
     return started(this);
   }
@@ -144,6 +156,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
   }) {
     return started?.call(this);
   }
@@ -152,6 +165,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -163,6 +177,157 @@ class _$_Started implements _Started {
 
 abstract class _Started implements RepairStatusEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_ConfirmServiceCopyWith<$Res> {
+  factory _$$_ConfirmServiceCopyWith(
+          _$_ConfirmService value, $Res Function(_$_ConfirmService) then) =
+      __$$_ConfirmServiceCopyWithImpl<$Res>;
+  $Res call({String serviceName, String productName});
+}
+
+/// @nodoc
+class __$$_ConfirmServiceCopyWithImpl<$Res>
+    extends _$RepairStatusEventCopyWithImpl<$Res>
+    implements _$$_ConfirmServiceCopyWith<$Res> {
+  __$$_ConfirmServiceCopyWithImpl(
+      _$_ConfirmService _value, $Res Function(_$_ConfirmService) _then)
+      : super(_value, (v) => _then(v as _$_ConfirmService));
+
+  @override
+  _$_ConfirmService get _value => super._value as _$_ConfirmService;
+
+  @override
+  $Res call({
+    Object? serviceName = freezed,
+    Object? productName = freezed,
+  }) {
+    return _then(_$_ConfirmService(
+      serviceName: serviceName == freezed
+          ? _value.serviceName
+          : serviceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      productName: productName == freezed
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ConfirmService implements _ConfirmService {
+  const _$_ConfirmService(
+      {required this.serviceName, required this.productName});
+
+  @override
+  final String serviceName;
+  @override
+  final String productName;
+
+  @override
+  String toString() {
+    return 'RepairStatusEvent.confirmService(serviceName: $serviceName, productName: $productName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ConfirmService &&
+            const DeepCollectionEquality()
+                .equals(other.serviceName, serviceName) &&
+            const DeepCollectionEquality()
+                .equals(other.productName, productName));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(serviceName),
+      const DeepCollectionEquality().hash(productName));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ConfirmServiceCopyWith<_$_ConfirmService> get copyWith =>
+      __$$_ConfirmServiceCopyWithImpl<_$_ConfirmService>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String serviceName, String productName)
+        confirmService,
+  }) {
+    return confirmService(serviceName, productName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
+  }) {
+    return confirmService?.call(serviceName, productName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String serviceName, String productName)? confirmService,
+    required TResult orElse(),
+  }) {
+    if (confirmService != null) {
+      return confirmService(serviceName, productName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ConfirmService value) confirmService,
+  }) {
+    return confirmService(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
+  }) {
+    return confirmService?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConfirmService value)? confirmService,
+    required TResult orElse(),
+  }) {
+    if (confirmService != null) {
+      return confirmService(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmService implements RepairStatusEvent {
+  const factory _ConfirmService(
+      {required final String serviceName,
+      required final String productName}) = _$_ConfirmService;
+
+  String get serviceName;
+  String get productName;
+  @JsonKey(ignore: true)
+  _$$_ConfirmServiceCopyWith<_$_ConfirmService> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

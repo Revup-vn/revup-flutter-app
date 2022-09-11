@@ -29,6 +29,7 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
 
   Future<Unit> watch() async {
     _s = _paymentService.collection().snapshots().listen((event) async {
+      emit(const SelectProdServiceState.loading());
       if (event.size == 0) {
         emit(const SelectProdServiceState.failure());
       } else {
@@ -97,8 +98,10 @@ class SelectProdServiceCubit extends Cubit<SelectProdServiceState> {
           );
           final serviceList = isStarted
               ? ilist(lst)
-                  .plus(finalListSvOptional
-                      .where((a) => a.isOptional && a.serviceFee == -1))
+                  .plus(
+                    finalListSvOptional
+                        .where((a) => a.isOptional && a.serviceFee == -1),
+                  )
                   .toList()
               : ilist(lst).plus(finalListSvOptional).toList();
           emit(

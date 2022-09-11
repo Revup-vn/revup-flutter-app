@@ -17,7 +17,7 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
     this._repairRecord,
     this.sr,
   ) : super(const _Initial()) {
-    on<RepairStatusEvent>(_onStarted);
+    on<RepairStatusEvent>(_onEvent);
 
     _s = _repairRecord
         .collection()
@@ -33,7 +33,7 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
   final StoreRepository sr;
   late final StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _s;
 
-  FutureOr<void> _onStarted(
+  FutureOr<void> _onEvent(
     RepairStatusEvent event,
     Emitter<RepairStatusState> emit,
   ) async {
@@ -91,6 +91,76 @@ class RepairStatusBloc extends Bloc<RepairStatusEvent, RepairStatusState> {
               providerId: record.pid,
             ),
           );
+        }
+      },
+      confirmService: (serviceName, productName) async {
+        emit(const RepairStatusState.loading());
+        final maybeRepairRecord = (await _repairRecord.get(recordId))
+            .map<Option<RepairRecord>>(
+              (r) => r.maybeMap(
+                accepted: some,
+                started: some,
+                orElse: none,
+              ),
+            )
+            .fold<Option<RepairRecord>>(
+              (l) => none(),
+              (r) => r,
+            );
+
+        if (maybeRepairRecord.isNone()) {
+          emit(const RepairStatusState.failure());
+        } else {
+          final repairRecord =
+              maybeRepairRecord.getOrElse(() => throw NullThrownError());
+          final maybeService = (await (sr.repairServiceRepo(
+            AppUserDummy.dummyProvider(repairRecord.pid),
+            RepairCategoryDummy.dummy(
+              repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
+            ),
+          )).get(serviceName))
+              .toOption();
+
+          if (maybeService.isNone()) {
+            return;
+          } else {
+            final service =
+                maybeService.getOrElse(() => throw NullThrownError());
+            final maybeProduct = (await sr
+                    .repairProductRepo(
+                      AppUserDummy.dummyProvider(repairRecord.pid),
+                      RepairCategoryDummy.dummy(
+                        repairRecord.vehicle == 'car' ? 'Oto' : 'Xe máy',
+                      ),
+                      RepairServiceDummy.dummy(service.name),
+                    )
+                    .get(productName))
+                .fold<Option<RepairProduct>>((l) => none(), some);
+
+            if (maybeProduct.isNone()) {
+              return;
+            } else {
+              final product = maybeProduct.getOrElse(
+                () => throw NullThrownError(),
+              );
+              await (sr.repairPaymentRepo(
+                RepairRecordDummy.dummyStarted(recordId),
+              )).update(
+                PaymentService.pending(
+                  serviceName: service.name,
+                  moneyAmount: service.fee,
+                  products: [
+                    PaymentProduct(
+                      name: product.name,
+                      unitPrice: product.price,
+                      quantity: 1,
+                    )
+                  ],
+                  isOptional: false,
+                ),
+              );
+            }
+          }
         }
       },
     );

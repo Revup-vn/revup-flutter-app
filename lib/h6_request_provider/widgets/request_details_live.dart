@@ -40,11 +40,16 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
           final subType = p0.payload.payload['subType'] as String;
           if (subType == 'StartRepair') {
             final recordId = p0.payload.payload['recordId'] as String;
-            context.router.push(
-              RepairStatusRoute(recordId: recordId),
-            );
-            context.router.removeWhere(
-              (route) => route.name == MapRouteRoute.name,
+            Future<void>.delayed(const Duration(microseconds: 200)).then(
+              (value) => context.router
+                  .push(
+                    RepairStatusRoute(recordId: recordId),
+                  )
+                  .then(
+                    (value) => context.router.removeWhere(
+                      (route) => route.name == MapRouteRoute.name,
+                    ),
+                  ),
             );
           }
           break;

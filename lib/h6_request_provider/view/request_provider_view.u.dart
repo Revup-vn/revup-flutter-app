@@ -33,7 +33,7 @@ class RequestProviderView extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           initial: Loading.new,
-          success: (directions, fromMaker, toMarker, movingFees) {
+          success: (directions, fromMaker, toMarker, movingFees, provider) {
             return Stack(
               children: <Widget>[
                 if (recordType == 'pending')

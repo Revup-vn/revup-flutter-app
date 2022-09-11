@@ -173,7 +173,7 @@ mixin _$RequestProviderState {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(Directions directions, Marker fromMarker,
-            Marker toMarker, int movingFee)
+            Marker toMarker, int movingFee, ProviderData providerData)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -183,7 +183,7 @@ mixin _$RequestProviderState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -193,7 +193,7 @@ mixin _$RequestProviderState {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
     required TResult orElse(),
   }) =>
@@ -286,7 +286,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(Directions directions, Marker fromMarker,
-            Marker toMarker, int movingFee)
+            Marker toMarker, int movingFee, ProviderData providerData)
         success,
   }) {
     return initial();
@@ -299,7 +299,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
   }) {
     return initial?.call();
@@ -312,7 +312,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
     required TResult orElse(),
   }) {
@@ -408,7 +408,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(Directions directions, Marker fromMarker,
-            Marker toMarker, int movingFee)
+            Marker toMarker, int movingFee, ProviderData providerData)
         success,
   }) {
     return loading();
@@ -421,7 +421,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
   }) {
     return loading?.call();
@@ -434,7 +434,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
     required TResult orElse(),
   }) {
@@ -530,7 +530,7 @@ class _$_Failure implements _Failure {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(Directions directions, Marker fromMarker,
-            Marker toMarker, int movingFee)
+            Marker toMarker, int movingFee, ProviderData providerData)
         success,
   }) {
     return failure();
@@ -543,7 +543,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
   }) {
     return failure?.call();
@@ -556,7 +556,7 @@ class _$_Failure implements _Failure {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
     required TResult orElse(),
   }) {
@@ -617,9 +617,11 @@ abstract class _$$_SuccessCopyWith<$Res> {
       {Directions directions,
       Marker fromMarker,
       Marker toMarker,
-      int movingFee});
+      int movingFee,
+      ProviderData providerData});
 
   $DirectionsCopyWith<$Res> get directions;
+  $ProviderDataCopyWith<$Res> get providerData;
 }
 
 /// @nodoc
@@ -638,6 +640,7 @@ class __$$_SuccessCopyWithImpl<$Res>
     Object? fromMarker = freezed,
     Object? toMarker = freezed,
     Object? movingFee = freezed,
+    Object? providerData = freezed,
   }) {
     return _then(_$_Success(
       directions: directions == freezed
@@ -656,6 +659,10 @@ class __$$_SuccessCopyWithImpl<$Res>
           ? _value.movingFee
           : movingFee // ignore: cast_nullable_to_non_nullable
               as int,
+      providerData: providerData == freezed
+          ? _value.providerData
+          : providerData // ignore: cast_nullable_to_non_nullable
+              as ProviderData,
     ));
   }
 
@@ -663,6 +670,13 @@ class __$$_SuccessCopyWithImpl<$Res>
   $DirectionsCopyWith<$Res> get directions {
     return $DirectionsCopyWith<$Res>(_value.directions, (value) {
       return _then(_value.copyWith(directions: value));
+    });
+  }
+
+  @override
+  $ProviderDataCopyWith<$Res> get providerData {
+    return $ProviderDataCopyWith<$Res>(_value.providerData, (value) {
+      return _then(_value.copyWith(providerData: value));
     });
   }
 }
@@ -674,7 +688,8 @@ class _$_Success implements _Success {
       {required this.directions,
       required this.fromMarker,
       required this.toMarker,
-      required this.movingFee});
+      required this.movingFee,
+      required this.providerData});
 
   @override
   final Directions directions;
@@ -684,10 +699,12 @@ class _$_Success implements _Success {
   final Marker toMarker;
   @override
   final int movingFee;
+  @override
+  final ProviderData providerData;
 
   @override
   String toString() {
-    return 'RequestProviderState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, movingFee: $movingFee)';
+    return 'RequestProviderState.success(directions: $directions, fromMarker: $fromMarker, toMarker: $toMarker, movingFee: $movingFee, providerData: $providerData)';
   }
 
   @override
@@ -700,7 +717,9 @@ class _$_Success implements _Success {
             const DeepCollectionEquality()
                 .equals(other.fromMarker, fromMarker) &&
             const DeepCollectionEquality().equals(other.toMarker, toMarker) &&
-            const DeepCollectionEquality().equals(other.movingFee, movingFee));
+            const DeepCollectionEquality().equals(other.movingFee, movingFee) &&
+            const DeepCollectionEquality()
+                .equals(other.providerData, providerData));
   }
 
   @override
@@ -709,7 +728,8 @@ class _$_Success implements _Success {
       const DeepCollectionEquality().hash(directions),
       const DeepCollectionEquality().hash(fromMarker),
       const DeepCollectionEquality().hash(toMarker),
-      const DeepCollectionEquality().hash(movingFee));
+      const DeepCollectionEquality().hash(movingFee),
+      const DeepCollectionEquality().hash(providerData));
 
   @JsonKey(ignore: true)
   @override
@@ -723,10 +743,10 @@ class _$_Success implements _Success {
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(Directions directions, Marker fromMarker,
-            Marker toMarker, int movingFee)
+            Marker toMarker, int movingFee, ProviderData providerData)
         success,
   }) {
-    return success(directions, fromMarker, toMarker, movingFee);
+    return success(directions, fromMarker, toMarker, movingFee, providerData);
   }
 
   @override
@@ -736,10 +756,11 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
   }) {
-    return success?.call(directions, fromMarker, toMarker, movingFee);
+    return success?.call(
+        directions, fromMarker, toMarker, movingFee, providerData);
   }
 
   @override
@@ -749,12 +770,12 @@ class _$_Success implements _Success {
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(Directions directions, Marker fromMarker, Marker toMarker,
-            int movingFee)?
+            int movingFee, ProviderData providerData)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(directions, fromMarker, toMarker, movingFee);
+      return success(directions, fromMarker, toMarker, movingFee, providerData);
     }
     return orElse();
   }
@@ -802,12 +823,14 @@ abstract class _Success implements RequestProviderState {
       {required final Directions directions,
       required final Marker fromMarker,
       required final Marker toMarker,
-      required final int movingFee}) = _$_Success;
+      required final int movingFee,
+      required final ProviderData providerData}) = _$_Success;
 
   Directions get directions;
   Marker get fromMarker;
   Marker get toMarker;
   int get movingFee;
+  ProviderData get providerData;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
