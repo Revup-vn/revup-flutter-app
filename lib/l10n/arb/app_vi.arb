@@ -261,5 +261,8 @@
   "sentRequestToProviderLabel": "Yêu cầu đã được gửi. Vui lòng chờ thợ sửa xác nhận",
   "takeLongLabel": "Thợ sửa chuẩn bị trang thiết bị, điều này có thể mất thời gian",
   "paymentRequestDescriptionLabel": "Thanh toán chi phí sửa chữa",
-  "placesNoteLabel": "Bạn có thể thêm chi tiết địa chỉ cho thợ sửa ở bước sau nhé"
+  "placesNoteLabel": "Bạn có thể thêm chi tiết địa chỉ cho thợ sửa ở bước sau nhé",
+  "feedbackLabel": "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Chúc bạn thượng lộ bình an",
+  "hintChooseProductLabel": "Bạn hãy chọn sản phẩm trong mục 'Chi tiết' sau đó xác nhận cho thợ sửa nhé",
+  "changeLangSuccessLabel": "Change language successfully. Please restart your application to see the change"
 }

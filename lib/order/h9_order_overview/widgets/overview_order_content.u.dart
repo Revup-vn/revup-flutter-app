@@ -68,6 +68,9 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                         context.router.popUntil(
                           (route) => route.settings.name == HomeRoute.name,
                         );
+                        context.router.removeWhere(
+                          (route) => route.name == OverViewOrderRoute.name,
+                        );
                       }
                     },
                     child: AutoSizeText(
@@ -129,6 +132,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                 button: [
                   TextButton(
                     onPressed: () {
+                      final contextFake = context.l10n;
                       context.read<OverviewOrderBloc>().add(
                             OverviewOrderEvent.cancel(
                               onRoute: () => routerFake.popUntil(
@@ -139,7 +143,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                   cubit.sendMessageToToken(
                                 SendMessage(
                                   title: 'Revup',
-                                  body: context.l10n.canceledLabel,
+                                  body: contextFake.canceledLabel,
                                   token: token,
                                   icon: kRevupIconApp,
                                   payload: MessageData(
@@ -418,6 +422,18 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              AutoSizeText(
+                context.l10n.hintChooseProductLabel,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.outline,
+                        ) ??
+                    TextStyle(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -432,7 +448,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                       )
                           ? null
                           : () {
-                              willPop = true;
+                              willPop = false;
                               blogPage.add(
                                 OverviewOrderEvent.submitted(
                                   onRoute: () {},

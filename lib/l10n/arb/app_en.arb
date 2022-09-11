@@ -261,5 +261,8 @@
   "sentRequestToProviderLabel": "Request has been sent to provider. Please wait",
   "takeLongLabel": "Provider maybe need to prepare items, it may take long",
   "paymentRequestDescriptionLabel": "Payment of repair costs",
-  "placesNoteLabel": "You can add the address details for the repairman in the next step"
+  "placesNoteLabel": "You can add the address details for the repairman in the next step",
+  "feedbackLabel": "Thank you for using our services. Have a good trip",
+  "hintChooseProductLabel": "Choose product by hit 'Detail' button then confirm with provider",
+  "changeLangSuccessLabel": "Thay đổi ngôn ngữ thành công. Hãy khởi động lại ứng dụng để thấy sự thay đổi"
 }
