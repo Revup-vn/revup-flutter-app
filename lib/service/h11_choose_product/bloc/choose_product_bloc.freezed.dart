@@ -19,24 +19,24 @@ mixin _$ChooseProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)
+    required TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)
         submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
     required TResult orElse(),
   }) =>
@@ -120,8 +120,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)
+    required TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)
         submitted,
   }) {
     return started();
@@ -131,8 +131,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
   }) {
     return started?.call();
@@ -142,8 +142,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
     required TResult orElse(),
   }) {
@@ -194,7 +194,10 @@ abstract class _$$_SubmittedCopyWith<$Res> {
   factory _$$_SubmittedCopyWith(
           _$_Submitted value, $Res Function(_$_Submitted) then) =
       __$$_SubmittedCopyWithImpl<$Res>;
-  $Res call({String? groupValue, String recordId, Function0<void> onRoute});
+  $Res call(
+      {Tuple2<String?, int> groupValue,
+      String recordId,
+      Function0<void> onRoute});
 }
 
 /// @nodoc
@@ -218,7 +221,7 @@ class __$$_SubmittedCopyWithImpl<$Res>
       groupValue == freezed
           ? _value.groupValue
           : groupValue // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Tuple2<String?, int>,
       recordId == freezed
           ? _value.recordId
           : recordId // ignore: cast_nullable_to_non_nullable
@@ -237,7 +240,7 @@ class _$_Submitted implements _Submitted {
   const _$_Submitted(this.groupValue, this.recordId, this.onRoute);
 
   @override
-  final String? groupValue;
+  final Tuple2<String?, int> groupValue;
   @override
   final String recordId;
   @override
@@ -275,8 +278,8 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)
+    required TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)
         submitted,
   }) {
     return submitted(groupValue, recordId, onRoute);
@@ -286,8 +289,8 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
   }) {
     return submitted?.call(groupValue, recordId, onRoute);
@@ -297,8 +300,8 @@ class _$_Submitted implements _Submitted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(
-            String? groupValue, String recordId, Function0<void> onRoute)?
+    TResult Function(Tuple2<String?, int> groupValue, String recordId,
+            Function0<void> onRoute)?
         submitted,
     required TResult orElse(),
   }) {
@@ -341,10 +344,10 @@ class _$_Submitted implements _Submitted {
 }
 
 abstract class _Submitted implements ChooseProductEvent {
-  const factory _Submitted(final String? groupValue, final String recordId,
-      final Function0<void> onRoute) = _$_Submitted;
+  const factory _Submitted(final Tuple2<String?, int> groupValue,
+      final String recordId, final Function0<void> onRoute) = _$_Submitted;
 
-  String? get groupValue;
+  Tuple2<String?, int> get groupValue;
   String get recordId;
   Function0<void> get onRoute;
   @JsonKey(ignore: true)
