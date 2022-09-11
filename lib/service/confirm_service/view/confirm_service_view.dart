@@ -35,35 +35,33 @@ class ConfirmServiceView extends StatelessWidget {
       initial: () => context.read<SelectProdServiceCubit>().watch(),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: AutoSizeText(l10n.addServiceAppBarTitle),
-        centerTitle: false,
-        actions: [
-          TextButton(
-            onPressed: () => context.router.push<List<OptionalService>>(
-              NewServiceRequestRoute(
-                optionalService: optionalService,
-                providerId: providerId,
-                isSelectProduct: true,
-                recordId: recordId,
+    return BlocBuilder<SelectProdServiceCubit, SelectProdServiceState>(
+      builder: (context, state) {
+        return state.when(
+          initial: Container.new,
+          loading: Loading.new,
+          failure: UnknownFailure.new,
+          success: (providerId, services, pendingService) {
+            final serviceList = services.toList();
+            return Scaffold(
+              appBar: AppBar(
+                title: AutoSizeText(l10n.addServiceAppBarTitle),
+                centerTitle: false,
+                actions: [
+                  TextButton(
+                    onPressed: () => context.router.push<List<OptionalService>>(
+                      NewServiceRequestRoute(
+                        optionalService: optionalService,
+                        providerId: providerId,
+                        isSelectProduct: true,
+                        recordId: recordId,
+                      ),
+                    ),
+                    child: Text(l10n.addLabel),
+                  ),
+                ],
               ),
-            ),
-            child: Text(l10n.addLabel),
-          ),
-        ],
-      ),
-      body: BlocBuilder<SelectProdServiceCubit, SelectProdServiceState>(
-        builder: (context, state) {
-          return state.maybeWhen(
-            failure: UnknownFailure.new,
-            success: (
-              providerId,
-              services,
-              pendingService,
-            ) {
-              final serviceList = services.toList();
-              return Stack(
+              body: Stack(
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 50),
@@ -128,12 +126,11 @@ class ConfirmServiceView extends StatelessWidget {
                     ),
                   ),
                 ],
-              );
-            },
-            orElse: Loading.new,
-          );
-        },
-      ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

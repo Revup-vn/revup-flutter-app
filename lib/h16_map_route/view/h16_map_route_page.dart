@@ -4,7 +4,6 @@ import 'package:revup_core/core.dart';
 
 import '../../shared/utils.dart';
 import '../bloc/h16_map_route_bloc.dart';
-import '../cubit/realtime_location_cubit.dart';
 import 'h16_map_route_view.dart';
 
 class MapRoutePage extends StatelessWidget {
@@ -16,12 +15,6 @@ class MapRoutePage extends StatelessWidget {
         .getOrElse(() => throw NullThrownError());
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => RealtimeLocationCubit(
-            context.read(),
-            user,
-          ),
-        ),
         BlocProvider(
           create: (context) => H16MapRouteBloc(
             providerId,

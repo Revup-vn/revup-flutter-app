@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,7 +97,37 @@ class InvoicePaymentView extends StatelessWidget {
                 ),
               ),
             )
-            .then((value) {
+            .then((value) async {
+          //TODO : update payment service to paid
+          final paymentRepo = context
+              .read<StoreRepository>()
+              .repairPaymentRepo(RepairRecordDummy.dummyStarted(recordId));
+
+          final paymentService = (await paymentRepo.all())
+              .fold<IList<PaymentService>>((l) => nil(), (r) => r)
+              .filter(
+                (a) => a.map(
+                  pending: (v) => v.isComplete,
+                  paid: (v) => false,
+                  needToVerify: (v) => false,
+                ),
+              );
+          if (!paymentService.isEmpty) {
+            await paymentService
+                .map(
+                  (a) => a.maybeMap(
+                    pending: (v) => PaymentService.paid(
+                      serviceName: v.serviceName,
+                      moneyAmount: v.moneyAmount,
+                      products: v.products,
+                      paidIn: DateTime.now(),
+                    ),
+                    orElse: () => throw NullThrownError(),
+                  ),
+                )
+                .traverseFuture((a) async => paymentRepo.update(a));
+          }
+        }).then((value) {
           showDialog<String>(
             barrierDismissible: false,
             context: context,

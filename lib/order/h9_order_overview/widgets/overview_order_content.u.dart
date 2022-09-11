@@ -320,7 +320,7 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                               ? (e.status == 'pending'
                                                   ? e.price
                                                   : -e.price)
-                                              : (e.price +
+                                              : ((e.price == -1 ? 0 : e.price) +
                                                   (e.products.isEmpty
                                                       ? 0
                                                       : e.products.first

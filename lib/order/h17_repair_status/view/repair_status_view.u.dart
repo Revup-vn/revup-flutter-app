@@ -9,13 +9,120 @@ import '../../../gen/assets.gen.dart';
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
 import '../../../shared/fallbacks.dart';
+import '../../../shared/widgets/custom_dialog.dart';
 import '../../../shared/widgets/loading.u.dart';
 import '../../../shared/widgets/unknown_failure.dart';
 import '../bloc/repair_status_bloc.dart';
 
-class RepairStatusView extends StatelessWidget {
+class RepairStatusView extends StatefulWidget {
   const RepairStatusView({super.key, required this.recordId});
   final String recordId;
+
+  @override
+  State<RepairStatusView> createState() => _RepairStatusViewState();
+}
+
+class _RepairStatusViewState extends State<RepairStatusView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationCubit>().addForegroundListener((p0) {
+      final type = p0.payload.type;
+      switch (type) {
+        case NotificationType.NormalMessage:
+          final subType = p0.payload.payload['subType'] as String;
+          if (subType == 'RecommendService') {
+            final serviceName = p0.payload.payload['serviceName'] as String;
+            final productName = p0.payload.payload['productName'] as String;
+            final total = num.parse(p0.payload.payload['total'] as String);
+            showDialog<void>(
+              barrierDismissible: false,
+              context: context,
+              builder: (bcontext) {
+                return SimpleDialogCustom(
+                  height: 250,
+                  content: [
+                    AutoSizeText(
+                      context.l10n.recommendServiceLabel,
+                      style: Theme.of(context).textTheme.headline5,
+                      textAlign: TextAlign.center,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AutoSizeText(context.l10n.serviceLabel),
+                            AutoSizeText(
+                              serviceName,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AutoSizeText(context.l10n.productLabel),
+                            AutoSizeText(
+                              productName,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AutoSizeText(context.l10n.totalFeeLabel),
+                            AutoSizeText(
+                              context.formatMoney(total.toInt()),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                  button: [
+                    TextButton(
+                      onPressed: () {
+                        bcontext.router.pop();
+                      },
+                      child: AutoSizeText(
+                        context.l10n.cancelLabel,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // confirm service
+                        context.read<RepairStatusBloc>().add(
+                              RepairStatusEvent.confirmService(
+                                serviceName: serviceName,
+                                productName: productName,
+                              ),
+                            );
+                        bcontext.router.pop();
+                      },
+                      child: AutoSizeText(
+                        context.l10n.confirmLabel,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+          break;
+
+        // ignore: no_default_cases
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -73,7 +180,7 @@ class RepairStatusView extends StatelessWidget {
                                         context.router.push(
                                           ConfirmServiceRoute(
                                             providerId: providerId,
-                                            recordId: recordId,
+                                            recordId: widget.recordId,
                                             optionalService: [],
                                           ),
                                         );

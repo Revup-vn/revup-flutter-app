@@ -57,28 +57,60 @@ class InvoicePaymentBloc
           );
         } else {
           // get latest consumer fcm token
-          final provider = (await _userRepos.get(pid))
-              .fold<Option<AppUser>>(
-                (l) => none(),
-                some,
-              )
-              .getOrElse(() => throw NullThrownError());
-          final tokens = (await storeRepository
-                  .userNotificationTokenRepo(provider)
-                  .all())
-              .map(
-                (r) => r.sort(
-                  orderBy(StringOrder.reverse(), (a) => a.created.toString()),
-                ),
-              )
-              .fold((l) => throw NullThrownError(), (r) => r.toList());
-          log('TOKEN:${tokens.first.token}');
-          sendMessage(tokens.first.token, pid);
-          emit(
-            const InvoicePaymentState.paymentSuccess(
-              paymentStatus: 'success',
-            ),
+          final maybeProvider =
+              (await _userRepos.get(pid)).fold<Option<AppUser>>(
+            (l) => none(),
+            some,
           );
+          if (maybeProvider.isNone()) {
+            emit(const InvoicePaymentState.failure());
+          } else {
+            final paymentRepo = storeRepository
+                .repairPaymentRepo(RepairRecordDummy.dummyStarted(recordId));
+
+            final paymentService = (await paymentRepo.all())
+                .fold<IList<PaymentService>>((l) => nil(), (r) => r)
+                .filter(
+                  (a) => a.map(
+                    pending: (v) => v.isComplete || v.serviceName == 'transFee',
+                    paid: (v) => false,
+                    needToVerify: (v) => false,
+                  ),
+                );
+            if (!paymentService.isEmpty) {
+              await paymentService
+                  .map(
+                    (a) => a.maybeMap(
+                      pending: (v) => PaymentService.paid(
+                        serviceName: v.serviceName,
+                        moneyAmount: v.moneyAmount,
+                        products: v.products,
+                        paidIn: DateTime.now(),
+                      ),
+                      orElse: () => throw NullThrownError(),
+                    ),
+                  )
+                  .traverseFuture((a) async => paymentRepo.update(a));
+            }
+            final provider =
+                maybeProvider.getOrElse(() => throw NullThrownError());
+            final tokens = (await storeRepository
+                    .userNotificationTokenRepo(provider)
+                    .all())
+                .map(
+                  (r) => r.sort(
+                    orderBy(StringOrder.reverse(), (a) => a.created.toString()),
+                  ),
+                )
+                .fold((l) => throw NullThrownError(), (r) => r.toList());
+            log('TOKEN:${tokens.first.token}');
+            sendMessage(tokens.first.token, pid);
+            emit(
+              const InvoicePaymentState.paymentSuccess(
+                paymentStatus: 'success',
+              ),
+            );
+          }
         }
       },
     );

@@ -42,29 +42,35 @@ class RequestProviderBloc
         final toLoc = LatLng(toLat, toLng);
 
         final doc = await _userStore.collection().doc(providerData.id).get();
-        final maybeProviderData = doc.data()!;
+        final maybeProviderData = doc.data() ?? <String, dynamic>{};
 
-        final fromPoint = (maybeProviderData['cur_location']
-            as Map<String, dynamic>)['geopoint'] as GeoPoint;
-        final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
-        final directions = await getDirections(fromLoc, toLoc);
-        final movingFee = calculateMovingFees(directions.distance, 15000, 5000);
-        final toMarker =
-            Marker(markerId: const MarkerId('_to'), position: toLoc);
-        final fromMarker = Marker(
-          markerId: const MarkerId('_from'),
-          position: fromLoc,
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
-        );
-        emit(
-          RequestProviderState.success(
-            directions: directions,
-            fromMarker: fromMarker,
-            toMarker: toMarker,
-            movingFee: movingFee,
-          ),
-        );
+        if (maybeProviderData.isEmpty) {
+          emit(const RequestProviderState.failure());
+        } else {
+          final fromPoint = (maybeProviderData['cur_location']
+              as Map<String, dynamic>)['geopoint'] as GeoPoint;
+          final fromLoc = LatLng(fromPoint.latitude, fromPoint.longitude);
+          final directions = await getDirections(fromLoc, toLoc);
+          final movingFee =
+              calculateMovingFees(directions.distance, 15000, 5000);
+          final toMarker =
+              Marker(markerId: const MarkerId('_to'), position: toLoc);
+          final fromMarker = Marker(
+            markerId: const MarkerId('_from'),
+            position: fromLoc,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueYellow),
+          );
+          emit(
+            RequestProviderState.success(
+              directions: directions,
+              fromMarker: fromMarker,
+              toMarker: toMarker,
+              movingFee: movingFee,
+              providerData: providerData,
+            ),
+          );
+        }
       },
     );
   }

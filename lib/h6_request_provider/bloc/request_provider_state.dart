@@ -10,5 +10,6 @@ class RequestProviderState with _$RequestProviderState {
     required Marker fromMarker,
     required Marker toMarker,
     required int movingFee,
+    required ProviderData providerData,
   }) = _Success;
 }
