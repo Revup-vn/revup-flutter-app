@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
+import '../../shared/widgets/custom_dialog.dart';
 import '../../shared/widgets/loading.u.dart';
 import '../../shared/widgets/unknown_failure.dart';
 import '../bloc/review_repairman_bloc.u.dart';
@@ -26,55 +25,40 @@ class ReviewRepairmanBuilder extends StatelessWidget {
       ),
       listener: (context, state) => state.maybeMap(
         success: (value) async {
-          unawaited(
-            showDialog<String>(
-              barrierDismissible: false,
-              context: context,
-              builder: (bcontext) {
-                return Dialog(
-                  backgroundColor: Colors.transparent,
-                  insetPadding: const EdgeInsets.all(10),
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.done,
-                              color: Theme.of(context).colorScheme.onTertiary,
-                            ),
-                            AutoSizeText(
-                              context.l10n.doneLabel,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onTertiary,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+          return showDialog<void>(
+            barrierDismissible: false,
+            context: context,
+            builder: (bcontext) => SimpleDialogCustom(
+              height: 100,
+              content: [
+                const Center(
+                  child: Icon(Icons.done),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: AutoSizeText(
+                    context.l10n.feedbackLabel,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
-                );
-              },
+                ),
+              ],
+              button: [
+                TextButton(
+                  onPressed: () {
+                    bcontext.router.pop();
+                    context.router.popUntil(
+                      (route) => route.settings.name == HomeRoute.name,
+                    );
+                  },
+                  child: AutoSizeText(
+                    context.l10n.understoodLabel,
+                  ),
+                ),
+              ],
             ),
           );
-
-          Future.delayed(
-            const Duration(seconds: 3),
-            () async {
-              await context.router.pop();
-              return context.router
-                  .popUntil((route) => route.settings.name == HomeRoute.name);
-            },
-          );
-          return true;
         },
         orElse: () => false,
       ),
