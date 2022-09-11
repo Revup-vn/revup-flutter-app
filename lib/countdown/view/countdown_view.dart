@@ -101,7 +101,8 @@ class CountdownView extends StatelessWidget {
                                             .then(
                                               (_) async =>
                                                   _updateRecordToAborted(
-                                                      context),
+                                                context,
+                                              ),
                                             )
                                             .then(
                                               (_) => context.router.popUntil(

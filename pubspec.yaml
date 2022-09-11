@@ -52,7 +52,7 @@ dependencies:
     git:
       url: https://github.com/Revup-vn/revup-core.git
       ref: main
-      version: ^6.3.10-dev
+      version: ^6.3.10-dev+1
   shimmer: ^2.0.0
   tiengviet: ^0.5.0
   url_launcher: ^6.1.5

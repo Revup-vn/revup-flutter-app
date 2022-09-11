@@ -141,10 +141,15 @@ class OverviewOrderBloc extends Bloc<OverviewOrderEvent, OverviewOrderState> {
             final len = (await (storeRepository.repairPaymentRepo(
               RepairRecordDummy.dummyPending(recordId),
             )).all())
-                .map((r) => r.filter((a) => a.map(
-                    pending: (v) => true,
-                    paid: (v) => false,
-                    needToVerify: (v) => true)))
+                .map(
+                  (r) => r.filter(
+                    (a) => a.map(
+                      pending: (v) => v.serviceName != 'transFee',
+                      paid: (v) => false,
+                      needToVerify: (v) => true,
+                    ),
+                  ),
+                )
                 .fold((l) => ilist(<Option<PendingServiceModel>>[]), (r) => r)
                 .length();
 

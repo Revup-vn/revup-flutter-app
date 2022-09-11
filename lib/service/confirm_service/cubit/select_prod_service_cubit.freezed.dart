@@ -19,6 +19,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
@@ -28,6 +29,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -37,6 +39,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -47,6 +50,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) =>
@@ -54,6 +58,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) =>
@@ -61,6 +66,7 @@ mixin _$SelectProdServiceState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -126,6 +132,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
@@ -138,6 +145,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -150,6 +158,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -166,6 +175,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -176,6 +186,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -186,6 +197,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -199,6 +211,128 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements SelectProdServiceState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$SelectProdServiceStateCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
+
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'SelectProdServiceState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() failure,
+    required TResult Function(String providerId, List<ServiceData> serviceList,
+            List<PendingServiceModel> pendingService)
+        success,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(String providerId, List<ServiceData> serviceList,
+            List<PendingServiceModel> pendingService)?
+        success,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? failure,
+    TResult Function(String providerId, List<ServiceData> serviceList,
+            List<PendingServiceModel> pendingService)?
+        success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_Success value) success,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements SelectProdServiceState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -242,6 +376,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
@@ -254,6 +389,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -266,6 +402,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -282,6 +419,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -292,6 +430,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -302,6 +441,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),
@@ -421,6 +561,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)
@@ -433,6 +574,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -445,6 +587,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(String providerId, List<ServiceData> serviceList,
             List<PendingServiceModel> pendingService)?
@@ -461,6 +604,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Success value) success,
   }) {
@@ -471,6 +615,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
   }) {
@@ -481,6 +626,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
     TResult Function(_Success value)? success,
     required TResult orElse(),

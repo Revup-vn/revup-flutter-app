@@ -260,8 +260,9 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                                   )
                                   .any(
                                     (a) => a.maybeMap(
-                                        started: (v) => true,
-                                        orElse: () => false),
+                                      started: (v) => true,
+                                      orElse: () => false,
+                                    ),
                                   );
                             }
                             // submit new request service as needToVerify
