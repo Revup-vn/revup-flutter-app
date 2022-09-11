@@ -202,14 +202,21 @@ class _NewServiceRequestViewState extends State<NewServiceRequestView> {
                       child: Column(
                         children: [
                           FormBuilderTextField(
+                            maxLength: 50,
                             name: 'name',
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               labelText: l10n.serviceNameLabel,
                             ),
-                            validator: FormBuilderValidators.required(
-                              errorText: l10n.emptyErrorLabel,
-                            ),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.match(
+                                r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                                errorText: l10n.invalidFormatLabel,
+                              ),
+                              FormBuilderValidators.required(
+                                errorText: l10n.emptyErrorLabel,
+                              ),
+                            ]),
                           ),
                           const SizedBox(
                             height: 16,

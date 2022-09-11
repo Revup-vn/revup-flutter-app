@@ -102,15 +102,17 @@ class SignupView extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.text,
                       name: 'fullName',
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(
-                          errorText: l10n.emptyLabel,
-                        ),
-                        FormBuilderValidators.match(
-                          r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$',
-                          errorText: l10n.invalidFormatLabel,
-                        ),
-                      ]),
+                      validator: FormBuilderValidators.compose(
+                        [
+                          FormBuilderValidators.required(
+                            errorText: l10n.emptyLabel,
+                          ),
+                          FormBuilderValidators.match(
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                            errorText: l10n.invalidFormatLabel,
+                          ),
+                        ],
+                      ),
                     ),
                     FormBuilderTextField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -204,6 +206,10 @@ class SignupView extends StatelessWidget {
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(
                           errorText: l10n.emptyLabel,
+                        ),
+                        FormBuilderValidators.match(
+                          r'^{1,50}$',
+                          errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
                     ),
