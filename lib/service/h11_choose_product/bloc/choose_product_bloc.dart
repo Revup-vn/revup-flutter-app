@@ -72,7 +72,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
       },
       submitted: (product, recordId, onRoute) async {
         emit(const ChooseProductState.loading());
-        if (!productData.any((element) => element.name == product)) {
+        if (!productData.any((element) => element.name == product.value1)) {
           emit(const ChooseProductState.failure());
 
           return;
@@ -91,7 +91,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
 
         final record = maybeRecord.getOrElse(() => throw NullThrownError());
         final selected =
-            productData.firstWhere((element) => element.name == product);
+            productData.firstWhere((element) => element.name == product.value1);
 
         await (storeRepository.repairPaymentRepo(record)).update(
           PaymentService.pending(
@@ -101,7 +101,7 @@ class ChooseProductBloc extends Bloc<ChooseProductEvent, ChooseProductState> {
               PaymentProduct(
                 name: selected.name,
                 unitPrice: selected.price,
-                quantity: 1,
+                quantity: product.value2,
               )
             ],
             isOptional: _serviceData.isOptional,

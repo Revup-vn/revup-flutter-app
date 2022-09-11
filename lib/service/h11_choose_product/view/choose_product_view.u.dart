@@ -1,26 +1,33 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
 import '../../../shared/widgets/loading.u.dart';
 import '../../widgets/service_avatar.dart';
 import '../bloc/choose_product_bloc.dart';
+import '../widgets/quantity_button.dart';
 
 class ChooseProductView extends StatefulWidget {
-  const ChooseProductView(
-      {super.key, required this.recordId, required this.isStarted});
+  const ChooseProductView({
+    super.key,
+    required this.recordId,
+    required this.isStarted,
+  });
   final String recordId;
   final bool isStarted;
-
   @override
   State<ChooseProductView> createState() => _ChooseProductViewState();
 }
 
 class _ChooseProductViewState extends State<ChooseProductView> {
   String? groupValue = '';
+  int quantity = 1;
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -52,6 +59,8 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                             padding: const EdgeInsets.only(bottom: 100),
                             itemCount: products.length,
                             itemBuilder: (context, index) {
+                              final productFormKey =
+                                  GlobalKey<FormBuilderState>();
                               return Card(
                                 elevation: 0,
                                 child: ListTile(
@@ -62,9 +71,37 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                                   title: AutoSizeText(
                                     products[index].name,
                                   ),
-                                  subtitle: AutoSizeText(
-                                    '${l10n.productPriceLabel}: '
-                                    '${products[index].price}',
+                                  subtitle: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          AutoSizeText(
+                                            '${l10n.productPriceLabel}: '
+                                            '${products[index].price}',
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      if (isChecked == true &&
+                                          products[index].name == groupValue)
+                                        Expanded(
+                                          child: Text(
+                                            'X ${quantity.toString()}',
+                                          ),
+                                        )
+                                      else
+                                        Expanded(
+                                          child: FormBuilder(
+                                            key: productFormKey,
+                                            child: const QuantityButtonCustom(
+                                              height: 40,
+                                              width: 50,
+                                            ),
+                                          ),
+                                        )
+                                    ],
                                   ),
                                   trailing: Radio<String>(
                                     activeColor:
@@ -73,8 +110,20 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                                     groupValue: groupValue,
                                     toggleable: true,
                                     onChanged: (String? value) {
+                                      productFormKey.currentState
+                                          ?.saveAndValidate();
+                                      final data = productFormKey
+                                          .currentState?.value['quantity']
+                                          .toString();
+                                      final xxxquantity =
+                                          int.parse(data ?? '1');
+
                                       setState(() {
                                         groupValue = value;
+                                        quantity = xxxquantity;
+                                        !isChecked
+                                            ? isChecked = !isChecked
+                                            : isChecked = isChecked;
                                       });
                                     },
                                   ),
@@ -95,16 +144,12 @@ class _ChooseProductViewState extends State<ChooseProductView> {
                         onPressed: () {
                           if (groupValue?.isEmpty ?? false) {
                             context.router.pop();
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //   SnackBar(
-                            //     content: Text(l10n.chooseAtLeastServiceLabel),
-                            //   ),
-                            // );
                             return;
                           }
+
                           context.read<ChooseProductBloc>().add(
                                 ChooseProductEvent.submitted(
-                                  groupValue,
+                                  tuple2(groupValue, quantity),
                                   widget.recordId,
                                   () => widget.isStarted
                                       ? context.router.popUntil(
