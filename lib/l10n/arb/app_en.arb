@@ -265,5 +265,6 @@
   "feedbackLabel": "Thank you for using our services. Have a good trip",
   "hintChooseProductLabel": "Choose product by hit 'Detail' button then confirm with provider",
   "changeLangSuccessLabel": "Change language successfully. Please restart your application to see the change",
-  "recommendServiceLabel": "Recommended service from repairer"
+  "recommendServiceLabel": "Recommended service from repairer",
+  "providerCanceledOrderLabel": "Provider canceled this order. We are very sorry for your bad experience"
 }

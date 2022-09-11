@@ -29,7 +29,7 @@ class ReviewRepairmanBuilder extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             builder: (bcontext) => SimpleDialogCustom(
-              height: 100,
+              height: 200,
               content: [
                 const Center(
                   child: Icon(Icons.done),

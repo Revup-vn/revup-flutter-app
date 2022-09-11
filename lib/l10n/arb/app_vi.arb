@@ -254,7 +254,7 @@
   "yesterdayLabel": "ngày trước",
   "repairerCancelOrderLabel": "Nhà cung cấp đã huỷ đơn hàng. Chúng tôi rất xin lỗi vì sự bất tiện này.",
   "refundLabel": "Nếu bạn đã thanh toán phí di chuyển chúng tôi sẽ hoàn lại trong vòng 48 giờ",
-  "cancelThisLabel": "Nếu bạn huỷ đơn này bạn sẽ không được hoàn lại tiền phí di chuyển đã thanh toán. Nếu huỷ quá nhiều bạn sẽ bị hạn chế sử dụng các chắc năng của hệ thống",
+  "cancelThisLabel": "Nếu bạn huỷ đơn này bạn sẽ không được hoàn lại tiền phí di chuyển đã thanh toán. Nếu huỷ quá nhiều bạn sẽ bị hạn chế sử dụng các chức năng của hệ thống",
   "sureLabel": "Bạn có chắc không?",
   "yesLabel": "Đồng ý",
   "forgotSomthingLabel": "Nếu bạn quên dịch vụ nào đó hãy nhấn nút 'Chi tiết' để thêm",
@@ -265,5 +265,6 @@
   "feedbackLabel": "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Chúc bạn thượng lộ bình an",
   "hintChooseProductLabel": "Bạn hãy chọn sản phẩm trong mục 'Chi tiết' sau đó xác nhận cho thợ sửa nhé",
   "changeLangSuccessLabel": "Thay đổi ngôn ngữ thành công. Hãy khởi động lại ứng dụng để thấy sự thay đổi",
-  "recommendServiceLabel": "Dịch vụ được đề xuất từ thợ sửa"
+  "recommendServiceLabel": "Dịch vụ được đề xuất từ thợ sửa",
+  "providerCanceledOrderLabel": "Thợ đã huỷ yêu cầu này. Chúng tôi rất xin lỗi vì trải nghiệm tồi tệ của bạn"
 }
