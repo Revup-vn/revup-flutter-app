@@ -29,27 +29,27 @@ class HistoryProviderView extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: [
-                  AutoSizeText(
-                    l10n.historyLabel,
-                    style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.bold) ??
-                        const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              BlocBuilder<HistoryProviderBloc, HistoryProviderState>(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: [
+                AutoSizeText(
+                  l10n.historyLabel,
+                  style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold) ??
+                      const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            Expanded(
+              child: BlocBuilder<HistoryProviderBloc, HistoryProviderState>(
                 builder: (context, state) {
                   return state.when(
                     initial: Container.new,
@@ -57,7 +57,7 @@ class HistoryProviderView extends StatelessWidget {
                     failure: () => const UnknownFailure(),
                     success: (histories) => ListView.builder(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: histories.length,
                       itemBuilder: (context, index) => HistoryItem(
                         data: histories[index],
@@ -73,8 +73,8 @@ class HistoryProviderView extends StatelessWidget {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

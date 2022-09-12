@@ -56,9 +56,15 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
               (r) => r.map(
                 (a) => a.maybeMap(
                   orElse: none,
-                  finished: (v) => some(
-                    RecordRatingData.fromDtos(v),
-                  ),
+                  finished: (v) {
+                    if (v.feedback != null) {
+                      return some(
+                        RecordRatingData.fromDtos(v),
+                      );
+                    } else {
+                      return none();
+                    }
+                  },
                 ),
               ),
             )

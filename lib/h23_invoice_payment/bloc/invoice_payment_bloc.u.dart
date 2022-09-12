@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -47,7 +46,6 @@ class InvoicePaymentBloc
         pay,
       ) async {
         emit(const InvoicePaymentState.loading());
-        log('PAYMENT ONLINE :: ${isPayOnline.toString()}');
 
         if (services.isNotEmpty && isPayOnline) {
           pay(
@@ -103,7 +101,6 @@ class InvoicePaymentBloc
                   ),
                 )
                 .fold((l) => throw NullThrownError(), (r) => r.toList());
-            log('TOKEN:${tokens.first.token}');
             sendMessage(tokens.first.token, pid);
             emit(
               const InvoicePaymentState.paymentSuccess(
