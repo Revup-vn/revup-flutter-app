@@ -20,6 +20,7 @@ class MapRoutePage extends StatelessWidget {
             providerId,
             context.read(),
             context.read(),
+            context.read(),
           ),
         ),
       ],

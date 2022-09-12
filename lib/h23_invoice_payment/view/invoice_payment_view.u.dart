@@ -22,17 +22,20 @@ class InvoicePaymentView extends StatelessWidget {
   const InvoicePaymentView({
     super.key,
     required this.providerData,
-    required this.services,
+    required this.serviceList,
     required this.recordId,
   });
   final ProviderData providerData;
-  final List<PendingServiceModel> services;
+  final List<PendingServiceModel> serviceList;
   final String recordId;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final maybeUser = getUser(context.read<AuthenticateBloc>().state);
     var isPayOnline = false;
+    final services = serviceList.where((e) => e.name != 'transFee').toList();
+    final transFee =
+        serviceList.firstWhere((element) => element.name == 'transFee');
     final blocPage = context.read<InvoicePaymentBloc>();
     final paymentCubit = context.watch<PaymentCubit>();
     blocPage.state.maybeWhen(
@@ -309,6 +312,34 @@ class InvoicePaymentView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        AutoSizeText(
+                          l10n.transitFeeLabel,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        AutoSizeText(
+                          context.formatMoney(transFee.price),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -331,11 +362,12 @@ class InvoicePaymentView extends StatelessWidget {
                                           (services[index].products.isEmpty
                                               ? 0
                                               : services[index].products.fold(
-                                                  0,
-                                                  (p, e) =>
-                                                      p +
-                                                      e.unitPrice *
-                                                          e.quantity)),
+                                                    0,
+                                                    (p, e) =>
+                                                        p +
+                                                        e.unitPrice *
+                                                            e.quantity,
+                                                  )),
                                     ),
                               style: services[index].status == 'paid'
                                   ? Theme.of(context)

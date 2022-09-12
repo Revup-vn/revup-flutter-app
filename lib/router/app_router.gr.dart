@@ -111,7 +111,7 @@ class AppRouter extends _i42.RootStackRouter {
           child: _i5.InvoicePaymentPage(
               key: args.key,
               providerData: args.providerData,
-              services: args.services,
+              serviceList: args.serviceList,
               recordId: args.recordId));
     },
     ReviewRepairmanRoute.name: (routeData) {
@@ -492,14 +492,14 @@ class InvoicePaymentRoute extends _i42.PageRouteInfo<InvoicePaymentRouteArgs> {
   InvoicePaymentRoute(
       {_i43.Key? key,
       required _i45.ProviderData providerData,
-      required List<_i46.PendingServiceModel> services,
+      required List<_i46.PendingServiceModel> serviceList,
       required String recordId})
       : super(InvoicePaymentRoute.name,
             path: '/invoice-payment-page',
             args: InvoicePaymentRouteArgs(
                 key: key,
                 providerData: providerData,
-                services: services,
+                serviceList: serviceList,
                 recordId: recordId));
 
   static const String name = 'InvoicePaymentRoute';
@@ -509,20 +509,20 @@ class InvoicePaymentRouteArgs {
   const InvoicePaymentRouteArgs(
       {this.key,
       required this.providerData,
-      required this.services,
+      required this.serviceList,
       required this.recordId});
 
   final _i43.Key? key;
 
   final _i45.ProviderData providerData;
 
-  final List<_i46.PendingServiceModel> services;
+  final List<_i46.PendingServiceModel> serviceList;
 
   final String recordId;
 
   @override
   String toString() {
-    return 'InvoicePaymentRouteArgs{key: $key, providerData: $providerData, services: $services, recordId: $recordId}';
+    return 'InvoicePaymentRouteArgs{key: $key, providerData: $providerData, serviceList: $serviceList, recordId: $recordId}';
   }
 }
 

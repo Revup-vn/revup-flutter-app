@@ -390,8 +390,9 @@ class ServiceInvoiceContent extends StatelessWidget {
                                 InvoicePaymentRoute(
                                   recordId: recordId,
                                   providerData: providerData,
-                                  services: services
-                                      .where((e) => e.isComplete)
+                                  serviceList: services
+                                      .where((e) =>
+                                          e.isComplete || e.name == 'transFee')
                                       .toList(),
                                 ),
                               );

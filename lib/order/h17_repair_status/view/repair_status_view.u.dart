@@ -135,7 +135,13 @@ class _RepairStatusViewState extends State<RepairStatusView> {
             initial: Container.new,
             loading: Loading.new,
             failure: UnknownFailure.new,
-            success: (services, providerId) {
+            success: (serviceList, providerId) {
+              final transFee = serviceList.firstWhere(
+                (e) => e.name == 'transFee',
+              );
+              final services = serviceList
+                  .where((element) => element.name != 'transFee')
+                  .toList();
               return Scaffold(
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
@@ -188,6 +194,38 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                                     ),
                                   ],
                                 ),
+                              ),
+                              SizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    AutoSizeText(
+                                      l10n.transitFeeLabel,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    AutoSizeText(
+                                      context.formatMoney(transFee.price),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              const Divider(
+                                height: 1,
+                                thickness: 1,
+                              ),
+                              const SizedBox(
+                                height: 8,
                               ),
                               ListView.builder(
                                 shrinkWrap: true,
@@ -279,10 +317,11 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                                                                             index]
                                                                         .products
                                                                         .fold(
-                                                                            0,
-                                                                            (p, e) =>
-                                                                                p +
-                                                                                e.unitPrice * e.quantity)),
+                                                                          0,
+                                                                          (p, e) =>
+                                                                              p +
+                                                                              e.unitPrice * e.quantity,
+                                                                        )),
                                                           ),
                                                     style: TextStyle(
                                                       fontWeight:
@@ -349,15 +388,20 @@ class _RepairStatusViewState extends State<RepairStatusView> {
                             ),
                             AutoSizeText(
                               context.formatMoney(
-                                services.fold(
+                                serviceList.fold(
                                   0,
                                   (p, e) =>
                                       p +
-                                      (e.price == -1 ? 0 : e.price) +
-                                      (e.products.isEmpty
-                                          ? 0
-                                          : e.products.first.unitPrice *
-                                              e.products.first.quantity),
+                                      (e.name == 'transFee'
+                                          ? (e.status == 'pending'
+                                              ? e.price
+                                              : -e.price)
+                                          : ((e.price == -1 ? 0 : e.price) +
+                                              (e.products.isEmpty
+                                                  ? 0
+                                                  : e.products.first.unitPrice *
+                                                      e.products.first
+                                                          .quantity))),
                                 ),
                               ),
                               style: Theme.of(context).textTheme.labelLarge,
