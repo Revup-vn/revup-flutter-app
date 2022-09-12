@@ -18,11 +18,11 @@ class InvoicePaymentPage extends StatelessWidget {
   const InvoicePaymentPage({
     super.key,
     required this.providerData,
-    required this.services,
+    required this.serviceList,
     required this.recordId,
   });
   final ProviderData providerData;
-  final List<PendingServiceModel> services;
+  final List<PendingServiceModel> serviceList;
   final String recordId;
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class InvoicePaymentPage extends StatelessWidget {
         ),
         child: InvoicePaymentView(
           providerData: providerData,
-          services: services,
+          serviceList: serviceList,
           recordId: recordId,
         ),
       ),

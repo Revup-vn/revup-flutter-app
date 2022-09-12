@@ -85,7 +85,7 @@ class RepairReviewHomePage extends StatelessWidget {
                 Column(
                   children: [
                     AutoSizeText(
-                      '''${l10n.vehicleTypeLabel}: ${homeModel.serviceType == 0 ? l10n.motorbikeLabel : l10n.carLabel}''',
+                      '''${l10n.vehicleTypeLabel} ${homeModel.serviceType == 0 ? l10n.motorbikeLabel : l10n.carLabel}''',
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     AutoSizeText(

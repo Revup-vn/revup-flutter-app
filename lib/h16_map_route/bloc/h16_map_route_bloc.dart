@@ -11,6 +11,7 @@ import 'package:revup_core/core.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
+import '../../repairer_profile/models/record_rating_data.dart';
 import '../../shared/utils.dart';
 
 part 'h16_map_route_bloc.freezed.dart';
@@ -22,12 +23,14 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
     this.providerId,
     this._userStore,
     this.storeRepository,
+    this._repairRecord,
   ) : super(const _Initial()) {
     on<H16MapRouteEvent>(_onEvent);
   }
   final String providerId;
   final IStore<AppUser> _userStore;
   final StoreRepository storeRepository;
+  final IStore<RepairRecord> _repairRecord;
   FutureOr<void> _onEvent(
     H16MapRouteEvent event,
     Emitter<H16MapRouteState> emit,
@@ -44,6 +47,43 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
               ),
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r)
+            .getOrElse(() => throw NullThrownError());
+        //fetch data rating
+        final ratingData = (await _repairRecord.where(
+          'pid',
+          isEqualTo: providerId,
+        ))
+            .map<IList<Option<RecordRatingData>>>(
+              (r) => r.map(
+                (a) => a.maybeMap(
+                  orElse: none,
+                  finished: (v) => some(
+                    RecordRatingData.fromDtos(v),
+                  ),
+                ),
+              ),
+            )
+            .map<IList<RecordRatingData>>(
+              (r) => r.filter((a) => a.isSome()).map(
+                    (a) => a.getOrElse(
+                      () => throw NullThrownError(),
+                    ),
+                  ),
+            )
+            .map(
+              (r) => tuple2(
+                r
+                        .map((a) => a.feedback?.rating ?? 0)
+                        .where((a) => a != 0)
+                        .foldLeft<int>(0, (previous, a) => previous + a) /
+                    (r.isEmpty ? 1 : r.length()),
+                r.length(),
+              ),
+            )
+            .fold<Option<Map<String, dynamic>>>(
+              (l) => none(),
+              (r) => some(r.toMap()),
+            )
             .getOrElse(() => throw NullThrownError());
 
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
@@ -79,8 +119,8 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
                 providerData,
                 distance: 0,
                 duration: 0,
-                rating: 0,
-                ratingCount: 0,
+                rating: double.parse(ratingData['value1'].toString()),
+                ratingCount: int.parse(ratingData['value2'].toString()),
               ),
               movingFees: movingFee,
             ),
