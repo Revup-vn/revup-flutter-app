@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../shared/extension.dart';
@@ -106,6 +107,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           );
         } else {
           emit(HomeState.failure(ads: imageList));
+        }
+      },
+      submited: (type, onRoute) async {
+        final boxRprRecord = Hive.box<dynamic>(
+          'repairRecord',
+        );
+        final boxLocation = Hive.box<dynamic>(
+          'location',
+        );
+        if (type == 0) {
+          await boxRprRecord.put(
+            'vehicle',
+            'car',
+          );
+          onRoute(
+            boxLocation.get(
+              'currentLat',
+            ) as double,
+            boxLocation.get(
+              'currentLng',
+            ) as double,
+          );
+        } else {
+          await boxRprRecord.put(
+            'vehicle',
+            'motorbike',
+          );
+          onRoute(
+            boxLocation.get(
+              'currentLat',
+            ) as double,
+            boxLocation.get(
+              'currentLng',
+            ) as double,
+          );
         }
       },
     );

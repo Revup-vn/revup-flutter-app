@@ -4,7 +4,6 @@ import 'package:revup_core/core.dart';
 
 import '../bloc/home_bloc.dart';
 import '../cubit/home_record_cubit.dart';
-import 'bloc/app_service_bloc.dart';
 import 'home_body_view.u.dart';
 
 class HomeBodyPage extends StatelessWidget {
@@ -17,9 +16,6 @@ class HomeBodyPage extends StatelessWidget {
         BlocProvider<HomeBloc>(
           create: (_) =>
               HomeBloc(context.read(), context.read(), user, context.read()),
-        ),
-        BlocProvider<AppServiceBloc>(
-          create: (_) => AppServiceBloc(),
         ),
         BlocProvider<HomeRecordCubit>(
           create: (_) => HomeRecordCubit(context.read(), user),

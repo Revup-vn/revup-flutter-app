@@ -82,7 +82,9 @@ class RequestDetailsStatic extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AutoSizeText(
-                                providerData.rating.toStringAsFixed(1),
+                                providerData.rating.isNaN
+                                    ? '0'
+                                    : providerData.rating.toStringAsFixed(1),
                                 maxLines: 1,
                               ),
                               Icon(

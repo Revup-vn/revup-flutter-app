@@ -8,10 +8,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
+import '../../account/model/record_rating_data.dart';
 import '../../h2_find_provider/models/provider_data.u.dart';
 import '../../map/map_api/map_api.dart';
 import '../../map/models/directions_model.dart';
-import '../../repairer_profile/models/record_rating_data.dart';
 import '../../shared/utils.dart';
 
 part 'h16_map_route_bloc.freezed.dart';
@@ -48,7 +48,6 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
             )
             .fold<Option<AppUser>>((l) => none(), (r) => r)
             .getOrElse(() => throw NullThrownError());
-        //fetch data rating
         final ratingData = (await _repairRecord.where(
           'pid',
           isEqualTo: providerId,
@@ -57,9 +56,15 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
               (r) => r.map(
                 (a) => a.maybeMap(
                   orElse: none,
-                  finished: (v) => some(
-                    RecordRatingData.fromDtos(v),
-                  ),
+                  finished: (v) {
+                    if (v.feedback != null) {
+                      return some(
+                        RecordRatingData.fromDtos(v),
+                      );
+                    } else {
+                      return none();
+                    }
+                  },
                 ),
               ),
             )
@@ -85,12 +90,10 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
               (r) => some(r.toMap()),
             )
             .getOrElse(() => throw NullThrownError());
-
         final boxRprRecord = Hive.box<dynamic>('repairRecord');
         final toLat = boxRprRecord.get('toLat', defaultValue: 0.0) as double;
         final toLng = boxRprRecord.get('toLng', defaultValue: 0.0) as double;
         final toLoc = LatLng(toLat, toLng);
-
         final doc = await _userStore.collection().doc(providerId).get();
         final maybeProviderData = doc.data() ?? <String, dynamic>{};
         if (maybeProviderData.isEmpty) {
@@ -108,7 +111,8 @@ class H16MapRouteBloc extends Bloc<H16MapRouteEvent, H16MapRouteState> {
             markerId: const MarkerId('_from'),
             position: fromLoc,
             icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueYellow),
+              BitmapDescriptor.hueYellow,
+            ),
           );
           emit(
             H16MapRouteState.success(

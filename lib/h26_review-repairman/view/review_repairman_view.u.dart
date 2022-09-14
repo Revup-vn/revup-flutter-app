@@ -158,8 +158,10 @@ class _ReviewRepairmanViewState extends State<ReviewRepairmanView> {
                                       Row(
                                         children: [
                                           AutoSizeText(
-                                            widget.provider.rating
-                                                .toStringAsFixed(1),
+                                            widget.provider.rating.isNaN
+                                                ? '0'
+                                                : widget.provider.rating
+                                                    .toStringAsFixed(1),
                                             style: Theme.of(context)
                                                     .textTheme
                                                     .labelLarge
