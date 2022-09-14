@@ -4,11 +4,11 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
+import '../bloc/home_bloc.dart';
 import '../cubit/home_record_cubit.dart';
 import 'app_service_item.u.dart';
 
@@ -34,6 +34,7 @@ class _AppServicePanelState extends State<AppServicePanel> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final stsBloc = context.watch<HomeRecordCubit>();
+    final blocPage = context.watch<HomeBloc>();
     stsBloc.state.when(
       enabled: () {
         setState(() {
@@ -77,62 +78,104 @@ class _AppServicePanelState extends State<AppServicePanel> {
                           SnackBar(content: Text(l10n.onRequestLabel)),
                         );
                       }
-                    : () {
-                        showDialog<String>(
-                          context: context,
-                          builder: (context) {
-                            return Dialog(
-                              backgroundColor: Colors.transparent,
-                              insetPadding: const EdgeInsets.all(10),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  Container(
-                                    width: double.infinity,
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.white,
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        AutoSizeText(
-                                          l10n.chooseVehicleLabel,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            AppServiceItem(
-                                              name: l10n.carLabel,
-                                              icon: const Icon(Icons.car_crash),
-                                              onPressed: () async =>
-                                                  _guardBannedUser(context, 0),
-                                            ),
-                                            const SizedBox(width: 32),
-                                            AppServiceItem(
-                                              name: l10n.motorbikeLabel,
-                                              icon: const Icon(
-                                                Icons.motorcycle,
+                    : () async {
+                        (await _guardBannedUser(context))
+                            ? showDialog<String>(
+                                context: context,
+                                builder: (bcontext) {
+                                  return Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    insetPadding: const EdgeInsets.all(10),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: double.infinity,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: Colors.white,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              AutoSizeText(
+                                                l10n.chooseVehicleLabel,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleLarge,
                                               ),
-                                              onPressed: () async =>
-                                                  _guardBannedUser(context, 1),
-                                            ),
-                                          ],
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  AppServiceItem(
+                                                    name: l10n.carLabel,
+                                                    icon: const Icon(
+                                                        Icons.car_crash),
+                                                    onPressed: () {
+                                                      bcontext.router.pop();
+
+                                                      blocPage.add(
+                                                        HomeEvent.submited(
+                                                          type: 0,
+                                                          onRoute: (lat, lng) =>
+                                                              context.router
+                                                                  .push(
+                                                            FindNearbyRoute(
+                                                              currentLocation:
+                                                                  LatLng(
+                                                                lat.toDouble(),
+                                                                lng.toDouble(),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                  const SizedBox(width: 32),
+                                                  AppServiceItem(
+                                                    name: l10n.motorbikeLabel,
+                                                    icon: const Icon(
+                                                      Icons.motorcycle,
+                                                    ),
+                                                    onPressed: () {
+                                                      bcontext.router.pop();
+
+                                                      blocPage.add(
+                                                        HomeEvent.submited(
+                                                          type: 1,
+                                                          onRoute: (lat, lng) =>
+                                                              context.router
+                                                                  .push(
+                                                            FindNearbyRoute(
+                                                              currentLocation:
+                                                                  LatLng(
+                                                                lat.toDouble(),
+                                                                lng.toDouble(),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
+                                  );
+                                },
+                              )
+                            : await context.showInfoBar<void>(
+                                content: Text(context.l10n.bannedMessage),
+                              );
                       },
               ),
             ),
@@ -164,39 +207,14 @@ class _AppServicePanelState extends State<AppServicePanel> {
     );
   }
 
-  Future<void> _onSelectMotorbike(BuildContext context) async {
-    final boxRprRecord = Hive.box<dynamic>(
-      'repairRecord',
-    );
-    await boxRprRecord.put(
-      'vehicle',
-      'motorbike',
-    );
-    final boxLocation = Hive.box<dynamic>(
-      'location',
-    );
-    await context.router.popAndPush(
-      FindNearbyRoute(
-        currentLocation: LatLng(
-          boxLocation.get(
-            'currentLat',
-          ) as double,
-          boxLocation.get(
-            'currentLng',
-          ) as double,
-        ),
-      ),
-    );
-  }
-
-  Future<void> _guardBannedUser(BuildContext context, int type) async {
+  Future<bool> _guardBannedUser(BuildContext context) async {
     try {
       final _iau = context.read<IStore<AppUser>>();
       final uid = context.read<AuthenticateBloc>().state.maybeMap(
             orElse: () => throw NullThrownError(),
             authenticated: (value) => value.authType.user.uuid,
           );
-      if ((await _iau.get(uid)).toOption().fold(
+      return (await _iau.get(uid)).toOption().fold(
             () => false,
             (a) => a.maybeMap(
               orElse: () => false,
@@ -205,45 +223,9 @@ class _AppServicePanelState extends State<AppServicePanel> {
                           .compareTo(DateTime.now()) >=
                       0),
             ),
-          )) {
-        if (type == 0) {
-          await _onSelectCarService(context);
-        } else {
-          await _onSelectMotorbike(context);
-        }
-      } else {
-        throw Exception();
-      }
+          );
     } catch (_) {
-      await context.showInfoBar<void>(
-        content: Text(context.l10n.bannedMessage),
-      );
+      return false;
     }
-  }
-
-  Future<void> _onSelectCarService(BuildContext context) async {
-    final boxRprRecord = Hive.box<dynamic>(
-      'repairRecord',
-    );
-    await boxRprRecord.put(
-      'vehicle',
-      'car',
-    );
-    final boxLocation = Hive.box<dynamic>(
-      'location',
-    );
-
-    await context.router.popAndPush(
-      FindNearbyRoute(
-        currentLocation: LatLng(
-          boxLocation.get(
-            'currentLat',
-          ) as double,
-          boxLocation.get(
-            'currentLng',
-          ) as double,
-        ),
-      ),
-    );
   }
 }

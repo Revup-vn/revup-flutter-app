@@ -59,7 +59,8 @@ class RequestProviderBloc
             markerId: const MarkerId('_from'),
             position: fromLoc,
             icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueYellow),
+              BitmapDescriptor.hueYellow,
+            ),
           );
           emit(
             RequestProviderState.success(

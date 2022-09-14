@@ -89,7 +89,11 @@ class FindProviderLoaded extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 AutoSizeText(
-                                  providers[index].rating.toStringAsFixed(1),
+                                  providers[index].rating.isNaN
+                                      ? '0'
+                                      : providers[index]
+                                          .rating
+                                          .toStringAsFixed(1),
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 Icon(

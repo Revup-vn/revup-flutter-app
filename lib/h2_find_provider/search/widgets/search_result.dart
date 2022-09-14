@@ -207,10 +207,12 @@ class SearchResult extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       AutoSizeText(
-                                        providers[index]
-                                            .value1
-                                            .rating
-                                            .toStringAsFixed(1),
+                                        providers[index].value1.rating.isNaN
+                                            ? '0'
+                                            : providers[index]
+                                                .value1
+                                                .rating
+                                                .toStringAsFixed(1),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,

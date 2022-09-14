@@ -357,7 +357,8 @@ class _OverviewOrderContentState extends State<OverviewOrderContent> {
                                 children: [
                                   TextSpan(
                                     text: context.formatMoney(
-                                        widget.pendingRequest.money),
+                                      widget.pendingRequest.money,
+                                    ),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge

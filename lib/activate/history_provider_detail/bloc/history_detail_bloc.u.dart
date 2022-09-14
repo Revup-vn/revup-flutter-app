@@ -61,9 +61,12 @@ class HistoryProviderDetailBloc
                   list.complete,
                 );
             final listPaymentService = await list.future;
-            final listServiceName =
-                listPaymentService.map((a) => a.serviceName).toList();
+            final listServiceName = listPaymentService
+                .map((a) => a.serviceName)
+                .filter((a) => a != 'transFee')
+                .toList();
             final listFee = listPaymentService
+                .filter((a) => a.serviceName != 'transFee')
                 .map(
                   (a) => a.maybeMap<Option<int>>(
                     orElse: none,
@@ -88,7 +91,6 @@ class HistoryProviderDetailBloc
                   (a) => a.maybeMap(
                     orElse: () => 0,
                     paid: (value) => value.moneyAmount,
-                    pending: (value) => value.moneyAmount,
                   ),
                 )
                 .toList();

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 
 import '../../../l10n/l10n.dart';
 import '../../../router/router.dart';
@@ -134,10 +133,7 @@ class HistoryProviderDetailView extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               child: ElevatedButton(
-                onPressed: () {
-                  // TODO(namngoc231): Contact repair service
-                  // TODO(tcmhoang): what is actually need to do here?
-                },
+                onPressed: () {},
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: AutoSizeText(
                   l10n.contactRepairServiceLabel,

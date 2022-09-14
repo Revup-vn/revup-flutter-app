@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:revup_core/core.dart';
 
 import '../../../l10n/l10n.dart';
@@ -52,10 +51,11 @@ class OrderDetailsItem extends StatelessWidget {
           const SizedBox(
             height: 6,
           ),
-          AutoSizeText(
-            '${l10n.serviceLabel} :',
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
+          if (data.serviceName.isNotEmpty)
+            AutoSizeText(
+              '${l10n.serviceLabel} :',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           Padding(
             padding: const EdgeInsets.only(left: 30),
             child: ListView.builder(

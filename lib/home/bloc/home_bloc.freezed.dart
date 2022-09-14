@@ -19,32 +19,39 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int type, Function2<num, num, void> onRoute)
+        submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submited value) submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,6 +112,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(int type, Function2<num, num, void> onRoute)
+        submited,
   }) {
     return started();
   }
@@ -113,6 +122,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
   }) {
     return started?.call();
   }
@@ -121,6 +131,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -133,6 +144,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Submited value) submited,
   }) {
     return started(this);
   }
@@ -141,6 +153,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
   }) {
     return started?.call(this);
   }
@@ -149,6 +162,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -160,6 +174,151 @@ class _$_Started implements _Started {
 
 abstract class _Started implements HomeEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_SubmitedCopyWith<$Res> {
+  factory _$$_SubmitedCopyWith(
+          _$_Submited value, $Res Function(_$_Submited) then) =
+      __$$_SubmitedCopyWithImpl<$Res>;
+  $Res call({int type, Function2<num, num, void> onRoute});
+}
+
+/// @nodoc
+class __$$_SubmitedCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$$_SubmitedCopyWith<$Res> {
+  __$$_SubmitedCopyWithImpl(
+      _$_Submited _value, $Res Function(_$_Submited) _then)
+      : super(_value, (v) => _then(v as _$_Submited));
+
+  @override
+  _$_Submited get _value => super._value as _$_Submited;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? onRoute = freezed,
+  }) {
+    return _then(_$_Submited(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
+      onRoute: onRoute == freezed
+          ? _value.onRoute
+          : onRoute // ignore: cast_nullable_to_non_nullable
+              as Function2<num, num, void>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Submited implements _Submited {
+  const _$_Submited({required this.type, required this.onRoute});
+
+  @override
+  final int type;
+  @override
+  final Function2<num, num, void> onRoute;
+
+  @override
+  String toString() {
+    return 'HomeEvent.submited(type: $type, onRoute: $onRoute)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Submited &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            (identical(other.onRoute, onRoute) || other.onRoute == onRoute));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(type), onRoute);
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      __$$_SubmitedCopyWithImpl<_$_Submited>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int type, Function2<num, num, void> onRoute)
+        submited,
+  }) {
+    return submited(type, onRoute);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
+  }) {
+    return submited?.call(type, onRoute);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int type, Function2<num, num, void> onRoute)? submited,
+    required TResult orElse(),
+  }) {
+    if (submited != null) {
+      return submited(type, onRoute);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Submited value) submited,
+  }) {
+    return submited(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
+  }) {
+    return submited?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Submited value)? submited,
+    required TResult orElse(),
+  }) {
+    if (submited != null) {
+      return submited(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submited implements HomeEvent {
+  const factory _Submited(
+      {required final int type,
+      required final Function2<num, num, void> onRoute}) = _$_Submited;
+
+  int get type;
+  Function2<num, num, void> get onRoute;
+  @JsonKey(ignore: true)
+  _$$_SubmitedCopyWith<_$_Submited> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

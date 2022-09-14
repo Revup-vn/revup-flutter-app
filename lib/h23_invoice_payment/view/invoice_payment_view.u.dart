@@ -251,7 +251,9 @@ class InvoicePaymentView extends StatelessWidget {
                             Row(
                               children: [
                                 AutoSizeText(
-                                  providerData.rating.toStringAsFixed(1),
+                                  providerData.rating.isNaN
+                                      ? '0'
+                                      : providerData.rating.toStringAsFixed(1),
                                   style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -316,9 +318,11 @@ class InvoicePaymentView extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        AutoSizeText(
-                          l10n.transitFeeLabel,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        Expanded(
+                          child: AutoSizeText(
+                            l10n.transitFeeLabel,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ),
                         AutoSizeText(
                           context.formatMoney(transFee.price),
@@ -326,7 +330,17 @@ class InvoicePaymentView extends StatelessWidget {
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
-                        )
+                        ),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        AutoSizeText(
+                          transFee.status == 'pending'
+                              ? context.l10n.pendingLabel
+                              : context.l10n.paidLabel,
+                          maxFontSize: 12,
+                          minFontSize: 8,
+                        ),
                       ],
                     ),
                   ),
@@ -503,7 +517,7 @@ class InvoicePaymentView extends StatelessWidget {
                           ),
                           AutoSizeText(
                             context.formatMoney(
-                              services.fold(
+                              serviceList.fold(
                                 0,
                                 (p, e) =>
                                     p +
