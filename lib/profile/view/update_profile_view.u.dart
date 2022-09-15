@@ -103,12 +103,13 @@ class UpdateProfileView extends StatelessWidget {
                         ),
                         keyboardType: TextInputType.text,
                         name: 'fullName',
+                        maxLength: 50,
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW]*$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
@@ -130,6 +131,7 @@ class UpdateProfileView extends StatelessWidget {
                         ),
                         keyboardType: TextInputType.text,
                         name: 'email',
+                        maxLength: 70,
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(
                             errorText: l10n.emptyLabel,
@@ -200,13 +202,10 @@ class UpdateProfileView extends StatelessWidget {
                         ),
                         keyboardType: TextInputType.text,
                         name: 'address',
+                        maxLength: 50,
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(
                             errorText: l10n.emptyLabel,
-                          ),
-                          FormBuilderValidators.match(
-                            r'^{1,50}$',
-                            errorText: l10n.invalidFormatLabel,
                           ),
                         ]),
                         initialValue: user.addr,
