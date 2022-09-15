@@ -101,6 +101,7 @@ class SignupView extends StatelessWidget {
                             ),
                       ),
                       keyboardType: TextInputType.text,
+                      maxLength: 50,
                       name: 'fullName',
                       validator: FormBuilderValidators.compose(
                         [
@@ -108,7 +109,7 @@ class SignupView extends StatelessWidget {
                             errorText: l10n.emptyLabel,
                           ),
                           FormBuilderValidators.match(
-                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW0-9]{1,50}$',
+                            r'^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\sW]+$',
                             errorText: l10n.invalidFormatLabel,
                           ),
                         ],
@@ -131,6 +132,7 @@ class SignupView extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.text,
                       name: 'email',
+                      maxLength: 70,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(
                           errorText: l10n.emptyLabel,
@@ -203,13 +205,10 @@ class SignupView extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.text,
                       name: 'address',
+                      maxLength: 50,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(
                           errorText: l10n.emptyLabel,
-                        ),
-                        FormBuilderValidators.match(
-                          r'^{1,50}$',
-                          errorText: l10n.invalidFormatLabel,
                         ),
                       ]),
                     ),
