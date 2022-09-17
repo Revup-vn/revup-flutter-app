@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectycube_sdk/connectycube_calls.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:revup_core/core.dart';
+
+import '../../../configs/video_call_config.dart';
 
 part 'signup_bloc.freezed.dart';
 part 'signup_event.dart';
@@ -34,7 +37,11 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           );
         }
         final imgUrl = await imgDt.future;
-
+        final cubeUser = CubeUser(
+          login: aUser.phone,
+          password: DEFAULT_PASS,
+        );
+        await signUp(cubeUser);
         completer.complete(
           aUser.copyWith(
             avatarUrl: imgUrl.isEmpty ? aUser.avatarUrl : imgUrl,

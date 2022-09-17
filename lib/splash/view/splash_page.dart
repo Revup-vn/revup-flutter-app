@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart' hide NotificationType;
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config.dart' as config;
+import '../../configs/video_call_config.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/l10n.dart';
 import '../../router/router.dart';
 import '../../shared/widgets/custom_dialog.dart';
+import '../../video_call/video_call_manager/call_mange.u.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -119,6 +123,12 @@ class _SplashPageState extends State<SplashPage> {
     Future<void>.delayed(
       const Duration(seconds: 5),
       () {
+        init(
+          config.APP_ID,
+          config.AUTH_KEY,
+          config.AUTH_SECRET,
+        );
+        CallManager.instance.init(context);
         final authBloc = context.read<AuthenticateBloc>();
         authBloc.state.maybeMap(
           failure: (_) {
@@ -135,6 +145,7 @@ class _SplashPageState extends State<SplashPage> {
         );
         final notifyCubit = context.read<NotificationCubit>();
         final sr = context.read<StoreRepository>();
+
         authBloc.state.maybeWhen(
           authenticated: (authType) async {
             await notifyCubit.requirePermission();
@@ -155,6 +166,28 @@ class _SplashPageState extends State<SplashPage> {
                 token: token,
               ),
             );
+            final userr = CubeUser(
+              login: authType.user
+                  .mapOrNull(
+                    consumer: (value) => value.vac,
+                  )
+                  ?.username,
+              password: DEFAULT_PASS,
+            );
+            await createSession(userr).then((suser) async {
+              await Hive.openBox<dynamic>('vacID')
+                  .then((box) => box.put('id', userr.id));
+              final sUser = CubeUser(
+                id: suser.id,
+                login: authType.user
+                    .mapOrNull(
+                      consumer: (value) => value.vac,
+                    )
+                    ?.username,
+                password: DEFAULT_PASS,
+              );
+              await _loginToCubeChat(context, sUser);
+            });
             await Hive.openBox<dynamic>('authType').then(
               (value) {
                 value.put(
@@ -242,5 +275,16 @@ class _SplashPageState extends State<SplashPage> {
         );
       },
     );
+  }
+
+  Future<void> _loginToCubeChat(
+    BuildContext context,
+    CubeUser user,
+  ) async {
+    await CubeChatConnection.instance.login(user).then(
+      (cubeUser) {
+        CallManager.instance.init(context);
+      },
+    ).catchError((dynamic error) async {});
   }
 }

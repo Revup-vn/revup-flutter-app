@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
+import '../../../video_call/bloc/video_call_bloc.dart';
 import '../bloc/overview_order_bloc.u.dart';
 import 'overview_order_view.u.dart';
 
@@ -32,6 +33,15 @@ class OverViewOrderPage extends StatelessWidget {
             userid,
           ),
         ),
+        BlocProvider<VideoCallBloc>(
+          create: (context) => VideoCallBloc(
+            userid,
+            providerId,
+            context,
+            context.read(),
+          ),
+          child: Container(),
+        )
       ],
       child: const OverViewOrderView(),
     );
