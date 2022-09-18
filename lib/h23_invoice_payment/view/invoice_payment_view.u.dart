@@ -402,10 +402,11 @@ class InvoicePaymentView extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
+                  if (services.isNotEmpty)
+                    const Divider(
+                      height: 1,
+                      thickness: 1,
+                    ),
                   const SizedBox(
                     height: 16,
                   ),
