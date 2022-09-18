@@ -126,22 +126,6 @@ class HistoryProviderDetailView extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              height: 80,
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: Theme.of(context).cardColor),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: Theme.of(context).elevatedButtonTheme.style,
-                child: AutoSizeText(
-                  l10n.contactRepairServiceLabel,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
