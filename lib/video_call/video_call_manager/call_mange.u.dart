@@ -125,7 +125,9 @@ class CallManager {
     if (_currentCall != null) {
       if (context != null) {
         if (context != null) {
-          context?.router.push(
+          final routerFake = context?.router;
+
+          routerFake?.push(
             ConversationRoute(
               callSession: _currentCall!,
               isIncoming: true,
@@ -152,6 +154,8 @@ class CallManager {
       CallKitManager.instance.processCallFinished(_currentCall!.sessionId);
       _sendEndCallSignalForOffliners(_currentCall!);
       _currentCall!.hungUp();
+    } else {
+      context?.router.pop();
     }
   }
 
