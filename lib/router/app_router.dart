@@ -42,6 +42,8 @@ import '../service/new_service/view/new_service_request_page.u.dart';
 import '../service/service-details/view/service_detail_page.u.dart';
 import '../signup/view/signup_page.u.dart';
 import '../test/test.dart';
+import '../video_call/view/coversation_page.dart';
+import '../video_call/view/incoming_call_page.dart';
 
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -55,6 +57,8 @@ import '../test/test.dart';
     AdaptiveRoute<void>(page: ChangeLanguagePage),
     AdaptiveRoute<void>(page: ReportPage),
     AdaptiveRoute<void>(page: TestPage),
+    AdaptiveRoute<void>(page: ConversationPage),
+    AdaptiveRoute<void>(page: IncomingCallPage),
     AdaptiveRoute<void>(
       page: HomePage,
       children: [

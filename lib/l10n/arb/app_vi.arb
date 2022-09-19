@@ -266,5 +266,10 @@
   "hintChooseProductLabel": "Bạn hãy chọn sản phẩm trong mục 'Chi tiết' sau đó xác nhận cho thợ sửa nhé",
   "changeLangSuccessLabel": "Change language successfully. Please restart your application to see the change",
   "recommendServiceLabel": "Dịch vụ được đề xuất từ thợ sửa",
-  "providerCanceledOrderLabel": "Thợ đã huỷ yêu cầu này. Chúng tôi rất xin lỗi vì trải nghiệm tồi tệ của bạn"
+  "providerCanceledOrderLabel": "Thợ đã huỷ yêu cầu này. Chúng tôi rất xin lỗi vì trải nghiệm tồi tệ của bạn",
+  "endCallDialogLabel": "Xác nhận kết thúc cuộc gọi?",
+  "incomingVideoLabal": "Cuộc gọi video đến",
+  "yourProviderLabel": "Thợ sửa của bạn",
+  "rejectCallLabel": "Từ Chối",
+  "acceptCallLabel": "Chấp Nhận"
 }

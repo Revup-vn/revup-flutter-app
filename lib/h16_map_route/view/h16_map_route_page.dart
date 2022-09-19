@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:revup_core/core.dart';
 
 import '../../shared/utils.dart';
+import '../../video_call/bloc/video_call_bloc.dart';
 import '../bloc/h16_map_route_bloc.dart';
 import 'h16_map_route_view.dart';
 
@@ -23,6 +24,13 @@ class MapRoutePage extends StatelessWidget {
             context.read(),
           ),
         ),
+        BlocProvider<VideoCallBloc>(
+          create: (context) => VideoCallBloc(
+            providerId,
+            context,
+            context.read(),
+          ),
+        )
       ],
       child: H16MapRoute(
         user: user,

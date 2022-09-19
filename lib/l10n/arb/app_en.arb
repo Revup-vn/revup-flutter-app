@@ -266,5 +266,10 @@
   "hintChooseProductLabel": "Choose product by hit 'Detail' button then confirm with provider",
   "changeLangSuccessLabel": "Thay đổi ngôn ngữ thành công. Hãy khởi động lại ứng dụng để thấy sự thay đổi",
   "recommendServiceLabel": "Recommended service from repairer",
-  "providerCanceledOrderLabel": "Provider canceled this order. We are very sorry for your bad experience"
+  "providerCanceledOrderLabel": "Provider canceled this order. We are very sorry for your bad experience",
+  "endCallDialogLabel": "Confirm to end the call",
+  "incomingVideoLabal": "Incoming Video Call",
+  "yourProviderLabel": "Your provider",
+  "rejectCallLabel": "RejectCall",
+  "acceptCallLabel": "AcceptCall"
 }

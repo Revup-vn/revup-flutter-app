@@ -113,6 +113,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final boxRprRecord = Hive.box<dynamic>(
           'repairRecord',
         );
+
         final boxLocation = Hive.box<dynamic>(
           'location',
         );

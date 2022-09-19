@@ -12,6 +12,7 @@ import '../../service/widgets/service_avatar.dart';
 import '../../shared/fallbacks.dart';
 import '../../shared/utils.dart';
 import '../../shared/widgets/custom_dialog.dart';
+import '../../video_call/bloc/video_call_bloc.dart';
 
 class RequestDetailsLive extends StatefulWidget {
   const RequestDetailsLive({
@@ -267,7 +268,11 @@ class _RequestDetailsLiveState extends State<RequestDetailsLive> {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.read<VideoCallBloc>().add(
+                                          const VideoCallEvent.callStarted(),
+                                        );
+                                  },
                                   icon: Icon(
                                     Icons.videocam,
                                     color:
