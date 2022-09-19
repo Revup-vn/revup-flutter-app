@@ -1,21 +1,24 @@
 // ignore_for_file: unused_element
 
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:revup_core/core.dart';
 
+import '../../configs/video_call_config.dart' as config;
+import '../../configs/video_call_config.dart';
 import '../../l10n/l10n.dart';
 import '../../router/app_router.gr.dart';
 import '../../shared/widgets/internet_availability_page.dart';
 import '../../shared/widgets/loading.u.dart';
+import '../../video_call/video_call_manager/call_mange.u.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_failure.u.dart';
 import 'login_view.u.dart';
@@ -53,6 +56,12 @@ class LoginPage extends StatelessWidget {
               orElse: () => false,
             ),
             authenticated: (authType) async {
+              init(
+                config.APP_ID,
+                config.AUTH_KEY,
+                config.AUTH_SECRET,
+              );
+              CallManager.instance.init(context);
               await notifyCubit.requirePermission();
               await notifyCubit.registerDevice();
 
@@ -131,6 +140,30 @@ class LoginPage extends StatelessWidget {
                       );
                       await Hive.openBox<dynamic>('location');
                       await Hive.openBox<dynamic>('repairRecord');
+                      final userr = CubeUser(
+                        login: authType.user
+                            .mapOrNull(
+                              consumer: (value) => value.vac,
+                            )
+                            ?.username,
+                        password: DEFAULT_PASS,
+                      );
+                      if (!CubeSessionManager.instance.isActiveSessionValid()) {
+                        await createSession(userr).then((suser) async {
+                          await Hive.openBox<dynamic>('vacID')
+                              .then((box) => box.put('id', userr.id));
+                          final sUser = CubeUser(
+                            id: suser.id,
+                            login: authType.user
+                                .mapOrNull(
+                                  consumer: (value) => value.vac,
+                                )
+                                ?.username,
+                            password: DEFAULT_PASS,
+                          );
+                          await _loginToCubeChat(context, sUser);
+                        });
+                      }
                       await context.router.pushAndPopUntil(
                         HomeRoute(user: authType.user),
                         predicate: (_) => true,
@@ -376,5 +409,16 @@ class LoginPage extends StatelessWidget {
   Future<void> _onRegisterNotification(String token) async {
     final boxUser = await Hive.openBox<dynamic>('user');
     await boxUser.put('notifyToken', token);
+  }
+
+  Future<void> _loginToCubeChat(
+    BuildContext context,
+    CubeUser user,
+  ) async {
+    await CubeChatConnection.instance.login(user).then(
+      (cubeUser) {
+        CallManager.instance.init(context);
+      },
+    ).catchError((dynamic error) async {});
   }
 }

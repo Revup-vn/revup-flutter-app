@@ -14,14 +14,12 @@ part 'video_call_state.dart';
 
 class VideoCallBloc extends Bloc<VideoCallEvent, VideoCallState> {
   VideoCallBloc(
-    this.cid,
     this.pid,
     this.context,
     this.userRepos,
   ) : super(const _Initial()) {
     on<VideoCallEvent>(_onEvent);
   }
-  final String cid;
   final IStore<AppUser> userRepos;
   final String pid;
   final BuildContext context;

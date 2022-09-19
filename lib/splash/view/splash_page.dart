@@ -166,6 +166,22 @@ class _SplashPageState extends State<SplashPage> {
                 token: token,
               ),
             );
+
+            await Hive.openBox<dynamic>('authType').then(
+              (value) {
+                value.put(
+                  'auth',
+                  authType.map(
+                    google: (value) =>
+                        AuthType.google(user: value.user).toJson(),
+                    phone: (value) => AuthType.phone(user: value.user).toJson(),
+                    email: (value) => AuthType.email(user: value.user).toJson(),
+                  ),
+                );
+              },
+            );
+            await Hive.openBox<dynamic>('location');
+            await Hive.openBox<dynamic>('repairRecord');
             final userr = CubeUser(
               login: authType.user
                   .mapOrNull(
@@ -188,21 +204,6 @@ class _SplashPageState extends State<SplashPage> {
               );
               await _loginToCubeChat(context, sUser);
             });
-            await Hive.openBox<dynamic>('authType').then(
-              (value) {
-                value.put(
-                  'auth',
-                  authType.map(
-                    google: (value) =>
-                        AuthType.google(user: value.user).toJson(),
-                    phone: (value) => AuthType.phone(user: value.user).toJson(),
-                    email: (value) => AuthType.email(user: value.user).toJson(),
-                  ),
-                );
-              },
-            );
-            await Hive.openBox<dynamic>('location');
-            await Hive.openBox<dynamic>('repairRecord');
           },
           orElse: () => false,
         );

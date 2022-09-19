@@ -35,12 +35,10 @@ class OverViewOrderPage extends StatelessWidget {
         ),
         BlocProvider<VideoCallBloc>(
           create: (context) => VideoCallBloc(
-            userid,
             providerId,
             context,
             context.read(),
           ),
-          child: Container(),
         )
       ],
       child: const OverViewOrderView(),

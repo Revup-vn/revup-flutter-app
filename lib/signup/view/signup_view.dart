@@ -225,11 +225,13 @@ class SignupView extends StatelessWidget {
                           var lName = '';
                           if (listName != null && listName.length > 1) {
                             listName.remove(listName[0]);
-                            lName = listName.fold<String>(
-                              '',
-                              (previousValue, element) =>
-                                  '${previousValue.trim()} ${element.trim()}',
-                            );
+                            lName = listName
+                                .fold<String>(
+                                  '',
+                                  (previousValue, element) =>
+                                      '${previousValue.trim()} ${element.trim()}',
+                                )
+                                .trim();
                           }
 
                           var phoneNumber = data?['phone'].toString();
