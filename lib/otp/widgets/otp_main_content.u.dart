@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:revup_core/core.dart';
 
@@ -23,6 +24,8 @@ class OTPMainContent extends StatelessWidget {
         appBar: AppBar(
           leading: BackButton(
             onPressed: () {
+              context.read<GoogleSignIn>().disconnect();
+              context.read<GoogleSignIn>().signOut();
               context.router.pop();
               context.read<AuthenticateBloc>().add(
                     const AuthenticateEvent.reset(),
