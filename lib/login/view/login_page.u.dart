@@ -148,22 +148,22 @@ class LoginPage extends StatelessWidget {
                             ?.username,
                         password: DEFAULT_PASS,
                       );
-                      if (!CubeSessionManager.instance.isActiveSessionValid()) {
-                        await createSession(userr).then((suser) async {
-                          await Hive.openBox<dynamic>('vacID')
-                              .then((box) => box.put('id', userr.id));
-                          final sUser = CubeUser(
-                            id: suser.id,
-                            login: authType.user
-                                .mapOrNull(
-                                  consumer: (value) => value.vac,
-                                )
-                                ?.username,
-                            password: DEFAULT_PASS,
-                          );
-                          await _loginToCubeChat(context, sUser);
-                        });
-                      }
+
+                      await createSession(userr).then((suser) async {
+                        await Hive.openBox<dynamic>('vacID')
+                            .then((box) => box.put('id', userr.id));
+                        final sUser = CubeUser(
+                          id: suser.id,
+                          login: authType.user
+                              .mapOrNull(
+                                consumer: (value) => value.vac,
+                              )
+                              ?.username,
+                          password: DEFAULT_PASS,
+                        );
+                        await _loginToCubeChat(context, sUser);
+                      });
+
                       await context.router.pushAndPopUntil(
                         HomeRoute(user: authType.user),
                         predicate: (_) => true,
@@ -372,7 +372,9 @@ class LoginPage extends StatelessWidget {
         );
       },
     );
-
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop();
+    });
     context.read<AuthenticateBloc>().add(
           AuthenticateEvent.loginWithPhone(
             phoneNumber: '+84$phone',
@@ -399,11 +401,11 @@ class LoginPage extends StatelessWidget {
                   email: user.email ?? '',
                 ),
               );
+
               return completer.future;
             },
           ),
         );
-    Navigator.of(context, rootNavigator: true).pop();
   }
 
   Future<void> _onRegisterNotification(String token) async {

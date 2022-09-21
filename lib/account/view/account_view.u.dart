@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -168,6 +169,7 @@ class AccountView extends StatelessWidget {
                   final boxAuthType = await Hive.openBox<dynamic>('authType');
                   final authType = boxAuthType.get('auth', defaultValue: '')
                       as Map<String, dynamic>;
+                  await deleteSession();
                   if (authType.isNotEmpty) {
                     bloc.add(
                       AuthenticateEvent.signOut(
