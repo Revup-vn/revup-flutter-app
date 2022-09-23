@@ -165,7 +165,9 @@ class SearchCubit extends Cubit<SearchState> {
                           .then(
                         (v) => v.fold(
                           (l) => a,
-                          (r) => a.copyWith(repairService: r.toList()),
+                          (r) => a.copyWith(
+                            repairService: r.filter((a) => a.active).toList(),
+                          ),
                         ),
                       ),
                     ),
