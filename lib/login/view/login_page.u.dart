@@ -161,12 +161,14 @@ class LoginPage extends StatelessWidget {
                               ?.username,
                           password: DEFAULT_PASS,
                         );
-                        await _loginToCubeChat(context, sUser);
+                        unawaited(_loginToCubeChat(context, sUser));
                       });
 
-                      await context.router.pushAndPopUntil(
-                        HomeRoute(user: authType.user),
-                        predicate: (_) => true,
+                      unawaited(
+                        context.router.pushAndPopUntil(
+                          HomeRoute(user: authType.user),
+                          predicate: (_) => true,
+                        ),
                       );
                     },
                   );
